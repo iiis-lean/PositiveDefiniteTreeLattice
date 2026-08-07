@@ -1,10 +1,26 @@
 {
-  "about_markdown": null,
-  "badges": [],
-  "citation_markdown": null,
-  "description": null,
-  "licensing_markdown": null,
+  "about_markdown": "This repository contains an independent Lean 4 formalization of First Proof Second Batch Problem 6:\n\n> Joshua Evan Greene and Duncan McCoy, Problem 6 in Mohammed Abouzaid, Nikhil Srivastava, Rachel Ward, and Lauren Williams,\n> *First Proof Second Batch*, arXiv:2606.18119v1 [cs.AI], 2026.\n> <https://arxiv.org/abs/2606.18119>\n\nThe original theorem and author solution are due to Joshua Evan Greene and Duncan McCoy. The Lean formalization was produced by IIIS Lean using Lean Constellation. It is not presented as work by, or endorsed by, the original authors or the First Proof Project unless explicitly stated otherwise. The fixed supplementary material is available in the [official Second Batch repository](https://github.com/1stproof/batch-2/tree/77b4e4b466e958759882302179e7e94d7392a8e7), including the [authors' solution](https://github.com/1stproof/batch-2/blob/77b4e4b466e958759882302179e7e94d7392a8e7/batch-2-human-solution/problem-06/human-solution.tex) and the [expert-reviewed rooted-capacity submission used as the formalization route](https://github.com/1stproof/batch-2/blob/77b4e4b466e958759882302179e7e94d7392a8e7/batch-2-AI-solutions/problem-06/submission-C.tex).\n\nFor a finite tree `G` with integer vertex weights `w`, the associated integral lattice pairing is\n\n```text\n<x, y> = sum_u x_u * (w(u) * y_u - sum_{v adjacent to u} y_v).\n```\n\nThe main theorem assumes that this pairing is positive on every nonzero integer vector and that exactly one vertex `v` is underweighted, meaning `w(v) < degree(v)`. It proves that some vertex basis vector is irreducible: it cannot be written as `a + b` for nonzero integer vectors `a` and `b` with `<a, b> >= 0`. See [`exists_irreducible_vertex`](docs/lean-constellation/declarations/main-irreduciblevertex-exists-irreducible-vertex.md) for the exact Lean statement and proof.\n\nThe proof deletes the unique underweighted vertex, organizes the remaining components as rooted trees, controls the root diagonal of the inverse Gram matrix by a capacity recursion, proves the rooted integer estimate, and uses it in the final decomposition argument. The broader Neumann--Zagier conjecture and the alternative cut-and-flow proof are outside this repository's scope. The focused SourceCorpus under `.lean_constellation/source/` is a rewritten and reorganized formalization resource; it preserves attribution to the original mathematical sources and does not reproduce the complete external supplementary TeX files verbatim.\n\nTo the best of our knowledge, this is the first public Lean 4 formalization of this exact Second Batch theorem. This is a bounded literature and code-search claim and does not rule out private or unindexed work. It should not be confused with public formalizations of First Proof *First Batch* Problem 6, which is a different graph-theoretic problem.",
+  "badges": [
+    {
+      "color": "b31b1b",
+      "label": "source",
+      "link": "https://arxiv.org/abs/2606.18119",
+      "message": "arXiv 2606.18119"
+    }
+  ],
+  "citation_markdown": "If you use the mathematical result, cite the First Proof Second Batch report and identify Problem 6 as contributed by Joshua Evan Greene and Duncan McCoy:\n\n```bibtex\n@article{AbouzaidEtAl2026FirstProofSecondBatch,\n  author        = {Mohammed Abouzaid and Nikhil Srivastava and Rachel Ward and Lauren Williams},\n  title         = {First Proof Second Batch},\n  journal       = {arXiv preprint},\n  year          = {2026},\n  eprint        = {2606.18119},\n  archivePrefix = {arXiv},\n  primaryClass  = {cs.AI},\n  doi           = {10.48550/arXiv.2606.18119},\n  url           = {https://arxiv.org/abs/2606.18119},\n  note          = {Problem 6 contributed by Joshua Evan Greene and Duncan McCoy}\n}\n```\n\nIf you use the Lean implementation, cite this repository in addition to the report. Machine-readable citation metadata is available in [`CITATION.cff`](CITATION.cff).",
+  "description": "A Lean 4 formalization of First Proof Second Batch Problem 6: an irreducible vertex in a positive-definite integer-weighted tree lattice.",
+  "licensing_markdown": "Lean source code, the rewritten SourceCorpus, generated Lean Constellation metadata, and repository documentation are licensed under the Apache License 2.0; see [`LICENSE`](LICENSE).\n\nThe original theorem and author proof remain attributed to Joshua Evan Greene and Duncan McCoy. The First Proof report is distributed under [Creative Commons Attribution 4.0](https://creativecommons.org/licenses/by/4.0/); the fixed supplementary GitHub repository does not declare a repository-wide license. This repository does not relicense the linked external TeX files. See [`NOTICE`](NOTICE) for the scope and attribution record.",
   "schema_version": 1,
-  "title": null,
-  "topics": []
+  "title": "Positive-Definite Tree Lattices in Lean",
+  "topics": [
+    "lean4",
+    "mathlib",
+    "formalization",
+    "lean-constellation",
+    "graph-theory",
+    "lattice-theory",
+    "quadratic-forms",
+    "first-proof"
+  ]
 }

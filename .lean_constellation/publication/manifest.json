@@ -3987,15 +3987,29 @@
       "disposition": "include",
       "path": ".lean_constellation/publication/presentation.json",
       "reason": "portable_project_or_business_truth",
-      "sha256": "cd163dfdfd95ccc887aaeba164e76fad1c6f209fd9e82919866fe3d46329f0bb",
-      "size_bytes": 183
+      "sha256": "ac9a718892a38a790ece16e320fe66448b517709f9211eb34e11d45b0c04b7e7",
+      "size_bytes": 5003
+    },
+    {
+      "disposition": "include",
+      "path": ".lean_constellation/releases/release_b3481b2825744323892bbbf9e425a779/decl_availability.json",
+      "reason": "portable_project_or_business_truth",
+      "sha256": "9cef745f6e9352dca5c6926d7e752e7f9710a6a8c46d2d75d7d03f54d15011b0",
+      "size_bytes": 20249
+    },
+    {
+      "disposition": "include",
+      "path": ".lean_constellation/releases/release_b3481b2825744323892bbbf9e425a779.json",
+      "reason": "portable_project_or_business_truth",
+      "sha256": "e6d77f4e12bc779d18cec8ed698bfc5411b3799916c3d2f36061eb68a1556cef",
+      "size_bytes": 991
     },
     {
       "disposition": "include",
       "path": ".lean_constellation/repo.json",
       "reason": "portable_project_or_business_truth",
-      "sha256": "da31136b87c9287adf75a8943eee478f89a1431ad7fa0c403be946eca44db0b2",
-      "size_bytes": 45
+      "sha256": "fec61c3def1b606fdfe390cc4f3fc869be416f74b0613923ff1a441e0edc5859",
+      "size_bytes": 208
     },
     {
       "disposition": "include",
@@ -4010,6 +4024,13 @@
       "reason": "portable_project_or_business_truth",
       "sha256": "f36223152ad7166665a3c6c453f43b78adb9b3c9d62976edef8b6c90a893364d",
       "size_bytes": 86
+    },
+    {
+      "disposition": "include",
+      "path": ".lean_constellation/repo_publication.json",
+      "reason": "portable_project_or_business_truth",
+      "sha256": "04b3b1f65564162cafa950b7b304b7d9b77f1099706610b65ce74489ada7af69",
+      "size_bytes": 131
     },
     {
       "disposition": "include",
@@ -4052,6 +4073,27 @@
       "reason": "portable_project_or_business_truth",
       "sha256": "32a011a1be8054c0d0b5673ee8bd181695c53e86cde80a0e0ff4c4567e066490",
       "size_bytes": 20793
+    },
+    {
+      "disposition": "include",
+      "path": "CITATION.cff",
+      "reason": "portable_project_or_business_truth",
+      "sha256": "bc409f6b10094e13bfc20042d366066f58a04fe6320cdd406e42d9b088807443",
+      "size_bytes": 1343
+    },
+    {
+      "disposition": "include",
+      "path": "LICENSE",
+      "reason": "portable_project_or_business_truth",
+      "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+      "size_bytes": 11357
+    },
+    {
+      "disposition": "include",
+      "path": "NOTICE",
+      "reason": "portable_project_or_business_truth",
+      "sha256": "acb1e1997a6a5b62d76e1e027776f8a57dc871a938beed3dd116827f3c2ce14f",
+      "size_bytes": 1446
     },
     {
       "disposition": "include",
@@ -4827,8 +4869,8 @@
       "disposition": "include",
       "path": "README.md",
       "reason": "portable_project_or_business_truth",
-      "sha256": "90bf662f6173b48edf7f3edaf87dd0b594fa696d9aa39029a9fc377d694dc9eb",
-      "size_bytes": 2128
+      "sha256": "ca33e2f848b453cefa4f8e84140562edf2c71a9a93f5eaaa262e9590aae2ad49",
+      "size_bytes": 6264
     },
     {
       "disposition": "include",
@@ -5314,6 +5356,11 @@
       "recursive": true
     },
     {
+      "path": ".git",
+      "reason": "runtime_or_git_state",
+      "recursive": true
+    },
+    {
       "path": ".lake",
       "reason": "runtime_or_git_state",
       "recursive": true
@@ -5335,10 +5382,10 @@
     }
   ],
   "generated_at": "2026-08-07T12:15:30Z",
-  "included_file_count": 757,
-  "included_size_bytes": 10263866,
-  "manifest_digest": "29f788376900c865177d5fc2149a94cec793247cb6a3e953b976b42a6ea20782",
+  "included_file_count": 763,
+  "included_size_bytes": 10308502,
+  "manifest_digest": "cdcbc8e04fc3d7d69cd58be8b0e87867a94accc1c643b837867508a321af85bf",
   "repo_key": "PositiveDefiniteTreeLattice",
   "schema_version": 2,
-  "summary": "Publication manifest includes 757 files (10263866 bytes)."
+  "summary": "Publication manifest includes 763 files (10308502 bytes)."
 }

@@ -1,0 +1,44 @@
+cff-version: 1.2.0
+message: >-
+  If you use this Lean formalization, please cite both this repository and the
+  First Proof Second Batch report; Problem 6 was contributed by Joshua Evan
+  Greene and Duncan McCoy.
+title: Positive-Definite Tree Lattices in Lean
+type: software
+authors:
+  - name: IIIS Lean
+abstract: >-
+  A Lean 4 formalization of First Proof Second Batch Problem 6: a
+  positive-definite integer-weighted finite tree with a unique underweighted
+  vertex has an irreducible vertex vector.
+repository-code: https://github.com/iiis-lean/PositiveDefiniteTreeLattice
+url: https://github.com/iiis-lean/PositiveDefiniteTreeLattice
+license: Apache-2.0
+version: release_b3481b2825744323892bbbf9e425a779
+date-released: 2026-08-07
+keywords:
+  - Lean 4
+  - Mathlib
+  - formalization
+  - graph theory
+  - lattice theory
+  - quadratic forms
+  - First Proof
+references:
+  - type: article
+    authors:
+      - family-names: Abouzaid
+        given-names: Mohammed
+      - family-names: Srivastava
+        given-names: Nikhil
+      - family-names: Ward
+        given-names: Rachel
+      - family-names: Williams
+        given-names: Lauren
+    title: First Proof Second Batch
+    year: 2026
+    collection-title: arXiv preprint
+    identifiers:
+      - type: doi
+        value: 10.48550/arXiv.2606.18119
+    url: https://arxiv.org/abs/2606.18119
