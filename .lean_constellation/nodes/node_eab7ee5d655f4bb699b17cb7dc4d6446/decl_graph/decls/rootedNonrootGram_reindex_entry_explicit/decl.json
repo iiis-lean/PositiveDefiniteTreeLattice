@@ -1,0 +1,15 @@
+{
+  "created_at": "2026-07-30T11:24:54Z",
+  "current_revision": 1,
+  "kind": "theorem",
+  "lifecycle": "active",
+  "module": "PositiveDefiniteTreeLattice.Main.RootedCapacity.Theorems.rootedNonrootGram_reindex_entry_explicit",
+  "name": "rootedNonrootGram_reindex_entry_explicit",
+  "node_path": "Main.RootedCapacity",
+  "public": false,
+  "revision_ids": [
+    1
+  ],
+  "summary": "The fully elaborated child-component reindexed nonroot Gram entry is the corresponding ambient rooted Gram entry.",
+  "updated_at": "2026-07-30T11:24:54Z"
+}

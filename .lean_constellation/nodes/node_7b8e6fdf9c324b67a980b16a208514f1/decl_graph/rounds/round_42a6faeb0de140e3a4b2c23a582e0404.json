@@ -1,0 +1,33 @@
+{
+  "change_summaries": {},
+  "committed_at": "2026-08-02T15:49:10Z",
+  "created_at": "2026-08-02T15:35:06Z",
+  "discard_reason": null,
+  "discarded_at": null,
+  "discarded_by": null,
+  "discarded_created_decl_names": [],
+  "discarded_restored_decl_revisions": {},
+  "discarded_revision_refs": [],
+  "execution_completed_at": "2026-08-02T15:48:05Z",
+  "execution_reason": null,
+  "execution_result_kind": "success",
+  "node_path": "Main.IrreducibleVertex",
+  "objective": "Complete only Proof Formal for rootedChildComponent_isAdmissible_of_unique_underweight using the newly public RootedCapacity basis-pairing theorem.",
+  "plan_closeout_acknowledged_at": "2026-08-02T15:49:10Z",
+  "plan_closeout_acknowledged_by": "a_a235941c8c524917a1ed4a78f90c75ba",
+  "result_kind": "success",
+  "result_reason": "Proof Formal passed with the repaired public pairing dependency; target state and proof-policy satisfaction checks passed.",
+  "revision_refs": [
+    {
+      "change_id": "rootedChildComponent_isAdmissible_of_unique_underweight@rev:3",
+      "decl_name": "rootedChildComponent_isAdmissible_of_unique_underweight",
+      "revision": 3
+    }
+  ],
+  "round_id": "round_42a6faeb0de140e3a4b2c23a582e0404",
+  "round_index": 8,
+  "started_at": "2026-08-02T15:36:03Z",
+  "status": "committed",
+  "strategy_id": "strategy_76ba618705c64b1f82fbf54196336e0c",
+  "summary": "The strategy made the intended bottom-up progress: rootedChildComponent_isAdmissible_of_unique_underweight advanced from proof_planned to proved and now satisfies the graph_proved policy. The previous provider-visibility blocker is fully closed, no state-only intermediate remains, and all seven current declarations are proved. The strategy remains viable; the next step is a source-derived declaration round for the central capacity/Schur-complement inequality, after verifying its exact source shape and known dependency closure."
+}

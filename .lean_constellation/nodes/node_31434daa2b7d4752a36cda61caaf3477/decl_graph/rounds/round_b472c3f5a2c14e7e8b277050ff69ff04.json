@@ -1,0 +1,33 @@
+{
+  "change_summaries": {},
+  "committed_at": "2026-07-30T04:09:43Z",
+  "created_at": "2026-07-30T03:58:53Z",
+  "discard_reason": null,
+  "discarded_at": null,
+  "discarded_by": null,
+  "discarded_created_decl_names": [],
+  "discarded_restored_decl_revisions": {},
+  "discarded_revision_refs": [],
+  "execution_completed_at": "2026-07-30T04:08:07Z",
+  "execution_reason": null,
+  "execution_result_kind": "success",
+  "node_path": "Main.TreePathSeparation",
+  "objective": "Prove the canonical-path uniqueness eliminator now that `uniquePath` is declared and `uniquePath_isPath` is proved. Identify every simple G-walk with fixed endpoints with the chosen `uniquePath`, using `SimpleGraph.IsTree.existsUnique_path`; this is the committed lower theorem needed to turn a later proved-simple append into the exact root-to-x chosen-path equality required by the public factorization interface. Source/contract anchor: the unique-path decomposition underlying SourceIndex b_0008–b_0009 / solution.tex lines 33–64.",
+  "plan_closeout_acknowledged_at": "2026-07-30T04:09:43Z",
+  "plan_closeout_acknowledged_by": "a_32cab14a2d1e497786514a39188b3e4f",
+  "result_kind": "success",
+  "result_reason": "The uniqueness eliminator passed all stages, reached proved state, and has a satisfied dependency closure under graph_proved.",
+  "revision_refs": [
+    {
+      "change_id": "eq_uniquePath_of_isPath@rev:1",
+      "decl_name": "eq_uniquePath_of_isPath",
+      "revision": 1
+    }
+  ],
+  "round_id": "round_b472c3f5a2c14e7e8b277050ff69ff04",
+  "round_index": 4,
+  "started_at": "2026-07-30T04:00:18Z",
+  "status": "committed",
+  "strategy_id": "strategy_f896ad8d3d5e41c193ec6ecf41edbffd",
+  "summary": "The chosen-path foundation is now complete: `eq_uniquePath_of_isPath` revision 1 reached `proved` and is proof-policy satisfied, joining committed `uniquePath` and proved `uniquePath_isPath`. No blocker or state-only intermediate remains. The strategy should continue into its oriented-cut phase. The next source-visible declaration is the public noncircular support-separation theorem under terminal parent-child edge and deleted-edge c-to-x reachability hypotheses; once proved, it can support a separate append-simplicity theorem, followed by exact factorization."
+}

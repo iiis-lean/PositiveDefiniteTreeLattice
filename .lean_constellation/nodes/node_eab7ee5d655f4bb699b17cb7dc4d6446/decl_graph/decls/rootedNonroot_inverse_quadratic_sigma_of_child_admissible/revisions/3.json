@@ -1,0 +1,427 @@
+{
+  "change": {
+    "anticipated_proof_dep_names": [
+      "rootedChildComponentsEquivNonroot",
+      "rootedChildComponentsEquivNonroot_apply",
+      "rootedGram_root_nonroot",
+      "rootedNonroot_inverse_childBlocks_of_child_admissible"
+    ],
+    "anticipated_statement_dep_names": [
+      "IsAdmissibleRootedTree",
+      "rootedChildCapacitySummand",
+      "rootedChildComponent",
+      "rootedChildRoot",
+      "rootedChildren",
+      "rootedGram"
+    ],
+    "base_revision": 2,
+    "kind": "update",
+    "objective": "Preserve revision 2's accepted formal statement and exact solution.tex 57–68 scalar equality; redo Proof NL and Proof Formal only using the completed Mathlib recon's compiler-verified witness transport. First apply rootedNonroot_inverse_childBlocks_of_child_admissible to obtain the canonical attached-child inverse-entry decomposition. Reduce the outer child sum with Finset.sum_congr. For each attached child, expose the provider-local and rootedChildCapacitySummand-local dependent instances with controlled `change`; identify the provider Fintype with `Fintype.ofFinite` via `Fintype.subsingleton`/`Subsingleton.elim`, then identify its DecidableRel and DecidableEq witnesses with the summand's witnesses via `Subsingleton.elim`. After these explicit transports, close the component double-sum/diagonal identity by `rfl` or `simpa only [rootedChildCapacitySummand]` as compiler-checked by recon. Retain the declared dependent let binders as named targets if needed; do not rely on definitional equality of Classical.decRel and infer_instance, independently recreate instances, revise the statement, add another helper, alter rootedChildCapacitySummand/rootedChildCapacitySum, assume ambient admissibility, or raise heartbeat limits. The result must be the proved private bridge required for the public parent's Proof-Formal-only retry.",
+    "require_target_state_satisfied": true,
+    "reset_to_state": "declared",
+    "summary": "Retried Proof NL and Proof Formal for the unchanged declared Sigma quadratic helper using the Mathlib-recon transport. Proof NL passed. Proof Formal confirmed that the pointwise child-admissibility conversion to rootedNonroot_inverse_childBlocks_of_child_admissible typechecks via `convert hChild c using 1 <;> apply Subsingleton.elim`, explicitly aligning Fintype.ofFinite, DecidableEq, and DecidableRel witnesses. The remaining consumer-side goal arises after rootedChildComponentsEquivNonroot reindexing and entrywise provider evaluation: Lean must normalize a fourfold dependent Sigma finite sum to the attached-child sum of rootedChildCapacitySummand. That normalization deterministically exceeds the fixed 200000-heartbeat limit. The checked declarations are the canonical equivalence/apply lemma, rootedGram_root_nonroot, the per-child inverse provider, and rootedChildCapacitySummand; no instance mismatch remains. Retry condition: introduce and prove one private pre-collapsed Sigma quadratic interface whose formal statement matches the already-reindexed expression and canonical child sum, then use it in this helper. The current revision is proof_planned and not graph_proved-satisfied.",
+    "target_state": "proved"
+  },
+  "lean_decl_name": "rootedNonroot_inverse_quadratic_sigma_of_child_admissible",
+  "proof": {
+    "deps": [
+      {
+        "kind": "mathlib_decl",
+        "reason": "Reduces the final attached-child Finset.univ sum componentwise.",
+        "ref": {
+          "module": "Mathlib.Algebra.BigOperators.Group.Finset.Basic",
+          "name": "Finset.sum_congr"
+        }
+      },
+      {
+        "kind": "mathlib_decl",
+        "reason": "Eliminates off-root and distinct-child terms after the root-row support calculation.",
+        "ref": {
+          "module": "Mathlib.Algebra.BigOperators.Group.Finset.Basic",
+          "name": "Finset.sum_eq_single"
+        }
+      },
+      {
+        "kind": "mathlib_decl",
+        "reason": "Reindexes the ambient nonroot sums along rootedChildComponentsEquivNonroot.",
+        "ref": {
+          "module": "Mathlib.Algebra.BigOperators.Group.Finset.Defs",
+          "name": "Equiv.sum_comp"
+        }
+      },
+      {
+        "kind": "mathlib_decl",
+        "reason": "Establishes the reversed root-column formula from the already-supported root row.",
+        "ref": {
+          "module": "Mathlib.Combinatorics.SimpleGraph.Basic",
+          "name": "SimpleGraph.adj_comm"
+        }
+      },
+      {
+        "kind": "mathlib_decl",
+        "reason": "Converts the reindexed finite sums into attached-child/component Sigma sums.",
+        "ref": {
+          "module": "Mathlib.Data.Fintype.BigOperators",
+          "name": "Fintype.sum_sigma"
+        }
+      },
+      {
+        "kind": "mathlib_decl",
+        "reason": "Supplies subsingleton equality for the provider and summand component Fintype witnesses.",
+        "ref": {
+          "module": "Mathlib.Data.Fintype.Defs",
+          "name": "Fintype.subsingleton"
+        }
+      },
+      {
+        "kind": "mathlib_decl",
+        "reason": "Evaluates same-child inverse blocks and distinct-child zero entries.",
+        "ref": {
+          "module": "Mathlib.Data.Matrix.Block",
+          "name": "Matrix.blockDiagonal'_apply'"
+        }
+      },
+      {
+        "kind": "mathlib_decl",
+        "reason": "Turns the provider's reindexed inverse equality into the Sigma-coordinate inverse-entry formula.",
+        "ref": {
+          "module": "Mathlib.LinearAlgebra.Matrix.Defs",
+          "name": "Matrix.reindex_apply"
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "The aligned surviving block diagonal entry reduces to its inverse-diagonal definition.",
+        "ref": {
+          "name": "rootedCapacity",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 1
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "Exact right-hand summand, exposed under controlled instance changes after witness alignment.",
+        "ref": {
+          "name": "rootedChildCapacitySummand",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 1
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "Shows each component coordinate is nonroot.",
+        "ref": {
+          "name": "rootedChildComponent_parent_not_mem",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 1
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "Identifies the unique attached child supporting a component vertex.",
+        "ref": {
+          "name": "rootedChildComponent_partition",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 1
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "Canonical equivalence reindexing the ambient nonroot sums by attached-child components.",
+        "ref": {
+          "name": "rootedChildComponentsEquivNonroot",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 1
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "Computes the canonical equivalence at a Sigma coordinate for the root-row support calculation.",
+        "ref": {
+          "name": "rootedChildComponentsEquivNonroot_apply",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 1
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "Names the unique supported root-row coordinate in each component.",
+        "ref": {
+          "name": "rootedChildRoot",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 1
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "Defines the fixed attached-child subtype and support condition.",
+        "ref": {
+          "name": "rootedChildren",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 2
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "Unfolded only to obtain root-column symmetry and identify the unchanged matrices.",
+        "ref": {
+          "name": "rootedGram",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 2
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "Evaluates each root-row entry as -1 at an attached child and zero otherwise.",
+        "ref": {
+          "name": "rootedGram_root_nonroot",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 1
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "Provides the childwise-admissible inverse block decomposition; the plan explicitly transports its local instance witnesses.",
+        "ref": {
+          "name": "rootedNonroot_inverse_childBlocks_of_child_admissible",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 1
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "Proves rootedGram symmetry required for the reversed root-column support formula.",
+        "ref": {
+          "name": "treePairing_vertexVector_vertexVector",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 2
+        }
+      }
+    ],
+    "formal": null,
+    "nl": {
+      "origin": [
+        {
+          "end_line": 68,
+          "end_locator": null,
+          "kind": "source",
+          "note": "These lines decompose the nonroot inverse by attached child subtrees and identify the root-row quadratic contribution with their capacities; the recorded route formalizes the same scalar equality using the required explicit instance-witness transports.",
+          "ref": null,
+          "resource_key": null,
+          "source_path": "solution.tex",
+          "start_line": 57,
+          "start_locator": null
+        }
+      ],
+      "text": "After expanding the statement lets, keep the declared Fintype instances on R and I and the declared dependent Fintype/DecidableRel convention on C c; take the pointwise hChild premise without introducing ambient admissibility.\n\nLet E := rootedChildComponentsEquivNonroot G hG ρ.  Reindex the two ambient finite sums along E using E.sum_comp and Fintype.sum_sigma.  For c and x, use rootedChildComponentsEquivNonroot_apply to identify E ⟨c,x⟩ with the nonroot vertex x.  The existing rootedChildComponent_parent_not_mem, rootedChildComponent_partition, and rootedChildRoot facts give the support characterization\n  x.val ∈ rootedChildren G hG ρ ρ ↔ x = rootedChildRoot G ρ c.1.\nUse rootedGram_root_nonroot for the root row.  Obtain the reversed root column from symmetry by unfolding rootedGram and applying treePairing_vertexVector_vertexVector, then use the same support characterization.\n\nFor inverse entries, first call rootedNonroot_inverse_childBlocks_of_child_admissible G hG w ρ hChild.  At Sigma coordinates, evaluate the resulting matrix equality with congrFun twice and simplify Matrix.reindex_apply.  Do not expect the provider's locally bound Fintype, DecidableEq, and Classical.decRel witnesses to reduce to the statement's/summand's witnesses.  For each fixed child c, expose both the provider-local block inverse and rootedChildCapacitySummand-local expression by controlled change.  Transport the provider component Fintype to the summand Fintype.ofFinite witness using Fintype.subsingleton and Subsingleton.elim; then transport the deleted-edge/component DecidableRel and the component DecidableEq witnesses by Subsingleton.elim.  Rewrite these three explicit equalities in the selected inverse-entry/component-sum goal.  The completed Mathlib recon verifies that the resulting component diagonal entry is definitionally the summand's rootedCapacity expression, so close it by rfl or simpa only [rootedChildCapacitySummand, rootedCapacity].  This is the only representation conversion in the route.\n\nFinally, use Finset.sum_congr on the outer attached-child Finset.univ sum.  Within each c, use Finset.sum_eq_single at rootedChildRoot G ρ c.1 for the x coordinate, at c for the d coordinate, and again at the root for y.  The support lemmas make off-root row/column terms zero; Matrix.blockDiagonal'_apply' makes distinct-child inverse entries zero; the surviving factors (-1) · (B c)⁻¹ root root · (-1) simplify to the transported capacity summand.  This yields exactly the stated RHS finite sum, with no unfolding of rootedChildCapacitySum and no change to its representation."
+    }
+  },
+  "revision": 3,
+  "state": "proof_planned",
+  "statement": {
+    "deps": [
+      {
+        "kind": "mathlib_decl",
+        "reason": "Both unchanged sides are explicit finite sums, including the canonical Finset.univ attached-child sum.",
+        "ref": {
+          "module": "Mathlib.Algebra.BigOperators.Group.Finset.Defs",
+          "name": "Finset.sum"
+        }
+      },
+      {
+        "kind": "mathlib_decl",
+        "reason": "The explicit ambient tree hypothesis is `hG : G.IsTree`.",
+        "ref": {
+          "module": "Mathlib.Combinatorics.SimpleGraph.Acyclic",
+          "name": "SimpleGraph.IsTree"
+        }
+      },
+      {
+        "kind": "mathlib_decl",
+        "reason": "It supplies finiteness for the explicitly bound canonical Fintype of each C c.",
+        "ref": {
+          "module": "Mathlib.Combinatorics.SimpleGraph.Connectivity.Connected",
+          "name": "SimpleGraph.ConnectedComponent.instFinite"
+        }
+      },
+      {
+        "kind": "mathlib_decl",
+        "reason": "It names the induced component graph in both the dependent adjacency binder and the pointwise premise.",
+        "ref": {
+          "module": "Mathlib.Combinatorics.SimpleGraph.Connectivity.Connected",
+          "name": "SimpleGraph.ConnectedComponent.toSimpleGraph"
+        }
+      },
+      {
+        "kind": "mathlib_decl",
+        "reason": "The explicitly bound DecidableRel follows the established deleted-edge adjacency convention.",
+        "ref": {
+          "module": "Mathlib.Combinatorics.SimpleGraph.DeleteEdges",
+          "name": "SimpleGraph.deleteEdges"
+        }
+      },
+      {
+        "kind": "mathlib_decl",
+        "reason": "It is the exact constructor used by each explicitly bound dependent Fintype instance.",
+        "ref": {
+          "module": "Mathlib.Data.Fintype.EquivFin",
+          "name": "Fintype.ofFinite"
+        }
+      },
+      {
+        "kind": "mathlib_decl",
+        "reason": "It names the unchanged nonroot principal block D.",
+        "ref": {
+          "module": "Mathlib.LinearAlgebra.Matrix.Defs",
+          "name": "Matrix.submatrix"
+        }
+      },
+      {
+        "kind": "mathlib_decl",
+        "reason": "It names the unchanged total rational inverse D⁻¹ in the ambient double sum.",
+        "ref": {
+          "module": "Mathlib.LinearAlgebra.Matrix.NonsingularInverse",
+          "name": "Matrix.inv"
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "The exact pointwise attached-child premise is expressed with this predicate.",
+        "ref": {
+          "name": "IsAdmissibleRootedTree",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 1
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "It is the exact term of the unchanged canonical attached-child finite sum.",
+        "ref": {
+          "name": "rootedChildCapacitySummand",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 1
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "It defines the dependent component family C used by both local instance binders and the premise.",
+        "ref": {
+          "name": "rootedChildComponent",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 1
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "It names the canonical root in every pointwise child-admissibility premise.",
+        "ref": {
+          "name": "rootedChildRoot",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 1
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "It defines the attached-child subtype I for the binders, premise, and finite sum.",
+        "ref": {
+          "name": "rootedChildren",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 2
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "It supplies the unchanged principal block D and both factors of the ambient double sum.",
+        "ref": {
+          "name": "rootedGram",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 2
+        }
+      }
+    ],
+    "formal": {
+      "check": {
+        "allow_sorry": true,
+        "contains_axiom": false,
+        "contains_sorry": true,
+        "diagnostics": {
+          "diagnostics": [
+            {
+              "column": 9,
+              "line": 87,
+              "message": "declaration uses `sorry`",
+              "severity": "warning"
+            }
+          ],
+          "passed": true,
+          "raw_excerpt": "{'success': True, 'error_message': None, 'file': 'PositiveDefiniteTreeLattice.Main.RootedCapacity.Theorems.rootedNonroot_inverse_quadratic_sigma_of_child_admissible', 'items': [{'severity': 'warning', 'pos': {'line': 87, 'column': 9}, 'endPos': {'line': 87, 'column': 66}, 'kind': None, 'data': 'declaration uses `sorry`', 'fileName': 'PositiveDefiniteTreeLattice.Main.RootedCapacity.Theorems.rootedNonroot_inverse_quadratic_sigma_of_child_admissible', 'content': '  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedGram`\\n-/\\ntheorem rootedNonroot_inverse_quadratic_sigma_of_child_admissible {V : Type*} [Fintype V]\\n    [DecidableEq V] (G : SimpleGraph V) [DecidableRel G.Adj] (hG : G.IsTree) (w : V → ℤ)\\n    (ρ : V) :'}], 'total_items': 1, 'error_count': 0, 'warning_count': 1, 'info_count': 0, 'sorry_count': 1}",
+          "repo_file_path": "PositiveDefiniteTreeLattice/Main/RootedCapacity/Theorems/rootedNonroot_inverse_quadratic_sigma_of_child_admissible.lean",
+          "schema_version": 2,
+          "summary": "Diagnostics returned 1 items"
+        },
+        "message": "Lean check passed.",
+        "policy": "statement_formal",
+        "scan": {
+          "admit_count": 0,
+          "axiom_count": 0,
+          "contains_admit": false,
+          "contains_axiom": false,
+          "contains_opaque": false,
+          "contains_sorry": true,
+          "contains_unsafe": false,
+          "limitation": "Text scan ignores Lean comments and string literals with a conservative first-round lexer; it is not a full Lean parser.",
+          "occurrences": [
+            {
+              "column": 3,
+              "excerpt": "sorry",
+              "kind": "sorry",
+              "line": 107
+            }
+          ],
+          "opaque_count": 0,
+          "sorry_count": 1,
+          "summary": "sorry=1, admit=0, axiom=0, opaque=0, unsafe=0",
+          "unsafe_count": 0
+        },
+        "status": "passed"
+      },
+      "code": "-- lean-constellation: managed-imports-begin\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Prelude\nimport Mathlib.Algebra.BigOperators.Group.Finset.Defs\nimport Mathlib.Combinatorics.SimpleGraph.Acyclic\nimport Mathlib.Combinatorics.SimpleGraph.Connectivity.Connected\nimport Mathlib.Combinatorics.SimpleGraph.DeleteEdges\nimport Mathlib.Data.Fintype.EquivFin\nimport Mathlib.LinearAlgebra.Matrix.Defs\nimport Mathlib.LinearAlgebra.Matrix.NonsingularInverse\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.IsAdmissibleRootedTree\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildCapacitySummand\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildComponent\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildRoot\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildren\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedGram\n-- lean-constellation: managed-imports-end\n\n-- lean-constellation: declaration-source-begin\n\n/--\n# lean-constellation target: `rootedNonroot_inverse_quadratic_sigma_of_child_admissible`\n\nLet `V` be a finite type with decidable equality, let `G` be a simple graph on `V` with decidable\nadjacency, let `hG : G.IsTree`, let `w : V → ℤ`, and let `ρ : V`. Put\n\n`R := {v : V // v ≠ ρ}`, `I := {c : V // c ∈ rootedChildren G hG ρ ρ}`, and `C c :=\nrootedChildComponent G ρ c.1` for `c : I`.\n\nBefore the premise and equality, introduce exactly two dependent local representation binders,\nshared throughout the statement and its later proof:\n\n`letI (c : I) : Fintype (C c) := Fintype.ofFinite (C c)`,\n\nand `letI (c : I) : DecidableRel (C c).toSimpleGraph.Adj` given by the established deleted-edge\nadjacency convention for `G.deleteEdges {s(ρ, c.1)}`.\n\nThese binders are not mathematical hypotheses. With precisely these shared local instances, assume\nexactly\n\n`∀ c : I, IsAdmissibleRootedTree (C c).toSimpleGraph (fun x => w (x : V)) (rootedChildRoot G ρ\nc.1)`.\n\nNo ambient hypothesis `IsAdmissibleRootedTree G w ρ` is assumed. Define the rational nonroot\nprincipal block verbatim by\n\n`D := (rootedGram G w).submatrix Subtype.val Subtype.val`.\n\nThen the unchanged ambient rational inverse quadratic double sum equals the unchanged canonical\nattached-child finite sum:\n\n`∑ x : R, ∑ y : R, rootedGram G w ρ (x : V) * D⁻¹ x y * rootedGram G w (y : V) ρ = ∑ c in\nFinset.univ, rootedChildCapacitySummand G hG w ρ c`.\n\nThe same two dependent binders are definitionally retained for the admissibility premise, the\ncanonical inverse-block provider, and every summand on the right. The statement changes no indices,\nmatrices, finite sums, or conclusion direction, and does not restate `rootedChildCapacitySum`.\n\n## Sources\n\n- Source `solution.tex`, lines 57–68\n\n## Statement dependencies\n\n- `Finset.sum` from `Mathlib.Algebra.BigOperators.Group.Finset.Defs`\n- `SimpleGraph.IsTree` from `Mathlib.Combinatorics.SimpleGraph.Acyclic`\n- `SimpleGraph.ConnectedComponent.instFinite` from\n  `Mathlib.Combinatorics.SimpleGraph.Connectivity.Connected`\n- `SimpleGraph.ConnectedComponent.toSimpleGraph` from\n  `Mathlib.Combinatorics.SimpleGraph.Connectivity.Connected`\n- `SimpleGraph.deleteEdges` from `Mathlib.Combinatorics.SimpleGraph.DeleteEdges`\n- `Fintype.ofFinite` from `Mathlib.Data.Fintype.EquivFin`\n- `Matrix.submatrix` from `Mathlib.LinearAlgebra.Matrix.Defs`\n- `Matrix.inv` from `Mathlib.LinearAlgebra.Matrix.NonsingularInverse`\n- `Main.RootedCapacity::IsAdmissibleRootedTree` → `IsAdmissibleRootedTree` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.IsAdmissibleRootedTree`\n- `Main.RootedCapacity::rootedChildCapacitySummand` → `rootedChildCapacitySummand` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildCapacitySummand`\n- `Main.RootedCapacity::rootedChildComponent` → `rootedChildComponent` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildComponent`\n- `Main.RootedCapacity::rootedChildRoot` → `rootedChildRoot` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildRoot`\n- `Main.RootedCapacity::rootedChildren` → `rootedChildren` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildren`\n- `Main.RootedCapacity::rootedGram` → `rootedGram` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedGram`\n-/\ntheorem rootedNonroot_inverse_quadratic_sigma_of_child_admissible {V : Type*} [Fintype V]\n    [DecidableEq V] (G : SimpleGraph V) [DecidableRel G.Adj] (hG : G.IsTree) (w : V → ℤ)\n    (ρ : V) :\n    let R := {v : V // v ≠ ρ}\n    let I := {c : V // c ∈ rootedChildren G hG ρ ρ}\n    let C : I → Type _ := fun c => rootedChildComponent G ρ c.1\n    letI : Fintype R := Fintype.ofFinite R\n    letI : Fintype I := Fintype.ofFinite I\n    letI : ∀ c : I, Fintype (C c) := fun c => Fintype.ofFinite _\n    letI : ∀ c : I,\n        DecidableRel (rootedChildComponent G ρ c.1).toSimpleGraph.Adj := fun c => by\n      intro x y\n      change Decidable ((G.deleteEdges {s(ρ, c.1)}).Adj (x : V) (y : V))\n      infer_instance\n    let D : Matrix R R ℚ := (rootedGram G w).submatrix Subtype.val Subtype.val\n    (∀ c : I, IsAdmissibleRootedTree (rootedChildComponent G ρ c.1).toSimpleGraph\n      (fun x => w (x : V)) (rootedChildRoot G ρ c.1)) →\n      ∑ x : R, ∑ y : R,\n        rootedGram G w ρ (x : V) * D⁻¹ x y * rootedGram G w (y : V) ρ =\n          ∑ c ∈ Finset.univ, rootedChildCapacitySummand G hG w ρ c := by\n  sorry\n"
+    },
+    "nl": {
+      "origin": [
+        {
+          "end_line": 68,
+          "end_locator": null,
+          "kind": "source",
+          "note": "These lines group the nonroot block by child subtrees and identify the inverse root-row quadratic contribution with the sum of child capacities; the repaired statement preserves that transport with explicit shared component instances.",
+          "ref": null,
+          "resource_key": null,
+          "source_path": "solution.tex",
+          "start_line": 57,
+          "start_locator": null
+        }
+      ],
+      "text": "Let `V` be a finite type with decidable equality, let `G` be a simple graph on `V` with decidable adjacency, let `hG : G.IsTree`, let `w : V → ℤ`, and let `ρ : V`. Put\n\n`R := {v : V // v ≠ ρ}`, `I := {c : V // c ∈ rootedChildren G hG ρ ρ}`, and `C c := rootedChildComponent G ρ c.1` for `c : I`.\n\nBefore the premise and equality, introduce exactly two dependent local representation binders, shared throughout the statement and its later proof:\n\n`letI (c : I) : Fintype (C c) := Fintype.ofFinite (C c)`,\n\nand `letI (c : I) : DecidableRel (C c).toSimpleGraph.Adj` given by the established deleted-edge adjacency convention for `G.deleteEdges {s(ρ, c.1)}`.\n\nThese binders are not mathematical hypotheses. With precisely these shared local instances, assume exactly\n\n`∀ c : I, IsAdmissibleRootedTree (C c).toSimpleGraph (fun x => w (x : V)) (rootedChildRoot G ρ c.1)`.\n\nNo ambient hypothesis `IsAdmissibleRootedTree G w ρ` is assumed. Define the rational nonroot principal block verbatim by\n\n`D := (rootedGram G w).submatrix Subtype.val Subtype.val`.\n\nThen the unchanged ambient rational inverse quadratic double sum equals the unchanged canonical attached-child finite sum:\n\n`∑ x : R, ∑ y : R, rootedGram G w ρ (x : V) * D⁻¹ x y * rootedGram G w (y : V) ρ = ∑ c in Finset.univ, rootedChildCapacitySummand G hG w ρ c`.\n\nThe same two dependent binders are definitionally retained for the admissibility premise, the canonical inverse-block provider, and every summand on the right. The statement changes no indices, matrices, finite sums, or conclusion direction, and does not restate `rootedChildCapacitySum`."
+    }
+  },
+  "status": "committed",
+  "updated_at": "2026-08-03T12:50:17Z"
+}

@@ -1,0 +1,17 @@
+{
+  "closed_at": "2026-08-07T01:03:14Z",
+  "closed_reason": "The remaining dependent quadratic-form reindex/contraction belongs to RootedCapacity's canonical dependent index architecture and is absent from the allowed public boundary.",
+  "created_at": "2026-08-06T14:43:14Z",
+  "created_round_ids": [
+    "round_ecdcf6a647ec41109ca03d3708612416",
+    "round_c71e3d4f6ca34b3f87031c9c7b718ee0",
+    "round_e47ccd0c14ad43fa8967b6b1d85eb41c",
+    "round_2aa9c2881baf45c5bdc2f984889e863f"
+  ],
+  "node_path": "Main.IrreducibleVertex",
+  "objective": "Resume the contract-v3 graph-proved source route by completing Proof Formal for rootedChildCapacitySum_lt_weight_of_unique_underweight@7 using the verified public rootedCapacity_instance_irrel equality to identify canonical child-block inverse diagonals with rootedChildCapacitySummand values; then continue bottom-up through solution.tex:210–244 and prove and bind the exact protected PositiveDefiniteTreeLattice.exists_irreducible_vertex interface.",
+  "rationale": "Fresh dependency recon confirms the Coordinator's capacity-value bridge is accepted, ready, fresh, has the required left-to-right equality orientation, and matches the exact child component, weight, root, index, and block/summand instance conventions. The existing Statement and Proof NL remain semantically faithful to solution.tex:204–208 and are frozen; the next round therefore reruns only Proof Formal. The direct current-node providers rootedGram_posDef_of_integer_positive and rootedChildComponent_isAdmissible_of_unique_underweight are proved, no Mathlib or resource gap remains, no local transport architecture is needed, and both task and repository completion modes are graph_proved.",
+  "status": "closed",
+  "strategy_id": "strategy_5daa06e1443e4d7e95f091bbae0d613c",
+  "summary": "This strategy successfully proved the central capacity gap and staged the downstream source decomposition: eight foundations are proved, normalized_pairing_positive_of_unique_underweight has an accepted declared Statement, and pairing_decomposition_at_unique_underweight has an accepted proof plan. Focused Mathlib recon and round 19 closed the scalar/cast conversion, but isolated a remaining reusable dependent quadratic double-sum reindex through rootedChildComponentsEquivNonroot and block-diagonal fiber contraction. RootedCapacity exposes only pointwise reindexed matrix equality, Mathlib has no theorem at this dependent sigma/block shape, and the contract forbids implementing the generic bridge locally. The strategy therefore closes blocked pending Coordinator/provider repair; no partial declaration is superseded and no cleanup is required."
+}

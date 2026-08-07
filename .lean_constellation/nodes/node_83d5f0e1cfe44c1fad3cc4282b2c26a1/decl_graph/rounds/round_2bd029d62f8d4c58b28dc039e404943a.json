@@ -1,0 +1,53 @@
+{
+  "change_summaries": {},
+  "committed_at": "2026-07-29T20:27:56Z",
+  "created_at": "2026-07-29T20:22:08Z",
+  "discard_reason": null,
+  "discarded_at": null,
+  "discarded_by": null,
+  "discarded_created_decl_names": [],
+  "discarded_restored_decl_revisions": {},
+  "discarded_revision_refs": [],
+  "execution_completed_at": "2026-07-29T20:26:35Z",
+  "execution_reason": null,
+  "execution_result_kind": "success",
+  "node_path": "Main.LatticeFoundations",
+  "objective": "Retry only Proof Formal for the five direct theorems whose statements and proof plans are already recaptured against fresh treePairingAnchor and vertexVectorAnchor dependencies. Preserve all accepted consumer goals, names, proof plans, proofs, visibility, and source semantics; recapture unchanged declaration-owned files so the rewired direct layer becomes proved under graph_proved before migrating treePairing_add_self.",
+  "plan_closeout_acknowledged_at": "2026-07-29T20:27:56Z",
+  "plan_closeout_acknowledged_by": "a_60a257a14c4c469b9e17805606fa5ea4",
+  "result_kind": "success",
+  "result_reason": "All five direct theorem proofs were recaptured successfully against the fresh foundation anchors.",
+  "revision_refs": [
+    {
+      "change_id": "treePairing_add_left@rev:6",
+      "decl_name": "treePairing_add_left",
+      "revision": 6
+    },
+    {
+      "change_id": "treePairing_add_right@rev:6",
+      "decl_name": "treePairing_add_right",
+      "revision": 6
+    },
+    {
+      "change_id": "treePairing_symm@rev:6",
+      "decl_name": "treePairing_symm",
+      "revision": 6
+    },
+    {
+      "change_id": "vertexVector_ne_zero@rev:5",
+      "decl_name": "vertexVector_ne_zero",
+      "revision": 5
+    },
+    {
+      "change_id": "treePairing_vertexVector_self@rev:5",
+      "decl_name": "treePairing_vertexVector_self",
+      "revision": 5
+    }
+  ],
+  "round_id": "round_2bd029d62f8d4c58b28dc039e404943a",
+  "round_index": 16,
+  "started_at": "2026-07-29T20:23:30Z",
+  "status": "committed",
+  "strategy_id": "strategy_2638883d005249d6a0ca57c50614cfed",
+  "summary": "The fresh-anchor strategy fully recovered the direct theorem layer. All five rewired theorems completed Proof Formal, reached proved, and passed graph_proved satisfaction against treePairingAnchor and/or vertexVectorAnchor while preserving their exact statements, proofs, names, and public visibility. No missing dependency, state-only closure debt, helper, semantic drift, blocker, or new cleanup artifact remains in this layer. The three pairing algebra laws now satisfy all known prerequisites for rewiring and reproving treePairing_add_self. Historical treePairing, vertexVector, and Irreducible records remain planned cleanup targets only after higher consumers move to fresh anchors."
+}

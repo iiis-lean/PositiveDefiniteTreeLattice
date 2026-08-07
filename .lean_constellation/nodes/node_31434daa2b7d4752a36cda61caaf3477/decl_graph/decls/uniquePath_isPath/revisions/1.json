@@ -1,0 +1,166 @@
+{
+  "change": {
+    "anticipated_proof_dep_names": [],
+    "anticipated_statement_dep_names": [
+      "uniquePath"
+    ],
+    "base_revision": null,
+    "kind": "create",
+    "objective": "For the exact binders of the committed `uniquePath` definition—finite simple graph G, tree witness hG : G.IsTree, and endpoints v w—prove `(uniquePath G hG v w).IsPath` using the witness property of `SimpleGraph.IsTree.existsUnique_path`. This private proved foundation must preserve the same chosen walk and add no cut, reachability, RootedCapacity, weighted, or matrix assumptions. It consumes accepted `uniquePath` at statement level and will feed the later uniqueness eliminator, support-separation, append-simplicity, and both contract interface proofs. Source anchor: SourceIndex b_0008–b_0009 / solution.tex lines 33–64.",
+    "require_target_state_satisfied": true,
+    "reset_to_state": null,
+    "summary": "Created the private theorem `uniquePath_isPath`, proving that the committed canonical chosen tree walk is an `IsPath` with the same graph, tree witness, and endpoints. Statement NL, Statement Formal, Proof NL, and Proof Formal all passed; revision 1 reached `proved` and is proof-policy satisfied under `graph_proved`. The result is now available for the uniqueness eliminator and later support/deleted-edge/append proofs. No extra cut, RootedCapacity, weighted, or matrix assumptions were introduced, and no blocker remains.",
+    "target_state": "proved"
+  },
+  "lean_decl_name": "uniquePath_isPath",
+  "proof": {
+    "deps": [
+      {
+        "kind": "mathlib_decl",
+        "reason": "Supplies the unique path witness whose chosen representative is an IsPath.",
+        "ref": {
+          "module": "Mathlib.Combinatorics.SimpleGraph.Acyclic",
+          "name": "SimpleGraph.IsTree.existsUnique_path"
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "The proof unfolds the accepted canonical chosen walk.",
+        "ref": {
+          "name": "uniquePath",
+          "node": "Main.TreePathSeparation",
+          "repo": null,
+          "revision": 1
+        }
+      }
+    ],
+    "formal": {
+      "check": {
+        "allow_sorry": false,
+        "contains_axiom": false,
+        "contains_sorry": false,
+        "diagnostics": {
+          "diagnostics": [],
+          "passed": true,
+          "raw_excerpt": "{'success': True, 'error_message': None, 'file': 'PositiveDefiniteTreeLattice.Main.TreePathSeparation.Theorems.uniquePath_isPath', 'items': [], 'total_items': 0, 'error_count': 0, 'warning_count': 0, 'info_count': 0, 'sorry_count': 0}",
+          "repo_file_path": "PositiveDefiniteTreeLattice/Main/TreePathSeparation/Theorems/uniquePath_isPath.lean",
+          "schema_version": 2,
+          "summary": "Diagnostics returned 0 items"
+        },
+        "message": "Lean check passed.",
+        "policy": "proof_formal",
+        "scan": {
+          "admit_count": 0,
+          "axiom_count": 0,
+          "contains_admit": false,
+          "contains_axiom": false,
+          "contains_opaque": false,
+          "contains_sorry": false,
+          "contains_unsafe": false,
+          "limitation": "Text scan ignores Lean comments and string literals with a conservative first-round lexer; it is not a full Lean parser.",
+          "occurrences": [],
+          "opaque_count": 0,
+          "sorry_count": 0,
+          "summary": "sorry=0, admit=0, axiom=0, opaque=0, unsafe=0",
+          "unsafe_count": 0
+        },
+        "status": "passed"
+      },
+      "code": "-- lean-constellation: managed-imports-begin\nimport PositiveDefiniteTreeLattice.Main.TreePathSeparation.Prelude\nimport Mathlib.Combinatorics.SimpleGraph.Acyclic\nimport Mathlib.Combinatorics.SimpleGraph.Paths\nimport PositiveDefiniteTreeLattice.Main.TreePathSeparation.Defs.uniquePath\n-- lean-constellation: managed-imports-end\n\n-- lean-constellation: declaration-source-begin\n\n/--\n# lean-constellation target: `uniquePath_isPath`\n\nFor a finite vertex type `V`, a simple graph `G` on `V`, a tree certificate `hG : G.IsTree`, and\nvertices `v w : V`, the canonical walk `uniquePath G hG v w` is a simple path: `(uniquePath G hG v\nw).IsPath`. The theorem uses exactly the same graph, tree certificate, and endpoints as\n`uniquePath`, and introduces no cut, reachability, rooted-capacity, weighted, or matrix assumptions.\n\n## Statement dependencies\n\n- `SimpleGraph.Walk.IsPath` from `Mathlib.Combinatorics.SimpleGraph.Paths`\n- `Main.TreePathSeparation::uniquePath` → `uniquePath` from\n  `PositiveDefiniteTreeLattice.Main.TreePathSeparation.Defs.uniquePath`\n\n## Proof outline\n\nUnfold `uniquePath G hG v w`. By its definition, this walk is `Classical.choose\n(hG.existsUnique_path v w)`. The witness theorem `SimpleGraph.IsTree.existsUnique_path` states that\nthere is a unique walk from `v` to `w` satisfying `IsPath`; hence `Classical.choose_spec\n(hG.existsUnique_path v w)` gives precisely `(uniquePath G hG v w).IsPath` after simplification by\nthe definition of `uniquePath`.\n\nThis preserves the original finite graph, tree witness, and endpoints exactly. It introduces no cut,\nreachability, rooted-capacity, weighted, or matrix hypotheses. The remaining Lean proof should be\n`simpa only [uniquePath] using Classical.choose_spec (hG.existsUnique_path v w)`.\n\n## Proof sources\n\n- Source `solution.tex`, lines 33–64\n\n## Proof dependencies\n\n- `SimpleGraph.IsTree.existsUnique_path` from `Mathlib.Combinatorics.SimpleGraph.Acyclic`\n- `Main.TreePathSeparation::uniquePath` → `uniquePath` from\n  `PositiveDefiniteTreeLattice.Main.TreePathSeparation.Defs.uniquePath`\n-/\ntheorem uniquePath_isPath {V : Type*} [Fintype V] (G : SimpleGraph V)\n    (hG : G.IsTree) (v w : V) : (uniquePath G hG v w).IsPath := by\n  simpa only [uniquePath] using (Classical.choose_spec (hG.existsUnique_path v w)).1\n"
+    },
+    "nl": {
+      "origin": [
+        {
+          "end_line": 64,
+          "end_locator": null,
+          "kind": "source",
+          "note": "These lines provide the source-level rooted-tree structural setting for the path foundation; the formal route specializes that setting to Mathlib's canonical tree-path witness.",
+          "ref": null,
+          "resource_key": null,
+          "source_path": "solution.tex",
+          "start_line": 33,
+          "start_locator": null
+        }
+      ],
+      "text": "Unfold `uniquePath G hG v w`. By its definition, this walk is `Classical.choose (hG.existsUnique_path v w)`. The witness theorem `SimpleGraph.IsTree.existsUnique_path` states that there is a unique walk from `v` to `w` satisfying `IsPath`; hence `Classical.choose_spec (hG.existsUnique_path v w)` gives precisely `(uniquePath G hG v w).IsPath` after simplification by the definition of `uniquePath`.\n\nThis preserves the original finite graph, tree witness, and endpoints exactly. It introduces no cut, reachability, rooted-capacity, weighted, or matrix hypotheses. The remaining Lean proof should be `simpa only [uniquePath] using Classical.choose_spec (hG.existsUnique_path v w)`."
+    }
+  },
+  "revision": 1,
+  "state": "proved",
+  "statement": {
+    "deps": [
+      {
+        "kind": "mathlib_decl",
+        "reason": "The theorem conclusion is the `IsPath` predicate on the chosen walk.",
+        "ref": {
+          "module": "Mathlib.Combinatorics.SimpleGraph.Paths",
+          "name": "SimpleGraph.Walk.IsPath"
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "The theorem statement applies the accepted canonical chosen tree walk.",
+        "ref": {
+          "name": "uniquePath",
+          "node": "Main.TreePathSeparation",
+          "repo": null,
+          "revision": 1
+        }
+      }
+    ],
+    "formal": {
+      "check": {
+        "allow_sorry": true,
+        "contains_axiom": false,
+        "contains_sorry": true,
+        "diagnostics": {
+          "diagnostics": [
+            {
+              "column": 9,
+              "line": 23,
+              "message": "declaration uses `sorry`",
+              "severity": "warning"
+            }
+          ],
+          "passed": true,
+          "raw_excerpt": "{'success': True, 'error_message': None, 'file': 'PositiveDefiniteTreeLattice.Main.TreePathSeparation.Theorems.uniquePath_isPath', 'items': [{'severity': 'warning', 'pos': {'line': 23, 'column': 9}, 'endPos': {'line': 23, 'column': 26}, 'kind': None, 'data': 'declaration uses `sorry`', 'fileName': 'PositiveDefiniteTreeLattice.Main.TreePathSeparation.Theorems.uniquePath_isPath', 'content': '  `PositiveDefiniteTreeLattice.Main.TreePathSeparation.Defs.uniquePath`\\n-/\\ntheorem uniquePath_isPath {V : Type*} [Fintype V] (G : SimpleGraph V)\\n    (hG : G.IsTree) (v w : V) : (uniquePath G hG v w).IsPath := by\\n  sorry'}], 'total_items': 1, 'error_count': 0, 'warning_count': 1, 'info_count': 0, 'sorry_count': 1}",
+          "repo_file_path": "PositiveDefiniteTreeLattice/Main/TreePathSeparation/Theorems/uniquePath_isPath.lean",
+          "schema_version": 2,
+          "summary": "Diagnostics returned 1 items"
+        },
+        "message": "Lean check passed.",
+        "policy": "statement_formal",
+        "scan": {
+          "admit_count": 0,
+          "axiom_count": 0,
+          "contains_admit": false,
+          "contains_axiom": false,
+          "contains_opaque": false,
+          "contains_sorry": true,
+          "contains_unsafe": false,
+          "limitation": "Text scan ignores Lean comments and string literals with a conservative first-round lexer; it is not a full Lean parser.",
+          "occurrences": [
+            {
+              "column": 3,
+              "excerpt": "sorry",
+              "kind": "sorry",
+              "line": 25
+            }
+          ],
+          "opaque_count": 0,
+          "sorry_count": 1,
+          "summary": "sorry=1, admit=0, axiom=0, opaque=0, unsafe=0",
+          "unsafe_count": 0
+        },
+        "status": "passed"
+      },
+      "code": "-- lean-constellation: managed-imports-begin\nimport PositiveDefiniteTreeLattice.Main.TreePathSeparation.Prelude\nimport Mathlib.Combinatorics.SimpleGraph.Paths\nimport PositiveDefiniteTreeLattice.Main.TreePathSeparation.Defs.uniquePath\n-- lean-constellation: managed-imports-end\n\n-- lean-constellation: declaration-source-begin\n\n/--\n# lean-constellation target: `uniquePath_isPath`\n\nFor a finite vertex type `V`, a simple graph `G` on `V`, a tree certificate `hG : G.IsTree`, and\nvertices `v w : V`, the canonical walk `uniquePath G hG v w` is a simple path: `(uniquePath G hG v\nw).IsPath`. The theorem uses exactly the same graph, tree certificate, and endpoints as\n`uniquePath`, and introduces no cut, reachability, rooted-capacity, weighted, or matrix assumptions.\n\n## Statement dependencies\n\n- `SimpleGraph.Walk.IsPath` from `Mathlib.Combinatorics.SimpleGraph.Paths`\n- `Main.TreePathSeparation::uniquePath` → `uniquePath` from\n  `PositiveDefiniteTreeLattice.Main.TreePathSeparation.Defs.uniquePath`\n-/\ntheorem uniquePath_isPath {V : Type*} [Fintype V] (G : SimpleGraph V)\n    (hG : G.IsTree) (v w : V) : (uniquePath G hG v w).IsPath := by\n  sorry\n"
+    },
+    "nl": {
+      "origin": [],
+      "text": "For a finite vertex type `V`, a simple graph `G` on `V`, a tree certificate `hG : G.IsTree`, and vertices `v w : V`, the canonical walk `uniquePath G hG v w` is a simple path: `(uniquePath G hG v w).IsPath`. The theorem uses exactly the same graph, tree certificate, and endpoints as `uniquePath`, and introduces no cut, reachability, rooted-capacity, weighted, or matrix assumptions."
+    }
+  },
+  "status": "committed",
+  "updated_at": "2026-07-30T03:58:36Z"
+}

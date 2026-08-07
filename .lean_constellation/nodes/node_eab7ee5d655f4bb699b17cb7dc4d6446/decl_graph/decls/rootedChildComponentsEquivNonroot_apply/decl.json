@@ -1,0 +1,15 @@
+{
+  "created_at": "2026-07-30T10:40:55Z",
+  "current_revision": 1,
+  "kind": "theorem",
+  "lifecycle": "active",
+  "module": "PositiveDefiniteTreeLattice.Main.RootedCapacity.Theorems.rootedChildComponentsEquivNonroot_apply",
+  "name": "rootedChildComponentsEquivNonroot_apply",
+  "node_path": "Main.RootedCapacity",
+  "public": true,
+  "revision_ids": [
+    1
+  ],
+  "summary": "The child-component/nonroot equivalence sends a child-component vertex to its canonical ambient nonroot embedding.",
+  "updated_at": "2026-08-03T16:59:06Z"
+}

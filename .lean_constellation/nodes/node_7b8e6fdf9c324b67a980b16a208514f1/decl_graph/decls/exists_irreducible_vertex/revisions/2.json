@@ -1,0 +1,322 @@
+{
+  "change": {
+    "anticipated_proof_dep_names": [
+      "irreducible_vertex_of_weight_eq_one",
+      "normalized_pairing_positive_of_unique_underweight"
+    ],
+    "anticipated_statement_dep_names": [],
+    "base_revision": 1,
+    "kind": "update",
+    "objective": "Retain the exact accepted public Statement and Proof NL of PositiveDefiniteTreeLattice.exists_irreducible_vertex from formal_target.lean:24–33 and solution.tex:182–244, and rerun only Proof Formal after the transient worker-stream failure. Use the proved weight-one branch and normalized pairing positivity to eliminate any nontrivial decomposition at the unique underweighted vertex exactly as already planned. Preserve the namespace, integral treePairing model, Irreducible and vertexVector objects, hypotheses, and conclusion; do not change the statement or proof plan, add assumptions or representations, rebuild lower rooted-component work, or raise heartbeats.",
+    "require_target_state_satisfied": true,
+    "reset_to_state": "proof_planned",
+    "summary": "Retried only Proof Formal for the preserved exact public theorem PositiveDefiniteTreeLattice.exists_irreducible_vertex after the transient round-26 stream failure. The formal proof passed with the accepted Statement and Proof NL unchanged, advancing revision 2 from proof_planned to proved. Its known current-node proof dependencies irreducible_vertex_of_weight_eq_one and normalized_pairing_positive_of_unique_underweight are proved, so the target-state proof-policy satisfaction check passed.",
+    "target_state": "proved"
+  },
+  "lean_decl_name": "PositiveDefiniteTreeLattice.exists_irreducible_vertex",
+  "proof": {
+    "deps": [
+      {
+        "kind": "mathlib_decl",
+        "reason": "Used explicitly to normalize each finite treePairing summand in the local negation identities.",
+        "ref": {
+          "module": "Mathlib.Algebra.BigOperators.Group.Finset.Basic",
+          "name": "Finset.sum_congr"
+        }
+      },
+      {
+        "kind": "mathlib_decl",
+        "reason": "Normalizes the finite treePairing sums under negation in the two decomposition-normalization identities.",
+        "ref": {
+          "module": "Mathlib.Algebra.BigOperators.Group.Finset.Defs",
+          "name": "Finset.sum_neg_distrib"
+        }
+      },
+      {
+        "kind": "mathlib_decl",
+        "reason": "Converts the negative root-coefficient branch into q ≤ -1, yielding nonnegativity of -1-q.",
+        "ref": {
+          "module": "Mathlib.Tactic.IntervalCases",
+          "name": "Int.le_sub_one_of_not_le"
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "Discharges the source proof's global weight-one branch.",
+        "ref": {
+          "name": "irreducible_vertex_of_weight_eq_one",
+          "node": "Main.IrreducibleVertex",
+          "repo": null,
+          "revision": 1
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "Provides strict positivity of the shifted pairing in both normalized root-coefficient branches.",
+        "ref": {
+          "name": "normalized_pairing_positive_of_unique_underweight",
+          "node": "Main.IrreducibleVertex",
+          "repo": null,
+          "revision": 2
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "Turns the no-weight-one branch into the all-vertices h_two hypothesis required by the normalized positivity lemma.",
+        "ref": {
+          "name": "weight_ge_two_of_ne_one",
+          "node": "Main.IrreducibleVertex",
+          "repo": null,
+          "revision": 1
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "Its accepted interface is unfolded to express the forbidden decomposition exactly.",
+        "ref": {
+          "name": "IrreducibleAnchor",
+          "node": "Main.LatticeFoundations",
+          "repo": null,
+          "revision": 1
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "Expands the shifted pairing and its transformed version in the decomposition and invariance calculations.",
+        "ref": {
+          "name": "treePairing_add_left",
+          "node": "Main.LatticeFoundations",
+          "repo": null,
+          "revision": 6
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "Expands the shifted pairing and its transformed version in the decomposition and invariance calculations.",
+        "ref": {
+          "name": "treePairing_add_right",
+          "node": "Main.LatticeFoundations",
+          "repo": null,
+          "revision": 6
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "Packages the self-pairing expansion used in the normalization algebra.",
+        "ref": {
+          "name": "treePairing_add_self",
+          "node": "Main.LatticeFoundations",
+          "repo": null,
+          "revision": 3
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "Aligns cross-pairing orientations in the nonpositive and invariance calculations.",
+        "ref": {
+          "name": "treePairing_symm",
+          "node": "Main.LatticeFoundations",
+          "repo": null,
+          "revision": 6
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "Its exact coordinate definition identifies the transformed root coefficient as -1-q.",
+        "ref": {
+          "name": "vertexVectorAnchor",
+          "node": "Main.LatticeFoundations",
+          "repo": null,
+          "revision": 1
+        }
+      }
+    ],
+    "formal": {
+      "check": {
+        "allow_sorry": false,
+        "contains_axiom": false,
+        "contains_sorry": false,
+        "diagnostics": {
+          "diagnostics": [],
+          "passed": true,
+          "raw_excerpt": "{'success': True, 'error_message': None, 'file': 'PositiveDefiniteTreeLattice.Main.IrreducibleVertex.Theorems.exists_irreducible_vertex', 'items': [], 'total_items': 0, 'error_count': 0, 'warning_count': 0, 'info_count': 0, 'sorry_count': 0}",
+          "repo_file_path": "PositiveDefiniteTreeLattice/Main/IrreducibleVertex/Theorems/exists_irreducible_vertex.lean",
+          "schema_version": 2,
+          "summary": "Diagnostics returned 0 items"
+        },
+        "message": "Lean check passed.",
+        "policy": "proof_formal",
+        "scan": {
+          "admit_count": 0,
+          "axiom_count": 0,
+          "contains_admit": false,
+          "contains_axiom": false,
+          "contains_opaque": false,
+          "contains_sorry": false,
+          "contains_unsafe": false,
+          "limitation": "Text scan ignores Lean comments and string literals with a conservative first-round lexer; it is not a full Lean parser.",
+          "occurrences": [],
+          "opaque_count": 0,
+          "sorry_count": 0,
+          "summary": "sorry=0, admit=0, axiom=0, opaque=0, unsafe=0",
+          "unsafe_count": 0
+        },
+        "status": "passed"
+      },
+      "code": "-- lean-constellation: managed-imports-begin\nimport PositiveDefiniteTreeLattice.Main.IrreducibleVertex.Prelude\nimport Mathlib.Algebra.BigOperators.Group.Finset.Basic\nimport Mathlib.Algebra.BigOperators.Group.Finset.Defs\nimport Mathlib.Combinatorics.SimpleGraph.Acyclic\nimport Mathlib.Combinatorics.SimpleGraph.Basic\nimport Mathlib.Combinatorics.SimpleGraph.Finite\nimport Mathlib.Tactic.IntervalCases\nimport PositiveDefiniteTreeLattice.Main.IrreducibleVertex.Lemmas.irreducible_vertex_of_weight_eq_one\nimport PositiveDefiniteTreeLattice.Main.IrreducibleVertex.Lemmas.normalized_pairing_positive_of_unique_underweight\nimport PositiveDefiniteTreeLattice.Main.IrreducibleVertex.Lemmas.weight_ge_two_of_ne_one\n-- lean-constellation: managed-imports-end\n\n-- lean-constellation: declaration-source-begin\n\nnamespace PositiveDefiniteTreeLattice\n\n/--\n# lean-constellation target: `exists_irreducible_vertex`\n\nLet `V` be a finite type with decidable equality, let `G : SimpleGraph V` have decidable adjacency,\nand let `weight : V → ℤ`. Assume that `G` is a tree, that the integral tree pairing is positive\ndefinite on every nonzero integer vector—namely, for every `x : V → ℤ` with `x ≠ 0`, `0 <\ntreePairing G weight x x`—and that there exists exactly one vertex `v` with `weight v < (G.degree v\n: ℤ)`. Then there exists a vertex `v : V` such that the vertex vector `vertexVector v` is\nirreducible for `G` and `weight`, i.e. `Irreducible G weight (vertexVector v)`.\n\n## Sources\n\n- Source `formal_target.lean`, lines 24–33\n- Source `solution.tex`, lines 182–186\n\n## Statement dependencies\n\n- `SimpleGraph.IsTree` from `Mathlib.Combinatorics.SimpleGraph.Acyclic`\n- `SimpleGraph` from `Mathlib.Combinatorics.SimpleGraph.Basic`\n- `SimpleGraph.degree` from `Mathlib.Combinatorics.SimpleGraph.Finite`\n- `Main.LatticeFoundations::IrreducibleAnchor` → `PositiveDefiniteTreeLattice.Irreducible` from\n  `PositiveDefiniteTreeLattice.Main.LatticeFoundations.Defs.IrreducibleAnchor`\n- `Main.LatticeFoundations::treePairingAnchor` → `PositiveDefiniteTreeLattice.treePairing` from\n  `PositiveDefiniteTreeLattice.Main.LatticeFoundations.Defs.treePairingAnchor`\n- `Main.LatticeFoundations::vertexVectorAnchor` → `PositiveDefiniteTreeLattice.vertexVector` from\n  `PositiveDefiniteTreeLattice.Main.LatticeFoundations.Defs.vertexVectorAnchor`\n\n## Proof outline\n\nUse the source proof on solution.tex:182–244. First split on `∃ u : V, weight u = 1`. In the\npositive case choose u and return `⟨u, irreducible_vertex_of_weight_eq_one G weight u h_positive\nhu⟩`. This is the source’s weight-one alternative and needs no relation between u and the unique\nunderweighted vertex. In the negative case obtain the unique underweighted vertex `v` from\n`h_unique_underweight`, retaining both `hv : weight v < (G.degree v : ℤ)` and uniqueness. The\nno-weight-one assumption and `weight_ge_two_of_ne_one G weight x h_positive` give `h_two : ∀ x, 2 ≤\nweight x`.\n\nIt remains to prove `Irreducible G weight (vertexVector v)`. Unfold only the accepted Irreducible\ninterface and suppose a forbidden decomposition `vertexVector v = a + b` with `ha : a ≠ 0`, `hb : b\n≠ 0`, and `hab : 0 ≤ treePairing G weight a b`. Put `z := -b`. Coordinatewise algebra from the\ndecomposition gives `a = vertexVector v + z`, while hb proves `z ≠ 0` (and ha also gives `z ≠ -\nvertexVector v`). Using `treePairing_add_left`, `treePairing_add_right`, `treePairing_add_self`, and\n`treePairing_symm` in their accepted orientations, expand\n`treePairing G weight z z + treePairing G weight (vertexVector v) z`\nafter substituting `z=-b` and `vertexVector v=a+b`. The additive/negation normalization yields\nexactly `- treePairing G weight a b`, hence the shifted pairing is nonpositive by hab.\n\nLet `q := z v`. If `0 ≤ q`, apply `normalized_pairing_positive_of_unique_underweight G weight v z\nh_tree h_positive h_unique_underweight hv h_two` with the established nonzeroness and\nroot-coefficient inequality. Its strict positivity contradicts the nonpositive shifted pairing.\n\nOtherwise, `Int.le_sub_one_of_not_le` gives `q ≤ -1`. Define `z' := - vertexVector v - z`, which is\ncoordinatewise `-a` by the decomposition. Thus `z' ≠ 0` follows from ha. Unfolding only the accepted\nvertexVector definition at v shows `z' v = -1-q ≥ 0`. Apply the same normalized lemma to z'. A\nsecond expansion using `treePairing_add_left`, `treePairing_add_right`, `treePairing_add_self`, and\n`treePairing_symm` shows the exact invariance\n`treePairing G weight z' z' + treePairing G weight (vertexVector v) z' =\n treePairing G weight z z + treePairing G weight (vertexVector v) z`.\nTherefore z' also gives strict positivity of the already nonpositive shifted pairing, a\ncontradiction. Both coefficient cases rule out the forbidden decomposition, so v is irreducible and\nprovides the required existential witness.\n\n## Proof sources\n\n- Source `solution.tex`, lines 182–244\n\n## Proof dependencies\n\n- `Finset.sum_congr` from `Mathlib.Algebra.BigOperators.Group.Finset.Basic`\n- `Finset.sum_neg_distrib` from `Mathlib.Algebra.BigOperators.Group.Finset.Defs`\n- `Int.le_sub_one_of_not_le` from `Mathlib.Tactic.IntervalCases`\n- `Main.IrreducibleVertex::irreducible_vertex_of_weight_eq_one` →\n  `PositiveDefiniteTreeLattice.irreducible_vertex_of_weight_eq_one` from\n  `PositiveDefiniteTreeLattice.Main.IrreducibleVertex.Lemmas.irreducible_vertex_of_weight_eq_one`\n- `Main.IrreducibleVertex::normalized_pairing_positive_of_unique_underweight` →\n  `PositiveDefiniteTreeLattice.normalized_pairing_positive_of_unique_underweight` from `PositiveDefi\n  niteTreeLattice.Main.IrreducibleVertex.Lemmas.normalized_pairing_positive_of_unique_underweight`\n- `Main.IrreducibleVertex::weight_ge_two_of_ne_one` →\n  `PositiveDefiniteTreeLattice.weight_ge_two_of_ne_one` from\n  `PositiveDefiniteTreeLattice.Main.IrreducibleVertex.Lemmas.weight_ge_two_of_ne_one`\n- `Main.LatticeFoundations::IrreducibleAnchor` → `PositiveDefiniteTreeLattice.Irreducible` from\n  `PositiveDefiniteTreeLattice.Main.LatticeFoundations.Defs.IrreducibleAnchor`\n- `Main.LatticeFoundations::treePairing_add_left` →\n  `PositiveDefiniteTreeLattice.treePairing_add_left` from\n  `PositiveDefiniteTreeLattice.Main.LatticeFoundations.Theorems.treePairing_add_left`\n- `Main.LatticeFoundations::treePairing_add_right` →\n  `PositiveDefiniteTreeLattice.treePairing_add_right` from\n  `PositiveDefiniteTreeLattice.Main.LatticeFoundations.Theorems.treePairing_add_right`\n- `Main.LatticeFoundations::treePairing_add_self` →\n  `PositiveDefiniteTreeLattice.treePairing_add_self` from\n  `PositiveDefiniteTreeLattice.Main.LatticeFoundations.Theorems.treePairing_add_self`\n- `Main.LatticeFoundations::treePairing_symm` → `PositiveDefiniteTreeLattice.treePairing_symm` from\n  `PositiveDefiniteTreeLattice.Main.LatticeFoundations.Theorems.treePairing_symm`\n- `Main.LatticeFoundations::vertexVectorAnchor` → `PositiveDefiniteTreeLattice.vertexVector` from\n  `PositiveDefiniteTreeLattice.Main.LatticeFoundations.Defs.vertexVectorAnchor`\n-/\ntheorem exists_irreducible_vertex\n    {V : Type*} [Fintype V] [DecidableEq V] (G : SimpleGraph V) [DecidableRel G.Adj]\n    (weight : V → ℤ) (h_tree : G.IsTree)\n    (h_positive : ∀ x : V → ℤ, x ≠ 0 → 0 < treePairing G weight x x)\n    (h_unique_underweight : ∃! v : V, weight v < (G.degree v : ℤ)) :\n    ∃ v : V, Irreducible G weight (vertexVector v) := by\n  classical\n  by_cases h_one : ∃ u : V, weight u = 1\n  · obtain ⟨u, hu⟩ := h_one\n    exact ⟨u, irreducible_vertex_of_weight_eq_one G weight u h_positive hu⟩\n  · rcases h_unique_underweight with ⟨v, hv, huniq⟩\n    have h_two : ∀ x : V, 2 ≤ weight x := by\n      intro x\n      apply weight_ge_two_of_ne_one G weight x h_positive\n      intro hx\n      exact h_one ⟨x, hx⟩\n    refine ⟨v, ?_⟩\n    unfold Irreducible\n    rintro ⟨a, b, ha, hb, hab, hcross⟩\n    have pairing_neg_left (x y : V → ℤ) :\n        treePairing G weight (-x) y = -treePairing G weight x y := by\n      unfold treePairing\n      calc\n        (∑ u, (-x) u * (weight u * y u -\n          ∑ w ∈ G.neighborFinset u, y w)) =\n            ∑ u, -(x u * (weight u * y u - ∑ w ∈ G.neighborFinset u, y w)) := by\n              apply Finset.sum_congr rfl\n              intro u _\n              simp only [Pi.neg_apply, neg_mul]\n        _ = -(∑ u, x u * (weight u * y u -\n          ∑ w ∈ G.neighborFinset u, y w)) := by\n            exact Finset.sum_neg_distrib (s := Finset.univ)\n              (fun u : V => x u * (weight u * y u -\n                ∑ w ∈ G.neighborFinset u, y w))\n    have pairing_neg_right (x y : V → ℤ) :\n        treePairing G weight x (-y) = -treePairing G weight x y := by\n      unfold treePairing\n      calc\n        (∑ u, x u * (weight u * (-y) u -\n          ∑ w ∈ G.neighborFinset u, (-y) w)) =\n            ∑ u, -(x u * (weight u * y u - ∑ w ∈ G.neighborFinset u, y w)) := by\n              apply Finset.sum_congr rfl\n              intro u _\n              simp only [Pi.neg_apply, mul_neg, Finset.sum_neg_distrib]\n              ring\n        _ = -(∑ u, x u * (weight u * y u -\n          ∑ w ∈ G.neighborFinset u, y w)) := by\n            exact Finset.sum_neg_distrib (s := Finset.univ)\n              (fun u : V => x u * (weight u * y u -\n                ∑ w ∈ G.neighborFinset u, y w))\n    have pairing_neg_neg (x y : V → ℤ) :\n        treePairing G weight (-x) (-y) = treePairing G weight x y := by\n      rw [pairing_neg_left, pairing_neg_right]\n      ring\n    have hshift_eq :\n        treePairing G weight (-b) (-b) + treePairing G weight (vertexVector v) (-b) =\n          -treePairing G weight a b := by\n      calc\n        treePairing G weight (-b) (-b) + treePairing G weight (vertexVector v) (-b) =\n            treePairing G weight b b +\n              (treePairing G weight a (-b) + treePairing G weight b (-b)) := by\n                rw [hab, pairing_neg_neg, treePairing_add_left]\n        _ = -treePairing G weight a b := by\n          rw [pairing_neg_right, pairing_neg_right]\n          ring\n    have hshift_nonpos :\n        treePairing G weight (-b) (-b) + treePairing G weight (vertexVector v) (-b) ≤ 0 := by\n      rw [hshift_eq]\n      omega\n    have hzb : (-b : V → ℤ) ≠ 0 := neg_ne_zero.mpr hb\n    by_cases hq : 0 ≤ (-b) v\n    · have hpos := normalized_pairing_positive_of_unique_underweight G weight v (-b)\n        h_tree h_positive ⟨v, hv, huniq⟩ hv h_two hzb hq\n      omega\n    · have hq_le : (-b) v ≤ -1 := Int.le_sub_one_of_not_le hq\n      have hprime_eq : -vertexVector v - (-b) = -a := by\n        rw [hab]\n        ext x\n        simp only [Pi.sub_apply, Pi.neg_apply, Pi.add_apply]\n        ring\n      have hprime_nonzero : -vertexVector v - (-b) ≠ 0 := by\n        rw [hprime_eq]\n        exact neg_ne_zero.mpr ha\n      have hq_le' : -b v ≤ -1 := by\n        simpa only [Pi.neg_apply] using hq_le\n      have hprime_root : 0 ≤ (-vertexVector v - (-b)) v := by\n        simp only [Pi.sub_apply, Pi.neg_apply, vertexVector, if_pos]\n        omega\n      have hprime_shift :\n          treePairing G weight (-vertexVector v - (-b)) (-vertexVector v - (-b)) +\n            treePairing G weight (vertexVector v) (-vertexVector v - (-b)) =\n              treePairing G weight (-b) (-b) + treePairing G weight (vertexVector v) (-b) := by\n        calc\n          treePairing G weight (-vertexVector v - (-b)) (-vertexVector v - (-b)) +\n              treePairing G weight (vertexVector v) (-vertexVector v - (-b)) =\n                treePairing G weight (-a) (-a) + treePairing G weight (a + b) (-a) := by\n                  rw [hprime_eq, hab]\n          _ = treePairing G weight a a +\n                (treePairing G weight a (-a) + treePairing G weight b (-a)) := by\n                  rw [pairing_neg_neg, treePairing_add_left]\n          _ = -treePairing G weight a b := by\n            rw [pairing_neg_right, pairing_neg_right, treePairing_symm G weight b a]\n            ring\n          _ = treePairing G weight (-b) (-b) + treePairing G weight (vertexVector v) (-b) :=\n            hshift_eq.symm\n      have hpos := normalized_pairing_positive_of_unique_underweight G weight v\n        (-vertexVector v - (-b)) h_tree h_positive ⟨v, hv, huniq⟩ hv h_two\n        hprime_nonzero hprime_root\n      rw [hprime_shift] at hpos\n      omega\n\nend PositiveDefiniteTreeLattice\n"
+    },
+    "nl": {
+      "origin": [
+        {
+          "end_line": 244,
+          "end_locator": null,
+          "kind": "source",
+          "note": "This is the complete source theorem and proof: the global weight-one case, the unique underweighted witness, the forbidden decomposition normalization, and the q≥0/q≤-1 contradiction.",
+          "ref": null,
+          "resource_key": null,
+          "source_path": "solution.tex",
+          "start_line": 182,
+          "start_locator": null
+        }
+      ],
+      "text": "Use the source proof on solution.tex:182–244. First split on `∃ u : V, weight u = 1`. In the positive case choose u and return `⟨u, irreducible_vertex_of_weight_eq_one G weight u h_positive hu⟩`. This is the source’s weight-one alternative and needs no relation between u and the unique underweighted vertex. In the negative case obtain the unique underweighted vertex `v` from `h_unique_underweight`, retaining both `hv : weight v < (G.degree v : ℤ)` and uniqueness. The no-weight-one assumption and `weight_ge_two_of_ne_one G weight x h_positive` give `h_two : ∀ x, 2 ≤ weight x`.\n\nIt remains to prove `Irreducible G weight (vertexVector v)`. Unfold only the accepted Irreducible interface and suppose a forbidden decomposition `vertexVector v = a + b` with `ha : a ≠ 0`, `hb : b ≠ 0`, and `hab : 0 ≤ treePairing G weight a b`. Put `z := -b`. Coordinatewise algebra from the decomposition gives `a = vertexVector v + z`, while hb proves `z ≠ 0` (and ha also gives `z ≠ - vertexVector v`). Using `treePairing_add_left`, `treePairing_add_right`, `treePairing_add_self`, and `treePairing_symm` in their accepted orientations, expand\n`treePairing G weight z z + treePairing G weight (vertexVector v) z`\nafter substituting `z=-b` and `vertexVector v=a+b`. The additive/negation normalization yields exactly `- treePairing G weight a b`, hence the shifted pairing is nonpositive by hab.\n\nLet `q := z v`. If `0 ≤ q`, apply `normalized_pairing_positive_of_unique_underweight G weight v z h_tree h_positive h_unique_underweight hv h_two` with the established nonzeroness and root-coefficient inequality. Its strict positivity contradicts the nonpositive shifted pairing.\n\nOtherwise, `Int.le_sub_one_of_not_le` gives `q ≤ -1`. Define `z' := - vertexVector v - z`, which is coordinatewise `-a` by the decomposition. Thus `z' ≠ 0` follows from ha. Unfolding only the accepted vertexVector definition at v shows `z' v = -1-q ≥ 0`. Apply the same normalized lemma to z'. A second expansion using `treePairing_add_left`, `treePairing_add_right`, `treePairing_add_self`, and `treePairing_symm` shows the exact invariance\n`treePairing G weight z' z' + treePairing G weight (vertexVector v) z' =\n treePairing G weight z z + treePairing G weight (vertexVector v) z`.\nTherefore z' also gives strict positivity of the already nonpositive shifted pairing, a contradiction. Both coefficient cases rule out the forbidden decomposition, so v is irreducible and provides the required existential witness."
+    }
+  },
+  "revision": 2,
+  "state": "proved",
+  "statement": {
+    "deps": [
+      {
+        "kind": "mathlib_decl",
+        "reason": "The hypothesis `h_tree : G.IsTree` uses Mathlib's tree predicate on a simple graph.",
+        "ref": {
+          "module": "Mathlib.Combinatorics.SimpleGraph.Acyclic",
+          "name": "SimpleGraph.IsTree"
+        }
+      },
+      {
+        "kind": "mathlib_decl",
+        "reason": "The graph parameter is explicitly typed as `G : SimpleGraph V`.",
+        "ref": {
+          "module": "Mathlib.Combinatorics.SimpleGraph.Basic",
+          "name": "SimpleGraph"
+        }
+      },
+      {
+        "kind": "mathlib_decl",
+        "reason": "The protected hypothesis `weight v < (G.degree v : ℤ)` directly uses the graph degree function.",
+        "ref": {
+          "module": "Mathlib.Combinatorics.SimpleGraph.Finite",
+          "name": "SimpleGraph.degree"
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "The conclusion is expressed with the public irreducibility predicate `PositiveDefiniteTreeLattice.Irreducible`.",
+        "ref": {
+          "name": "IrreducibleAnchor",
+          "node": "Main.LatticeFoundations",
+          "repo": null,
+          "revision": 1
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "The positive-definiteness hypothesis is stated using the public integral pairing `PositiveDefiniteTreeLattice.treePairing`.",
+        "ref": {
+          "name": "treePairingAnchor",
+          "node": "Main.LatticeFoundations",
+          "repo": null,
+          "revision": 1
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "The existential conclusion applies irreducibility to the public vertex vector `PositiveDefiniteTreeLattice.vertexVector v`.",
+        "ref": {
+          "name": "vertexVectorAnchor",
+          "node": "Main.LatticeFoundations",
+          "repo": null,
+          "revision": 1
+        }
+      }
+    ],
+    "formal": {
+      "check": {
+        "allow_sorry": true,
+        "contains_axiom": false,
+        "contains_sorry": true,
+        "diagnostics": {
+          "diagnostics": [
+            {
+              "column": 9,
+              "line": 39,
+              "message": "declaration uses `sorry`",
+              "severity": "warning"
+            }
+          ],
+          "passed": true,
+          "raw_excerpt": "{'success': True, 'error_message': None, 'file': 'PositiveDefiniteTreeLattice.Main.IrreducibleVertex.Theorems.exists_irreducible_vertex', 'items': [{'severity': 'warning', 'pos': {'line': 39, 'column': 9}, 'endPos': {'line': 39, 'column': 34}, 'kind': None, 'data': 'declaration uses `sorry`', 'fileName': 'PositiveDefiniteTreeLattice.Main.IrreducibleVertex.Theorems.exists_irreducible_vertex', 'content': '  `PositiveDefiniteTreeLattice.Main.LatticeFoundations.Defs.vertexVectorAnchor`\\n-/\\ntheorem exists_irreducible_vertex\\n    {V : Type*} [Fintype V] [DecidableEq V] (G : SimpleGraph V) [DecidableRel G.Adj]\\n    (weight : V → ℤ) (h_tree : G.IsTree)'}], 'total_items': 1, 'error_count': 0, 'warning_count': 1, 'info_count': 0, 'sorry_count': 1}",
+          "repo_file_path": "PositiveDefiniteTreeLattice/Main/IrreducibleVertex/Theorems/exists_irreducible_vertex.lean",
+          "schema_version": 2,
+          "summary": "Diagnostics returned 1 items"
+        },
+        "message": "Lean check passed.",
+        "policy": "statement_formal",
+        "scan": {
+          "admit_count": 0,
+          "axiom_count": 0,
+          "contains_admit": false,
+          "contains_axiom": false,
+          "contains_opaque": false,
+          "contains_sorry": true,
+          "contains_unsafe": false,
+          "limitation": "Text scan ignores Lean comments and string literals with a conservative first-round lexer; it is not a full Lean parser.",
+          "occurrences": [
+            {
+              "column": 3,
+              "excerpt": "sorry",
+              "kind": "sorry",
+              "line": 45
+            }
+          ],
+          "opaque_count": 0,
+          "sorry_count": 1,
+          "summary": "sorry=1, admit=0, axiom=0, opaque=0, unsafe=0",
+          "unsafe_count": 0
+        },
+        "status": "passed"
+      },
+      "code": "-- lean-constellation: managed-imports-begin\nimport PositiveDefiniteTreeLattice.Main.IrreducibleVertex.Prelude\nimport Mathlib.Combinatorics.SimpleGraph.Acyclic\nimport Mathlib.Combinatorics.SimpleGraph.Basic\nimport Mathlib.Combinatorics.SimpleGraph.Finite\n-- lean-constellation: managed-imports-end\n\n-- lean-constellation: declaration-source-begin\n\nnamespace PositiveDefiniteTreeLattice\n\n/--\n# lean-constellation target: `exists_irreducible_vertex`\n\nLet `V` be a finite type with decidable equality, let `G : SimpleGraph V` have decidable adjacency,\nand let `weight : V → ℤ`. Assume that `G` is a tree, that the integral tree pairing is positive\ndefinite on every nonzero integer vector—namely, for every `x : V → ℤ` with `x ≠ 0`, `0 <\ntreePairing G weight x x`—and that there exists exactly one vertex `v` with `weight v < (G.degree v\n: ℤ)`. Then there exists a vertex `v : V` such that the vertex vector `vertexVector v` is\nirreducible for `G` and `weight`, i.e. `Irreducible G weight (vertexVector v)`.\n\n## Sources\n\n- Source `formal_target.lean`, lines 24–33\n- Source `solution.tex`, lines 182–186\n\n## Statement dependencies\n\n- `SimpleGraph.IsTree` from `Mathlib.Combinatorics.SimpleGraph.Acyclic`\n- `SimpleGraph` from `Mathlib.Combinatorics.SimpleGraph.Basic`\n- `SimpleGraph.degree` from `Mathlib.Combinatorics.SimpleGraph.Finite`\n- `Main.LatticeFoundations::IrreducibleAnchor` → `PositiveDefiniteTreeLattice.Irreducible` from\n  `PositiveDefiniteTreeLattice.Main.LatticeFoundations.Defs.IrreducibleAnchor`\n- `Main.LatticeFoundations::treePairingAnchor` → `PositiveDefiniteTreeLattice.treePairing` from\n  `PositiveDefiniteTreeLattice.Main.LatticeFoundations.Defs.treePairingAnchor`\n- `Main.LatticeFoundations::vertexVectorAnchor` → `PositiveDefiniteTreeLattice.vertexVector` from\n  `PositiveDefiniteTreeLattice.Main.LatticeFoundations.Defs.vertexVectorAnchor`\n-/\ntheorem exists_irreducible_vertex\n    {V : Type*} [Fintype V] [DecidableEq V] (G : SimpleGraph V) [DecidableRel G.Adj]\n    (weight : V → ℤ) (h_tree : G.IsTree)\n    (h_positive : ∀ x : V → ℤ, x ≠ 0 → 0 < treePairing G weight x x)\n    (h_unique_underweight : ∃! v : V, weight v < (G.degree v : ℤ)) :\n    ∃ v : V, Irreducible G weight (vertexVector v) := by\n  sorry\n\nend PositiveDefiniteTreeLattice\n"
+    },
+    "nl": {
+      "origin": [
+        {
+          "end_line": 33,
+          "end_locator": null,
+          "kind": "source",
+          "note": "Exact protected Lean theorem header: its binders, hypotheses, conclusion, and required public interface shape.",
+          "ref": null,
+          "resource_key": null,
+          "source_path": "formal_target.lean",
+          "start_line": 24,
+          "start_locator": null
+        },
+        {
+          "end_line": 186,
+          "end_locator": null,
+          "kind": "source",
+          "note": "Source theorem stating that a positive-definite finite integer-weighted tree with a unique underweighted vertex contains an irreducible vertex.",
+          "ref": null,
+          "resource_key": null,
+          "source_path": "solution.tex",
+          "start_line": 182,
+          "start_locator": null
+        }
+      ],
+      "text": "Let `V` be a finite type with decidable equality, let `G : SimpleGraph V` have decidable adjacency, and let `weight : V → ℤ`. Assume that `G` is a tree, that the integral tree pairing is positive definite on every nonzero integer vector—namely, for every `x : V → ℤ` with `x ≠ 0`, `0 < treePairing G weight x x`—and that there exists exactly one vertex `v` with `weight v < (G.degree v : ℤ)`. Then there exists a vertex `v : V` such that the vertex vector `vertexVector v` is irreducible for `G` and `weight`, i.e. `Irreducible G weight (vertexVector v)`."
+    }
+  },
+  "status": "committed",
+  "updated_at": "2026-08-07T07:00:19Z"
+}

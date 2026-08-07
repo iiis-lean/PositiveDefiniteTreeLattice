@@ -1,0 +1,20 @@
+{
+  "created_at": "2026-07-30T09:33:16Z",
+  "current_revision": 6,
+  "kind": "theorem",
+  "lifecycle": "active",
+  "module": "PositiveDefiniteTreeLattice.Main.RootedCapacity.Theorems.rootedNonroot_inverse_childBlocks",
+  "name": "rootedNonroot_inverse_childBlocks",
+  "node_path": "Main.RootedCapacity",
+  "public": false,
+  "revision_ids": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6
+  ],
+  "summary": "The inverse nonroot Gram block restricts to child Gram inverses and vanishes across distinct child components.",
+  "updated_at": "2026-07-30T15:31:05Z"
+}

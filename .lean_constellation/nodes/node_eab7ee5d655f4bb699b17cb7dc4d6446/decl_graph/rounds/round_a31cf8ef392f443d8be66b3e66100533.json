@@ -1,0 +1,33 @@
+{
+  "change_summaries": {},
+  "committed_at": "2026-07-30T10:05:57Z",
+  "created_at": "2026-07-30T09:51:19Z",
+  "discard_reason": null,
+  "discarded_at": null,
+  "discarded_by": null,
+  "discarded_created_decl_names": [],
+  "discarded_restored_decl_revisions": {},
+  "discarded_revision_refs": [],
+  "execution_completed_at": "2026-07-30T10:01:48Z",
+  "execution_reason": null,
+  "execution_result_kind": "success",
+  "node_path": "Main.RootedCapacity",
+  "objective": "Create the private dependent partition equivalence needed to reindex the nonroot Gram block by root-child components, preserving the exact inclusion indices used by the accepted inverse-child-block theorem.",
+  "plan_closeout_acknowledged_at": "2026-07-30T10:05:57Z",
+  "plan_closeout_acknowledged_by": "a_a93b40977f574bad89528358fa89e022",
+  "result_kind": "success",
+  "result_reason": "The private child-component/nonroot equivalence reached declared state with a checked statement and now supplies the exact representation prerequisite for the inverse-block proof.",
+  "revision_refs": [
+    {
+      "change_id": "rootedChildComponentsEquivNonroot@rev:1",
+      "decl_name": "rootedChildComponentsEquivNonroot",
+      "revision": 1
+    }
+  ],
+  "round_id": "round_a31cf8ef392f443d8be66b3e66100533",
+  "round_index": 26,
+  "started_at": "2026-07-30T09:53:02Z",
+  "status": "committed",
+  "strategy_id": "strategy_1fbcdfb31a2e4cada1ff5b7b941de18c",
+  "summary": "Round 26 completed successfully. rootedChildComponentsEquivNonroot reached declared state and is proof-policy satisfied as a private definition. The strategy made dependency-first progress on SourceIndex b_0009 / solution.tex lines 57–68: the formerly missing explicit child-component/nonroot equivalence now exists. The next action is a proof-formal retry of rootedNonroot_inverse_childBlocks with this definition added to its dependency closure; rootedNonroot_inverse_quadratic continues to wait for that theorem. No preparation, scope escalation, superseded branch, or graph cleanup is needed."
+}

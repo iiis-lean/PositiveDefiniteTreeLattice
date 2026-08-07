@@ -1,0 +1,85 @@
+{
+  "change": {
+    "anticipated_proof_dep_names": [],
+    "anticipated_statement_dep_names": [
+      "treePairing"
+    ],
+    "base_revision": 1,
+    "kind": "update",
+    "objective": "Advance the unchanged planned public definition through Statement NL and Formal using exactly formal_target.lean lines 17–22 and committed treePairing rev:2: for x : V → ℤ, define the negation of existence of nonzero a,b with x = a + b and 0 ≤ treePairing G weight a b. Preserve the integral function binders, equality direction, and nonnegative cross-pairing conclusion without adding positivity assumptions. This accepted definition serves its contract interface and is the exact conclusion predicate consumed by irreducible_of_pairing_self_eq_one.",
+    "require_target_state_satisfied": true,
+    "reset_to_state": "planned",
+    "summary": "Successfully advanced the public Irreducible definition from planned to declared. Statement NL and Statement Formal completed; Lean declaration Irreducible compiled in PositiveDefiniteTreeLattice.Main.LatticeFoundations.Defs.Irreducible with committed treePairing as its Statement dependency. The accepted consumer-side semantics match formal_target.lean lines 17–22 exactly: no decomposition x = a + b into two nonzero integer-valued functions with nonnegative treePairing G weight a b. No assumptions, objects, equality direction, indices, or conclusion were changed. As a definition it has no proof layer, and its declared target plus required proof-policy satisfaction passed.",
+    "target_state": "declared"
+  },
+  "lean_decl_name": "Irreducible",
+  "proof": null,
+  "revision": 2,
+  "state": "declared",
+  "statement": {
+    "deps": [
+      {
+        "kind": "repo_decl",
+        "reason": "The defining nonnegative cross-pairing condition is expressed as `0 ≤ treePairing G weight a b`.",
+        "ref": {
+          "name": "treePairing",
+          "node": "Main.LatticeFoundations",
+          "repo": null,
+          "revision": 2
+        }
+      }
+    ],
+    "formal": {
+      "check": {
+        "allow_sorry": false,
+        "contains_axiom": false,
+        "contains_sorry": false,
+        "diagnostics": {
+          "diagnostics": [],
+          "passed": true,
+          "raw_excerpt": "{'success': True, 'error_message': None, 'file': 'PositiveDefiniteTreeLattice.Main.LatticeFoundations.Defs.Irreducible', 'items': [], 'total_items': 0, 'error_count': 0, 'warning_count': 0, 'info_count': 0, 'sorry_count': 0}",
+          "repo_file_path": "PositiveDefiniteTreeLattice/Main/LatticeFoundations/Defs/Irreducible.lean",
+          "schema_version": 2,
+          "summary": "Diagnostics returned 0 items"
+        },
+        "message": "Lean check passed.",
+        "policy": "statement_formal",
+        "scan": {
+          "admit_count": 0,
+          "axiom_count": 0,
+          "contains_admit": false,
+          "contains_axiom": false,
+          "contains_opaque": false,
+          "contains_sorry": false,
+          "contains_unsafe": false,
+          "limitation": "Text scan ignores Lean comments and string literals with a conservative first-round lexer; it is not a full Lean parser.",
+          "occurrences": [],
+          "opaque_count": 0,
+          "sorry_count": 0,
+          "summary": "sorry=0, admit=0, axiom=0, opaque=0, unsafe=0",
+          "unsafe_count": 0
+        },
+        "status": "passed"
+      },
+      "code": "-- lean-constellation: managed-imports-begin\nimport PositiveDefiniteTreeLattice.Main.LatticeFoundations.Prelude\nimport PositiveDefiniteTreeLattice.Main.LatticeFoundations.Defs.treePairing\n-- lean-constellation: managed-imports-end\n\n-- lean-constellation: declaration-source-begin\n\n/--\n# lean-constellation target: `Irreducible`\n\nFor a finite type `V` with decidable equality, a simple graph `G : SimpleGraph V` with decidable\nadjacency, an integer-valued weight function `weight : V → ℤ`, and `x : V → ℤ`, `Irreducible G\nweight x` holds exactly when there do not exist functions `a b : V → ℤ` such that `a ≠ 0`, `b ≠ 0`,\n`x = a + b`, and `0 ≤ treePairing G weight a b`.\n\nIn particular, the required decomposition equality has the direction `x = a + b`, and its\ncross-pairing is required to be nonnegative.\n\n## Sources\n\n- Source `formal_target.lean`, lines 17–22\n\n## Statement dependencies\n\n- `Main.LatticeFoundations::treePairing` → `treePairing` from\n  `PositiveDefiniteTreeLattice.Main.LatticeFoundations.Defs.treePairing`\n-/\ndef Irreducible {V : Type*} [Fintype V] [DecidableEq V] (G : SimpleGraph V)\n    [DecidableRel G.Adj] (weight : V → ℤ) (x : V → ℤ) : Prop :=\n  ¬ ∃ a b : V → ℤ, a ≠ 0 ∧ b ≠ 0 ∧ x = a + b ∧ 0 ≤ treePairing G weight a b\n"
+    },
+    "nl": {
+      "origin": [
+        {
+          "end_line": 22,
+          "end_locator": null,
+          "kind": "source",
+          "note": "Exact source definition of irreducibility by the absence of a nonzero decomposition with nonnegative cross-pairing.",
+          "ref": null,
+          "resource_key": null,
+          "source_path": "formal_target.lean",
+          "start_line": 17,
+          "start_locator": null
+        }
+      ],
+      "text": "For a finite type `V` with decidable equality, a simple graph `G : SimpleGraph V` with decidable adjacency, an integer-valued weight function `weight : V → ℤ`, and `x : V → ℤ`, `Irreducible G weight x` holds exactly when there do not exist functions `a b : V → ℤ` such that `a ≠ 0`, `b ≠ 0`, `x = a + b`, and `0 ≤ treePairing G weight a b`.\n\nIn particular, the required decomposition equality has the direction `x = a + b`, and its cross-pairing is required to be nonnegative."
+    }
+  },
+  "status": "committed",
+  "updated_at": "2026-07-29T15:03:34Z"
+}

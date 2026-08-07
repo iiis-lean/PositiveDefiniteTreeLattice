@@ -1,0 +1,16 @@
+{
+  "created_at": "2026-08-03T13:11:11Z",
+  "current_revision": 2,
+  "kind": "theorem",
+  "lifecycle": "active",
+  "module": "PositiveDefiniteTreeLattice.Main.RootedCapacity.Theorems.rootedGram_root_rootedChildComponent_support",
+  "name": "rootedGram_root_rootedChildComponent_support",
+  "node_path": "Main.RootedCapacity",
+  "public": true,
+  "revision_ids": [
+    1,
+    2
+  ],
+  "summary": "The rooted Gram root row and column on an attached child component are supported only at that component's child root.",
+  "updated_at": "2026-08-03T14:57:16Z"
+}

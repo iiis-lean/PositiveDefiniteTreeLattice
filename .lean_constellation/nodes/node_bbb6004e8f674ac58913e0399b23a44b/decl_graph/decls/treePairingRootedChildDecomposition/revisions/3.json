@@ -1,0 +1,343 @@
+{
+  "change": {
+    "anticipated_proof_dep_names": [
+      "sumNeighborContributionRootedChildComponent",
+      "sumNonrootEqSumRootedChildComponents"
+    ],
+    "anticipated_statement_dep_names": [],
+    "base_revision": 2,
+    "kind": "update",
+    "objective": "Preserve revision 2's compiler-accepted integral decomposition statement and accepted Proof NL plan for SourceIndex b_0010, solution.tex lines 102–110. Complete only Proof Formal by combining proved sumNonrootEqSumRootedChildComponents and proved sumNeighborContributionRootedChildComponent with the public proved rootedEdgeClassification and existing treePairing expansion facts. The exact equality must remain the root term plus rootedChildComponent pairings, and this proved theorem is the structural prerequisite for the contract-required PositiveDefiniteTreeLattice.rooted_integer_estimate.",
+    "require_target_state_satisfied": true,
+    "reset_to_state": "proof_planned",
+    "summary": "Preserved revision 2's accepted b_0010 integral rooted-child decomposition statement and Proof NL plan, and reran only Proof Formal. The formal proof passed using the proved non-root component reindexing and ordered-neighbor decomposition helpers; revision 3 reached proved and satisfies graph_proved. The former rooted edge-classification and finite-sum transport blockers are fully discharged. This declaration is now ready as the structural proof dependency for rooted_integer_estimate.",
+    "target_state": "proved"
+  },
+  "lean_decl_name": "treePairingRootedChildDecomposition",
+  "proof": {
+    "deps": [
+      {
+        "kind": "mathlib_decl",
+        "reason": "Rewrites summands pointwise when translating the root neighborhood and each child-component contribution.",
+        "ref": {
+          "module": "Mathlib.Algebra.BigOperators.Group.Finset.Basic",
+          "name": "Finset.sum_congr"
+        }
+      },
+      {
+        "kind": "mathlib_decl",
+        "reason": "Combines the disjoint singleton-root and non-root finite sums before reindexing the non-root contribution by child components.",
+        "ref": {
+          "module": "Mathlib.Algebra.BigOperators.Group.Finset.Basic",
+          "name": "Finset.sum_disjiUnion"
+        }
+      },
+      {
+        "kind": "mathlib_decl",
+        "reason": "Separates the local tree-pairing contribution from the root-boundary correction.",
+        "ref": {
+          "module": "Mathlib.Algebra.BigOperators.Group.Finset.Defs",
+          "name": "Finset.sum_sub_distrib"
+        }
+      },
+      {
+        "kind": "mathlib_decl",
+        "reason": "Evaluates the unique child-root boundary summand after the component-wise reindexing.",
+        "ref": {
+          "module": "Mathlib.Algebra.BigOperators.Group.Finset.Piecewise",
+          "name": "Finset.sum_ite_eq'"
+        }
+      },
+      {
+        "kind": "mathlib_decl",
+        "reason": "Collects the child-root boundary summands before the final ring normalization.",
+        "ref": {
+          "module": "Mathlib.Algebra.BigOperators.Ring.Finset",
+          "name": "Finset.mul_sum"
+        }
+      },
+      {
+        "kind": "mathlib_decl",
+        "reason": "Identifies the root ambient-neighbor finset with rooted children.",
+        "ref": {
+          "module": "Mathlib.Combinatorics.SimpleGraph.Finite",
+          "name": "SimpleGraph.neighborFinset_eq_filter"
+        }
+      },
+      {
+        "kind": "mathlib_decl",
+        "reason": "Proves the root singleton and non-root filter are disjoint in the finite partition.",
+        "ref": {
+          "module": "Mathlib.Data.Finset.Disjoint",
+          "name": "Finset.disjoint_left"
+        }
+      },
+      {
+        "kind": "mathlib_decl",
+        "reason": "Forms the disjoint root/non-root finite partition used with Finset.sum_disjiUnion.",
+        "ref": {
+          "module": "Mathlib.Data.Finset.Union",
+          "name": "Finset.disjiUnion"
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "Unfolds the exact integral treePairing definition before the finite-sum decomposition.",
+        "ref": {
+          "name": "treePairingAnchor",
+          "node": "Main.LatticeFoundations",
+          "repo": null,
+          "revision": 1
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "Excludes an internal child-component endpoint from being the root while proving every root neighbor is a rooted child.",
+        "ref": {
+          "name": "rootedChildComponent_parent_not_mem",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 1
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "Provides the unique child-component index for every non-root vertex in the finite-sum reindexing.",
+        "ref": {
+          "name": "rootedChildComponent_partition",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 1
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "Identifies the unique child-root subtype in the boundary summand and the final child-root sum.",
+        "ref": {
+          "name": "rootedChildRoot",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 1
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "Unfolds rooted-child membership to identify the root neighborhood with the ambient neighbor finset.",
+        "ref": {
+          "name": "rootedChildren",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 2
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "Classifies every original edge as a root-child edge or as an induced child-component edge.",
+        "ref": {
+          "name": "rootedEdgeClassification",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 1
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "Rewrites each ambient neighbor contribution as its root boundary term plus the local component-neighbor sum.",
+        "ref": {
+          "name": "sumNeighborContributionRootedChildComponent",
+          "node": "Main.RootedEstimates",
+          "repo": null,
+          "revision": 2
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "Reindexes the non-root pairing summands by rooted child components.",
+        "ref": {
+          "name": "sumNonrootEqSumRootedChildComponents",
+          "node": "Main.RootedEstimates",
+          "repo": null,
+          "revision": 2
+        }
+      }
+    ],
+    "formal": {
+      "check": {
+        "allow_sorry": false,
+        "contains_axiom": false,
+        "contains_sorry": false,
+        "diagnostics": {
+          "diagnostics": [],
+          "passed": true,
+          "raw_excerpt": "{'success': True, 'error_message': None, 'file': 'PositiveDefiniteTreeLattice.Main.RootedEstimates.Theorems.treePairingRootedChildDecomposition', 'items': [], 'total_items': 0, 'error_count': 0, 'warning_count': 0, 'info_count': 0, 'sorry_count': 0}",
+          "repo_file_path": "PositiveDefiniteTreeLattice/Main/RootedEstimates/Theorems/treePairingRootedChildDecomposition.lean",
+          "schema_version": 2,
+          "summary": "Diagnostics returned 0 items"
+        },
+        "message": "Lean check passed.",
+        "policy": "proof_formal",
+        "scan": {
+          "admit_count": 0,
+          "axiom_count": 0,
+          "contains_admit": false,
+          "contains_axiom": false,
+          "contains_opaque": false,
+          "contains_sorry": false,
+          "contains_unsafe": false,
+          "limitation": "Text scan ignores Lean comments and string literals with a conservative first-round lexer; it is not a full Lean parser.",
+          "occurrences": [],
+          "opaque_count": 0,
+          "sorry_count": 0,
+          "summary": "sorry=0, admit=0, axiom=0, opaque=0, unsafe=0",
+          "unsafe_count": 0
+        },
+        "status": "passed"
+      },
+      "code": "-- lean-constellation: managed-imports-begin\nimport PositiveDefiniteTreeLattice.Main.RootedEstimates.Prelude\nimport Mathlib.Algebra.BigOperators.Group.Finset.Basic\nimport Mathlib.Algebra.BigOperators.Group.Finset.Defs\nimport Mathlib.Algebra.BigOperators.Group.Finset.Piecewise\nimport Mathlib.Algebra.BigOperators.Ring.Finset\nimport Mathlib.Combinatorics.SimpleGraph.Acyclic\nimport Mathlib.Combinatorics.SimpleGraph.Connectivity.Connected\nimport Mathlib.Combinatorics.SimpleGraph.Finite\nimport Mathlib.Data.Finset.Disjoint\nimport Mathlib.Data.Finset.Union\nimport PositiveDefiniteTreeLattice.Main.RootedEstimates.Theorems.sumNeighborContributionRootedChildComponent\nimport PositiveDefiniteTreeLattice.Main.RootedEstimates.Theorems.sumNonrootEqSumRootedChildComponents\n-- lean-constellation: managed-imports-end\n\n-- lean-constellation: declaration-source-begin\n\n/--\n# lean-constellation target: `treePairingRootedChildDecomposition`\n\nLet `V` be a finite vertex type, let `G : SimpleGraph V` have decidable adjacency and a tree witness\n`hG : G.IsTree`, let `w : V → ℤ`, let `rho : V`, and let `x : V → ℤ`. For each `c ∈ rootedChildren G\nhG rho rho`, define\n\n`C_c := rootedChildComponent G rho c`,\n\nwhich is the connected-component subtype of `G.deleteEdges {s(rho, c)}` containing `c`. Let its\ninduced child graph be\n\n`G_c := C_c.toSimpleGraph`,\n\nand define the restrictions `w_c : C_c → ℤ` and `x_c : C_c → ℤ` by `w_c(u) := w (u : V)` and `x_c(u)\n:= x (u : V)`. Set\n\n`s_c := x_c (rootedChildRoot G rho c)`.\n\nWriting `a := x rho`, the integral pairing satisfies\n\n`treePairing G w x x = w rho * a^2 - 2 * a * ∑ c ∈ rootedChildren G hG rho rho, s_c + ∑ c ∈\nrootedChildren G hG rho rho, treePairing G_c w_c x_c x_c`.\n\nThus every child self-pairing is formed on the induced graph `C_c.toSimpleGraph` with the induced\ninteger weights and the coordinate restriction, while the root coefficient is exactly `x rho`.\n\n## Sources\n\n- Source `solution.tex`, lines 102–110\n\n## Statement dependencies\n\n- `SimpleGraph.IsTree` from `Mathlib.Combinatorics.SimpleGraph.Acyclic`\n- `SimpleGraph.ConnectedComponent.toSimpleGraph` from\n  `Mathlib.Combinatorics.SimpleGraph.Connectivity.Connected`\n- `Main.LatticeFoundations::treePairingAnchor` → `PositiveDefiniteTreeLattice.treePairing` from\n  `PositiveDefiniteTreeLattice.Main.LatticeFoundations.Defs.treePairingAnchor`\n- `Main.RootedCapacity::rootedChildComponent` → `rootedChildComponent` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildComponent`\n- `Main.RootedCapacity::rootedChildRoot` → `rootedChildRoot` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildRoot`\n- `Main.RootedCapacity::rootedChildren` → `rootedChildren` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildren`\n\n## Proof outline\n\nUnfold `PositiveDefiniteTreeLattice.treePairing` through `treePairingAnchor`, and separate the\nsummand at `rho` from the finite sum over non-root vertices. For each non-root vertex `u`, apply\n`rootedChildComponent_partition G hG rho u` to obtain its unique child `c`; use this uniqueness to\nreindex the remaining finite sum by the family of subtypes `rootedChildComponent G rho c`.\n\nApply both directions of `PositiveDefiniteTreeLattice.rootedEdgeClassification G hG rho u v` to\nevery adjacency contribution. Its two root-child alternatives give exactly the boundary terms, while\nits unique internal-component alternative identifies every remaining edge with the induced graph on\nthe corresponding child component. Thus the reindexed internal sums are the child `treePairing`\nterms. Combine the disjoint finite sums with `Finset.sum_disjiUnion`; each root-child edge\ncontributes once from the root and once from its child root. Finish by ring normalization, yielding\n`w rho * (x rho)^2`, the boundary contribution `- 2 * x rho * ∑ c, x (rootedChildRoot G rho c)`, and\nthe indicated sum of child self-pairings. This follows b_0010 lines 102–110; the edge classification\nis the formal partition of the source's adjacency cases.\n\n## Proof sources\n\n- Source `solution.tex`, lines 102–110\n\n## Proof dependencies\n\n- `Finset.sum_congr` from `Mathlib.Algebra.BigOperators.Group.Finset.Basic`\n- `Finset.sum_disjiUnion` from `Mathlib.Algebra.BigOperators.Group.Finset.Basic`\n- `Finset.sum_sub_distrib` from `Mathlib.Algebra.BigOperators.Group.Finset.Defs`\n- `Finset.sum_ite_eq'` from `Mathlib.Algebra.BigOperators.Group.Finset.Piecewise`\n- `Finset.mul_sum` from `Mathlib.Algebra.BigOperators.Ring.Finset`\n- `SimpleGraph.neighborFinset_eq_filter` from `Mathlib.Combinatorics.SimpleGraph.Finite`\n- `Finset.disjoint_left` from `Mathlib.Data.Finset.Disjoint`\n- `Finset.disjiUnion` from `Mathlib.Data.Finset.Union`\n- `Main.LatticeFoundations::treePairingAnchor` → `PositiveDefiniteTreeLattice.treePairing` from\n  `PositiveDefiniteTreeLattice.Main.LatticeFoundations.Defs.treePairingAnchor`\n- `Main.RootedCapacity::rootedChildComponent_parent_not_mem` → `rootedChildComponent_parent_not_mem`\n  from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Theorems.rootedChildComponent_parent_not_mem`\n- `Main.RootedCapacity::rootedChildComponent_partition` → `rootedChildComponent_partition` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Theorems.rootedChildComponent_partition`\n- `Main.RootedCapacity::rootedChildRoot` → `rootedChildRoot` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildRoot`\n- `Main.RootedCapacity::rootedChildren` → `rootedChildren` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildren`\n- `Main.RootedCapacity::rootedEdgeClassification` →\n  `PositiveDefiniteTreeLattice.rootedEdgeClassification` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Theorems.rootedEdgeClassification`\n- `Main.RootedEstimates::sumNeighborContributionRootedChildComponent` →\n  `sumNeighborContributionRootedChildComponent` from `PositiveDefiniteTreeLattice.Main.RootedEstimat\n  es.Theorems.sumNeighborContributionRootedChildComponent`\n- `Main.RootedEstimates::sumNonrootEqSumRootedChildComponents` →\n  `sumNonrootEqSumRootedChildComponents` from\n  `PositiveDefiniteTreeLattice.Main.RootedEstimates.Theorems.sumNonrootEqSumRootedChildComponents`\n-/\ntheorem treePairingRootedChildDecomposition {V : Type*} [Fintype V] [DecidableEq V]\n    (G : SimpleGraph V) [DecidableRel G.Adj] (hG : G.IsTree) (w x : V → ℤ) (rho : V) :\n    PositiveDefiniteTreeLattice.treePairing G w x x =\n      w rho * (x rho) ^ 2 -\n        2 * x rho * (∑ c ∈ rootedChildren G hG rho rho,\n          x (rootedChildRoot G rho c)) +\n        ∑ c ∈ rootedChildren G hG rho rho,\n          let C := rootedChildComponent G rho c\n          letI : Fintype C := Fintype.ofFinite C\n          letI : DecidableEq C := Classical.decEq C\n          letI : DecidableRel C.toSimpleGraph.Adj := by\n            intro u v\n            change Decidable ((G.deleteEdges {s(rho, c)}).Adj (u : V) (v : V))\n            infer_instance\n          PositiveDefiniteTreeLattice.treePairing C.toSimpleGraph (fun u => w (u : V))\n            (fun u => x (u : V)) (fun u => x (u : V)) := by\n  classical\n  let q : V → ℤ := fun u =>\n    x u * (w u * x u - ∑ v ∈ G.neighborFinset u, x v)\n  have hroot_child : ∀ {v : V}, v ∈ rootedChildren G hG rho rho → G.Adj rho v := by\n    intro v hv\n    rw [rootedChildren] at hv\n    exact (Finset.mem_filter.mp hv).2.1\n  have hadj_child : ∀ {v : V}, G.Adj rho v → v ∈ rootedChildren G hG rho rho := by\n    intro v hv\n    rcases (PositiveDefiniteTreeLattice.rootedEdgeClassification G hG rho rho v).mp hv with\n      hroot | hroot | hcomponent\n    · exact hroot.2\n    · simpa [hroot.1] using hroot.2\n    · rcases hcomponent with ⟨c, ⟨hc, uC, vC, huC, hvC, hlocal⟩, _⟩\n      have hrc : G.Adj rho c := hroot_child hc\n      exact False.elim ((rootedChildComponent_parent_not_mem G rho c hG hrc uC) huC)\n  have hroot_fin : G.neighborFinset rho = rootedChildren G hG rho rho := by\n    rw [SimpleGraph.neighborFinset_eq_filter]\n    ext v\n    simp only [Finset.mem_filter, Finset.mem_univ, true_and]\n    exact ⟨hadj_child, hroot_child⟩\n  let split : Bool → Finset V := fun b =>\n    if b then Finset.univ.filter (fun u => u ≠ rho) else {rho}\n  have hsplit_disjoint :\n      ((↑(Finset.univ : Finset Bool) : Set Bool)).PairwiseDisjoint split := by\n    intro a ha b hb hab\n    cases a <;> cases b <;> simp_all [split, Function.onFun, Finset.disjoint_left]\n  have hsplit_cover :\n      (Finset.univ : Finset Bool).disjiUnion split hsplit_disjoint = Finset.univ := by\n    ext u\n    by_cases hu : u = rho <;> simp [split, hu]\n  have hroot_nonroot :\n      (∑ u : V, q u) = q rho + ∑ u ∈ Finset.univ.filter (fun u : V => u ≠ rho), q u := by\n    calc\n      (∑ u : V, q u) =\n          ∑ u ∈ (Finset.univ : Finset Bool).disjiUnion split hsplit_disjoint, q u := by\n        rw [hsplit_cover]\n      _ = ∑ b ∈ (Finset.univ : Finset Bool), ∑ u ∈ split b, q u :=\n        Finset.sum_disjiUnion _ _ _\n      _ = _ := by simp [split, add_comm]\n  have hroot_sum :\n      (∑ v ∈ rootedChildren G hG rho rho, x v) =\n        ∑ c ∈ rootedChildren G hG rho rho, x (rootedChildRoot G rho c) := by\n    apply Finset.sum_congr rfl\n    intro c _\n    simp [rootedChildRoot]\n  have hroot_mul :\n      x rho * (∑ c ∈ rootedChildren G hG rho rho, x (rootedChildRoot G rho c)) =\n        ∑ c ∈ rootedChildren G hG rho rho, x rho * x (rootedChildRoot G rho c) :=\n    Finset.mul_sum _ _ _\n  have hcomponent : ∀ (c : V) (hc : c ∈ rootedChildren G hG rho rho),\n      let C := rootedChildComponent G rho c\n      letI : Fintype C := Fintype.ofFinite C\n      letI : DecidableEq C := Classical.decEq C\n      letI : DecidableRel C.toSimpleGraph.Adj := by\n        intro u v\n        change Decidable ((G.deleteEdges {s(rho, c)}).Adj (u : V) (v : V))\n        infer_instance\n      (∑ uC : C, q (uC : V)) =\n        PositiveDefiniteTreeLattice.treePairing\n          C.toSimpleGraph (fun u => w (u : V))\n          (fun u => x (u : V)) (fun u => x (u : V)) -\n          x rho * x (rootedChildRoot G rho c) := by\n    intro c hc\n    let C := rootedChildComponent G rho c\n    letI : Fintype C := Fintype.ofFinite C\n    letI : DecidableEq C := Classical.decEq C\n    letI : DecidableRel C.toSimpleGraph.Adj := by\n      intro u v\n      change Decidable ((G.deleteEdges {s(rho, c)}).Adj (u : V) (v : V))\n      infer_instance\n    have hneigh : ∀ uC : C,\n        (∑ v ∈ G.neighborFinset (uC : V), x v) =\n          (if (uC : V) = c then x rho else 0) +\n            ∑ vC ∈ C.toSimpleGraph.neighborFinset uC,\n              x (vC : V) := by\n      intro uC\n      exact sumNeighborContributionRootedChildComponent G hG rho c hc uC (fun _ v => x v)\n    have hboundary :\n        (∑ uC : C,\n          x (uC : V) * (if (uC : V) = c then x rho else 0)) =\n          x rho * x (rootedChildRoot G rho c) := by\n      rw [show (fun uC : C =>\n          x (uC : V) * (if (uC : V) = c then x rho else 0)) =\n          (fun uC : C =>\n            if uC = rootedChildRoot G rho c then\n              x rho * x (rootedChildRoot G rho c) else 0) by\n          funext uC\n          by_cases huc : uC = rootedChildRoot G rho c\n          · subst uC\n            simpa [rootedChildRoot] using (mul_comm (x c) (x rho))\n          · have hval : (uC : V) ≠ c := by\n              intro hval\n              apply huc\n              apply Subtype.ext\n              exact hval.trans rfl.symm\n            simp [huc, hval]]\n      rw [Finset.sum_ite_eq']\n      simp\n    unfold q\n    unfold PositiveDefiniteTreeLattice.treePairing\n    calc\n      ∑ uC : C,\n          x (uC : V) *\n            (w (uC : V) * x (uC : V) -\n              ∑ v ∈ G.neighborFinset (uC : V), x v) =\n          ∑ uC : C,\n            x (uC : V) *\n              (w (uC : V) * x (uC : V) -\n                ((if (uC : V) = c then x rho else 0) +\n                  ∑ vC ∈ C.toSimpleGraph.neighborFinset uC,\n                    x (vC : V))) := by\n        apply Finset.sum_congr rfl\n        intro uC _\n        rw [hneigh uC]\n      _ =\n          ∑ uC : C,\n            (x (uC : V) *\n              (w (uC : V) * x (uC : V) -\n                ∑ vC ∈ C.toSimpleGraph.neighborFinset uC,\n                  x (vC : V)) -\n              x (uC : V) * (if (uC : V) = c then x rho else 0)) := by\n        apply Finset.sum_congr rfl\n        intro uC _\n        ring\n      _ = (∑ uC : C,\n            x (uC : V) *\n              (w (uC : V) * x (uC : V) -\n                ∑ vC ∈ C.toSimpleGraph.neighborFinset uC,\n                  x (vC : V))) -\n            ∑ uC : C,\n              x (uC : V) * (if (uC : V) = c then x rho else 0) :=\n        by rw [Finset.sum_sub_distrib]\n      _ = _ := by rw [hboundary]\n  unfold PositiveDefiniteTreeLattice.treePairing\n  rw [hroot_nonroot, sumNonrootEqSumRootedChildComponents G hG rho q]\n  simp only [q]\n  rw [hroot_fin]\n  rw [Finset.sum_congr rfl (fun c hc => hcomponent c hc)]\n  simp only [PositiveDefiniteTreeLattice.treePairing, Finset.sum_sub_distrib]\n  rw [hroot_sum]\n  ring_nf\n  rw [hroot_mul]\n  ring\n"
+    },
+    "nl": {
+      "origin": [
+        {
+          "end_line": 110,
+          "end_locator": null,
+          "kind": "source",
+          "note": "The proof route formalizes the source's root/child-subtree pairing expansion.",
+          "ref": null,
+          "resource_key": null,
+          "source_path": "solution.tex",
+          "start_line": 102,
+          "start_locator": null
+        }
+      ],
+      "text": "Unfold `PositiveDefiniteTreeLattice.treePairing` through `treePairingAnchor`, and separate the summand at `rho` from the finite sum over non-root vertices. For each non-root vertex `u`, apply `rootedChildComponent_partition G hG rho u` to obtain its unique child `c`; use this uniqueness to reindex the remaining finite sum by the family of subtypes `rootedChildComponent G rho c`.\n\nApply both directions of `PositiveDefiniteTreeLattice.rootedEdgeClassification G hG rho u v` to every adjacency contribution. Its two root-child alternatives give exactly the boundary terms, while its unique internal-component alternative identifies every remaining edge with the induced graph on the corresponding child component. Thus the reindexed internal sums are the child `treePairing` terms. Combine the disjoint finite sums with `Finset.sum_disjiUnion`; each root-child edge contributes once from the root and once from its child root. Finish by ring normalization, yielding `w rho * (x rho)^2`, the boundary contribution `- 2 * x rho * ∑ c, x (rootedChildRoot G rho c)`, and the indicated sum of child self-pairings. This follows b_0010 lines 102–110; the edge classification is the formal partition of the source's adjacency cases."
+    }
+  },
+  "revision": 3,
+  "state": "proved",
+  "statement": {
+    "deps": [
+      {
+        "kind": "mathlib_decl",
+        "reason": "The statement explicitly binds the tree witness hG : G.IsTree used by rootedChildren.",
+        "ref": {
+          "module": "Mathlib.Combinatorics.SimpleGraph.Acyclic",
+          "name": "SimpleGraph.IsTree"
+        }
+      },
+      {
+        "kind": "mathlib_decl",
+        "reason": "The statement defines the induced child-component graph as C_c.toSimpleGraph.",
+        "ref": {
+          "module": "Mathlib.Combinatorics.SimpleGraph.Connectivity.Connected",
+          "name": "SimpleGraph.ConnectedComponent.toSimpleGraph"
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "The integral tree pairing occurs on both sides of the decomposition.",
+        "ref": {
+          "name": "treePairingAnchor",
+          "node": "Main.LatticeFoundations",
+          "repo": null,
+          "revision": 1
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "The child-side component on which each restricted self-pairing is formed occurs in the statement.",
+        "ref": {
+          "name": "rootedChildComponent",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 1
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "The distinguished child-root coordinate occurs in the statement.",
+        "ref": {
+          "name": "rootedChildRoot",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 1
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "The finite set indexing the child-component sums occurs in the statement.",
+        "ref": {
+          "name": "rootedChildren",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 2
+        }
+      }
+    ],
+    "formal": {
+      "check": {
+        "allow_sorry": true,
+        "contains_axiom": false,
+        "contains_sorry": true,
+        "diagnostics": {
+          "diagnostics": [
+            {
+              "column": 9,
+              "line": 54,
+              "message": "declaration uses `sorry`",
+              "severity": "warning"
+            }
+          ],
+          "passed": true,
+          "raw_excerpt": "{'success': True, 'error_message': None, 'file': 'PositiveDefiniteTreeLattice.Main.RootedEstimates.Theorems.treePairingRootedChildDecomposition', 'items': [{'severity': 'warning', 'pos': {'line': 54, 'column': 9}, 'endPos': {'line': 54, 'column': 44}, 'kind': None, 'data': 'declaration uses `sorry`', 'fileName': 'PositiveDefiniteTreeLattice.Main.RootedEstimates.Theorems.treePairingRootedChildDecomposition', 'content': '  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildren`\\n-/\\ntheorem treePairingRootedChildDecomposition {V : Type*} [Fintype V] [DecidableEq V]\\n    (G : SimpleGraph V) [DecidableRel G.Adj] (hG : G.IsTree) (w x : V → ℤ) (rho : V) :\\n    PositiveDefiniteTreeLattice.treePairing G w x x ='}], 'total_items': 1, 'error_count': 0, 'warning_count': 1, 'info_count': 0, 'sorry_count': 1}",
+          "repo_file_path": "PositiveDefiniteTreeLattice/Main/RootedEstimates/Theorems/treePairingRootedChildDecomposition.lean",
+          "schema_version": 2,
+          "summary": "Diagnostics returned 1 items"
+        },
+        "message": "Lean check passed.",
+        "policy": "statement_formal",
+        "scan": {
+          "admit_count": 0,
+          "axiom_count": 0,
+          "contains_admit": false,
+          "contains_axiom": false,
+          "contains_opaque": false,
+          "contains_sorry": true,
+          "contains_unsafe": false,
+          "limitation": "Text scan ignores Lean comments and string literals with a conservative first-round lexer; it is not a full Lean parser.",
+          "occurrences": [
+            {
+              "column": 3,
+              "excerpt": "sorry",
+              "kind": "sorry",
+              "line": 70
+            }
+          ],
+          "opaque_count": 0,
+          "sorry_count": 1,
+          "summary": "sorry=1, admit=0, axiom=0, opaque=0, unsafe=0",
+          "unsafe_count": 0
+        },
+        "status": "passed"
+      },
+      "code": "-- lean-constellation: managed-imports-begin\nimport PositiveDefiniteTreeLattice.Main.RootedEstimates.Prelude\nimport Mathlib.Combinatorics.SimpleGraph.Acyclic\nimport Mathlib.Combinatorics.SimpleGraph.Connectivity.Connected\n-- lean-constellation: managed-imports-end\n\n-- lean-constellation: declaration-source-begin\n\n/--\n# lean-constellation target: `treePairingRootedChildDecomposition`\n\nLet `V` be a finite vertex type, let `G : SimpleGraph V` have decidable adjacency and a tree witness\n`hG : G.IsTree`, let `w : V → ℤ`, let `rho : V`, and let `x : V → ℤ`. For each `c ∈ rootedChildren G\nhG rho rho`, define\n\n`C_c := rootedChildComponent G rho c`,\n\nwhich is the connected-component subtype of `G.deleteEdges {s(rho, c)}` containing `c`. Let its\ninduced child graph be\n\n`G_c := C_c.toSimpleGraph`,\n\nand define the restrictions `w_c : C_c → ℤ` and `x_c : C_c → ℤ` by `w_c(u) := w (u : V)` and `x_c(u)\n:= x (u : V)`. Set\n\n`s_c := x_c (rootedChildRoot G rho c)`.\n\nWriting `a := x rho`, the integral pairing satisfies\n\n`treePairing G w x x = w rho * a^2 - 2 * a * ∑ c ∈ rootedChildren G hG rho rho, s_c + ∑ c ∈\nrootedChildren G hG rho rho, treePairing G_c w_c x_c x_c`.\n\nThus every child self-pairing is formed on the induced graph `C_c.toSimpleGraph` with the induced\ninteger weights and the coordinate restriction, while the root coefficient is exactly `x rho`.\n\n## Sources\n\n- Source `solution.tex`, lines 102–110\n\n## Statement dependencies\n\n- `SimpleGraph.IsTree` from `Mathlib.Combinatorics.SimpleGraph.Acyclic`\n- `SimpleGraph.ConnectedComponent.toSimpleGraph` from\n  `Mathlib.Combinatorics.SimpleGraph.Connectivity.Connected`\n- `Main.LatticeFoundations::treePairingAnchor` → `PositiveDefiniteTreeLattice.treePairing` from\n  `PositiveDefiniteTreeLattice.Main.LatticeFoundations.Defs.treePairingAnchor`\n- `Main.RootedCapacity::rootedChildComponent` → `rootedChildComponent` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildComponent`\n- `Main.RootedCapacity::rootedChildRoot` → `rootedChildRoot` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildRoot`\n- `Main.RootedCapacity::rootedChildren` → `rootedChildren` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildren`\n-/\ntheorem treePairingRootedChildDecomposition {V : Type*} [Fintype V] [DecidableEq V]\n    (G : SimpleGraph V) [DecidableRel G.Adj] (hG : G.IsTree) (w x : V → ℤ) (rho : V) :\n    PositiveDefiniteTreeLattice.treePairing G w x x =\n      w rho * (x rho) ^ 2 -\n        2 * x rho * (∑ c ∈ rootedChildren G hG rho rho,\n          x (rootedChildRoot G rho c)) +\n        ∑ c ∈ rootedChildren G hG rho rho,\n          let C := rootedChildComponent G rho c\n          letI : Fintype C := Fintype.ofFinite C\n          letI : DecidableEq C := Classical.decEq C\n          letI : DecidableRel C.toSimpleGraph.Adj := by\n            intro u v\n            change Decidable ((G.deleteEdges {s(rho, c)}).Adj (u : V) (v : V))\n            infer_instance\n          PositiveDefiniteTreeLattice.treePairing C.toSimpleGraph (fun u => w (u : V))\n            (fun u => x (u : V)) (fun u => x (u : V)) := by\n  sorry\n"
+    },
+    "nl": {
+      "origin": [
+        {
+          "end_line": 110,
+          "end_locator": null,
+          "kind": "source",
+          "note": "The source writes the rooted child-subtree decomposition and gives the corresponding tree-lattice self-pairing formula.",
+          "ref": null,
+          "resource_key": null,
+          "source_path": "solution.tex",
+          "start_line": 102,
+          "start_locator": null
+        }
+      ],
+      "text": "Let `V` be a finite vertex type, let `G : SimpleGraph V` have decidable adjacency and a tree witness `hG : G.IsTree`, let `w : V → ℤ`, let `rho : V`, and let `x : V → ℤ`. For each `c ∈ rootedChildren G hG rho rho`, define\n\n`C_c := rootedChildComponent G rho c`,\n\nwhich is the connected-component subtype of `G.deleteEdges {s(rho, c)}` containing `c`. Let its induced child graph be\n\n`G_c := C_c.toSimpleGraph`,\n\nand define the restrictions `w_c : C_c → ℤ` and `x_c : C_c → ℤ` by `w_c(u) := w (u : V)` and `x_c(u) := x (u : V)`. Set\n\n`s_c := x_c (rootedChildRoot G rho c)`.\n\nWriting `a := x rho`, the integral pairing satisfies\n\n`treePairing G w x x = w rho * a^2 - 2 * a * ∑ c ∈ rootedChildren G hG rho rho, s_c + ∑ c ∈ rootedChildren G hG rho rho, treePairing G_c w_c x_c x_c`.\n\nThus every child self-pairing is formed on the induced graph `C_c.toSimpleGraph` with the induced integer weights and the coordinate restriction, while the root coefficient is exactly `x rho`."
+    }
+  },
+  "status": "committed",
+  "updated_at": "2026-07-31T06:05:11Z"
+}

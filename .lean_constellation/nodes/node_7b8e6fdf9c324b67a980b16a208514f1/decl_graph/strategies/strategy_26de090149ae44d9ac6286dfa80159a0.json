@@ -1,0 +1,15 @@
+{
+  "closed_at": "2026-08-03T16:54:14Z",
+  "closed_reason": "Blocked by missing RootedCapacity provider visibility outside the current content-node boundary.",
+  "created_at": "2026-08-03T16:38:11Z",
+  "created_round_ids": [
+    "round_8bf022c2bfac47508960ce6787d7c2fc",
+    "round_7fb68e49e46e455687ade8a28fa20de3"
+  ],
+  "node_path": "Main.IrreducibleVertex",
+  "objective": "Resume the contract-v2 central Schur-complement proof from rootedChildCapacitySum_lt_weight_of_unique_underweight@2 at proof_planned, replacing only the incompatible separate block rewrites with the combined public rootedNonrootGram_reindex_childBlocks_inv_of_child_admissible theorem; then continue bottom-up through the source decomposition contradiction and exact protected exists_irreducible_vertex interface.",
+  "rationale": "Dependency recon verified the combined provider theorem is public, ready, fresh, and has the exact canonical dependent B family and child-admissibility premise needed by the accepted Proof NL. This route preserves solution.tex:204-208, makes no consumer-side transport, assumes no ambient rooted admissibility, and follows the contract's sole authorized repair.",
+  "status": "closed",
+  "strategy_id": "strategy_26de090149ae44d9ac6286dfa80159a0",
+  "summary": "The combined inverse–reindex repair was adopted and the central-gap statement was preserved, but round 12's corrected Proof NL exposed two further RootedCapacity facts that are unavailable on Main.IrreducibleVertex's allowed public provider boundary. The strategy cannot responsibly continue until Coordinator/provider action exposes and records those facts; downstream decomposition and the protected interface remain gated by the central gap."
+}

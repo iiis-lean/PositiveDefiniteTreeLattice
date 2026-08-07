@@ -1,0 +1,33 @@
+{
+  "change_summaries": {},
+  "committed_at": "2026-07-30T10:52:47Z",
+  "created_at": "2026-07-30T10:40:45Z",
+  "discard_reason": null,
+  "discarded_at": null,
+  "discarded_by": null,
+  "discarded_created_decl_names": [],
+  "discarded_restored_decl_revisions": {},
+  "discarded_revision_refs": [],
+  "execution_completed_at": "2026-07-30T10:51:16Z",
+  "execution_reason": null,
+  "execution_result_kind": "success",
+  "node_path": "Main.RootedCapacity",
+  "objective": "Create and prove the private forward-evaluation lemma for rootedChildComponentsEquivNonroot so matrix reindexing can normalize child-component indices without unfolding the noncomputable partition inverse.",
+  "plan_closeout_acknowledged_at": "2026-07-30T10:52:47Z",
+  "plan_closeout_acknowledged_by": "a_a93b40977f574bad89528358fa89e022",
+  "result_kind": "success",
+  "result_reason": "The private forward-evaluation lemma reached proved state and now supplies the exact normalization rule required by the reindexed block theorem.",
+  "revision_refs": [
+    {
+      "change_id": "rootedChildComponentsEquivNonroot_apply@rev:1",
+      "decl_name": "rootedChildComponentsEquivNonroot_apply",
+      "revision": 1
+    }
+  ],
+  "round_id": "round_253dc01b92034a269419e88c37fb6204",
+  "round_index": 30,
+  "started_at": "2026-07-30T10:42:01Z",
+  "status": "committed",
+  "strategy_id": "strategy_1fbcdfb31a2e4cada1ff5b7b941de18c",
+  "summary": "Round 30 completed successfully. rootedChildComponentsEquivNonroot_apply reached proved state and is proof-policy satisfied. The strategy made the intended dependency-first Lean normalization repair while preserving the source-visible block theorem and public boundary. The known dependency closure for rootedNonrootGram_reindex_childBlocks is now complete: its statement and Proof NL plan are retained, Matrix.blockDiagonal' is indexed, and the forward equivalence evaluation is proved. Next retry only Proof Formal for that block theorem. No preparation, scope escalation, or graph cleanup is needed."
+}

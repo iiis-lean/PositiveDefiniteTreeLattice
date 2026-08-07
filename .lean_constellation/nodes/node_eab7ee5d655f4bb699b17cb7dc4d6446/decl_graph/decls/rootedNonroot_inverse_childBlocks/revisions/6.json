@@ -1,0 +1,257 @@
+{
+  "change": {
+    "anticipated_proof_dep_names": [
+      "rootedChildGram_blockDiagonal_inv",
+      "rootedNonrootGram_reindex_childBlocks"
+    ],
+    "anticipated_statement_dep_names": [
+      "rootedChildComponent",
+      "rootedChildComponentsEquivNonroot",
+      "rootedGram"
+    ],
+    "base_revision": 5,
+    "kind": "update",
+    "objective": "Redo Statement NL through Proof Formal for the contract-authorized representation cleanup anchored in SourceIndex b_0009 and solution.tex lines 57–68 (`Q₀ = ⨁ᵢ Q_{Cᵢ}` and `cᵀQ₀⁻¹c = ∑ᵢ γ(Cᵢ)`). At Statement NL, explicitly discard revision 5's former proof-dependent ambient embeddings `ιc : rootedChildComponent … → {v : V // v ≠ ρ}`. State the same mathematical inverse transport directly on the canonical dependent Sigma index used by rootedChildComponentsEquivNonroot: either a full equality between the reindexed inverse of the nonroot Gram block and the block diagonal of child Gram inverses, or equivalent same-child/cross-child entry clauses whose arguments are Sigma indices and contain no ambient subtype embedding proof terms. Preserve finite decidable tree/admissibility hypotheses, rational total inverses, the existing child Gram matrices, same-component inverse equality, distinct-component zero, and conclusion direction. The statement must be directly usable by a later rewrite of rootedNonroot_inverse_quadratic entirely in Sigma/equivalence coordinates. Prove it using rootedNonrootGram_reindex_childBlocks@6, rootedChildGram_blockDiagonal_inv@2, and Matrix.inv_reindex. Do not add assumptions, convert back through the obsolete ι representation, add wrappers, raise heartbeat limits, or alter public semantics.",
+    "require_target_state_satisfied": true,
+    "reset_to_state": "planned",
+    "summary": "Successfully replaced the obsolete proof-dependent ambient-embedding interface and advanced rootedNonroot_inverse_childBlocks revision 6 from planned through proved. The accepted Statement NL/Formal now uses the canonical rootedChildComponentsEquivNonroot/dependent-Sigma index representation while preserving the rational total inverse and the source same-child inverse/cross-child zero content from b_0009, solution.tex lines 57–68. Proof NL/Formal passed using the established rootedNonrootGram_reindex_childBlocks@6 and rootedChildGram_blockDiagonal_inv@2 route, and graph_proved satisfaction checks passed. This stable private theorem is ready to replace the stale inverse-entry assumptions in rootedNonroot_inverse_quadratic; the old proof-dependent revision is superseded historical truth and must not be used by active consumers.",
+    "target_state": "proved"
+  },
+  "lean_decl_name": "rootedNonroot_inverse_childBlocks",
+  "proof": {
+    "deps": [
+      {
+        "kind": "mathlib_decl",
+        "reason": "Rewrites the inverse of the canonical reindexed nonroot Gram block into the reindexed total inverse required by the theorem conclusion.",
+        "ref": {
+          "module": "Mathlib.LinearAlgebra.Matrix.NonsingularInverse",
+          "name": "Matrix.inv_reindex"
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "Provides the proved inverse of the exact dependent child-Gram block diagonal.",
+        "ref": {
+          "name": "rootedChildGram_blockDiagonal_inv",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 2
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "Provides the proved canonical Sigma-indexed equality reindexing the nonroot Gram block to the child block diagonal.",
+        "ref": {
+          "name": "rootedNonrootGram_reindex_childBlocks",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 6
+        }
+      }
+    ],
+    "formal": {
+      "check": {
+        "allow_sorry": false,
+        "contains_axiom": false,
+        "contains_sorry": false,
+        "diagnostics": {
+          "diagnostics": [],
+          "passed": true,
+          "raw_excerpt": "{'success': True, 'error_message': None, 'file': 'PositiveDefiniteTreeLattice.Main.RootedCapacity.Theorems.rootedNonroot_inverse_childBlocks', 'items': [], 'total_items': 0, 'error_count': 0, 'warning_count': 0, 'info_count': 0, 'sorry_count': 0}",
+          "repo_file_path": "PositiveDefiniteTreeLattice/Main/RootedCapacity/Theorems/rootedNonroot_inverse_childBlocks.lean",
+          "schema_version": 2,
+          "summary": "Diagnostics returned 0 items"
+        },
+        "message": "Lean check passed.",
+        "policy": "proof_formal",
+        "scan": {
+          "admit_count": 0,
+          "axiom_count": 0,
+          "contains_admit": false,
+          "contains_axiom": false,
+          "contains_opaque": false,
+          "contains_sorry": false,
+          "contains_unsafe": false,
+          "limitation": "Text scan ignores Lean comments and string literals with a conservative first-round lexer; it is not a full Lean parser.",
+          "occurrences": [],
+          "opaque_count": 0,
+          "sorry_count": 0,
+          "summary": "sorry=0, admit=0, axiom=0, opaque=0, unsafe=0",
+          "unsafe_count": 0
+        },
+        "status": "passed"
+      },
+      "code": "-- lean-constellation: managed-imports-begin\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Prelude\nimport Mathlib.Data.Matrix.Block\nimport Mathlib.LinearAlgebra.Matrix.Defs\nimport Mathlib.LinearAlgebra.Matrix.NonsingularInverse\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.IsAdmissibleRootedTree\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildComponent\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildComponentsEquivNonroot\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildren\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedGram\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Theorems.rootedChildGram_blockDiagonal_inv\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Theorems.rootedNonrootGram_reindex_childBlocks\n-- lean-constellation: managed-imports-end\n\n-- lean-constellation: declaration-source-begin\n\n/--\n# lean-constellation target: `rootedNonroot_inverse_childBlocks`\n\nFor every finite decidable vertex type with the existing finite decidable tree structure, integer\nvertex weights, chosen root ρ, and admissibility hypothesis, let `e :=\nrootedChildComponentsEquivNonroot` be the canonical equivalence from the dependent Sigma type of a\nroot child together with a vertex of its `rootedChildComponent` to the subtype of nonroot vertices.\nThen reindexing the rational total inverse of the nonroot principal block of `rootedGram` along `e`\nis equal to the dependent block diagonal matrix whose block at each root child is the rational total\ninverse of that child component's existing `rootedGram`.\n\nEquivalently, for Sigma indices `⟨c, x⟩` and `⟨d, y⟩`, the reindexed inverse entry is the child\n`rootedGram` inverse entry when `c = d`, and is zero when `c ≠ d`.  Thus the result gives the same\ninverse transport as before directly in Sigma/equivalence coordinates, with no ambient\nnonroot-subtype embedding or proof-term argument, and it is oriented for rewriting the nonroot\ninverse quadratic form into the sum of child capacities.\n\n## Sources\n\n- Source `solution.tex`, lines 57–68\n\n## Statement dependencies\n\n- `Matrix.blockDiagonal'` from `Mathlib.Data.Matrix.Block`\n- `Matrix.reindex` from `Mathlib.LinearAlgebra.Matrix.Defs`\n- `Matrix.submatrix` from `Mathlib.LinearAlgebra.Matrix.Defs`\n- `Matrix.inv` from `Mathlib.LinearAlgebra.Matrix.NonsingularInverse`\n- `Main.RootedCapacity::IsAdmissibleRootedTree` → `IsAdmissibleRootedTree` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.IsAdmissibleRootedTree`\n- `Main.RootedCapacity::rootedChildComponent` → `rootedChildComponent` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildComponent`\n- `Main.RootedCapacity::rootedChildComponentsEquivNonroot` → `rootedChildComponentsEquivNonroot`\n  from `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildComponentsEquivNonroot`\n- `Main.RootedCapacity::rootedChildren` → `rootedChildren` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildren`\n- `Main.RootedCapacity::rootedGram` → `rootedGram` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedGram`\n\n## Proof outline\n\nWork classically, keeping the accepted canonical equivalence\n`e : {v : V // v ≠ ρ} ≃ Σ c : rootedChildren G hG ρ ρ, rootedChildComponent G ρ c :=\n(rootedChildComponentsEquivNonroot G hG ρ).symm` from the nonroot subtype to the dependent\nSigma child index.  Unfold only the theorem statement's local notation enough to align the nonroot\nprincipal block `D := (rootedGram G w).submatrix Subtype.val Subtype.val` and the existing\ndependent child-Gram family `B`; do not introduce any ambient-subtype embedding.\n\nApply the proved block decomposition\n`rootedNonrootGram_reindex_childBlocks G hG w ρ`, whose exact orientation is\n`Matrix.reindex e e D = Matrix.blockDiagonal' B`.  Apply\n`congrArg (fun M => M⁻¹)` to this equality.  Rewrite the inverse of its left-hand reindex with\n`Matrix.inv_reindex e e D`.  Because both reindex equivalences are the same `e`, this yields\nexactly the accepted target left side `Matrix.reindex e e (D⁻¹)`, with no symmetry or\n`e.symm` reorientation.\n\nFor the right-hand side, apply the proved\n`rootedChildGram_blockDiagonal_inv G hG w ρ hAdm`.  Its retained child-component instance\nconvention gives\n`(Matrix.blockDiagonal' B)⁻¹ = Matrix.blockDiagonal' (fun c => (B c)⁻¹)`.\nUse only definitional simplification to align that local dependent child-Gram family with the\nstatement's family, then chain the equalities.  This yields the required inverse transport entirely\nin canonical Sigma/equivalence coordinates, preserving the rational total inverse and the original\nconclusion direction.\n\n## Proof sources\n\n- Source `solution.tex`, lines 57–68\n\n## Proof dependencies\n\n- `Matrix.inv_reindex` from `Mathlib.LinearAlgebra.Matrix.NonsingularInverse`\n- `Main.RootedCapacity::rootedChildGram_blockDiagonal_inv` → `rootedChildGram_blockDiagonal_inv`\n  from `PositiveDefiniteTreeLattice.Main.RootedCapacity.Theorems.rootedChildGram_blockDiagonal_inv`\n- `Main.RootedCapacity::rootedNonrootGram_reindex_childBlocks` →\n  `rootedNonrootGram_reindex_childBlocks` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Theorems.rootedNonrootGram_reindex_childBlocks`\n-/\ntheorem rootedNonroot_inverse_childBlocks {V : Type*} [Fintype V] [DecidableEq V]\n    (G : SimpleGraph V) [DecidableRel G.Adj] (hG : G.IsTree) (w : V → ℤ) (ρ : V)\n    (hAdm : IsAdmissibleRootedTree G w ρ) :\n    Matrix.reindex (rootedChildComponentsEquivNonroot G hG ρ).symm\n        (rootedChildComponentsEquivNonroot G hG ρ).symm\n        (((rootedGram G w).submatrix Subtype.val Subtype.val)⁻¹) =\n      Matrix.blockDiagonal' (fun c : rootedChildren G hG ρ ρ => by\n        letI : Fintype (rootedChildComponent G ρ c) := Fintype.ofFinite _\n        letI : DecidableRel (rootedChildComponent G ρ c).toSimpleGraph.Adj := Classical.decRel _\n        exact (rootedGram (rootedChildComponent G ρ c).toSimpleGraph (fun x => w x))⁻¹) := by\n  classical\n  let I := {c : V // c ∈ rootedChildren G hG ρ ρ}\n  let childInstances : ∀ c : I,\n      Fintype (rootedChildComponent G ρ c.1) ×\n        DecidableRel (rootedChildComponent G ρ c.1).toSimpleGraph.Adj := fun c =>\n    ⟨Fintype.ofFinite _, by\n      intro x y\n      change Decidable ((G.deleteEdges {s(ρ, c.1)}).Adj (x : V) (y : V))\n      infer_instance⟩\n  letI : ∀ c : I, Fintype (rootedChildComponent G ρ c.1) :=\n    fun c => (childInstances c).1\n  letI : ∀ c : I, DecidableRel (rootedChildComponent G ρ c.1).toSimpleGraph.Adj :=\n    fun c => (childInstances c).2\n  letI : Fintype (Σ c : I, rootedChildComponent G ρ c.1) := inferInstance\n  rw [← Matrix.inv_reindex]\n  rw [rootedNonrootGram_reindex_childBlocks G hG w ρ]\n  convert rootedChildGram_blockDiagonal_inv G hG w ρ hAdm using 1\n  all_goals simp only\n  apply Matrix.ext\n  rintro ⟨c, x⟩ ⟨d, y⟩\n  rw [Matrix.blockDiagonal'_apply', Matrix.blockDiagonal'_apply']\n  by_cases hcd : c = d\n  · subst d\n    simp only [dif_pos]\n    have hdec : Classical.decRel (rootedChildComponent G ρ c.1).toSimpleGraph.Adj =\n        (childInstances c).2 := Subsingleton.elim _ _\n    rw [hdec]\n  · simp only [dif_neg hcd]\n"
+    },
+    "nl": {
+      "origin": [
+        {
+          "end_line": 68,
+          "end_locator": null,
+          "kind": "source",
+          "note": "These lines give the child-block decomposition Q₀ = ⨁ᵢ Q_{Cᵢ} and its inverse/quadratic transport, which the route realizes by reindexing and block inversion.",
+          "ref": null,
+          "resource_key": null,
+          "source_path": "solution.tex",
+          "start_line": 57,
+          "start_locator": null
+        }
+      ],
+      "text": "Work classically, keeping the accepted canonical equivalence\n`e : {v : V // v ≠ ρ} ≃ Σ c : rootedChildren G hG ρ ρ, rootedChildComponent G ρ c :=\n(rootedChildComponentsEquivNonroot G hG ρ).symm` from the nonroot subtype to the dependent\nSigma child index.  Unfold only the theorem statement's local notation enough to align the nonroot\nprincipal block `D := (rootedGram G w).submatrix Subtype.val Subtype.val` and the existing\ndependent child-Gram family `B`; do not introduce any ambient-subtype embedding.\n\nApply the proved block decomposition\n`rootedNonrootGram_reindex_childBlocks G hG w ρ`, whose exact orientation is\n`Matrix.reindex e e D = Matrix.blockDiagonal' B`.  Apply\n`congrArg (fun M => M⁻¹)` to this equality.  Rewrite the inverse of its left-hand reindex with\n`Matrix.inv_reindex e e D`.  Because both reindex equivalences are the same `e`, this yields\nexactly the accepted target left side `Matrix.reindex e e (D⁻¹)`, with no symmetry or\n`e.symm` reorientation.\n\nFor the right-hand side, apply the proved\n`rootedChildGram_blockDiagonal_inv G hG w ρ hAdm`.  Its retained child-component instance\nconvention gives\n`(Matrix.blockDiagonal' B)⁻¹ = Matrix.blockDiagonal' (fun c => (B c)⁻¹)`.\nUse only definitional simplification to align that local dependent child-Gram family with the\nstatement's family, then chain the equalities.  This yields the required inverse transport entirely\nin canonical Sigma/equivalence coordinates, preserving the rational total inverse and the original\nconclusion direction."
+    }
+  },
+  "revision": 6,
+  "state": "proved",
+  "statement": {
+    "deps": [
+      {
+        "kind": "mathlib_decl",
+        "reason": "The formal statement identifies the reindexed inverse with a dependent block diagonal of child inverses.",
+        "ref": {
+          "module": "Mathlib.Data.Matrix.Block",
+          "name": "Matrix.blockDiagonal'"
+        }
+      },
+      {
+        "kind": "mathlib_decl",
+        "reason": "The formal statement reindexes the nonroot inverse matrix along the canonical equivalence.",
+        "ref": {
+          "module": "Mathlib.LinearAlgebra.Matrix.Defs",
+          "name": "Matrix.reindex"
+        }
+      },
+      {
+        "kind": "mathlib_decl",
+        "reason": "The formal statement takes the nonroot principal block of rootedGram before inverting and reindexing it.",
+        "ref": {
+          "module": "Mathlib.LinearAlgebra.Matrix.Defs",
+          "name": "Matrix.submatrix"
+        }
+      },
+      {
+        "kind": "mathlib_decl",
+        "reason": "The statement uses the rational total inverse of the nonroot and child Gram matrices.",
+        "ref": {
+          "module": "Mathlib.LinearAlgebra.Matrix.NonsingularInverse",
+          "name": "Matrix.inv"
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "The accepted formal statement retains the admissibility hypothesis for the rooted tree.",
+        "ref": {
+          "name": "IsAdmissibleRootedTree",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 1
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "The child Gram inverse blocks in the statement are indexed by the rooted child-side component.",
+        "ref": {
+          "name": "rootedChildComponent",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 1
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "The formal statement indexes the inverse transport by this canonical dependent-Sigma-to-nonroot equivalence.",
+        "ref": {
+          "name": "rootedChildComponentsEquivNonroot",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 1
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "The dependent Sigma index and the block-diagonal family range over the root's rooted children.",
+        "ref": {
+          "name": "rootedChildren",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 2
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "The statement compares the rational inverse of the nonroot rootedGram block with the inverses of the child rootedGram blocks.",
+        "ref": {
+          "name": "rootedGram",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 2
+        }
+      }
+    ],
+    "formal": {
+      "check": {
+        "allow_sorry": true,
+        "contains_axiom": false,
+        "contains_sorry": true,
+        "diagnostics": {
+          "diagnostics": [
+            {
+              "column": 9,
+              "line": 54,
+              "message": "declaration uses `sorry`",
+              "severity": "warning"
+            }
+          ],
+          "passed": true,
+          "raw_excerpt": "{'success': True, 'error_message': None, 'file': 'PositiveDefiniteTreeLattice.Main.RootedCapacity.Theorems.rootedNonroot_inverse_childBlocks', 'items': [{'severity': 'warning', 'pos': {'line': 54, 'column': 9}, 'endPos': {'line': 54, 'column': 42}, 'kind': None, 'data': 'declaration uses `sorry`', 'fileName': 'PositiveDefiniteTreeLattice.Main.RootedCapacity.Theorems.rootedNonroot_inverse_childBlocks', 'content': '-/\\n\\ntheorem rootedNonroot_inverse_childBlocks {V : Type*} [Fintype V] [DecidableEq V]\\n    (G : SimpleGraph V) [DecidableRel G.Adj] (hG : G.IsTree) (w : V → ℤ) (ρ : V)\\n    (hAdm : IsAdmissibleRootedTree G w ρ) :'}], 'total_items': 1, 'error_count': 0, 'warning_count': 1, 'info_count': 0, 'sorry_count': 1}",
+          "repo_file_path": "PositiveDefiniteTreeLattice/Main/RootedCapacity/Theorems/rootedNonroot_inverse_childBlocks.lean",
+          "schema_version": 2,
+          "summary": "Diagnostics returned 1 items"
+        },
+        "message": "Lean check passed.",
+        "policy": "statement_formal",
+        "scan": {
+          "admit_count": 0,
+          "axiom_count": 0,
+          "contains_admit": false,
+          "contains_axiom": false,
+          "contains_opaque": false,
+          "contains_sorry": true,
+          "contains_unsafe": false,
+          "limitation": "Text scan ignores Lean comments and string literals with a conservative first-round lexer; it is not a full Lean parser.",
+          "occurrences": [
+            {
+              "column": 3,
+              "excerpt": "sorry",
+              "kind": "sorry",
+              "line": 64
+            }
+          ],
+          "opaque_count": 0,
+          "sorry_count": 1,
+          "summary": "sorry=1, admit=0, axiom=0, opaque=0, unsafe=0",
+          "unsafe_count": 0
+        },
+        "status": "passed"
+      },
+      "code": "-- lean-constellation: managed-imports-begin\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Prelude\nimport Mathlib.Data.Matrix.Block\nimport Mathlib.LinearAlgebra.Matrix.Defs\nimport Mathlib.LinearAlgebra.Matrix.NonsingularInverse\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.IsAdmissibleRootedTree\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildComponent\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildComponentsEquivNonroot\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildren\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedGram\n-- lean-constellation: managed-imports-end\n\n-- lean-constellation: declaration-source-begin\n\n/--\n# lean-constellation target: `rootedNonroot_inverse_childBlocks`\n\nFor every finite decidable vertex type with the existing finite decidable tree structure, integer\nvertex weights, chosen root ρ, and admissibility hypothesis, let `e :=\nrootedChildComponentsEquivNonroot` be the canonical equivalence from the dependent Sigma type of a\nroot child together with a vertex of its `rootedChildComponent` to the subtype of nonroot vertices.\nThen reindexing the rational total inverse of the nonroot principal block of `rootedGram` along `e`\nis equal to the dependent block diagonal matrix whose block at each root child is the rational total\ninverse of that child component's existing `rootedGram`.\n\nEquivalently, for Sigma indices `⟨c, x⟩` and `⟨d, y⟩`, the reindexed inverse entry is the child\n`rootedGram` inverse entry when `c = d`, and is zero when `c ≠ d`.  Thus the result gives the same\ninverse transport as before directly in Sigma/equivalence coordinates, with no ambient\nnonroot-subtype embedding or proof-term argument, and it is oriented for rewriting the nonroot\ninverse quadratic form into the sum of child capacities.\n\n## Sources\n\n- Source `solution.tex`, lines 57–68\n\n## Statement dependencies\n\n- `Matrix.blockDiagonal'` from `Mathlib.Data.Matrix.Block`\n- `Matrix.reindex` from `Mathlib.LinearAlgebra.Matrix.Defs`\n- `Matrix.submatrix` from `Mathlib.LinearAlgebra.Matrix.Defs`\n- `Matrix.inv` from `Mathlib.LinearAlgebra.Matrix.NonsingularInverse`\n- `Main.RootedCapacity::IsAdmissibleRootedTree` → `IsAdmissibleRootedTree` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.IsAdmissibleRootedTree`\n- `Main.RootedCapacity::rootedChildComponent` → `rootedChildComponent` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildComponent`\n- `Main.RootedCapacity::rootedChildComponentsEquivNonroot` → `rootedChildComponentsEquivNonroot`\n  from `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildComponentsEquivNonroot`\n- `Main.RootedCapacity::rootedChildren` → `rootedChildren` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildren`\n- `Main.RootedCapacity::rootedGram` → `rootedGram` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedGram`\n-/\n\ntheorem rootedNonroot_inverse_childBlocks {V : Type*} [Fintype V] [DecidableEq V]\n    (G : SimpleGraph V) [DecidableRel G.Adj] (hG : G.IsTree) (w : V → ℤ) (ρ : V)\n    (hAdm : IsAdmissibleRootedTree G w ρ) :\n    Matrix.reindex (rootedChildComponentsEquivNonroot G hG ρ).symm\n        (rootedChildComponentsEquivNonroot G hG ρ).symm\n        (((rootedGram G w).submatrix Subtype.val Subtype.val)⁻¹) =\n      Matrix.blockDiagonal' (fun c : rootedChildren G hG ρ ρ => by\n        letI : Fintype (rootedChildComponent G ρ c) := Fintype.ofFinite _\n        letI : DecidableRel (rootedChildComponent G ρ c).toSimpleGraph.Adj := Classical.decRel _\n        exact (rootedGram (rootedChildComponent G ρ c).toSimpleGraph (fun x => w x))⁻¹) := by\n  sorry\n"
+    },
+    "nl": {
+      "origin": [
+        {
+          "end_line": 68,
+          "end_locator": null,
+          "kind": "source",
+          "note": "The source orders nonroot vertices by child subtrees and states Q₀ as their direct sum, which supports the canonical child-block inverse transport used in the Schur-complement capacity identity.",
+          "ref": null,
+          "resource_key": null,
+          "source_path": "solution.tex",
+          "start_line": 57,
+          "start_locator": null
+        }
+      ],
+      "text": "For every finite decidable vertex type with the existing finite decidable tree structure, integer vertex weights, chosen root ρ, and admissibility hypothesis, let `e := rootedChildComponentsEquivNonroot` be the canonical equivalence from the dependent Sigma type of a root child together with a vertex of its `rootedChildComponent` to the subtype of nonroot vertices.  Then reindexing the rational total inverse of the nonroot principal block of `rootedGram` along `e` is equal to the dependent block diagonal matrix whose block at each root child is the rational total inverse of that child component's existing `rootedGram`.\n\nEquivalently, for Sigma indices `⟨c, x⟩` and `⟨d, y⟩`, the reindexed inverse entry is the child `rootedGram` inverse entry when `c = d`, and is zero when `c ≠ d`.  Thus the result gives the same inverse transport as before directly in Sigma/equivalence coordinates, with no ambient nonroot-subtype embedding or proof-term argument, and it is oriented for rewriting the nonroot inverse quadratic form into the sum of child capacities."
+    }
+  },
+  "status": "committed",
+  "updated_at": "2026-07-30T15:58:15Z"
+}

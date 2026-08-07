@@ -1,0 +1,16 @@
+{
+  "created_at": "2026-08-07T06:15:39Z",
+  "current_revision": 2,
+  "kind": "theorem",
+  "lifecycle": "active",
+  "module": "PositiveDefiniteTreeLattice.Main.IrreducibleVertex.Theorems.exists_irreducible_vertex",
+  "name": "exists_irreducible_vertex",
+  "node_path": "Main.IrreducibleVertex",
+  "public": true,
+  "revision_ids": [
+    1,
+    2
+  ],
+  "summary": "A positive-definite integer-weighted finite tree with a unique underweighted vertex has an irreducible vertex vector.",
+  "updated_at": "2026-08-07T06:47:32Z"
+}

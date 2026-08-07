@@ -1,0 +1,33 @@
+{
+  "change_summaries": {},
+  "committed_at": "2026-08-07T02:44:42Z",
+  "created_at": "2026-08-07T02:37:13Z",
+  "discard_reason": null,
+  "discarded_at": null,
+  "discarded_by": null,
+  "discarded_created_decl_names": [],
+  "discarded_restored_decl_revisions": {},
+  "discarded_revision_refs": [],
+  "execution_completed_at": "2026-08-07T02:41:21Z",
+  "execution_reason": "The available public quadratic provider handles only the nonroot/nonroot term; completing the frozen equation self-contained requires a new root/nonroot quadratic-expansion interface or explicit authorization to add the prohibited local reindex infrastructure.",
+  "execution_result_kind": "blocked",
+  "node_path": "Main.IrreducibleVertex",
+  "objective": "Build the complete self-contained Proof Formal for the frozen pairing decomposition using the verified conversion route and provider quadratic split.",
+  "plan_closeout_acknowledged_at": "2026-08-07T02:44:42Z",
+  "plan_closeout_acknowledged_by": "a_a235941c8c524917a1ed4a78f90c75ba",
+  "result_kind": "blocked",
+  "result_reason": "The nonroot quadratic split succeeds, but the required ambient root/nonroot reindex and child-root fiber contraction is absent from visible providers and prohibited locally.",
+  "revision_refs": [
+    {
+      "change_id": "pairing_decomposition_at_unique_underweight@rev:4",
+      "decl_name": "pairing_decomposition_at_unique_underweight",
+      "revision": 4
+    }
+  ],
+  "round_id": "round_eeeed9e1480143cc9e54383e0d1ff8b8",
+  "round_index": 21,
+  "started_at": "2026-08-07T02:38:43Z",
+  "status": "committed",
+  "strategy_id": "strategy_6a6348d3799a499fab36c54b472a37e9",
+  "summary": "Round 21 confirmed the RootedCapacity v8 theorem works for its intended nonroot/nonroot block, but pairing_decomposition_at_unique_underweight revision 4 remains proof_planned and not graph-proved-policy satisfied. The remaining gap is a distinct provider-owned root/nonroot linear contraction: ambient root-row and root-column sums over R must be reindexed through the canonical nonroot-to-child sigma equivalence and collapsed fiberwise to rootedChildRoot coefficients. Current-node declarations do not own that dependent representation, the visible provider boundary supplies component-local root support but no ambient reindex contraction, and the contract explicitly forbids rebuilding sigma/block finite-sum infrastructure or wrappers locally. This is not a Mathlib or resource gap and another unchanged parent retry would be irresponsible. It gates normalized_pairing_positive_of_unique_underweight, the source contradiction, and the protected interface. Ten active declarations remain within expected scale; eight are proved, one is declared, and this helper is proof_planned; no branch is superseded and no cleanup is required. Complete retry conditions are Coordinator/provider addition of the exact public root/nonroot expansion interface (or an explicit contract boundary change authorizing local ownership), dependency update, fresh recon, then resume revision 4 from proof_planned. After closeout, close the strategy and submit terminal blocked."
+}

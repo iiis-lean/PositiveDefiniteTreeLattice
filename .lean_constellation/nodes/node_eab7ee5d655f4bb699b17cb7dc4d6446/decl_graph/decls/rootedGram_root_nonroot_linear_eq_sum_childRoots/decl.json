@@ -1,0 +1,15 @@
+{
+  "created_at": "2026-08-07T02:57:34Z",
+  "current_revision": 1,
+  "kind": "theorem",
+  "lifecycle": "active",
+  "module": "PositiveDefiniteTreeLattice.Main.RootedCapacity.Theorems.rootedGram_root_nonroot_linear_eq_sum_childRoots",
+  "name": "rootedGram_root_nonroot_linear_eq_sum_childRoots",
+  "node_path": "Main.RootedCapacity",
+  "public": true,
+  "revision_ids": [
+    1
+  ],
+  "summary": "The ambient rooted-Gram root row and column weighted sums collapse canonically to the negative sum of child-root coefficients.",
+  "updated_at": "2026-08-07T02:57:34Z"
+}

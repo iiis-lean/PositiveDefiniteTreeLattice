@@ -1,0 +1,72 @@
+{
+  "change": {
+    "anticipated_proof_dep_names": [],
+    "anticipated_statement_dep_names": [],
+    "base_revision": 3,
+    "kind": "update",
+    "objective": "Preserve the exact formal_target.lean lines 13–15 unit coordinate definition, binders, branches, catalog meaning, and declared state, but recapture this historical identity-changed record under the nonconflicting compiler-confirmed Lean name PositiveDefiniteTreeLattice.Internal.historicalVertexVector. It must no longer declare PositiveDefiniteTreeLattice.vertexVector and must create no global or namespaced compatibility alias. The fresh vertexVectorAnchor record in this round will own the required public Lean identity; later rounds will rewire supporting consumers before this historical record is cleaned up.",
+    "require_target_state_satisfied": true,
+    "reset_to_state": "specified",
+    "summary": "Successfully preserved the exact unit coordinate definition while moving the historical identity-changed record to compiler-confirmed PositiveDefiniteTreeLattice.Internal.historicalVertexVector at declared state. No alias or mathematical change was introduced. This record remains temporarily public only because existing supporting declarations still depend on its Decl anchor; it is a superseded cleanup target after those consumers are rewired to vertexVectorAnchor.",
+    "target_state": "declared"
+  },
+  "lean_decl_name": "PositiveDefiniteTreeLattice.Internal.historicalVertexVector",
+  "proof": null,
+  "revision": 4,
+  "state": "declared",
+  "statement": {
+    "deps": [],
+    "formal": {
+      "check": {
+        "allow_sorry": false,
+        "contains_axiom": false,
+        "contains_sorry": false,
+        "diagnostics": {
+          "diagnostics": [],
+          "passed": true,
+          "raw_excerpt": "{'success': True, 'error_message': None, 'file': 'PositiveDefiniteTreeLattice.Main.LatticeFoundations.Defs.vertexVector', 'items': [], 'total_items': 0, 'error_count': 0, 'warning_count': 0, 'info_count': 0, 'sorry_count': 0}",
+          "repo_file_path": "PositiveDefiniteTreeLattice/Main/LatticeFoundations/Defs/vertexVector.lean",
+          "schema_version": 2,
+          "summary": "Diagnostics returned 0 items"
+        },
+        "message": "Lean check passed.",
+        "policy": "statement_formal",
+        "scan": {
+          "admit_count": 0,
+          "axiom_count": 0,
+          "contains_admit": false,
+          "contains_axiom": false,
+          "contains_opaque": false,
+          "contains_sorry": false,
+          "contains_unsafe": false,
+          "limitation": "Text scan ignores Lean comments and string literals with a conservative first-round lexer; it is not a full Lean parser.",
+          "occurrences": [],
+          "opaque_count": 0,
+          "sorry_count": 0,
+          "summary": "sorry=0, admit=0, axiom=0, opaque=0, unsafe=0",
+          "unsafe_count": 0
+        },
+        "status": "passed"
+      },
+      "code": "-- lean-constellation: managed-imports-begin\nimport PositiveDefiniteTreeLattice.Main.LatticeFoundations.Prelude\n-- lean-constellation: managed-imports-end\n\n-- lean-constellation: declaration-source-begin\n\n/--\n# lean-constellation target: `vertexVector`\n\nFor a type `V` with decidable equality and a vertex `v : V`, `vertexVector v : V → ℤ` is the\ncoordinate function sending a vertex `u` to `1` when `u = v` and to `0` otherwise.\n\n## Sources\n\n- Source `formal_target.lean`, lines 13–15\n-/\ndef PositiveDefiniteTreeLattice.Internal.historicalVertexVector {V : Type*} [DecidableEq V]\n    (v : V) : V → ℤ :=\n  fun u ↦ if u = v then 1 else 0\n"
+    },
+    "nl": {
+      "origin": [
+        {
+          "end_line": 15,
+          "end_locator": null,
+          "kind": "source",
+          "note": "Exact source definition of the lattice coordinate function.",
+          "ref": null,
+          "resource_key": null,
+          "source_path": "formal_target.lean",
+          "start_line": 13,
+          "start_locator": null
+        }
+      ],
+      "text": "For a type `V` with decidable equality and a vertex `v : V`, `vertexVector v : V → ℤ` is the coordinate function sending a vertex `u` to `1` when `u = v` and to `0` otherwise."
+    }
+  },
+  "status": "committed",
+  "updated_at": "2026-07-29T20:00:24Z"
+}

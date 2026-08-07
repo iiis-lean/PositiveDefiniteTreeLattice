@@ -1,0 +1,172 @@
+{
+  "change": {
+    "anticipated_proof_dep_names": [
+      "rootedCapacity"
+    ],
+    "anticipated_statement_dep_names": [
+      "rootedCapacity"
+    ],
+    "base_revision": null,
+    "kind": "create",
+    "objective": "Implement the sole contract-v7 interface, faithful to the capacity definition in solution.tex lines 39–45 and preserving rootedCapacity@1 unchanged. For fixed V, G : SimpleGraph V, w : V → ℤ, and ρ : V, quantify two explicit complete conventions consisting of Fintype V, DecidableEq V, and DecidableRel G.Adj, and prove equality between the corresponding explicit @rootedCapacity applications. The statement must expose both conventions directly so downstream child-block inverse diagonals rewrite to rootedChildCapacitySummand. Prove by subsingleton equality/elimination for the Fintype, DecidableEq, and DecidableRel structures plus controlled unfolding/reflexivity of rootedCapacity; do not add assumptions, child-specific wrappers, casts/HEq, canonical instances, representation changes, contraction results, or heartbeat changes. The compiler-confirmed Lean identity must be the unqualified public name rootedCapacity_instance_irrel.",
+    "require_target_state_satisfied": true,
+    "reset_to_state": null,
+    "summary": "Created the sole contract-v7 public theorem rootedCapacity_instance_irrel and advanced revision 1 from planned through specified, declared, proof_planned, and proved. The accepted formal statement explicitly quantifies two Fintype, DecidableEq, and DecidableRel G.Adj conventions for fixed V/G/w/ρ and equates the corresponding rootedCapacity values. Statement NL, Statement Formal, Proof NL, and Proof Formal all passed; the proof uses instance-structure subsingleton equality/elimination with the existing rootedCapacity definition, adds no assumptions or representation changes, and the target is proof-policy satisfied.",
+    "target_state": "proved"
+  },
+  "lean_decl_name": "rootedCapacity_instance_irrel",
+  "proof": {
+    "deps": [
+      {
+        "kind": "mathlib_decl",
+        "reason": "Provides `Subsingleton (Fintype V)`, the first equality eliminated between the two explicit finite-type conventions.",
+        "ref": {
+          "module": "Mathlib.Data.Fintype.Defs",
+          "name": "Fintype.subsingleton"
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "After the three instance equalities are eliminated, the proof closes by reflexivity (or one controlled unfolding) of this existing capacity definition.",
+        "ref": {
+          "name": "rootedCapacity",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 1
+        }
+      }
+    ],
+    "formal": {
+      "check": {
+        "allow_sorry": false,
+        "contains_axiom": false,
+        "contains_sorry": false,
+        "diagnostics": {
+          "diagnostics": [],
+          "passed": true,
+          "raw_excerpt": "{'success': True, 'error_message': None, 'file': 'PositiveDefiniteTreeLattice.Main.RootedCapacity.Theorems.rootedCapacity_instance_irrel', 'items': [], 'total_items': 0, 'error_count': 0, 'warning_count': 0, 'info_count': 0, 'sorry_count': 0}",
+          "repo_file_path": "PositiveDefiniteTreeLattice/Main/RootedCapacity/Theorems/rootedCapacity_instance_irrel.lean",
+          "schema_version": 2,
+          "summary": "Diagnostics returned 0 items"
+        },
+        "message": "Lean check passed.",
+        "policy": "proof_formal",
+        "scan": {
+          "admit_count": 0,
+          "axiom_count": 0,
+          "contains_admit": false,
+          "contains_axiom": false,
+          "contains_opaque": false,
+          "contains_sorry": false,
+          "contains_unsafe": false,
+          "limitation": "Text scan ignores Lean comments and string literals with a conservative first-round lexer; it is not a full Lean parser.",
+          "occurrences": [],
+          "opaque_count": 0,
+          "sorry_count": 0,
+          "summary": "sorry=0, admit=0, axiom=0, opaque=0, unsafe=0",
+          "unsafe_count": 0
+        },
+        "status": "passed"
+      },
+      "code": "-- lean-constellation: managed-imports-begin\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Prelude\nimport Mathlib.Data.Fintype.Defs\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedCapacity\n-- lean-constellation: managed-imports-end\n\n-- lean-constellation: declaration-source-begin\n\n/--\n# lean-constellation target: `rootedCapacity_instance_irrel`\n\nFor every type `V`, simple graph `G : SimpleGraph V`, weight function `w : V → ℤ`, root `ρ : V`, two\nexplicit finite-type conventions `fintype₁ fintype₂ : Fintype V`, two explicit equality-decision\nconventions `decEq₁ decEq₂ : DecidableEq V`, and two explicit adjacency-decision conventions\n`decAdj₁ decAdj₂ : DecidableRel G.Adj`, the two explicitly instantiated rooted capacities are equal:\n\n`@rootedCapacity V fintype₁ decEq₁ G decAdj₁ w ρ = @rootedCapacity V fintype₂ decEq₂ G decAdj₂ w ρ`.\n\nThus the root diagonal entry of the inverse rooted Gram matrix for fixed `G`, `w`, and `ρ` is\nindependent of the chosen finite and decidability instances.\n\n## Sources\n\n- Source `solution.tex`, lines 39–45\n\n## Statement dependencies\n\n- `Main.RootedCapacity::rootedCapacity` → `rootedCapacity` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedCapacity`\n\n## Proof outline\n\nFor the fixed data `V`, `G`, `w`, and `ρ`, first use subsingleton elimination to identify `fintype₁`\nwith `fintype₂`.  Next identify `decEq₁` with `decEq₂`, and identify `decAdj₁` with `decAdj₂`;\nequality-decision and relation-decision conventions are proposition-valued decidability data and\nhence subsingletons.  The needed finite-type step is supplied by the verified instance\n`Fintype.subsingleton`.\n\nEliminate these three equalities in sequence (for example, by `obtain rfl := Subsingleton.elim\n...`).  Both sides are then the same explicit `@rootedCapacity` application, with every data\nargument and every instance argument syntactically identical.  Close by controlled reflexivity; if\nelaboration exposes the definition, unfold `rootedCapacity` once and use `rfl` for its fixed\nrooted-Gram inverse diagonal.  This route uses no tree, admissibility, or child-specific hypothesis\nand introduces no casts, `HEq`, canonical instance, or representation change.\n\n## Proof sources\n\n- Source `solution.tex`, lines 39–45\n\n## Proof dependencies\n\n- `Fintype.subsingleton` from `Mathlib.Data.Fintype.Defs`\n- `Main.RootedCapacity::rootedCapacity` → `rootedCapacity` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedCapacity`\n-/\ntheorem rootedCapacity_instance_irrel {V : Type*} (G : SimpleGraph V)\n    (w : V → ℤ) (ρ : V) (fintype₁ fintype₂ : Fintype V)\n    (decEq₁ decEq₂ : DecidableEq V) (decAdj₁ decAdj₂ : DecidableRel G.Adj) :\n    @rootedCapacity V fintype₁ decEq₁ G decAdj₁ w ρ =\n      @rootedCapacity V fintype₂ decEq₂ G decAdj₂ w ρ := by\n  obtain rfl := Subsingleton.elim fintype₁ fintype₂\n  obtain rfl := Subsingleton.elim decEq₁ decEq₂\n  obtain rfl := Subsingleton.elim decAdj₁ decAdj₂\n  rfl\n"
+    },
+    "nl": {
+      "origin": [
+        {
+          "end_line": 45,
+          "end_locator": null,
+          "kind": "source",
+          "note": "These lines define capacity as the root diagonal of the inverse rooted Gram matrix; after eliminating the instance conventions, the route closes by reflexivity of this unchanged definition.",
+          "ref": null,
+          "resource_key": null,
+          "source_path": "solution.tex",
+          "start_line": 39,
+          "start_locator": null
+        }
+      ],
+      "text": "For the fixed data `V`, `G`, `w`, and `ρ`, first use subsingleton elimination to identify `fintype₁` with `fintype₂`.  Next identify `decEq₁` with `decEq₂`, and identify `decAdj₁` with `decAdj₂`; equality-decision and relation-decision conventions are proposition-valued decidability data and hence subsingletons.  The needed finite-type step is supplied by the verified instance `Fintype.subsingleton`.\n\nEliminate these three equalities in sequence (for example, by `obtain rfl := Subsingleton.elim ...`).  Both sides are then the same explicit `@rootedCapacity` application, with every data argument and every instance argument syntactically identical.  Close by controlled reflexivity; if elaboration exposes the definition, unfold `rootedCapacity` once and use `rfl` for its fixed rooted-Gram inverse diagonal.  This route uses no tree, admissibility, or child-specific hypothesis and introduces no casts, `HEq`, canonical instance, or representation change."
+    }
+  },
+  "revision": 1,
+  "state": "proved",
+  "statement": {
+    "deps": [
+      {
+        "kind": "repo_decl",
+        "reason": "The statement directly compares two explicit applications of the existing rootedCapacity definition.",
+        "ref": {
+          "name": "rootedCapacity",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 1
+        }
+      }
+    ],
+    "formal": {
+      "check": {
+        "allow_sorry": true,
+        "contains_axiom": false,
+        "contains_sorry": true,
+        "diagnostics": {
+          "diagnostics": [
+            {
+              "column": 9,
+              "line": 30,
+              "message": "declaration uses `sorry`",
+              "severity": "warning"
+            }
+          ],
+          "passed": true,
+          "raw_excerpt": "{'success': True, 'error_message': None, 'file': 'PositiveDefiniteTreeLattice.Main.RootedCapacity.Theorems.rootedCapacity_instance_irrel', 'items': [{'severity': 'warning', 'pos': {'line': 30, 'column': 9}, 'endPos': {'line': 30, 'column': 38}, 'kind': None, 'data': 'declaration uses `sorry`', 'fileName': 'PositiveDefiniteTreeLattice.Main.RootedCapacity.Theorems.rootedCapacity_instance_irrel', 'content': '  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedCapacity`\\n-/\\ntheorem rootedCapacity_instance_irrel {V : Type*} (G : SimpleGraph V)\\n    (w : V → ℤ) (ρ : V) (fintype₁ fintype₂ : Fintype V)\\n    (decEq₁ decEq₂ : DecidableEq V) (decAdj₁ decAdj₂ : DecidableRel G.Adj) :'}], 'total_items': 1, 'error_count': 0, 'warning_count': 1, 'info_count': 0, 'sorry_count': 1}",
+          "repo_file_path": "PositiveDefiniteTreeLattice/Main/RootedCapacity/Theorems/rootedCapacity_instance_irrel.lean",
+          "schema_version": 2,
+          "summary": "Diagnostics returned 1 items"
+        },
+        "message": "Lean check passed.",
+        "policy": "statement_formal",
+        "scan": {
+          "admit_count": 0,
+          "axiom_count": 0,
+          "contains_admit": false,
+          "contains_axiom": false,
+          "contains_opaque": false,
+          "contains_sorry": true,
+          "contains_unsafe": false,
+          "limitation": "Text scan ignores Lean comments and string literals with a conservative first-round lexer; it is not a full Lean parser.",
+          "occurrences": [
+            {
+              "column": 3,
+              "excerpt": "sorry",
+              "kind": "sorry",
+              "line": 35
+            }
+          ],
+          "opaque_count": 0,
+          "sorry_count": 1,
+          "summary": "sorry=1, admit=0, axiom=0, opaque=0, unsafe=0",
+          "unsafe_count": 0
+        },
+        "status": "passed"
+      },
+      "code": "-- lean-constellation: managed-imports-begin\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Prelude\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedCapacity\n-- lean-constellation: managed-imports-end\n\n-- lean-constellation: declaration-source-begin\n\n/--\n# lean-constellation target: `rootedCapacity_instance_irrel`\n\nFor every type `V`, simple graph `G : SimpleGraph V`, weight function `w : V → ℤ`, root `ρ : V`, two\nexplicit finite-type conventions `fintype₁ fintype₂ : Fintype V`, two explicit equality-decision\nconventions `decEq₁ decEq₂ : DecidableEq V`, and two explicit adjacency-decision conventions\n`decAdj₁ decAdj₂ : DecidableRel G.Adj`, the two explicitly instantiated rooted capacities are equal:\n\n`@rootedCapacity V fintype₁ decEq₁ G decAdj₁ w ρ = @rootedCapacity V fintype₂ decEq₂ G decAdj₂ w ρ`.\n\nThus the root diagonal entry of the inverse rooted Gram matrix for fixed `G`, `w`, and `ρ` is\nindependent of the chosen finite and decidability instances.\n\n## Sources\n\n- Source `solution.tex`, lines 39–45\n\n## Statement dependencies\n\n- `Main.RootedCapacity::rootedCapacity` → `rootedCapacity` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedCapacity`\n-/\ntheorem rootedCapacity_instance_irrel {V : Type*} (G : SimpleGraph V)\n    (w : V → ℤ) (ρ : V) (fintype₁ fintype₂ : Fintype V)\n    (decEq₁ decEq₂ : DecidableEq V) (decAdj₁ decAdj₂ : DecidableRel G.Adj) :\n    @rootedCapacity V fintype₁ decEq₁ G decAdj₁ w ρ =\n      @rootedCapacity V fintype₂ decEq₂ G decAdj₂ w ρ := by\n  sorry\n"
+    },
+    "nl": {
+      "origin": [
+        {
+          "end_line": 45,
+          "end_locator": null,
+          "kind": "source",
+          "note": "These lines define capacity as the root diagonal entry of the inverse rooted Gram matrix, whose value the statement transports across explicit instance conventions.",
+          "ref": null,
+          "resource_key": null,
+          "source_path": "solution.tex",
+          "start_line": 39,
+          "start_locator": null
+        }
+      ],
+      "text": "For every type `V`, simple graph `G : SimpleGraph V`, weight function `w : V → ℤ`, root `ρ : V`, two explicit finite-type conventions `fintype₁ fintype₂ : Fintype V`, two explicit equality-decision conventions `decEq₁ decEq₂ : DecidableEq V`, and two explicit adjacency-decision conventions `decAdj₁ decAdj₂ : DecidableRel G.Adj`, the two explicitly instantiated rooted capacities are equal:\n\n`@rootedCapacity V fintype₁ decEq₁ G decAdj₁ w ρ = @rootedCapacity V fintype₂ decEq₂ G decAdj₂ w ρ`.\n\nThus the root diagonal entry of the inverse rooted Gram matrix for fixed `G`, `w`, and `ρ` is independent of the chosen finite and decidability instances."
+    }
+  },
+  "status": "committed",
+  "updated_at": "2026-08-06T14:19:10Z"
+}

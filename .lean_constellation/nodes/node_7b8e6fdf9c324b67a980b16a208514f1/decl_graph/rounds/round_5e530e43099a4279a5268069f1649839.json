@@ -1,0 +1,33 @@
+{
+  "change_summaries": {},
+  "committed_at": "2026-08-07T06:46:17Z",
+  "created_at": "2026-08-07T06:15:22Z",
+  "discard_reason": null,
+  "discarded_at": null,
+  "discarded_by": null,
+  "discarded_created_decl_names": [],
+  "discarded_restored_decl_revisions": {},
+  "discarded_revision_refs": [],
+  "execution_completed_at": "2026-08-07T06:40:29Z",
+  "execution_reason": "Step proof_formal_worker_419a5f5804a84c2ebcbc067554c0cdb7 failed before DeclGraph round completion: stream disconnected before completion: error sending request for url (https://chatgpt.com/backend-api/codex/responses)",
+  "execution_result_kind": "failed",
+  "node_path": "Main.IrreducibleVertex",
+  "objective": "Create and prove the exact public protected theorem PositiveDefiniteTreeLattice.exists_irreducible_vertex from the completed bottom-up helper graph.",
+  "plan_closeout_acknowledged_at": "2026-08-07T06:46:17Z",
+  "plan_closeout_acknowledged_by": "a_a235941c8c524917a1ed4a78f90c75ba",
+  "result_kind": "failed",
+  "result_reason": "Transient Proof Formal worker-stream disconnect after the exact public statement and Proof NL were accepted; no mathematical or dependency blocker was reported.",
+  "revision_refs": [
+    {
+      "change_id": "exists_irreducible_vertex@rev:1",
+      "decl_name": "exists_irreducible_vertex",
+      "revision": 1
+    }
+  ],
+  "round_id": "round_5e530e43099a4279a5268069f1649839",
+  "round_index": 26,
+  "started_at": "2026-08-07T06:17:56Z",
+  "status": "committed",
+  "strategy_id": "strategy_2fda3ac1fa8b4fc5bb88fd75f3367b39",
+  "summary": "Round 26 made partial progress: it created the exact public protected interface and accepted it through proof_planned, but the Proof Formal worker stream disconnected. The declaration is not yet proved or proof-policy satisfied, and the interface remains unbound. All known lower declarations and proof dependencies are already proved; no Source, Mathlib, current-node, or provider API gap was exposed. The open strategy still explains the next action. Close this round as failed for infrastructure/runtime reasons, then retry only Proof Formal on exists_irreducible_vertex revision 1 without statement or proof-plan drift."
+}

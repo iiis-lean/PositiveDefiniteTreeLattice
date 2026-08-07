@@ -1,0 +1,47 @@
+{
+  "change_summaries": {},
+  "committed_at": null,
+  "created_at": "2026-07-30T03:31:54Z",
+  "discard_reason": "Deterministic draft validation rejected all three same-round dependency edges: uniquePath must be declared before uniquePath_isPath, and both must be ready before eq_uniquePath_of_isPath. Replace this draft with a dependency-ordered first round creating only uniquePath.",
+  "discarded_at": "2026-07-30T03:32:36Z",
+  "discarded_by": "a_32cab14a2d1e497786514a39188b3e4f",
+  "discarded_created_decl_names": [
+    "eq_uniquePath_of_isPath",
+    "uniquePath",
+    "uniquePath_isPath"
+  ],
+  "discarded_restored_decl_revisions": {},
+  "discarded_revision_refs": [
+    {
+      "change_id": "uniquePath@rev:1",
+      "decl_name": "uniquePath",
+      "revision": 1
+    },
+    {
+      "change_id": "uniquePath_isPath@rev:1",
+      "decl_name": "uniquePath_isPath",
+      "revision": 1
+    },
+    {
+      "change_id": "eq_uniquePath_of_isPath@rev:1",
+      "decl_name": "eq_uniquePath_of_isPath",
+      "revision": 1
+    }
+  ],
+  "execution_completed_at": null,
+  "execution_reason": null,
+  "execution_result_kind": null,
+  "node_path": "Main.TreePathSeparation",
+  "objective": "Establish the canonical chosen-path foundation for the later oriented-cut package. From SimpleGraph.IsTree.existsUnique_path, create a stable public chosen walk between any two vertices of a tree, prove it is a simple path, and prove the uniqueness eliminator identifying every simple walk with that chosen walk. This formalizes the generic unique-path structure needed to turn the rooted child-subtree grouping implicit in SourceIndex b_0008–b_0009 / solution.tex lines 33–64 into the later support-separation and append-equality interfaces; no cut theorem or RootedCapacity-specific notion belongs in this round.",
+  "plan_closeout_acknowledged_at": null,
+  "plan_closeout_acknowledged_by": null,
+  "result_kind": null,
+  "result_reason": null,
+  "revision_refs": [],
+  "round_id": "round_40c8245f91d2455f94bbcbb04f85fef0",
+  "round_index": 1,
+  "started_at": null,
+  "status": "discarded",
+  "strategy_id": "strategy_f896ad8d3d5e41c193ec6ecf41edbffd",
+  "summary": null
+}

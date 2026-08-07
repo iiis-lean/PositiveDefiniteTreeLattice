@@ -1,0 +1,14 @@
+{
+  "closed_at": "2026-08-06T12:28:58Z",
+  "closed_reason": "The contract-authorized proof-local composition is not type-checkable because its provider and consumer admissibility witnesses use incompatible canonical component instances.",
+  "created_at": "2026-08-06T12:11:19Z",
+  "created_round_ids": [
+    "round_d337509d97a24de49d619439453f6227"
+  ],
+  "node_path": "Main.IrreducibleVertex",
+  "objective": "Resume the contract-v3 graph-proved route with a Proof-Formal-only repair of rootedChildCapacitySum_lt_weight_of_unique_underweight@5: preserve its accepted Statement and Proof NL, close the source-specific scalar equality `(B * D⁻¹ * C) r r = rootedChildCapacitySum G hG weight v` locally by bounded unfolding of matrix multiplication and direct composition of the existing public inverse-reindex, equivalence-evaluation, and root-support APIs with proved per-child admissibility; then continue bottom-up through solution.tex:210–244 to the exact protected PositiveDefiniteTreeLattice.exists_irreducible_vertex interface.",
+  "rationale": "The current contract explicitly classifies the remaining contraction as a one-consumer proof-local normalization and forbids creating a shared construction or new declaration. All canonical dependent indices, equivalence orientation, matrices, instances, and capacity objects remain owned by Main.RootedCapacity's existing public APIs; the local calculation disappears inside this single proof. Revision 5 already has accepted Statement and Proof NL, all known current-node dependencies are proved, task and repository targets are graph_proved, and the eight-declaration graph remains within the expected 8–14 scale.",
+  "status": "closed",
+  "strategy_id": "strategy_a62fa6e411fa4b4893b633b718858072",
+  "summary": "Round 14 preserved the frozen central-gap Statement and Proof NL but showed that the inverse-reindex provider cannot consume the proved per-child admissibility witness at its fixed component instance. The support/equivalence providers do not transport `IsAdmissibleRootedTree`, and contract v3 forbids creating the required instance bridge or changing provider architecture locally. The route is therefore blocked pending Coordinator-owned RootedCapacity interface and contract repair."
+}

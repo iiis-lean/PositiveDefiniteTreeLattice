@@ -1,0 +1,72 @@
+{
+  "change": {
+    "anticipated_proof_dep_names": [],
+    "anticipated_statement_dep_names": [],
+    "base_revision": null,
+    "kind": "create",
+    "objective": "Create a fresh public declaration record, distinct from the historical vertexVector record, whose compiler-confirmed Lean full name is exactly PositiveDefiniteTreeLattice.vertexVector. Its definition must reproduce formal_target.lean lines 13–15 exactly: for V with decidable equality and v : V, return fun u ↦ if u = v then 1 else 0. Add no graph or finiteness assumptions and no aliases, and serve the required interface plus all later repaired consumers.",
+    "require_target_state_satisfied": true,
+    "reset_to_state": null,
+    "summary": "Successfully created the fresh public compatible interface anchor vertexVectorAnchor at declared state with compiler-confirmed Lean name PositiveDefiniteTreeLattice.vertexVector. Its statement exactly matches formal_target.lean lines 13–15, has no extra assumptions or aliases, and passed graph_proved declared-level satisfaction. It is ready to replace the historical vertexVector record in all statement and proof dependencies.",
+    "target_state": "declared"
+  },
+  "lean_decl_name": "PositiveDefiniteTreeLattice.vertexVector",
+  "proof": null,
+  "revision": 1,
+  "state": "declared",
+  "statement": {
+    "deps": [],
+    "formal": {
+      "check": {
+        "allow_sorry": false,
+        "contains_axiom": false,
+        "contains_sorry": false,
+        "diagnostics": {
+          "diagnostics": [],
+          "passed": true,
+          "raw_excerpt": "{'success': True, 'error_message': None, 'file': 'PositiveDefiniteTreeLattice.Main.LatticeFoundations.Defs.vertexVectorAnchor', 'items': [], 'total_items': 0, 'error_count': 0, 'warning_count': 0, 'info_count': 0, 'sorry_count': 0}",
+          "repo_file_path": "PositiveDefiniteTreeLattice/Main/LatticeFoundations/Defs/vertexVectorAnchor.lean",
+          "schema_version": 2,
+          "summary": "Diagnostics returned 0 items"
+        },
+        "message": "Lean check passed.",
+        "policy": "statement_formal",
+        "scan": {
+          "admit_count": 0,
+          "axiom_count": 0,
+          "contains_admit": false,
+          "contains_axiom": false,
+          "contains_opaque": false,
+          "contains_sorry": false,
+          "contains_unsafe": false,
+          "limitation": "Text scan ignores Lean comments and string literals with a conservative first-round lexer; it is not a full Lean parser.",
+          "occurrences": [],
+          "opaque_count": 0,
+          "sorry_count": 0,
+          "summary": "sorry=0, admit=0, axiom=0, opaque=0, unsafe=0",
+          "unsafe_count": 0
+        },
+        "status": "passed"
+      },
+      "code": "-- lean-constellation: managed-imports-begin\nimport PositiveDefiniteTreeLattice.Main.LatticeFoundations.Prelude\n-- lean-constellation: managed-imports-end\n\n-- lean-constellation: declaration-source-begin\n\n/--\n# lean-constellation target: `vertexVectorAnchor`\n\nDefine the public interface `PositiveDefiniteTreeLattice.vertexVector` as follows. For a type `V`\nwith decidable equality and a vertex `v : V`, return the integer-valued coordinate function sending\neach `u : V` to `1` when `u = v` and to `0` otherwise:\n\n`fun u ↦ if u = v then 1 else 0`.\n\nThe definition has no graph or finiteness assumptions and introduces no aliases.\n\n## Sources\n\n- Source `formal_target.lean`, lines 13–15\n-/\ndef PositiveDefiniteTreeLattice.vertexVector {V : Type*} [DecidableEq V] (v : V) : V → ℤ :=\n  fun u ↦ if u = v then 1 else 0\n"
+    },
+    "nl": {
+      "origin": [
+        {
+          "end_line": 15,
+          "end_locator": null,
+          "kind": "source",
+          "note": "Exact source definition of the vertex unit coordinate function and its sole decidable-equality binder.",
+          "ref": null,
+          "resource_key": null,
+          "source_path": "formal_target.lean",
+          "start_line": 13,
+          "start_locator": null
+        }
+      ],
+      "text": "Define the public interface `PositiveDefiniteTreeLattice.vertexVector` as follows. For a type `V` with decidable equality and a vertex `v : V`, return the integer-valued coordinate function sending each `u : V` to `1` when `u = v` and to `0` otherwise:\n\n`fun u ↦ if u = v then 1 else 0`.\n\nThe definition has no graph or finiteness assumptions and introduces no aliases."
+    }
+  },
+  "status": "committed",
+  "updated_at": "2026-07-29T20:00:24Z"
+}

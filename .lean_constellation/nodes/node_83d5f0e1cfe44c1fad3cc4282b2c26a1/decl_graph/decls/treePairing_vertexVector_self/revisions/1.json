@@ -1,0 +1,240 @@
+{
+  "change": {
+    "anticipated_proof_dep_names": [
+      "treePairing",
+      "vertexVector"
+    ],
+    "anticipated_statement_dep_names": [
+      "treePairing",
+      "vertexVector"
+    ],
+    "base_revision": null,
+    "kind": "create",
+    "objective": "For finite V with decidable equality, a SimpleGraph G with decidable adjacency, weight : V → ℤ, and v : V, prove treePairing G weight (vertexVector v) (vertexVector v) = weight v. This is the elementary basis-vector computation implicit in SourceIndex b_0002/b_0005 and required for later weighted-tree lattice use. Its Statement and proof consume accepted treePairing and vertexVector; unfold the exact finite-sum and unit-coordinate definitions without changing graph or positivity assumptions. Publish it as stable API.",
+    "require_target_state_satisfied": true,
+    "reset_to_state": null,
+    "summary": "Successfully created and proved treePairing G weight (vertexVector v) (vertexVector v) = weight v from the exact finite-sum pairing and unit-coordinate definitions. Statement and proof passed without added positivity assumptions, and graph-proved satisfaction passed. This is stable public weighted-tree basis API.",
+    "target_state": "proved"
+  },
+  "lean_decl_name": "treePairing_vertexVector_self",
+  "proof": {
+    "deps": [
+      {
+        "kind": "mathlib_decl",
+        "reason": "Isolates the unique outer index with nonzero first unit coordinate.",
+        "ref": {
+          "module": "Mathlib.Algebra.BigOperators.Group.Finset.Basic",
+          "name": "Finset.sum_eq_single"
+        }
+      },
+      {
+        "kind": "mathlib_decl",
+        "reason": "Shows the neighbor sum of the unit coordinate function is zero.",
+        "ref": {
+          "module": "Mathlib.Algebra.BigOperators.Group.Finset.Basic",
+          "name": "Finset.sum_eq_zero"
+        }
+      },
+      {
+        "kind": "mathlib_decl",
+        "reason": "Excludes the self-loop that would otherwise contribute to the neighbor sum.",
+        "ref": {
+          "module": "Mathlib.Combinatorics.SimpleGraph.Basic",
+          "name": "SimpleGraph.irrefl"
+        }
+      },
+      {
+        "kind": "mathlib_decl",
+        "reason": "Converts neighbor membership into adjacency when proving a neighbor cannot equal v.",
+        "ref": {
+          "module": "Mathlib.Combinatorics.SimpleGraph.Finite",
+          "name": "SimpleGraph.mem_neighborFinset"
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "The route unfolds the accepted finite weighted pairing.",
+        "ref": {
+          "name": "treePairing",
+          "node": "Main.LatticeFoundations",
+          "repo": null,
+          "revision": 2
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "The route unfolds the accepted unit coordinate function.",
+        "ref": {
+          "name": "vertexVector",
+          "node": "Main.LatticeFoundations",
+          "repo": null,
+          "revision": 2
+        }
+      }
+    ],
+    "formal": {
+      "check": {
+        "allow_sorry": false,
+        "contains_axiom": false,
+        "contains_sorry": false,
+        "diagnostics": {
+          "diagnostics": [],
+          "passed": true,
+          "raw_excerpt": "{'success': True, 'error_message': None, 'file': 'PositiveDefiniteTreeLattice.Main.LatticeFoundations.Theorems.treePairing_vertexVector_self', 'items': [], 'total_items': 0, 'error_count': 0, 'warning_count': 0, 'info_count': 0, 'sorry_count': 0}",
+          "repo_file_path": "PositiveDefiniteTreeLattice/Main/LatticeFoundations/Theorems/treePairing_vertexVector_self.lean",
+          "schema_version": 2,
+          "summary": "Diagnostics returned 0 items"
+        },
+        "message": "Lean check passed.",
+        "policy": "proof_formal",
+        "scan": {
+          "admit_count": 0,
+          "axiom_count": 0,
+          "contains_admit": false,
+          "contains_axiom": false,
+          "contains_opaque": false,
+          "contains_sorry": false,
+          "contains_unsafe": false,
+          "limitation": "Text scan ignores Lean comments and string literals with a conservative first-round lexer; it is not a full Lean parser.",
+          "occurrences": [],
+          "opaque_count": 0,
+          "sorry_count": 0,
+          "summary": "sorry=0, admit=0, axiom=0, opaque=0, unsafe=0",
+          "unsafe_count": 0
+        },
+        "status": "passed"
+      },
+      "code": "-- lean-constellation: managed-imports-begin\nimport PositiveDefiniteTreeLattice.Main.LatticeFoundations.Prelude\nimport Mathlib.Algebra.BigOperators.Group.Finset.Basic\nimport Mathlib.Combinatorics.SimpleGraph.Basic\nimport Mathlib.Combinatorics.SimpleGraph.Finite\nimport PositiveDefiniteTreeLattice.Main.LatticeFoundations.Defs.treePairing\nimport PositiveDefiniteTreeLattice.Main.LatticeFoundations.Defs.vertexVector\n-- lean-constellation: managed-imports-end\n\n-- lean-constellation: declaration-source-begin\n\n/--\n# lean-constellation target: `treePairing_vertexVector_self`\n\nFor a finite type `V` with decidable equality, a simple graph `G : SimpleGraph V` with decidable\nadjacency, an integer-valued weight function `weight : V → ℤ`, and a vertex `v : V`, the\nself-pairing of the unit coordinate function is its vertex weight:\n\n`treePairing G weight (vertexVector v) (vertexVector v) = weight v`.\n\n## Sources\n\n- Source `formal_target.lean`, lines 7–15\n- Source `problem.tex`, lines 13–23\n\n## Statement dependencies\n\n- `Main.LatticeFoundations::treePairing` → `treePairing` from\n  `PositiveDefiniteTreeLattice.Main.LatticeFoundations.Defs.treePairing`\n- `Main.LatticeFoundations::vertexVector` → `vertexVector` from\n  `PositiveDefiniteTreeLattice.Main.LatticeFoundations.Defs.vertexVector`\n\n## Proof outline\n\nUnfold the accepted definitions `treePairing` and `vertexVector`. Use `Finset.sum_eq_single` to\nisolate the outer index `u = v`: at every other index the first unit coordinate is zero. At `u = v`,\nthe first unit coordinate is one. Prove the remaining neighbor sum is zero with\n`Finset.sum_eq_zero`: for a neighbor `w` of `v`, `SimpleGraph.mem_neighborFinset` and\n`SimpleGraph.irrefl` show `w ≠ v`, so the second unit coordinate at `w` is zero. The surviving\nsummand is therefore `1 * (weight v * 1 - 0)`, which simplifies to `weight v`.\n\n## Proof sources\n\n- Source `formal_target.lean`, lines 7–15\n- Source `problem.tex`, lines 13–23\n\n## Proof dependencies\n\n- `Finset.sum_eq_single` from `Mathlib.Algebra.BigOperators.Group.Finset.Basic`\n- `Finset.sum_eq_zero` from `Mathlib.Algebra.BigOperators.Group.Finset.Basic`\n- `SimpleGraph.irrefl` from `Mathlib.Combinatorics.SimpleGraph.Basic`\n- `SimpleGraph.mem_neighborFinset` from `Mathlib.Combinatorics.SimpleGraph.Finite`\n- `Main.LatticeFoundations::treePairing` → `treePairing` from\n  `PositiveDefiniteTreeLattice.Main.LatticeFoundations.Defs.treePairing`\n- `Main.LatticeFoundations::vertexVector` → `vertexVector` from\n  `PositiveDefiniteTreeLattice.Main.LatticeFoundations.Defs.vertexVector`\n-/\ntheorem treePairing_vertexVector_self {V : Type*} [Fintype V] [DecidableEq V]\n    (G : SimpleGraph V) [DecidableRel G.Adj] (weight : V → ℤ) (v : V) :\n    treePairing G weight (vertexVector v) (vertexVector v) = weight v := by\n  unfold treePairing vertexVector\n  rw [Finset.sum_eq_single v]\n  · have h_neigh : ∑ w ∈ G.neighborFinset v, (if w = v then (1 : ℤ) else 0) = 0 := by\n      apply Finset.sum_eq_zero\n      intro w hw\n      have hwv : w ≠ v := by\n        intro h\n        subst w\n        exact G.irrefl ((G.mem_neighborFinset v v).mp hw)\n      simp [hwv]\n    simp only [if_pos]\n    rw [h_neigh]\n    ring\n  · intro u _ huv\n    simp [huv]\n  · simp\n"
+    },
+    "nl": {
+      "origin": [
+        {
+          "end_line": 15,
+          "end_locator": null,
+          "kind": "source",
+          "note": "The exact pairing and unit-coordinate definitions unfolded in the direct computation.",
+          "ref": null,
+          "resource_key": null,
+          "source_path": "formal_target.lean",
+          "start_line": 7,
+          "start_locator": null
+        },
+        {
+          "end_line": 23,
+          "end_locator": null,
+          "kind": "source",
+          "note": "The source lattice form assigns a basis vector its vertex weight as self-pairing.",
+          "ref": null,
+          "resource_key": null,
+          "source_path": "problem.tex",
+          "start_line": 13,
+          "start_locator": null
+        }
+      ],
+      "text": "Unfold the accepted definitions `treePairing` and `vertexVector`. Use `Finset.sum_eq_single` to isolate the outer index `u = v`: at every other index the first unit coordinate is zero. At `u = v`, the first unit coordinate is one. Prove the remaining neighbor sum is zero with `Finset.sum_eq_zero`: for a neighbor `w` of `v`, `SimpleGraph.mem_neighborFinset` and `SimpleGraph.irrefl` show `w ≠ v`, so the second unit coordinate at `w` is zero. The surviving summand is therefore `1 * (weight v * 1 - 0)`, which simplifies to `weight v`."
+    }
+  },
+  "revision": 1,
+  "state": "proved",
+  "statement": {
+    "deps": [
+      {
+        "kind": "repo_decl",
+        "reason": "The asserted basis-vector identity is a treePairing equality.",
+        "ref": {
+          "name": "treePairing",
+          "node": "Main.LatticeFoundations",
+          "repo": null,
+          "revision": 2
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "The asserted basis-vector identity is expressed using the accepted unit coordinate function.",
+        "ref": {
+          "name": "vertexVector",
+          "node": "Main.LatticeFoundations",
+          "repo": null,
+          "revision": 2
+        }
+      }
+    ],
+    "formal": {
+      "check": {
+        "allow_sorry": true,
+        "contains_axiom": false,
+        "contains_sorry": true,
+        "diagnostics": {
+          "diagnostics": [
+            {
+              "column": 9,
+              "line": 30,
+              "message": "declaration uses `sorry`",
+              "severity": "warning"
+            }
+          ],
+          "passed": true,
+          "raw_excerpt": "{'success': True, 'error_message': None, 'file': 'PositiveDefiniteTreeLattice.Main.LatticeFoundations.Theorems.treePairing_vertexVector_self', 'items': [{'severity': 'warning', 'pos': {'line': 30, 'column': 9}, 'endPos': {'line': 30, 'column': 38}, 'kind': None, 'data': 'declaration uses `sorry`', 'fileName': 'PositiveDefiniteTreeLattice.Main.LatticeFoundations.Theorems.treePairing_vertexVector_self', 'content': '  `PositiveDefiniteTreeLattice.Main.LatticeFoundations.Defs.vertexVector`\\n-/\\ntheorem treePairing_vertexVector_self {V : Type*} [Fintype V] [DecidableEq V]\\n    (G : SimpleGraph V) [DecidableRel G.Adj] (weight : V → ℤ) (v : V) :\\n    treePairing G weight (vertexVector v) (vertexVector v) = weight v := by'}], 'total_items': 1, 'error_count': 0, 'warning_count': 1, 'info_count': 0, 'sorry_count': 1}",
+          "repo_file_path": "PositiveDefiniteTreeLattice/Main/LatticeFoundations/Theorems/treePairing_vertexVector_self.lean",
+          "schema_version": 2,
+          "summary": "Diagnostics returned 1 items"
+        },
+        "message": "Lean check passed.",
+        "policy": "statement_formal",
+        "scan": {
+          "admit_count": 0,
+          "axiom_count": 0,
+          "contains_admit": false,
+          "contains_axiom": false,
+          "contains_opaque": false,
+          "contains_sorry": true,
+          "contains_unsafe": false,
+          "limitation": "Text scan ignores Lean comments and string literals with a conservative first-round lexer; it is not a full Lean parser.",
+          "occurrences": [
+            {
+              "column": 3,
+              "excerpt": "sorry",
+              "kind": "sorry",
+              "line": 33
+            }
+          ],
+          "opaque_count": 0,
+          "sorry_count": 1,
+          "summary": "sorry=1, admit=0, axiom=0, opaque=0, unsafe=0",
+          "unsafe_count": 0
+        },
+        "status": "passed"
+      },
+      "code": "-- lean-constellation: managed-imports-begin\nimport PositiveDefiniteTreeLattice.Main.LatticeFoundations.Prelude\nimport PositiveDefiniteTreeLattice.Main.LatticeFoundations.Defs.treePairing\nimport PositiveDefiniteTreeLattice.Main.LatticeFoundations.Defs.vertexVector\n-- lean-constellation: managed-imports-end\n\n-- lean-constellation: declaration-source-begin\n\n/--\n# lean-constellation target: `treePairing_vertexVector_self`\n\nFor a finite type `V` with decidable equality, a simple graph `G : SimpleGraph V` with decidable\nadjacency, an integer-valued weight function `weight : V → ℤ`, and a vertex `v : V`, the\nself-pairing of the unit coordinate function is its vertex weight:\n\n`treePairing G weight (vertexVector v) (vertexVector v) = weight v`.\n\n## Sources\n\n- Source `formal_target.lean`, lines 7–15\n- Source `problem.tex`, lines 13–23\n\n## Statement dependencies\n\n- `Main.LatticeFoundations::treePairing` → `treePairing` from\n  `PositiveDefiniteTreeLattice.Main.LatticeFoundations.Defs.treePairing`\n- `Main.LatticeFoundations::vertexVector` → `vertexVector` from\n  `PositiveDefiniteTreeLattice.Main.LatticeFoundations.Defs.vertexVector`\n-/\ntheorem treePairing_vertexVector_self {V : Type*} [Fintype V] [DecidableEq V]\n    (G : SimpleGraph V) [DecidableRel G.Adj] (weight : V → ℤ) (v : V) :\n    treePairing G weight (vertexVector v) (vertexVector v) = weight v := by\n  sorry\n"
+    },
+    "nl": {
+      "origin": [
+        {
+          "end_line": 15,
+          "end_locator": null,
+          "kind": "source",
+          "note": "Exact source definitions of the finite weighted pairing and unit coordinate function used in the statement.",
+          "ref": null,
+          "resource_key": null,
+          "source_path": "formal_target.lean",
+          "start_line": 7,
+          "start_locator": null
+        },
+        {
+          "end_line": 23,
+          "end_locator": null,
+          "kind": "source",
+          "note": "The source weighted-tree lattice form specifies that a basis vector has self-pairing equal to its vertex weight.",
+          "ref": null,
+          "resource_key": null,
+          "source_path": "problem.tex",
+          "start_line": 13,
+          "start_locator": null
+        }
+      ],
+      "text": "For a finite type `V` with decidable equality, a simple graph `G : SimpleGraph V` with decidable adjacency, an integer-valued weight function `weight : V → ℤ`, and a vertex `v : V`, the self-pairing of the unit coordinate function is its vertex weight:\n\n`treePairing G weight (vertexVector v) (vertexVector v) = weight v`."
+    }
+  },
+  "status": "committed",
+  "updated_at": "2026-07-29T15:41:52Z"
+}

@@ -1,0 +1,176 @@
+{
+  "boundary": "Own generic graph-theoretic results for finite simple trees about chosen unique paths, first intersections of path supports, support separation across a deleted edge, simplicity of appended paths, and factorization of a root-to-x unique path through the child endpoint of an oriented cut edge. Exclude weighted pairings, rooted capacities, admissibility, matrices, and the RootedCapacity-specific rootedChildren/rootedChildComponent definitions and transport theorems. Expected scale: about 5–10 important graph declarations implementing the structural bridge implicit in SourceIndex b_0008–b_0009 / solution.tex lines 33–64.",
+  "committed_at": "2026-07-30T05:00:11Z",
+  "constraints": "Use only finite simple-tree and Mathlib path/connectivity notions. The factorization conclusion must preserve equality with the chosen unique path and append of the chosen root-to-c and c-to-x paths, or a compiler-equivalent packaged equality with exactly those endpoints and factors. Do not weaken to reachability/support membership, assume the desired support separation, or import RootedCapacity and create a dependency cycle.",
+  "context_refs": [],
+  "contract_kind": "content",
+  "created_at": "2026-07-30T03:18:03Z",
+  "decl_graph_head": {
+    "eq_uniquePath_of_isPath": 1,
+    "uniquePath": 1,
+    "uniquePath_append_isPath_through_cut": 1,
+    "uniquePath_eq_append_through_cut": 1,
+    "uniquePath_isPath": 1,
+    "uniquePath_support_separated_by_cut": 1
+  },
+  "deps": [],
+  "exports": [],
+  "goal": "Formalize reusable path-support and edge-cut factorization theorems for finite trees, sufficient to decompose a unique root-to-vertex path through the root of a child-side component.",
+  "interfaces": [
+    {
+      "bound_decl": {
+        "name": "uniquePath_support_separated_by_cut",
+        "node": "Main.TreePathSeparation",
+        "repo": null,
+        "revision": 1
+      },
+      "expected_statement_lean_code": null,
+      "kind": "theorem",
+      "name": "PositiveDefiniteTreeLattice.uniquePath_support_separated_by_cut",
+      "note": "Consumer anchor: Main.RootedCapacity::rootedChildComponent_path_decomposition@1. For hG : G.IsTree and vertices ρ parent c x, assume parent-c is the terminal oriented edge on the chosen path from ρ to c and x lies in the c-side connected component of G after deleting edge parent-c. Conclude the chosen ρ-to-c and c-to-x path supports have no common vertex other than c, in a form sufficient to prove their append is a Path. Prove this noncircularly via a first common vertex and path uniqueness; do not assume append simplicity.",
+      "source_refs": [],
+      "summary": "Across an oriented edge cut in a finite tree, the root-side and child-side chosen path supports meet only at the child endpoint."
+    },
+    {
+      "bound_decl": {
+        "name": "uniquePath_eq_append_through_cut",
+        "node": "Main.TreePathSeparation",
+        "repo": null,
+        "revision": 1
+      },
+      "expected_statement_lean_code": null,
+      "kind": "theorem",
+      "name": "PositiveDefiniteTreeLattice.uniquePath_eq_append_through_cut",
+      "note": "Consumer anchor: exact accepted goal Main.RootedCapacity::rootedChildComponent_path_decomposition@1. With hG : G.IsTree, root ρ, cut edge parent-c oriented away from ρ, and x on the c-side component after deleting parent-c, conclude (hG.existsUnique_path ρ x).choose = (hG.existsUnique_path ρ c).choose.append (hG.existsUnique_path c x).choose, or a compiler-equivalent packaged equality whose factors are exactly those chosen paths. Hypotheses must be directly derivable from hc : c ∈ rootedChildren G hG ρ parent and x : rootedChildComponent G parent c; do not mention RootedCapacity declarations in this node's formal statement.",
+      "source_refs": [],
+      "summary": "A finite-tree unique path factors through the child endpoint of an oriented cut edge."
+    }
+  ],
+  "mathlib_decls": [
+    {
+      "added_by": "worker",
+      "kind": "lemma",
+      "module": "Mathlib.Combinatorics.SimpleGraph.Acyclic",
+      "name": "SimpleGraph.IsTree.existsUnique_path",
+      "reason": null
+    },
+    {
+      "added_by": "worker",
+      "kind": "lemma",
+      "module": "Mathlib.Combinatorics.SimpleGraph.Acyclic",
+      "name": "SimpleGraph.isAcyclic_iff_forall_adj_isBridge",
+      "reason": null
+    },
+    {
+      "added_by": "worker",
+      "kind": "def",
+      "module": "Mathlib.Combinatorics.SimpleGraph.Connectivity.Connected",
+      "name": "SimpleGraph.IsBridge",
+      "reason": null
+    },
+    {
+      "added_by": "worker",
+      "kind": "abbrev",
+      "module": "Mathlib.Combinatorics.SimpleGraph.Walk.Maps",
+      "name": "SimpleGraph.Walk.toDeleteEdges",
+      "reason": null
+    },
+    {
+      "added_by": "worker",
+      "kind": "theorem",
+      "module": "Mathlib.Combinatorics.SimpleGraph.Paths",
+      "name": "SimpleGraph.Walk.IsPath.toDeleteEdges",
+      "reason": null
+    },
+    {
+      "added_by": "worker",
+      "kind": "def",
+      "module": "Mathlib.Combinatorics.SimpleGraph.Walk.Operations",
+      "name": "SimpleGraph.Walk.append",
+      "reason": null
+    },
+    {
+      "added_by": "worker",
+      "kind": "def",
+      "module": "Mathlib.Combinatorics.SimpleGraph.Walk.Operations",
+      "name": "SimpleGraph.Walk.reverse",
+      "reason": null
+    },
+    {
+      "added_by": "worker",
+      "kind": "theorem",
+      "module": "Mathlib.Combinatorics.SimpleGraph.Walk.Operations",
+      "name": "SimpleGraph.Walk.support_append",
+      "reason": null
+    },
+    {
+      "added_by": "worker",
+      "kind": "lemma",
+      "module": "Mathlib.Combinatorics.SimpleGraph.Paths",
+      "name": "SimpleGraph.Walk.IsPath.disjoint_support_of_append",
+      "reason": null
+    },
+    {
+      "added_by": "worker",
+      "kind": "lemma",
+      "module": "Mathlib.Combinatorics.SimpleGraph.Paths",
+      "name": "SimpleGraph.Walk.IsPath.mem_support_iff_exists_append",
+      "reason": null
+    },
+    {
+      "added_by": "worker",
+      "kind": "theorem",
+      "module": "Mathlib.Combinatorics.SimpleGraph.Paths",
+      "name": "SimpleGraph.Path.nodup_support",
+      "reason": null
+    }
+  ],
+  "mathlib_modules": [
+    {
+      "added_by": "worker",
+      "module": "Mathlib.Combinatorics.SimpleGraph.Acyclic",
+      "reason": null
+    },
+    {
+      "added_by": "worker",
+      "module": "Mathlib.Combinatorics.SimpleGraph.Paths",
+      "reason": null
+    },
+    {
+      "added_by": "worker",
+      "module": "Mathlib.Combinatorics.SimpleGraph.Connectivity.Connected",
+      "reason": null
+    },
+    {
+      "added_by": "worker",
+      "module": "Mathlib.Combinatorics.SimpleGraph.Walk.Maps",
+      "reason": null
+    },
+    {
+      "added_by": "worker",
+      "module": "Mathlib.Combinatorics.SimpleGraph.Walk.Operations",
+      "reason": null
+    }
+  ],
+  "objective": "Produce a graph-proved generic tree-path package. Prove a noncircular first-intersection/support-separation theorem and a public unique-path append/factorization theorem whose hypotheses express that parent-c is the terminal oriented edge on the root-to-c path and x lies in the c-side connected component after deleting that edge. The result must directly instantiate the accepted Main.RootedCapacity::rootedChildComponent_path_decomposition@1 consumer without depending on Main.RootedCapacity.",
+  "owned_refs": [
+    {
+      "added_by": "coordinator",
+      "reason": "The source roots trees, orients edges away from the root, treats child branches as independent rooted subtrees, and groups vertices by those subtrees; the generic unique-path/cut separation package is the Lean structural bridge needed to formalize that decomposition.",
+      "ref": {
+        "kind": "source",
+        "ref": {
+          "end_line": 64,
+          "path": "solution.tex",
+          "start_line": 33
+        }
+      },
+      "ref_id": "mat_c4760eb9e19769cd"
+    }
+  ],
+  "status": "committed",
+  "success_criteria": "The support-separation and unique-path factorization results have compiler-accepted statements and proofs; every theorem-like helper is proved; at least one public factorization interface is bound with hypotheses instantiable from RootedCapacity's hc : c ∈ rootedChildren G hG ρ parent and x : rootedChildComponent G parent c; no RootedCapacity dependency or weighted/matrix assumption is introduced; public Statement closure is complete.",
+  "summary": "Accepted ready outcome for contract v1. The node provides a six-declaration graph-proved package with public uniquePath plus proved, interface-bound cut-support separation and exact append factorization. Its factorization assumes adjacency parent-c, root-to-parent reachability and c-to-x reachability in G.deleteEdges {s(parent,c)}, and concludes equality of the canonical root-to-x path with the root-to-c/c-to-x append. These objects and conclusion direction match rootedChildComponent_path_decomposition@1: hc supplies the oriented adjacent edge and root-side path, while subtype membership in rootedChildComponent supplies child-side reachability; unfolding uniquePath identifies the same Classical.choose path. No weighted, matrix, or RootedCapacity dependency remains.",
+  "task_completion_mode": "graph_proved",
+  "version": 1
+}

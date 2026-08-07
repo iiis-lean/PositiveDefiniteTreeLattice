@@ -1,0 +1,16 @@
+{
+  "created_at": "2026-07-31T11:37:41Z",
+  "current_revision": 2,
+  "kind": "theorem",
+  "lifecycle": "active",
+  "module": "PositiveDefiniteTreeLattice.Main.RootedEstimates.Theorems.rootedChildInductionAbsBound",
+  "name": "rootedChildInductionAbsBound",
+  "node_path": "Main.RootedEstimates",
+  "public": false,
+  "revision_ids": [
+    1,
+    2
+  ],
+  "summary": "A smaller-cardinality rooted estimate specializes to a rooted child component and yields the source absolute-value child bound.",
+  "updated_at": "2026-08-01T10:11:17Z"
+}

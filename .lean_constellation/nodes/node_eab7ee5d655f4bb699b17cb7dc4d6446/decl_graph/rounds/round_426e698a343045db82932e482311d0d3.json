@@ -1,0 +1,33 @@
+{
+  "change_summaries": {},
+  "committed_at": "2026-07-30T19:00:03Z",
+  "created_at": "2026-07-30T18:45:20Z",
+  "discard_reason": null,
+  "discarded_at": null,
+  "discarded_by": null,
+  "discarded_created_decl_names": [],
+  "discarded_restored_decl_revisions": {},
+  "discarded_revision_refs": [],
+  "execution_completed_at": "2026-07-30T18:57:57Z",
+  "execution_reason": null,
+  "execution_result_kind": "success",
+  "node_path": "Main.RootedCapacity",
+  "objective": "Create and prove the b_0009 child-component cardinal decrease needed for the strict-capacity induction.",
+  "plan_closeout_acknowledged_at": "2026-07-30T19:00:03Z",
+  "plan_closeout_acknowledged_by": "a_a93b40977f574bad89528358fa89e022",
+  "result_kind": "success",
+  "result_reason": "The child-component cardinal decrease theorem is proved and closes the strict-capacity induction prerequisite.",
+  "revision_refs": [
+    {
+      "change_id": "rootedChildComponent_card_lt@rev:1",
+      "decl_name": "rootedChildComponent_card_lt",
+      "revision": 1
+    }
+  ],
+  "round_id": "round_426e698a343045db82932e482311d0d3",
+  "round_index": 56,
+  "started_at": "2026-07-30T18:46:31Z",
+  "status": "committed",
+  "strategy_id": "strategy_fc60f40a331d4f63bd19e22f0eec7473",
+  "summary": "Round 56 completed the predictable induction prerequisite. rootedChildComponent_card_lt is proved and proof-policy satisfied, with no closure debt. Together with rootedCapacity_recursion, rootedCapacity_pos, child admissibility inheritance, and admissibility's root weight bound, the source's b_0009 induction route is now dependency-closed. The next action is to create and prove the required public capacity_pos_lt_one interface."
+}

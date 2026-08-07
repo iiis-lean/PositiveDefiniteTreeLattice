@@ -1,0 +1,33 @@
+{
+  "change_summaries": {},
+  "committed_at": "2026-07-30T06:47:51Z",
+  "created_at": "2026-07-30T06:30:43Z",
+  "discard_reason": null,
+  "discarded_at": null,
+  "discarded_by": null,
+  "discarded_created_decl_names": [],
+  "discarded_restored_decl_revisions": {},
+  "discarded_revision_refs": [],
+  "execution_completed_at": "2026-07-30T06:46:17Z",
+  "execution_reason": null,
+  "execution_result_kind": "success",
+  "node_path": "Main.RootedCapacity",
+  "objective": "Complete only Proof Formal for rootedChildren_rootedChildComponent, preserving its accepted b_0009 Finset.map statement and Proof NL plan. Use the newly proved Main.TreePathSeparation theorem reachable_childSide_of_uniquePath_concat for the reverse inclusion, together with rootedChildComponent_path_decomposition@2, so the result becomes the graph-proved prerequisite for rootedChildCount_rootedChildComponent.",
+  "plan_closeout_acknowledged_at": "2026-07-30T06:47:51Z",
+  "plan_closeout_acknowledged_by": "a_a93b40977f574bad89528358fa89e022",
+  "result_kind": "success",
+  "result_reason": "The sole revision reached proved state and passed graph-proved target satisfaction with the accepted public statement unchanged.",
+  "revision_refs": [
+    {
+      "change_id": "rootedChildren_rootedChildComponent@rev:3",
+      "decl_name": "rootedChildren_rootedChildComponent",
+      "revision": 3
+    }
+  ],
+  "round_id": "round_3b29d099173c490786c8739262272d31",
+  "round_index": 16,
+  "started_at": "2026-07-30T06:32:18Z",
+  "status": "committed",
+  "strategy_id": "strategy_1fbcdfb31a2e4cada1ff5b7b941de18c",
+  "summary": "Round 16 made the intended bottom-up progress: rootedChildren_rootedChildComponent rev3 reached proved state and graph-proved satisfaction with its accepted statement unchanged. The former provider/API closure blocker is resolved; no state-only intermediate or unresolved dependency remains in this round. Graph hygiene is clean and the open strategy still explains the next work. rootedChildCount_rootedChildComponent rev1 is now dependency-closed for a declared-to-proved retry by unfolding rootedChildCount and taking Finset.card of this transport equality; it should be the next single round before child admissibility or capacity recursion."
+}

@@ -1,0 +1,33 @@
+{
+  "change_summaries": {},
+  "committed_at": "2026-07-30T02:10:13Z",
+  "created_at": "2026-07-30T01:51:49Z",
+  "discard_reason": null,
+  "discarded_at": null,
+  "discarded_by": null,
+  "discarded_created_decl_names": [],
+  "discarded_restored_decl_revisions": {},
+  "discarded_revision_refs": [],
+  "execution_completed_at": "2026-07-30T02:07:52Z",
+  "execution_reason": null,
+  "execution_result_kind": "success",
+  "node_path": "Main.RootedCapacity",
+  "objective": "Prove the b_0009 component Gram bridge: for an adjacent deleted edge in a tree, the rootedGram of the child-side component with restricted weight is exactly the ambient rootedGram principal submatrix along the component subtype inclusion. This enables PosDef inheritance and later block-diagonal/Schur calculations.",
+  "plan_closeout_acknowledged_at": "2026-07-30T02:10:13Z",
+  "plan_closeout_acknowledged_by": "a_a93b40977f574bad89528358fa89e022",
+  "result_kind": "success",
+  "result_reason": "The public child-component Gram principal-submatrix theorem reached proved state with passing statement, proof, and policy checks.",
+  "revision_refs": [
+    {
+      "change_id": "rootedGram_rootedChildComponent@rev:1",
+      "decl_name": "rootedGram_rootedChildComponent",
+      "revision": 1
+    }
+  ],
+  "round_id": "round_1adb91eac3e041e0b4f1ed669edd5d3e",
+  "round_index": 9,
+  "started_at": "2026-07-30T01:53:21Z",
+  "status": "committed",
+  "strategy_id": "strategy_b9f2bb44ae0a40ba9081239e5f026481",
+  "summary": "The b_0009 bottom-up strategy made material progress: rootedGram_rootedChildComponent reached proved state and graph-proved satisfaction. The structural component and matrix-restriction layers are now closed, with no blocker, state-only intermediate, superseded branch, or scope overflow. Remaining predictable lower work before capacity recursion is child-subtree admissibility, chiefly rooted child-count inheritance; PosDef inheritance can now use Matrix.PosDef.submatrix and this theorem. The next action should be another dependency-ordered helper round."
+}

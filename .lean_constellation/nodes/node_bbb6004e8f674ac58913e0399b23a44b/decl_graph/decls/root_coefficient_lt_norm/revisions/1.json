@@ -1,0 +1,237 @@
+{
+  "change": {
+    "anticipated_proof_dep_names": [
+      "rootCoordinateSqLeCapacityMulTreePairing",
+      "treePairingCastEqRootedGramQuadratic"
+    ],
+    "anticipated_statement_dep_names": [],
+    "base_revision": null,
+    "kind": "create",
+    "objective": "Implement SourceIndex b_0011 / solution.tex lines 155–180 as the exact contract interface `PositiveDefiniteTreeLattice.root_coefficient_lt_norm`; Statement Formal must place the theorem in namespace PositiveDefiniteTreeLattice so its compiler-confirmed full name matches exactly. For finite V with the existing decidability instances, graph G, integer weight w, root rho, admissibility `hAdm : IsAdmissibleRootedTree G w rho`, integral coordinate vector `x : V → ℤ`, and `hx : x ≠ 0`, conclude exactly `x rho < PositiveDefiniteTreeLattice.treePairing G w x x` in ℤ (equivalently the source `0 < x² - x_rho`), with no strengthened hypothesis or weakened conclusion. Prove the treePairing norm is positive by extracting Matrix.PosDef from hAdm, applying Matrix.PosDef.dotProduct_mulVec_pos to the rational cast of nonzero x, and rewriting with proved treePairingCastEqRootedGramQuadratic. If `x rho ≤ 0`, finish from norm positivity. If `0 < x rho`, combine proved rootCoordinateSqLeCapacityMulTreePairing with public capacity_pos_lt_one to obtain `(x rho : ℚ)^2 < ↑(treePairing G w x x)`, use positivity/integrality to show `x rho ≤ (x rho)^2`, and cast the strict inequality back to ℤ. Preserve the exact root coordinate, integral pairing model, rational capacity, strict direction, and source case split; do not increase heartbeat limits or introduce further helper declarations. This is declaration 16 and the second required public interface.",
+    "require_target_state_satisfied": true,
+    "reset_to_state": null,
+    "summary": "Created the exact qualified public declaration PositiveDefiniteTreeLattice.root_coefficient_lt_norm and advanced revision 1 through all statement and proof stages to proved. Its accepted statement preserves rooted admissibility, a nonzero integral vector, the exact root coordinate, and the strict integral conclusion `x rho < treePairing G w x x`, equivalent to source `0 < x² - x_rho`. The proof passed via PosDef norm positivity, treePairingCastEqRootedGramQuadratic, rootCoordinateSqLeCapacityMulTreePairing, and public capacity_pos_lt_one. The declaration is public, graph_proved-satisfied, and matches the second contract interface identity.",
+    "target_state": "proved"
+  },
+  "lean_decl_name": "PositiveDefiniteTreeLattice.root_coefficient_lt_norm",
+  "proof": {
+    "deps": [
+      {
+        "kind": "mathlib_decl",
+        "reason": "Transports the integral root-coordinate square comparison to the rational inequality in the positive-root case.",
+        "ref": {
+          "module": "Mathlib.Algebra.Order.Ring.Cast",
+          "name": "Int.cast_le"
+        }
+      },
+      {
+        "kind": "mathlib_decl",
+        "reason": "Transports the final strict rational root-coordinate inequality back to the required strict integer conclusion.",
+        "ref": {
+          "module": "Mathlib.Algebra.Order.Ring.Cast",
+          "name": "Int.cast_lt"
+        }
+      },
+      {
+        "kind": "mathlib_decl",
+        "reason": "Gives strict positivity of the rootedGram quadratic form for the rational cast of the nonzero integral vector.",
+        "ref": {
+          "module": "Mathlib.LinearAlgebra.Matrix.PosDef",
+          "name": "Matrix.PosDef.dotProduct_mulVec_pos"
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "Its positive-definite rootedGram component proves the norm is strictly positive for the nonzero coordinate vector.",
+        "ref": {
+          "name": "IsAdmissibleRootedTree",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 1
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "Supplies 0 < rootedCapacity and rootedCapacity < 1 for the strict positive-root estimate.",
+        "ref": {
+          "name": "capacity_pos_lt_one",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 2
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "Is the positive-definite rational matrix whose quadratic form is identified with the treePairing norm.",
+        "ref": {
+          "name": "rootedGram",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 2
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "Provides the exact rational Cauchy root-coordinate inequality in the positive-root case.",
+        "ref": {
+          "name": "rootCoordinateSqLeCapacityMulTreePairing",
+          "node": "Main.RootedEstimates",
+          "repo": null,
+          "revision": 1
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "Rewrites the rootedGram quadratic positivity from Matrix.PosDef to strict positivity of the integral treePairing norm.",
+        "ref": {
+          "name": "treePairingCastEqRootedGramQuadratic",
+          "node": "Main.RootedEstimates",
+          "repo": null,
+          "revision": 1
+        }
+      }
+    ],
+    "formal": {
+      "check": {
+        "allow_sorry": false,
+        "contains_axiom": false,
+        "contains_sorry": false,
+        "diagnostics": {
+          "diagnostics": [],
+          "passed": true,
+          "raw_excerpt": "{'success': True, 'error_message': None, 'file': 'PositiveDefiniteTreeLattice.Main.RootedEstimates.Theorems.root_coefficient_lt_norm', 'items': [], 'total_items': 0, 'error_count': 0, 'warning_count': 0, 'info_count': 0, 'sorry_count': 0}",
+          "repo_file_path": "PositiveDefiniteTreeLattice/Main/RootedEstimates/Theorems/root_coefficient_lt_norm.lean",
+          "schema_version": 2,
+          "summary": "Diagnostics returned 0 items"
+        },
+        "message": "Lean check passed.",
+        "policy": "proof_formal",
+        "scan": {
+          "admit_count": 0,
+          "axiom_count": 0,
+          "contains_admit": false,
+          "contains_axiom": false,
+          "contains_opaque": false,
+          "contains_sorry": false,
+          "contains_unsafe": false,
+          "limitation": "Text scan ignores Lean comments and string literals with a conservative first-round lexer; it is not a full Lean parser.",
+          "occurrences": [],
+          "opaque_count": 0,
+          "sorry_count": 0,
+          "summary": "sorry=0, admit=0, axiom=0, opaque=0, unsafe=0",
+          "unsafe_count": 0
+        },
+        "status": "passed"
+      },
+      "code": "-- lean-constellation: managed-imports-begin\nimport PositiveDefiniteTreeLattice.Main.RootedEstimates.Prelude\nimport Mathlib.Algebra.Order.Ring.Cast\nimport Mathlib.LinearAlgebra.Matrix.PosDef\nimport PositiveDefiniteTreeLattice.Main.RootedEstimates.Theorems.rootCoordinateSqLeCapacityMulTreePairing\nimport PositiveDefiniteTreeLattice.Main.RootedEstimates.Theorems.treePairingCastEqRootedGramQuadratic\n-- lean-constellation: managed-imports-end\n\n-- lean-constellation: declaration-source-begin\n\n/--\n# lean-constellation target: `root_coefficient_lt_norm`\n\nFor a finite graph `G` with the existing decidability instances, an integer weight function `w`, a\nroot `rho`, and an admissibility hypothesis `hAdm : IsAdmissibleRootedTree G w rho`, let `x : V → ℤ`\nbe an integral coordinate vector with `hx : x ≠ 0`.  The exact public theorem\n`PositiveDefiniteTreeLattice.root_coefficient_lt_norm` asserts the strict integer inequality\n\n`x rho < PositiveDefiniteTreeLattice.treePairing G w x x`.\n\nEquivalently, the integral tree-pairing norm satisfies `0 < PositiveDefiniteTreeLattice.treePairing\nG w x x - x rho`.  The statement retains the exact root coordinate, integral pairing model,\nadmissibility hypothesis, and nonzero-vector hypothesis from the source.\n\n## Sources\n\n- Source `solution.tex`, lines 155–159\n\n## Statement dependencies\n\n- `Main.LatticeFoundations::treePairingAnchor` → `PositiveDefiniteTreeLattice.treePairing` from\n  `PositiveDefiniteTreeLattice.Main.LatticeFoundations.Defs.treePairingAnchor`\n- `Main.RootedCapacity::IsAdmissibleRootedTree` → `IsAdmissibleRootedTree` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.IsAdmissibleRootedTree`\n\n## Proof outline\n\nWrite `N := PositiveDefiniteTreeLattice.treePairing G w x x` and `xQ : V → ℚ := fun v => (x v : ℚ)`.\nDestructure `hAdm` to obtain `hPos : Matrix.PosDef (rootedGram G w)`.  The coordinatewise cast\nvector is nonzero: otherwise function extensionality and injectivity of the integer cast would\ncontradict `hx`.  Hence `hPos.dotProduct_mulVec_pos hxQ` gives strict positivity of the rational\nrootedGram quadratic form.  Rewrite it through the proved `treePairingCastEqRootedGramQuadratic G w\nx`, and use cast/order normalization to obtain `0 < N` in `ℤ`.\n\nSplit on `x rho ≤ 0`, exactly as in the source.  In this case, combine `0 < N` with `x rho ≤ 0` by\ninteger linear arithmetic to conclude `x rho < N`.\n\nIn the remaining case obtain `0 < x rho`.  Let `gamma := rootedCapacity G w rho`.  The proved Cauchy\nbridge `rootCoordinateSqLeCapacityMulTreePairing G w rho hAdm x` gives\n`(x rho : ℚ)^2 ≤ gamma * (N : ℚ)`.\nFrom `PositiveDefiniteTreeLattice.capacity_pos_lt_one G w rho hAdm`, use `gamma < 1` and the\nalready-established `(N : ℚ) > 0` to get the strict bound\n`(x rho : ℚ)^2 < (N : ℚ)`.\nSince `x rho` is a positive integer, ordered-ring arithmetic gives `x rho ≤ (x rho)^2`; cast this\ninequality to `ℚ`, compose it with the strict rational bound, and transport the resulting strict\ninequality back to `ℤ`.  This proves the exact public conclusion `x rho < treePairing G w x x`, with\nno nonzero condition beyond the original `hx` and no change of graph, root, or pairing model.  It is\nthe source argument in solution.tex lines 155–180.\n\n## Proof sources\n\n- Source `solution.tex`, lines 155–180\n\n## Proof dependencies\n\n- `Int.cast_le` from `Mathlib.Algebra.Order.Ring.Cast`\n- `Int.cast_lt` from `Mathlib.Algebra.Order.Ring.Cast`\n- `Matrix.PosDef.dotProduct_mulVec_pos` from `Mathlib.LinearAlgebra.Matrix.PosDef`\n- `Main.RootedCapacity::IsAdmissibleRootedTree` → `IsAdmissibleRootedTree` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.IsAdmissibleRootedTree`\n- `Main.RootedCapacity::capacity_pos_lt_one` → `PositiveDefiniteTreeLattice.capacity_pos_lt_one`\n  from `PositiveDefiniteTreeLattice.Main.RootedCapacity.Theorems.capacity_pos_lt_one`\n- `Main.RootedCapacity::rootedGram` → `rootedGram` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedGram`\n- `Main.RootedEstimates::rootCoordinateSqLeCapacityMulTreePairing` →\n  `rootCoordinateSqLeCapacityMulTreePairing` from `PositiveDefiniteTreeLattice.Main.RootedEstimates.\n  Theorems.rootCoordinateSqLeCapacityMulTreePairing`\n- `Main.RootedEstimates::treePairingCastEqRootedGramQuadratic` →\n  `treePairingCastEqRootedGramQuadratic` from\n  `PositiveDefiniteTreeLattice.Main.RootedEstimates.Theorems.treePairingCastEqRootedGramQuadratic`\n-/\ntheorem PositiveDefiniteTreeLattice.root_coefficient_lt_norm {V : Type*} [Fintype V]\n    [DecidableEq V] (G : SimpleGraph V) [DecidableRel G.Adj] (w : V → ℤ) (rho : V)\n    (hAdm : IsAdmissibleRootedTree G w rho) (x : V → ℤ) (hx : x ≠ 0) :\n    x rho < treePairing G w x x := by\n  classical\n  have hCauchy := rootCoordinateSqLeCapacityMulTreePairing G w rho hAdm x\n  have hcap := capacity_pos_lt_one G w rho hAdm\n  rcases hAdm with ⟨hG, hPos, hw, hchildren⟩\n  let xQ : V → ℚ := fun v => (x v : ℚ)\n  have hxQ : xQ ≠ 0 := by\n    intro hxQ\n    apply hx\n    funext v\n    have hv : (x v : ℚ) = 0 := by\n      simpa [xQ] using congrFun hxQ v\n    exact_mod_cast hv\n  have hquad : 0 < xQ ⬝ᵥ Matrix.mulVec (rootedGram G w) xQ := by\n    simpa using hPos.dotProduct_mulVec_pos hxQ\n  have hNQ : 0 < (↑(treePairing G w x x) : ℚ) := by\n    rw [treePairingCastEqRootedGramQuadratic]\n    simpa [xQ] using hquad\n  have hN : 0 < treePairing G w x x := by\n    exact_mod_cast hNQ\n  by_cases hroot : x rho ≤ 0\n  · omega\n  · have hroot_pos : 0 < x rho := lt_of_not_ge hroot\n    have hgamma_lt : rootedCapacity G w rho < 1 := hcap.2\n    have hgamma_mul_lt : rootedCapacity G w rho *\n        (↑(treePairing G w x x) : ℚ) < (↑(treePairing G w x x) : ℚ) := by\n      nlinarith\n    have hsq_lt : (x rho : ℚ) ^ 2 < (↑(treePairing G w x x) : ℚ) :=\n      lt_of_le_of_lt hCauchy hgamma_mul_lt\n    have hroot_sq : x rho ≤ (x rho) ^ 2 := by\n      nlinarith\n    have hroot_sqQ : (x rho : ℚ) ≤ (x rho : ℚ) ^ 2 := by\n      exact_mod_cast hroot_sq\n    have hroot_ltQ : (x rho : ℚ) < (↑(treePairing G w x x) : ℚ) :=\n      lt_of_le_of_lt hroot_sqQ hsq_lt\n    exact_mod_cast hroot_ltQ\n"
+    },
+    "nl": {
+      "origin": [
+        {
+          "end_line": 180,
+          "end_locator": null,
+          "kind": "source",
+          "note": "These lines state the root coefficient bound and prove it by positive-definite norm positivity, the nonpositive-root case, and the capacity/Cauchy estimate in the positive-root case.",
+          "ref": null,
+          "resource_key": null,
+          "source_path": "solution.tex",
+          "start_line": 155,
+          "start_locator": null
+        }
+      ],
+      "text": "Write `N := PositiveDefiniteTreeLattice.treePairing G w x x` and `xQ : V → ℚ := fun v => (x v : ℚ)`.  Destructure `hAdm` to obtain `hPos : Matrix.PosDef (rootedGram G w)`.  The coordinatewise cast vector is nonzero: otherwise function extensionality and injectivity of the integer cast would contradict `hx`.  Hence `hPos.dotProduct_mulVec_pos hxQ` gives strict positivity of the rational rootedGram quadratic form.  Rewrite it through the proved `treePairingCastEqRootedGramQuadratic G w x`, and use cast/order normalization to obtain `0 < N` in `ℤ`.\n\nSplit on `x rho ≤ 0`, exactly as in the source.  In this case, combine `0 < N` with `x rho ≤ 0` by integer linear arithmetic to conclude `x rho < N`.\n\nIn the remaining case obtain `0 < x rho`.  Let `gamma := rootedCapacity G w rho`.  The proved Cauchy bridge `rootCoordinateSqLeCapacityMulTreePairing G w rho hAdm x` gives\n`(x rho : ℚ)^2 ≤ gamma * (N : ℚ)`.\nFrom `PositiveDefiniteTreeLattice.capacity_pos_lt_one G w rho hAdm`, use `gamma < 1` and the already-established `(N : ℚ) > 0` to get the strict bound\n`(x rho : ℚ)^2 < (N : ℚ)`.\nSince `x rho` is a positive integer, ordered-ring arithmetic gives `x rho ≤ (x rho)^2`; cast this inequality to `ℚ`, compose it with the strict rational bound, and transport the resulting strict inequality back to `ℤ`.  This proves the exact public conclusion `x rho < treePairing G w x x`, with no nonzero condition beyond the original `hx` and no change of graph, root, or pairing model.  It is the source argument in solution.tex lines 155–180."
+    }
+  },
+  "revision": 1,
+  "state": "proved",
+  "statement": {
+    "deps": [
+      {
+        "kind": "repo_decl",
+        "reason": "The formal conclusion uses the exact public definition PositiveDefiniteTreeLattice.treePairing.",
+        "ref": {
+          "name": "treePairingAnchor",
+          "node": "Main.LatticeFoundations",
+          "repo": null,
+          "revision": 1
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "The public theorem hypothesis is the existing admissible rooted-tree predicate.",
+        "ref": {
+          "name": "IsAdmissibleRootedTree",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 1
+        }
+      }
+    ],
+    "formal": {
+      "check": {
+        "allow_sorry": true,
+        "contains_axiom": false,
+        "contains_sorry": true,
+        "diagnostics": {
+          "diagnostics": [
+            {
+              "column": 9,
+              "line": 32,
+              "message": "declaration uses `sorry`",
+              "severity": "warning"
+            }
+          ],
+          "passed": true,
+          "raw_excerpt": "{'success': True, 'error_message': None, 'file': 'PositiveDefiniteTreeLattice.Main.RootedEstimates.Theorems.root_coefficient_lt_norm', 'items': [{'severity': 'warning', 'pos': {'line': 32, 'column': 9}, 'endPos': {'line': 32, 'column': 61}, 'kind': None, 'data': 'declaration uses `sorry`', 'fileName': 'PositiveDefiniteTreeLattice.Main.RootedEstimates.Theorems.root_coefficient_lt_norm', 'content': '  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.IsAdmissibleRootedTree`\\n-/\\ntheorem PositiveDefiniteTreeLattice.root_coefficient_lt_norm {V : Type*} [Fintype V]\\n    [DecidableEq V] (G : SimpleGraph V) [DecidableRel G.Adj] (w : V → ℤ) (rho : V)\\n    (hAdm : IsAdmissibleRootedTree G w rho) (x : V → ℤ) (hx : x ≠ 0) :'}], 'total_items': 1, 'error_count': 0, 'warning_count': 1, 'info_count': 0, 'sorry_count': 1}",
+          "repo_file_path": "PositiveDefiniteTreeLattice/Main/RootedEstimates/Theorems/root_coefficient_lt_norm.lean",
+          "schema_version": 2,
+          "summary": "Diagnostics returned 1 items"
+        },
+        "message": "Lean check passed.",
+        "policy": "statement_formal",
+        "scan": {
+          "admit_count": 0,
+          "axiom_count": 0,
+          "contains_admit": false,
+          "contains_axiom": false,
+          "contains_opaque": false,
+          "contains_sorry": true,
+          "contains_unsafe": false,
+          "limitation": "Text scan ignores Lean comments and string literals with a conservative first-round lexer; it is not a full Lean parser.",
+          "occurrences": [
+            {
+              "column": 3,
+              "excerpt": "sorry",
+              "kind": "sorry",
+              "line": 36
+            }
+          ],
+          "opaque_count": 0,
+          "sorry_count": 1,
+          "summary": "sorry=1, admit=0, axiom=0, opaque=0, unsafe=0",
+          "unsafe_count": 0
+        },
+        "status": "passed"
+      },
+      "code": "-- lean-constellation: managed-imports-begin\nimport PositiveDefiniteTreeLattice.Main.RootedEstimates.Prelude\n-- lean-constellation: managed-imports-end\n\n-- lean-constellation: declaration-source-begin\n\n/--\n# lean-constellation target: `root_coefficient_lt_norm`\n\nFor a finite graph `G` with the existing decidability instances, an integer weight function `w`, a\nroot `rho`, and an admissibility hypothesis `hAdm : IsAdmissibleRootedTree G w rho`, let `x : V → ℤ`\nbe an integral coordinate vector with `hx : x ≠ 0`.  The exact public theorem\n`PositiveDefiniteTreeLattice.root_coefficient_lt_norm` asserts the strict integer inequality\n\n`x rho < PositiveDefiniteTreeLattice.treePairing G w x x`.\n\nEquivalently, the integral tree-pairing norm satisfies `0 < PositiveDefiniteTreeLattice.treePairing\nG w x x - x rho`.  The statement retains the exact root coordinate, integral pairing model,\nadmissibility hypothesis, and nonzero-vector hypothesis from the source.\n\n## Sources\n\n- Source `solution.tex`, lines 155–159\n\n## Statement dependencies\n\n- `Main.LatticeFoundations::treePairingAnchor` → `PositiveDefiniteTreeLattice.treePairing` from\n  `PositiveDefiniteTreeLattice.Main.LatticeFoundations.Defs.treePairingAnchor`\n- `Main.RootedCapacity::IsAdmissibleRootedTree` → `IsAdmissibleRootedTree` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.IsAdmissibleRootedTree`\n-/\ntheorem PositiveDefiniteTreeLattice.root_coefficient_lt_norm {V : Type*} [Fintype V]\n    [DecidableEq V] (G : SimpleGraph V) [DecidableRel G.Adj] (w : V → ℤ) (rho : V)\n    (hAdm : IsAdmissibleRootedTree G w rho) (x : V → ℤ) (hx : x ≠ 0) :\n    x rho < treePairing G w x x := by\n  sorry\n"
+    },
+    "nl": {
+      "origin": [
+        {
+          "end_line": 159,
+          "end_locator": null,
+          "kind": "source",
+          "note": "This is the source root-coefficient bound statement; its form 0 < x² − xρ is exactly equivalent to the stated strict integer inequality.",
+          "ref": null,
+          "resource_key": null,
+          "source_path": "solution.tex",
+          "start_line": 155,
+          "start_locator": null
+        }
+      ],
+      "text": "For a finite graph `G` with the existing decidability instances, an integer weight function `w`, a root `rho`, and an admissibility hypothesis `hAdm : IsAdmissibleRootedTree G w rho`, let `x : V → ℤ` be an integral coordinate vector with `hx : x ≠ 0`.  The exact public theorem `PositiveDefiniteTreeLattice.root_coefficient_lt_norm` asserts the strict integer inequality\n\n`x rho < PositiveDefiniteTreeLattice.treePairing G w x x`.\n\nEquivalently, the integral tree-pairing norm satisfies `0 < PositiveDefiniteTreeLattice.treePairing G w x x - x rho`.  The statement retains the exact root coordinate, integral pairing model, admissibility hypothesis, and nonzero-vector hypothesis from the source."
+    }
+  },
+  "status": "committed",
+  "updated_at": "2026-08-01T15:36:44Z"
+}

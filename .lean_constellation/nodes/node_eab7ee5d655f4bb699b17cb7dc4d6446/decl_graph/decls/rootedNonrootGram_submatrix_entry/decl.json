@@ -1,0 +1,15 @@
+{
+  "created_at": "2026-07-30T11:41:08Z",
+  "current_revision": 1,
+  "kind": "theorem",
+  "lifecycle": "active",
+  "module": "PositiveDefiniteTreeLattice.Main.RootedCapacity.Theorems.rootedNonrootGram_submatrix_entry",
+  "name": "rootedNonrootGram_submatrix_entry",
+  "node_path": "Main.RootedCapacity",
+  "public": false,
+  "revision_ids": [
+    1
+  ],
+  "summary": "The nested nonroot-principal-submatrix entry at child-component indices equals the corresponding ambient rooted Gram entry.",
+  "updated_at": "2026-07-30T11:41:08Z"
+}

@@ -1,0 +1,33 @@
+{
+  "change_summaries": {},
+  "committed_at": "2026-08-01T10:55:45Z",
+  "created_at": "2026-08-01T10:11:08Z",
+  "discard_reason": null,
+  "discarded_at": null,
+  "discarded_by": null,
+  "discarded_created_decl_names": [],
+  "discarded_restored_decl_revisions": {},
+  "discarded_revision_refs": [],
+  "execution_completed_at": "2026-08-01T10:50:50Z",
+  "execution_reason": null,
+  "execution_result_kind": "success",
+  "node_path": "Main.RootedEstimates",
+  "objective": "Repair rootedChildInductionAbsBound at Statement Formal by sharing one explicit universe between the ambient vertex type and the generalized induction-hypothesis type, then prove the unchanged b_0010 child bound.",
+  "plan_closeout_acknowledged_at": "2026-08-01T10:55:45Z",
+  "plan_closeout_acknowledged_by": "a_c126bbd9cf3144258d31b99169f687bb",
+  "result_kind": "success",
+  "result_reason": "The shared-universe formal statement and proof passed; rootedChildInductionAbsBound revision 2 reached proved with required graph_proved satisfaction.",
+  "revision_refs": [
+    {
+      "change_id": "rootedChildInductionAbsBound@rev:2",
+      "decl_name": "rootedChildInductionAbsBound",
+      "revision": 2
+    }
+  ],
+  "round_id": "round_796ce659a52545acb7d65cf89a4fe23e",
+  "round_index": 12,
+  "started_at": "2026-08-01T10:13:46Z",
+  "status": "committed",
+  "strategy_id": "strategy_6bfc666c638344a19f7d1dee5c0a60d4",
+  "summary": "The strategy made the planned repair: rootedChildInductionAbsBound@2 passed Statement Formal, Proof NL, and Proof Formal, reached proved, and satisfies graph_proved while preserving its source meaning. No declaration in this round remains unfinished, no state-only residue exists, and the universe blocker is closed. The strategy remains viable and within node scope. After commit, recompute this helper’s dependency closure; if clean, the next round should create and prove only the second b_0010 rational cast/sum aggregation bridge. Do not retry rooted_integer_estimate until that bridge is also graph_proved. No graph-hygiene cleanup is required."
+}

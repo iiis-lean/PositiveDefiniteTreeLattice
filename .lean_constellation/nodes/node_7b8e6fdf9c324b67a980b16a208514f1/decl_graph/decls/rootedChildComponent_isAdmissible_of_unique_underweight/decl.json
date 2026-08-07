@@ -1,0 +1,17 @@
+{
+  "created_at": "2026-08-02T13:01:45Z",
+  "current_revision": 3,
+  "kind": "lemma",
+  "lifecycle": "active",
+  "module": "PositiveDefiniteTreeLattice.Main.IrreducibleVertex.Lemmas.rootedChildComponent_isAdmissible_of_unique_underweight",
+  "name": "rootedChildComponent_isAdmissible_of_unique_underweight",
+  "node_path": "Main.IrreducibleVertex",
+  "public": false,
+  "revision_ids": [
+    1,
+    2,
+    3
+  ],
+  "summary": "Each rooted component attached to the unique underweighted vertex is admissible.",
+  "updated_at": "2026-08-02T15:35:15Z"
+}

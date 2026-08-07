@@ -1,0 +1,33 @@
+{
+  "change_summaries": {},
+  "committed_at": "2026-07-30T18:18:10Z",
+  "created_at": "2026-07-30T18:12:43Z",
+  "discard_reason": null,
+  "discarded_at": null,
+  "discarded_by": null,
+  "discarded_created_decl_names": [],
+  "discarded_restored_decl_revisions": {},
+  "discarded_revision_refs": [],
+  "execution_completed_at": "2026-07-30T18:16:40Z",
+  "execution_reason": "Revision 2's accepted Statement NL still explicitly concludes `Invertible (Matrix.fromBlocks A B C D)`, while the current round objective and compiler-valid formal theorem conclude `IsUnit (Matrix.fromBlocks A B C D)`. These are not the same formal proposition, and Statement Formal may not silently revise accepted Statement NL.",
+  "execution_result_kind": "blocked",
+  "node_path": "Main.RootedCapacity",
+  "objective": "Advance the compiler-valid IsUnit formulation of the private root/nonroot block helper from its accepted Statement NL through a graph-proved proof.",
+  "plan_closeout_acknowledged_at": "2026-07-30T18:18:10Z",
+  "plan_closeout_acknowledged_by": "a_a93b40977f574bad89528358fa89e022",
+  "result_kind": "blocked",
+  "result_reason": "The revision retained an obsolete Invertible Statement NL; the next revision must reset to planned and recapture the theorem as IsUnit through all stages.",
+  "revision_refs": [
+    {
+      "change_id": "rootedGram_rootNonroot_blocks_invertible@rev:2",
+      "decl_name": "rootedGram_rootNonroot_blocks_invertible",
+      "revision": 2
+    }
+  ],
+  "round_id": "round_1123d25e1a874a96969c4490c95fc291",
+  "round_index": 53,
+  "started_at": "2026-07-30T18:13:58Z",
+  "status": "committed",
+  "strategy_id": "strategy_fc60f40a331d4f63bd19e22f0eec7473",
+  "summary": "Round 53 made no graph_proved progress because it retained an obsolete Statement NL boundary. The correct IsUnit formal statement is compiler-valid, but it cannot be accepted against the old NL conclusion Invertible. This is a local revision-boundary repair, not a mathematical, dependency, or scope blocker. The strategy remains viable. Next is one full recapture of the same private helper from planned through proved, with both NL and formal statements explicitly using IsUnit; the public recursion must not be retried until that helper closes."
+}

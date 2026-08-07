@@ -1,0 +1,33 @@
+{
+  "change_summaries": {},
+  "committed_at": "2026-07-30T11:18:50Z",
+  "created_at": "2026-07-30T10:58:24Z",
+  "discard_reason": null,
+  "discarded_at": null,
+  "discarded_by": null,
+  "discarded_created_decl_names": [],
+  "discarded_restored_decl_revisions": {},
+  "discarded_revision_refs": [],
+  "execution_completed_at": "2026-07-30T11:17:15Z",
+  "execution_reason": null,
+  "execution_result_kind": "success",
+  "node_path": "Main.RootedCapacity",
+  "objective": "Create and prove the private entrywise bridge reducing the exact child-component reindexing of the nonroot Gram block to the corresponding ambient rootedGram entry.",
+  "plan_closeout_acknowledged_at": "2026-07-30T11:18:50Z",
+  "plan_closeout_acknowledged_by": "a_a93b40977f574bad89528358fa89e022",
+  "result_kind": "success",
+  "result_reason": "The unchanged redispatch completed successfully; the exact reindexed-entry bridge is proved and now closes the block theorem’s dependent-coercion prerequisite.",
+  "revision_refs": [
+    {
+      "change_id": "rootedNonrootGram_reindex_entry@rev:1",
+      "decl_name": "rootedNonrootGram_reindex_entry",
+      "revision": 1
+    }
+  ],
+  "round_id": "round_e97fdc5e151e4b9cbb9b1e5c272e8236",
+  "round_index": 32,
+  "started_at": "2026-07-30T10:59:58Z",
+  "status": "committed",
+  "strategy_id": "strategy_1fbcdfb31a2e4cada1ff5b7b941de18c",
+  "summary": "Round 32 completed successfully after an unchanged redispatch following transient model capacity. rootedNonrootGram_reindex_entry reached proved state and is proof-policy satisfied. The strategy made the intended dependency-first progress: the waiting block theorem now has both equivalence-evaluation and reindexed-entry normalization available, alongside its retained formal statement and Proof NL plan. Next retry only Proof Formal for rootedNonrootGram_reindex_childBlocks; inverse-child-block and inverse-quadratic remain ordered behind it. No preparation, scope escalation, resource work, superseded declaration, or graph cleanup is needed."
+}

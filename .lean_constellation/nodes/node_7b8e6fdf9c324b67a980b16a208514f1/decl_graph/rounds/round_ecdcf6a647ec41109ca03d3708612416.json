@@ -1,0 +1,33 @@
+{
+  "change_summaries": {},
+  "committed_at": "2026-08-06T15:14:03Z",
+  "created_at": "2026-08-06T14:43:17Z",
+  "discard_reason": null,
+  "discarded_at": null,
+  "discarded_by": null,
+  "discarded_created_decl_names": [],
+  "discarded_restored_decl_revisions": {},
+  "discarded_revision_refs": [],
+  "execution_completed_at": "2026-08-06T15:12:19Z",
+  "execution_reason": null,
+  "execution_result_kind": "success",
+  "node_path": "Main.IrreducibleVertex",
+  "objective": "Complete the frozen central Schur-complement capacity-gap Proof Formal using the verified rootedCapacity instance-irrelevance provider.",
+  "plan_closeout_acknowledged_at": "2026-08-06T15:14:03Z",
+  "plan_closeout_acknowledged_by": "a_a235941c8c524917a1ed4a78f90c75ba",
+  "result_kind": "success",
+  "result_reason": "Proof Formal passed and the revised central capacity-gap lemma reached proved with required graph_proved satisfaction.",
+  "revision_refs": [
+    {
+      "change_id": "rootedChildCapacitySum_lt_weight_of_unique_underweight@rev:8",
+      "decl_name": "rootedChildCapacitySum_lt_weight_of_unique_underweight",
+      "revision": 8
+    }
+  ],
+  "round_id": "round_ecdcf6a647ec41109ca03d3708612416",
+  "round_index": 16,
+  "started_at": "2026-08-06T14:45:02Z",
+  "status": "committed",
+  "strategy_id": "strategy_5daa06e1443e4d7e95f091bbae0d613c",
+  "summary": "Round 16 completed the long-blocked central Schur-complement layer. rootedChildCapacitySum_lt_weight_of_unique_underweight revision 8 reached proved state and passed the required graph_proved proof-policy audit; the new RootedCapacity capacity-value instance-irrelevance API closed the sole remaining provider frontier exactly as fresh recon predicted. All eight active declarations are now proved and graph-proved-policy satisfied, with no state-only intermediates, blockers, superseded retry declarations, or cleanup artifacts. The strategy made decisive progress and still explains the next source-owned work: build the decomposition-elimination layer from solution.tex:210–244 bottom-up, then prove and bind the exact protected PositiveDefiniteTreeLattice.exists_irreducible_vertex interface. The next action is a new small declaration round, not further preparation or terminal completion."
+}

@@ -1,0 +1,17 @@
+{
+  "created_at": "2026-07-30T18:02:06Z",
+  "current_revision": 3,
+  "kind": "theorem",
+  "lifecycle": "active",
+  "module": "PositiveDefiniteTreeLattice.Main.RootedCapacity.Theorems.rootedGram_rootNonroot_blocks_invertible",
+  "name": "rootedGram_rootNonroot_blocks_invertible",
+  "node_path": "Main.RootedCapacity",
+  "public": false,
+  "revision_ids": [
+    1,
+    2,
+    3
+  ],
+  "summary": "Admissibility makes the exact root/nonroot Matrix.fromBlocks decomposition of rootedGram invertible.",
+  "updated_at": "2026-07-30T18:18:46Z"
+}

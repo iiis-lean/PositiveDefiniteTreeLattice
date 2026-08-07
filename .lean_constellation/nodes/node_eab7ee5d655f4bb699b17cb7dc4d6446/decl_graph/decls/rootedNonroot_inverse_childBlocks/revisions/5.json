@@ -1,0 +1,153 @@
+{
+  "change": {
+    "anticipated_proof_dep_names": [
+      "rootedChildGram_blockDiagonal_inv",
+      "rootedNonrootGram_reindex_childBlocks"
+    ],
+    "anticipated_statement_dep_names": [
+      "rootedChildComponent",
+      "rootedChildComponentsEquivNonroot",
+      "rootedGram"
+    ],
+    "base_revision": 4,
+    "kind": "update",
+    "objective": "Implement the refreshed contract's authorized private representation cleanup for SourceIndex b_0009 / solution.tex lines 57–68. Retain revision 4's hypotheses, rational total inverse, child Gram family, and mathematical conclusions that inverse entries agree with the appropriate child rootedGram inverse on one child component and vanish across distinct child components, but replace every proof-dependent ambient embedding ι c hc x with the canonical index type determined by rootedChildComponentsEquivNonroot (the dependent Sigma of a root child and a vertex of its rootedChildComponent). The formal statement should expose either the full reindexed-inverse equality or same/cross entry clauses directly on those canonical Sigma indices, whichever is compiler-stable and directly consumable by rootedNonroot_inverse_quadratic without converting back through ambient subtype proof terms. Prove it from rootedNonrootGram_reindex_childBlocks@6, rootedChildGram_blockDiagonal_inv@2, and Matrix.inv_reindex, using the existing rootedChildComponentsEquivNonroot orientation. Do not add assumptions, change rootedGram/rootedCapacity semantics, raise heartbeat limits, add another conversion wrapper, or alter any public interface. This theorem must end proved and become the stable proof dependency for revising rootedNonroot_inverse_quadratic next.",
+    "require_target_state_satisfied": true,
+    "reset_to_state": "specified",
+    "summary": "Revision 5 is blocked at Statement Formal and remains specified only. The retained Statement NL still uses the obsolete proof-dependent ambient embeddings `ιc : rootedChildComponent … → {v : V // v ≠ ρ}`, whereas the current contract and round require canonical rootedChildComponentsEquivNonroot/dependent-Sigma indices. This is statement-stage drift caused by reset_to_state=specified, not a mathematical, source, provider, or Mathlib gap. Proved prerequisites rootedNonrootGram_reindex_childBlocks@6 and rootedChildGram_blockDiagonal_inv@2 remain sufficient. Retry only from reset_to_state=planned, allowing Statement NL to adopt the Sigma-indexed same-component and cross-component inverse claims before Statement Formal; do not retry this retained NL shape or introduce a conversion helper.",
+    "target_state": "proved"
+  },
+  "lean_decl_name": null,
+  "proof": null,
+  "revision": 5,
+  "state": "specified",
+  "statement": {
+    "deps": [
+      {
+        "kind": "mathlib_decl",
+        "reason": "Names the explicit ambient tree hypothesis hG.",
+        "ref": {
+          "module": "Mathlib.Combinatorics.SimpleGraph.Acyclic",
+          "name": "SimpleGraph.IsTree"
+        }
+      },
+      {
+        "kind": "mathlib_decl",
+        "reason": "Names the induced child-component graph in the diagonal inverse-entry clause.",
+        "ref": {
+          "module": "Mathlib.Combinatorics.SimpleGraph.Connectivity.Connected",
+          "name": "SimpleGraph.ConnectedComponent.toSimpleGraph"
+        }
+      },
+      {
+        "kind": "mathlib_decl",
+        "reason": "Defines the canonical local decidable adjacency instances for child-component Gram matrices in the diagonal inverse-entry clause.",
+        "ref": {
+          "module": "Mathlib.Combinatorics.SimpleGraph.DeleteEdges",
+          "name": "SimpleGraph.deleteEdges"
+        }
+      },
+      {
+        "kind": "mathlib_decl",
+        "reason": "Extracts the root-child adjacency witness from the accepted rootedChildren membership when defining the canonical embedding into the nonroot subtype.",
+        "ref": {
+          "module": "Mathlib.Data.Finset.Filter",
+          "name": "Finset.mem_filter"
+        }
+      },
+      {
+        "kind": "mathlib_decl",
+        "reason": "Normalizes the finite-universe membership in the canonical embedding proof for a rooted child.",
+        "ref": {
+          "module": "Mathlib.Data.Fintype.Defs",
+          "name": "Finset.mem_univ"
+        }
+      },
+      {
+        "kind": "mathlib_decl",
+        "reason": "Names the principal nonroot submatrix D exposed in both clauses.",
+        "ref": {
+          "module": "Mathlib.LinearAlgebra.Matrix.Defs",
+          "name": "Matrix.submatrix"
+        }
+      },
+      {
+        "kind": "mathlib_decl",
+        "reason": "Names the total rational matrix inverses D⁻¹ and the child Gram inverse in both displayed clauses.",
+        "ref": {
+          "module": "Mathlib.LinearAlgebra.Matrix.NonsingularInverse",
+          "name": "Matrix.inv"
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "Names the ambient admissibility hypothesis ensuring the stated inverse transport applies.",
+        "ref": {
+          "name": "IsAdmissibleRootedTree",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 1
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "Names the exact dependent deleted-edge component index types.",
+        "ref": {
+          "name": "rootedChildComponent",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 1
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "Supplies the canonical embedding of each child-component vertex into the nonroot subtype R.",
+        "ref": {
+          "name": "rootedChildComponent_parent_not_mem",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 1
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "Names the root-child index set for both entrywise clauses.",
+        "ref": {
+          "name": "rootedChildren",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 2
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "Names the ambient nonroot principal matrix D and each child-component Gram matrix.",
+        "ref": {
+          "name": "rootedGram",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 2
+        }
+      }
+    ],
+    "formal": null,
+    "nl": {
+      "origin": [
+        {
+          "end_line": 68,
+          "end_locator": null,
+          "kind": "source",
+          "note": "The source identifies the nonroot Gram block as the direct sum of rooted child-subtree Gram blocks, whose inverse has each child inverse on the diagonal and zero cross-child entries.",
+          "ref": null,
+          "resource_key": null,
+          "source_path": "solution.tex",
+          "start_line": 57,
+          "start_locator": null
+        }
+      ],
+      "text": "Let V be a finite type with decidable equality, let G be a simple graph on V with decidable adjacency, let hG : G.IsTree, let w : V → ℤ, let ρ : V, and suppose hAdm : IsAdmissibleRootedTree G w ρ. Put\n\nR := {v : V // v ≠ ρ},\nD := (rootedGram G w).submatrix Subtype.val Subtype.val.\n\nFor every c ∈ rootedChildren G hG ρ ρ, write ιc : rootedChildComponent G ρ c → R for the canonical embedding x ↦ ⟨(x : V), (x : V) ≠ ρ⟩ supplied by rootedChildComponent_parent_not_mem. Then both inverse-entry transports hold:\n\n1. For all x y : rootedChildComponent G ρ c,\n\nD⁻¹ (ιc x) (ιc y)\n= (rootedGram (rootedChildComponent G ρ c).toSimpleGraph\n    (fun z : rootedChildComponent G ρ c => w (z : V)))⁻¹ x y.\n\n2. For distinct c,d ∈ rootedChildren G hG ρ ρ, and all x : rootedChildComponent G ρ c and y : rootedChildComponent G ρ d,\n\nD⁻¹ (ιc x) (ιd y) = 0.\n\nAll inverses are the existing total rational matrix inverses; the statement preserves the exact dependent deleted-edge component indices."
+    }
+  },
+  "status": "committed",
+  "updated_at": "2026-07-30T15:30:33Z"
+}

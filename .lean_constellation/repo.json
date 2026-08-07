@@ -1,0 +1,4 @@
+{
+  "main_node": "Main",
+  "summary": "Initial complete formalization of the positive-definite weighted tree lattice theorem, including the public root-interface theorem and its proved dependency closure."
+}

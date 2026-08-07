@@ -1,0 +1,15 @@
+{
+  "created_at": "2026-08-07T01:40:37Z",
+  "current_revision": 1,
+  "kind": "theorem",
+  "lifecycle": "active",
+  "module": "PositiveDefiniteTreeLattice.Main.RootedCapacity.Theorems.rootedNonroot_quadratic_eq_sum_childQuadratics",
+  "name": "rootedNonroot_quadratic_eq_sum_childQuadratics",
+  "node_path": "Main.RootedCapacity",
+  "public": true,
+  "revision_ids": [
+    1
+  ],
+  "summary": "The nonroot rooted-Gram quadratic form splits canonically as the sum of the child-component quadratic forms.",
+  "updated_at": "2026-08-07T01:40:37Z"
+}

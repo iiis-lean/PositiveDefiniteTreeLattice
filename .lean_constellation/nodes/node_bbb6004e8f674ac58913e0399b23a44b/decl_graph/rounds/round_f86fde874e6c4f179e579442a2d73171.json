@@ -1,0 +1,33 @@
+{
+  "change_summaries": {},
+  "committed_at": "2026-08-01T12:33:00Z",
+  "created_at": "2026-08-01T12:06:58Z",
+  "discard_reason": null,
+  "discarded_at": null,
+  "discarded_by": null,
+  "discarded_created_decl_names": [],
+  "discarded_restored_decl_revisions": {},
+  "discarded_revision_refs": [],
+  "execution_completed_at": "2026-08-01T12:28:36Z",
+  "execution_reason": null,
+  "execution_result_kind": "success",
+  "node_path": "Main.RootedEstimates",
+  "objective": "Retry only Proof Formal for rootedEstimateInductionAggregation after the proved treePairing instance-transport repair, preserving the accepted b_0010 source inequality and dependency shape.",
+  "plan_closeout_acknowledged_at": "2026-08-01T12:33:00Z",
+  "plan_closeout_acknowledged_by": "a_c126bbd9cf3144258d31b99169f687bb",
+  "result_kind": "success",
+  "result_reason": "The unchanged aggregation theorem completed Proof Formal and its full known dependency closure satisfies graph_proved policy.",
+  "revision_refs": [
+    {
+      "change_id": "rootedEstimateInductionAggregation@rev:2",
+      "decl_name": "rootedEstimateInductionAggregation",
+      "revision": 2
+    }
+  ],
+  "round_id": "round_f86fde874e6c4f179e579442a2d73171",
+  "round_index": 15,
+  "started_at": "2026-08-01T12:08:28Z",
+  "status": "committed",
+  "strategy_id": "strategy_6bfc666c638344a19f7d1dee5c0a60d4",
+  "summary": "Round 15 completed the b_0010 induction aggregation bridge. rootedEstimateInductionAggregation@2 reached proved and is graph_proved-satisfied; the former Lean-specific instance transport blocker is fully discharged. No state-only intermediate work remains. The current strategy still explains the next step: verify the public rooted_integer_estimate revision and retry its proof using the proved aggregation plus the already-proved rational distance and nonnegativity helpers, before beginning the b_0011 Cauchy–Schwarz package."
+}

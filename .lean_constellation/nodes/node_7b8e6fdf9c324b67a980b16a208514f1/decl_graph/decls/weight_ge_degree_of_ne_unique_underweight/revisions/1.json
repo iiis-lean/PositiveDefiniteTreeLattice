@@ -1,0 +1,147 @@
+{
+  "change": {
+    "anticipated_proof_dep_names": [],
+    "anticipated_statement_dep_names": [],
+    "base_revision": null,
+    "kind": "create",
+    "objective": "Formalize solution.tex:197-198 without semantic strengthening: from the exact hypothesis ∃! v : V, weight v < (G.degree v : ℤ), a chosen witness v satisfying the underweight inequality, and x ≠ v, conclude (G.degree x : ℤ) ≤ weight x. This independent proof-only lemma preserves the ambient graph degree and integer coercion and will be consumed by the rooted-child-component admissibility proof serving the protected public theorem.",
+    "require_target_state_satisfied": true,
+    "reset_to_state": null,
+    "summary": "Created the private lemma PositiveDefiniteTreeLattice.weight_ge_degree_of_ne_unique_underweight and completed all stages through proved. Its checked statement preserves the ambient graph degree and unique-underweight hypothesis, and its proof establishes the nonexceptional degree bound required for rooted-component admissibility. Revision 1 reached proved and is proof-policy satisfied, with no blocker or repair outstanding.",
+    "target_state": "proved"
+  },
+  "lean_decl_name": "PositiveDefiniteTreeLattice.weight_ge_degree_of_ne_unique_underweight",
+  "proof": {
+    "deps": [],
+    "formal": {
+      "check": {
+        "allow_sorry": false,
+        "contains_axiom": false,
+        "contains_sorry": false,
+        "diagnostics": {
+          "diagnostics": [],
+          "passed": true,
+          "raw_excerpt": "{'success': True, 'error_message': None, 'file': 'PositiveDefiniteTreeLattice.Main.IrreducibleVertex.Lemmas.weight_ge_degree_of_ne_unique_underweight', 'items': [], 'total_items': 0, 'error_count': 0, 'warning_count': 0, 'info_count': 0, 'sorry_count': 0}",
+          "repo_file_path": "PositiveDefiniteTreeLattice/Main/IrreducibleVertex/Lemmas/weight_ge_degree_of_ne_unique_underweight.lean",
+          "schema_version": 2,
+          "summary": "Diagnostics returned 0 items"
+        },
+        "message": "Lean check passed.",
+        "policy": "proof_formal",
+        "scan": {
+          "admit_count": 0,
+          "axiom_count": 0,
+          "contains_admit": false,
+          "contains_axiom": false,
+          "contains_opaque": false,
+          "contains_sorry": false,
+          "contains_unsafe": false,
+          "limitation": "Text scan ignores Lean comments and string literals with a conservative first-round lexer; it is not a full Lean parser.",
+          "occurrences": [],
+          "opaque_count": 0,
+          "sorry_count": 0,
+          "summary": "sorry=0, admit=0, axiom=0, opaque=0, unsafe=0",
+          "unsafe_count": 0
+        },
+        "status": "passed"
+      },
+      "code": "-- lean-constellation: managed-imports-begin\nimport PositiveDefiniteTreeLattice.Main.IrreducibleVertex.Prelude\nimport Mathlib.Combinatorics.SimpleGraph.Finite\n-- lean-constellation: managed-imports-end\n\n-- lean-constellation: declaration-source-begin\n\n/--\n# lean-constellation target: `weight_ge_degree_of_ne_unique_underweight`\n\nLet `V` be a finite type with decidable equality, let `G : SimpleGraph V` have decidable adjacency,\nlet `weight : V → ℤ`, and let `v x : V`. Suppose `h_unique_underweight : ∃! u : V, weight u <\n(G.degree u : ℤ)`, `hv : weight v < (G.degree v : ℤ)`, and `x ≠ v`. Then `(G.degree x : ℤ) ≤ weight\nx`.\n\n## Sources\n\n- Source `solution.tex`, lines 197–198\n\n## Statement dependencies\n\n- `SimpleGraph.degree` from `Mathlib.Combinatorics.SimpleGraph.Finite`\n\n## Proof outline\n\nUnpack `h_unique_underweight` as a witness `u`, its underweight inequality, and its uniqueness\nproperty.  Apply that uniqueness property both to the chosen vertex `v` using `hv` and,\nhypothetically, to `x` if `weight x < (G.degree x : ℤ)` held.  These two equalities would give `x =\nv`, contradicting `hxv`.\n\nTherefore `¬ weight x < (G.degree x : ℤ)`.  Convert this negated strict integer inequality to\n`(G.degree x : ℤ) ≤ weight x` by the ordinary linear-order/integer step (implemented directly by\n`omega`).  This retains the ambient degree and its stated integer coercion exactly.\n\n## Proof sources\n\n- Source `solution.tex`, lines 197–198\n-/\ntheorem PositiveDefiniteTreeLattice.weight_ge_degree_of_ne_unique_underweight {V : Type*}\n    [Fintype V] (G : SimpleGraph V) [DecidableRel G.Adj] (weight : V → ℤ)\n    (v x : V) (h_unique_underweight : ∃! u : V, weight u < (G.degree u : ℤ))\n    (hv : weight v < (G.degree v : ℤ)) (hxv : x ≠ v) :\n    (G.degree x : ℤ) ≤ weight x := by\n  by_contra h_not\n  have hx_underweight : weight x < (G.degree x : ℤ) := by\n    omega\n  obtain ⟨u, _, hu_unique⟩ := h_unique_underweight\n  apply hxv\n  exact (hu_unique x hx_underweight).trans (hu_unique v hv).symm\n"
+    },
+    "nl": {
+      "origin": [
+        {
+          "end_line": 198,
+          "end_locator": null,
+          "kind": "source",
+          "note": "These lines assert that uniqueness of the underweighted vertex makes every other vertex's weight at least its degree.",
+          "ref": null,
+          "resource_key": null,
+          "source_path": "solution.tex",
+          "start_line": 197,
+          "start_locator": null
+        }
+      ],
+      "text": "Unpack `h_unique_underweight` as a witness `u`, its underweight inequality, and its uniqueness property.  Apply that uniqueness property both to the chosen vertex `v` using `hv` and, hypothetically, to `x` if `weight x < (G.degree x : ℤ)` held.  These two equalities would give `x = v`, contradicting `hxv`.\n\nTherefore `¬ weight x < (G.degree x : ℤ)`.  Convert this negated strict integer inequality to `(G.degree x : ℤ) ≤ weight x` by the ordinary linear-order/integer step (implemented directly by `omega`).  This retains the ambient degree and its stated integer coercion exactly."
+    }
+  },
+  "revision": 1,
+  "state": "proved",
+  "statement": {
+    "deps": [
+      {
+        "kind": "mathlib_decl",
+        "reason": "The statement uses the ambient graph vertex degree `G.degree` before coercing it to integers.",
+        "ref": {
+          "module": "Mathlib.Combinatorics.SimpleGraph.Finite",
+          "name": "SimpleGraph.degree"
+        }
+      }
+    ],
+    "formal": {
+      "check": {
+        "allow_sorry": true,
+        "contains_axiom": false,
+        "contains_sorry": true,
+        "diagnostics": {
+          "diagnostics": [
+            {
+              "column": 9,
+              "line": 24,
+              "message": "declaration uses `sorry`",
+              "severity": "warning"
+            }
+          ],
+          "passed": true,
+          "raw_excerpt": "{'success': True, 'error_message': None, 'file': 'PositiveDefiniteTreeLattice.Main.IrreducibleVertex.Lemmas.weight_ge_degree_of_ne_unique_underweight', 'items': [{'severity': 'warning', 'pos': {'line': 24, 'column': 9}, 'endPos': {'line': 24, 'column': 78}, 'kind': None, 'data': 'declaration uses `sorry`', 'fileName': 'PositiveDefiniteTreeLattice.Main.IrreducibleVertex.Lemmas.weight_ge_degree_of_ne_unique_underweight', 'content': '- `SimpleGraph.degree` from `Mathlib.Combinatorics.SimpleGraph.Finite`\\n-/\\ntheorem PositiveDefiniteTreeLattice.weight_ge_degree_of_ne_unique_underweight {V : Type*}\\n    [Fintype V] (G : SimpleGraph V) [DecidableRel G.Adj] (weight : V → ℤ)\\n    (v x : V) (h_unique_underweight : ∃! u : V, weight u < (G.degree u : ℤ))'}], 'total_items': 1, 'error_count': 0, 'warning_count': 1, 'info_count': 0, 'sorry_count': 1}",
+          "repo_file_path": "PositiveDefiniteTreeLattice/Main/IrreducibleVertex/Lemmas/weight_ge_degree_of_ne_unique_underweight.lean",
+          "schema_version": 2,
+          "summary": "Diagnostics returned 1 items"
+        },
+        "message": "Lean check passed.",
+        "policy": "statement_formal",
+        "scan": {
+          "admit_count": 0,
+          "axiom_count": 0,
+          "contains_admit": false,
+          "contains_axiom": false,
+          "contains_opaque": false,
+          "contains_sorry": true,
+          "contains_unsafe": false,
+          "limitation": "Text scan ignores Lean comments and string literals with a conservative first-round lexer; it is not a full Lean parser.",
+          "occurrences": [
+            {
+              "column": 3,
+              "excerpt": "sorry",
+              "kind": "sorry",
+              "line": 29
+            }
+          ],
+          "opaque_count": 0,
+          "sorry_count": 1,
+          "summary": "sorry=1, admit=0, axiom=0, opaque=0, unsafe=0",
+          "unsafe_count": 0
+        },
+        "status": "passed"
+      },
+      "code": "-- lean-constellation: managed-imports-begin\nimport PositiveDefiniteTreeLattice.Main.IrreducibleVertex.Prelude\nimport Mathlib.Combinatorics.SimpleGraph.Finite\n-- lean-constellation: managed-imports-end\n\n-- lean-constellation: declaration-source-begin\n\n/--\n# lean-constellation target: `weight_ge_degree_of_ne_unique_underweight`\n\nLet `V` be a finite type with decidable equality, let `G : SimpleGraph V` have decidable adjacency,\nlet `weight : V → ℤ`, and let `v x : V`. Suppose `h_unique_underweight : ∃! u : V, weight u <\n(G.degree u : ℤ)`, `hv : weight v < (G.degree v : ℤ)`, and `x ≠ v`. Then `(G.degree x : ℤ) ≤ weight\nx`.\n\n## Sources\n\n- Source `solution.tex`, lines 197–198\n\n## Statement dependencies\n\n- `SimpleGraph.degree` from `Mathlib.Combinatorics.SimpleGraph.Finite`\n-/\ntheorem PositiveDefiniteTreeLattice.weight_ge_degree_of_ne_unique_underweight {V : Type*}\n    [Fintype V] (G : SimpleGraph V) [DecidableRel G.Adj] (weight : V → ℤ)\n    (v x : V) (h_unique_underweight : ∃! u : V, weight u < (G.degree u : ℤ))\n    (hv : weight v < (G.degree v : ℤ)) (hxv : x ≠ v) :\n    (G.degree x : ℤ) ≤ weight x := by\n  sorry\n"
+    },
+    "nl": {
+      "origin": [
+        {
+          "end_line": 198,
+          "end_locator": null,
+          "kind": "source",
+          "note": "The source identifies every nonexceptional vertex as having weight at least its ambient tree degree.",
+          "ref": null,
+          "resource_key": null,
+          "source_path": "solution.tex",
+          "start_line": 197,
+          "start_locator": null
+        }
+      ],
+      "text": "Let `V` be a finite type with decidable equality, let `G : SimpleGraph V` have decidable adjacency, let `weight : V → ℤ`, and let `v x : V`. Suppose `h_unique_underweight : ∃! u : V, weight u < (G.degree u : ℤ)`, `hv : weight v < (G.degree v : ℤ)`, and `x ≠ v`. Then `(G.degree x : ℤ) ≤ weight x`."
+    }
+  },
+  "status": "committed",
+  "updated_at": "2026-08-02T12:33:58Z"
+}

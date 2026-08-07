@@ -1,0 +1,33 @@
+{
+  "change_summaries": {},
+  "committed_at": "2026-08-07T01:02:43Z",
+  "created_at": "2026-08-06T16:22:04Z",
+  "discard_reason": null,
+  "discarded_at": null,
+  "discarded_by": null,
+  "discarded_created_decl_names": [],
+  "discarded_restored_decl_revisions": {},
+  "discarded_revision_refs": [],
+  "execution_completed_at": "2026-08-06T16:32:07Z",
+  "execution_reason": "The revised Matrix/cast route resolves the earlier component-conversion gap, but the full accepted proof still cannot be completed under this declaration's frozen boundary. `rootedNonrootGram_reindex_childBlocks` supplies only pointwise equality after reindexing the nonroot matrix. The remaining goal is a dependent, ordered quadratic finite-sum reindex from `R × R` through `(rootedChildComponentsEquivNonroot G h_tree v).symm` to the sigma family of rooted child components, followed by diagonal-fiber extraction. Packaging this is a reusable dependent quadratic-form reindex lemma; the objective prohibits adding such a bridge/helper or generic matrix infrastructure, while no visible public declaration supplies it.",
+  "execution_result_kind": "blocked",
+  "node_path": "Main.IrreducibleVertex",
+  "objective": "Complete the frozen pairing decomposition Proof Formal using verified Mathlib finite-coordinate expansion and direct unfolding of the public pairing/Gram definitions.",
+  "plan_closeout_acknowledged_at": "2026-08-07T01:02:43Z",
+  "plan_closeout_acknowledged_by": "a_a235941c8c524917a1ed4a78f90c75ba",
+  "result_kind": "blocked",
+  "result_reason": "The remaining dependent quadratic-form reindex and block-diagonal contraction is absent from visible providers and forbidden as local generic infrastructure.",
+  "revision_refs": [
+    {
+      "change_id": "pairing_decomposition_at_unique_underweight@rev:2",
+      "decl_name": "pairing_decomposition_at_unique_underweight",
+      "revision": 2
+    }
+  ],
+  "round_id": "round_2aa9c2881baf45c5bdc2f984889e863f",
+  "round_index": 19,
+  "started_at": "2026-08-06T16:23:35Z",
+  "status": "committed",
+  "strategy_id": "strategy_5daa06e1443e4d7e95f091bbae0d613c",
+  "summary": "Round 19 validated the focused Mathlib repair and narrowed the blocker, but pairing_decomposition_at_unique_underweight revision 2 remains proof_planned and not graph-proved-policy satisfied. The scalar/component conversion is now closed; the sole remaining gap is a provider-owned dependent quadratic-form reindex and diagonal-fiber contraction across rootedChildComponentsEquivNonroot. Current-node declarations do not own that representation, the visible RootedCapacity boundary exposes only pointwise reindexed block equality, and completed Mathlib recon found generic coordinate/cast algebra but no theorem with the required dependent sigma/block shape. Resource recon cannot create a formal Lean dependency and the source argument is already complete. Creating the bridge locally would violate the node's exclusion of generic matrix/rooted-capacity infrastructure and the explicit no-bridge objective. The blocked helper gates normalized_pairing_positive_of_unique_underweight, the decomposition contradiction, and the exact protected interface. Ten active declarations remain within expected scale; eight are proved, the normalized parent is declared, and this helper is proof_planned; neither partial declaration is superseded and no cleanup is needed. Complete retry conditions are Coordinator/provider addition of a public ready/fresh exact quadratic reindex/contraction theorem, contract/dependency update, fresh node recon, then resume revision 2 from proof_planned before retrying its declared parent. After closeout the strategy should close as blocked and the content task should submit terminal blocked, not run another unchanged round or resource recon."
+}

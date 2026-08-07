@@ -1,0 +1,43 @@
+{
+  "change_summaries": {},
+  "committed_at": "2026-07-30T22:57:00Z",
+  "created_at": "2026-07-30T22:41:10Z",
+  "discard_reason": null,
+  "discarded_at": null,
+  "discarded_by": null,
+  "discarded_created_decl_names": [],
+  "discarded_restored_decl_revisions": {},
+  "discarded_revision_refs": [],
+  "execution_completed_at": "2026-07-30T22:55:35Z",
+  "execution_reason": null,
+  "execution_result_kind": "success",
+  "node_path": "Main.RootedEstimates",
+  "objective": "Prove the first independent arithmetic foundations used by the b_0010 rooted induction: nonnegativity of a product of consecutive integers, combining the two induction bounds into an absolute-value lower bound, and the interior-unit-interval compensation inequality using 0 < gamma < 1.",
+  "plan_closeout_acknowledged_at": "2026-07-30T22:57:00Z",
+  "plan_closeout_acknowledged_by": "a_c126bbd9cf3144258d31b99169f687bb",
+  "result_kind": "success",
+  "result_reason": "All three planned arithmetic foundations reached proved with accepted formal statements and proofs and passed required proof-policy satisfaction.",
+  "revision_refs": [
+    {
+      "change_id": "consecutiveIntegerProductNonneg@rev:1",
+      "decl_name": "consecutiveIntegerProductNonneg",
+      "revision": 1
+    },
+    {
+      "change_id": "twoBoundsGiveAbsLowerBound@rev:1",
+      "decl_name": "twoBoundsGiveAbsLowerBound",
+      "revision": 1
+    },
+    {
+      "change_id": "unitIntervalCompensationNonneg@rev:1",
+      "decl_name": "unitIntervalCompensationNonneg",
+      "revision": 1
+    }
+  ],
+  "round_id": "round_7add435c6e7f4f98bbe279c05664a75c",
+  "round_index": 1,
+  "started_at": "2026-07-30T22:42:21Z",
+  "status": "committed",
+  "strategy_id": "strategy_568b321117904669b4204482b975bf60",
+  "summary": "The strategy made bottom-up progress: consecutiveIntegerProductNonneg, twoBoundsGiveAbsLowerBound, and unitIntervalCompensationNonneg all completed Statement NL/Formal and Proof NL/Formal, reached proved, and satisfy the graph_proved proof policy. No declaration remains unfinished in this round, there are no state-only intermediates or blockers, and no cleanup target was introduced. The open strategy remains viable; the next step is another source-anchored round for the rooted decomposition/distance machinery before attempting the public rooted_integer_estimate parent."
+}

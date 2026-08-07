@@ -1,0 +1,14 @@
+{
+  "closed_at": "2026-07-30T06:15:32Z",
+  "closed_reason": "The new exact qualified interface is proved and bound, its public Statement closure is complete, all prior graph-proved truth remains valid, total scale is seven declarations, and no blocker, superseded branch, or out-of-scope dependency remains.",
+  "created_at": "2026-07-30T05:53:20Z",
+  "created_round_ids": [
+    "round_89870b4ce21d4409b7d756ec119521d9"
+  ],
+  "node_path": "Main.TreePathSeparation",
+  "objective": "Extend the released graph-proved cut package with the single public root-oriented child-side closure interface `PositiveDefiniteTreeLattice.reachable_childSide_of_uniquePath_concat`: from the existing cut-side reachability data, ambient adjacency x-z, and a canonical one-edge root-path extension witness, prove reachability c-to-z after deleting the cut edge.",
+  "rationale": "Contract version 2 is a focused continuation of the released six-declaration package anchored in SourceIndex b_0008–b_0009 / solution.tex lines 33–64. Existing proved support separation, exact factorization, unique-path pathhood/uniqueness, and recorded Mathlib walk/delete-edge APIs provide the lower closure; no visible-node, new Mathlib, or external resource recon is needed. Under graph_proved, attempt the interface directly as one proved theorem, allowing a later small helper round only if Lean implementation exposes a genuinely untracked reusable prerequisite. Preserve all released statements and keep the total graph within the expected 7–10 declarations.",
+  "status": "closed",
+  "strategy_id": "strategy_b6dff31456594838ba7a5f6b6c3f59bd",
+  "summary": "Completed contract version 2 in one proved round by adding the public root-oriented child-side closure theorem while preserving all six released declarations and prior interface bindings."
+}

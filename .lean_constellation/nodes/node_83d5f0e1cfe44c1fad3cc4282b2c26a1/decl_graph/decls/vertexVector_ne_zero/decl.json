@@ -1,0 +1,19 @@
+{
+  "created_at": "2026-07-29T15:27:29Z",
+  "current_revision": 5,
+  "kind": "theorem",
+  "lifecycle": "active",
+  "module": "PositiveDefiniteTreeLattice.Main.LatticeFoundations.Theorems.vertexVector_ne_zero",
+  "name": "vertexVector_ne_zero",
+  "node_path": "Main.LatticeFoundations",
+  "public": true,
+  "revision_ids": [
+    1,
+    2,
+    3,
+    4,
+    5
+  ],
+  "summary": "A vertex coordinate vector is nonzero.",
+  "updated_at": "2026-07-29T20:22:24Z"
+}

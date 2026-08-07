@@ -1,0 +1,30 @@
+{
+  "decl_names": [
+    "eq_uniquePath_of_isPath",
+    "reachable_childSide_of_uniquePath_concat",
+    "uniquePath",
+    "uniquePath_append_isPath_through_cut",
+    "uniquePath_eq_append_through_cut",
+    "uniquePath_isPath",
+    "uniquePath_support_separated_by_cut"
+  ],
+  "node_id": "node_31434daa2b7d4752a36cda61caaf3477",
+  "node_path": "Main.TreePathSeparation",
+  "round_ids": [
+    "round_144313e1505147d79bf78443b17d9672",
+    "round_3f7ef0424d8d4a12a4c1d533280c0c9e",
+    "round_40c8245f91d2455f94bbcbb04f85fef0",
+    "round_53b6e9798b1e4b0d91af634f7b6b4165",
+    "round_89870b4ce21d4409b7d756ec119521d9",
+    "round_b472c3f5a2c14e7e8b277050ff69ff04",
+    "round_d704a71d18cc416f95fe9180b7e58d49",
+    "round_f3a58b8ef4d7453b8f677ad7007038c1"
+  ],
+  "schema_version": 1,
+  "strategy_ids": [
+    "strategy_b6dff31456594838ba7a5f6b6c3f59bd",
+    "strategy_f896ad8d3d5e41c193ec6ecf41edbffd"
+  ],
+  "summary": "DeclGraph index rebuilt for Main.TreePathSeparation: 7 decls, 8 rounds, 2 strategies.",
+  "updated_at": "2026-08-07T12:08:06Z"
+}

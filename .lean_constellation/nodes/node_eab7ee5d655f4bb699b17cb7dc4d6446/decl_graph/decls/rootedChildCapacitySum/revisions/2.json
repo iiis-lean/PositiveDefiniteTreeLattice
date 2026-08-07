@@ -1,0 +1,112 @@
+{
+  "change": {
+    "anticipated_proof_dep_names": [],
+    "anticipated_statement_dep_names": [
+      "rootedChildCapacitySummand",
+      "rootedChildren"
+    ],
+    "base_revision": 1,
+    "kind": "update",
+    "objective": "SourceIndex b_0009 / solution.tex lines 47–80 and the refreshed contract authorize a representation-only recapture of the child-capacity aggregate. Preserve the same parameters, rational result, root-child set, deleted-edge components, restricted weights, child roots, and absence of admissibility assumptions, but redefine rootedChildCapacitySum as the Finset.univ sum of the proved-declared public function rootedChildCapacitySummand over the attached subtype `{c : V // c ∈ rootedChildren G hG ρ ρ}`. The new body must depend directly on rootedChildCapacitySummand and must not reintroduce local component instances or unfold its body. This revision is mathematically equal to revision 1's raw Finset sum and must remain the public aggregate appearing unchanged in the public recursion equation. It directly enables revisions of rootedChildCapacitySum_attach, rootedNonroot_inverse_quadratic/rootedCapacity_recursion as needed, and the strict child-sum theorem. Do not add a conversion wrapper or alter capacity semantics.",
+    "require_target_state_satisfied": true,
+    "reset_to_state": "planned",
+    "summary": "Recaptured the public b_0009 aggregate at revision 2 and advanced it to declared state. Statement NL and Formal passed with the same parameters and rational meaning, but the body now sums rootedChildCapacitySummand over the attached root-child subtype and no longer recreates dependent component instances. As a definition it is proof-policy satisfied. Direct theorem consumers still require compatible proof revisions; the old rootedChildCapacitySum_attach normalization helper is now a cleanup candidate once rootedNonroot_inverse_quadratic migrates.",
+    "target_state": "declared"
+  },
+  "lean_decl_name": "rootedChildCapacitySum",
+  "proof": null,
+  "revision": 2,
+  "state": "declared",
+  "statement": {
+    "deps": [
+      {
+        "kind": "mathlib_decl",
+        "reason": "The definition is expressed as `Finset.univ.sum` over the attached finite child subtype.",
+        "ref": {
+          "module": "Mathlib.Algebra.BigOperators.Group.Finset.Defs",
+          "name": "Finset.sum"
+        }
+      },
+      {
+        "kind": "mathlib_decl",
+        "reason": "The stated aggregate explicitly indexes the finite sum by Finset.univ on the attached child subtype.",
+        "ref": {
+          "module": "Mathlib.Data.Fintype.Defs",
+          "name": "Finset.univ"
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "The aggregate body is the finite sum of this public, instance-stable child-capacity summand.",
+        "ref": {
+          "name": "rootedChildCapacitySummand",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 1
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "The attached subtype indexing the finite sum is defined by the root's finite set of children.",
+        "ref": {
+          "name": "rootedChildren",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 2
+        }
+      }
+    ],
+    "formal": {
+      "check": {
+        "allow_sorry": false,
+        "contains_axiom": false,
+        "contains_sorry": false,
+        "diagnostics": {
+          "diagnostics": [],
+          "passed": true,
+          "raw_excerpt": "{'success': True, 'error_message': None, 'file': 'PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildCapacitySum', 'items': [], 'total_items': 0, 'error_count': 0, 'warning_count': 0, 'info_count': 0, 'sorry_count': 0}",
+          "repo_file_path": "PositiveDefiniteTreeLattice/Main/RootedCapacity/Defs/rootedChildCapacitySum.lean",
+          "schema_version": 2,
+          "summary": "Diagnostics returned 0 items"
+        },
+        "message": "Lean check passed.",
+        "policy": "statement_formal",
+        "scan": {
+          "admit_count": 0,
+          "axiom_count": 0,
+          "contains_admit": false,
+          "contains_axiom": false,
+          "contains_opaque": false,
+          "contains_sorry": false,
+          "contains_unsafe": false,
+          "limitation": "Text scan ignores Lean comments and string literals with a conservative first-round lexer; it is not a full Lean parser.",
+          "occurrences": [],
+          "opaque_count": 0,
+          "sorry_count": 0,
+          "summary": "sorry=0, admit=0, axiom=0, opaque=0, unsafe=0",
+          "unsafe_count": 0
+        },
+        "status": "passed"
+      },
+      "code": "-- lean-constellation: managed-imports-begin\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Prelude\nimport Mathlib.Algebra.BigOperators.Group.Finset.Defs\nimport Mathlib.Data.Fintype.Defs\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildCapacitySummand\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildren\n-- lean-constellation: managed-imports-end\n\n-- lean-constellation: declaration-source-begin\n\n/--\n# lean-constellation target: `rootedChildCapacitySum`\n\nLet `V` be a finite decidable type, let `G : SimpleGraph V` have decidable adjacency, let `hG :\nG.IsTree`, let `w : V → ℤ`, and let `ρ : V`.  Define the rational child-capacity aggregate\n`rootedChildCapacitySum G hG w ρ : ℚ` by the finite sum over the attached root-child subtype:\n\n`Finset.univ.sum (fun c : {c : V // c ∈ rootedChildren G hG ρ ρ} => rootedChildCapacitySummand G hG\nw ρ c)`.\n\nEquivalently, this is `∑ c : {c : V // c ∈ rootedChildren G hG ρ ρ}, rootedChildCapacitySummand G hG\nw ρ c`.  Thus it is exactly the sum of the rational capacities of the deleted-edge child components,\nwith each component's restricted integer weight and child root supplied by the public summand\ndefinition.  The aggregate directly invokes that named summand and introduces no component-local\ninstances or unfolding of its body.  It assumes neither admissibility nor positivity.\n\n## Sources\n\n- Source `solution.tex`, lines 47–52\n\n## Statement dependencies\n\n- `Finset.sum` from `Mathlib.Algebra.BigOperators.Group.Finset.Defs`\n- `Finset.univ` from `Mathlib.Data.Fintype.Defs`\n- `Main.RootedCapacity::rootedChildCapacitySummand` → `rootedChildCapacitySummand` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildCapacitySummand`\n- `Main.RootedCapacity::rootedChildren` → `rootedChildren` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildren`\n-/\nnoncomputable def rootedChildCapacitySum {V : Type*} [Fintype V] [DecidableEq V]\n    (G : SimpleGraph V) [DecidableRel G.Adj] (hG : G.IsTree) (w : V → ℤ) (ρ : V) : ℚ :=\n  Finset.univ.sum fun c : {c : V // c ∈ rootedChildren G hG ρ ρ} =>\n    rootedChildCapacitySummand G hG w ρ c\n"
+    },
+    "nl": {
+      "origin": [
+        {
+          "end_line": 52,
+          "end_locator": null,
+          "kind": "source",
+          "note": "The capacity-recursion statement identifies the aggregate as the sum of the capacities of the rooted subtrees at all children of the root.",
+          "ref": null,
+          "resource_key": null,
+          "source_path": "solution.tex",
+          "start_line": 47,
+          "start_locator": null
+        }
+      ],
+      "text": "Let `V` be a finite decidable type, let `G : SimpleGraph V` have decidable adjacency, let `hG : G.IsTree`, let `w : V → ℤ`, and let `ρ : V`.  Define the rational child-capacity aggregate `rootedChildCapacitySum G hG w ρ : ℚ` by the finite sum over the attached root-child subtype:\n\n`Finset.univ.sum (fun c : {c : V // c ∈ rootedChildren G hG ρ ρ} => rootedChildCapacitySummand G hG w ρ c)`.\n\nEquivalently, this is `∑ c : {c : V // c ∈ rootedChildren G hG ρ ρ}, rootedChildCapacitySummand G hG w ρ c`.  Thus it is exactly the sum of the rational capacities of the deleted-edge child components, with each component's restricted integer weight and child root supplied by the public summand definition.  The aggregate directly invokes that named summand and introduces no component-local instances or unfolding of its body.  It assumes neither admissibility nor positivity."
+    }
+  },
+  "status": "committed",
+  "updated_at": "2026-07-30T20:16:25Z"
+}

@@ -1,0 +1,15 @@
+{
+  "created_at": "2026-07-31T00:28:24Z",
+  "current_revision": 1,
+  "kind": "theorem",
+  "lifecycle": "active",
+  "module": "PositiveDefiniteTreeLattice.Main.RootedCapacity.Theorems.rootedChildComponent_adj_mem",
+  "name": "rootedChildComponent_adj_mem",
+  "node_path": "Main.RootedCapacity",
+  "public": false,
+  "revision_ids": [
+    1
+  ],
+  "summary": "Adjacency away from the parent endpoint preserves membership in a rooted child-side component.",
+  "updated_at": "2026-07-31T00:28:24Z"
+}

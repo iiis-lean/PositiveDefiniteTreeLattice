@@ -1,0 +1,15 @@
+{
+  "created_at": "2026-08-03T10:44:55Z",
+  "current_revision": 1,
+  "kind": "theorem",
+  "lifecycle": "active",
+  "module": "PositiveDefiniteTreeLattice.Main.RootedCapacity.Theorems.rootedChildGram_blockDiagonal_inv_of_child_admissible",
+  "name": "rootedChildGram_blockDiagonal_inv_of_child_admissible",
+  "node_path": "Main.RootedCapacity",
+  "public": true,
+  "revision_ids": [
+    1
+  ],
+  "summary": "The dependent block diagonal of attached child Gram matrices inverts blockwise under pointwise child admissibility.",
+  "updated_at": "2026-08-03T14:57:16Z"
+}

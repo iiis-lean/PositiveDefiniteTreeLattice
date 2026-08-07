@@ -1,0 +1,33 @@
+{
+  "change_summaries": {},
+  "committed_at": "2026-07-30T16:46:37Z",
+  "created_at": "2026-07-30T16:29:35Z",
+  "discard_reason": null,
+  "discarded_at": null,
+  "discarded_by": null,
+  "discarded_created_decl_names": [],
+  "discarded_restored_decl_revisions": {},
+  "discarded_revision_refs": [],
+  "execution_completed_at": "2026-07-30T16:45:12Z",
+  "execution_reason": null,
+  "execution_result_kind": "success",
+  "node_path": "Main.RootedCapacity",
+  "objective": "Prove the narrow b_0009 attached-child/raw-child capacity-sum normalization theorem that aligns the canonical dependent Sigma child indexing and local child-matrix instances with rootedChildCapacitySum, unblocking the preserved inverse quadratic proof.",
+  "plan_closeout_acknowledged_at": "2026-07-30T16:46:37Z",
+  "plan_closeout_acknowledged_by": "a_a93b40977f574bad89528358fa89e022",
+  "result_kind": "success",
+  "result_reason": "All declaration stages completed and graph_proved satisfaction passed for the attached-child capacity-sum normalization bridge.",
+  "revision_refs": [
+    {
+      "change_id": "rootedChildCapacitySum_attach@rev:1",
+      "decl_name": "rootedChildCapacitySum_attach",
+      "revision": 1
+    }
+  ],
+  "round_id": "round_23268dc0b6e74c3084a55e1f1e6a62e4",
+  "round_index": 45,
+  "started_at": "2026-07-30T16:30:48Z",
+  "status": "committed",
+  "strategy_id": "strategy_fc60f40a331d4f63bd19e22f0eec7473",
+  "summary": "Round 45 completed the planned Lean-specific normalization layer. rootedChildCapacitySum_attach@1 reached proved and is graph_proved-satisfied, bringing the active graph to 30 declarations within the contract-authorized 29–38 scale. No state-only or unresolved dependency work remains for this helper. The previously blocked parent rootedNonroot_inverse_quadratic@2 remains proof_planned with a preserved formal statement and accepted canonical Proof NL plan; all its known proof dependencies are now proved, including rootedNonroot_inverse_childBlocks@6 and this normalization theorem. The strategy remains viable. Next action after closeout is a Proof-Formal-only retry of the parent with the new helper as an explicit proof dependency; no preparation or another helper is indicated."
+}

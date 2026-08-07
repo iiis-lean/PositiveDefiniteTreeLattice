@@ -1,0 +1,2786 @@
+{
+  "declarations": {
+    "Equiv.sumCompl": {
+      "kind": "def",
+      "module": "Mathlib.Logic.Equiv.Sum",
+      "name": "Equiv.sumCompl",
+      "note": "Inspected declaration source during Main.RootedCapacity b_0009 recon",
+      "signature": "def sumCompl (p : α → Prop) [DecidablePred p] : {a // p a} ⊕ {a // ¬ p a} ≃ α",
+      "snippet": "/-- For any predicate `p` on `α`,\nthe sum of the two subtypes `{a // p a}` and its complement `{a // ¬ p a}`\nis naturally equivalent to `α`.\n\nSee `subtypeOrEquiv` for sum types over subtypes `{x // p x}` and `{x // q x}`\nthat are not necessarily `IsCompl p q`. See also `Equiv.Set.sumCompl` for a version on sets. -/\ndef sumCompl {α : Type*} (p : α → Prop) [DecidablePred p] :\n    { a // p a } ⊕ { a // ¬p a } ≃ α where\n  toFun := Sum.elim Subtype.val Subtype.val\n  invFun a := if h : p a then Sum.inl ⟨a, h⟩ else Sum.inr ⟨a, h⟩\n  left_inv := by\n    rintro (⟨x, hx⟩ | ⟨x, hx⟩) <;> dsimp\n    · rw [dif_pos]\n    · rw [dif_neg]\n  right_inv a := by\n    dsimp\n    split_ifs <;> rfl",
+      "summary": "Canonical reindexing for root singleton versus nonroot vertices."
+    },
+    "Equiv.sum_comp": {
+      "kind": "lemma",
+      "module": "Mathlib.Algebra.BigOperators.Group.Finset.Defs",
+      "name": "Equiv.sum_comp",
+      "note": "Mathlib inspection.",
+      "signature": "lemma Equiv.sum_comp (e : ι ≃ κ) (g : κ → M) : ∑ i, g (e i) = ∑ i, g i",
+      "snippet": "@[to_additive]\nlemma _root_.Equiv.prod_comp (e : ι ≃ κ) (g : κ → M) : ∏ i, g (e i) = ∏ i, g i :=",
+      "summary": "Transports a Fintype sum along e : σ ≃ R without changing the e orientation."
+    },
+    "ExistsUnique.unique": {
+      "kind": "theorem",
+      "module": "Mathlib.Logic.ExistsUnique",
+      "name": "ExistsUnique.unique",
+      "note": null,
+      "signature": "theorem ExistsUnique.unique {p : α → Prop}",
+      "snippet": "theorem ExistsUnique.unique {p : α → Prop}\n    (h : ∃! x, p x) {y₁ y₂ : α} (py₁ : p y₁) (py₂ : p y₂) : y₁ = y₂ :=\n  let ⟨_, _, hy⟩ := h; (hy _ py₁).trans (hy _ py₂).symm",
+      "summary": null
+    },
+    "Finset.Nonempty": {
+      "kind": null,
+      "module": "Mathlib.Data.Finset.Empty",
+      "name": "Finset.Nonempty",
+      "note": null,
+      "signature": "in theorem assumptions instead of `∃ x, x ∈ s` or `s ≠ ∅` as it gives access to a nice API thanks",
+      "snippet": "/-- The property `s.Nonempty` expresses the fact that the finset `s` is not empty. It should be used\nin theorem assumptions instead of `∃ x, x ∈ s` or `s ≠ ∅` as it gives access to a nice API thanks\nto the dot notation. -/\nprotected def Nonempty (s : Finset α) : Prop := ∃ x : α, x ∈ s",
+      "summary": null
+    },
+    "Finset.abs_sum_le_sum_abs": {
+      "kind": "theorem",
+      "module": "Mathlib.Algebra.Order.BigOperators.Group.Finset",
+      "name": "Finset.abs_sum_le_sum_abs",
+      "note": null,
+      "signature": "theorem abs_sum_le_sum_abs {G : Type*} [AddCommGroup G] [LinearOrder G] [IsOrderedAddMonoid G]",
+      "snippet": "theorem abs_sum_le_sum_abs {G : Type*} [AddCommGroup G] [LinearOrder G] [IsOrderedAddMonoid G]\n    (f : ι → G) (s : Finset ι) :\n    |∑ i ∈ s, f i| ≤ ∑ i ∈ s, |f i| := le_sum_of_subadditive _ abs_zero.le abs_add_le s f",
+      "summary": null
+    },
+    "Finset.add_sum_erase": {
+      "kind": null,
+      "module": "Mathlib.Algebra.BigOperators.Group.Finset.Basic",
+      "name": "Finset.add_sum_erase",
+      "note": null,
+      "signature": "element `f a` to the sum over `s.erase a`.",
+      "snippet": "@[to_additive /-- Taking a sum over `s : Finset ι` is the same as adding the value on a single\nelement `f a` to the sum over `s.erase a`.\n\nSee `Multiset.sum_map_erase` for the `Multiset` version. -/]\ntheorem mul_prod_erase [DecidableEq ι] (s : Finset ι) (f : ι → M) {a : ι} (h : a ∈ s) :\n    (f a * ∏ x ∈ s.erase a, f x) = ∏ x ∈ s, f x := by",
+      "summary": null
+    },
+    "Finset.attach": {
+      "kind": null,
+      "module": "Mathlib.Data.Finset.Attach",
+      "name": "Finset.attach",
+      "note": null,
+      "signature": "`{x // x ∈ s}`. -/",
+      "snippet": "/-- `attach s` takes the elements of `s` and forms a new set of elements of the subtype\n`{x // x ∈ s}`. -/\ndef attach (s : Finset α) : Finset { x // x ∈ s } :=\n  ⟨Multiset.attach s.1, nodup_attach.2 s.2⟩",
+      "summary": null
+    },
+    "Finset.card": {
+      "kind": null,
+      "module": "Mathlib.Data.Finset.Card",
+      "name": "Finset.card",
+      "note": null,
+      "signature": "The notation `#s` can be accessed in the `Finset` locale. -/",
+      "snippet": "/-- `s.card` is the number of elements of `s`, aka its cardinality.\n\nThe notation `#s` can be accessed in the `Finset` locale. -/\ndef card (s : Finset α) : ℕ :=\n  Multiset.card s.1",
+      "summary": null
+    },
+    "Finset.card_insert_of_notMem": {
+      "kind": "theorem",
+      "module": "Mathlib.Data.Finset.Card",
+      "name": "Finset.card_insert_of_notMem",
+      "note": null,
+      "signature": "theorem card_insert_of_notMem (h : a ∉ s) : #(insert a s) = #s + 1",
+      "snippet": "@[simp, grind =]\ntheorem card_insert_of_notMem (h : a ∉ s) : #(insert a s) = #s + 1 := by\n  grind [=_ cons_eq_insert]",
+      "summary": null
+    },
+    "Finset.card_map": {
+      "kind": "theorem",
+      "module": "Mathlib.Data.Finset.Card",
+      "name": "Finset.card_map",
+      "note": null,
+      "signature": "theorem card_map (f : α ↪ β) : #(s.map f) = #s",
+      "snippet": "@[simp, grind =]\ntheorem card_map (f : α ↪ β) : #(s.map f) = #s :=\n  Multiset.card_map _ _",
+      "summary": null
+    },
+    "Finset.disjiUnion": {
+      "kind": null,
+      "module": "Mathlib.Data.Finset.Union",
+      "name": "Finset.disjiUnion",
+      "note": null,
+      "signature": "It is the same as `s.biUnion f`, but it does not require decidable equality on the type. The",
+      "snippet": "/-- `disjiUnion s f h` is the set such that `a ∈ disjiUnion s f` iff `a ∈ f i` for some `i ∈ s`.\nIt is the same as `s.biUnion f`, but it does not require decidable equality on the type. The\nhypothesis ensures that the sets are disjoint. -/\ndef disjiUnion (s : Finset α) (t : α → Finset β) (hf : (s : Set α).PairwiseDisjoint t) : Finset β :=\n  ⟨s.val.bind (Finset.val ∘ t), Multiset.nodup_bind.2\n    ⟨fun a _ ↦ (t a).nodup, s.nodup.pairwise fun _ ha _ hb hab ↦ disjoint_val.2 <| hf ha hb hab⟩⟩",
+      "summary": null
+    },
+    "Finset.disjoint_left": {
+      "kind": "theorem",
+      "module": "Mathlib.Data.Finset.Disjoint",
+      "name": "Finset.disjoint_left",
+      "note": null,
+      "signature": "theorem disjoint_left : Disjoint s t ↔ ∀ ⦃a⦄, a ∈ s → a ∉ t",
+      "snippet": "theorem disjoint_left : Disjoint s t ↔ ∀ ⦃a⦄, a ∈ s → a ∉ t :=\n  ⟨fun h a hs ht => notMem_empty a <|\n    singleton_subset_iff.mp (h (singleton_subset_iff.mpr hs) (singleton_subset_iff.mpr ht)),\n    fun h _ hs ht _ ha => (h (hs ha) (ht ha)).elim⟩",
+      "summary": null
+    },
+    "Finset.ext": {
+      "kind": "theorem",
+      "module": "Mathlib.Data.Finset.Defs",
+      "name": "Finset.ext",
+      "note": null,
+      "signature": "theorem ext {s₁ s₂ : Finset α} (h : ∀ a, a ∈ s₁ ↔ a ∈ s₂) : s₁ = s₂",
+      "snippet": "@[ext, grind ext]\ntheorem ext {s₁ s₂ : Finset α} (h : ∀ a, a ∈ s₁ ↔ a ∈ s₂) : s₁ = s₂ :=\n  SetLike.ext h",
+      "summary": null
+    },
+    "Finset.map": {
+      "kind": null,
+      "module": "Mathlib.Data.Finset.Image",
+      "name": "Finset.map",
+      "note": null,
+      "signature": "finset in `β`. The embedding condition guarantees that there are no duplicates in the image. -/",
+      "snippet": "/-- When `f` is an embedding of `α` in `β` and `s` is a finset in `α`, then `s.map f` is the image\nfinset in `β`. The embedding condition guarantees that there are no duplicates in the image. -/\ndef map (f : α ↪ β) (s : Finset α) : Finset β :=\n  ⟨s.1.map f, s.2.map f.2⟩",
+      "summary": null
+    },
+    "Finset.mem_filter": {
+      "kind": "theorem",
+      "module": "Mathlib.Data.Finset.Filter",
+      "name": "Finset.mem_filter",
+      "note": null,
+      "signature": "theorem mem_filter {s : Finset α} {a : α} : a ∈ s.filter p ↔ a ∈ s ∧ p a",
+      "snippet": "@[simp, grind =]\ntheorem mem_filter {s : Finset α} {a : α} : a ∈ s.filter p ↔ a ∈ s ∧ p a :=\n  Multiset.mem_filter",
+      "summary": null
+    },
+    "Finset.mem_map": {
+      "kind": "theorem",
+      "module": "Mathlib.Data.Finset.Image",
+      "name": "Finset.mem_map",
+      "note": null,
+      "signature": "theorem mem_map {b : β} : b ∈ s.map f ↔ ∃ a ∈ s, f a = b",
+      "snippet": "@[simp, grind =]\ntheorem mem_map {b : β} : b ∈ s.map f ↔ ∃ a ∈ s, f a = b :=\n  Multiset.mem_map",
+      "summary": null
+    },
+    "Finset.mem_univ": {
+      "kind": "theorem",
+      "module": "Mathlib.Data.Fintype.Defs",
+      "name": "Finset.mem_univ",
+      "note": null,
+      "signature": "theorem mem_univ (x : α) : x ∈ (univ : Finset α)",
+      "snippet": "@[simp, grind ←]\ntheorem mem_univ (x : α) : x ∈ (univ : Finset α) :=\n  Fintype.complete x",
+      "summary": null
+    },
+    "Finset.mul_prod_erase": {
+      "kind": null,
+      "module": "Mathlib.Algebra.BigOperators.Group.Finset.Basic",
+      "name": "Finset.mul_prod_erase",
+      "note": null,
+      "signature": "`f a` by the product of `s.erase a`.",
+      "snippet": "/-- Taking a product over `s : Finset ι` is the same as multiplying the value on a single element\n`f a` by the product of `s.erase a`.\n\nSee `Multiset.prod_map_erase` for the `Multiset` version. -/\n@[to_additive /-- Taking a sum over `s : Finset ι` is the same as adding the value on a single\nelement `f a` to the sum over `s.erase a`.\n\nSee `Multiset.sum_map_erase` for the `Multiset` version. -/]\ntheorem mul_prod_erase [DecidableEq ι] (s : Finset ι) (f : ι → M) {a : ι} (h : a ∈ s) :\n    (f a * ∏ x ∈ s.erase a, f x) = ∏ x ∈ s, f x := by\n  rw [← prod_insert (notMem_erase a s), insert_erase h]",
+      "summary": null
+    },
+    "Finset.mul_sum": {
+      "kind": "lemma",
+      "module": "Mathlib.Algebra.BigOperators.Ring.Finset",
+      "name": "Finset.mul_sum",
+      "note": null,
+      "signature": "lemma mul_sum (s : Finset ι) (f : ι → R) (a : R) :",
+      "snippet": "lemma mul_sum (s : Finset ι) (f : ι → R) (a : R) :\n    a * ∑ i ∈ s, f i = ∑ i ∈ s, a * f i := map_sum (AddMonoidHom.mulLeft a) _ s",
+      "summary": null
+    },
+    "Finset.not_nonempty_iff_eq_empty": {
+      "kind": "theorem",
+      "module": "Mathlib.Data.Finset.Empty",
+      "name": "Finset.not_nonempty_iff_eq_empty",
+      "note": null,
+      "signature": "theorem not_nonempty_iff_eq_empty {s : Finset α} : ¬s.Nonempty ↔ s = ∅",
+      "snippet": "@[simp, push]\ntheorem not_nonempty_iff_eq_empty {s : Finset α} : ¬s.Nonempty ↔ s = ∅ :=\n  nonempty_iff_ne_empty.not.trans not_not",
+      "summary": null
+    },
+    "Finset.single_le_sum": {
+      "kind": "theorem",
+      "module": "Mathlib.Algebra.Order.BigOperators.Group.Finset",
+      "name": "Finset.single_le_sum",
+      "note": null,
+      "signature": "theorem single_le_prod' [MulLeftMono N] (hf : ∀ i ∈ s, 1 ≤ f i) {a} (h : a ∈ s) :",
+      "snippet": "@[to_additive single_le_sum]\ntheorem single_le_prod' [MulLeftMono N] (hf : ∀ i ∈ s, 1 ≤ f i) {a} (h : a ∈ s) :\n    f a ≤ ∏ x ∈ s, f x :=",
+      "summary": null
+    },
+    "Finset.sum": {
+      "kind": null,
+      "module": "Mathlib.Algebra.BigOperators.Group.Finset.Defs",
+      "name": "Finset.sum",
+      "note": null,
+      "signature": "of the finite set `s`.",
+      "snippet": "@[to_additive /-- `∑ x ∈ s, f x` is the sum of `f x` as `x` ranges over the elements\nof the finite set `s`.\n\nWhen the index type is a `Fintype`, the notation `∑ x, f x`, is a shorthand for\n`∑ x ∈ Finset.univ, f x`. -/]\nprotected def prod [CommMonoid M] (s : Finset ι) (f : ι → M) : M :=",
+      "summary": null
+    },
+    "Finset.sum_add_distrib": {
+      "kind": "theorem",
+      "module": "Mathlib.Algebra.BigOperators.Group.Finset.Basic",
+      "name": "Finset.sum_add_distrib",
+      "note": "Inspected semantic candidate mc_a9829d62bf699cb0.",
+      "signature": "theorem prod_mul_distrib : ∏ x ∈ s, f x * g x = (∏ x ∈ s, f x) * ∏ x ∈ s, g x",
+      "snippet": "@[to_additive]\ntheorem prod_mul_distrib : ∏ x ∈ s, f x * g x = (∏ x ∈ s, f x) * ∏ x ∈ s, g x :=",
+      "summary": "Distributes finite integer sums over the pointwise expansions in pairing additivity."
+    },
+    "Finset.sum_attach": {
+      "kind": "lemma",
+      "module": "Mathlib.Algebra.BigOperators.Group.Finset.Basic",
+      "name": "Finset.sum_attach",
+      "note": null,
+      "signature": "lemma prod_attach (s : Finset ι) (f : ι → M) : ∏ x ∈ s.attach, f x = ∏ x ∈ s, f x",
+      "snippet": "@[to_additive]\nlemma prod_attach (s : Finset ι) (f : ι → M) : ∏ x ∈ s.attach, f x = ∏ x ∈ s, f x := by",
+      "summary": null
+    },
+    "Finset.sum_biUnion": {
+      "kind": "theorem",
+      "module": "Mathlib.Algebra.BigOperators.Group.Finset.Basic",
+      "name": "Finset.sum_biUnion",
+      "note": "Direct declaration inspection.",
+      "signature": "the sum of the sums over the sets.",
+      "snippet": "@[to_additive /-- Given a finite family of pairwise disjoint finsets, the sum over their union is\nthe sum of the sums over the sets.\nSee also `sum_biUnion_of_pairwise_eq_zero` for a version with weaker assumptions. -/]\ntheorem prod_biUnion [DecidableEq ι] {s : Finset κ} {t : κ → Finset ι}\n    (hs : Set.PairwiseDisjoint (↑s) t) : ∏ x ∈ s.biUnion t, f x = ∏ x ∈ s, ∏ i ∈ t x, f i := by",
+      "summary": "Flattens a pairwise-disjoint finite family of component sums into the sum over its union."
+    },
+    "Finset.sum_bij": {
+      "kind": "theorem",
+      "module": "Mathlib.Algebra.BigOperators.Group.Finset.Defs",
+      "name": "Finset.sum_bij",
+      "note": "Mathlib semantic inspection",
+      "signature": "(i : ∀ a ∈ s, κ) → (hi : ∀ a ha, i a ha ∈ t) → (i_inj : ∀ a₁ ha₁ a₂ ha₂, i a₁ ha₁ = i a₂ ha₂ → a₁ = a₂) → (i_surj : ∀ b ∈ t, ∃ a ha, i a ha = b) → (h : ∀ a ha, f a = g (i a ha)) → ∑ x ∈ s, f x = ∑ x ∈ t, g x",
+      "snippet": "@[to_additive /-- Reorder a sum.\n\nThe difference with `Finset.sum_bij'` is that the bijection is specified as a surjective injection,\nrather than by an inverse function.\n\nThe difference with `Finset.sum_nbij` is that the bijection is allowed to use membership of the\ndomain of the sum, rather than being a non-dependent function. -/]\ntheorem prod_bij (i : ∀ a ∈ s, κ) (hi : ∀ a ha, i a ha ∈ t)\n    (i_inj : ∀ a₁ ha₁ a₂ ha₂, i a₁ ha₁ = i a₂ ha₂ → a₁ = a₂)\n    (i_surj : ∀ b ∈ t, ∃ a ha, i a ha = b) (h : ∀ a ha, f a = g (i a ha)) :\n    ∏ x ∈ s, f x = ∏ x ∈ t, g x :=",
+      "summary": "Most flexible finite reindexing theorem for the unique child/component classification."
+    },
+    "Finset.sum_comm": {
+      "kind": "theorem",
+      "module": "Mathlib.Algebra.BigOperators.Group.Finset.Sigma",
+      "name": "Finset.sum_comm",
+      "note": "Inspected semantic candidate mc_5ac41daa9aaac291.",
+      "signature": "theorem prod_comm {s : Finset γ} {t : Finset α} {f : γ → α → β} :",
+      "snippet": "@[to_additive]\ntheorem prod_comm {s : Finset γ} {t : Finset α} {f : γ → α → β} :\n    (∏ x ∈ s, ∏ y ∈ t, f x y) = ∏ y ∈ t, ∏ x ∈ s, f x y :=",
+      "summary": "Swaps finite double sums in the adjacency contribution when proving pairing symmetry."
+    },
+    "Finset.sum_comp_equiv": {
+      "kind": "theorem",
+      "module": "Mathlib.Algebra.BigOperators.Group.Finset.Basic",
+      "name": "Finset.sum_comp_equiv",
+      "note": null,
+      "signature": "theorem prod_comp_equiv {f : κ → M} (e : ι ≃ κ) : s.prod (f ∘ e) = (s.map e).prod f",
+      "snippet": "@[to_additive]\ntheorem prod_comp_equiv {f : κ → M} (e : ι ≃ κ) : s.prod (f ∘ e) = (s.map e).prod f := by simp",
+      "summary": null
+    },
+    "Finset.sum_congr": {
+      "kind": "theorem",
+      "module": "Mathlib.Algebra.BigOperators.Group.Finset.Basic",
+      "name": "Finset.sum_congr",
+      "note": null,
+      "signature": "theorem prod_congr (h : s₁ = s₂) : (∀ x ∈ s₂, f x = g x) → s₁.prod f = s₂.prod g",
+      "snippet": "@[to_additive (attr := congr)]\ntheorem prod_congr (h : s₁ = s₂) : (∀ x ∈ s₂, f x = g x) → s₁.prod f = s₂.prod g := by",
+      "summary": null
+    },
+    "Finset.sum_disjiUnion": {
+      "kind": "theorem",
+      "module": "Mathlib.Algebra.BigOperators.Group.Finset.Basic",
+      "name": "Finset.sum_disjiUnion",
+      "note": "Mathlib semantic inspection",
+      "signature": "(s : Finset κ) → (t : κ → Finset ι) → (h : Pairwise (Disjoint on t)) → ∑ x ∈ s.disjiUnion t h, f x = ∑ i ∈ s, ∑ x ∈ t i, f x",
+      "snippet": "@[to_additive]\ntheorem prod_disjiUnion (s : Finset κ) (t : κ → Finset ι) (h) :\n    ∏ x ∈ s.disjiUnion t h, f x = ∏ i ∈ s, ∏ x ∈ t i, f x := by",
+      "summary": "Alternative direct union route when the component images are represented as pairwise-disjoint ambient finsets."
+    },
+    "Finset.sum_eq_single": {
+      "kind": "theorem",
+      "module": "Mathlib.Algebra.BigOperators.Group.Finset.Basic",
+      "name": "Finset.sum_eq_single",
+      "note": null,
+      "signature": "theorem prod_eq_single {s : Finset ι} {f : ι → M} (a : ι) (h₀ : ∀ b ∈ s, b ≠ a → f b = 1)",
+      "snippet": "@[to_additive]\ntheorem prod_eq_single {s : Finset ι} {f : ι → M} (a : ι) (h₀ : ∀ b ∈ s, b ≠ a → f b = 1)\n    (h₁ : a ∉ s → f a = 1) : ∏ x ∈ s, f x = f a :=",
+      "summary": null
+    },
+    "Finset.sum_eq_zero": {
+      "kind": "theorem",
+      "module": "Mathlib.Algebra.BigOperators.Group.Finset.Basic",
+      "name": "Finset.sum_eq_zero",
+      "note": null,
+      "signature": "theorem prod_eq_one (h : ∀ x ∈ s, f x = 1) : ∏ x ∈ s, f x = 1",
+      "snippet": "@[to_additive]\ntheorem prod_eq_one (h : ∀ x ∈ s, f x = 1) : ∏ x ∈ s, f x = 1 := calc",
+      "summary": null
+    },
+    "Finset.sum_erase_add": {
+      "kind": "theorem",
+      "module": "Mathlib.Algebra.BigOperators.Group.Finset.Basic",
+      "name": "Finset.sum_erase_add",
+      "note": "Direct declaration inspection.",
+      "signature": "theorem prod_erase_mul [DecidableEq ι] (s : Finset ι) (f : ι → M) {a : ι} (h : a ∈ s) :",
+      "snippet": "@[to_additive /-- A variant of `Finset.add_sum_erase` with the addition swapped. -/]\ntheorem prod_erase_mul [DecidableEq ι] (s : Finset ι) (f : ι → M) {a : ι} (h : a ∈ s) :\n    (∏ x ∈ s.erase a, f x) * f a = ∏ x ∈ s, f x := by rw [mul_comm, mul_prod_erase s f h]",
+      "summary": "Rewrites a finite sum as the sum over `erase a` followed by the distinguished summand; useful for separating the unique vertex."
+    },
+    "Finset.sum_filter": {
+      "kind": "theorem",
+      "module": "Mathlib.Algebra.BigOperators.Group.Finset.Basic",
+      "name": "Finset.sum_filter",
+      "note": null,
+      "signature": "theorem prod_filter (p : ι → Prop) [DecidablePred p] (f : ι → M) :",
+      "snippet": "@[to_additive]\ntheorem prod_filter (p : ι → Prop) [DecidablePred p] (f : ι → M) :\n    ∏ a ∈ s with p a, f a = ∏ a ∈ s, if p a then f a else 1 :=",
+      "summary": null
+    },
+    "Finset.sum_ite_eq": {
+      "kind": "theorem",
+      "module": "Mathlib.Algebra.BigOperators.Group.Finset.Piecewise",
+      "name": "Finset.sum_ite_eq",
+      "note": null,
+      "signature": "theorem prod_ite_eq [DecidableEq ι] (s : Finset ι) (a : ι) (b : ι → M) :",
+      "snippet": "@[to_additive (attr := simp)]\ntheorem prod_ite_eq [DecidableEq ι] (s : Finset ι) (a : ι) (b : ι → M) :",
+      "summary": null
+    },
+    "Finset.sum_ite_eq'": {
+      "kind": null,
+      "module": "Mathlib.Algebra.BigOperators.Group.Finset.Piecewise",
+      "name": "Finset.sum_ite_eq'",
+      "note": null,
+      "signature": "test on the index and whose alternative is `0` has value either the term at that index or `0`.",
+      "snippet": "@[to_additive (attr := simp) /-- A sum taken over a conditional whose condition is an equality\ntest on the index and whose alternative is `0` has value either the term at that index or `0`.\n\nThe difference with `Finset.sum_ite_eq` is that the arguments to `Eq` are swapped. -/]\ntheorem prod_ite_eq' [DecidableEq ι] (s : Finset ι) (a : ι) (b : ι → M) :",
+      "summary": null
+    },
+    "Finset.sum_le_sum": {
+      "kind": "theorem",
+      "module": "Mathlib.Algebra.Order.BigOperators.Group.Finset",
+      "name": "Finset.sum_le_sum",
+      "note": "Direct declaration inspection.",
+      "signature": "theorem prod_le_prod' [MulLeftMono N] (h : ∀ i ∈ s, f i ≤ g i) : ∏ i ∈ s, f i ≤ ∏ i ∈ s, g i",
+      "snippet": "@[to_additive (attr := gcongr) sum_le_sum]\ntheorem prod_le_prod' [MulLeftMono N] (h : ∀ i ∈ s, f i ≤ g i) : ∏ i ∈ s, f i ≤ ∏ i ∈ s, g i :=",
+      "summary": "Lifts pointwise non-strict inequalities to finite sums."
+    },
+    "Finset.sum_lt_sum_of_nonempty": {
+      "kind": "theorem",
+      "module": "Mathlib.Algebra.Order.BigOperators.Group.Finset",
+      "name": "Finset.sum_lt_sum_of_nonempty",
+      "note": "Direct declaration inspection.",
+      "signature": "theorem prod_lt_prod_of_nonempty' [MulLeftStrictMono M] (hs : s.Nonempty)",
+      "snippet": "@[to_additive (attr := gcongr) sum_lt_sum_of_nonempty]\ntheorem prod_lt_prod_of_nonempty' [MulLeftStrictMono M] (hs : s.Nonempty)",
+      "summary": "Lifts pointwise strict inequalities to a nonempty finite sum."
+    },
+    "Finset.sum_mul": {
+      "kind": "lemma",
+      "module": "Mathlib.Algebra.BigOperators.Ring.Finset",
+      "name": "Finset.sum_mul",
+      "note": null,
+      "signature": "lemma sum_mul (s : Finset ι) (f : ι → R) (a : R) :",
+      "snippet": "lemma sum_mul (s : Finset ι) (f : ι → R) (a : R) :\n    (∑ i ∈ s, f i) * a = ∑ i ∈ s, f i * a := map_sum (AddMonoidHom.mulRight a) _ s",
+      "summary": null
+    },
+    "Finset.sum_neg_distrib": {
+      "kind": "theorem",
+      "module": "Mathlib.Algebra.BigOperators.Group.Finset.Defs",
+      "name": "Finset.sum_neg_distrib",
+      "note": null,
+      "signature": "theorem prod_inv_distrib (f : ι → G) : (∏ x ∈ s, (f x)⁻¹) = (∏ x ∈ s, f x)⁻¹",
+      "snippet": "@[to_additive (attr := simp)]\ntheorem prod_inv_distrib (f : ι → G) : (∏ x ∈ s, (f x)⁻¹) = (∏ x ∈ s, f x)⁻¹ :=",
+      "summary": null
+    },
+    "Finset.sum_nonneg": {
+      "kind": "theorem",
+      "module": "Mathlib.Algebra.Order.BigOperators.Group.Finset",
+      "name": "Finset.sum_nonneg",
+      "note": "Direct declaration inspection.",
+      "signature": "theorem one_le_prod' [MulLeftMono N] (h : ∀ i ∈ s, 1 ≤ f i) : 1 ≤ ∏ i ∈ s, f i",
+      "snippet": "@[to_additive sum_nonneg]\ntheorem one_le_prod' [MulLeftMono N] (h : ∀ i ∈ s, 1 ≤ f i) : 1 ≤ ∏ i ∈ s, f i :=",
+      "summary": "Derives nonnegativity of a finite sum from pointwise nonnegativity."
+    },
+    "Finset.sum_pos_iff_of_nonneg": {
+      "kind": "lemma",
+      "module": "Mathlib.Algebra.Order.BigOperators.Group.Finset",
+      "name": "Finset.sum_pos_iff_of_nonneg",
+      "note": "Direct declaration inspection.",
+      "signature": "lemma one_lt_prod_iff_of_one_le {ι : Type u_1} {N : Type u_5} [CommMonoid N] [PartialOrder N]",
+      "snippet": "@[to_additive sum_pos_iff_of_nonneg]\nlemma one_lt_prod_iff_of_one_le {ι : Type u_1} {N : Type u_5} [CommMonoid N] [PartialOrder N]\n    {f : ι → N} {s : Finset ι} [MulLeftMono N] (hf : ∀ x ∈ s, 1 ≤ f x) :\n    1 < ∏ x ∈ s, f x ↔ ∃ x ∈ s, 1 < f x := by",
+      "summary": "Characterizes positivity of a finite sum under pointwise nonnegativity by a positive summand."
+    },
+    "Finset.sum_sigma": {
+      "kind": "theorem",
+      "module": "Mathlib.Algebra.BigOperators.Group.Finset.Sigma",
+      "name": "Finset.sum_sigma",
+      "note": "Mathlib semantic inspection",
+      "signature": "(s : Finset α) → (t : ∀ a, Finset (σ a)) → (f : Sigma σ → β) → ∑ x ∈ s.sigma t, f x = ∑ a ∈ s, ∑ x ∈ t a, f ⟨a, x⟩",
+      "snippet": "@[to_additive /-- The sum over a sigma type equals the sum of the fiberwise sums. For rewriting\nin the reverse direction, use `Finset.sum_sigma'`.\n\nSee also `Fintype.sum_sigma` for the sum over the whole type. -/]\ntheorem prod_sigma {σ : α → Type*} (s : Finset α) (t : ∀ a, Finset (σ a)) (f : Sigma σ → β) :\n    ∏ x ∈ s.sigma t, f x = ∏ a ∈ s, ∏ s ∈ t a, f ⟨a, s⟩ := by",
+      "summary": "Turns the component-indexed finite sigma sum into the iterated child/component sum required by the decomposition."
+    },
+    "Finset.sum_sigma'": {
+      "kind": null,
+      "module": "Mathlib.Algebra.BigOperators.Group.Finset.Sigma",
+      "name": "Finset.sum_sigma'",
+      "note": null,
+      "signature": "in the reverse direction, use `Finset.sum_sigma` -/]",
+      "snippet": "@[to_additive /-- The sum over a sigma type equals the sum of the fiberwise sums. For rewriting\nin the reverse direction, use `Finset.sum_sigma` -/]\ntheorem prod_sigma' {σ : α → Type*} (s : Finset α) (t : ∀ a, Finset (σ a)) (f : ∀ a, σ a → β) :\n    (∏ a ∈ s, ∏ s ∈ t a, f a s) = ∏ x ∈ s.sigma t, f x.1 x.2 :=",
+      "summary": null
+    },
+    "Finset.sum_sub_distrib": {
+      "kind": "theorem",
+      "module": "Mathlib.Algebra.BigOperators.Group.Finset.Defs",
+      "name": "Finset.sum_sub_distrib",
+      "note": null,
+      "signature": "theorem prod_div_distrib (f g : ι → G) : ∏ x ∈ s, f x / g x = (∏ x ∈ s, f x) / ∏ x ∈ s, g x",
+      "snippet": "@[to_additive (attr := simp)]\ntheorem prod_div_distrib (f g : ι → G) : ∏ x ∈ s, f x / g x = (∏ x ∈ s, f x) / ∏ x ∈ s, g x :=",
+      "summary": null
+    },
+    "Finset.sum_union": {
+      "kind": "theorem",
+      "module": "Mathlib.Algebra.BigOperators.Group.Finset.Basic",
+      "name": "Finset.sum_union",
+      "note": "inspected declaration",
+      "signature": "theorem prod_union [DecidableEq ι] (h : Disjoint s₁ s₂) :",
+      "snippet": "@[to_additive]\ntheorem prod_union [DecidableEq ι] (h : Disjoint s₁ s₂) :\n    ∏ x ∈ s₁ ∪ s₂, f x = (∏ x ∈ s₁, f x) * ∏ x ∈ s₂, f x := by",
+      "summary": "Decomposes a finite sum over two disjoint finsets."
+    },
+    "Finset.univ": {
+      "kind": null,
+      "module": "Mathlib.Data.Fintype.Defs",
+      "name": "Finset.univ",
+      "note": null,
+      "signature": "the assumption `Fintype α`. -/",
+      "snippet": "/-- `univ` is the universal finite set of type `Finset α` implied from\n  the assumption `Fintype α`. -/\ndef univ : Finset α :=\n  @Fintype.elems α _",
+      "summary": null
+    },
+    "Finsupp.single_apply": {
+      "kind": "theorem",
+      "module": "Mathlib.Data.Finsupp.Single",
+      "name": "Finsupp.single_apply",
+      "note": null,
+      "signature": "theorem single_apply [Decidable (a = a')] : single a b a' = if a = a' then b else 0",
+      "snippet": "@[grind =]\ntheorem single_apply [Decidable (a = a')] : single a b a' = if a = a' then b else 0 := by\n  classical\n  simp_rw [@eq_comm _ a a', single, coe_mk, Pi.single_apply]",
+      "summary": null
+    },
+    "Fintype.card_coe": {
+      "kind": "theorem",
+      "module": "Mathlib.Data.Fintype.Card",
+      "name": "Fintype.card_coe",
+      "note": null,
+      "signature": "theorem Fintype.card_coe (s : Finset α) [Fintype s] : Fintype.card s = #s",
+      "snippet": "@[simp]\ntheorem Fintype.card_coe (s : Finset α) [Fintype s] : Fintype.card s = #s :=\n  @Fintype.card_of_finset' _ _ _ (fun _ => Iff.rfl) (id _)",
+      "summary": null
+    },
+    "Fintype.card_le_one_iff_subsingleton": {
+      "kind": "theorem",
+      "module": "Mathlib.Data.Fintype.EquivFin",
+      "name": "Fintype.card_le_one_iff_subsingleton",
+      "note": null,
+      "signature": "theorem card_le_one_iff_subsingleton : card α ≤ 1 ↔ Subsingleton α",
+      "snippet": "theorem card_le_one_iff_subsingleton : card α ≤ 1 ↔ Subsingleton α :=\n  card_le_one_iff.trans subsingleton_iff.symm",
+      "summary": null
+    },
+    "Fintype.card_lt_of_injective_of_notMem": {
+      "kind": "theorem",
+      "module": "Mathlib.Data.Fintype.Card",
+      "name": "Fintype.card_lt_of_injective_of_notMem",
+      "note": null,
+      "signature": "theorem card_lt_of_injective_of_notMem (f : α → β) (h : Function.Injective f) {b : β}",
+      "snippet": "theorem card_lt_of_injective_of_notMem (f : α → β) (h : Function.Injective f) {b : β}\n    (w : b ∉ Set.range f) : card α < card β :=\n  calc\n    card α = (univ.map ⟨f, h⟩).card := (card_map _).symm\n    _ < card β :=\n      Finset.card_lt_univ_of_notMem (x := b) <| by\n        rwa [← mem_coe, coe_map, coe_univ, Set.image_univ]",
+      "summary": null
+    },
+    "Fintype.card_pos": {
+      "kind": "theorem",
+      "module": "Mathlib.Data.Fintype.Card",
+      "name": "Fintype.card_pos",
+      "note": null,
+      "signature": "theorem card_pos [h : Nonempty α] : 0 < card α",
+      "snippet": "theorem card_pos [h : Nonempty α] : 0 < card α :=\n  card_pos_iff.mpr h",
+      "summary": null
+    },
+    "Fintype.card_pos_iff": {
+      "kind": "theorem",
+      "module": "Mathlib.Data.Fintype.Card",
+      "name": "Fintype.card_pos_iff",
+      "note": null,
+      "signature": "theorem card_pos_iff : 0 < card α ↔ Nonempty α",
+      "snippet": "theorem card_pos_iff : 0 < card α ↔ Nonempty α :=\n  Nat.pos_iff_ne_zero.trans <| not_iff_comm.mp <| not_nonempty_iff.trans card_eq_zero_iff.symm",
+      "summary": null
+    },
+    "Fintype.ofFinite": {
+      "kind": "def",
+      "module": "Mathlib.Data.Fintype.EquivFin",
+      "name": "Fintype.ofFinite",
+      "note": "inspected Mathlib declaration",
+      "signature": "instance because we want `Fintype` instances to be useful for computations. -/",
+      "snippet": "/-- Noncomputably get a `Fintype` instance from a `Finite` instance. This is not an\ninstance because we want `Fintype` instances to be useful for computations. -/\n@[instance_reducible]\nnoncomputable def Fintype.ofFinite (α : Type*) [Finite α] : Fintype α :=\n  (nonempty_fintype α).some",
+      "summary": "Instance-reducible noncomputable Fintype constructor used to reproduce the summand’s canonical component Fintype in a scoped child-IH specialization."
+    },
+    "Fintype.subsingleton": {
+      "kind": "instance",
+      "module": "Mathlib.Data.Fintype.Defs",
+      "name": "Fintype.subsingleton",
+      "note": "Inspected exact signature and source through Mathlib semantic navigation for Main.RootedCapacity instance alignment.",
+      "signature": "instance subsingleton (α : Type*) : Subsingleton (Fintype α)",
+      "snippet": "instance subsingleton (α : Type*) : Subsingleton (Fintype α) :=\n  ⟨fun ⟨s₁, h₁⟩ ⟨s₂, h₂⟩ => by congr; simp [Finset.ext_iff, h₁, h₂]⟩",
+      "summary": "Subsingleton instance for Fintype α; transports dependent finite-index instances when a local theorem and a canonical summand choose different Fintype witnesses."
+    },
+    "Fintype.sum_congr": {
+      "kind": "theorem",
+      "module": "Mathlib.Data.Fintype.BigOperators",
+      "name": "Fintype.sum_congr",
+      "note": null,
+      "signature": "theorem prod_congr (f g : α → M) (h : ∀ a, f a = g a) : ∏ a, f a = ∏ a, g a",
+      "snippet": "@[to_additive]\ntheorem prod_congr (f g : α → M) (h : ∀ a, f a = g a) : ∏ a, f a = ∏ a, g a :=",
+      "summary": null
+    },
+    "Fintype.sum_dite_eq": {
+      "kind": "lemma",
+      "module": "Mathlib.Algebra.BigOperators.Group.Finset.Piecewise",
+      "name": "Fintype.sum_dite_eq",
+      "note": null,
+      "signature": "lemma prod_dite_eq (i : ι) (f : ∀ j, i = j → M) :",
+      "snippet": "@[to_additive /-- See also `Finset.sum_dite_eq`. -/]\nlemma prod_dite_eq (i : ι) (f : ∀ j, i = j → M) :\n    ∏ j, (if h : i = j then f j h else 1) = f i rfl := by",
+      "summary": null
+    },
+    "Fintype.sum_eq_single": {
+      "kind": "theorem",
+      "module": "Mathlib.Data.Fintype.BigOperators",
+      "name": "Fintype.sum_eq_single",
+      "note": "Mathlib inspection.",
+      "signature": "theorem prod_eq_single {f : α → M} (a : α) (h : ∀ x ≠ a, f x = 1) : ∏ x, f x = f a",
+      "snippet": "@[to_additive]\ntheorem prod_eq_single {f : α → M} (a : α) (h : ∀ x ≠ a, f x = 1) : ∏ x, f x = f a :=",
+      "summary": "Eliminates all unequal child fibers after blockDiagonal' expansion."
+    },
+    "Fintype.sum_ite_eq": {
+      "kind": "lemma",
+      "module": "Mathlib.Algebra.BigOperators.Group.Finset.Piecewise",
+      "name": "Fintype.sum_ite_eq",
+      "note": null,
+      "signature": "lemma prod_ite_eq (i : ι) (f : ι → M) : ∏ j, (if i = j then f j else 1) = f i",
+      "snippet": "@[to_additive /-- See also `Finset.sum_ite_eq`. -/]\nlemma prod_ite_eq (i : ι) (f : ι → M) : ∏ j, (if i = j then f j else 1) = f i := by",
+      "summary": null
+    },
+    "Fintype.sum_ite_eq'": {
+      "kind": "lemma",
+      "module": "Mathlib.Algebra.BigOperators.Group.Finset.Piecewise",
+      "name": "Fintype.sum_ite_eq'",
+      "note": null,
+      "signature": "lemma prod_ite_eq' (i : ι) (f : ι → M) : ∏ j, (if j = i then f j else 1) = f i",
+      "snippet": "@[to_additive /-- See also `Finset.sum_ite_eq'`. -/]\nlemma prod_ite_eq' (i : ι) (f : ι → M) : ∏ j, (if j = i then f j else 1) = f i := by",
+      "summary": null
+    },
+    "Fintype.sum_sigma": {
+      "kind": "theorem",
+      "module": "Mathlib.Data.Fintype.BigOperators",
+      "name": "Fintype.sum_sigma",
+      "note": "Mathlib inspection.",
+      "signature": "This is a version of `Finset.sum_sigma` specialized to the case of summation over `Finset.univ`. -/]",
+      "snippet": "@[to_additive /-- Sum over a sigma type equals the repeated sum.\n\nThis is a version of `Finset.sum_sigma` specialized to the case of summation over `Finset.univ`. -/]\ntheorem prod_sigma {ι} {α : ι → Type*} {M : Type*} [Fintype ι] [∀ i, Fintype (α i)] [CommMonoid M]\n    (f : Sigma α → M) : ∏ x, f x = ∏ x, ∏ y, f ⟨x, y⟩ :=",
+      "summary": "Flattens a finite Sigma sum to the outer child sum and within-fiber sum."
+    },
+    "Fintype.sum_unique": {
+      "kind": "theorem",
+      "module": "Mathlib.Algebra.BigOperators.Group.Finset.Basic",
+      "name": "Fintype.sum_unique",
+      "note": null,
+      "signature": "theorem prod_unique [Unique ι] (f : ι → M) : ∏ x : ι, f x = f default",
+      "snippet": "@[to_additive]\ntheorem prod_unique [Unique ι] (f : ι → M) : ∏ x : ι, f x = f default := by",
+      "summary": null
+    },
+    "Int.cast_add": {
+      "kind": "theorem",
+      "module": "Mathlib.Data.Int.Cast.Basic",
+      "name": "Int.cast_add",
+      "note": null,
+      "signature": "theorem cast_add : ∀ m n, ((m + n : ℤ) : R) = m + n",
+      "snippet": "@[simp, norm_cast]\ntheorem cast_add : ∀ m n, ((m + n : ℤ) : R) = m + n\n  | (m : ℕ), (n : ℕ) => by simp [← Int.natCast_add]\n  | (m : ℕ), -[n+1] => by\n    rw [Int.ofNat_add_negSucc, cast_subNatNat, cast_natCast, cast_negSucc, sub_eq_add_neg]\n  | -[m+1], (n : ℕ) => by\n    rw [Int.negSucc_add_ofNat, cast_subNatNat, cast_natCast, cast_negSucc, sub_eq_iff_eq_add,\n      add_assoc, eq_neg_add_iff_add_eq, ← Nat.cast_add, ← Nat.cast_add, Nat.add_comm]\n  | -[m+1], -[n+1] => by\n    rw [Int.negSucc_add_negSucc, succ_eq_add_one, cast_negSucc, cast_negSucc, cast_negSucc,\n      ← neg_add_rev, ← Nat.cast_add, Nat.add_right_comm m n 1, Nat.add_assoc, Nat.add_comm]\n\n@[simp, norm_cast]\ntheorem cast_sub (m n) : ((m - n : ℤ) : R) = m - n := by",
+      "summary": null
+    },
+    "Int.cast_le": {
+      "kind": null,
+      "module": "Mathlib.Algebra.Order.Ring.Cast",
+      "name": "Int.cast_le",
+      "note": null,
+      "signature": "rw [← sub_nonneg, ← cast_sub, cast_nonneg_iff, sub_nonneg]",
+      "snippet": "@[simp, norm_cast] lemma cast_le : (m : R) ≤ n ↔ m ≤ n := by\n  rw [← sub_nonneg, ← cast_sub, cast_nonneg_iff, sub_nonneg]",
+      "summary": null
+    },
+    "Int.cast_lt": {
+      "kind": null,
+      "module": "Mathlib.Algebra.Order.Ring.Cast",
+      "name": "Int.cast_lt",
+      "note": null,
+      "signature": null,
+      "snippet": "@[simp, norm_cast, gcongr] lemma cast_lt : (m : R) < n ↔ m < n := cast_strictMono.lt_iff_lt",
+      "summary": null
+    },
+    "Int.cast_mul": {
+      "kind": "lemma",
+      "module": "Mathlib.Algebra.Ring.Int.Defs",
+      "name": "Int.cast_mul",
+      "note": null,
+      "signature": "lemma cast_mul {α : Type*} [NonAssocRing α] : ∀ m n, ((m * n : ℤ) : α) = m * n",
+      "snippet": "@[simp, norm_cast]\nlemma cast_mul {α : Type*} [NonAssocRing α] : ∀ m n, ((m * n : ℤ) : α) = m * n := fun m => by\n  obtain ⟨m, rfl | rfl⟩ := Int.eq_nat_or_neg m\n  · induction m with\n    | zero => simp\n    | succ m ih => simp_all [add_mul]\n  · induction m with\n    | zero => simp\n    | succ m ih => simp_all [add_mul]",
+      "summary": null
+    },
+    "Int.cast_one_le_of_pos": {
+      "kind": "lemma",
+      "module": "Mathlib.Algebra.Order.Ring.Cast",
+      "name": "Int.cast_one_le_of_pos",
+      "note": "inspected declaration",
+      "signature": "lemma cast_one_le_of_pos (h : 0 < a) : (1 : R) ≤ a",
+      "snippet": "lemma cast_one_le_of_pos (h : 0 < a) : (1 : R) ≤ a := mod_cast Int.add_one_le_of_lt h",
+      "summary": "A positive integer has cast at least one; useful when converting discrete strict positivity to a lower bound."
+    },
+    "Int.cast_sub": {
+      "kind": "theorem",
+      "module": "Mathlib.Data.Int.Cast.Basic",
+      "name": "Int.cast_sub",
+      "note": null,
+      "signature": "theorem cast_sub (m n) : ((m - n : ℤ) : R) = m - n",
+      "snippet": "@[simp, norm_cast]\ntheorem cast_sub (m n) : ((m - n : ℤ) : R) = m - n := by\n  simp [Int.sub_eq_add_neg, sub_eq_add_neg, Int.cast_neg, Int.cast_add]",
+      "summary": null
+    },
+    "Int.cast_sum": {
+      "kind": "lemma",
+      "module": "Mathlib.Algebra.BigOperators.Ring.Finset",
+      "name": "Int.cast_sum",
+      "note": null,
+      "signature": "lemma cast_sum [AddCommGroupWithOne R] (s : Finset ι) (f : ι → ℤ) :",
+      "snippet": "@[simp, norm_cast]\nlemma cast_sum [AddCommGroupWithOne R] (s : Finset ι) (f : ι → ℤ) :\n    ↑(∑ x ∈ s, f x : ℤ) = ∑ x ∈ s, (f x : R) :=\n  map_sum (castAddHom R) _ _",
+      "summary": "Moves finite integral pairing sums to rational sums for the rootedGram bridge."
+    },
+    "Int.le_sub_one_of_not_le": {
+      "kind": "theorem",
+      "module": "Mathlib.Tactic.IntervalCases",
+      "name": "Int.le_sub_one_of_not_le",
+      "note": "Direct declaration inspection.",
+      "signature": "theorem _root_.Int.le_sub_one_of_not_le {a b : ℤ} (h : ¬b ≤ a) : a ≤ b - 1",
+      "snippet": "theorem _root_.Int.le_sub_one_of_not_le {a b : ℤ} (h : ¬b ≤ a) : a ≤ b - 1 :=\n  Int.le_sub_one_iff.2 (Int.not_le.1 h)",
+      "summary": "For integer coefficients, converts failure of `b ≤ a` into the discrete bound `a ≤ b - 1`; instantiate at zero to normalize the negative branch."
+    },
+    "Invertible.copy": {
+      "kind": "abbrev",
+      "module": "Mathlib.Algebra.Group.Invertible.Defs",
+      "name": "Invertible.copy",
+      "note": null,
+      "signature": "abbrev Invertible.copy [MulOneClass α] {r : α} (hr : Invertible r) (s : α) (hs : s = r) : Invertible s",
+      "snippet": "/-- If `r` is invertible and `s = r`, then `s` is invertible. -/\nabbrev Invertible.copy [MulOneClass α] {r : α} (hr : Invertible r) (s : α) (hs : s = r) :\n    Invertible s :=\n  hr.copy' _ _ hs rfl",
+      "summary": "Transports an Invertible instance across a matrix equality; use hEq.symm when hEq identifies the reindex with the target block matrix."
+    },
+    "IsUnit.invertible": {
+      "kind": "def",
+      "module": "Mathlib.Algebra.Group.Invertible.Basic",
+      "name": "IsUnit.invertible",
+      "note": null,
+      "signature": "noncomputable def IsUnit.invertible [Monoid α] {a : α} (h : IsUnit a) : Invertible a",
+      "snippet": "/-- Convert `IsUnit` to `Invertible` using `Classical.choice`.\n\nPrefer `casesI h.nonempty_invertible` over `letI := h.invertible` if you want to avoid choice. -/\n@[implicit_reducible]\nnoncomputable def IsUnit.invertible [Monoid α] {a : α} (h : IsUnit a) : Invertible a :=\n  Classical.choice h.nonempty_invertible",
+      "summary": "Converts the IsUnit supplied by Matrix.PosDef.isUnit into the Invertible instances required by Schur-complement APIs."
+    },
+    "LinearMap.BilinForm.apply_sq_le_of_symm": {
+      "kind": "lemma",
+      "module": "Mathlib.LinearAlgebra.SesquilinearForm.Basic",
+      "name": "LinearMap.BilinForm.apply_sq_le_of_symm",
+      "note": null,
+      "signature": "(∀ x, 0 ≤ B x x) → B.IsSymm → (B x y)^2 ≤ B x x * B y y",
+      "snippet": "/-- The **Cauchy-Schwarz inequality** for positive semidefinite symmetric forms. -/\nlemma apply_sq_le_of_symm (hs : ∀ x, 0 ≤ B x x) (hB : B.IsSymm) (x y : M) :\n    (B x y) ^ 2 ≤ (B x x) * (B y y) := by\n  rw [show (B x y) ^ 2 = (B x y) * (B y x) by rw [sq, ← hB.eq, RingHom.id_apply]]\n  exact apply_mul_apply_le_of_forall_zero_le B hs x y",
+      "summary": "Cauchy–Schwarz for a nonnegative symmetric bilinear form, suitable for rootedGram."
+    },
+    "List.nodup_concat": {
+      "kind": "theorem",
+      "module": "Mathlib.Data.List.Nodup",
+      "name": "List.nodup_concat",
+      "note": null,
+      "signature": "theorem nodup_concat (l : List α) (u : α) : (l.concat u).Nodup ↔ u ∉ l ∧ l.Nodup",
+      "snippet": "theorem nodup_concat (l : List α) (u : α) : (l.concat u).Nodup ↔ u ∉ l ∧ l.Nodup := by\n  rw [← nodup_reverse]\n  simp",
+      "summary": null
+    },
+    "Matrix.PosDef": {
+      "kind": "def",
+      "module": "Mathlib.LinearAlgebra.Matrix.PosDef",
+      "name": "Matrix.PosDef",
+      "note": "inspected declaration",
+      "signature": "and `xᴴMx` is greater than zero for all nonzero `x`. -/",
+      "snippet": "/-- A matrix `M : Matrix n n R` is positive definite if it is Hermitian\nand `xᴴMx` is greater than zero for all nonzero `x`. -/\ndef PosDef (M : Matrix n n R) :=\n  M.IsHermitian ∧ ∀ ⦃x : n →₀ R⦄, x ≠ 0 → 0 < x.sum fun i xi ↦ x.sum fun j xj ↦ star xi * M i j * xj",
+      "summary": "Hermitian positive-definite finite matrix predicate via strict nonzero quadratic forms."
+    },
+    "Matrix.PosDef.diag_pos": {
+      "kind": "lemma",
+      "module": "Mathlib.LinearAlgebra.Matrix.PosDef",
+      "name": "Matrix.PosDef.diag_pos",
+      "note": "Inspected declaration source during Main.RootedCapacity b_0009 recon",
+      "signature": "lemma diag_pos [Nontrivial R] {A : Matrix n n R} (hA : A.PosDef) {i : n} : 0 < A i i",
+      "snippet": "lemma diag_pos [Nontrivial R] {A : Matrix n n R} (hA : A.PosDef) {i : n} : 0 < A i i := by\n  classical simpa [trace] using hA.2 (x := Finsupp.single i 1)",
+      "summary": "Supplies strict positivity of a capacity after proving inverse positive definite."
+    },
+    "Matrix.PosDef.dotProduct_mulVec_pos": {
+      "kind": "lemma",
+      "module": "Mathlib.LinearAlgebra.Matrix.PosDef",
+      "name": "Matrix.PosDef.dotProduct_mulVec_pos",
+      "note": null,
+      "signature": "(hM : M.PosDef) → x ≠ 0 → 0 < star x ⬝ᵥ (M *ᵥ x)",
+      "snippet": "/-- A matrix `M : Matrix n n R` is positive definite if it is Hermitian\nand `xᴴMx` is greater than zero for all nonzero `x`. -/\n@[simp]\nlemma dotProduct_mulVec_pos {M : Matrix n n R} (hM : M.PosDef) {x} (hx : x ≠ 0) :\n    0 < star x ⬝ᵥ (M *ᵥ x) := (posDef_iff_dotProduct_mulVec.mp hM).2 hx",
+      "summary": "Direct strict positivity of a nonzero rational Gram quadratic form."
+    },
+    "Matrix.PosDef.fromBlocks₁₁": {
+      "kind": "theorem",
+      "module": "Mathlib.LinearAlgebra.Matrix.PosDef",
+      "name": "Matrix.PosDef.fromBlocks₁₁",
+      "note": "inspected declaration",
+      "signature": "theorem fromBlocks₁₁ [DecidableEq m] {A : Matrix m m R'}",
+      "snippet": "theorem fromBlocks₁₁ [DecidableEq m] {A : Matrix m m R'}\n    (B : Matrix m n R') (D : Matrix n n R') (hA : A.PosDef) [Invertible A] :\n    (fromBlocks A B Bᴴ D).PosSemidef ↔ (D - Bᴴ * A⁻¹ * B).PosSemidef := by\n  have := Fintype.ofFinite n\n  rw [posSemidef_iff_dotProduct_mulVec, IsHermitian.fromBlocks₁₁ _ _ hA.1]\n  constructor\n  · refine fun h => .of_dotProduct_mulVec_nonneg h.1 fun x => ?_\n    have := h.2 (-((A⁻¹ * B) *ᵥ x) ⊕ᵥ x)\n    rwa [dotProduct_mulVec, schur_complement_eq₁₁ B D _ _ hA.1, neg_add_cancel, dotProduct_zero,\n      zero_add, ← dotProduct_mulVec] at this\n  · refine fun h => ⟨h.1, fun x => ?_⟩\n    rw [dotProduct_mulVec, ← Sum.elim_comp_inl_inr x, schur_complement_eq₁₁ B D _ _ hA.1]\n    apply le_add_of_nonneg_of_le\n    · rw [← dotProduct_mulVec]\n      apply (posSemidef_iff_dotProduct_mulVec.mp hA.posSemidef).2\n    · rw [← dotProduct_mulVec (star (x ∘ Sum.inr))]\n      apply (posSemidef_iff_dotProduct_mulVec.mp h).2",
+      "summary": "Schur-complement equivalence: a block positive-semidefinite matrix versus the lower complement, given a positive-definite upper block."
+    },
+    "Matrix.PosDef.fromBlocks₂₂": {
+      "kind": "theorem",
+      "module": "Mathlib.LinearAlgebra.Matrix.PosDef",
+      "name": "Matrix.PosDef.fromBlocks₂₂",
+      "note": "inspected declaration",
+      "signature": "theorem fromBlocks₂₂ [DecidableEq n] (A : Matrix m m R')",
+      "snippet": "theorem fromBlocks₂₂ [DecidableEq n] (A : Matrix m m R')\n    (B : Matrix m n R') {D : Matrix n n R'} (hD : D.PosDef) [Invertible D] :\n    (fromBlocks A B Bᴴ D).PosSemidef ↔ (A - B * D⁻¹ * Bᴴ).PosSemidef := by\n  rw [← posSemidef_submatrix_equiv (Equiv.sumComm n m), Equiv.sumComm_apply,\n    fromBlocks_submatrix_sum_swap_sum_swap]\n  convert! fromBlocks₁₁ Bᴴ A hD <;> simp",
+      "summary": "Schur-complement equivalence: a block positive-semidefinite matrix versus the upper complement, given a positive-definite lower block."
+    },
+    "Matrix.PosDef.inv": {
+      "kind": "theorem",
+      "module": "Mathlib.LinearAlgebra.Matrix.PosDef",
+      "name": "Matrix.PosDef.inv",
+      "note": "inspected declaration",
+      "signature": "protected theorem inv [DecidableEq n] {M : Matrix n n K} (hM : M.PosDef) : M⁻¹.PosDef",
+      "snippet": "protected theorem inv [DecidableEq n] {M : Matrix n n K} (hM : M.PosDef) : M⁻¹.PosDef := by\n  have := hM.mul_mul_conjTranspose_same (B := M⁻¹) ?_\n  · let _ := hM.isUnit.invertible\n    simpa using this.conjTranspose\n  · simp only [Matrix.vecMul_injective_iff_isUnit, isUnit_nonsing_inv_iff, hM.isUnit]",
+      "summary": "An invertible-indexed positive-definite matrix has a positive-definite inverse."
+    },
+    "Matrix.PosDef.isUnit": {
+      "kind": "theorem",
+      "module": "Mathlib.LinearAlgebra.Matrix.PosDef",
+      "name": "Matrix.PosDef.isUnit",
+      "note": "Inspected declaration source during Main.RootedCapacity b_0009 recon",
+      "signature": "theorem isUnit [DecidableEq n] {M : Matrix n n K} (hM : M.PosDef) : IsUnit M",
+      "snippet": "theorem isUnit [DecidableEq n] {M : Matrix n n K} (hM : M.PosDef) : IsUnit M := by\n  by_contra h\n  obtain ⟨a, ha, ha2⟩ : ∃ a ≠ 0, M *ᵥ a = 0 := by\n    obtain ⟨a, b, ha⟩ := Function.not_injective_iff.mp <| mulVec_injective_iff_isUnit.not.mpr h\n    exact ⟨a - b, by simp [sub_eq_zero, ha, mulVec_sub]⟩\n  simpa [ha2] using hM.dotProduct_mulVec_pos ha",
+      "summary": "Provides invertibility instances for positive-definite component blocks."
+    },
+    "Matrix.PosDef.of_dotProduct_mulVec_pos": {
+      "kind": "lemma",
+      "module": "Mathlib.LinearAlgebra.Matrix.PosDef",
+      "name": "Matrix.PosDef.of_dotProduct_mulVec_pos",
+      "note": null,
+      "signature": "lemma of_dotProduct_mulVec_pos {M : Matrix n n R} (hM1 : M.IsHermitian)",
+      "snippet": "lemma of_dotProduct_mulVec_pos {M : Matrix n n R} (hM1 : M.IsHermitian)\n    (hM2 : ∀ ⦃x⦄, x ≠ 0 → 0 < star x ⬝ᵥ (M *ᵥ x)) : M.PosDef :=\n  posDef_iff_dotProduct_mulVec.mpr ⟨hM1, hM2⟩",
+      "summary": null
+    },
+    "Matrix.PosDef.posSemidef": {
+      "kind": "theorem",
+      "module": "Mathlib.LinearAlgebra.Matrix.PosDef",
+      "name": "Matrix.PosDef.posSemidef",
+      "note": null,
+      "signature": "theorem posSemidef {M : Matrix n n R} (hM : M.PosDef) : M.PosSemidef",
+      "snippet": "theorem posSemidef {M : Matrix n n R} (hM : M.PosDef) : M.PosSemidef :=\n  ⟨hM.1, fun x ↦ by obtain rfl | hx := eq_or_ne x 0 <;> simp [le_of_lt, hM.2, *]⟩",
+      "summary": null
+    },
+    "Matrix.PosDef.submatrix": {
+      "kind": "theorem",
+      "module": "Mathlib.LinearAlgebra.Matrix.PosDef",
+      "name": "Matrix.PosDef.submatrix",
+      "note": "inspected declaration",
+      "signature": "theorem submatrix {M : Matrix n n R} (hM : M.PosDef) {e : m → n}",
+      "snippet": "theorem submatrix {M : Matrix n n R} (hM : M.PosDef) {e : m → n}\n    (he : Function.Injective e) : (M.submatrix e e).PosDef := by\n  refine ⟨hM.1.submatrix _, fun x hx ↦ ?_⟩\n  simpa [Finsupp.sum_mapDomain_index, add_mul, mul_add] using\n    hM.2 <| Finsupp.mapDomain_injective he |>.ne_iff' Finsupp.mapDomain_zero |>.2 hx",
+      "summary": "Positive definiteness is preserved by an injectively reindexed principal submatrix."
+    },
+    "Matrix.PosSemidef.posDef_iff_isUnit": {
+      "kind": "theorem",
+      "module": "Mathlib.Analysis.Matrix.Order",
+      "name": "Matrix.PosSemidef.posDef_iff_isUnit",
+      "note": "Inspected declaration source during Main.RootedCapacity b_0009 recon",
+      "signature": "theorem PosSemidef.posDef_iff_isUnit [DecidableEq n] {x : Matrix n n 𝕜} (hx : x.PosSemidef) : x.PosDef ↔ IsUnit x",
+      "snippet": "/-- A positive semi-definite matrix is positive definite if and only if it is invertible. -/\n@[grind =]\ntheorem PosSemidef.posDef_iff_isUnit [DecidableEq n] {x : Matrix n n 𝕜}\n    (hx : x.PosSemidef) : x.PosDef ↔ IsUnit x := by\n  refine ⟨fun h => h.isUnit, fun h => .of_dotProduct_mulVec_pos hx.1 fun v hv => ?_⟩\n  obtain ⟨y, rfl⟩ := CStarAlgebra.nonneg_iff_eq_star_mul_self.mp hx.nonneg\n  simp_rw [dotProduct_mulVec, ← vecMul_vecMul, star_eq_conjTranspose, ← star_mulVec,\n    ← dotProduct_mulVec, dotProduct_star_self_pos_iff]\n  contrapose hv\n  rw [← map_eq_zero_iff (f := (yᴴ * y).mulVecLin) (mulVec_injective_iff_isUnit.mpr h),\n    mulVecLin_apply, ← mulVec_mulVec, hv, mulVec_zero]",
+      "summary": "Upgrades a Schur complement from positive semidefinite to positive definite once its isUnit bridge is established."
+    },
+    "Matrix.blockDiagonal'": {
+      "kind": "def",
+      "module": "Mathlib.Data.Matrix.Block",
+      "name": "Matrix.blockDiagonal'",
+      "note": "Targeted verification after RootedCapacity Statement Formal dependency-resolution failure.",
+      "signature": "{o : Type*} {m' n' : o → Type*} {α : Type*} [DecidableEq o] [Zero α] (M : (i : o) → Matrix (m' i) (n' i) α) : Matrix ((i : o) × m' i) ((i : o) × n' i) α",
+      "snippet": "#check Matrix.blockDiagonal' succeeds after importing Mathlib.Data.Matrix.Block",
+      "summary": "Build the dependent block-diagonal matrix used to group the nonroot Gram block by rooted child components."
+    },
+    "Matrix.blockDiagonal'_apply'": {
+      "kind": "theorem",
+      "module": "Mathlib.Data.Matrix.Block",
+      "name": "Matrix.blockDiagonal'_apply'",
+      "note": "Mathlib inspection.",
+      "signature": "theorem blockDiagonal'_apply' (M : ∀ i, Matrix (m' i) (n' i) α) (k i k' j) :",
+      "snippet": "theorem blockDiagonal'_apply' (M : ∀ i, Matrix (m' i) (n' i) α) (k i k' j) :\n    blockDiagonal' M ⟨k, i⟩ ⟨k', j⟩ =\n      if h : k = k' then M k i (cast (congr_arg n' h.symm) j) else 0 :=\n  rfl",
+      "summary": "Exact entry expansion produces a dependent equality test and cast in the equal fiber."
+    },
+    "Matrix.blockDiagonal'_mul": {
+      "kind": "theorem",
+      "module": "Mathlib.Data.Matrix.Block",
+      "name": "Matrix.blockDiagonal'_mul",
+      "note": null,
+      "signature": "theorem blockDiagonal'_mul [NonUnitalNonAssocSemiring α] [∀ i, Fintype (n' i)] [Fintype o]",
+      "snippet": "@[simp]\ntheorem blockDiagonal'_mul [NonUnitalNonAssocSemiring α] [∀ i, Fintype (n' i)] [Fintype o]\n    (M : ∀ i, Matrix (m' i) (n' i) α) (N : ∀ i, Matrix (n' i) (p' i) α) :\n    (blockDiagonal' fun k => M k * N k) = blockDiagonal' M * blockDiagonal' N := by\n  ext ⟨k, i⟩ ⟨k', j⟩\n  simp only [blockDiagonal'_apply, mul_apply, ← Finset.univ_sigma_univ, Finset.sum_sigma]\n  rw [Fintype.sum_eq_single k]\n  · simp only [dif_pos]\n    split_ifs <;> simp\n  · intro j' hj'\n    exact Finset.sum_eq_zero fun _ _ => by rw [dif_neg hj'.symm, zero_mul]",
+      "summary": null
+    },
+    "Matrix.diagonal_apply_eq": {
+      "kind": "theorem",
+      "module": "Mathlib.Data.Matrix.Diagonal",
+      "name": "Matrix.diagonal_apply_eq",
+      "note": null,
+      "signature": "theorem diagonal_apply_eq [Zero α] (d : n → α) (i : n) : (diagonal d) i i = d i",
+      "snippet": "@[simp]\ntheorem diagonal_apply_eq [Zero α] (d : n → α) (i : n) : (diagonal d) i i = d i := by\n  simp [diagonal]",
+      "summary": null
+    },
+    "Matrix.dotProduct_mulVec": {
+      "kind": "theorem",
+      "module": "Mathlib.Data.Matrix.Mul",
+      "name": "Matrix.dotProduct_mulVec",
+      "note": null,
+      "signature": "theorem dotProduct_mulVec [Fintype n] [Fintype m] [NonUnitalSemiring R] (v : m → R)",
+      "snippet": "/-- Associate the dot product of `mulVec` to the left. -/\ntheorem dotProduct_mulVec [Fintype n] [Fintype m] [NonUnitalSemiring R] (v : m → R)\n    (A : Matrix m n R) (w : n → R) : v ⬝ᵥ A *ᵥ w = v ᵥ* A ⬝ᵥ w := by\n  simp only [dotProduct, vecMul, mulVec, Finset.mul_sum, Finset.sum_mul, mul_assoc]\n  exact Finset.sum_comm",
+      "summary": null
+    },
+    "Matrix.ext": {
+      "kind": "theorem",
+      "module": "Mathlib.LinearAlgebra.Matrix.Defs",
+      "name": "Matrix.ext",
+      "note": null,
+      "signature": "theorem ext : (∀ i j, M i j = N i j) → M = N",
+      "snippet": "@[ext]\ntheorem ext : (∀ i j, M i j = N i j) → M = N :=\n  ext_iff.mp",
+      "summary": null
+    },
+    "Matrix.fromBlocks": {
+      "kind": "def",
+      "module": "Mathlib.Data.Matrix.Block",
+      "name": "Matrix.fromBlocks",
+      "note": "Inspected declaration source during Main.RootedCapacity b_0009 recon",
+      "signature": "def fromBlocks (A : Matrix n l α) (B : Matrix n m α) (C : Matrix o l α) (D : Matrix o m α) : Matrix (n ⊕ o) (l ⊕ m) α",
+      "snippet": "/-- We can form a single large matrix by flattening smaller 'block' matrices of compatible\ndimensions. -/\n@[pp_nodot]\ndef fromBlocks (A : Matrix n l α) (B : Matrix n m α) (C : Matrix o l α) (D : Matrix o m α) :\n    Matrix (n ⊕ o) (l ⊕ m) α :=\n  of <| Sum.elim (fun i => Sum.elim (A i) (B i)) (fun j => Sum.elim (C j) (D j))",
+      "summary": "Assembles the root/rest matrix decomposition."
+    },
+    "Matrix.fromBlocks_apply₁₁": {
+      "kind": "theorem",
+      "module": "Mathlib.Data.Matrix.Block",
+      "name": "Matrix.fromBlocks_apply₁₁",
+      "note": "Inspected declaration source during Main.RootedCapacity b_0009 recon",
+      "signature": "theorem fromBlocks_apply₁₁ (A : Matrix n l α) (B : Matrix n m α) (C : Matrix o l α) (D : Matrix o m α) (i : n) (j : l) : fromBlocks A B C D (Sum.inl i) (Sum.inl j) = A i j",
+      "snippet": "@[simp]\ntheorem fromBlocks_apply₁₁ (A : Matrix n l α) (B : Matrix n m α) (C : Matrix o l α)\n    (D : Matrix o m α) (i : n) (j : l) : fromBlocks A B C D (Sum.inl i) (Sum.inl j) = A i j :=\n  rfl",
+      "summary": "Simplifies the root block of a constructed block matrix."
+    },
+    "Matrix.fromBlocks_apply₁₂": {
+      "kind": "theorem",
+      "module": "Mathlib.Data.Matrix.Block",
+      "name": "Matrix.fromBlocks_apply₁₂",
+      "note": null,
+      "signature": "theorem fromBlocks_apply₁₂ (A : Matrix n l α) (B : Matrix n m α) (C : Matrix o l α)",
+      "snippet": "@[simp]\ntheorem fromBlocks_apply₁₂ (A : Matrix n l α) (B : Matrix n m α) (C : Matrix o l α)\n    (D : Matrix o m α) (i : n) (j : m) : fromBlocks A B C D (Sum.inl i) (Sum.inr j) = B i j :=\n  rfl",
+      "summary": null
+    },
+    "Matrix.fromBlocks_apply₂₁": {
+      "kind": "theorem",
+      "module": "Mathlib.Data.Matrix.Block",
+      "name": "Matrix.fromBlocks_apply₂₁",
+      "note": null,
+      "signature": "theorem fromBlocks_apply₂₁ (A : Matrix n l α) (B : Matrix n m α) (C : Matrix o l α)",
+      "snippet": "@[simp]\ntheorem fromBlocks_apply₂₁ (A : Matrix n l α) (B : Matrix n m α) (C : Matrix o l α)\n    (D : Matrix o m α) (i : o) (j : l) : fromBlocks A B C D (Sum.inr i) (Sum.inl j) = C i j :=\n  rfl",
+      "summary": null
+    },
+    "Matrix.fromBlocks_apply₂₂": {
+      "kind": "theorem",
+      "module": "Mathlib.Data.Matrix.Block",
+      "name": "Matrix.fromBlocks_apply₂₂",
+      "note": null,
+      "signature": "theorem fromBlocks_apply₂₂ (A : Matrix n l α) (B : Matrix n m α) (C : Matrix o l α)",
+      "snippet": "@[simp]\ntheorem fromBlocks_apply₂₂ (A : Matrix n l α) (B : Matrix n m α) (C : Matrix o l α)\n    (D : Matrix o m α) (i : o) (j : m) : fromBlocks A B C D (Sum.inr i) (Sum.inr j) = D i j :=\n  rfl",
+      "summary": null
+    },
+    "Matrix.fromBlocks_mulVec": {
+      "kind": "theorem",
+      "module": "Mathlib.Data.Matrix.Block",
+      "name": "Matrix.fromBlocks_mulVec",
+      "note": null,
+      "signature": "theorem fromBlocks_mulVec [Fintype l] [Fintype m] [NonUnitalNonAssocSemiring α] (A : Matrix n l α)",
+      "snippet": "theorem fromBlocks_mulVec [Fintype l] [Fintype m] [NonUnitalNonAssocSemiring α] (A : Matrix n l α)\n    (B : Matrix n m α) (C : Matrix o l α) (D : Matrix o m α) (x : l ⊕ m → α) :\n    (fromBlocks A B C D) *ᵥ x =\n      Sum.elim (A *ᵥ (x ∘ Sum.inl) + B *ᵥ (x ∘ Sum.inr))\n        (C *ᵥ (x ∘ Sum.inl) + D *ᵥ (x ∘ Sum.inr)) := by\n  ext i\n  cases i <;> simp [mulVec, dotProduct]",
+      "summary": null
+    },
+    "Matrix.inv": {
+      "kind": null,
+      "module": "Mathlib.LinearAlgebra.Matrix.NonsingularInverse",
+      "name": "Matrix.inv",
+      "note": null,
+      "signature": "noncomputable instance inv : Inv (Matrix n n α)",
+      "snippet": "/-- The inverse of a square matrix, when it is invertible (and zero otherwise). -/\nnoncomputable instance inv : Inv (Matrix n n α) :=\n  ⟨fun A => A.det⁻¹ʳ • A.adjugate⟩",
+      "summary": null
+    },
+    "Matrix.invOf_eq_nonsing_inv": {
+      "kind": "theorem",
+      "module": "Mathlib.LinearAlgebra.Matrix.NonsingularInverse",
+      "name": "Matrix.invOf_eq_nonsing_inv",
+      "note": "Inspected Mathlib declaration during Main.RootedCapacity capacity-recursion recon.",
+      "signature": "theorem invOf_eq_nonsing_inv [Invertible A] : ⅟A = A⁻¹",
+      "snippet": "/-- The nonsingular inverse is the same as `invOf` when `A` is invertible. -/\n@[simp]\ntheorem invOf_eq_nonsing_inv [Invertible A] : ⅟A = A⁻¹ := by\n  letI := detInvertibleOfInvertible A\n  rw [inv_def, Ring.inverse_invertible, invOf_eq]",
+      "summary": "Bridges the Schur-complement invOf formula to rootedCapacity's total inverse after positive definiteness supplies an Invertible instance."
+    },
+    "Matrix.invOf_fromBlocks₂₂_eq": {
+      "kind": "theorem",
+      "module": "Mathlib.LinearAlgebra.Matrix.SchurComplement",
+      "name": "Matrix.invOf_fromBlocks₂₂_eq",
+      "note": "Inspected declaration source during Main.RootedCapacity b_0009 recon",
+      "signature": "theorem invOf_fromBlocks₂₂_eq (A : Matrix m m α) (B : Matrix m n α) (C : Matrix n m α) (D : Matrix n n α) [Invertible D] [Invertible (A - B * ⅟D * C)] [Invertible (fromBlocks A B C D)] : ⅟(fromBlocks A B C D) = fromBlocks (⅟(A - B * ⅟D * C)) (-(⅟(A - B * ⅟D * C) * B * ⅟D)) (-(⅟D * C * ⅟(A - B * ⅟D * C))) (⅟D + ⅟D * C * ⅟(A - B * ⅟D * C) * B * ⅟D)",
+      "snippet": "theorem invOf_fromBlocks₂₂_eq (A : Matrix m m α) (B : Matrix m n α) (C : Matrix n m α)\n    (D : Matrix n n α) [Invertible D] [Invertible (A - B * ⅟D * C)]\n    [Invertible (fromBlocks A B C D)] :\n    ⅟(fromBlocks A B C D) =\n      fromBlocks (⅟(A - B * ⅟D * C)) (-(⅟(A - B * ⅟D * C) * B * ⅟D))\n        (-(⅟D * C * ⅟(A - B * ⅟D * C))) (⅟D + ⅟D * C * ⅟(A - B * ⅟D * C) * B * ⅟D) := by\n  letI := fromBlocks₂₂Invertible A B C D\n  convert! (rfl : ⅟(fromBlocks A B C D) = _)",
+      "summary": "Exact bottom-right Schur block inverse formula; a local bridge converts invOf to the total inverse in rootedCapacity."
+    },
+    "Matrix.inv_eq_left_inv": {
+      "kind": "theorem",
+      "module": "Mathlib.LinearAlgebra.Matrix.NonsingularInverse",
+      "name": "Matrix.inv_eq_left_inv",
+      "note": null,
+      "signature": "theorem inv_eq_left_inv (h : B * A = 1) : A⁻¹ = B",
+      "snippet": "/-- If matrix A is left invertible, then its inverse equals its left inverse. -/\ntheorem inv_eq_left_inv (h : B * A = 1) : A⁻¹ = B :=\n  letI := invertibleOfLeftInverse _ _ h\n  invOf_eq_nonsing_inv A ▸ invOf_eq_left_inv h",
+      "summary": null
+    },
+    "Matrix.inv_reindex": {
+      "kind": "theorem",
+      "module": "Mathlib.LinearAlgebra.Matrix.NonsingularInverse",
+      "name": "Matrix.inv_reindex",
+      "note": "Inspected declaration source during Main.RootedCapacity b_0009 recon",
+      "signature": "theorem inv_reindex (e₁ e₂ : n ≃ m) (A : Matrix n n α) : (reindex e₁ e₂ A)⁻¹ = reindex e₂ e₁ A⁻¹",
+      "snippet": "theorem inv_reindex (e₁ e₂ : n ≃ m) (A : Matrix n n α) : (reindex e₁ e₂ A)⁻¹ = reindex e₂ e₁ A⁻¹ :=\n  inv_submatrix_equiv A e₁.symm e₂.symm",
+      "summary": "Transfers the rootedCapacity inverse entry through the root/rest reindexing."
+    },
+    "Matrix.inv_subsingleton": {
+      "kind": "theorem",
+      "module": "Mathlib.LinearAlgebra.Matrix.NonsingularInverse",
+      "name": "Matrix.inv_subsingleton",
+      "note": "Inspected Mathlib declaration during Main.RootedCapacity capacity-recursion recon.",
+      "signature": "theorem inv_subsingleton [Subsingleton m] [Fintype m] [DecidableEq m] (A : Matrix m m α) : A⁻¹ = diagonal fun i => (A i i)⁻¹ʳ",
+      "snippet": "/-- The inverse of a 1×1 or 0×0 matrix is always diagonal.\n\nWhile we could write this as `of fun _ _ => (A default default)⁻¹ʳ` on the RHS, this is\nless useful because:\n\n* It wouldn't work for 0×0 matrices.\n* More things are true about diagonal matrices than constant matrices, and so more lemmas exist.\n\n`Matrix.diagonal_unique` can be used to reach this form, while `Ring.inverse_eq_inv` can be used\nto replace `Ring.inverse` with `⁻¹`.\n-/\n@[simp]\ntheorem inv_subsingleton [Subsingleton m] [Fintype m] [DecidableEq m] (A : Matrix m m α) :\n    A⁻¹ = diagonal fun i => (A i i)⁻¹ʳ := by\n  rw [inv_def, adjugate_subsingleton, smul_one_eq_diagonal]\n  congr! with i\n  exact det_eq_elem_of_subsingleton _ _",
+      "summary": "Simplifies the inverse on the singleton root block; combined with a nonzero scalar/positive-definite entry it gives the scalar reciprocal in the capacity recurrence."
+    },
+    "Matrix.invertibleOfFromBlocks₂₂Invertible": {
+      "kind": "def",
+      "module": "Mathlib.LinearAlgebra.Matrix.SchurComplement",
+      "name": "Matrix.invertibleOfFromBlocks₂₂Invertible",
+      "note": "Inspected Mathlib declaration during Main.RootedCapacity capacity-recursion recon.",
+      "signature": "def invertibleOfFromBlocks₂₂Invertible (A : Matrix m m α) (B : Matrix m n α) (C : Matrix n m α) (D : Matrix n n α) [Invertible D] [Invertible (fromBlocks A B C D)] : Invertible (A - B * ⅟D * C)",
+      "snippet": "/-- If a block matrix is invertible and so is its bottom left element, then so is the corresponding\nSchur complement. -/\n@[implicit_reducible]\ndef invertibleOfFromBlocks₂₂Invertible (A : Matrix m m α) (B : Matrix m n α) (C : Matrix n m α)\n    (D : Matrix n n α) [Invertible D] [Invertible (fromBlocks A B C D)] :\n    Invertible (A - B * ⅟D * C) := by\n  suffices Invertible (fromBlocks (A - B * ⅟D * C) 0 0 D) by\n    exact (invertibleOfFromBlocksZero₁₂Invertible (A - B * ⅟D * C) 0 D).1\n  letI : Invertible (1 : Matrix n n α) := invertibleOne\n  letI : Invertible (1 : Matrix m m α) := invertibleOne\n  letI iDC : Invertible (fromBlocks 1 0 (⅟D * C) 1 : Matrix (m ⊕ n) (m ⊕ n) α) :=\n    fromBlocksZero₁₂Invertible _ _ _\n  letI iBD : Invertible (fromBlocks 1 (B * ⅟D) 0 1 : Matrix (m ⊕ n) (m ⊕ n) α) :=\n    fromBlocksZero₂₁Invertible _ _ _\n  letI iBDC := Invertible.copy ‹_› _ (fromBlocks_eq_of_invertible₂₂ A B C D).symm\n  refine (iBD.mulLeft _).symm ?_\n  exact (iDC.mulRight _).symm iBDC",
+      "summary": "Derives invertibility of the top-left Schur complement from an invertible lower-right block and full block matrix; supplies the instance required by invOf_fromBlocks₂₂_eq."
+    },
+    "Matrix.isHermitian_iff_isSymm": {
+      "kind": "lemma",
+      "module": "Mathlib.LinearAlgebra.Matrix.Hermitian",
+      "name": "Matrix.isHermitian_iff_isSymm",
+      "note": null,
+      "signature": "A.IsHermitian ↔ A.IsSymm",
+      "snippet": "@[simp] lemma isHermitian_iff_isSymm [TrivialStar α] {A : Matrix n n α} :\n    A.IsHermitian ↔ A.IsSymm := by\n  simp [IsHermitian.ext_iff, IsSymm.ext_iff]",
+      "summary": "Over ℚ, converts the Hermitian field of Matrix.PosDef into ordinary matrix symmetry."
+    },
+    "Matrix.isSymm_toBilin'_iff_isSymm": {
+      "kind": "lemma",
+      "module": "Mathlib.LinearAlgebra.Matrix.BilinearForm",
+      "name": "Matrix.isSymm_toBilin'_iff_isSymm",
+      "note": null,
+      "signature": "M.toBilin'.IsSymm ↔ M.IsSymm",
+      "snippet": "@[simp]\nlemma Matrix.isSymm_toBilin'_iff_isSymm {M : Matrix n n R₁} : M.toBilin'.IsSymm ↔ M.IsSymm := by\n  simp [← M.toBilin'.isSymm_toMatrix'_iff_isSymm]",
+      "summary": "Transfers symmetry of the rational rooted Gram matrix to its associated bilinear form."
+    },
+    "Matrix.isUnit_iff_isUnit_det": {
+      "kind": "theorem",
+      "module": "Mathlib.LinearAlgebra.Matrix.NonsingularInverse",
+      "name": "Matrix.isUnit_iff_isUnit_det",
+      "note": null,
+      "signature": "theorem isUnit_iff_isUnit_det : IsUnit A ↔ IsUnit A.det",
+      "snippet": "/-- When lowered to a prop, `Matrix.invertibleEquivDetInvertible` forms an `iff`. -/\ntheorem isUnit_iff_isUnit_det : IsUnit A ↔ IsUnit A.det := by\n  simp only [← nonempty_invertible_iff_isUnit, (invertibleEquivDetInvertible A).nonempty_congr]",
+      "summary": null
+    },
+    "Matrix.mulVec_apply": {
+      "kind": "lemma",
+      "module": "Mathlib.Data.Matrix.Mul",
+      "name": "Matrix.mulVec_apply",
+      "note": null,
+      "signature": "lemma mulVec_apply [Fintype n] (M : Matrix m n α) (v : n → α) (i : m) :",
+      "snippet": "lemma mulVec_apply [Fintype n] (M : Matrix m n α) (v : n → α) (i : m) :\n    (M *ᵥ v) i = M.row i ⬝ᵥ v := rfl",
+      "summary": null
+    },
+    "Matrix.mulVec_eq_sum": {
+      "kind": "theorem",
+      "module": "Mathlib.Data.Matrix.Mul",
+      "name": "Matrix.mulVec_eq_sum",
+      "note": null,
+      "signature": "theorem mulVec_eq_sum [Fintype n] (v : n → α) (M : Matrix m n α) :",
+      "snippet": "theorem mulVec_eq_sum [Fintype n] (v : n → α) (M : Matrix m n α) :\n    M *ᵥ v = ∑ i, MulOpposite.op (v i) • Mᵀ i :=\n  (Finset.sum_fn ..).symm",
+      "summary": null
+    },
+    "Matrix.mulVec_mulVec": {
+      "kind": "theorem",
+      "module": "Mathlib.Data.Matrix.Mul",
+      "name": "Matrix.mulVec_mulVec",
+      "note": null,
+      "signature": "theorem mulVec_mulVec [Fintype n] [Fintype o] (v : o → α) (M : Matrix m n α) (N : Matrix n o α) :",
+      "snippet": "@[simp]\ntheorem mulVec_mulVec [Fintype n] [Fintype o] (v : o → α) (M : Matrix m n α) (N : Matrix n o α) :\n    M *ᵥ N *ᵥ v = (M * N) *ᵥ v := by\n  ext\n  symm\n  apply dotProduct_assoc",
+      "summary": null
+    },
+    "Matrix.mul_apply": {
+      "kind": "theorem",
+      "module": "Mathlib.Data.Matrix.Mul",
+      "name": "Matrix.mul_apply",
+      "note": null,
+      "signature": "theorem mul_apply [Fintype m] [Mul α] [AddCommMonoid α] {M : Matrix l m α} {N : Matrix m n α}",
+      "snippet": "theorem mul_apply [Fintype m] [Mul α] [AddCommMonoid α] {M : Matrix l m α} {N : Matrix m n α}\n    {i k} : (M * N) i k = ∑ j, M i j * N j k :=\n  rfl",
+      "summary": null
+    },
+    "Matrix.mul_inv_cancel_right_of_invertible": {
+      "kind": "theorem",
+      "module": "Mathlib.LinearAlgebra.Matrix.NonsingularInverse",
+      "name": "Matrix.mul_inv_cancel_right_of_invertible",
+      "note": null,
+      "signature": "theorem mul_inv_cancel_right_of_invertible (B : Matrix m n α) [Invertible A] : B * A * A⁻¹ = B",
+      "snippet": "@[simp]\ntheorem mul_inv_cancel_right_of_invertible (B : Matrix m n α) [Invertible A] : B * A * A⁻¹ = B :=\n  mul_nonsing_inv_cancel_right A B (isUnit_det_of_invertible A)",
+      "summary": null
+    },
+    "Matrix.mul_inv_of_invertible": {
+      "kind": "theorem",
+      "module": "Mathlib.LinearAlgebra.Matrix.NonsingularInverse",
+      "name": "Matrix.mul_inv_of_invertible",
+      "note": null,
+      "signature": "theorem mul_inv_of_invertible [Invertible A] : A * A⁻¹ = 1",
+      "snippet": "@[simp]\ntheorem mul_inv_of_invertible [Invertible A] : A * A⁻¹ = 1 :=\n  mul_nonsing_inv A (isUnit_det_of_invertible A)",
+      "summary": null
+    },
+    "Matrix.mul_nonsing_inv": {
+      "kind": "theorem",
+      "module": "Mathlib.LinearAlgebra.Matrix.NonsingularInverse",
+      "name": "Matrix.mul_nonsing_inv",
+      "note": null,
+      "signature": "theorem mul_nonsing_inv (h : IsUnit A.det) : A * A⁻¹ = 1",
+      "snippet": "/-- The `nonsing_inv` of `A` is a right inverse. -/\n@[simp]\ntheorem mul_nonsing_inv (h : IsUnit A.det) : A * A⁻¹ = 1 := by\n  cases (A.isUnit_iff_isUnit_det.mpr h).nonempty_invertible\n  rw [← invOf_eq_nonsing_inv, mul_invOf_self]",
+      "summary": null
+    },
+    "Matrix.nonsing_inv_mul": {
+      "kind": "theorem",
+      "module": "Mathlib.LinearAlgebra.Matrix.NonsingularInverse",
+      "name": "Matrix.nonsing_inv_mul",
+      "note": null,
+      "signature": "theorem nonsing_inv_mul (h : IsUnit A.det) : A⁻¹ * A = 1",
+      "snippet": "/-- The nonsingular inverse of `A` is a left inverse. -/\n@[simp]\ntheorem nonsing_inv_mul (h : IsUnit A.det) : A⁻¹ * A = 1 := by\n  cases (A.isUnit_iff_isUnit_det.mpr h).nonempty_invertible\n  rw [← invOf_eq_nonsing_inv, invOf_mul_self]",
+      "summary": null
+    },
+    "Matrix.one_apply": {
+      "kind": "theorem",
+      "module": "Mathlib.Data.Matrix.Diagonal",
+      "name": "Matrix.one_apply",
+      "note": null,
+      "signature": "theorem one_apply {i j} : (1 : Matrix n n α) i j = if i = j then 1 else 0",
+      "snippet": "theorem one_apply {i j} : (1 : Matrix n n α) i j = if i = j then 1 else 0 :=\n  rfl",
+      "summary": null
+    },
+    "Matrix.reindex": {
+      "kind": null,
+      "module": "Mathlib.LinearAlgebra.Matrix.Defs",
+      "name": "Matrix.reindex",
+      "note": null,
+      "signature": "equivalence. -/",
+      "snippet": "/-- The natural map that reindexes a matrix's rows and columns with equivalent types is an\nequivalence. -/\ndef reindex (eₘ : m ≃ l) (eₙ : n ≃ o) : Matrix m n α ≃ Matrix l o α where\n  toFun M := M.submatrix eₘ.symm eₙ.symm\n  invFun M := M.submatrix eₘ eₙ\n  left_inv M := by simp\n  right_inv M := by simp",
+      "summary": null
+    },
+    "Matrix.reindexRingEquiv": {
+      "kind": "def",
+      "module": "Mathlib.LinearAlgebra.Matrix.Reindex",
+      "name": "Matrix.reindexRingEquiv",
+      "note": null,
+      "signature": "def reindexRingEquiv (e : m ≃ n) : Matrix m m R ≃+* Matrix n n R where",
+      "snippet": "/-- `Matrix.reindex` as a `RingEquiv` between `R`-matrices. -/\ndef reindexRingEquiv (e : m ≃ n) : Matrix m m R ≃+* Matrix n n R where\n  __ := reindexAddEquiv R e e\n  map_mul' A B := submatrix_mul_equiv A B .. |>.symm",
+      "summary": null
+    },
+    "Matrix.reindex_apply": {
+      "kind": "theorem",
+      "module": "Mathlib.LinearAlgebra.Matrix.Defs",
+      "name": "Matrix.reindex_apply",
+      "note": "Inspected declaration source during Main.RootedCapacity b_0009 recon",
+      "signature": "theorem reindex_apply (eₘ : m ≃ l) (eₙ : n ≃ o) (M : Matrix m n α) : reindex eₘ eₙ M = M.submatrix eₘ.symm eₙ.symm",
+      "snippet": "@[simp]\ntheorem reindex_apply (eₘ : m ≃ l) (eₙ : n ≃ o) (M : Matrix m n α) :\n    reindex eₘ eₙ M = M.submatrix eₘ.symm eₙ.symm :=\n  rfl",
+      "summary": "Identifies reindexing as the desired principal submatrix."
+    },
+    "Matrix.schur_complement_eq₂₂": {
+      "kind": "theorem",
+      "module": "Mathlib.LinearAlgebra.Matrix.Hermitian",
+      "name": "Matrix.schur_complement_eq₂₂",
+      "note": null,
+      "signature": "theorem schur_complement_eq₂₂ [Fintype m] [Fintype n] [DecidableEq n] (A : Matrix m m α)",
+      "snippet": "theorem schur_complement_eq₂₂ [Fintype m] [Fintype n] [DecidableEq n] (A : Matrix m m α)\n    (B : Matrix m n α) {D : Matrix n n α} (x : m → α) (y : n → α) [Invertible D]\n    (hD : D.IsHermitian) :\n    (star (x ⊕ᵥ y)) ᵥ* (Matrix.fromBlocks A B Bᴴ D) ⬝ᵥ (x ⊕ᵥ y) =\n      (star ((D⁻¹ * Bᴴ) *ᵥ x + y)) ᵥ* D ⬝ᵥ ((D⁻¹ * Bᴴ) *ᵥ x + y) +\n        (star x) ᵥ* (A - B * D⁻¹ * Bᴴ) ⬝ᵥ x := by\n  simp [Function.star_sumElim, vecMul_fromBlocks, add_vecMul,\n    dotProduct_mulVec, vecMul_sub, Matrix.mul_assoc, hD.eq,\n    conjTranspose_nonsing_inv, star_mulVec]\n  abel",
+      "summary": null
+    },
+    "Matrix.sub_apply": {
+      "kind": "theorem",
+      "module": "Mathlib.LinearAlgebra.Matrix.Defs",
+      "name": "Matrix.sub_apply",
+      "note": null,
+      "signature": "theorem sub_apply [Sub α] (A B : Matrix m n α) (i : m) (j : n) :",
+      "snippet": "@[simp]\ntheorem sub_apply [Sub α] (A B : Matrix m n α) (i : m) (j : n) :\n    (A - B) i j = (A i j) - (B i j) := rfl",
+      "summary": null
+    },
+    "Matrix.submatrix": {
+      "kind": null,
+      "module": "Mathlib.LinearAlgebra.Matrix.Defs",
+      "name": "Matrix.submatrix",
+      "note": null,
+      "signature": "a matrix `M : Matrix m n α`, the matrix `M.submatrix r c : Matrix l o α` is defined",
+      "snippet": "/-- Given maps `(r : l → m)` and `(c : o → n)` reindexing the rows and columns of\na matrix `M : Matrix m n α`, the matrix `M.submatrix r c : Matrix l o α` is defined\nby `(M.submatrix r c) i j = M (r i) (c j)` for `(i,j) : l × o`.\nNote that the total number of row and columns does not have to be preserved. -/\ndef submatrix (A : Matrix m n α) (r : l → m) (c : o → n) : Matrix l o α :=\n  of fun i j => A (r i) (c j)",
+      "summary": null
+    },
+    "Matrix.submatrixEquivInvertible": {
+      "kind": "def",
+      "module": "Mathlib.LinearAlgebra.Matrix.NonsingularInverse",
+      "name": "Matrix.submatrixEquivInvertible",
+      "note": null,
+      "signature": "def submatrixEquivInvertible (A : Matrix m m α) (e₁ e₂ : n ≃ m) [Invertible A] : Invertible (A.submatrix e₁ e₂)",
+      "snippet": "/-- `A.submatrix e₁ e₂` is invertible if `A` is -/\n@[implicit_reducible]\ndef submatrixEquivInvertible (A : Matrix m m α) (e₁ e₂ : n ≃ m) [Invertible A] :\n    Invertible (A.submatrix e₁ e₂) :=\n  invertibleOfRightInverse _ ((⅟A).submatrix e₂ e₁) <| by\n    rw [Matrix.submatrix_mul_equiv, mul_invOf_self, submatrix_one_equiv]",
+      "summary": "Lifts an Invertible instance through a square reindexing/principal submatrix along equivalences; gives invertibility of Matrix.reindex after unfolding reindex_apply."
+    },
+    "Matrix.submatrix_apply": {
+      "kind": "theorem",
+      "module": "Mathlib.LinearAlgebra.Matrix.Defs",
+      "name": "Matrix.submatrix_apply",
+      "note": null,
+      "signature": "theorem submatrix_apply (A : Matrix m n α) (r : l → m) (c : o → n) (i j) :",
+      "snippet": "@[simp]\ntheorem submatrix_apply (A : Matrix m n α) (r : l → m) (c : o → n) (i j) :\n    A.submatrix r c i j = A (r i) (c j) :=\n  rfl",
+      "summary": null
+    },
+    "Matrix.toBilin'_apply'": {
+      "kind": "theorem",
+      "module": "Mathlib.LinearAlgebra.Matrix.BilinearForm",
+      "name": "Matrix.toBilin'_apply'",
+      "note": null,
+      "signature": "Matrix.toBilin' M v w = v ⬝ᵥ M *ᵥ w",
+      "snippet": "theorem Matrix.toBilin'_apply' (M : Matrix n n R₁) (v w : n → R₁) :\n    Matrix.toBilin' M v w = v ⬝ᵥ M *ᵥ w := Matrix.toLinearMap₂'_apply' _ _ _",
+      "summary": "Identifies the bilinear form of a matrix with the dotProduct/mulVec expression."
+    },
+    "Matrix.toEquiv_reindexRingEquiv": {
+      "kind": "theorem",
+      "module": "Mathlib.LinearAlgebra.Matrix.Reindex",
+      "name": "Matrix.toEquiv_reindexRingEquiv",
+      "note": null,
+      "signature": "theorem toEquiv_reindexRingEquiv (e : m ≃ n) :",
+      "snippet": "@[simp]\ntheorem toEquiv_reindexRingEquiv (e : m ≃ n) :\n    (reindexRingEquiv R e : Matrix m m R ≃ Matrix n n R) = reindex e e :=\n  rfl",
+      "summary": null
+    },
+    "Nat.strong_induction_on": {
+      "kind": null,
+      "module": "Mathlib.Data.Nat.Init",
+      "name": "Nat.strong_induction_on",
+      "note": null,
+      "signature": "protected theorem strong_induction_on {p : ℕ → Prop} (n : ℕ)",
+      "snippet": "@[elab_as_elim]\nprotected theorem strong_induction_on {p : ℕ → Prop} (n : ℕ)\n    (h : ∀ n, (∀ m < n, p m) → p n) : p n :=\n  Nat.strongRecOn n h",
+      "summary": null
+    },
+    "Pi.single_apply": {
+      "kind": "lemma",
+      "module": "Mathlib.Algebra.Notation.Pi.Basic",
+      "name": "Pi.single_apply",
+      "note": null,
+      "signature": "lemma mulSingle_apply (i : ι) (x : M) (i' : ι) :",
+      "snippet": "@[to_additive (attr := grind =)\n  /-- On non-dependent functions, `Pi.single` can be expressed as an `ite` -/]\nlemma mulSingle_apply (i : ι) (x : M) (i' : ι) :",
+      "summary": null
+    },
+    "Rat.mul_den_eq_num": {
+      "kind": null,
+      "module": "Mathlib.Algebra.Ring.Rat",
+      "name": "Rat.mul_den_eq_num",
+      "note": null,
+      "signature": "suffices (q.num /. ↑q.den) * (↑q.den /. 1) = q.num /. 1 by simp_all",
+      "snippet": "@[simp] lemma mul_den_eq_num (q : ℚ) : q * q.den = q.num := by\n  suffices (q.num /. ↑q.den) * (↑q.den /. 1) = q.num /. 1 by simp_all\n  have : (q.den : ℤ) ≠ 0 := mod_cast q.den_ne_zero\n  rw [divInt_mul_divInt, mul_comm (q.den : ℤ) 1, divInt_mul_right this]",
+      "summary": null
+    },
+    "Ring.inverse_eq_inv": {
+      "kind": "theorem",
+      "module": "Mathlib.Algebra.GroupWithZero.Units.Basic",
+      "name": "Ring.inverse_eq_inv",
+      "note": null,
+      "signature": "theorem Ring.inverse_eq_inv (a : G₀) : a⁻¹ʳ = a⁻¹",
+      "snippet": "@[grind =]\ntheorem Ring.inverse_eq_inv (a : G₀) : a⁻¹ʳ = a⁻¹ := by\n  obtain rfl | ha := eq_or_ne a 0\n  · simp\n  · exact Ring.inverse_unit (Units.mk0 a ha)",
+      "summary": null
+    },
+    "Set.mem_singleton_iff": {
+      "kind": "theorem",
+      "module": "Mathlib.Data.Set.Insert",
+      "name": "Set.mem_singleton_iff",
+      "note": null,
+      "signature": "theorem mem_singleton_iff {a b : α} : a ∈ ({b} : Set α) ↔ a = b",
+      "snippet": "@[simp, grind =, push]\ntheorem mem_singleton_iff {a b : α} : a ∈ ({b} : Set α) ↔ a = b :=\n  Iff.rfl",
+      "summary": null
+    },
+    "SimpleGraph": {
+      "kind": null,
+      "module": "Mathlib.Combinatorics.SimpleGraph.Basic",
+      "name": "SimpleGraph",
+      "note": null,
+      "signature": "The relation describes which pairs of vertices are adjacent.",
+      "snippet": "/-- A simple graph is an irreflexive symmetric relation `Adj` on a vertex type `V`.\nThe relation describes which pairs of vertices are adjacent.\nThere is exactly one edge for every pair of adjacent vertices;\nsee `SimpleGraph.edgeSet` for the corresponding edge set.\n-/\n@[ext, aesop safe constructors (rule_sets := [SimpleGraph]), wikidata Q141488]\nstructure SimpleGraph (V : Type u) where\n  /-- The adjacency relation of a simple graph. -/\n  Adj : V → V → Prop\n  symm : Std.Symm Adj := by aesop_graph\n  loopless : Std.Irrefl Adj := by aesop_graph",
+      "summary": null
+    },
+    "SimpleGraph.Adj.reachable": {
+      "kind": null,
+      "module": "Mathlib.Combinatorics.SimpleGraph.Connectivity.Connected",
+      "name": "SimpleGraph.Adj.reachable",
+      "note": null,
+      "signature": "protected theorem Adj.reachable {u v : V} (h : G.Adj u v) : G.Reachable u v",
+      "snippet": "protected theorem Adj.reachable {u v : V} (h : G.Adj u v) : G.Reachable u v :=\n  h.toWalk.reachable",
+      "summary": null
+    },
+    "SimpleGraph.ConnectedComponent.connectedComponentMk_mem": {
+      "kind": "theorem",
+      "module": "Mathlib.Combinatorics.SimpleGraph.Connectivity.Connected",
+      "name": "SimpleGraph.ConnectedComponent.connectedComponentMk_mem",
+      "note": null,
+      "signature": "theorem connectedComponentMk_mem {v : V} : v ∈ G.connectedComponentMk v",
+      "snippet": "theorem connectedComponentMk_mem {v : V} : v ∈ G.connectedComponentMk v :=\n  rfl",
+      "summary": null
+    },
+    "SimpleGraph.ConnectedComponent.instFinite": {
+      "kind": "instance",
+      "module": "Mathlib.Combinatorics.SimpleGraph.Connectivity.Connected",
+      "name": "SimpleGraph.ConnectedComponent.instFinite",
+      "note": "inspected declaration",
+      "signature": "[Finite V] → Finite G.ConnectedComponent",
+      "snippet": "instance [Finite V] : Finite G.ConnectedComponent := Quot.finite _",
+      "summary": "Finiteness of graph connected components; supports finite component indexing after a cut."
+    },
+    "SimpleGraph.ConnectedComponent.mem_supp_of_adj_mem_supp": {
+      "kind": "lemma",
+      "module": "Mathlib.Combinatorics.SimpleGraph.Connectivity.Connected",
+      "name": "SimpleGraph.ConnectedComponent.mem_supp_of_adj_mem_supp",
+      "note": null,
+      "signature": "lemma mem_supp_of_adj_mem_supp {G : SimpleGraph V} (C : G.ConnectedComponent) {u v : V}",
+      "snippet": "lemma mem_supp_of_adj_mem_supp {G : SimpleGraph V} (C : G.ConnectedComponent) {u v : V}\n    (hu : u ∈ C.supp) (hadj : G.Adj u v) : v ∈ C.supp := (mem_supp_congr_adj C hadj).mp hu",
+      "summary": "`ConnectedComponent.mem_supp_of_adj_mem_supp` closes a component support under an adjacency already established in the deleted graph; combine it with `deleteEdges_adj`."
+    },
+    "SimpleGraph.ConnectedComponent.reachable_of_mem_supp": {
+      "kind": "lemma",
+      "module": "Mathlib.Combinatorics.SimpleGraph.Connectivity.Connected",
+      "name": "SimpleGraph.ConnectedComponent.reachable_of_mem_supp",
+      "note": null,
+      "signature": "lemma reachable_of_mem_supp {G : SimpleGraph V} (C : G.ConnectedComponent) {u v : V}",
+      "snippet": "lemma reachable_of_mem_supp {G : SimpleGraph V} (C : G.ConnectedComponent) {u v : V}\n    (hu : u ∈ C.supp) (hv : v ∈ C.supp) : G.Reachable u v := by\n  rw [mem_supp_iff] at hu hv\n  exact ConnectedComponent.exact (hv ▸ hu)",
+      "summary": null
+    },
+    "SimpleGraph.ConnectedComponent.sound": {
+      "kind": null,
+      "module": "Mathlib.Combinatorics.SimpleGraph.Connectivity.Connected",
+      "name": "SimpleGraph.ConnectedComponent.sound",
+      "note": null,
+      "signature": "protected theorem sound {v w : V} :",
+      "snippet": "protected theorem sound {v w : V} :\n    G.Reachable v w → G.connectedComponentMk v = G.connectedComponentMk w :=\n  Quot.sound",
+      "summary": null
+    },
+    "SimpleGraph.ConnectedComponent.toSimpleGraph": {
+      "kind": "def",
+      "module": "Mathlib.Combinatorics.SimpleGraph.Connectivity.Connected",
+      "name": "SimpleGraph.ConnectedComponent.toSimpleGraph",
+      "note": "Inspected declaration source during Main.RootedCapacity b_0009 recon",
+      "signature": "def toSimpleGraph {G : SimpleGraph V} (C : G.ConnectedComponent) : SimpleGraph C := G.induce C.supp",
+      "snippet": "/--\nGiven a connected component `C` of a simple graph `G`, produce the induced graph on `C`.\nThe declaration `connected_toSimpleGraph` shows it is connected, and `toSimpleGraph_hom`\nprovides the homomorphism back to `G`.\n-/\ndef toSimpleGraph {G : SimpleGraph V} (C : G.ConnectedComponent) : SimpleGraph C := G.induce C.supp",
+      "summary": "Exact induced-subtype graph representation for a connected component."
+    },
+    "SimpleGraph.ConnectedComponent.toSimpleGraph_adj": {
+      "kind": "lemma",
+      "module": "Mathlib.Combinatorics.SimpleGraph.Connectivity.Connected",
+      "name": "SimpleGraph.ConnectedComponent.toSimpleGraph_adj",
+      "note": "Mathlib semantic inspection",
+      "signature": "C.toSimpleGraph.Adj ⟨u, hu⟩ ⟨v, hv⟩ ↔ G.Adj u v",
+      "snippet": "lemma toSimpleGraph_adj {G : SimpleGraph V} (C : G.ConnectedComponent) {u v : V} (hu : u ∈ C)\n    (hv : v ∈ C) : C.toSimpleGraph.Adj ⟨u, hu⟩ ⟨v, hv⟩ ↔ G.Adj u v := by\n  simp [toSimpleGraph]",
+      "summary": "Exact local-subtype-to-ambient adjacency bridge; instantiate G with the deleted-edge graph underlying rootedChildComponent."
+    },
+    "SimpleGraph.ConnectedComponent.toSimpleGraph_hom": {
+      "kind": "def",
+      "module": "Mathlib.Combinatorics.SimpleGraph.Connectivity.Connected",
+      "name": "SimpleGraph.ConnectedComponent.toSimpleGraph_hom",
+      "note": null,
+      "signature": "def toSimpleGraph_hom {G : SimpleGraph V} (C : G.ConnectedComponent) : C.toSimpleGraph →g G where",
+      "snippet": "/-- Homomorphism from a connected component graph to the original graph. -/\ndef toSimpleGraph_hom {G : SimpleGraph V} (C : G.ConnectedComponent) : C.toSimpleGraph →g G where\n  toFun u := u.val\n  map_rel' := id",
+      "summary": null
+    },
+    "SimpleGraph.IsAcyclic.anti": {
+      "kind": "lemma",
+      "module": "Mathlib.Combinatorics.SimpleGraph.Acyclic",
+      "name": "SimpleGraph.IsAcyclic.anti",
+      "note": "Inspected declaration source during Main.RootedCapacity b_0009 recon",
+      "signature": "lemma IsAcyclic.anti {G' : SimpleGraph V} (hsub : G ≤ G') (h : G'.IsAcyclic) : G.IsAcyclic",
+      "snippet": "/-- A spanning subgraph of an acyclic graph is acyclic. -/\nlemma IsAcyclic.anti {G' : SimpleGraph V} (hsub : G ≤ G') (h : G'.IsAcyclic) : G.IsAcyclic :=\n  h.comap ⟨_, fun h ↦ hsub h⟩ Function.injective_id",
+      "summary": "Acyclicity of the edge-deleted spanning graph follows from the original tree."
+    },
+    "SimpleGraph.IsAcyclic.isTree_connectedComponent": {
+      "kind": "lemma",
+      "module": "Mathlib.Combinatorics.SimpleGraph.Acyclic",
+      "name": "SimpleGraph.IsAcyclic.isTree_connectedComponent",
+      "note": "Inspected declaration source during Main.RootedCapacity b_0009 recon",
+      "signature": "lemma IsAcyclic.isTree_connectedComponent (h : G.IsAcyclic) (c : G.ConnectedComponent) : c.toSimpleGraph.IsTree",
+      "snippet": "/-- A connected component of an acyclic graph is a tree. -/\nlemma IsAcyclic.isTree_connectedComponent (h : G.IsAcyclic) (c : G.ConnectedComponent) :\n    c.toSimpleGraph.IsTree where\n  connected := c.connected_toSimpleGraph\n  isAcyclic := h.comap c.toSimpleGraph_hom <| by simp [ConnectedComponent.toSimpleGraph_hom]",
+      "summary": "Turns the child component of the cut graph into a tree on its subtype."
+    },
+    "SimpleGraph.IsAcyclic.path_unique": {
+      "kind": "theorem",
+      "module": "Mathlib.Combinatorics.SimpleGraph.Acyclic",
+      "name": "SimpleGraph.IsAcyclic.path_unique",
+      "note": null,
+      "signature": "theorem IsAcyclic.path_unique {G : SimpleGraph V} (h : G.IsAcyclic) {v w : V} (p q : G.Path v w) :",
+      "snippet": "@[deprecated IsAcyclic.subsingleton_path (since := \"2026-06-30\")]\ntheorem IsAcyclic.path_unique {G : SimpleGraph V} (h : G.IsAcyclic) {v w : V} (p q : G.Path v w) :\n    p = q :=\n  h.subsingleton_path v w |>.elim p q",
+      "summary": null
+    },
+    "SimpleGraph.IsBridge": {
+      "kind": "def",
+      "module": "Mathlib.Combinatorics.SimpleGraph.Connectivity.Connected",
+      "name": "SimpleGraph.IsBridge",
+      "note": "declaration inspection and compiler check via Acyclic",
+      "signature": "(G : SimpleGraph V) (e : Sym2 V) : Prop",
+      "snippet": "/-- An edge of a graph is a *bridge* if without it, its incident vertices\nare not reachable from one another. -/\ndef IsBridge (G : SimpleGraph V) (e : Sym2 V) : Prop :=\n  Sym2.lift ⟨fun v w ↦ ¬ (G.deleteEdges {e}).Reachable v w, by simp [reachable_comm]⟩ e",
+      "summary": "Bridge is defined by non-reachability of the incident endpoints after deleting the edge."
+    },
+    "SimpleGraph.IsTree": {
+      "kind": "structure",
+      "module": "Mathlib.Combinatorics.SimpleGraph.Acyclic",
+      "name": "SimpleGraph.IsTree",
+      "note": null,
+      "signature": "structure IsTree : Prop extends",
+      "snippet": "/-- A *tree* is a connected acyclic graph. -/\n@[mk_iff]\nstructure IsTree : Prop extends\n  connected : G.Connected where\n  /-- A tree is acyclic. -/\n  isAcyclic : G.IsAcyclic",
+      "summary": null
+    },
+    "SimpleGraph.IsTree.existsUnique_path": {
+      "kind": "lemma",
+      "module": "Mathlib.Combinatorics.SimpleGraph.Acyclic",
+      "name": "SimpleGraph.IsTree.existsUnique_path",
+      "note": "targeted semantic search and compiler check",
+      "signature": "(hG : G.IsTree) (v w : V) : ∃! p : G.Walk v w, p.IsPath",
+      "snippet": "lemma IsTree.existsUnique_path (hG : G.IsTree) : ∀ v w, ∃! p : G.Walk v w, p.IsPath :=\n  (isTree_iff_existsUnique_path.1 hG).2",
+      "summary": "Canonical existence/uniqueness principle for tree paths; choose local paths and prove equality by its uniqueness clause."
+    },
+    "SimpleGraph.Path.nodup_support": {
+      "kind": "theorem",
+      "module": "Mathlib.Combinatorics.SimpleGraph.Paths",
+      "name": "SimpleGraph.Path.nodup_support",
+      "note": "compiler check",
+      "signature": "theorem nodup_support {u v : V} (p : G.Path u v) : (p : G.Walk u v).support.Nodup",
+      "snippet": "@[simp]\ntheorem nodup_support {u v : V} (p : G.Path u v) : (p : G.Walk u v).support.Nodup :=\n  (Walk.isPath_def _).mp p.property",
+      "summary": "A bundled Path has a nodup vertex support list, providing path simplicity in support arguments."
+    },
+    "SimpleGraph.Reachable": {
+      "kind": null,
+      "module": "Mathlib.Combinatorics.SimpleGraph.Connectivity.Connected",
+      "name": "SimpleGraph.Reachable",
+      "note": null,
+      "signature": "This is equivalent to `Relation.ReflTransGen` of `G.Adj`.",
+      "snippet": "/-- Two vertices are *reachable* if there is a walk between them.\nThis is equivalent to `Relation.ReflTransGen` of `G.Adj`.\nSee `SimpleGraph.reachable_iff_reflTransGen`. -/\ndef Reachable (u v : V) : Prop := Nonempty (G.Walk u v)",
+      "summary": null
+    },
+    "SimpleGraph.Reachable.elim_path": {
+      "kind": null,
+      "module": "Mathlib.Combinatorics.SimpleGraph.Connectivity.Connected",
+      "name": "SimpleGraph.Reachable.elim_path",
+      "note": null,
+      "signature": "protected theorem Reachable.elim_path {p : Prop} {u v : V} (h : G.Reachable u v)",
+      "snippet": "protected theorem Reachable.elim_path {p : Prop} {u v : V} (h : G.Reachable u v)\n    (hp : G.Path u v → p) : p := by classical exact h.elim fun q => hp q.toPath",
+      "summary": null
+    },
+    "SimpleGraph.Reachable.exists_isPath": {
+      "kind": "theorem",
+      "module": "Mathlib.Combinatorics.SimpleGraph.Connectivity.Connected",
+      "name": "SimpleGraph.Reachable.exists_isPath",
+      "note": null,
+      "signature": "theorem Reachable.exists_isPath {u v} (hr : G.Reachable u v) : ∃ p : G.Walk u v, p.IsPath",
+      "snippet": "theorem Reachable.exists_isPath {u v} (hr : G.Reachable u v) : ∃ p : G.Walk u v, p.IsPath := by\n  classical\n  obtain ⟨W⟩ := hr\n  exact ⟨_, Path.isPath W.toPath⟩",
+      "summary": null
+    },
+    "SimpleGraph.Reachable.symm": {
+      "kind": null,
+      "module": "Mathlib.Combinatorics.SimpleGraph.Connectivity.Connected",
+      "name": "SimpleGraph.Reachable.symm",
+      "note": null,
+      "signature": "protected theorem Reachable.symm {u v : V} (huv : G.Reachable u v) : G.Reachable v u",
+      "snippet": "@[symm]\nprotected theorem Reachable.symm {u v : V} (huv : G.Reachable u v) : G.Reachable v u :=\n  huv.elim fun p => ⟨p.reverse⟩",
+      "summary": null
+    },
+    "SimpleGraph.Reachable.trans": {
+      "kind": null,
+      "module": "Mathlib.Combinatorics.SimpleGraph.Connectivity.Connected",
+      "name": "SimpleGraph.Reachable.trans",
+      "note": null,
+      "signature": "protected theorem Reachable.trans {u v w : V} (huv : G.Reachable u v) (hvw : G.Reachable v w) :",
+      "snippet": "@[trans]\nprotected theorem Reachable.trans {u v w : V} (huv : G.Reachable u v) (hvw : G.Reachable v w) :\n    G.Reachable u w :=\n  huv.elim fun puv => hvw.elim fun pvw => ⟨puv.append pvw⟩",
+      "summary": null
+    },
+    "SimpleGraph.Walk.IsPath": {
+      "kind": null,
+      "module": "Mathlib.Combinatorics.SimpleGraph.Paths",
+      "name": "SimpleGraph.Walk.IsPath",
+      "note": null,
+      "signature": "Use `SimpleGraph.Walk.IsPath.mk'` for a simpler constructor. -/",
+      "snippet": "/-- A *path* is a walk with no repeating vertices.\nUse `SimpleGraph.Walk.IsPath.mk'` for a simpler constructor. -/\nstructure IsPath {u v : V} (p : G.Walk u v) : Prop extends isTrail : IsTrail p where\n  support_nodup : p.support.Nodup",
+      "summary": null
+    },
+    "SimpleGraph.Walk.IsPath.concat": {
+      "kind": "theorem",
+      "module": "Mathlib.Combinatorics.SimpleGraph.Paths",
+      "name": "SimpleGraph.Walk.IsPath.concat",
+      "note": null,
+      "signature": "theorem IsPath.concat {p : G.Walk u v} (hp : p.IsPath) (hw : w ∉ p.support)",
+      "snippet": "theorem IsPath.concat {p : G.Walk u v} (hp : p.IsPath) (hw : w ∉ p.support)\n    (h : G.Adj v w) : (p.concat h).IsPath :=\n  (concat_isPath_iff h).mpr ⟨hp, hw⟩",
+      "summary": null
+    },
+    "SimpleGraph.Walk.IsPath.cons": {
+      "kind": null,
+      "module": "Mathlib.Combinatorics.SimpleGraph.Paths",
+      "name": "SimpleGraph.Walk.IsPath.cons",
+      "note": null,
+      "signature": "protected lemma IsPath.cons {p : Walk G v w} (hp : p.IsPath) (hu : u ∉ p.support) {h : G.Adj u v} :",
+      "snippet": "protected lemma IsPath.cons {p : Walk G v w} (hp : p.IsPath) (hu : u ∉ p.support) {h : G.Adj u v} :\n    (cons h p).IsPath :=\n  (cons_isPath_iff _ _).2 ⟨hp, hu⟩",
+      "summary": null
+    },
+    "SimpleGraph.Walk.IsPath.disjoint_support_of_append": {
+      "kind": "lemma",
+      "module": "Mathlib.Combinatorics.SimpleGraph.Paths",
+      "name": "SimpleGraph.Walk.IsPath.disjoint_support_of_append",
+      "note": "declaration inspection and compiler check",
+      "signature": "lemma IsPath.disjoint_support_of_append {p : G.Walk u v} {q : G.Walk v w}",
+      "snippet": "lemma IsPath.disjoint_support_of_append {p : G.Walk u v} {q : G.Walk v w}\n    (hpq : (p.append q).IsPath) (hq : ¬q.Nil) : p.support.Disjoint q.tail.support := by\n  have hpq' := hpq.support_nodup\n  rw [support_append] at hpq'\n  rw [support_tail_of_not_nil q hq]\n  exact List.disjoint_of_nodup_append hpq'",
+      "summary": "An appended simple path has disjoint first support and second tail support (when the second factor is nonempty)."
+    },
+    "SimpleGraph.Walk.IsPath.dropLast": {
+      "kind": "theorem",
+      "module": "Mathlib.Combinatorics.SimpleGraph.Paths",
+      "name": "SimpleGraph.Walk.IsPath.dropLast",
+      "note": null,
+      "signature": "theorem IsPath.dropLast (hp : p.IsPath) : p.dropLast.IsPath",
+      "snippet": "theorem IsPath.dropLast (hp : p.IsPath) : p.dropLast.IsPath :=\n  hp.take _",
+      "summary": null
+    },
+    "SimpleGraph.Walk.IsPath.mem_support_iff_exists_append": {
+      "kind": "lemma",
+      "module": "Mathlib.Combinatorics.SimpleGraph.Paths",
+      "name": "SimpleGraph.Walk.IsPath.mem_support_iff_exists_append",
+      "note": "declaration inspection and compiler check",
+      "signature": "lemma IsPath.mem_support_iff_exists_append {p : G.Walk u v} (hp : p.IsPath) :",
+      "snippet": "lemma IsPath.mem_support_iff_exists_append {p : G.Walk u v} (hp : p.IsPath) :\n    w ∈ p.support ↔ ∃ (q : G.Walk u w) (r : G.Walk w v), q.IsPath ∧ r.IsPath ∧ p = q.append r := by\n  refine ⟨fun hw ↦ ?_, fun ⟨q, r, hq, hr, hqr⟩ ↦ p.mem_support_iff_exists_append.mpr ⟨q, r, hqr⟩⟩\n  obtain ⟨q, r, hqr⟩ := p.mem_support_iff_exists_append.mp hw\n  have : (q.append r).IsPath := hqr ▸ hp\n  exact ⟨q, r, this.of_append_left, this.of_append_right, hqr⟩",
+      "summary": "Splits a simple path at any vertex in its support into two simple path factors; useful for first-intersection arguments."
+    },
+    "SimpleGraph.Walk.IsPath.of_adj": {
+      "kind": "lemma",
+      "module": "Mathlib.Combinatorics.SimpleGraph.Paths",
+      "name": "SimpleGraph.Walk.IsPath.of_adj",
+      "note": null,
+      "signature": "lemma IsPath.of_adj {G : SimpleGraph V} {u v : V} (h : G.Adj u v) : h.toWalk.IsPath",
+      "snippet": "lemma IsPath.of_adj {G : SimpleGraph V} {u v : V} (h : G.Adj u v) : h.toWalk.IsPath := by\n  aesop",
+      "summary": null
+    },
+    "SimpleGraph.Walk.IsPath.reverse": {
+      "kind": "theorem",
+      "module": "Mathlib.Combinatorics.SimpleGraph.Paths",
+      "name": "SimpleGraph.Walk.IsPath.reverse",
+      "note": null,
+      "signature": "theorem IsPath.reverse {u v : V} {p : G.Walk u v} (h : p.IsPath) : p.reverse.IsPath",
+      "snippet": "theorem IsPath.reverse {u v : V} {p : G.Walk u v} (h : p.IsPath) : p.reverse.IsPath := by\n  simpa [isPath_def] using h",
+      "summary": null
+    },
+    "SimpleGraph.Walk.IsPath.toDeleteEdges": {
+      "kind": "theorem",
+      "module": "Mathlib.Combinatorics.SimpleGraph.Paths",
+      "name": "SimpleGraph.Walk.IsPath.toDeleteEdges",
+      "note": "declaration inspection and compiler check",
+      "signature": "protected theorem IsPath.toDeleteEdges (s : Set (Sym2 V))",
+      "snippet": "protected theorem IsPath.toDeleteEdges (s : Set (Sym2 V))\n    {p : G.Walk v w} (h : p.IsPath) (hp) : (p.toDeleteEdges s hp).IsPath :=\n  h.transfer _",
+      "summary": "Preserves IsPath when a simple walk is transferred to deleteEdges."
+    },
+    "SimpleGraph.Walk.IsPath.transfer": {
+      "kind": null,
+      "module": "Mathlib.Combinatorics.SimpleGraph.Paths",
+      "name": "SimpleGraph.Walk.IsPath.transfer",
+      "note": null,
+      "signature": "protected theorem IsPath.transfer (hp) (pp : p.IsPath) :",
+      "snippet": "protected theorem IsPath.transfer (hp) (pp : p.IsPath) :\n    (p.transfer H hp).IsPath := by\n  induction p with\n  | nil => simp\n  | cons _ _ ih =>\n    simp only [Walk.transfer, cons_isPath_iff, support_transfer _] at pp ⊢\n    exact ⟨ih _ pp.1, pp.2⟩",
+      "summary": null
+    },
+    "SimpleGraph.Walk.Nil.eq_nil": {
+      "kind": null,
+      "module": "Mathlib.Combinatorics.SimpleGraph.Walk.Basic",
+      "name": "SimpleGraph.Walk.Nil.eq_nil",
+      "note": null,
+      "signature": "alias ⟨_, Nil.eq_nil⟩",
+      "snippet": "alias ⟨_, Nil.eq_nil⟩ := eq_nil_iff_nil",
+      "summary": null
+    },
+    "SimpleGraph.Walk.append": {
+      "kind": "def",
+      "module": "Mathlib.Combinatorics.SimpleGraph.Walk.Operations",
+      "name": "SimpleGraph.Walk.append",
+      "note": "compiler check via Paths",
+      "signature": "G.Walk u v → G.Walk v w → G.Walk u w",
+      "snippet": "/-- The concatenation of two compatible walks. -/\n@[trans]\ndef append {u v w : V} : G.Walk u v → G.Walk v w → G.Walk u w\n  | nil, q => q\n  | cons h p, q => cons h (p.append q)",
+      "summary": "Endpoint-compatible concatenation used for local cut factorization."
+    },
+    "SimpleGraph.Walk.concat": {
+      "kind": null,
+      "module": "Mathlib.Combinatorics.SimpleGraph.Walk.Operations",
+      "name": "SimpleGraph.Walk.concat",
+      "note": null,
+      "signature": "the end of a walk. -/",
+      "snippet": "/-- The reversed version of `SimpleGraph.Walk.cons`, concatenating an edge to\nthe end of a walk. -/\ndef concat {u v w : V} (p : G.Walk u v) (h : G.Adj v w) : G.Walk u w := p.append (cons h nil)",
+      "summary": null
+    },
+    "SimpleGraph.Walk.concat_eq_append": {
+      "kind": "theorem",
+      "module": "Mathlib.Combinatorics.SimpleGraph.Walk.Operations",
+      "name": "SimpleGraph.Walk.concat_eq_append",
+      "note": null,
+      "signature": "theorem concat_eq_append {u v w : V} (p : G.Walk u v) (h : G.Adj v w) :",
+      "snippet": "theorem concat_eq_append {u v w : V} (p : G.Walk u v) (h : G.Adj v w) :\n    p.concat h = p.append (cons h nil) := rfl",
+      "summary": null
+    },
+    "SimpleGraph.Walk.concat_isPath_iff": {
+      "kind": "theorem",
+      "module": "Mathlib.Combinatorics.SimpleGraph.Paths",
+      "name": "SimpleGraph.Walk.concat_isPath_iff",
+      "note": null,
+      "signature": "theorem concat_isPath_iff {p : G.Walk u v} (h : G.Adj v w) :",
+      "snippet": "theorem concat_isPath_iff {p : G.Walk u v} (h : G.Adj v w) :\n    (p.concat h).IsPath ↔ p.IsPath ∧ w ∉ p.support := by\n  rw [← (p.concat h).isPath_reverse_iff, ← p.isPath_reverse_iff, reverse_concat, ← List.mem_reverse,\n    ← support_reverse]\n  exact cons_isPath_iff h.symm p.reverse",
+      "summary": null
+    },
+    "SimpleGraph.Walk.cons": {
+      "kind": null,
+      "module": "Mathlib.Combinatorics.SimpleGraph.Walk.Basic",
+      "name": "SimpleGraph.Walk.cons",
+      "note": null,
+      "signature": "| cons {u v w : V} (h : G.Adj u v) (p : Walk v w) : Walk u w",
+      "snippet": "| cons {u v w : V} (h : G.Adj u v) (p : Walk v w) : Walk u w",
+      "summary": null
+    },
+    "SimpleGraph.Walk.cons_tail_support": {
+      "kind": "lemma",
+      "module": "Mathlib.Combinatorics.SimpleGraph.Walk.Basic",
+      "name": "SimpleGraph.Walk.cons_tail_support",
+      "note": null,
+      "signature": "lemma cons_tail_support (p : G.Walk u v) : u :: p.support.tail = p.support",
+      "snippet": "@[simp]\nlemma cons_tail_support (p : G.Walk u v) : u :: p.support.tail = p.support := by\n  cases p <;> simp",
+      "summary": null
+    },
+    "SimpleGraph.Walk.dropLast": {
+      "kind": "def",
+      "module": "Mathlib.Combinatorics.SimpleGraph.Walk.Operations",
+      "name": "SimpleGraph.Walk.dropLast",
+      "note": null,
+      "signature": "def dropLast (p : G.Walk u v) : G.Walk u p.penultimate",
+      "snippet": "/-- The walk obtained by removing the last dart of a walk. A nil walk stays nil. -/\ndef dropLast (p : G.Walk u v) : G.Walk u p.penultimate := p.take (p.length - 1)",
+      "summary": null
+    },
+    "SimpleGraph.Walk.edges_concat": {
+      "kind": "theorem",
+      "module": "Mathlib.Combinatorics.SimpleGraph.Walk.Operations",
+      "name": "SimpleGraph.Walk.edges_concat",
+      "note": null,
+      "signature": "theorem edges_concat {u v w : V} (p : G.Walk u v) (h : G.Adj v w) :",
+      "snippet": "@[simp]\ntheorem edges_concat {u v w : V} (p : G.Walk u v) (h : G.Adj v w) :\n    (p.concat h).edges = p.edges.concat s(v, w) := by simp [edges]",
+      "summary": null
+    },
+    "SimpleGraph.Walk.edges_cons": {
+      "kind": "theorem",
+      "module": "Mathlib.Combinatorics.SimpleGraph.Walk.Basic",
+      "name": "SimpleGraph.Walk.edges_cons",
+      "note": null,
+      "signature": "theorem edges_cons {u v w : V} (h : G.Adj u v) (p : G.Walk v w) :",
+      "snippet": "@[simp]\ntheorem edges_cons {u v w : V} (h : G.Adj u v) (p : G.Walk v w) :\n    (cons h p).edges = s(u, v) :: p.edges := rfl",
+      "summary": null
+    },
+    "SimpleGraph.Walk.edges_nodup_of_support_nodup": {
+      "kind": "theorem",
+      "module": "Mathlib.Combinatorics.SimpleGraph.Walk.Operations",
+      "name": "SimpleGraph.Walk.edges_nodup_of_support_nodup",
+      "note": null,
+      "signature": "theorem edges_nodup_of_support_nodup {u v : V} {p : G.Walk u v} (h : p.support.Nodup) :",
+      "snippet": "theorem edges_nodup_of_support_nodup {u v : V} {p : G.Walk u v} (h : p.support.Nodup) :\n    p.edges.Nodup := by\n  induction p with\n  | nil => simp\n  | cons _ p' ih =>\n    simp only [support_cons, List.nodup_cons, edges_cons] at h ⊢\n    exact ⟨(h.1 <| fst_mem_support_of_mem_edges p' ·), ih h.2⟩",
+      "summary": null
+    },
+    "SimpleGraph.Walk.edges_subset_edgeSet": {
+      "kind": null,
+      "module": "Mathlib.Combinatorics.SimpleGraph.Walk.Basic",
+      "name": "SimpleGraph.Walk.edges_subset_edgeSet",
+      "note": null,
+      "signature": "It is written in this form (rather than using `⊆`) to avoid unsightly coercions. -/",
+      "snippet": "/-- Every edge in a walk's edge list is an edge of the graph.\nIt is written in this form (rather than using `⊆`) to avoid unsightly coercions. -/\ntheorem edges_subset_edgeSet {u v : V} :\n    ∀ (p : G.Walk u v) ⦃e : Sym2 V⦄, e ∈ p.edges → e ∈ G.edgeSet\n  | cons h' p', e, h => by\n    cases h\n    · exact h'\n    next h' => exact edges_subset_edgeSet p' h'",
+      "summary": null
+    },
+    "SimpleGraph.Walk.end_mem_support": {
+      "kind": "theorem",
+      "module": "Mathlib.Combinatorics.SimpleGraph.Walk.Basic",
+      "name": "SimpleGraph.Walk.end_mem_support",
+      "note": null,
+      "signature": "theorem end_mem_support {u v : V} (p : G.Walk u v) : v ∈ p.support",
+      "snippet": "@[simp]\ntheorem end_mem_support {u v : V} (p : G.Walk u v) : v ∈ p.support := by induction p <;> simp [*]",
+      "summary": null
+    },
+    "SimpleGraph.Walk.exists_eq_cons_of_ne": {
+      "kind": "theorem",
+      "module": "Mathlib.Combinatorics.SimpleGraph.Walk.Basic",
+      "name": "SimpleGraph.Walk.exists_eq_cons_of_ne",
+      "note": null,
+      "signature": "theorem exists_eq_cons_of_ne {u v : V} (hne : u ≠ v) :",
+      "snippet": "theorem exists_eq_cons_of_ne {u v : V} (hne : u ≠ v) :\n    ∀ (p : G.Walk u v), ∃ (w : V) (h : G.Adj u w) (p' : G.Walk w v), p = cons h p'\n  | nil => (hne rfl).elim\n  | cons h p' => ⟨_, h, p', rfl⟩",
+      "summary": null
+    },
+    "SimpleGraph.Walk.isPath_def": {
+      "kind": "theorem",
+      "module": "Mathlib.Combinatorics.SimpleGraph.Paths",
+      "name": "SimpleGraph.Walk.isPath_def",
+      "note": null,
+      "signature": "theorem isPath_def {u v : V} (p : G.Walk u v) : p.IsPath ↔ p.support.Nodup",
+      "snippet": "theorem isPath_def {u v : V} (p : G.Walk u v) : p.IsPath ↔ p.support.Nodup :=\n  ⟨IsPath.support_nodup, IsPath.mk'⟩",
+      "summary": null
+    },
+    "SimpleGraph.Walk.isPath_iff_nil": {
+      "kind": "theorem",
+      "module": "Mathlib.Combinatorics.SimpleGraph.Paths",
+      "name": "SimpleGraph.Walk.isPath_iff_nil",
+      "note": null,
+      "signature": "theorem isPath_iff_nil {u : V} {p : G.Walk u u} : p.IsPath ↔ p.Nil",
+      "snippet": "@[simp]\ntheorem isPath_iff_nil {u : V} {p : G.Walk u u} : p.IsPath ↔ p.Nil := by\n  cases p <;> simp [IsPath.nil]",
+      "summary": null
+    },
+    "SimpleGraph.Walk.mem_support_iff": {
+      "kind": "theorem",
+      "module": "Mathlib.Combinatorics.SimpleGraph.Walk.Basic",
+      "name": "SimpleGraph.Walk.mem_support_iff",
+      "note": null,
+      "signature": "theorem mem_support_iff {u v w : V} (p : G.Walk u v) :",
+      "snippet": "theorem mem_support_iff {u v w : V} (p : G.Walk u v) :\n    w ∈ p.support ↔ w = u ∨ w ∈ p.support.tail := by cases p <;> simp",
+      "summary": null
+    },
+    "SimpleGraph.Walk.nil": {
+      "kind": null,
+      "module": "Mathlib.Combinatorics.SimpleGraph.Walk.Basic",
+      "name": "SimpleGraph.Walk.nil",
+      "note": null,
+      "signature": "| nil {u : V} : Walk u u",
+      "snippet": "| nil {u : V} : Walk u u",
+      "summary": null
+    },
+    "SimpleGraph.Walk.reverse": {
+      "kind": "def",
+      "module": "Mathlib.Combinatorics.SimpleGraph.Walk.Operations",
+      "name": "SimpleGraph.Walk.reverse",
+      "note": "compiler check via Paths",
+      "signature": "G.Walk u v → G.Walk v u",
+      "snippet": "/-- The walk in reverse. -/\n@[symm]\ndef reverse {u v : V} (w : G.Walk u v) : G.Walk v u := w.reverseAux nil",
+      "summary": "Reorients a unique path when the local argument needs the opposite endpoint order."
+    },
+    "SimpleGraph.Walk.reverse_cons": {
+      "kind": "theorem",
+      "module": "Mathlib.Combinatorics.SimpleGraph.Walk.Operations",
+      "name": "SimpleGraph.Walk.reverse_cons",
+      "note": null,
+      "signature": "theorem reverse_cons {u v w : V} (h : G.Adj u v) (p : G.Walk v w) :",
+      "snippet": "@[simp]\ntheorem reverse_cons {u v w : V} (h : G.Adj u v) (p : G.Walk v w) :\n    (cons h p).reverse = p.reverse.append (cons h.symm nil) := by simp [reverse]",
+      "summary": null
+    },
+    "SimpleGraph.Walk.start_mem_support": {
+      "kind": "theorem",
+      "module": "Mathlib.Combinatorics.SimpleGraph.Walk.Basic",
+      "name": "SimpleGraph.Walk.start_mem_support",
+      "note": null,
+      "signature": "theorem start_mem_support {u v : V} (p : G.Walk u v) : u ∈ p.support",
+      "snippet": "@[simp]\ntheorem start_mem_support {u v : V} (p : G.Walk u v) : u ∈ p.support := by cases p <;> simp",
+      "summary": null
+    },
+    "SimpleGraph.Walk.support": {
+      "kind": "def",
+      "module": "Mathlib.Combinatorics.SimpleGraph.Walk.Basic",
+      "name": "SimpleGraph.Walk.support",
+      "note": null,
+      "signature": "def support {u v : V} : G.Walk u v → List V",
+      "snippet": "/-- The `support` of a walk is the list of vertices it visits in order. -/\ndef support {u v : V} : G.Walk u v → List V\n  | nil => [u]\n  | cons _ p => u :: p.support",
+      "summary": null
+    },
+    "SimpleGraph.Walk.support_append": {
+      "kind": "theorem",
+      "module": "Mathlib.Combinatorics.SimpleGraph.Walk.Operations",
+      "name": "SimpleGraph.Walk.support_append",
+      "note": "declaration inspection and compiler check via Paths",
+      "signature": "(p.append q).support = p.support ++ q.support.tail",
+      "snippet": "theorem support_append {u v w : V} (p : G.Walk u v) (p' : G.Walk v w) :\n    (p.append p').support = p.support ++ p'.support.tail := by\n  induction p <;> cases p' <;> simp [*]",
+      "summary": "Exact support formula for appended walks."
+    },
+    "SimpleGraph.Walk.support_append_eq_support_dropLast_append": {
+      "kind": "theorem",
+      "module": "Mathlib.Combinatorics.SimpleGraph.Walk.Operations",
+      "name": "SimpleGraph.Walk.support_append_eq_support_dropLast_append",
+      "note": null,
+      "signature": "theorem support_append_eq_support_dropLast_append {u v w : V} (p : G.Walk u v) (p' : G.Walk v w) :",
+      "snippet": "theorem support_append_eq_support_dropLast_append {u v w : V} (p : G.Walk u v) (p' : G.Walk v w) :\n    (p.append p').support = p.support.dropLast ++ p'.support := by\n  induction p <;> simp_all [List.dropLast_cons_of_ne_nil]",
+      "summary": null
+    },
+    "SimpleGraph.Walk.support_map": {
+      "kind": "theorem",
+      "module": "Mathlib.Combinatorics.SimpleGraph.Walk.Maps",
+      "name": "SimpleGraph.Walk.support_map",
+      "note": null,
+      "signature": "theorem support_map : (p.map f).support = p.support.map f",
+      "snippet": "@[simp]\ntheorem support_map : (p.map f).support = p.support.map f := by induction p <;> simp [*]",
+      "summary": null
+    },
+    "SimpleGraph.Walk.support_subset_support_append_right": {
+      "kind": "theorem",
+      "module": "Mathlib.Combinatorics.SimpleGraph.Walk.Operations",
+      "name": "SimpleGraph.Walk.support_subset_support_append_right",
+      "note": null,
+      "signature": "theorem support_subset_support_append_right {V : Type u} {G : SimpleGraph V} {u v w : V}",
+      "snippet": "@[simp]\ntheorem support_subset_support_append_right {V : Type u} {G : SimpleGraph V} {u v w : V}\n    (p : G.Walk u v) (q : G.Walk v w) : q.support ⊆ (p.append q).support :=\n  support_suffix_support_append p q |>.subset",
+      "summary": null
+    },
+    "SimpleGraph.Walk.support_subset_support_concat": {
+      "kind": "theorem",
+      "module": "Mathlib.Combinatorics.SimpleGraph.Walk.Operations",
+      "name": "SimpleGraph.Walk.support_subset_support_concat",
+      "note": null,
+      "signature": "theorem support_subset_support_concat {u v w : V} (p : G.Walk u v) (hadj : G.Adj v w) :",
+      "snippet": "theorem support_subset_support_concat {u v w : V} (p : G.Walk u v) (hadj : G.Adj v w) :\n    p.support ⊆ (p.concat hadj).support := by\n  simp",
+      "summary": null
+    },
+    "SimpleGraph.Walk.support_transfer": {
+      "kind": "theorem",
+      "module": "Mathlib.Combinatorics.SimpleGraph.Walk.Maps",
+      "name": "SimpleGraph.Walk.support_transfer",
+      "note": null,
+      "signature": "theorem support_transfer (hp) : (p.transfer H hp).support = p.support",
+      "snippet": "@[simp]\ntheorem support_transfer (hp) : (p.transfer H hp).support = p.support := by\n  induction p <;> simp [*]",
+      "summary": null
+    },
+    "SimpleGraph.Walk.toDeleteEdges": {
+      "kind": "abbrev",
+      "module": "Mathlib.Combinatorics.SimpleGraph.Walk.Maps",
+      "name": "SimpleGraph.Walk.toDeleteEdges",
+      "note": "declaration inspection and compiler check via Paths",
+      "signature": "(s : Set (Sym2 V)) (p : G.Walk v w) → (∀ e ∈ p.edges, e ∉ s) → (G.deleteEdges s).Walk v w",
+      "snippet": "/-- Given a walk that avoids a set of edges, produce a walk in the graph\nwith those edges deleted. -/\nabbrev toDeleteEdges (s : Set (Sym2 V)) {v w : V} (p : G.Walk v w)\n    (hp : ∀ e, e ∈ p.edges → e ∉ s) : (G.deleteEdges s).Walk v w :=\n  p.transfer _ <| by\n    simp only [edgeSet_deleteEdges, Set.mem_sdiff]\n    exact fun e ep => ⟨edges_subset_edgeSet p ep, hp e ep⟩",
+      "summary": "Transfers a walk avoiding deleted edges to the edge-deleted graph."
+    },
+    "SimpleGraph.Walk.toPath": {
+      "kind": "def",
+      "module": "Mathlib.Combinatorics.SimpleGraph.Paths",
+      "name": "SimpleGraph.Walk.toPath",
+      "note": null,
+      "signature": "def toPath (p : G.Walk u v) : G.Path u v",
+      "snippet": "/-- Given a walk, produces a path with the same endpoints using `SimpleGraph.Walk.bypass`. -/\ndef toPath (p : G.Walk u v) : G.Path u v :=\n  ⟨p.bypass, p.bypass_isPath⟩",
+      "summary": null
+    },
+    "SimpleGraph.Walk.transfer": {
+      "kind": null,
+      "module": "Mathlib.Combinatorics.SimpleGraph.Walk.Maps",
+      "name": "SimpleGraph.Walk.transfer",
+      "note": null,
+      "signature": "protected def transfer {u v : V} (p : G.Walk u v)",
+      "snippet": "/-- The walk `p` transferred to lie in `H`, given that `H` contains its edges. -/\n@[simp]\nprotected def transfer {u v : V} (p : G.Walk u v)\n    (H : SimpleGraph V) (h : ∀ e, e ∈ p.edges → e ∈ H.edgeSet) : H.Walk u v :=\n  match p with\n  | nil => nil\n  | cons' u v w _ p =>\n    cons (h s(u, v) (by simp)) (p.transfer H fun e he => h e (by simp [he]))",
+      "summary": null
+    },
+    "SimpleGraph.adj_and_reachable_delete_edges_iff_exists_cycle": {
+      "kind": "theorem",
+      "module": "Mathlib.Combinatorics.SimpleGraph.Connectivity.Connected",
+      "name": "SimpleGraph.adj_and_reachable_delete_edges_iff_exists_cycle",
+      "note": null,
+      "signature": "theorem adj_and_reachable_delete_edges_iff_exists_cycle {v w : V} :",
+      "snippet": "theorem adj_and_reachable_delete_edges_iff_exists_cycle {v w : V} :\n    G.Adj v w ∧ (G.deleteEdges {s(v, w)}).Reachable v w ↔\n      ∃ (u : V) (p : G.Walk u u), p.IsCycle ∧ s(v, w) ∈ p.edges := by\n  classical\n  rw [reachable_deleteEdges_iff_exists_walk]\n  constructor\n  · rintro ⟨h, p, hp⟩\n    refine ⟨w, Walk.cons h.symm p.toPath, ?_, ?_⟩\n    · apply Path.cons_isCycle\n      rw [Sym2.eq_swap]\n      intro h\n      cases hp (Walk.edges_toPath_subset_edges p h)\n    · simp\n  · rintro ⟨u, c, hc, he⟩\n    refine ⟨c.adj_of_mem_edges he, ?_⟩\n    by_contra! hb\n    have hb' : ∀ p : G.Walk w v, s(w, v) ∈ p.edges := by\n      intro p\n      simpa [Sym2.eq_swap] using hb p.reverse\n    have hvc : v ∈ c.support := Walk.fst_mem_support_of_mem_edges c he\n    refine reachable_deleteEdges_iff_exists_cycle.aux hb' (c.rotate v hvc) (hc.isTrail.rotate hvc)\n      ?_ (Walk.start_mem_support _)\n    rwa [(c.rotate_edges v hvc).mem_iff, Sym2.eq_swap]",
+      "summary": null
+    },
+    "SimpleGraph.adj_comm": {
+      "kind": "theorem",
+      "module": "Mathlib.Combinatorics.SimpleGraph.Basic",
+      "name": "SimpleGraph.adj_comm",
+      "note": null,
+      "signature": "theorem adj_comm (u v : V) : G.Adj u v ↔ G.Adj v u",
+      "snippet": "theorem adj_comm (u v : V) : G.Adj u v ↔ G.Adj v u :=\n  G.symm.iff u v",
+      "summary": null
+    },
+    "SimpleGraph.card_neighborFinset_eq_degree": {
+      "kind": "theorem",
+      "module": "Mathlib.Combinatorics.SimpleGraph.Finite",
+      "name": "SimpleGraph.card_neighborFinset_eq_degree",
+      "note": null,
+      "signature": "theorem card_neighborFinset_eq_degree : #(G.neighborFinset v) = G.degree v",
+      "snippet": "@[simp]\ntheorem card_neighborFinset_eq_degree : #(G.neighborFinset v) = G.degree v := rfl",
+      "summary": null
+    },
+    "SimpleGraph.connectedComponentMk": {
+      "kind": "def",
+      "module": "Mathlib.Combinatorics.SimpleGraph.Connectivity.Connected",
+      "name": "SimpleGraph.connectedComponentMk",
+      "note": "Inspected declaration source during Main.RootedCapacity b_0009 recon",
+      "signature": "def connectedComponentMk (v : V) : G.ConnectedComponent := Quot.mk G.Reachable v",
+      "snippet": "/-- Gives the connected component containing a particular vertex. -/\ndef connectedComponentMk (v : V) : G.ConnectedComponent := Quot.mk G.Reachable v",
+      "summary": "Selects the cut-graph component containing the chosen child."
+    },
+    "SimpleGraph.degree": {
+      "kind": "def",
+      "module": "Mathlib.Combinatorics.SimpleGraph.Finite",
+      "name": "SimpleGraph.degree",
+      "note": null,
+      "signature": "def degree : ℕ",
+      "snippet": "/-- `G.degree v` is the number of vertices adjacent to `v`. -/\ndef degree : ℕ := #(G.neighborFinset v)",
+      "summary": null
+    },
+    "SimpleGraph.deleteEdges": {
+      "kind": "def",
+      "module": "Mathlib.Combinatorics.SimpleGraph.DeleteEdges",
+      "name": "SimpleGraph.deleteEdges",
+      "note": "inspected declaration",
+      "signature": "graph's edge set, if present.",
+      "snippet": "/-- Given a set of vertex pairs, remove all of the corresponding edges from the\ngraph's edge set, if present.\n\nSee also: `SimpleGraph.Subgraph.deleteEdges`. -/\ndef deleteEdges (s : Set (Sym2 V)) : SimpleGraph V := G \\ fromEdgeSet s",
+      "summary": "Deletes a chosen set of undirected edges from a graph; a generic cut operation for local child-component definitions."
+    },
+    "SimpleGraph.deleteEdges_adj": {
+      "kind": null,
+      "module": "Mathlib.Combinatorics.SimpleGraph.DeleteEdges",
+      "name": "SimpleGraph.deleteEdges_adj",
+      "note": null,
+      "signature": "and_congr_right fun h ↦ (and_iff_left h.ne).not",
+      "snippet": "@[simp] lemma deleteEdges_adj : (G.deleteEdges s).Adj v w ↔ G.Adj v w ∧ s(v, w) ∉ s :=\n  and_congr_right fun h ↦ (and_iff_left h.ne).not",
+      "summary": "`SimpleGraph.deleteEdges_adj` rewrites deleted-graph adjacency as ambient adjacency plus nonmembership of the deleted Sym2 edge; it is the exact edge-transport step for a child component."
+    },
+    "SimpleGraph.deleteEdges_le": {
+      "kind": "lemma",
+      "module": "Mathlib.Combinatorics.SimpleGraph.DeleteEdges",
+      "name": "SimpleGraph.deleteEdges_le",
+      "note": null,
+      "signature": "lemma deleteEdges_le (s : Set (Sym2 V)) : G.deleteEdges s ≤ G",
+      "snippet": "lemma deleteEdges_le (s : Set (Sym2 V)) : G.deleteEdges s ≤ G := sdiff_le",
+      "summary": null
+    },
+    "SimpleGraph.edgeSet_mono": {
+      "kind": null,
+      "module": "Mathlib.Combinatorics.SimpleGraph.Basic",
+      "name": "SimpleGraph.edgeSet_mono",
+      "note": null,
+      "signature": null,
+      "snippet": "@[gcongr] alias ⟨_, edgeSet_mono⟩ := edgeSet_subset_edgeSet",
+      "summary": null
+    },
+    "SimpleGraph.irrefl": {
+      "kind": null,
+      "module": "Mathlib.Combinatorics.SimpleGraph.Basic",
+      "name": "SimpleGraph.irrefl",
+      "note": null,
+      "signature": "protected theorem irrefl {v : V} : ¬G.Adj v v",
+      "snippet": "@[simp]\nprotected theorem irrefl {v : V} : ¬G.Adj v v :=\n  G.loopless.irrefl v",
+      "summary": null
+    },
+    "SimpleGraph.isAcyclic_iff_forall_adj_isBridge": {
+      "kind": "lemma",
+      "module": "Mathlib.Combinatorics.SimpleGraph.Acyclic",
+      "name": "SimpleGraph.isAcyclic_iff_forall_adj_isBridge",
+      "note": "targeted semantic search and compiler check",
+      "signature": "G.IsAcyclic ↔ ∀ ⦃v w : V⦄, G.Adj v w → G.IsBridge s(v,w)",
+      "snippet": "lemma isAcyclic_iff_forall_adj_isBridge :\n    G.IsAcyclic ↔ ∀ ⦃v w : V⦄, G.Adj v w → G.IsBridge s(v, w) := by\n  simp [isAcyclic_iff_forall_isBridge, Sym2.forall]",
+      "summary": "Turns each tree edge into a bridge, hence its singleton deletion separates its endpoints."
+    },
+    "SimpleGraph.mem_neighborFinset": {
+      "kind": "theorem",
+      "module": "Mathlib.Combinatorics.SimpleGraph.Finite",
+      "name": "SimpleGraph.mem_neighborFinset",
+      "note": "Inspected semantic candidate mc_3a4aca9d28c23c31.",
+      "signature": "(w : V) → w ∈ G.neighborFinset v ↔ G.Adj v w",
+      "snippet": "@[simp]\ntheorem mem_neighborFinset (w : V) : w ∈ G.neighborFinset v ↔ G.Adj v w :=\n  Set.mem_toFinset",
+      "summary": "Rewrites neighbor-finset membership to adjacency; with graph symmetry it supports pairing symmetry."
+    },
+    "SimpleGraph.ne_of_adj": {
+      "kind": "theorem",
+      "module": "Mathlib.Combinatorics.SimpleGraph.Basic",
+      "name": "SimpleGraph.ne_of_adj",
+      "note": null,
+      "signature": "theorem ne_of_adj (h : G.Adj a b) : a ≠ b",
+      "snippet": "theorem ne_of_adj (h : G.Adj a b) : a ≠ b := by\n  rintro rfl\n  exact G.irrefl h",
+      "summary": null
+    },
+    "SimpleGraph.neighborFinset": {
+      "kind": "def",
+      "module": "Mathlib.Combinatorics.SimpleGraph.Finite",
+      "name": "SimpleGraph.neighborFinset",
+      "note": "Inspected semantic candidate mc_1a892d90439d9057.",
+      "signature": "G.neighborFinset v : Finset V",
+      "snippet": "/-- `G.neighborFinset v` is the `Finset` version of `G.neighborSet v` in case `G` is\nlocally finite at `v`. -/\ndef neighborFinset : Finset V :=\n  (G.neighborSet v).toFinset",
+      "summary": "Finite neighbor index used verbatim by the source pairing definition."
+    },
+    "SimpleGraph.neighborFinset_eq_filter": {
+      "kind": "theorem",
+      "module": "Mathlib.Combinatorics.SimpleGraph.Finite",
+      "name": "SimpleGraph.neighborFinset_eq_filter",
+      "note": "Mathlib semantic inspection",
+      "signature": "G.neighborFinset v = ({w | G.Adj v w} : Finset _)",
+      "snippet": "theorem neighborFinset_eq_filter {v : V} [DecidableRel G.Adj] :\n    G.neighborFinset v = ({w | G.Adj v w} : Finset _) := by ext; simp",
+      "summary": "Exposes the ordered adjacency index of treePairing as a filter, enabling rootedEdgeClassification case splits."
+    },
+    "SimpleGraph.notMem_neighborFinset_self": {
+      "kind": "theorem",
+      "module": "Mathlib.Combinatorics.SimpleGraph.Finite",
+      "name": "SimpleGraph.notMem_neighborFinset_self",
+      "note": null,
+      "signature": "theorem notMem_neighborFinset_self : v ∉ G.neighborFinset v",
+      "snippet": "theorem notMem_neighborFinset_self : v ∉ G.neighborFinset v := by simp",
+      "summary": null
+    },
+    "Sym2.eq_iff": {
+      "kind": "theorem",
+      "module": "Mathlib.Data.Sym.Sym2",
+      "name": "Sym2.eq_iff",
+      "note": null,
+      "signature": "theorem eq_iff {x y z w : α} : s(x, y) = s(z, w) ↔ x = z ∧ y = w ∨ x = w ∧ y = z",
+      "snippet": "theorem eq_iff {x y z w : α} : s(x, y) = s(z, w) ↔ x = z ∧ y = w ∨ x = w ∧ y = z := by\n  simp",
+      "summary": null
+    },
+    "Sym2.instDecidableEq": {
+      "kind": "instance",
+      "module": "Mathlib.Data.Sym.Sym2",
+      "name": "Sym2.instDecidableEq",
+      "note": null,
+      "signature": "instance [DecidableEq α] : DecidableEq (Sym2 α)",
+      "snippet": "instance [DecidableEq α] : DecidableEq (Sym2 α) :=\n  inferInstanceAs <| DecidableEq (Quotient (Sym2.Rel.setoid α))",
+      "summary": null
+    },
+    "Sym2.mk_eq_mk_iff": {
+      "kind": "theorem",
+      "module": "Mathlib.Data.Sym.Sym2",
+      "name": "Sym2.mk_eq_mk_iff",
+      "note": null,
+      "signature": "theorem mk_eq_mk_iff {p q : α × α} : s(p.1, p.2) = s(q.1, q.2) ↔ p = q ∨ p = q.swap",
+      "snippet": "theorem mk_eq_mk_iff {p q : α × α} : s(p.1, p.2) = s(q.1, q.2) ↔ p = q ∨ p = q.swap := by\n  simp",
+      "summary": null
+    },
+    "abs_cases": {
+      "kind": null,
+      "module": "Mathlib.Algebra.Order.Group.Abs",
+      "name": "abs_cases",
+      "note": null,
+      "signature": "either `|a| = a` and `0 ≤ a`, or `|a| = -a` and `a < 0`.",
+      "snippet": "@[to_additive\n  /-- For an element `a` of an additive linear ordered group,\n  either `|a| = a` and `0 ≤ a`, or `|a| = -a` and `a < 0`.\n  Use cases on this lemma to automate linarith in inequalities -/]\ntheorem mabs_cases (a : G) : |a|ₘ = a ∧ 1 ≤ a ∨ |a|ₘ = a⁻¹ ∧ a < 1 := by",
+      "summary": null
+    },
+    "abs_of_neg": {
+      "kind": null,
+      "module": "Mathlib.Algebra.Order.Group.Unbundled.Abs",
+      "name": "abs_of_neg",
+      "note": null,
+      "signature": null,
+      "snippet": "@[to_additive] lemma mabs_of_lt_one (h : a < 1) : |a|ₘ = a⁻¹ := mabs_of_le_one h.le",
+      "summary": null
+    },
+    "abs_of_nonneg": {
+      "kind": null,
+      "module": "Mathlib.Algebra.Order.Group.Unbundled.Abs",
+      "name": "abs_of_nonneg",
+      "note": null,
+      "signature": "sup_eq_left.2 <| (inv_le_one'.2 h).trans h",
+      "snippet": "@[to_additive] lemma mabs_of_one_le (h : 1 ≤ a) : |a|ₘ = a :=\n  sup_eq_left.2 <| (inv_le_one'.2 h).trans h",
+      "summary": null
+    },
+    "abs_of_nonpos": {
+      "kind": null,
+      "module": "Mathlib.Algebra.Order.Group.Unbundled.Abs",
+      "name": "abs_of_nonpos",
+      "note": null,
+      "signature": "sup_eq_right.2 <| h.trans (one_le_inv'.2 h)",
+      "snippet": "@[to_additive] lemma mabs_of_le_one (h : a ≤ 1) : |a|ₘ = a⁻¹ :=\n  sup_eq_right.2 <| h.trans (one_le_inv'.2 h)",
+      "summary": null
+    },
+    "div_lt_one": {
+      "kind": "theorem",
+      "module": "Mathlib.Algebra.Order.Field.Basic",
+      "name": "div_lt_one",
+      "note": null,
+      "signature": "theorem div_lt_one (hb : 0 < b) : a / b < 1 ↔ a < b",
+      "snippet": "theorem div_lt_one (hb : 0 < b) : a / b < 1 ↔ a < b := by rw [div_lt_iff₀ hb, one_mul]",
+      "summary": null
+    },
+    "div_lt_one₀": {
+      "kind": "lemma",
+      "module": "Mathlib.Algebra.Order.GroupWithZero.Basic",
+      "name": "div_lt_one₀",
+      "note": null,
+      "signature": "lemma div_lt_one₀ (hb : 0 < b) : a / b < 1 ↔ a < b",
+      "snippet": "lemma div_lt_one₀ (hb : 0 < b) : a / b < 1 ↔ a < b := by rw [div_lt_iff₀ hb, one_mul]",
+      "summary": null
+    },
+    "dotProduct": {
+      "kind": null,
+      "module": "Mathlib.Data.Matrix.Mul",
+      "name": "dotProduct",
+      "note": null,
+      "signature": "See also `dotProductEquiv`. -/",
+      "snippet": "/-- `dotProduct v w` is the sum of the entrywise products `v i * w i`.\n\nSee also `dotProductEquiv`. -/\ndef dotProduct [Mul α] [AddCommMonoid α] (v w : m → α) : α :=\n  ∑ i, v i * w i",
+      "summary": null
+    },
+    "inv_div": {
+      "kind": "theorem",
+      "module": "Mathlib.Algebra.Group.Basic",
+      "name": "inv_div",
+      "note": null,
+      "signature": "theorem inv_div : (a / b)⁻¹ = b / a",
+      "snippet": "@[to_additive (attr := simp)]\ntheorem inv_div : (a / b)⁻¹ = b / a := by simp",
+      "summary": null
+    },
+    "inv_eq_one_div": {
+      "kind": "theorem",
+      "module": "Mathlib.Algebra.Group.Defs",
+      "name": "inv_eq_one_div",
+      "note": null,
+      "signature": "theorem inv_eq_one_div (x : G) : x⁻¹ = 1 / x",
+      "snippet": "@[to_additive]\ntheorem inv_eq_one_div (x : G) : x⁻¹ = 1 / x := by rw [div_eq_mul_inv, one_mul]",
+      "summary": null
+    },
+    "inv_inv": {
+      "kind": "theorem",
+      "module": "Mathlib.Algebra.Group.Defs",
+      "name": "inv_inv",
+      "note": null,
+      "signature": "theorem inv_inv (a : G) : a⁻¹⁻¹ = a",
+      "snippet": "@[to_additive (attr := simp)]\ntheorem inv_inv (a : G) : a⁻¹⁻¹ = a :=\n  InvolutiveInv.inv_inv _",
+      "summary": null
+    },
+    "isUnit_of_invertible": {
+      "kind": "theorem",
+      "module": "Mathlib.Algebra.Group.Invertible.Basic",
+      "name": "isUnit_of_invertible",
+      "note": null,
+      "signature": "theorem isUnit_of_invertible [Monoid α] (a : α) [Invertible a] : IsUnit a",
+      "snippet": "theorem isUnit_of_invertible [Monoid α] (a : α) [Invertible a] : IsUnit a :=\n  ⟨unitOfInvertible a, rfl⟩",
+      "summary": null
+    },
+    "min_eq_left": {
+      "kind": "lemma",
+      "module": "Mathlib.Order.Defs.LinearOrder",
+      "name": "min_eq_left",
+      "note": null,
+      "signature": "lemma min_eq_left (h : a ≤ b) : min a b = a",
+      "snippet": "@[to_dual]\nlemma min_eq_left (h : a ≤ b) : min a b = a := (eq_min le_rfl h (fun h _ ↦ h)).symm",
+      "summary": null
+    },
+    "min_eq_right": {
+      "kind": "lemma",
+      "module": "Mathlib.Order.Defs.LinearOrder",
+      "name": "min_eq_right",
+      "note": null,
+      "signature": "lemma min_eq_right (h : b ≤ a) : min a b = b",
+      "snippet": "@[to_dual]\nlemma min_eq_right (h : b ≤ a) : min a b = b := min_comm b a ▸ min_eq_left h",
+      "summary": null
+    },
+    "min_le_left": {
+      "kind": "lemma",
+      "module": "Mathlib.Order.Defs.LinearOrder",
+      "name": "min_le_left",
+      "note": null,
+      "signature": "lemma min_le_left (a b : α) : min a b ≤ a",
+      "snippet": "@[to_dual le_max_left]\nlemma min_le_left (a b : α) : min a b ≤ a := by\n  rw [min_def]\n  split_ifs with h <;> simp [h, le_of_not_ge]",
+      "summary": null
+    },
+    "min_le_right": {
+      "kind": "lemma",
+      "module": "Mathlib.Order.Defs.LinearOrder",
+      "name": "min_le_right",
+      "note": null,
+      "signature": "lemma min_le_right (a b : α) : min a b ≤ b",
+      "snippet": "@[to_dual le_max_right]\nlemma min_le_right (a b : α) : min a b ≤ b := by\n  rw [min_def]\n  split_ifs with h <;> simp [h]",
+      "summary": null
+    },
+    "mul_nonneg": {
+      "kind": null,
+      "module": "Mathlib.Algebra.Order.GroupWithZero.Basic",
+      "name": "mul_nonneg",
+      "note": null,
+      "signature": "alias mul_nonneg",
+      "snippet": "alias mul_nonneg := Left.mul_nonneg",
+      "summary": null
+    },
+    "mul_nonneg_of_nonpos_of_nonpos": {
+      "kind": "theorem",
+      "module": "Mathlib.Algebra.Order.Ring.Unbundled.Basic",
+      "name": "mul_nonneg_of_nonpos_of_nonpos",
+      "note": null,
+      "signature": "theorem mul_nonneg_of_nonpos_of_nonpos [ExistsAddOfLE R] [MulPosMono R]",
+      "snippet": "theorem mul_nonneg_of_nonpos_of_nonpos [ExistsAddOfLE R] [MulPosMono R]\n    [AddRightMono R] [AddRightReflectLE R]\n    (ha : a ≤ 0) (hb : b ≤ 0) : 0 ≤ a * b := by\n  simpa only [zero_mul] using mul_le_mul_of_nonpos_right ha hb",
+      "summary": null
+    },
+    "sq_nonneg": {
+      "kind": "lemma",
+      "module": "Mathlib.Algebra.Order.Ring.Unbundled.Basic",
+      "name": "sq_nonneg",
+      "note": "inspected declaration",
+      "signature": "lemma sq_nonneg [ExistsAddOfLE R] [PosMulMono R] [AddLeftMono R]",
+      "snippet": "lemma sq_nonneg [ExistsAddOfLE R] [PosMulMono R] [AddLeftMono R]\n    (a : R) : 0 ≤ a ^ 2 := by\n  obtain ha | ha := le_or_gt 0 a\n  · exact pow_succ_nonneg ha _\n  obtain ⟨b, hab⟩ := exists_add_of_le ha.le\n  have hb : 0 < b := not_le.1 fun hb ↦ (add_neg_of_neg_of_nonpos ha hb).ne' hab\n  calc\n    0 ≤ b ^ 2 := pow_succ_nonneg hb.le _\n    _ = b ^ 2 + a * (a + b) := by rw [← hab, mul_zero, add_zero]\n    _ = a ^ 2 + (a + b) * b := by rw [add_mul, mul_add, sq, sq, add_comm, add_assoc]\n    _ = a ^ 2 := by rw [← hab, zero_mul, add_zero]",
+      "summary": "Every square is nonnegative in the required ordered-ring context."
+    },
+    "sq_pos_of_ne_zero": {
+      "kind": "lemma",
+      "module": "Mathlib.Algebra.Order.Ring.Basic",
+      "name": "sq_pos_of_ne_zero",
+      "note": "inspected declaration",
+      "signature": "alias ⟨_, sq_pos_of_ne_zero⟩",
+      "snippet": "alias ⟨_, sq_pos_of_ne_zero⟩ := sq_pos_iff",
+      "summary": "A nonzero square is strictly positive; supports strictness in integer/root estimates."
+    }
+  },
+  "modules": {
+    "Mathlib.Algebra.BigOperators.Group.Finset.Basic": {
+      "important_decl_names": [
+        "Finset.sum_add_distrib",
+        "Finset.sum_filter",
+        "Finset.sum_congr",
+        "Finset.sum_eq_single",
+        "Finset.sum_eq_zero",
+        "Finset.sum_union",
+        "Finset.sum_erase_add",
+        "Finset.sum_biUnion",
+        "Finset.sum_attach",
+        "Finset.sum_disjiUnion",
+        "Finset.add_sum_erase",
+        "Finset.mul_prod_erase",
+        "Finset.sum_comp_equiv",
+        "Fintype.sum_unique"
+      ],
+      "module": "Mathlib.Algebra.BigOperators.Group.Finset.Basic",
+      "note": "Inspected Finset.sum_erase_add and Finset.sum_biUnion for Main.IrreducibleVertex final assembly.",
+      "summary": "Finite-set sum identities for erasing a distinguished vertex and flattening a pairwise-disjoint child-component partition."
+    },
+    "Mathlib.Algebra.BigOperators.Group.Finset.Defs": {
+      "important_decl_names": [
+        "Finset.sum",
+        "Finset.sum_sub_distrib",
+        "Equiv.sum_comp",
+        "Finset.sum_bij",
+        "Finset.sum_neg_distrib"
+      ],
+      "module": "Mathlib.Algebra.BigOperators.Group.Finset.Defs",
+      "note": "Inspected Equiv.sum_comp.",
+      "summary": "Equivalence transport of finite ordered sums."
+    },
+    "Mathlib.Algebra.BigOperators.Group.Finset.Piecewise": {
+      "important_decl_names": [
+        "Fintype.sum_ite_eq",
+        "Fintype.sum_dite_eq",
+        "Finset.sum_ite_eq'",
+        "Finset.sum_ite_eq",
+        "Fintype.sum_ite_eq'"
+      ],
+      "module": "Mathlib.Algebra.BigOperators.Group.Finset.Piecewise",
+      "note": null,
+      "summary": null
+    },
+    "Mathlib.Algebra.BigOperators.Group.Finset.Sigma": {
+      "important_decl_names": [
+        "Finset.sum_comm",
+        "Finset.sum_sigma'",
+        "Finset.sum_sigma"
+      ],
+      "module": "Mathlib.Algebra.BigOperators.Group.Finset.Sigma",
+      "note": "verified semantic inspection",
+      "summary": "Converts finite sigma-indexed sums to iterated finite sums."
+    },
+    "Mathlib.Algebra.BigOperators.Ring.Finset": {
+      "important_decl_names": [
+        "Finset.mul_sum",
+        "Finset.sum_mul",
+        "Int.cast_sum"
+      ],
+      "module": "Mathlib.Algebra.BigOperators.Ring.Finset",
+      "note": null,
+      "summary": null
+    },
+    "Mathlib.Algebra.Group.Basic": {
+      "important_decl_names": [
+        "inv_div"
+      ],
+      "module": "Mathlib.Algebra.Group.Basic",
+      "note": null,
+      "summary": null
+    },
+    "Mathlib.Algebra.Group.Defs": {
+      "important_decl_names": [
+        "inv_eq_one_div",
+        "inv_inv"
+      ],
+      "module": "Mathlib.Algebra.Group.Defs",
+      "note": null,
+      "summary": null
+    },
+    "Mathlib.Algebra.Group.Invertible.Basic": {
+      "important_decl_names": [
+        "IsUnit.invertible",
+        "isUnit_of_invertible"
+      ],
+      "module": "Mathlib.Algebra.Group.Invertible.Basic",
+      "note": "Compiler-checked RootedCapacity reindex/block transport sketch.",
+      "summary": "Provides IsUnit.invertible, the standard bridge from positive-definite matrices' IsUnit proof to Invertible instances."
+    },
+    "Mathlib.Algebra.Group.Invertible.Defs": {
+      "important_decl_names": [
+        "Invertible.copy"
+      ],
+      "module": "Mathlib.Algebra.Group.Invertible.Defs",
+      "note": "Compiler-checked RootedCapacity reindex/block transport sketch.",
+      "summary": "Provides Invertible.copy, used to transfer an invertibility instance across the reindex-to-fromBlocks equality."
+    },
+    "Mathlib.Algebra.GroupWithZero.Units.Basic": {
+      "important_decl_names": [
+        "Ring.inverse_eq_inv"
+      ],
+      "module": "Mathlib.Algebra.GroupWithZero.Units.Basic",
+      "note": null,
+      "summary": null
+    },
+    "Mathlib.Algebra.Notation.Pi.Basic": {
+      "important_decl_names": [
+        "Pi.single_apply"
+      ],
+      "module": "Mathlib.Algebra.Notation.Pi.Basic",
+      "note": null,
+      "summary": null
+    },
+    "Mathlib.Algebra.Order.BigOperators.Group.Finset": {
+      "important_decl_names": [
+        "Finset.sum_lt_sum_of_nonempty",
+        "Finset.sum_le_sum",
+        "Finset.abs_sum_le_sum_abs",
+        "Finset.sum_nonneg",
+        "Finset.sum_pos_iff_of_nonneg",
+        "Finset.single_le_sum"
+      ],
+      "module": "Mathlib.Algebra.Order.BigOperators.Group.Finset",
+      "note": "Inspected Finset sum order lemmas for Main.IrreducibleVertex final assembly.",
+      "summary": "Order lemmas for nonnegative, monotone, and strict finite sums over ℤ-valued coefficients."
+    },
+    "Mathlib.Algebra.Order.Field.Basic": {
+      "important_decl_names": [
+        "div_lt_one"
+      ],
+      "module": "Mathlib.Algebra.Order.Field.Basic",
+      "note": null,
+      "summary": null
+    },
+    "Mathlib.Algebra.Order.Group.Abs": {
+      "important_decl_names": [
+        "abs_cases"
+      ],
+      "module": "Mathlib.Algebra.Order.Group.Abs",
+      "note": null,
+      "summary": null
+    },
+    "Mathlib.Algebra.Order.Group.Unbundled.Abs": {
+      "important_decl_names": [
+        "abs_of_nonneg",
+        "abs_of_nonpos",
+        "abs_of_neg"
+      ],
+      "module": "Mathlib.Algebra.Order.Group.Unbundled.Abs",
+      "note": null,
+      "summary": null
+    },
+    "Mathlib.Algebra.Order.GroupWithZero.Basic": {
+      "important_decl_names": [
+        "div_lt_one₀",
+        "mul_nonneg"
+      ],
+      "module": "Mathlib.Algebra.Order.GroupWithZero.Basic",
+      "note": null,
+      "summary": null
+    },
+    "Mathlib.Algebra.Order.Ring.Basic": {
+      "important_decl_names": [
+        "sq_pos_of_ne_zero"
+      ],
+      "module": "Mathlib.Algebra.Order.Ring.Basic",
+      "note": "inspected Mathlib declaration",
+      "summary": "Strict positivity of a nonzero square in the ordered setting."
+    },
+    "Mathlib.Algebra.Order.Ring.Cast": {
+      "important_decl_names": [
+        "Int.cast_one_le_of_pos",
+        "Int.cast_le",
+        "Int.cast_lt"
+      ],
+      "module": "Mathlib.Algebra.Order.Ring.Cast",
+      "note": "inspected Mathlib declaration",
+      "summary": "Integral strict positivity gives the lower bound one after ordered-ring casting."
+    },
+    "Mathlib.Algebra.Order.Ring.Unbundled.Basic": {
+      "important_decl_names": [
+        "sq_nonneg",
+        "mul_nonneg_of_nonpos_of_nonpos"
+      ],
+      "module": "Mathlib.Algebra.Order.Ring.Unbundled.Basic",
+      "note": "inspected Mathlib declaration",
+      "summary": "Ordered-ring square nonnegativity."
+    },
+    "Mathlib.Algebra.Ring.Int.Defs": {
+      "important_decl_names": [
+        "Int.cast_mul"
+      ],
+      "module": "Mathlib.Algebra.Ring.Int.Defs",
+      "note": null,
+      "summary": null
+    },
+    "Mathlib.Algebra.Ring.Rat": {
+      "important_decl_names": [
+        "Rat.mul_den_eq_num"
+      ],
+      "module": "Mathlib.Algebra.Ring.Rat",
+      "note": null,
+      "summary": null
+    },
+    "Mathlib.Analysis.Matrix.Order": {
+      "important_decl_names": [
+        "Matrix.PosSemidef.posDef_iff_isUnit"
+      ],
+      "module": "Mathlib.Analysis.Matrix.Order",
+      "note": "Declaration-level recon for Main.RootedCapacity b_0009",
+      "summary": "Turns positive semidefinite Schur complements plus invertibility into positive definite matrices."
+    },
+    "Mathlib.Combinatorics.SimpleGraph.Acyclic": {
+      "important_decl_names": [
+        "SimpleGraph.IsTree.existsUnique_path",
+        "SimpleGraph.IsTree",
+        "SimpleGraph.IsAcyclic.anti",
+        "SimpleGraph.IsAcyclic.isTree_connectedComponent",
+        "SimpleGraph.IsAcyclic.path_unique",
+        "SimpleGraph.isAcyclic_iff_forall_adj_isBridge"
+      ],
+      "module": "Mathlib.Combinatorics.SimpleGraph.Acyclic",
+      "note": "inspected Mathlib declaration",
+      "summary": "Finite/simple-tree API: IsTree, unique simple paths, and acyclic edges as bridges."
+    },
+    "Mathlib.Combinatorics.SimpleGraph.Basic": {
+      "important_decl_names": [
+        "SimpleGraph.adj_comm",
+        "SimpleGraph.irrefl",
+        "SimpleGraph.ne_of_adj",
+        "SimpleGraph.edgeSet_mono",
+        "SimpleGraph"
+      ],
+      "module": "Mathlib.Combinatorics.SimpleGraph.Basic",
+      "note": null,
+      "summary": null
+    },
+    "Mathlib.Combinatorics.SimpleGraph.Connectivity.Connected": {
+      "important_decl_names": [
+        "SimpleGraph.ConnectedComponent.instFinite",
+        "SimpleGraph.ConnectedComponent.toSimpleGraph",
+        "SimpleGraph.connectedComponentMk",
+        "SimpleGraph.ConnectedComponent.connectedComponentMk_mem",
+        "SimpleGraph.ConnectedComponent.reachable_of_mem_supp",
+        "SimpleGraph.adj_and_reachable_delete_edges_iff_exists_cycle",
+        "SimpleGraph.ConnectedComponent.toSimpleGraph_hom",
+        "SimpleGraph.ConnectedComponent.mem_supp_of_adj_mem_supp",
+        "SimpleGraph.Reachable.elim_path",
+        "SimpleGraph.IsBridge",
+        "SimpleGraph.Reachable",
+        "SimpleGraph.Reachable.trans",
+        "SimpleGraph.Reachable.exists_isPath",
+        "SimpleGraph.Reachable.symm",
+        "SimpleGraph.Adj.reachable",
+        "SimpleGraph.ConnectedComponent.toSimpleGraph_adj",
+        "SimpleGraph.ConnectedComponent.sound"
+      ],
+      "module": "Mathlib.Combinatorics.SimpleGraph.Connectivity.Connected",
+      "note": "verified semantic inspection",
+      "summary": "Connected-component induced graph and ambient/local adjacency bridge."
+    },
+    "Mathlib.Combinatorics.SimpleGraph.DeleteEdges": {
+      "important_decl_names": [
+        "SimpleGraph.deleteEdges",
+        "SimpleGraph.deleteEdges_adj",
+        "SimpleGraph.deleteEdges_le"
+      ],
+      "module": "Mathlib.Combinatorics.SimpleGraph.DeleteEdges",
+      "note": "inspected Mathlib declaration",
+      "summary": "Generic graph edge deletion, usable to define components after cutting an edge."
+    },
+    "Mathlib.Combinatorics.SimpleGraph.Finite": {
+      "important_decl_names": [
+        "SimpleGraph.neighborFinset",
+        "SimpleGraph.mem_neighborFinset",
+        "SimpleGraph.neighborFinset_eq_filter",
+        "SimpleGraph.notMem_neighborFinset_self",
+        "SimpleGraph.degree",
+        "SimpleGraph.card_neighborFinset_eq_degree"
+      ],
+      "module": "Mathlib.Combinatorics.SimpleGraph.Finite",
+      "note": "verified semantic inspection",
+      "summary": "Finite neighbor and edge finsets for finite simple graphs."
+    },
+    "Mathlib.Combinatorics.SimpleGraph.Paths": {
+      "important_decl_names": [
+        "SimpleGraph.Walk.IsPath.toDeleteEdges",
+        "SimpleGraph.Walk.IsPath.disjoint_support_of_append",
+        "SimpleGraph.Walk.IsPath.mem_support_iff_exists_append",
+        "SimpleGraph.Path.nodup_support",
+        "SimpleGraph.Walk.IsPath",
+        "SimpleGraph.Walk.toPath",
+        "SimpleGraph.Walk.IsPath.transfer",
+        "SimpleGraph.Walk.IsPath.cons",
+        "SimpleGraph.Walk.IsPath.reverse",
+        "SimpleGraph.Walk.isPath_def",
+        "SimpleGraph.Walk.concat_isPath_iff",
+        "SimpleGraph.Walk.IsPath.of_adj",
+        "SimpleGraph.Walk.isPath_iff_nil",
+        "SimpleGraph.Walk.IsPath.dropLast",
+        "SimpleGraph.Walk.IsPath.concat"
+      ],
+      "module": "Mathlib.Combinatorics.SimpleGraph.Paths",
+      "note": null,
+      "summary": "Walk/path API: append, supports, simple-path decomposition, and transfer to deleteEdges."
+    },
+    "Mathlib.Combinatorics.SimpleGraph.Walk.Basic": {
+      "important_decl_names": [
+        "SimpleGraph.Walk.support",
+        "SimpleGraph.Walk.start_mem_support",
+        "SimpleGraph.Walk.end_mem_support",
+        "SimpleGraph.Walk.edges_subset_edgeSet",
+        "SimpleGraph.Walk.mem_support_iff",
+        "SimpleGraph.Walk.cons_tail_support",
+        "SimpleGraph.Walk.exists_eq_cons_of_ne",
+        "SimpleGraph.Walk.edges_cons",
+        "SimpleGraph.Walk.Nil.eq_nil",
+        "SimpleGraph.Walk.cons",
+        "SimpleGraph.Walk.nil"
+      ],
+      "module": "Mathlib.Combinatorics.SimpleGraph.Walk.Basic",
+      "note": null,
+      "summary": null
+    },
+    "Mathlib.Combinatorics.SimpleGraph.Walk.Maps": {
+      "important_decl_names": [
+        "SimpleGraph.Walk.toDeleteEdges",
+        "SimpleGraph.Walk.transfer",
+        "SimpleGraph.Walk.support_transfer",
+        "SimpleGraph.Walk.support_map"
+      ],
+      "module": "Mathlib.Combinatorics.SimpleGraph.Walk.Maps",
+      "note": null,
+      "summary": null
+    },
+    "Mathlib.Combinatorics.SimpleGraph.Walk.Operations": {
+      "important_decl_names": [
+        "SimpleGraph.Walk.append",
+        "SimpleGraph.Walk.support_append_eq_support_dropLast_append",
+        "SimpleGraph.Walk.reverse",
+        "SimpleGraph.Walk.support_append",
+        "SimpleGraph.Walk.edges_concat",
+        "SimpleGraph.Walk.concat",
+        "SimpleGraph.Walk.support_subset_support_concat",
+        "SimpleGraph.Walk.support_subset_support_append_right",
+        "SimpleGraph.Walk.edges_nodup_of_support_nodup",
+        "SimpleGraph.Walk.dropLast",
+        "SimpleGraph.Walk.concat_eq_append",
+        "SimpleGraph.Walk.reverse_cons"
+      ],
+      "module": "Mathlib.Combinatorics.SimpleGraph.Walk.Operations",
+      "note": null,
+      "summary": null
+    },
+    "Mathlib.Data.Finset.Attach": {
+      "important_decl_names": [
+        "Finset.attach"
+      ],
+      "module": "Mathlib.Data.Finset.Attach",
+      "note": null,
+      "summary": null
+    },
+    "Mathlib.Data.Finset.Card": {
+      "important_decl_names": [
+        "Finset.card_map",
+        "Finset.card",
+        "Finset.card_insert_of_notMem"
+      ],
+      "module": "Mathlib.Data.Finset.Card",
+      "note": null,
+      "summary": null
+    },
+    "Mathlib.Data.Finset.Defs": {
+      "important_decl_names": [
+        "Finset.ext"
+      ],
+      "module": "Mathlib.Data.Finset.Defs",
+      "note": null,
+      "summary": null
+    },
+    "Mathlib.Data.Finset.Disjoint": {
+      "important_decl_names": [
+        "Finset.disjoint_left"
+      ],
+      "module": "Mathlib.Data.Finset.Disjoint",
+      "note": null,
+      "summary": null
+    },
+    "Mathlib.Data.Finset.Empty": {
+      "important_decl_names": [
+        "Finset.Nonempty",
+        "Finset.not_nonempty_iff_eq_empty"
+      ],
+      "module": "Mathlib.Data.Finset.Empty",
+      "note": null,
+      "summary": null
+    },
+    "Mathlib.Data.Finset.Filter": {
+      "important_decl_names": [
+        "Finset.mem_filter"
+      ],
+      "module": "Mathlib.Data.Finset.Filter",
+      "note": null,
+      "summary": null
+    },
+    "Mathlib.Data.Finset.Image": {
+      "important_decl_names": [
+        "Finset.map",
+        "Finset.mem_map"
+      ],
+      "module": "Mathlib.Data.Finset.Image",
+      "note": null,
+      "summary": null
+    },
+    "Mathlib.Data.Finset.Union": {
+      "important_decl_names": [
+        "Finset.disjiUnion"
+      ],
+      "module": "Mathlib.Data.Finset.Union",
+      "note": null,
+      "summary": null
+    },
+    "Mathlib.Data.Finsupp.Single": {
+      "important_decl_names": [
+        "Finsupp.single_apply"
+      ],
+      "module": "Mathlib.Data.Finsupp.Single",
+      "note": null,
+      "summary": null
+    },
+    "Mathlib.Data.Fintype.BigOperators": {
+      "important_decl_names": [
+        "Fintype.sum_sigma",
+        "Fintype.sum_eq_single",
+        "Fintype.sum_congr"
+      ],
+      "module": "Mathlib.Data.Fintype.BigOperators",
+      "note": "Inspected Fintype.sum_sigma and Fintype.sum_eq_single.",
+      "summary": "Fintype-wide sum tools for the child-fiber block-diagonal quadratic split."
+    },
+    "Mathlib.Data.Fintype.Card": {
+      "important_decl_names": [
+        "Fintype.card_lt_of_injective_of_notMem",
+        "Fintype.card_pos_iff",
+        "Fintype.card_coe",
+        "Fintype.card_pos"
+      ],
+      "module": "Mathlib.Data.Fintype.Card",
+      "note": null,
+      "summary": null
+    },
+    "Mathlib.Data.Fintype.Defs": {
+      "important_decl_names": [
+        "Finset.mem_univ",
+        "Finset.univ",
+        "Fintype.subsingleton"
+      ],
+      "module": "Mathlib.Data.Fintype.Defs",
+      "note": null,
+      "summary": null
+    },
+    "Mathlib.Data.Fintype.EquivFin": {
+      "important_decl_names": [
+        "Fintype.ofFinite",
+        "Fintype.card_le_one_iff_subsingleton"
+      ],
+      "module": "Mathlib.Data.Fintype.EquivFin",
+      "note": "inspection of Fintype.ofFinite",
+      "summary": "Defines the instance-reducible Fintype.ofFinite constructor used by the canonical child-capacity summand and scoped IH route."
+    },
+    "Mathlib.Data.Int.Cast.Basic": {
+      "important_decl_names": [
+        "Int.cast_add",
+        "Int.cast_sub"
+      ],
+      "module": "Mathlib.Data.Int.Cast.Basic",
+      "note": null,
+      "summary": null
+    },
+    "Mathlib.Data.List.Nodup": {
+      "important_decl_names": [
+        "List.nodup_concat"
+      ],
+      "module": "Mathlib.Data.List.Nodup",
+      "note": null,
+      "summary": null
+    },
+    "Mathlib.Data.Matrix.Block": {
+      "important_decl_names": [
+        "Matrix.fromBlocks",
+        "Matrix.fromBlocks_apply₁₁",
+        "Matrix.blockDiagonal'_apply'",
+        "Matrix.blockDiagonal'_mul",
+        "Matrix.blockDiagonal'",
+        "Matrix.fromBlocks_apply₂₂",
+        "Matrix.fromBlocks_mulVec",
+        "Matrix.fromBlocks_apply₁₂",
+        "Matrix.fromBlocks_apply₂₁"
+      ],
+      "module": "Mathlib.Data.Matrix.Block",
+      "note": "Declaration-level recon for Main.RootedCapacity b_0009",
+      "summary": "Block-matrix constructors and entry lemmas for the root-versus-rest decomposition."
+    },
+    "Mathlib.Data.Matrix.Diagonal": {
+      "important_decl_names": [
+        "Matrix.one_apply",
+        "Matrix.diagonal_apply_eq"
+      ],
+      "module": "Mathlib.Data.Matrix.Diagonal",
+      "note": null,
+      "summary": null
+    },
+    "Mathlib.Data.Matrix.Mul": {
+      "important_decl_names": [
+        "Matrix.mul_apply",
+        "Matrix.mulVec_eq_sum",
+        "dotProduct",
+        "Matrix.mulVec_mulVec",
+        "Matrix.dotProduct_mulVec",
+        "Matrix.mulVec_apply"
+      ],
+      "module": "Mathlib.Data.Matrix.Mul",
+      "note": null,
+      "summary": null
+    },
+    "Mathlib.Data.Nat.Init": {
+      "important_decl_names": [
+        "Nat.strong_induction_on"
+      ],
+      "module": "Mathlib.Data.Nat.Init",
+      "note": null,
+      "summary": null
+    },
+    "Mathlib.Data.Set.Insert": {
+      "important_decl_names": [
+        "Set.mem_singleton_iff"
+      ],
+      "module": "Mathlib.Data.Set.Insert",
+      "note": null,
+      "summary": null
+    },
+    "Mathlib.Data.Sym.Sym2": {
+      "important_decl_names": [
+        "Sym2.mk_eq_mk_iff",
+        "Sym2.eq_iff",
+        "Sym2.instDecidableEq"
+      ],
+      "module": "Mathlib.Data.Sym.Sym2",
+      "note": null,
+      "summary": null
+    },
+    "Mathlib.LinearAlgebra.Matrix.BilinearForm": {
+      "important_decl_names": [
+        "Matrix.toBilin'_apply'",
+        "Matrix.isSymm_toBilin'_iff_isSymm"
+      ],
+      "module": "Mathlib.LinearAlgebra.Matrix.BilinearForm",
+      "note": "Verified by inspection for Main.RootedEstimates.",
+      "summary": "Converts a rational matrix to a bilinear form and identifies its value with dotProduct/mulVec."
+    },
+    "Mathlib.LinearAlgebra.Matrix.Defs": {
+      "important_decl_names": [
+        "Matrix.reindex_apply",
+        "Matrix.ext",
+        "Matrix.submatrix",
+        "Matrix.reindex",
+        "Matrix.sub_apply",
+        "Matrix.submatrix_apply"
+      ],
+      "module": "Mathlib.LinearAlgebra.Matrix.Defs",
+      "note": null,
+      "summary": null
+    },
+    "Mathlib.LinearAlgebra.Matrix.Hermitian": {
+      "important_decl_names": [
+        "Matrix.isHermitian_iff_isSymm",
+        "Matrix.schur_complement_eq₂₂"
+      ],
+      "module": "Mathlib.LinearAlgebra.Matrix.Hermitian",
+      "note": null,
+      "summary": null
+    },
+    "Mathlib.LinearAlgebra.Matrix.NonsingularInverse": {
+      "important_decl_names": [
+        "Matrix.inv_reindex",
+        "Matrix.inv_subsingleton",
+        "Matrix.invOf_eq_nonsing_inv",
+        "Matrix.inv",
+        "Matrix.isUnit_iff_isUnit_det",
+        "Matrix.mul_nonsing_inv",
+        "Matrix.nonsing_inv_mul",
+        "Matrix.inv_eq_left_inv",
+        "Matrix.submatrixEquivInvertible",
+        "Matrix.mul_inv_of_invertible",
+        "Matrix.mul_inv_cancel_right_of_invertible"
+      ],
+      "module": "Mathlib.LinearAlgebra.Matrix.NonsingularInverse",
+      "note": "Declaration-level recon for Main.RootedCapacity b_0009",
+      "summary": "Reindexing compatibility for the total matrix inverse used by rootedCapacity."
+    },
+    "Mathlib.LinearAlgebra.Matrix.PosDef": {
+      "important_decl_names": [
+        "Matrix.PosDef",
+        "Matrix.PosDef.submatrix",
+        "Matrix.PosDef.inv",
+        "Matrix.PosDef.fromBlocks₁₁",
+        "Matrix.PosDef.fromBlocks₂₂",
+        "Matrix.PosDef.diag_pos",
+        "Matrix.PosDef.isUnit",
+        "Matrix.PosDef.dotProduct_mulVec_pos",
+        "Matrix.PosDef.of_dotProduct_mulVec_pos",
+        "Matrix.PosDef.posSemidef"
+      ],
+      "module": "Mathlib.LinearAlgebra.Matrix.PosDef",
+      "note": "inspected Mathlib declarations",
+      "summary": "Positive-definite matrices, principal reindexings, inverses, and block Schur-complement equivalences."
+    },
+    "Mathlib.LinearAlgebra.Matrix.Reindex": {
+      "important_decl_names": [
+        "Matrix.reindexRingEquiv",
+        "Matrix.toEquiv_reindexRingEquiv"
+      ],
+      "module": "Mathlib.LinearAlgebra.Matrix.Reindex",
+      "note": null,
+      "summary": null
+    },
+    "Mathlib.LinearAlgebra.Matrix.SchurComplement": {
+      "important_decl_names": [
+        "Matrix.invOf_fromBlocks₂₂_eq",
+        "Matrix.invertibleOfFromBlocks₂₂Invertible"
+      ],
+      "module": "Mathlib.LinearAlgebra.Matrix.SchurComplement",
+      "note": "Declaration-level recon for Main.RootedCapacity b_0009",
+      "summary": "Schur-complement block-inverse and invertibility APIs used to evaluate the root capacity."
+    },
+    "Mathlib.LinearAlgebra.SesquilinearForm.Basic": {
+      "important_decl_names": [
+        "LinearMap.BilinForm.apply_sq_le_of_symm"
+      ],
+      "module": "Mathlib.LinearAlgebra.SesquilinearForm.Basic",
+      "note": "Verified by inspection for Main.RootedEstimates.",
+      "summary": "Provides Cauchy–Schwarz inequalities for nonnegative symmetric bilinear forms."
+    },
+    "Mathlib.Logic.Equiv.Sum": {
+      "important_decl_names": [
+        "Equiv.sumCompl"
+      ],
+      "module": "Mathlib.Logic.Equiv.Sum",
+      "note": "Declaration-level recon for Main.RootedCapacity b_0009",
+      "summary": "Provides the canonical split of vertices into a root singleton subtype and its complement."
+    },
+    "Mathlib.Logic.ExistsUnique": {
+      "important_decl_names": [
+        "ExistsUnique.unique"
+      ],
+      "module": "Mathlib.Logic.ExistsUnique",
+      "note": null,
+      "summary": null
+    },
+    "Mathlib.Order.Defs.LinearOrder": {
+      "important_decl_names": [
+        "min_eq_left",
+        "min_eq_right",
+        "min_le_left",
+        "min_le_right"
+      ],
+      "module": "Mathlib.Order.Defs.LinearOrder",
+      "note": null,
+      "summary": null
+    },
+    "Mathlib.Tactic.IntervalCases": {
+      "important_decl_names": [
+        "Int.le_sub_one_of_not_le"
+      ],
+      "module": "Mathlib.Tactic.IntervalCases",
+      "note": "Inspected Int.le_sub_one_of_not_le for the q ≤ -1 versus q ≥ 0 split.",
+      "summary": "Provides a verified integer discrete-order normalization lemma when a coefficient is not nonnegative."
+    },
+    "Mathlib.Tactic.Linarith": {
+      "important_decl_names": [],
+      "module": "Mathlib.Tactic.Linarith",
+      "note": "Semantic search verified the `linarith` tactic applies to linear ordered rings including Int.",
+      "summary": "Closes the final linear integer inequality contradiction after self-pairing expansion."
+    },
+    "Mathlib.Tactic.Ring": {
+      "important_decl_names": [],
+      "module": "Mathlib.Tactic.Ring",
+      "note": "Proof idiom required by the source bilinear expansion over ℤ.",
+      "summary": "Provides `ring` normalization after finite sums are distributed."
+    }
+  }
+}

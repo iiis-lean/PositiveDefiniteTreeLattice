@@ -1,0 +1,33 @@
+{
+  "change_summaries": {},
+  "committed_at": "2026-07-30T09:50:48Z",
+  "created_at": "2026-07-30T09:33:04Z",
+  "discard_reason": null,
+  "discarded_at": null,
+  "discarded_by": null,
+  "discarded_created_decl_names": [],
+  "discarded_restored_decl_revisions": {},
+  "discarded_revision_refs": [],
+  "execution_completed_at": "2026-07-30T09:47:49Z",
+  "execution_reason": "The target theorem must evaluate D⁻¹ at the statement's exact dependent embeddings ι in both clauses. Matrix.inv_reindex only transports along an explicitly supplied equivalence, and existing rootedChildComponent_partition supplies an existential-unique proposition rather than an equivalence with the two required computation rules. Constructing that equivalence, proving its dependent inverse laws, and repeatedly transporting the component subtype proofs is a substantial reusable RootedCapacity representation theorem, not a small proof-local helper. Without it, the block-diagonal equality cannot be connected definitionally to the displayed ι indices, so neither requested inverse-entry clause can be closed. Recommended planning change: add the private partition-equivalence declaration immediately before rootedNonroot_inverse_childBlocks, then revise this proof route to use its two computation rules with Matrix.reindex_apply and Matrix.inv_reindex.",
+  "execution_result_kind": "blocked",
+  "node_path": "Main.RootedCapacity",
+  "objective": "Create and prove the private dependent inverse-transport theorem for the nonroot principal Gram block: within each root-child component its inverse entries are the child Gram inverse entries, and across distinct components they vanish. This directly unblocks the preserved inverse-quadratic theorem.",
+  "plan_closeout_acknowledged_at": "2026-07-30T09:50:48Z",
+  "plan_closeout_acknowledged_by": "a_a93b40977f574bad89528358fa89e022",
+  "result_kind": "blocked",
+  "result_reason": "Proof Formal requires a tracked private partition equivalence from the sigma of root-child components to nonroot vertices with the statement’s exact inclusion embeddings and usable inverse laws; the accepted inverse-entry clauses and proof plan are retained for retry afterward.",
+  "revision_refs": [
+    {
+      "change_id": "rootedNonroot_inverse_childBlocks@rev:1",
+      "decl_name": "rootedNonroot_inverse_childBlocks",
+      "revision": 1
+    }
+  ],
+  "round_id": "round_b7e9da337bb542219ff1fef21e47f254",
+  "round_index": 25,
+  "started_at": "2026-07-30T09:34:56Z",
+  "status": "committed",
+  "strategy_id": "strategy_1fbcdfb31a2e4cada1ff5b7b941de18c",
+  "summary": "Round 25 made statement and proof-plan progress but is closed blocked at Proof Formal: rootedNonroot_inverse_childBlocks rev1 is proof_planned, not graph-proved. The matrix statement and all Gram-level facts remain valid. The single missing item is an explicit private dependent partition equivalence between the sigma of root-child components and nonroot vertices, with the inclusion as its forward map and computation/inverse rules suitable for Matrix.reindex_apply and Matrix.inv_reindex. This helper remains within the node's RootedCapacity representation boundary and current scale; the strategy is still viable. Plan that equivalence next, then retry inverse child blocks, then retry the quadratic theorem. No superseded artifacts or cleanup targets were introduced."
+}

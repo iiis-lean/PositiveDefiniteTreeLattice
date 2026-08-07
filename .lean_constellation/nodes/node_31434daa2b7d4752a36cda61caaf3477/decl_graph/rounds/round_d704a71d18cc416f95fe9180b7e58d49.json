@@ -1,0 +1,33 @@
+{
+  "change_summaries": {},
+  "committed_at": "2026-07-30T03:47:07Z",
+  "created_at": "2026-07-30T03:32:58Z",
+  "discard_reason": null,
+  "discarded_at": null,
+  "discarded_by": null,
+  "discarded_created_decl_names": [],
+  "discarded_restored_decl_revisions": {},
+  "discarded_revision_refs": [],
+  "execution_completed_at": "2026-07-30T03:45:24Z",
+  "execution_reason": null,
+  "execution_result_kind": "success",
+  "node_path": "Main.TreePathSeparation",
+  "objective": "Create only the stable canonical chosen tree path, with no current-node dependencies. This dependency-ordered foundation uses SimpleGraph.IsTree.existsUnique_path and supplies the exact root-to-c, c-to-x, and root-to-x walk objects later consumed by the cut-support and append-equality declarations. Source/contract anchor: rooted child-subtree grouping implicit in SourceIndex b_0008–b_0009 / solution.tex lines 33–64 and the two required uniquePath interfaces.",
+  "plan_closeout_acknowledged_at": "2026-07-30T03:47:07Z",
+  "plan_closeout_acknowledged_by": "a_32cab14a2d1e497786514a39188b3e4f",
+  "result_kind": "success",
+  "result_reason": "The sole planned foundation declaration passed Statement NL and Statement Formal, reached its declared target, and satisfies the repository proof policy for a definition.",
+  "revision_refs": [
+    {
+      "change_id": "uniquePath@rev:1",
+      "decl_name": "uniquePath",
+      "revision": 1
+    }
+  ],
+  "round_id": "round_d704a71d18cc416f95fe9180b7e58d49",
+  "round_index": 2,
+  "started_at": "2026-07-30T03:34:37Z",
+  "status": "committed",
+  "strategy_id": "strategy_f896ad8d3d5e41c193ec6ecf41edbffd",
+  "summary": "The bottom-up strategy made its first accepted progress. Public `uniquePath` revision 1 reached `declared`; as a definition it is proof-policy satisfied under `graph_proved` and provides the canonical root-to-c, c-to-x, and root-to-x walk object for all later declarations. No intentionally state-only theorem remains in this round and no blocker was found. The two required interfaces and all theorem-like helpers still need proved rounds. The next dependency-ordered step is to prove that `uniquePath` is an `IsPath`; only after that proof is committed should the uniqueness eliminator or cut/append parents be attempted."
+}

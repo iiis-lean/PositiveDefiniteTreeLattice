@@ -1,0 +1,24 @@
+{
+  "allow_interface_supplement": true,
+  "goal": "Produce a proved native Lean repository whose immutable public boundary exports PositiveDefiniteTreeLattice.exists_irreducible_vertex. The proof must cover every finite integer-weighted simple tree satisfying the integral positive-definiteness hypothesis and the unique underweighted-vertex condition, and return an irreducible vertex vector under the supplied pairing definition.",
+  "interface_inputs": [
+    {
+      "bound_decl": null,
+      "expected_statement_lean_code": "theorem exists_irreducible_vertex\n    {V : Type*} [Fintype V] [DecidableEq V]\n    (G : SimpleGraph V) [DecidableRel G.Adj] (weight : V → ℤ)\n    (h_tree : G.IsTree)\n    (h_positive : ∀ x : V → ℤ, x ≠ 0 → 0 < treePairing G weight x x)\n    (h_unique_underweight : ∃! v : V, weight v < (G.degree v : ℤ)) :\n    ∃ v : V, Irreducible G weight (vertexVector v) := by\n  sorry",
+      "kind": "theorem",
+      "name": "PositiveDefiniteTreeLattice.exists_irreducible_vertex",
+      "note": "The public theorem must preserve the integral function model, exact pairing, uniqueness hypothesis and irreducibility predicate. Benchmark identity is intentionally absent from the Agent-facing corpus.",
+      "source_refs": [
+        {"kind": "source", "ref": {"path": "formal_target.lean", "start_line": null, "end_line": null}},
+        {"kind": "source", "ref": {"path": "problem.tex", "start_line": null, "end_line": null}},
+        {"kind": "source", "ref": {"path": "solution.tex", "start_line": null, "end_line": null}}
+      ],
+      "summary": "A positive-definite integer-weighted finite tree with exactly one vertex whose weight is below its degree contains an irreducible vertex vector."
+    }
+  ],
+  "notes": "Develop the rooted-capacity, rational Gram inverse, positivity and Schur-complement bridges locally in this native repository. They are implementation layers, not separate provider repositories.",
+  "requirement_refs": [],
+  "source_corpus_mode": "existing",
+  "source_corpus_relpath": ".lean_constellation/source",
+  "source_description": "A neutral self-contained weighted-tree problem and complete rooted-capacity solution, with a single Lean theorem target and no benchmark wrapper identity."
+}

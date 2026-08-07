@@ -1,0 +1,248 @@
+{
+  "change": {
+    "anticipated_proof_dep_names": [
+      "blockDiagonal_quadratic_eq_sum_blocks",
+      "rootedNonrootGram_reindex_childBlocks"
+    ],
+    "anticipated_statement_dep_names": [
+      "rootedChildComponent",
+      "rootedChildComponentsEquivNonroot",
+      "rootedChildren",
+      "rootedGram"
+    ],
+    "base_revision": null,
+    "kind": "create",
+    "objective": "Implement the sole public contract-v8 interface, faithful to the child-subtree direct-sum identity in solution.tex 57–68. Reuse verbatim the canonical convention of rootedNonrootGram_reindex_childBlocks@6: R := {v : V // v ≠ ρ}; I := {c : V // c ∈ rootedChildren G hG ρ ρ}; S := fun c : I => rootedChildComponent G ρ c.1; e := (rootedChildComponentsEquivNonroot G hG ρ).symm with its existing orientation; D := the nonroot principal rootedGram block; and B := the exact child-component rootedGram family with its existing component instance convention. For arbitrary a : R → ℚ, conclude that the ordered R×R quadratic double sum a x * D x y * a y equals ∑ c : I, ∑ x : S c, ∑ y : S c of a (e.symm ⟨c,x⟩) * B c x y * a (e.symm ⟨c,y⟩), leaving no cross-child or Sigma-wide remainder. Prove by two equivalence transports using (e.symm.sum_comp _).symm, change the transported D entry to Matrix.reindex e e D, rewrite rootedNonrootGram_reindex_childBlocks@6, and apply proved private blockDiagonal_quadratic_eq_sum_blocks@1. Preserve all exact indices, instances, coefficient order, and conclusion direction; add no admissibility, unique-underweight, integral pairing/root-interaction, new representation, consumer-specific decomposition, or heartbeat change. The Lean identity must be the unqualified public interface name rootedNonroot_quadratic_eq_sum_childQuadratics.",
+    "require_target_state_satisfied": true,
+    "reset_to_state": null,
+    "summary": "Created and graph-proved public rootedNonroot_quadratic_eq_sum_childQuadratics revision 1. The accepted statement uses exactly the existing R/I/S/e/D/B convention and arbitrary rational coefficients, equating the ordered nonroot quadratic double sum with a fully contracted sum of within-child double sums. All four stages passed. The proof transports both finite sums along the canonical equivalence, rewrites rootedNonrootGram_reindex_childBlocks@6, and applies blockDiagonal_quadratic_eq_sum_blocks@1; no extra assumptions, cross-child remainder, representation change, or heartbeat change was introduced.",
+    "target_state": "proved"
+  },
+  "lean_decl_name": "rootedNonroot_quadratic_eq_sum_childQuadratics",
+  "proof": {
+    "deps": [
+      {
+        "kind": "mathlib_decl",
+        "reason": "The formal proof explicitly uses `Finset.sum_congr` to establish the pointwise equality needed for the second equivalence-sum transport.",
+        "ref": {
+          "module": "Mathlib.Algebra.BigOperators.Group.Finset.Basic",
+          "name": "Finset.sum_congr"
+        }
+      },
+      {
+        "kind": "mathlib_decl",
+        "reason": "Transport each of the two ordered finite sums through e.symm while preserving the mandated e orientation.",
+        "ref": {
+          "module": "Mathlib.Algebra.BigOperators.Group.Finset.Defs",
+          "name": "Equiv.sum_comp"
+        }
+      },
+      {
+        "kind": "mathlib_decl",
+        "reason": "The proof changes the transported nonroot-block entry to Matrix.reindex e e D before rewriting by rootedNonrootGram_reindex_childBlocks.",
+        "ref": {
+          "module": "Mathlib.LinearAlgebra.Matrix.Defs",
+          "name": "Matrix.reindex"
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "Converts the resulting dependent block-diagonal ordered quadratic double sum into the required sum of within-child quadratic forms.",
+        "ref": {
+          "name": "blockDiagonal_quadratic_eq_sum_blocks",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 1
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "Rewrites the canonical reindexed nonroot rooted-Gram block as the exact dependent child-component block diagonal.",
+        "ref": {
+          "name": "rootedNonrootGram_reindex_childBlocks",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 6
+        }
+      }
+    ],
+    "formal": {
+      "check": {
+        "allow_sorry": false,
+        "contains_axiom": false,
+        "contains_sorry": false,
+        "diagnostics": {
+          "diagnostics": [],
+          "passed": true,
+          "raw_excerpt": "{'success': True, 'error_message': None, 'file': 'PositiveDefiniteTreeLattice.Main.RootedCapacity.Theorems.rootedNonroot_quadratic_eq_sum_childQuadratics', 'items': [], 'total_items': 0, 'error_count': 0, 'warning_count': 0, 'info_count': 0, 'sorry_count': 0}",
+          "repo_file_path": "PositiveDefiniteTreeLattice/Main/RootedCapacity/Theorems/rootedNonroot_quadratic_eq_sum_childQuadratics.lean",
+          "schema_version": 2,
+          "summary": "Diagnostics returned 0 items"
+        },
+        "message": "Lean check passed.",
+        "policy": "proof_formal",
+        "scan": {
+          "admit_count": 0,
+          "axiom_count": 0,
+          "contains_admit": false,
+          "contains_axiom": false,
+          "contains_opaque": false,
+          "contains_sorry": false,
+          "contains_unsafe": false,
+          "limitation": "Text scan ignores Lean comments and string literals with a conservative first-round lexer; it is not a full Lean parser.",
+          "occurrences": [],
+          "opaque_count": 0,
+          "sorry_count": 0,
+          "summary": "sorry=0, admit=0, axiom=0, opaque=0, unsafe=0",
+          "unsafe_count": 0
+        },
+        "status": "passed"
+      },
+      "code": "-- lean-constellation: managed-imports-begin\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Prelude\nimport Mathlib.Algebra.BigOperators.Group.Finset.Basic\nimport Mathlib.Algebra.BigOperators.Group.Finset.Defs\nimport Mathlib.Data.Fintype.EquivFin\nimport Mathlib.LinearAlgebra.Matrix.Defs\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildComponent\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildComponentsEquivNonroot\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildren\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedGram\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Theorems.blockDiagonal_quadratic_eq_sum_blocks\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Theorems.rootedNonrootGram_reindex_childBlocks\n-- lean-constellation: managed-imports-end\n\n-- lean-constellation: declaration-source-begin\n\n/--\n# lean-constellation target: `rootedNonroot_quadratic_eq_sum_childQuadratics`\n\nLet `V` be a finite vertex type with decidable equality, let `G : SimpleGraph V` have decidable\nadjacency and satisfy `hG : G.IsTree`, let `w : V → ℤ`, and fix `ρ : V`. Use exactly the convention\nof `rootedNonrootGram_reindex_childBlocks`: set `R := {v : V // v ≠ ρ}`, `I := {c : V // c ∈\nrootedChildren G hG ρ ρ}`, `S c := rootedChildComponent G ρ c.1`, `e : R ≃ Σ c : I, S c :=\n(rootedChildComponentsEquivNonroot G hG ρ).symm`, and `D : Matrix R R ℚ := (rootedGram G\nw).submatrix Subtype.val Subtype.val`. For each `c : I`, let `B c` be the rooted Gram matrix of the\nchild-component graph `(S c).toSimpleGraph` with the coefficient function induced by `w`, using the\nsame component `Fintype` and decidable-adjacency instances as in that reindex theorem.\n\nThen, for every coefficient function `a : R → ℚ`, the ordered nonroot quadratic double sum splits\ninto the ordered within-child quadratic double sums:\n\n`∑ x : R, ∑ y : R, a x * D x y * a y = ∑ c : I, ∑ x : S c, ∑ y : S c, a (e.symm ⟨c, x⟩) * B c x y *\na (e.symm ⟨c, y⟩)`.\n\nThis public statement leaves no cross-child or Sigma-wide remainder and adds no admissibility,\nunique-underweight, integral pairing, or root-interaction hypothesis.\n\n## Sources\n\n- Source `solution.tex`, lines 57–68\n\n## Statement dependencies\n\n- `Fintype.ofFinite` from `Mathlib.Data.Fintype.EquivFin`\n- `Matrix.submatrix` from `Mathlib.LinearAlgebra.Matrix.Defs`\n- `Main.RootedCapacity::rootedChildComponent` → `rootedChildComponent` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildComponent`\n- `Main.RootedCapacity::rootedChildComponentsEquivNonroot` → `rootedChildComponentsEquivNonroot`\n  from `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildComponentsEquivNonroot`\n- `Main.RootedCapacity::rootedChildren` → `rootedChildren` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildren`\n- `Main.RootedCapacity::rootedGram` → `rootedGram` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedGram`\n\n## Proof outline\n\nWork under `classical`, unfold only the accepted local `R`, Sigma-family `S`, equivalence `e`,\nnonroot block `D`, and the already fixed component instances/family `B`, then introduce the\narbitrary coefficient function `a : R → ℚ`.\n\nTransport the outer and inner ordered finite sums from `R` to the Sigma type using `(e.symm.sum_comp\n_).symm` twice. The transported coefficient at `u : Σ c, S c` is exactly `a (e.symm u)`. Change the\ntransported matrix entry `D (e.symm u) (e.symm v)` to the corresponding entry of `Matrix.reindex e e\nD`; this uses the existing orientation of `e` without introducing a new representation or\nequivalence.\n\nRewrite `Matrix.reindex e e D` by the proved `rootedNonrootGram_reindex_childBlocks G hG w ρ`, whose\n`R`, Sigma fibers, component `Fintype` instances, and child rooted-Gram family are definitionally\nthe same canonical ones fixed in the public statement. The goal is then the generic dependent\nblock-diagonal quadratic identity with coefficient function `fun u => a (e.symm u)`. Apply the\nproved private provider `blockDiagonal_quadratic_eq_sum_blocks`; its right-hand side is\ndefinitionally the required sum over each child component and leaves no cross-child or Sigma-wide\nremainder.\n\nThus the proof is solely two equivalence-sum transports, the committed child-block reindex equality,\nand the committed finite-sum helper; it adds no admissibility or other hypotheses.\n\n## Proof sources\n\n- Source `solution.tex`, lines 57–62\n\n## Proof dependencies\n\n- `Finset.sum_congr` from `Mathlib.Algebra.BigOperators.Group.Finset.Basic`\n- `Equiv.sum_comp` from `Mathlib.Algebra.BigOperators.Group.Finset.Defs`\n- `Matrix.reindex` from `Mathlib.LinearAlgebra.Matrix.Defs`\n- `Main.RootedCapacity::blockDiagonal_quadratic_eq_sum_blocks` →\n  `blockDiagonal_quadratic_eq_sum_blocks` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Theorems.blockDiagonal_quadratic_eq_sum_blocks`\n- `Main.RootedCapacity::rootedNonrootGram_reindex_childBlocks` →\n  `rootedNonrootGram_reindex_childBlocks` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Theorems.rootedNonrootGram_reindex_childBlocks`\n-/\ntheorem rootedNonroot_quadratic_eq_sum_childQuadratics {V : Type*} [Fintype V] [DecidableEq V]\n    (G : SimpleGraph V) [DecidableRel G.Adj] (hG : G.IsTree) (w : V → ℤ) (ρ : V) :\n    let R := {v : V // v ≠ ρ}\n    let S := Σ c : {c : V // c ∈ rootedChildren G hG ρ ρ}, rootedChildComponent G ρ c.1\n    let e : R ≃ S := (rootedChildComponentsEquivNonroot G hG ρ).symm\n    let D : Matrix R R ℚ := (rootedGram G w).submatrix Subtype.val Subtype.val\n    letI : ∀ c : {c : V // c ∈ rootedChildren G hG ρ ρ},\n        Fintype (rootedChildComponent G ρ c.1) := fun c =>\n      Fintype.ofFinite (rootedChildComponent G ρ c.1)\n    let B : ∀ c : {c : V // c ∈ rootedChildren G hG ρ ρ},\n        Matrix (rootedChildComponent G ρ c.1) (rootedChildComponent G ρ c.1) ℚ := fun c =>\n      let C := rootedChildComponent G ρ c.1\n      letI : Fintype C := Fintype.ofFinite C\n      letI : DecidableRel C.toSimpleGraph.Adj := by\n        intro x y\n        change Decidable ((G.deleteEdges {s(ρ, c.1)}).Adj (x : V) (y : V))\n        infer_instance\n      rootedGram C.toSimpleGraph (fun x : C => w (x : V))\n    ∀ a : R → ℚ,\n      (∑ x : R, ∑ y : R, a x * D x y * a y) =\n        ∑ c : {c : V // c ∈ rootedChildren G hG ρ ρ},\n          ∑ x : rootedChildComponent G ρ c.1,\n            ∑ y : rootedChildComponent G ρ c.1,\n              a (e.symm ⟨c, x⟩) * B c x y * a (e.symm ⟨c, y⟩) := by\n  classical\n  dsimp only\n  intro a\n  letI : ∀ c : {c : V // c ∈ rootedChildren G hG ρ ρ},\n      Fintype (rootedChildComponent G ρ c.1) := fun c =>\n    Fintype.ofFinite (rootedChildComponent G ρ c.1)\n  let B : ∀ c : {c : V // c ∈ rootedChildren G hG ρ ρ},\n      Matrix (rootedChildComponent G ρ c.1) (rootedChildComponent G ρ c.1) ℚ := fun c =>\n    let C := rootedChildComponent G ρ c.1\n    letI : Fintype C := Fintype.ofFinite C\n    letI : DecidableRel C.toSimpleGraph.Adj := by\n      intro x y\n      change Decidable ((G.deleteEdges {s(ρ, c.1)}).Adj (x : V) (y : V))\n      infer_instance\n    rootedGram C.toSimpleGraph (fun x : C => w (x : V))\n  rw [((rootedChildComponentsEquivNonroot G hG ρ).sum_comp\n    (fun x : {v : V // v ≠ ρ} =>\n      ∑ y : {v : V // v ≠ ρ}, a x *\n        (rootedGram G w).submatrix Subtype.val Subtype.val x y * a y)).symm]\n  calc\n    _ = ∑ i : (Σ c : {c : V // c ∈ rootedChildren G hG ρ ρ},\n        rootedChildComponent G ρ c.1),\n        ∑ j : (Σ c : {c : V // c ∈ rootedChildren G hG ρ ρ},\n          rootedChildComponent G ρ c.1),\n          a ((rootedChildComponentsEquivNonroot G hG ρ) i) *\n            (rootedGram G w).submatrix Subtype.val Subtype.val\n              ((rootedChildComponentsEquivNonroot G hG ρ) i)\n              ((rootedChildComponentsEquivNonroot G hG ρ) j) *\n            a ((rootedChildComponentsEquivNonroot G hG ρ) j) := by\n      apply Finset.sum_congr rfl\n      intro i hi\n      rw [((rootedChildComponentsEquivNonroot G hG ρ).sum_comp\n        (fun y : {v : V // v ≠ ρ} =>\n          a ((rootedChildComponentsEquivNonroot G hG ρ) i) *\n            (rootedGram G w).submatrix Subtype.val Subtype.val\n              ((rootedChildComponentsEquivNonroot G hG ρ) i) y * a y)).symm]\n    _ = _ := by\n      change (∑ i : (Σ c : {c : V // c ∈ rootedChildren G hG ρ ρ},\n          rootedChildComponent G ρ c.1),\n          ∑ j : (Σ c : {c : V // c ∈ rootedChildren G hG ρ ρ},\n            rootedChildComponent G ρ c.1),\n            a ((rootedChildComponentsEquivNonroot G hG ρ) i) *\n              Matrix.reindex (rootedChildComponentsEquivNonroot G hG ρ).symm\n                (rootedChildComponentsEquivNonroot G hG ρ).symm\n                ((rootedGram G w).submatrix Subtype.val Subtype.val) i j *\n              a ((rootedChildComponentsEquivNonroot G hG ρ) j)) =\n          ∑ c : {c : V // c ∈ rootedChildren G hG ρ ρ},\n            ∑ x : rootedChildComponent G ρ c.1,\n              ∑ y : rootedChildComponent G ρ c.1,\n                a ((rootedChildComponentsEquivNonroot G hG ρ) ⟨c, x⟩) *\n                  B c x y *\n                  a ((rootedChildComponentsEquivNonroot G hG ρ) ⟨c, y⟩)\n      rw [rootedNonrootGram_reindex_childBlocks G hG w ρ]\n      convert blockDiagonal_quadratic_eq_sum_blocks\n        {c : V // c ∈ rootedChildren G hG ρ ρ}\n        (fun c => rootedChildComponent G ρ c.1)\n        B\n        (fun i => a ((rootedChildComponentsEquivNonroot G hG ρ) i))\n        using 1\n      · have hdec :\n            (fun c d : {c : V // c ∈ rootedChildren G hG ρ ρ} => c.instDecidableEq d) =\n              Classical.decEq {c : V // c ∈ rootedChildren G hG ρ ρ} :=\n          Subsingleton.elim _ _\n        rw [hdec]\n"
+    },
+    "nl": {
+      "origin": [
+        {
+          "end_line": 62,
+          "end_locator": null,
+          "kind": "source",
+          "note": "Lines 57–62 state the root-first grouping and the direct-sum identity Q₀ = ⨁ᵢ Q_{Cᵢ}, which the proof transports to the ordered quadratic-form identity.",
+          "ref": null,
+          "resource_key": null,
+          "source_path": "solution.tex",
+          "start_line": 57,
+          "start_locator": null
+        }
+      ],
+      "text": "Work under `classical`, unfold only the accepted local `R`, Sigma-family `S`, equivalence `e`, nonroot block `D`, and the already fixed component instances/family `B`, then introduce the arbitrary coefficient function `a : R → ℚ`.\n\nTransport the outer and inner ordered finite sums from `R` to the Sigma type using `(e.symm.sum_comp _).symm` twice. The transported coefficient at `u : Σ c, S c` is exactly `a (e.symm u)`. Change the transported matrix entry `D (e.symm u) (e.symm v)` to the corresponding entry of `Matrix.reindex e e D`; this uses the existing orientation of `e` without introducing a new representation or equivalence.\n\nRewrite `Matrix.reindex e e D` by the proved `rootedNonrootGram_reindex_childBlocks G hG w ρ`, whose `R`, Sigma fibers, component `Fintype` instances, and child rooted-Gram family are definitionally the same canonical ones fixed in the public statement. The goal is then the generic dependent block-diagonal quadratic identity with coefficient function `fun u => a (e.symm u)`. Apply the proved private provider `blockDiagonal_quadratic_eq_sum_blocks`; its right-hand side is definitionally the required sum over each child component and leaves no cross-child or Sigma-wide remainder.\n\nThus the proof is solely two equivalence-sum transports, the committed child-block reindex equality, and the committed finite-sum helper; it adds no admissibility or other hypotheses."
+    }
+  },
+  "revision": 1,
+  "state": "proved",
+  "statement": {
+    "deps": [
+      {
+        "kind": "mathlib_decl",
+        "reason": "The formal statement explicitly uses Fintype.ofFinite to construct the Fintype instance for each rooted child-component fiber before forming the within-fiber sums.",
+        "ref": {
+          "module": "Mathlib.Data.Fintype.EquivFin",
+          "name": "Fintype.ofFinite"
+        }
+      },
+      {
+        "kind": "mathlib_decl",
+        "reason": "The statement defines the nonroot Gram block D as a principal submatrix.",
+        "ref": {
+          "module": "Mathlib.LinearAlgebra.Matrix.Defs",
+          "name": "Matrix.submatrix"
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "The statement’s dependent fibers S and child-component graphs are defined by rootedChildComponent.",
+        "ref": {
+          "name": "rootedChildComponent",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 1
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "The statement fixes e with the canonical rooted-child-component equivalence orientation.",
+        "ref": {
+          "name": "rootedChildComponentsEquivNonroot",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 1
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "The statement’s child index type I is defined using rootedChildren.",
+        "ref": {
+          "name": "rootedChildren",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 2
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "The statement defines both the nonroot block D and the child-block family B using rootedGram.",
+        "ref": {
+          "name": "rootedGram",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 2
+        }
+      }
+    ],
+    "formal": {
+      "check": {
+        "allow_sorry": true,
+        "contains_axiom": false,
+        "contains_sorry": true,
+        "diagnostics": {
+          "diagnostics": [
+            {
+              "column": 9,
+              "line": 51,
+              "message": "declaration uses `sorry`",
+              "severity": "warning"
+            }
+          ],
+          "passed": true,
+          "raw_excerpt": "{'success': True, 'error_message': None, 'file': 'PositiveDefiniteTreeLattice.Main.RootedCapacity.Theorems.rootedNonroot_quadratic_eq_sum_childQuadratics', 'items': [{'severity': 'warning', 'pos': {'line': 51, 'column': 9}, 'endPos': {'line': 51, 'column': 55}, 'kind': None, 'data': 'declaration uses `sorry`', 'fileName': 'PositiveDefiniteTreeLattice.Main.RootedCapacity.Theorems.rootedNonroot_quadratic_eq_sum_childQuadratics', 'content': '  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedGram`\\n-/\\ntheorem rootedNonroot_quadratic_eq_sum_childQuadratics {V : Type*} [Fintype V] [DecidableEq V]\\n    (G : SimpleGraph V) [DecidableRel G.Adj] (hG : G.IsTree) (w : V → ℤ) (ρ : V) :\\n    let R := {v : V // v ≠ ρ}'}], 'total_items': 1, 'error_count': 0, 'warning_count': 1, 'info_count': 0, 'sorry_count': 1}",
+          "repo_file_path": "PositiveDefiniteTreeLattice/Main/RootedCapacity/Theorems/rootedNonroot_quadratic_eq_sum_childQuadratics.lean",
+          "schema_version": 2,
+          "summary": "Diagnostics returned 1 items"
+        },
+        "message": "Lean check passed.",
+        "policy": "statement_formal",
+        "scan": {
+          "admit_count": 0,
+          "axiom_count": 0,
+          "contains_admit": false,
+          "contains_axiom": false,
+          "contains_opaque": false,
+          "contains_sorry": true,
+          "contains_unsafe": false,
+          "limitation": "Text scan ignores Lean comments and string literals with a conservative first-round lexer; it is not a full Lean parser.",
+          "occurrences": [
+            {
+              "column": 3,
+              "excerpt": "sorry",
+              "kind": "sorry",
+              "line": 75
+            }
+          ],
+          "opaque_count": 0,
+          "sorry_count": 1,
+          "summary": "sorry=1, admit=0, axiom=0, opaque=0, unsafe=0",
+          "unsafe_count": 0
+        },
+        "status": "passed"
+      },
+      "code": "-- lean-constellation: managed-imports-begin\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Prelude\nimport Mathlib.Data.Fintype.EquivFin\nimport Mathlib.LinearAlgebra.Matrix.Defs\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildComponent\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildComponentsEquivNonroot\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildren\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedGram\n-- lean-constellation: managed-imports-end\n\n-- lean-constellation: declaration-source-begin\n\n/--\n# lean-constellation target: `rootedNonroot_quadratic_eq_sum_childQuadratics`\n\nLet `V` be a finite vertex type with decidable equality, let `G : SimpleGraph V` have decidable\nadjacency and satisfy `hG : G.IsTree`, let `w : V → ℤ`, and fix `ρ : V`. Use exactly the convention\nof `rootedNonrootGram_reindex_childBlocks`: set `R := {v : V // v ≠ ρ}`, `I := {c : V // c ∈\nrootedChildren G hG ρ ρ}`, `S c := rootedChildComponent G ρ c.1`, `e : R ≃ Σ c : I, S c :=\n(rootedChildComponentsEquivNonroot G hG ρ).symm`, and `D : Matrix R R ℚ := (rootedGram G\nw).submatrix Subtype.val Subtype.val`. For each `c : I`, let `B c` be the rooted Gram matrix of the\nchild-component graph `(S c).toSimpleGraph` with the coefficient function induced by `w`, using the\nsame component `Fintype` and decidable-adjacency instances as in that reindex theorem.\n\nThen, for every coefficient function `a : R → ℚ`, the ordered nonroot quadratic double sum splits\ninto the ordered within-child quadratic double sums:\n\n`∑ x : R, ∑ y : R, a x * D x y * a y = ∑ c : I, ∑ x : S c, ∑ y : S c, a (e.symm ⟨c, x⟩) * B c x y *\na (e.symm ⟨c, y⟩)`.\n\nThis public statement leaves no cross-child or Sigma-wide remainder and adds no admissibility,\nunique-underweight, integral pairing, or root-interaction hypothesis.\n\n## Sources\n\n- Source `solution.tex`, lines 57–68\n\n## Statement dependencies\n\n- `Fintype.ofFinite` from `Mathlib.Data.Fintype.EquivFin`\n- `Matrix.submatrix` from `Mathlib.LinearAlgebra.Matrix.Defs`\n- `Main.RootedCapacity::rootedChildComponent` → `rootedChildComponent` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildComponent`\n- `Main.RootedCapacity::rootedChildComponentsEquivNonroot` → `rootedChildComponentsEquivNonroot`\n  from `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildComponentsEquivNonroot`\n- `Main.RootedCapacity::rootedChildren` → `rootedChildren` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildren`\n- `Main.RootedCapacity::rootedGram` → `rootedGram` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedGram`\n-/\ntheorem rootedNonroot_quadratic_eq_sum_childQuadratics {V : Type*} [Fintype V] [DecidableEq V]\n    (G : SimpleGraph V) [DecidableRel G.Adj] (hG : G.IsTree) (w : V → ℤ) (ρ : V) :\n    let R := {v : V // v ≠ ρ}\n    let S := Σ c : {c : V // c ∈ rootedChildren G hG ρ ρ}, rootedChildComponent G ρ c.1\n    let e : R ≃ S := (rootedChildComponentsEquivNonroot G hG ρ).symm\n    let D : Matrix R R ℚ := (rootedGram G w).submatrix Subtype.val Subtype.val\n    letI : ∀ c : {c : V // c ∈ rootedChildren G hG ρ ρ},\n        Fintype (rootedChildComponent G ρ c.1) := fun c =>\n      Fintype.ofFinite (rootedChildComponent G ρ c.1)\n    let B : ∀ c : {c : V // c ∈ rootedChildren G hG ρ ρ},\n        Matrix (rootedChildComponent G ρ c.1) (rootedChildComponent G ρ c.1) ℚ := fun c =>\n      let C := rootedChildComponent G ρ c.1\n      letI : Fintype C := Fintype.ofFinite C\n      letI : DecidableRel C.toSimpleGraph.Adj := by\n        intro x y\n        change Decidable ((G.deleteEdges {s(ρ, c.1)}).Adj (x : V) (y : V))\n        infer_instance\n      rootedGram C.toSimpleGraph (fun x : C => w (x : V))\n    ∀ a : R → ℚ,\n      (∑ x : R, ∑ y : R, a x * D x y * a y) =\n        ∑ c : {c : V // c ∈ rootedChildren G hG ρ ρ},\n          ∑ x : rootedChildComponent G ρ c.1,\n            ∑ y : rootedChildComponent G ρ c.1,\n              a (e.symm ⟨c, x⟩) * B c x y * a (e.symm ⟨c, y⟩) := by\n  sorry\n"
+    },
+    "nl": {
+      "origin": [
+        {
+          "end_line": 68,
+          "end_locator": null,
+          "kind": "source",
+          "note": "The root-first decomposition and direct sum of child-subtree blocks support the contracted within-child quadratic-form conclusion.",
+          "ref": null,
+          "resource_key": null,
+          "source_path": "solution.tex",
+          "start_line": 57,
+          "start_locator": null
+        }
+      ],
+      "text": "Let `V` be a finite vertex type with decidable equality, let `G : SimpleGraph V` have decidable adjacency and satisfy `hG : G.IsTree`, let `w : V → ℤ`, and fix `ρ : V`. Use exactly the convention of `rootedNonrootGram_reindex_childBlocks`: set `R := {v : V // v ≠ ρ}`, `I := {c : V // c ∈ rootedChildren G hG ρ ρ}`, `S c := rootedChildComponent G ρ c.1`, `e : R ≃ Σ c : I, S c := (rootedChildComponentsEquivNonroot G hG ρ).symm`, and `D : Matrix R R ℚ := (rootedGram G w).submatrix Subtype.val Subtype.val`. For each `c : I`, let `B c` be the rooted Gram matrix of the child-component graph `(S c).toSimpleGraph` with the coefficient function induced by `w`, using the same component `Fintype` and decidable-adjacency instances as in that reindex theorem.\n\nThen, for every coefficient function `a : R → ℚ`, the ordered nonroot quadratic double sum splits into the ordered within-child quadratic double sums:\n\n`∑ x : R, ∑ y : R, a x * D x y * a y = ∑ c : I, ∑ x : S c, ∑ y : S c, a (e.symm ⟨c, x⟩) * B c x y * a (e.symm ⟨c, y⟩)`.\n\nThis public statement leaves no cross-child or Sigma-wide remainder and adds no admissibility, unique-underweight, integral pairing, or root-interaction hypothesis."
+    }
+  },
+  "status": "committed",
+  "updated_at": "2026-08-07T02:07:12Z"
+}

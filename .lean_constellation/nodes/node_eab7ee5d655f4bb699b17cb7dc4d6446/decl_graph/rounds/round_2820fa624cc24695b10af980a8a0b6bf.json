@@ -1,0 +1,33 @@
+{
+  "change_summaries": {},
+  "committed_at": "2026-07-30T22:03:39Z",
+  "created_at": "2026-07-30T21:59:30Z",
+  "discard_reason": null,
+  "discarded_at": null,
+  "discarded_by": null,
+  "discarded_created_decl_names": [],
+  "discarded_restored_decl_revisions": {},
+  "discarded_revision_refs": [],
+  "execution_completed_at": "2026-07-30T22:01:23Z",
+  "execution_reason": null,
+  "execution_result_kind": "success",
+  "node_path": "Main.RootedCapacity",
+  "objective": "Remove the obsolete private rootedChildCapacitySum_attach normalization artifact after all active consumers migrated to the named instance-stable summand, restoring graph hygiene and current-revision dependency closure.",
+  "plan_closeout_acknowledged_at": "2026-07-30T22:03:39Z",
+  "plan_closeout_acknowledged_by": "a_a93b40977f574bad89528358fa89e022",
+  "result_kind": "success",
+  "result_reason": "The safely deletable obsolete normalization bridge was removed with all active stable-aggregate consumers preserved.",
+  "revision_refs": [
+    {
+      "change_id": "rootedChildCapacitySum_attach@rev:2",
+      "decl_name": "rootedChildCapacitySum_attach",
+      "revision": 2
+    }
+  ],
+  "round_id": "round_2820fa624cc24695b10af980a8a0b6bf",
+  "round_index": 68,
+  "started_at": "2026-07-30T22:00:48Z",
+  "status": "committed",
+  "strategy_id": "strategy_20e3f41e54944d3babe462d36b22b383",
+  "summary": "The cleanup step completed the strategy's graph-hygiene target by removing the sole obsolete aggregate-normalization declaration. The active graph should now contain 37 declarations, within the contract's expected scale, with the stable aggregate route and proved public interface intact. No proof work remains; next is exact interface binding and a fresh deterministic completion check."
+}

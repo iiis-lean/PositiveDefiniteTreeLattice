@@ -1,0 +1,33 @@
+{
+  "change_summaries": {},
+  "committed_at": "2026-08-07T06:14:40Z",
+  "created_at": "2026-08-07T05:42:56Z",
+  "discard_reason": null,
+  "discarded_at": null,
+  "discarded_by": null,
+  "discarded_created_decl_names": [],
+  "discarded_restored_decl_revisions": {},
+  "discarded_revision_refs": [],
+  "execution_completed_at": "2026-08-07T06:12:09Z",
+  "execution_reason": null,
+  "execution_result_kind": "success",
+  "node_path": "Main.IrreducibleVertex",
+  "objective": "Advance normalized_pairing_positive_of_unique_underweight@1 from its accepted declared Statement to proved using the newly proved decomposition and the existing rooted estimates.",
+  "plan_closeout_acknowledged_at": "2026-08-07T06:14:40Z",
+  "plan_closeout_acknowledged_by": "a_a235941c8c524917a1ed4a78f90c75ba",
+  "result_kind": "success",
+  "result_reason": "Both proof stages passed and normalized_pairing_positive_of_unique_underweight revision 2 reached proved with required graph_proved satisfaction.",
+  "revision_refs": [
+    {
+      "change_id": "normalized_pairing_positive_of_unique_underweight@rev:2",
+      "decl_name": "normalized_pairing_positive_of_unique_underweight",
+      "revision": 2
+    }
+  ],
+  "round_id": "round_a67552dce0ec4ea481ecd33679e77cba",
+  "round_index": 25,
+  "started_at": "2026-08-07T05:45:24Z",
+  "status": "committed",
+  "strategy_id": "strategy_2fda3ac1fa8b4fc5bb88fd75f3367b39",
+  "summary": "Round 25 completed the remaining normalized-estimate layer: normalized_pairing_positive_of_unique_underweight revision 2 reached proved, its Proof NL and Proof Formal passed, and the required graph_proved audit succeeded. Together with the already committed decomposition, all ten active declarations are now proved at their owned depth; there is no intentionally state-only intermediate, dependency gap, blocker, obsolete route artifact, or cleanup target. The strategy still directly explains the remaining source-owned step: use this normalized strict inequality to eliminate every nontrivial decomposition of the unique underweighted vertex vector, handle the weight-one branch with the existing irreducibility lemma, and expose the exact protected PositiveDefiniteTreeLattice.exists_irreducible_vertex theorem. The graph remains within expected scale. After closeout, the next action should be one focused final-interface declaration round, not preparation or terminal completion."
+}

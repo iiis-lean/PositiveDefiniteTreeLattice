@@ -1,0 +1,19 @@
+{
+  "created_at": "2026-07-30T09:11:37Z",
+  "current_revision": 5,
+  "kind": "theorem",
+  "lifecycle": "active",
+  "module": "PositiveDefiniteTreeLattice.Main.RootedCapacity.Theorems.rootedNonroot_inverse_quadratic",
+  "name": "rootedNonroot_inverse_quadratic",
+  "node_path": "Main.RootedCapacity",
+  "public": false,
+  "revision_ids": [
+    1,
+    2,
+    3,
+    4,
+    5
+  ],
+  "summary": "The inverse quadratic form of the root row on the nonroot block equals the sum of child-component capacities.",
+  "updated_at": "2026-07-30T20:17:07Z"
+}

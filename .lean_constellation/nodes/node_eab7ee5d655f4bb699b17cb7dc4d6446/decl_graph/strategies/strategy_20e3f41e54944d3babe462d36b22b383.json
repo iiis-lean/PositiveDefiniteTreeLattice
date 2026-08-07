@@ -1,0 +1,22 @@
+{
+  "closed_at": "2026-07-30T22:07:04Z",
+  "closed_reason": "The stable child-capacity aggregate recapture, exact recursion, strict sum bound, Nat-indexed upper bound, qualified public interface, and obsolete-branch cleanup are complete; the interface is bound and the deterministic completion gate passes.",
+  "created_at": "2026-07-30T19:57:00Z",
+  "created_round_ids": [
+    "round_0d0bd302458f405d87f0c34c30942127",
+    "round_cc74b635cd414e30b6d970b553f69f83",
+    "round_c07b3b63cf3c483381539078f65044f3",
+    "round_b62757b93509400abfab7d8b263d2980",
+    "round_397f5837bbbf425588d55caf06422a33",
+    "round_8e69d82bd681470aaab3e69a990415dc",
+    "round_9041c37abc7e4243aa326f40ba45d80c",
+    "round_1fb2fe94fb8843b0b390f613155598c0",
+    "round_2820fa624cc24695b10af980a8a0b6bf"
+  ],
+  "node_path": "Main.RootedCapacity",
+  "objective": "Complete the graph-proved b_0009 strict-capacity package through the contract-authorized instance-stable aggregate recapture: introduce one named attached-child capacity summand, revise rootedChildCapacitySum and its direct consumers while preserving exact rational semantics and the public recursion equality, then prove the child-sum bound, Nat-indexed upper bound, and qualified capacity_pos_lt_one interface.",
+  "rationale": "The refreshed contract narrows ownership to b_0008–b_0009 and explicitly authorizes the representation repair that the prior task could not perform. No dependency, Mathlib, or resource gap remains. Under graph_proved completion the safe bottom-up order is: declare the stable attached-child summand; recapture the aggregate; repair/prove direct consumers including recursion; prove the sum and induction bounds; then prove and bind PositiveDefiniteTreeLattice.capacity_pos_lt_one. Keep the accepted graph within the authorized 37–43 declaration scale and remove obsolete aggregate-normalization artifacts after consumers migrate.",
+  "status": "closed",
+  "strategy_id": "strategy_20e3f41e54944d3babe462d36b22b383",
+  "summary": "Completed the graph-proved b_0009 strategy. Introduced the instance-stable child summand, recaptured rootedChildCapacitySum, repaired direct inverse-quadratic and recursion consumers, proved the strict child-sum and Nat-indexed upper bounds, proved and bound PositiveDefiniteTreeLattice.capacity_pos_lt_one, and removed the obsolete attach normalization bridge. Final gate: 37 declarations checked, 9 checks passed, 0 warnings."
+}

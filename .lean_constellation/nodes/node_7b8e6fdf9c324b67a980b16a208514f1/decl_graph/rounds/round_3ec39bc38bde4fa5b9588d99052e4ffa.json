@@ -1,0 +1,33 @@
+{
+  "change_summaries": {},
+  "committed_at": "2026-08-07T05:12:00Z",
+  "created_at": "2026-08-07T04:56:32Z",
+  "discard_reason": null,
+  "discarded_at": null,
+  "discarded_by": null,
+  "discarded_created_decl_names": [],
+  "discarded_restored_decl_revisions": {},
+  "discarded_revision_refs": [],
+  "execution_completed_at": "2026-08-07T05:09:40Z",
+  "execution_reason": "Step proof_formal_worker_100d58dd83dd4868acd71543bef3f2f7 failed before DeclGraph round completion: stream disconnected before completion: error sending request for url (https://chatgpt.com/backend-api/codex/responses)",
+  "execution_result_kind": "failed",
+  "node_path": "Main.IrreducibleVertex",
+  "objective": "Complete only Proof Formal for pairing_decomposition_at_unique_underweight@5 using the generic bilinear cast bridge and both exact sigma contractions, preserving the accepted Statement and Proof NL.",
+  "plan_closeout_acknowledged_at": "2026-08-07T05:12:00Z",
+  "plan_closeout_acknowledged_by": "a_a235941c8c524917a1ed4a78f90c75ba",
+  "result_kind": "failed",
+  "result_reason": "The Proof Formal worker response stream disconnected before completion; no mathematical or Lean result was produced.",
+  "revision_refs": [
+    {
+      "change_id": "pairing_decomposition_at_unique_underweight@rev:6",
+      "decl_name": "pairing_decomposition_at_unique_underweight",
+      "revision": 6
+    }
+  ],
+  "round_id": "round_3ec39bc38bde4fa5b9588d99052e4ffa",
+  "round_index": 23,
+  "started_at": "2026-08-07T04:58:19Z",
+  "status": "committed",
+  "strategy_id": "strategy_2fda3ac1fa8b4fc5bb88fd75f3367b39",
+  "summary": "Round 23 made no semantic or staged progress because the Proof Formal worker stream disconnected before producing a result. pairing_decomposition_at_unique_underweight revision 6 remains proof_planned and not proof-policy satisfied; no other declaration changed. This is solely a runtime failure: no Lean goal, elaboration error, signature mismatch, missing dependency, source gap, or contract conflict was reported. Fresh dependency recon remains authoritative that the generic bilinear cast bridge applies on ambient and canonical child-component graphs and composes with both exact sigma contractions; dependency closure contains all three provider declarations. The strategy therefore still explains the next bounded action. Eight lower declarations remain proved, normalized_pairing_positive_of_unique_underweight remains declared, the graph remains at ten active declarations within expected scale, and there are no superseded branches or cleanup artifacts. After committing this round as failed, re-read current truth and retry the same Proof-Formal-only update under the same strategy; do not run another preparation or submit Content failed/blocked on a single transient transport error."
+}

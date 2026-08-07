@@ -1,0 +1,15 @@
+{
+  "created_at": "2026-07-30T03:59:03Z",
+  "current_revision": 1,
+  "kind": "theorem",
+  "lifecycle": "active",
+  "module": "PositiveDefiniteTreeLattice.Main.TreePathSeparation.Theorems.eq_uniquePath_of_isPath",
+  "name": "eq_uniquePath_of_isPath",
+  "node_path": "Main.TreePathSeparation",
+  "public": false,
+  "revision_ids": [
+    1
+  ],
+  "summary": "Every simple tree walk with fixed endpoints equals the canonical chosen path.",
+  "updated_at": "2026-07-30T03:59:03Z"
+}

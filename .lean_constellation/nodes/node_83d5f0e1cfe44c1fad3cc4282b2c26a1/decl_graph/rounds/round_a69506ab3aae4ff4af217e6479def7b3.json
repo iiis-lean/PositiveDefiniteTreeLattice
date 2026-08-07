@@ -1,0 +1,38 @@
+{
+  "change_summaries": {},
+  "committed_at": "2026-07-29T18:49:50Z",
+  "created_at": "2026-07-29T18:42:49Z",
+  "discard_reason": null,
+  "discarded_at": null,
+  "discarded_by": null,
+  "discarded_created_decl_names": [],
+  "discarded_restored_decl_revisions": {},
+  "discarded_revision_refs": [],
+  "execution_completed_at": "2026-07-29T18:47:45Z",
+  "execution_reason": null,
+  "execution_result_kind": "success",
+  "node_path": "Main.LatticeFoundations",
+  "objective": "Migrate the two independent foundational definitions treePairing and vertexVector into namespace PositiveDefiniteTreeLattice, preserving their exact accepted equations from formal_target.lean lines 7–17 and introducing no global aliases, so subsequent namespace-repair rounds can consume compiler-confirmed namespaced providers.",
+  "plan_closeout_acknowledged_at": "2026-07-29T18:49:50Z",
+  "plan_closeout_acknowledged_by": "a_60a257a14c4c469b9e17805606fa5ea4",
+  "result_kind": "success",
+  "result_reason": "Both independent foundation definitions were recaptured under the required namespace and passed target-state satisfaction.",
+  "revision_refs": [
+    {
+      "change_id": "treePairing@rev:3",
+      "decl_name": "treePairing",
+      "revision": 3
+    },
+    {
+      "change_id": "vertexVector@rev:3",
+      "decl_name": "vertexVector",
+      "revision": 3
+    }
+  ],
+  "round_id": "round_a69506ab3aae4ff4af217e6479def7b3",
+  "round_index": 9,
+  "started_at": "2026-07-29T18:43:50Z",
+  "status": "committed",
+  "strategy_id": "strategy_33c8b4d4859348d8af576dc8155aa14f",
+  "summary": "The dependency-ordered namespace-repair strategy made foundational progress. treePairing and vertexVector both reached declared state, passed Statement Formal and current graph_proved target-satisfaction checks, retained public visibility, and now have the exact compiler-confirmed names PositiveDefiniteTreeLattice.treePairing and PositiveDefiniteTreeLattice.vertexVector. No blocker, missing dependency, state-only closure debt, or cleanup artifact was introduced. Eight downstream declarations remain to be migrated in dependency order; the next round should update Irreducible and direct consumers whose namespaced providers are now ready."
+}

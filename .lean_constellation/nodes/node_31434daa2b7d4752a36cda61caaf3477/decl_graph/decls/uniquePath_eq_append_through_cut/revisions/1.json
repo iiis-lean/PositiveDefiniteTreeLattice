@@ -1,0 +1,187 @@
+{
+  "change": {
+    "anticipated_proof_dep_names": [
+      "eq_uniquePath_of_isPath",
+      "uniquePath_append_isPath_through_cut"
+    ],
+    "anticipated_statement_dep_names": [
+      "uniquePath"
+    ],
+    "base_revision": null,
+    "kind": "create",
+    "objective": "Create the exact qualified Lean declaration `PositiveDefiniteTreeLattice.uniquePath_eq_append_through_cut`. Copy the accepted consumer-side header: `{V : Type*} [Fintype V]`, `G : SimpleGraph V`, `hG : G.IsTree`, vertices `root parent c x`, `hpc : G.Adj parent c`, `hroot : (G.deleteEdges {s(parent,c)}).Reachable root parent`, and `hx : (G.deleteEdges {s(parent,c)}).Reachable c x`. Conclude exactly `uniquePath G hG root x = (uniquePath G hG root c).append (uniquePath G hG c x)` (or only the compiler-equivalent reverse equality), preserving all three chosen path objects, endpoints, and factors. Do not weaken to reachability/support membership, add assumptions, or mention RootedCapacity. The statement consumes public `uniquePath`; the proof consumes proved `uniquePath_append_isPath_through_cut` and `eq_uniquePath_of_isPath`, using symmetry if necessary. This must directly instantiate the RootedCapacity child-component path decomposition consumer. Source anchor: SourceIndex b_0008–b_0009 / solution.tex lines 33–64.",
+    "require_target_state_satisfied": true,
+    "reset_to_state": null,
+    "summary": "Created the public theorem `PositiveDefiniteTreeLattice.uniquePath_eq_append_through_cut` with the exact generic finite-tree cut header shared by the support and append-simplicity results. It concludes the required equality between the chosen root-to-x path and the append of the chosen root-to-c and c-to-x paths. All four stages passed; revision 1 reached `proved`, is proof-policy satisfied, and has the exact qualified interface identity. Its accepted proof closure uses public `uniquePath`, proved `uniquePath_append_isPath_through_cut`, and proved `eq_uniquePath_of_isPath`. It adds no assumptions or RootedCapacity/weighted dependencies, and no blocker remains.",
+    "target_state": "proved"
+  },
+  "lean_decl_name": "PositiveDefiniteTreeLattice.uniquePath_eq_append_through_cut",
+  "proof": {
+    "deps": [
+      {
+        "kind": "repo_decl",
+        "reason": "Identifies the simple appended root-to-x walk with the canonical uniquePath.",
+        "ref": {
+          "name": "eq_uniquePath_of_isPath",
+          "node": "Main.TreePathSeparation",
+          "repo": null,
+          "revision": 1
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "Supplies IsPath for the exact appended root-to-c and c-to-x chosen walks.",
+        "ref": {
+          "name": "uniquePath_append_isPath_through_cut",
+          "node": "Main.TreePathSeparation",
+          "repo": null,
+          "revision": 1
+        }
+      }
+    ],
+    "formal": {
+      "check": {
+        "allow_sorry": false,
+        "contains_axiom": false,
+        "contains_sorry": false,
+        "diagnostics": {
+          "diagnostics": [],
+          "passed": true,
+          "raw_excerpt": "{'success': True, 'error_message': None, 'file': 'PositiveDefiniteTreeLattice.Main.TreePathSeparation.Theorems.uniquePath_eq_append_through_cut', 'items': [], 'total_items': 0, 'error_count': 0, 'warning_count': 0, 'info_count': 0, 'sorry_count': 0}",
+          "repo_file_path": "PositiveDefiniteTreeLattice/Main/TreePathSeparation/Theorems/uniquePath_eq_append_through_cut.lean",
+          "schema_version": 2,
+          "summary": "Diagnostics returned 0 items"
+        },
+        "message": "Lean check passed.",
+        "policy": "proof_formal",
+        "scan": {
+          "admit_count": 0,
+          "axiom_count": 0,
+          "contains_admit": false,
+          "contains_axiom": false,
+          "contains_opaque": false,
+          "contains_sorry": false,
+          "contains_unsafe": false,
+          "limitation": "Text scan ignores Lean comments and string literals with a conservative first-round lexer; it is not a full Lean parser.",
+          "occurrences": [],
+          "opaque_count": 0,
+          "sorry_count": 0,
+          "summary": "sorry=0, admit=0, axiom=0, opaque=0, unsafe=0",
+          "unsafe_count": 0
+        },
+        "status": "passed"
+      },
+      "code": "-- lean-constellation: managed-imports-begin\nimport PositiveDefiniteTreeLattice.Main.TreePathSeparation.Prelude\nimport Mathlib.Combinatorics.SimpleGraph.Connectivity.Connected\nimport Mathlib.Combinatorics.SimpleGraph.DeleteEdges\nimport Mathlib.Combinatorics.SimpleGraph.Walk.Operations\nimport PositiveDefiniteTreeLattice.Main.TreePathSeparation.Defs.uniquePath\nimport PositiveDefiniteTreeLattice.Main.TreePathSeparation.Theorems.eq_uniquePath_of_isPath\nimport PositiveDefiniteTreeLattice.Main.TreePathSeparation.Theorems.uniquePath_append_isPath_through_cut\n-- lean-constellation: managed-imports-end\n\n-- lean-constellation: declaration-source-begin\n\n/--\n# lean-constellation target: `uniquePath_eq_append_through_cut`\n\nThe public theorem `PositiveDefiniteTreeLattice.uniquePath_eq_append_through_cut` has the following\nstatement. Let `{V : Type*}` carry `[Fintype V]`, let `G : SimpleGraph V`, let `hG : G.IsTree`, and\nlet `root parent c x : V`. Assume `hpc : G.Adj parent c`, `hroot : (G.deleteEdges {s(parent,\nc)}).Reachable root parent`, and `hx : (G.deleteEdges {s(parent, c)}).Reachable c x`. Then\n\n`uniquePath G hG root x = (uniquePath G hG root c).append (uniquePath G hG c x)`.\n\nThis is an exact chosen-path factorization through `c`: it preserves the root-to-`x`, root-to-`c`,\nand `c`-to-`x` path objects and their endpoints, and adds no assumptions or RootedCapacity-specific\nterminology.\n\n## Statement dependencies\n\n- `SimpleGraph.Reachable` from `Mathlib.Combinatorics.SimpleGraph.Connectivity.Connected`\n- `SimpleGraph.deleteEdges` from `Mathlib.Combinatorics.SimpleGraph.DeleteEdges`\n- `SimpleGraph.Walk.append` from `Mathlib.Combinatorics.SimpleGraph.Walk.Operations`\n- `Main.TreePathSeparation::uniquePath` → `uniquePath` from\n  `PositiveDefiniteTreeLattice.Main.TreePathSeparation.Defs.uniquePath`\n\n## Proof outline\n\nLet `p := (uniquePath G hG root c).append (uniquePath G hG c x)`. The proved bridge\n`uniquePath_append_isPath_through_cut G hG root parent c x hpc hroot hx` gives `p.IsPath` with\nendpoints `root` and `x`.\n\nApply the proved uniqueness eliminator `eq_uniquePath_of_isPath G hG root x p` to this pathhood\nproof. It yields `p = uniquePath G hG root x`. Take symmetry to obtain exactly `uniquePath G hG root\nx = (uniquePath G hG root c).append (uniquePath G hG c x)`.\n\nThus the proof preserves every copied binder and all three chosen path objects, and introduces no\nadditional hypothesis or RootedCapacity terminology.\n\n## Proof sources\n\n- Source `solution.tex`, lines 33–64\n\n## Proof dependencies\n\n- `Main.TreePathSeparation::eq_uniquePath_of_isPath` → `eq_uniquePath_of_isPath` from\n  `PositiveDefiniteTreeLattice.Main.TreePathSeparation.Theorems.eq_uniquePath_of_isPath`\n- `Main.TreePathSeparation::uniquePath_append_isPath_through_cut` →\n  `uniquePath_append_isPath_through_cut` from `PositiveDefiniteTreeLattice.Main.TreePathSeparation.T\n  heorems.uniquePath_append_isPath_through_cut`\n-/\ntheorem PositiveDefiniteTreeLattice.uniquePath_eq_append_through_cut\n    {V : Type*} [Fintype V] (G : SimpleGraph V) (hG : G.IsTree)\n    (root parent c x : V) (hpc : G.Adj parent c)\n    (hroot : (G.deleteEdges {s(parent, c)}).Reachable root parent)\n    (hx : (G.deleteEdges {s(parent, c)}).Reachable c x) :\n    uniquePath G hG root x =\n      (uniquePath G hG root c).append (uniquePath G hG c x) := by\n  exact (eq_uniquePath_of_isPath G hG root x\n    ((uniquePath G hG root c).append (uniquePath G hG c x))\n    (uniquePath_append_isPath_through_cut G hG root parent c x hpc hroot hx)).symm\n"
+    },
+    "nl": {
+      "origin": [
+        {
+          "end_line": 64,
+          "end_locator": null,
+          "kind": "source",
+          "note": "Assigned source anchor for the child-subtree path factorization; this route turns the established simple append into the exact chosen-path equality.",
+          "ref": null,
+          "resource_key": null,
+          "source_path": "solution.tex",
+          "start_line": 33,
+          "start_locator": null
+        }
+      ],
+      "text": "Let `p := (uniquePath G hG root c).append (uniquePath G hG c x)`. The proved bridge `uniquePath_append_isPath_through_cut G hG root parent c x hpc hroot hx` gives `p.IsPath` with endpoints `root` and `x`.\n\nApply the proved uniqueness eliminator `eq_uniquePath_of_isPath G hG root x p` to this pathhood proof. It yields `p = uniquePath G hG root x`. Take symmetry to obtain exactly `uniquePath G hG root x = (uniquePath G hG root c).append (uniquePath G hG c x)`.\n\nThus the proof preserves every copied binder and all three chosen path objects, and introduces no additional hypothesis or RootedCapacity terminology."
+    }
+  },
+  "revision": 1,
+  "state": "proved",
+  "statement": {
+    "deps": [
+      {
+        "kind": "mathlib_decl",
+        "reason": "The required cut-side hypotheses use reachability in the deleted-edge graph.",
+        "ref": {
+          "module": "Mathlib.Combinatorics.SimpleGraph.Connectivity.Connected",
+          "name": "SimpleGraph.Reachable"
+        }
+      },
+      {
+        "kind": "mathlib_decl",
+        "reason": "The required root-side and c-side hypotheses refer to deleting the undirected cut edge.",
+        "ref": {
+          "module": "Mathlib.Combinatorics.SimpleGraph.DeleteEdges",
+          "name": "SimpleGraph.deleteEdges"
+        }
+      },
+      {
+        "kind": "mathlib_decl",
+        "reason": "The right-hand side is the exact append of the chosen root-to-c and c-to-x walks.",
+        "ref": {
+          "module": "Mathlib.Combinatorics.SimpleGraph.Walk.Operations",
+          "name": "SimpleGraph.Walk.append"
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "Both sides of the factorization equality are built from the accepted canonical chosen tree paths.",
+        "ref": {
+          "name": "uniquePath",
+          "node": "Main.TreePathSeparation",
+          "repo": null,
+          "revision": 1
+        }
+      }
+    ],
+    "formal": {
+      "check": {
+        "allow_sorry": true,
+        "contains_axiom": false,
+        "contains_sorry": true,
+        "diagnostics": {
+          "diagnostics": [
+            {
+              "column": 9,
+              "line": 33,
+              "message": "declaration uses `sorry`",
+              "severity": "warning"
+            }
+          ],
+          "passed": true,
+          "raw_excerpt": "{'success': True, 'error_message': None, 'file': 'PositiveDefiniteTreeLattice.Main.TreePathSeparation.Theorems.uniquePath_eq_append_through_cut', 'items': [{'severity': 'warning', 'pos': {'line': 33, 'column': 9}, 'endPos': {'line': 33, 'column': 69}, 'kind': None, 'data': 'declaration uses `sorry`', 'fileName': 'PositiveDefiniteTreeLattice.Main.TreePathSeparation.Theorems.uniquePath_eq_append_through_cut', 'content': '  `PositiveDefiniteTreeLattice.Main.TreePathSeparation.Defs.uniquePath`\\n-/\\ntheorem PositiveDefiniteTreeLattice.uniquePath_eq_append_through_cut\\n    {V : Type*} [Fintype V] (G : SimpleGraph V) (hG : G.IsTree)\\n    (root parent c x : V) (hpc : G.Adj parent c)'}], 'total_items': 1, 'error_count': 0, 'warning_count': 1, 'info_count': 0, 'sorry_count': 1}",
+          "repo_file_path": "PositiveDefiniteTreeLattice/Main/TreePathSeparation/Theorems/uniquePath_eq_append_through_cut.lean",
+          "schema_version": 2,
+          "summary": "Diagnostics returned 1 items"
+        },
+        "message": "Lean check passed.",
+        "policy": "statement_formal",
+        "scan": {
+          "admit_count": 0,
+          "axiom_count": 0,
+          "contains_admit": false,
+          "contains_axiom": false,
+          "contains_opaque": false,
+          "contains_sorry": true,
+          "contains_unsafe": false,
+          "limitation": "Text scan ignores Lean comments and string literals with a conservative first-round lexer; it is not a full Lean parser.",
+          "occurrences": [
+            {
+              "column": 3,
+              "excerpt": "sorry",
+              "kind": "sorry",
+              "line": 40
+            }
+          ],
+          "opaque_count": 0,
+          "sorry_count": 1,
+          "summary": "sorry=1, admit=0, axiom=0, opaque=0, unsafe=0",
+          "unsafe_count": 0
+        },
+        "status": "passed"
+      },
+      "code": "-- lean-constellation: managed-imports-begin\nimport PositiveDefiniteTreeLattice.Main.TreePathSeparation.Prelude\nimport Mathlib.Combinatorics.SimpleGraph.Connectivity.Connected\nimport Mathlib.Combinatorics.SimpleGraph.DeleteEdges\nimport Mathlib.Combinatorics.SimpleGraph.Walk.Operations\nimport PositiveDefiniteTreeLattice.Main.TreePathSeparation.Defs.uniquePath\n-- lean-constellation: managed-imports-end\n\n-- lean-constellation: declaration-source-begin\n\n/--\n# lean-constellation target: `uniquePath_eq_append_through_cut`\n\nThe public theorem `PositiveDefiniteTreeLattice.uniquePath_eq_append_through_cut` has the following\nstatement. Let `{V : Type*}` carry `[Fintype V]`, let `G : SimpleGraph V`, let `hG : G.IsTree`, and\nlet `root parent c x : V`. Assume `hpc : G.Adj parent c`, `hroot : (G.deleteEdges {s(parent,\nc)}).Reachable root parent`, and `hx : (G.deleteEdges {s(parent, c)}).Reachable c x`. Then\n\n`uniquePath G hG root x = (uniquePath G hG root c).append (uniquePath G hG c x)`.\n\nThis is an exact chosen-path factorization through `c`: it preserves the root-to-`x`, root-to-`c`,\nand `c`-to-`x` path objects and their endpoints, and adds no assumptions or RootedCapacity-specific\nterminology.\n\n## Statement dependencies\n\n- `SimpleGraph.Reachable` from `Mathlib.Combinatorics.SimpleGraph.Connectivity.Connected`\n- `SimpleGraph.deleteEdges` from `Mathlib.Combinatorics.SimpleGraph.DeleteEdges`\n- `SimpleGraph.Walk.append` from `Mathlib.Combinatorics.SimpleGraph.Walk.Operations`\n- `Main.TreePathSeparation::uniquePath` → `uniquePath` from\n  `PositiveDefiniteTreeLattice.Main.TreePathSeparation.Defs.uniquePath`\n-/\ntheorem PositiveDefiniteTreeLattice.uniquePath_eq_append_through_cut\n    {V : Type*} [Fintype V] (G : SimpleGraph V) (hG : G.IsTree)\n    (root parent c x : V) (hpc : G.Adj parent c)\n    (hroot : (G.deleteEdges {s(parent, c)}).Reachable root parent)\n    (hx : (G.deleteEdges {s(parent, c)}).Reachable c x) :\n    uniquePath G hG root x =\n      (uniquePath G hG root c).append (uniquePath G hG c x) := by\n  sorry\n"
+    },
+    "nl": {
+      "origin": [],
+      "text": "The public theorem `PositiveDefiniteTreeLattice.uniquePath_eq_append_through_cut` has the following statement. Let `{V : Type*}` carry `[Fintype V]`, let `G : SimpleGraph V`, let `hG : G.IsTree`, and let `root parent c x : V`. Assume `hpc : G.Adj parent c`, `hroot : (G.deleteEdges {s(parent, c)}).Reachable root parent`, and `hx : (G.deleteEdges {s(parent, c)}).Reachable c x`. Then\n\n`uniquePath G hG root x = (uniquePath G hG root c).append (uniquePath G hG c x)`.\n\nThis is an exact chosen-path factorization through `c`: it preserves the root-to-`x`, root-to-`c`, and `c`-to-`x` path objects and their endpoints, and adds no assumptions or RootedCapacity-specific terminology."
+    }
+  },
+  "status": "committed",
+  "updated_at": "2026-07-30T04:56:30Z"
+}

@@ -1,0 +1,14 @@
+{
+  "closed_at": "2026-08-07T03:20:08Z",
+  "closed_reason": "The sole planned theorem round completed successfully and the contract-v9 interface is bound.",
+  "created_at": "2026-08-07T02:57:07Z",
+  "created_round_ids": [
+    "round_f51a28a7d62a4ba6b8c9a819f881c6d1"
+  ],
+  "node_path": "Main.RootedCapacity",
+  "objective": "Complete contract v9 in one graph-proved round by proving and binding public rootedGram_root_nonroot_linear_eq_sum_childRoots: transport both ambient root-row and root-column weighted sums through the existing canonical nonroot-to-child-component equivalence, flatten with Fintype.sum_sigma, and apply the two proved weighted fiber-collapse laws from rootedGram_root_rootedChildComponent_support@2.",
+  "rationale": "Solution.tex 57–63 identifies the root interaction vector as -1 exactly at child roots. The current public support theorem already packages both arbitrary-function row and column fiber contractions under the exact component instance convention, and rootedChildComponentsEquivNonroot owns the required R/I/S/e representation. No dependency recon, Mathlib recon, resource, helper, or representation change is needed.",
+  "status": "closed",
+  "strategy_id": "strategy_8ec9f4179a644e7081fe3083825d5274",
+  "summary": "Contract-v9 strategy achieved: public rootedGram_root_nonroot_linear_eq_sum_childRoots is proved, proof-policy satisfied, and interface-bound with both canonical row and column contractions; all prior declarations remain preserved."
+}

@@ -1,0 +1,16 @@
+{
+  "created_at": "2026-07-30T19:00:54Z",
+  "current_revision": 2,
+  "kind": "theorem",
+  "lifecycle": "active",
+  "module": "PositiveDefiniteTreeLattice.Main.RootedCapacity.Theorems.capacity_pos_lt_one",
+  "name": "capacity_pos_lt_one",
+  "node_path": "Main.RootedCapacity",
+  "public": true,
+  "revision_ids": [
+    1,
+    2
+  ],
+  "summary": "The capacity of an admissible rooted weighted tree lies strictly between zero and one.",
+  "updated_at": "2026-07-30T21:49:09Z"
+}

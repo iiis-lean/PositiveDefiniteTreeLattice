@@ -1,0 +1,266 @@
+{
+  "change": {
+    "anticipated_proof_dep_names": [
+      "IsAdmissibleRootedTree",
+      "IsAdmissibleRootedTree_rootedChildComponent",
+      "rootedCapacity",
+      "rootedCapacity_pos",
+      "rootedCapacity_recursion",
+      "rootedChildCapacitySum",
+      "rootedChildComponent",
+      "rootedChildComponent_card_lt",
+      "rootedChildCount",
+      "rootedChildRoot",
+      "rootedChildren"
+    ],
+    "anticipated_statement_dep_names": [
+      "IsAdmissibleRootedTree",
+      "rootedCapacity"
+    ],
+    "base_revision": null,
+    "kind": "create",
+    "objective": "SourceIndex b_0009 (solution.tex lines 74–81) proves the upper capacity bound by induction on tree size. Create a private size-indexed theorem that avoids the blocked full-datum strong-induction normalization: for `n : ℕ`, universally quantify the same finite/decidable vertex type V, graph G, integer weight w, root ρ, and `hAdm : IsAdmissibleRootedTree G w ρ`, assume `Fintype.card V ≤ n`, and conclude only `rootedCapacity G w ρ < 1`. Prove it by ordinary Nat induction on n, not by invoking capacity_pos_lt_one. In the zero case derive impossibility from the inhabited root. In the successor case, for each root child apply the induction hypothesis to its rootedChildComponent using rootedChildComponent_card_lt together with the ambient card bound and IsAdmissibleRootedTree_rootedChildComponent. Bound every child capacity by one, hence rootedChildCapacitySum by rootedChildCount, combine with hAdm's root-weight lower bound, and rewrite with rootedCapacity_recursion; use rootedCapacity_pos only as needed for denominator/reciprocal order facts. Keep the exact existing component, root, weight, capacity, and rational semantics, add no stronger admissibility hypothesis, do not depend on the public capacity_pos_lt_one theorem, and do not raise heartbeat limits. This theorem is the direct proof dependency for the preserved public interface.",
+    "require_target_state_satisfied": true,
+    "reset_to_state": null,
+    "summary": "The private Nat-indexed upper-bound theorem reached proof_planned with a valid formal statement and accepted proof route, but no Proof Formal artifact was accepted. Blocker classification: Lean-specific helper/representation interface. Ordinary Nat induction avoids the earlier polymorphic strong-induction predicate, but Lean still exhausts the fixed heartbeat budget when specializing the induction hypothesis to dependent rootedChildComponent data and normalizing those exact capacity summands into rootedChildCapacitySum. All mathematical dependencies remain proved and matched; raising heartbeats is prohibited. Retry conditions: first prove a tracked instance-stable child-capacity sum interface that accepts per-child upper bounds in the exact rootedChildCapacitySum convention and returns the aggregate bound needed against rootedChildCount; then retry this theorem using that interface so its induction step does not unfold or normalize the dependent sum. Preserve its statement and avoid capacity_pos_lt_one to prevent a cycle.",
+    "target_state": "proved"
+  },
+  "lean_decl_name": "rootedCapacity_lt_one_of_card_le",
+  "proof": {
+    "deps": [
+      {
+        "kind": "mathlib_decl",
+        "reason": "Sum the strictly bounded child capacities in the nonempty successor case.",
+        "ref": {
+          "module": "Mathlib.Algebra.Order.BigOperators.Group.Finset",
+          "name": "Finset.sum_lt_sum_of_nonempty"
+        }
+      },
+      {
+        "kind": "mathlib_decl",
+        "reason": "Convert the positive reciprocal-denominator estimate into the strict capacity upper bound.",
+        "ref": {
+          "module": "Mathlib.Algebra.Order.Field.Basic",
+          "name": "div_lt_one"
+        }
+      },
+      {
+        "kind": "mathlib_decl",
+        "reason": "Discharge the zero-index case using the root as an inhabitant of V.",
+        "ref": {
+          "module": "Mathlib.Data.Fintype.Card",
+          "name": "Fintype.card_pos_iff"
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "Destruct the accepted admissibility witness into the tree and root weight/count bounds.",
+        "ref": {
+          "name": "IsAdmissibleRootedTree",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 1
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "Supply the inherited child admissibility witness needed by the induction hypothesis.",
+        "ref": {
+          "name": "IsAdmissibleRootedTree_rootedChildComponent",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 1
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "The size-indexed conclusion and child summands use the established rational capacity.",
+        "ref": {
+          "name": "rootedCapacity",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 1
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "Rewrite the target capacity to the exact reciprocal source denominator.",
+        "ref": {
+          "name": "rootedCapacity_recursion",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 4
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "Unfold and bound the exact child-capacity sum.",
+        "ref": {
+          "name": "rootedChildCapacitySum",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 1
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "Instantiate the ordinary induction hypothesis on each established child-component subtype.",
+        "ref": {
+          "name": "rootedChildComponent",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 1
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "Convert the strict child-component size decrease into the predecessor cardinal bound for induction.",
+        "ref": {
+          "name": "rootedChildComponent_card_lt",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 1
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "Unfold the admissibility root-count lower bound to the child Finset cardinality.",
+        "ref": {
+          "name": "rootedChildCount",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 1
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "Use the canonical root of every child component in its capacity conclusion.",
+        "ref": {
+          "name": "rootedChildRoot",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 1
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "Index the root children in the recursive capacity sum.",
+        "ref": {
+          "name": "rootedChildren",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 2
+        }
+      }
+    ],
+    "formal": null,
+    "nl": {
+      "origin": [
+        {
+          "end_line": 81,
+          "end_locator": null,
+          "kind": "source",
+          "note": "The source proves the strict upper capacity bound by induction on tree size, using child subtrees, the root child-count weight bound, and the reciprocal recursion.",
+          "ref": null,
+          "resource_key": null,
+          "source_path": "solution.tex",
+          "start_line": 74,
+          "start_locator": null
+        }
+      ],
+      "text": "Work classically and induct on the explicit natural index `n`, generalizing the ambient type and all rooted datum that depend on it.  Thus the successor induction hypothesis is universally available for any finite decidable child-component type whose cardinality is bounded by `n`; do not invoke `capacity_pos_lt_one`.\n\nFor `n = 0`, the hypothesis `Fintype.card V ≤ 0` contradicts the inhabited root type: `Fintype.card_pos_iff` applied to `⟨ρ⟩` gives `0 < Fintype.card V`.\n\nFor the successor `n + 1`, retain `hAdm` and destruct a copy as `⟨hG, hPos, hTwo, hCount⟩`; put `S := rootedChildren G hG ρ ρ`.  For each `c ∈ S`, set `C := rootedChildComponent G ρ c` with the existing local Fintype and decidable-adjacency conventions.  The theorem `rootedChildComponent_card_lt G hG ρ ρ c hc` and the ambient bound give `Fintype.card C ≤ n`.  The inherited witness from `IsAdmissibleRootedTree_rootedChildComponent G w ρ ρ c hG hc hAdm` lets the ordinary induction hypothesis prove\n`rootedCapacity C.toSimpleGraph (fun x : C => w (x : V)) (rootedChildRoot G ρ c) < 1`.\n\nSplit on `S.Nonempty`.  In the nonempty case, unfold `rootedChildCapacitySum` solely to expose this finite family, aligning its local instances with the induction instances by proof irrelevance.  `Finset.sum_lt_sum_of_nonempty` gives\n`rootedChildCapacitySum G hG w ρ < (S.card : ℚ)`.\nUnfold `rootedChildCount` in `hCount ρ` and cast to `ℚ`, obtaining `(S.card : ℚ) + 1 ≤ w ρ`.  Hence the denominator\n`(w ρ : ℚ) - rootedChildCapacitySum G hG w ρ` is strictly greater than one.  Rewrite by `rootedCapacity_recursion G hG w ρ hAdm` and use `div_lt_one` to conclude the desired upper bound.\n\nIf `S` is empty, the defined child-capacity sum is zero.  Casting `hTwo ρ : (2 : ℤ) ≤ w ρ` shows the same denominator is greater than one, so the same recursion rewrite and `div_lt_one` finish.  This is the child-free/base branch of the source’s tree-size induction.  No extra admissibility, nonzero-denominator, or replacement-capacity assumption is introduced; `rootedCapacity_pos` is not needed because both branches establish the stronger denominator estimate directly."
+    }
+  },
+  "revision": 1,
+  "state": "proof_planned",
+  "statement": {
+    "deps": [
+      {
+        "kind": "repo_decl",
+        "reason": "The sole rooted-tree hypothesis has this existing admissibility predicate type.",
+        "ref": {
+          "name": "IsAdmissibleRootedTree",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 1
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "The conclusion is the strict upper bound for this existing rational total-inverse capacity.",
+        "ref": {
+          "name": "rootedCapacity",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 1
+        }
+      }
+    ],
+    "formal": {
+      "check": {
+        "allow_sorry": true,
+        "contains_axiom": false,
+        "contains_sorry": true,
+        "diagnostics": {
+          "diagnostics": [
+            {
+              "column": 9,
+              "line": 41,
+              "message": "declaration uses `sorry`",
+              "severity": "warning"
+            }
+          ],
+          "passed": true,
+          "raw_excerpt": "{'success': True, 'error_message': None, 'file': 'PositiveDefiniteTreeLattice.Main.RootedCapacity.Theorems.rootedCapacity_lt_one_of_card_le', 'items': [{'severity': 'warning', 'pos': {'line': 41, 'column': 9}, 'endPos': {'line': 41, 'column': 41}, 'kind': None, 'data': 'declaration uses `sorry`', 'fileName': 'PositiveDefiniteTreeLattice.Main.RootedCapacity.Theorems.rootedCapacity_lt_one_of_card_le', 'content': '-/\\n\\ntheorem rootedCapacity_lt_one_of_card_le (n : ℕ) {V : Type*} [Fintype V] [DecidableEq V]\\n    (G : SimpleGraph V) [DecidableRel G.Adj] (w : V → ℤ) (ρ : V)\\n    (hAdm : IsAdmissibleRootedTree G w ρ) (hcard : Fintype.card V ≤ n) :'}], 'total_items': 1, 'error_count': 0, 'warning_count': 1, 'info_count': 0, 'sorry_count': 1}",
+          "repo_file_path": "PositiveDefiniteTreeLattice/Main/RootedCapacity/Theorems/rootedCapacity_lt_one_of_card_le.lean",
+          "schema_version": 2,
+          "summary": "Diagnostics returned 1 items"
+        },
+        "message": "Lean check passed.",
+        "policy": "statement_formal",
+        "scan": {
+          "admit_count": 0,
+          "axiom_count": 0,
+          "contains_admit": false,
+          "contains_axiom": false,
+          "contains_opaque": false,
+          "contains_sorry": true,
+          "contains_unsafe": false,
+          "limitation": "Text scan ignores Lean comments and string literals with a conservative first-round lexer; it is not a full Lean parser.",
+          "occurrences": [
+            {
+              "column": 3,
+              "excerpt": "sorry",
+              "kind": "sorry",
+              "line": 45
+            }
+          ],
+          "opaque_count": 0,
+          "sorry_count": 1,
+          "summary": "sorry=1, admit=0, axiom=0, opaque=0, unsafe=0",
+          "unsafe_count": 0
+        },
+        "status": "passed"
+      },
+      "code": "-- lean-constellation: managed-imports-begin\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Prelude\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.IsAdmissibleRootedTree\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedCapacity\n-- lean-constellation: managed-imports-end\n\n-- lean-constellation: declaration-source-begin\n\n/--\n# lean-constellation target: `rootedCapacity_lt_one_of_card_le`\n\nFor every natural number `n`, every finite decidable vertex type, graph `G` with decidable\nadjacency, integer weight `w`, root `ρ`, and admissibility witness `hAdm : IsAdmissibleRootedTree G\nw ρ`, if\n```\nFintype.card V ≤ n,\n```\nthen the existing rational capacity satisfies\n```\nrootedCapacity G w ρ < 1.\n```\n\nThe theorem is private and is indexed by the explicit natural upper bound `n`, with all rooted-tree\ndata universally quantified beneath that index. It preserves the existing component, root, weight,\ncapacity, and rational total-inverse semantics, adds no stronger admissibility or denominator\nhypothesis, and does not invoke the public theorem `capacity_pos_lt_one`. It is oriented to provide\nprecisely the upper half of that public interface after ordinary induction on `n`.\n\n## Sources\n\n- Source `solution.tex`, lines 74–81\n\n## Statement dependencies\n\n- `Main.RootedCapacity::IsAdmissibleRootedTree` → `IsAdmissibleRootedTree` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.IsAdmissibleRootedTree`\n- `Main.RootedCapacity::rootedCapacity` → `rootedCapacity` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedCapacity`\n-/\n\ntheorem rootedCapacity_lt_one_of_card_le (n : ℕ) {V : Type*} [Fintype V] [DecidableEq V]\n    (G : SimpleGraph V) [DecidableRel G.Adj] (w : V → ℤ) (ρ : V)\n    (hAdm : IsAdmissibleRootedTree G w ρ) (hcard : Fintype.card V ≤ n) :\n    rootedCapacity G w ρ < 1 := by\n  sorry\n"
+    },
+    "nl": {
+      "origin": [
+        {
+          "end_line": 81,
+          "end_locator": null,
+          "kind": "source",
+          "note": "The source proves the strict upper capacity bound by induction on the number of vertices, applying the inductive bound to child subtrees.",
+          "ref": null,
+          "resource_key": null,
+          "source_path": "solution.tex",
+          "start_line": 74,
+          "start_locator": null
+        }
+      ],
+      "text": "For every natural number `n`, every finite decidable vertex type, graph `G` with decidable adjacency, integer weight `w`, root `ρ`, and admissibility witness `hAdm : IsAdmissibleRootedTree G w ρ`, if\n```\nFintype.card V ≤ n,\n```\nthen the existing rational capacity satisfies\n```\nrootedCapacity G w ρ < 1.\n```\n\nThe theorem is private and is indexed by the explicit natural upper bound `n`, with all rooted-tree data universally quantified beneath that index. It preserves the existing component, root, weight, capacity, and rational total-inverse semantics, adds no stronger admissibility or denominator hypothesis, and does not invoke the public theorem `capacity_pos_lt_one`. It is oriented to provide precisely the upper half of that public interface after ordinary induction on `n`."
+    }
+  },
+  "status": "committed",
+  "updated_at": "2026-07-30T19:32:26Z"
+}

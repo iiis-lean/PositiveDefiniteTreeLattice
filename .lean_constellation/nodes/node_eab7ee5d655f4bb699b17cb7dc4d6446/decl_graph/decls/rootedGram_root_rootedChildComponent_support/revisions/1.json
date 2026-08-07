@@ -1,0 +1,284 @@
+{
+  "change": {
+    "anticipated_proof_dep_names": [
+      "rootedChildComponent_parent_not_mem",
+      "rootedChildComponent_partition",
+      "rootedGram_root_nonroot",
+      "treePairing_vertexVector_vertexVector"
+    ],
+    "anticipated_statement_dep_names": [
+      "rootedChildComponent",
+      "rootedChildRoot",
+      "rootedChildren",
+      "rootedGram"
+    ],
+    "base_revision": null,
+    "kind": "create",
+    "objective": "Prove the smallest support lemma isolated by blocked round 79 and faithful to solution.tex 57–68, especially line 63: for finite decidable V, tree G/hG, integer weight w, root ρ, an attached child c : {c : V // c ∈ rootedChildren G hG ρ ρ}, and x : rootedChildComponent G ρ c.1, identify both `rootedGram G w ρ (x : V)` and `rootedGram G w (x : V) ρ` as `-1` exactly when x is the canonical rootedChildRoot G ρ c.1 and as `0` otherwise. Use rootedGram_root_nonroot for the ambient root-row evaluation, rootedChildComponent_parent_not_mem to establish nonrootness, and rootedChildComponent_partition to show that an ambient root child lying in c's component must equal c; obtain the column formula from the established symmetric rootedGram/pairing entry API. Keep the statement free of admissibility and inverse matrices. This direct component-coordinate support rewrite must let rootedNonroot_inverse_sigma_quadratic_collapsed_of_child_admissible eliminate its off-root branches before dependent inverse-entry normalization, within the fixed heartbeat budget.",
+    "require_target_state_satisfied": true,
+    "reset_to_state": null,
+    "summary": "Created and proved the private child-component support theorem. Its accepted statement evaluates both the rootedGram root row and root column on an attached child component as -1 precisely at that component's rootedChildRoot and 0 elsewhere, with no admissibility or inverse-matrix assumptions. All four stages passed and the declaration is graph-proved. This directly resolves round 79's Lean-specific off-root support branch and is the required new proof dependency before retrying rootedNonroot_inverse_sigma_quadratic_collapsed_of_child_admissible.",
+    "target_state": "proved"
+  },
+  "lean_decl_name": "rootedGram_root_rootedChildComponent_support",
+  "proof": {
+    "deps": [
+      {
+        "kind": "mathlib_decl",
+        "reason": "Turns the vertex-pairing entry evaluation around to derive the root-column formula from the root-row formula.",
+        "ref": {
+          "module": "Mathlib.Combinatorics.SimpleGraph.Basic",
+          "name": "SimpleGraph.adj_comm"
+        }
+      },
+      {
+        "kind": "mathlib_decl",
+        "reason": "The proof explicitly uses this theorem to show the ambient child x belongs to its own deleted-edge connected component when applying rootedChildComponent_partition.",
+        "ref": {
+          "module": "Mathlib.Combinatorics.SimpleGraph.Connectivity.Connected",
+          "name": "SimpleGraph.ConnectedComponent.connectedComponentMk_mem"
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "Provides the nonrootness required by rootedGram_root_nonroot and partition.",
+        "ref": {
+          "name": "rootedChildComponent_parent_not_mem",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 1
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "Its uniqueness identifies an ambient child in c’s component with c itself.",
+        "ref": {
+          "name": "rootedChildComponent_partition",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 1
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "Is the canonical component coordinate singled out by the support conclusion.",
+        "ref": {
+          "name": "rootedChildRoot",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 1
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "Defines the attached-child predicate used in the support equivalence.",
+        "ref": {
+          "name": "rootedChildren",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 2
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "Unfolded only to establish the symmetry of its root column and row.",
+        "ref": {
+          "name": "rootedGram",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 2
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "Evaluates the ambient root-row entry at the nonroot component vertex.",
+        "ref": {
+          "name": "rootedGram_root_nonroot",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 1
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "Evaluates the two vertex-pairing entries used to prove rootedGram symmetry.",
+        "ref": {
+          "name": "treePairing_vertexVector_vertexVector",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 2
+        }
+      }
+    ],
+    "formal": {
+      "check": {
+        "allow_sorry": false,
+        "contains_axiom": false,
+        "contains_sorry": false,
+        "diagnostics": {
+          "diagnostics": [],
+          "passed": true,
+          "raw_excerpt": "{'success': True, 'error_message': None, 'file': 'PositiveDefiniteTreeLattice.Main.RootedCapacity.Theorems.rootedGram_root_rootedChildComponent_support', 'items': [], 'total_items': 0, 'error_count': 0, 'warning_count': 0, 'info_count': 0, 'sorry_count': 0}",
+          "repo_file_path": "PositiveDefiniteTreeLattice/Main/RootedCapacity/Theorems/rootedGram_root_rootedChildComponent_support.lean",
+          "schema_version": 2,
+          "summary": "Diagnostics returned 0 items"
+        },
+        "message": "Lean check passed.",
+        "policy": "proof_formal",
+        "scan": {
+          "admit_count": 0,
+          "axiom_count": 0,
+          "contains_admit": false,
+          "contains_axiom": false,
+          "contains_opaque": false,
+          "contains_sorry": false,
+          "contains_unsafe": false,
+          "limitation": "Text scan ignores Lean comments and string literals with a conservative first-round lexer; it is not a full Lean parser.",
+          "occurrences": [],
+          "opaque_count": 0,
+          "sorry_count": 0,
+          "summary": "sorry=0, admit=0, axiom=0, opaque=0, unsafe=0",
+          "unsafe_count": 0
+        },
+        "status": "passed"
+      },
+      "code": "-- lean-constellation: managed-imports-begin\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Prelude\nimport Mathlib.Combinatorics.SimpleGraph.Acyclic\nimport Mathlib.Combinatorics.SimpleGraph.Basic\nimport Mathlib.Combinatorics.SimpleGraph.Connectivity.Connected\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildComponent\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildRoot\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildren\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedGram\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Theorems.rootedChildComponent_parent_not_mem\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Theorems.rootedChildComponent_partition\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Theorems.rootedGram_root_nonroot\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Theorems.treePairing_vertexVector_vertexVector\n-- lean-constellation: managed-imports-end\n\n-- lean-constellation: declaration-source-begin\n\n/--\n# lean-constellation target: `rootedGram_root_rootedChildComponent_support`\n\nLet `V` be a finite type with decidable equality, let `G` be a simple graph on `V` with decidable\nadjacency, let `hG : G.IsTree`, let `w : V → ℤ`, let `ρ : V`, let\n\n`c : {c : V // c ∈ rootedChildren G hG ρ ρ}`,\n\nand let `x : rootedChildComponent G ρ c.1`. Write\n\n`r_c := rootedChildRoot G ρ c.1`.\n\nThen the root row and root column of the rational rooted Gram matrix have the same\ncomponent-coordinate support:\n\n`rootedGram G w ρ (x : V) = if x = r_c then -1 else 0`,\n\nand\n\n`rootedGram G w (x : V) ρ = if x = r_c then -1 else 0`.\n\nEquivalently, each entry is `-1` exactly at the canonical child root `r_c` and is `0` at every other\nvertex of this rooted child component. The statement assumes neither admissibility nor invertibility\nand contains no inverse matrix or capacity expression.\n\n## Sources\n\n- Source `solution.tex`, line 63\n\n## Statement dependencies\n\n- `SimpleGraph.IsTree` from `Mathlib.Combinatorics.SimpleGraph.Acyclic`\n- `Main.RootedCapacity::rootedChildComponent` → `rootedChildComponent` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildComponent`\n- `Main.RootedCapacity::rootedChildRoot` → `rootedChildRoot` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildRoot`\n- `Main.RootedCapacity::rootedChildren` → `rootedChildren` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildren`\n- `Main.RootedCapacity::rootedGram` → `rootedGram` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedGram`\n\n## Proof outline\n\nWork classically.  Extract the edge fact hcAdj : G.Adj ρ c.1 from c.property by unfolding\nrootedChildren.  Then\n  hxne : (x : V) ≠ ρ\nis rootedChildComponent_parent_not_mem G ρ c.1 hG hcAdj x.\n\nProve the component support equivalence\n  hsupport : (x : V) ∈ rootedChildren G hG ρ ρ ↔ x = rootedChildRoot G ρ c.1.\nFor the forward implication, apply rootedChildComponent_partition G hG ρ (x : V) hxne.  Its\nuniqueness clause compares the existing membership x.property in the c-component with the membership\nof the ambient child x in its own rooted child component (the property of rootedChildRoot G ρ (x :\nV)).  Thus the unique partition label is both c.1 and x.val.  Convert the resulting ambient equality\nwith Subtype.ext and unfold rootedChildRoot.  The reverse implication is immediate from c.property\nafter substituting x.\n\nFor the first conjunct, rewrite with rootedGram_root_nonroot G hG w ρ (x : V) hxne and then rewrite\nits ambient child-membership condition by hsupport; this is exactly the desired if-expression.  For\nthe second conjunct, first establish\n  rootedGram G w (x : V) ρ = rootedGram G w ρ (x : V)\nby unfolding rootedGram, applying treePairing_vertexVector_vertexVector to both entries, and\nsimplifying with hxne and SimpleGraph.adj_comm.  Rewrite by this symmetry and reuse the first\nconjunct.  This finishes both support equations without admissibility, inverse matrices, or\nfinite-sum normalization.\n\n## Proof sources\n\n- Source `solution.tex`, lines 57–68\n\n## Proof dependencies\n\n- `SimpleGraph.adj_comm` from `Mathlib.Combinatorics.SimpleGraph.Basic`\n- `SimpleGraph.ConnectedComponent.connectedComponentMk_mem` from\n  `Mathlib.Combinatorics.SimpleGraph.Connectivity.Connected`\n- `Main.RootedCapacity::rootedChildComponent_parent_not_mem` → `rootedChildComponent_parent_not_mem`\n  from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Theorems.rootedChildComponent_parent_not_mem`\n- `Main.RootedCapacity::rootedChildComponent_partition` → `rootedChildComponent_partition` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Theorems.rootedChildComponent_partition`\n- `Main.RootedCapacity::rootedChildRoot` → `rootedChildRoot` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildRoot`\n- `Main.RootedCapacity::rootedChildren` → `rootedChildren` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildren`\n- `Main.RootedCapacity::rootedGram` → `rootedGram` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedGram`\n- `Main.RootedCapacity::rootedGram_root_nonroot` → `rootedGram_root_nonroot` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Theorems.rootedGram_root_nonroot`\n- `Main.RootedCapacity::treePairing_vertexVector_vertexVector` →\n  `treePairing_vertexVector_vertexVector` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Theorems.treePairing_vertexVector_vertexVector`\n-/\ntheorem rootedGram_root_rootedChildComponent_support {V : Type*} [Fintype V] [DecidableEq V]\n    (G : SimpleGraph V) [DecidableRel G.Adj] (hG : G.IsTree) (w : V → ℤ) (ρ : V)\n    (c : {c : V // c ∈ rootedChildren G hG ρ ρ}) (x : rootedChildComponent G ρ c.1) :\n    (rootedGram G w ρ (x : V) =\n      if x = rootedChildRoot G ρ c.1 then (-1 : ℚ) else 0) ∧\n    (rootedGram G w (x : V) ρ =\n      if x = rootedChildRoot G ρ c.1 then (-1 : ℚ) else 0) := by\n  classical\n  obtain ⟨hcAdj, _, _⟩ := by simpa [rootedChildren] using c.property\n  have hxne : (x : V) ≠ ρ :=\n    rootedChildComponent_parent_not_mem G ρ c.1 hG hcAdj x\n  have hsupport : (x : V) ∈ rootedChildren G hG ρ ρ ↔\n      x = rootedChildRoot G ρ c.1 := by\n    constructor\n    · intro hx\n      obtain ⟨d, hd, hd_unique⟩ :=\n        rootedChildComponent_partition G hG ρ (x : V) hxne\n      have hxmem : (x : V) ∈ rootedChildComponent G ρ (x : V) := by\n        change (x : V) ∈\n          (G.deleteEdges {s(ρ, (x : V))}).connectedComponentMk (x : V)\n        exact SimpleGraph.ConnectedComponent.connectedComponentMk_mem\n      have hxd : (x : V) = d := hd_unique (x : V) ⟨hx, hxmem⟩\n      have hcd : c.1 = d := hd_unique c.1 ⟨c.property, x.property⟩\n      apply Subtype.ext\n      exact hxd.trans hcd.symm\n    · intro hx\n      subst x\n      exact c.property\n  have hrow : rootedGram G w ρ (x : V) =\n      if x = rootedChildRoot G ρ c.1 then (-1 : ℚ) else 0 := by\n    rw [rootedGram_root_nonroot G hG w ρ (x : V) hxne]\n    simp only [hsupport]\n  constructor\n  · exact hrow\n  · rw [show rootedGram G w (x : V) ρ = rootedGram G w ρ (x : V) by\n      simp only [rootedGram]\n      rw [treePairing_vertexVector_vertexVector,\n        treePairing_vertexVector_vertexVector]\n      · by_cases hx : (x : V) = ρ\n        · exact (hxne hx).elim\n        · have hx' : ρ ≠ (x : V) := Ne.symm hx\n          simp [hx, hx', SimpleGraph.adj_comm]\n      · exact hG\n      · exact hG]\n    exact hrow\n"
+    },
+    "nl": {
+      "origin": [
+        {
+          "end_line": 68,
+          "end_locator": null,
+          "kind": "source",
+          "note": "The child-block calculation uses the root row only at the canonical child coordinate; this proof records that support calculation directly for each rooted child component.",
+          "ref": null,
+          "resource_key": null,
+          "source_path": "solution.tex",
+          "start_line": 57,
+          "start_locator": null
+        }
+      ],
+      "text": "Work classically.  Extract the edge fact hcAdj : G.Adj ρ c.1 from c.property by unfolding rootedChildren.  Then\n  hxne : (x : V) ≠ ρ\nis rootedChildComponent_parent_not_mem G ρ c.1 hG hcAdj x.\n\nProve the component support equivalence\n  hsupport : (x : V) ∈ rootedChildren G hG ρ ρ ↔ x = rootedChildRoot G ρ c.1.\nFor the forward implication, apply rootedChildComponent_partition G hG ρ (x : V) hxne.  Its uniqueness clause compares the existing membership x.property in the c-component with the membership of the ambient child x in its own rooted child component (the property of rootedChildRoot G ρ (x : V)).  Thus the unique partition label is both c.1 and x.val.  Convert the resulting ambient equality with Subtype.ext and unfold rootedChildRoot.  The reverse implication is immediate from c.property after substituting x.\n\nFor the first conjunct, rewrite with rootedGram_root_nonroot G hG w ρ (x : V) hxne and then rewrite its ambient child-membership condition by hsupport; this is exactly the desired if-expression.  For the second conjunct, first establish\n  rootedGram G w (x : V) ρ = rootedGram G w ρ (x : V)\nby unfolding rootedGram, applying treePairing_vertexVector_vertexVector to both entries, and simplifying with hxne and SimpleGraph.adj_comm.  Rewrite by this symmetry and reuse the first conjunct.  This finishes both support equations without admissibility, inverse matrices, or finite-sum normalization."
+    }
+  },
+  "revision": 1,
+  "state": "proved",
+  "statement": {
+    "deps": [
+      {
+        "kind": "mathlib_decl",
+        "reason": "The explicit ambient tree hypothesis is `hG : G.IsTree`.",
+        "ref": {
+          "module": "Mathlib.Combinatorics.SimpleGraph.Acyclic",
+          "name": "SimpleGraph.IsTree"
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "It is the exact subtype containing x.",
+        "ref": {
+          "name": "rootedChildComponent",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 1
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "It supplies the canonical component coordinate r_c at which both entries are -1.",
+        "ref": {
+          "name": "rootedChildRoot",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 1
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "It defines the attached-child subtype of c.",
+        "ref": {
+          "name": "rootedChildren",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 2
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "It is the rational Gram matrix whose root row and column are evaluated.",
+        "ref": {
+          "name": "rootedGram",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 2
+        }
+      }
+    ],
+    "formal": {
+      "check": {
+        "allow_sorry": true,
+        "contains_axiom": false,
+        "contains_sorry": true,
+        "diagnostics": {
+          "diagnostics": [
+            {
+              "column": 9,
+              "line": 53,
+              "message": "declaration uses `sorry`",
+              "severity": "warning"
+            }
+          ],
+          "passed": true,
+          "raw_excerpt": "{'success': True, 'error_message': None, 'file': 'PositiveDefiniteTreeLattice.Main.RootedCapacity.Theorems.rootedGram_root_rootedChildComponent_support', 'items': [{'severity': 'warning', 'pos': {'line': 53, 'column': 9}, 'endPos': {'line': 53, 'column': 53}, 'kind': None, 'data': 'declaration uses `sorry`', 'fileName': 'PositiveDefiniteTreeLattice.Main.RootedCapacity.Theorems.rootedGram_root_rootedChildComponent_support', 'content': '  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedGram`\\n-/\\ntheorem rootedGram_root_rootedChildComponent_support {V : Type*} [Fintype V] [DecidableEq V]\\n    (G : SimpleGraph V) [DecidableRel G.Adj] (hG : G.IsTree) (w : V → ℤ) (ρ : V)\\n    (c : {c : V // c ∈ rootedChildren G hG ρ ρ}) (x : rootedChildComponent G ρ c.1) :'}], 'total_items': 1, 'error_count': 0, 'warning_count': 1, 'info_count': 0, 'sorry_count': 1}",
+          "repo_file_path": "PositiveDefiniteTreeLattice/Main/RootedCapacity/Theorems/rootedGram_root_rootedChildComponent_support.lean",
+          "schema_version": 2,
+          "summary": "Diagnostics returned 1 items"
+        },
+        "message": "Lean check passed.",
+        "policy": "statement_formal",
+        "scan": {
+          "admit_count": 0,
+          "axiom_count": 0,
+          "contains_admit": false,
+          "contains_axiom": false,
+          "contains_opaque": false,
+          "contains_sorry": true,
+          "contains_unsafe": false,
+          "limitation": "Text scan ignores Lean comments and string literals with a conservative first-round lexer; it is not a full Lean parser.",
+          "occurrences": [
+            {
+              "column": 3,
+              "excerpt": "sorry",
+              "kind": "sorry",
+              "line": 60
+            }
+          ],
+          "opaque_count": 0,
+          "sorry_count": 1,
+          "summary": "sorry=1, admit=0, axiom=0, opaque=0, unsafe=0",
+          "unsafe_count": 0
+        },
+        "status": "passed"
+      },
+      "code": "-- lean-constellation: managed-imports-begin\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Prelude\nimport Mathlib.Combinatorics.SimpleGraph.Acyclic\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildComponent\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildRoot\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildren\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedGram\n-- lean-constellation: managed-imports-end\n\n-- lean-constellation: declaration-source-begin\n\n/--\n# lean-constellation target: `rootedGram_root_rootedChildComponent_support`\n\nLet `V` be a finite type with decidable equality, let `G` be a simple graph on `V` with decidable\nadjacency, let `hG : G.IsTree`, let `w : V → ℤ`, let `ρ : V`, let\n\n`c : {c : V // c ∈ rootedChildren G hG ρ ρ}`,\n\nand let `x : rootedChildComponent G ρ c.1`. Write\n\n`r_c := rootedChildRoot G ρ c.1`.\n\nThen the root row and root column of the rational rooted Gram matrix have the same\ncomponent-coordinate support:\n\n`rootedGram G w ρ (x : V) = if x = r_c then -1 else 0`,\n\nand\n\n`rootedGram G w (x : V) ρ = if x = r_c then -1 else 0`.\n\nEquivalently, each entry is `-1` exactly at the canonical child root `r_c` and is `0` at every other\nvertex of this rooted child component. The statement assumes neither admissibility nor invertibility\nand contains no inverse matrix or capacity expression.\n\n## Sources\n\n- Source `solution.tex`, line 63\n\n## Statement dependencies\n\n- `SimpleGraph.IsTree` from `Mathlib.Combinatorics.SimpleGraph.Acyclic`\n- `Main.RootedCapacity::rootedChildComponent` → `rootedChildComponent` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildComponent`\n- `Main.RootedCapacity::rootedChildRoot` → `rootedChildRoot` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildRoot`\n- `Main.RootedCapacity::rootedChildren` → `rootedChildren` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildren`\n- `Main.RootedCapacity::rootedGram` → `rootedGram` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedGram`\n-/\ntheorem rootedGram_root_rootedChildComponent_support {V : Type*} [Fintype V] [DecidableEq V]\n    (G : SimpleGraph V) [DecidableRel G.Adj] (hG : G.IsTree) (w : V → ℤ) (ρ : V)\n    (c : {c : V // c ∈ rootedChildren G hG ρ ρ}) (x : rootedChildComponent G ρ c.1) :\n    (rootedGram G w ρ (x : V) =\n      if x = rootedChildRoot G ρ c.1 then (-1 : ℚ) else 0) ∧\n    (rootedGram G w (x : V) ρ =\n      if x = rootedChildRoot G ρ c.1 then (-1 : ℚ) else 0) := by\n  sorry\n"
+    },
+    "nl": {
+      "origin": [
+        {
+          "end_line": 63,
+          "end_locator": null,
+          "kind": "source",
+          "note": "The root row vector has value -1 at each child root and 0 elsewhere; this theorem transports that exact support description to one canonical child-component coordinate.",
+          "ref": null,
+          "resource_key": null,
+          "source_path": "solution.tex",
+          "start_line": 63,
+          "start_locator": null
+        }
+      ],
+      "text": "Let `V` be a finite type with decidable equality, let `G` be a simple graph on `V` with decidable adjacency, let `hG : G.IsTree`, let `w : V → ℤ`, let `ρ : V`, let\n\n`c : {c : V // c ∈ rootedChildren G hG ρ ρ}`,\n\nand let `x : rootedChildComponent G ρ c.1`. Write\n\n`r_c := rootedChildRoot G ρ c.1`.\n\nThen the root row and root column of the rational rooted Gram matrix have the same component-coordinate support:\n\n`rootedGram G w ρ (x : V) = if x = r_c then -1 else 0`,\n\nand\n\n`rootedGram G w (x : V) ρ = if x = r_c then -1 else 0`.\n\nEquivalently, each entry is `-1` exactly at the canonical child root `r_c` and is `0` at every other vertex of this rooted child component. The statement assumes neither admissibility nor invertibility and contains no inverse matrix or capacity expression."
+    }
+  },
+  "status": "committed",
+  "updated_at": "2026-08-03T13:26:32Z"
+}

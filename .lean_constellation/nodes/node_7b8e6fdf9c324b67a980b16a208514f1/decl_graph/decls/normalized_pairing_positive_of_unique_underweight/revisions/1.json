@@ -1,0 +1,374 @@
+{
+  "change": {
+    "anticipated_proof_dep_names": [
+      "rootedChildCapacitySum_lt_weight_of_unique_underweight",
+      "rootedChildComponent_isAdmissible_of_unique_underweight"
+    ],
+    "anticipated_statement_dep_names": [],
+    "base_revision": null,
+    "kind": "create",
+    "objective": "Package the normalized branch of solution.tex:215–241 as the reusable lower lemma for the irreducibility contradiction. Under the exact finite integer-weighted tree, positive-definite pairing, unique-underweighted vertex v, and non-weight-one branch used by the source route, take a nonzero integer vector z whose coefficient z v is nonnegative and prove the strict conclusion 0 < treePairing G weight z z + treePairing G weight (vertexVector v) z (equivalently the source quantity z² + v·z, with orientation adjusted only by the accepted symmetry API). Decompose z across v and the rooted child-component partition without exposing a new representation in the Statement. For positive root coefficient, apply rooted_integer_estimate componentwise and the proved rootedChildCapacitySum_lt_weight_of_unique_underweight gap; for zero root coefficient, use root_coefficient_lt_norm and finite-sum strict positivity, with rootedChildComponent_isAdmissible_of_unique_underweight supplying each exact component premise. Preserve the integral model, canonical rooted components and roots, capacity representation, and strict inequality. This private source-derived lemma serves the next round's z versus -v-z normalization and ultimately the exact protected exists_irreducible_vertex interface; do not introduce casts, new component wrappers, matrix infrastructure, ambient rooted admissibility, extra assumptions beyond those available to that parent, or altered indices.",
+    "require_target_state_satisfied": true,
+    "reset_to_state": null,
+    "summary": "Revision 1 successfully fixed and compiler-accepted the source-derived Statement for the normalized positivity claim from solution.tex:215–241, so the declaration reached declared state. Proof NL then blocked on a predictable tracked helper: for an ambient integer vector z and the unique root v, the proof must restrict z to each canonical rootedChildComponent indexed by rootedChildren G hG v v, reconstruct z from its root coefficient plus those component vectors, and expand treePairing so cross-component terms vanish and each root interaction is the negative component-root coefficient. The visible rootedChildComponent_partition classifies vertices, while rootedChildComponent_isAdmissible_of_unique_underweight, rooted_integer_estimate, root_coefficient_lt_norm, and rootedChildCapacitySum_lt_weight_of_unique_underweight supply the later estimates; none supplies this ambient-to-component pairing/reconstruction identity. Leaving that nontrivial support/classification calculation unnamed is inappropriate. This is a source-visible local decomposition at solution.tex:220–226, specialized to the final assembly rather than new generic rooted-capacity architecture. Retry the parent from declared only after a proved private specialized decomposition helper is committed with the exact canonical child indices and coercions. The current declared Statement remains useful and is not superseded.",
+    "target_state": "proved"
+  },
+  "lean_decl_name": "PositiveDefiniteTreeLattice.normalized_pairing_positive_of_unique_underweight",
+  "proof": {
+    "deps": [
+      {
+        "kind": "mathlib_decl",
+        "reason": "Converts nonnegative component summands plus one strict summand into strict positivity of the zero-root finite sum.",
+        "ref": {
+          "module": "Mathlib.Algebra.Order.BigOperators.Group.Finset",
+          "name": "Finset.sum_pos_iff_of_nonneg"
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "Supplies the strict capacity gap that makes the p ≥ 1 aggregate bound strict.",
+        "ref": {
+          "name": "rootedChildCapacitySum_lt_weight_of_unique_underweight",
+          "node": "Main.IrreducibleVertex",
+          "repo": null,
+          "revision": 8
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "Supplies the exact admissibility hypothesis for every canonical deleted child component.",
+        "ref": {
+          "name": "rootedChildComponent_isAdmissible_of_unique_underweight",
+          "node": "Main.IrreducibleVertex",
+          "repo": null,
+          "revision": 3
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "Expands the pairing after the internal root-plus-components decomposition.",
+        "ref": {
+          "name": "treePairing_add_left",
+          "node": "Main.LatticeFoundations",
+          "repo": null,
+          "revision": 6
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "Expands the pairing after the internal root-plus-components decomposition.",
+        "ref": {
+          "name": "treePairing_add_right",
+          "node": "Main.LatticeFoundations",
+          "repo": null,
+          "revision": 6
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "Expands the self-pairing after the exact root plus zero-extended-components reassembly.",
+        "ref": {
+          "name": "treePairing_add_self",
+          "node": "Main.LatticeFoundations",
+          "repo": null,
+          "revision": 3
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "Aligns the source pairing orientation with the accepted shifted-pairing conclusion.",
+        "ref": {
+          "name": "treePairing_symm",
+          "node": "Main.LatticeFoundations",
+          "repo": null,
+          "revision": 6
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "Evaluates the root diagonal contribution in the reassembly expansion.",
+        "ref": {
+          "name": "treePairing_vertexVector_self",
+          "node": "Main.LatticeFoundations",
+          "repo": null,
+          "revision": 5
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "Aligns the local admissibility/instance choices used for each component estimate with the canonical capacity summand.",
+        "ref": {
+          "name": "rootedCapacity_instance_irrel",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 1
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "Identifies the component capacities in the aggregated rooted-integer estimates with the canonical capacity sum.",
+        "ref": {
+          "name": "rootedChildCapacitySummand",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 1
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "Defines the canonical deleted components used for restrictions and zero extensions.",
+        "ref": {
+          "name": "rootedChildComponent",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 1
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "Proves each zero extension is supported away from v and isolates the root coordinate in the reassembly.",
+        "ref": {
+          "name": "rootedChildComponent_parent_not_mem",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 1
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "Provides the unique canonical partition of every non-root vertex among the deleted child components.",
+        "ref": {
+          "name": "rootedChildComponent_partition",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 1
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "Gives the canonical equivalence from the sigma type of deleted child components to the non-root vertices, used to define component restrictions and prove reassembly.",
+        "ref": {
+          "name": "rootedChildComponentsEquivNonroot",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 1
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "Identifies the canonical equivalence on a concrete child-component element when translating the reassembly and finite sums.",
+        "ref": {
+          "name": "rootedChildComponentsEquivNonroot_apply",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 1
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "Defines the exact child root at which the root/component cross term is evaluated.",
+        "ref": {
+          "name": "rootedChildRoot",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 1
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "Defines the canonical child index subtype I used in the internal component construction.",
+        "ref": {
+          "name": "rootedChildren",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 2
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "Is the available rational matrix representation of pairings on vertex vectors used by the missing decomposition bridge.",
+        "ref": {
+          "name": "rootedGram",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 2
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "Computes the ambient root-to-component Gram row as the single -1 at the canonical child root.",
+        "ref": {
+          "name": "rootedGram_root_rootedChildComponent_support",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 2
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "Identifies component Gram entries with the ambient Gram entries for the within-component pairing terms.",
+        "ref": {
+          "name": "rootedGram_rootedChildComponent",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 1
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "Evaluates the root vertex-vector diagonal while deriving the integral component expansion.",
+        "ref": {
+          "name": "treePairing_vertexVector_vertexVector",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 2
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "Makes each nonzero component summand strictly positive in the zero-root-coefficient branch.",
+        "ref": {
+          "name": "root_coefficient_lt_norm",
+          "node": "Main.RootedEstimates",
+          "repo": null,
+          "revision": 1
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "Applied componentwise in the positive-root-coefficient branch.",
+        "ref": {
+          "name": "rooted_integer_estimate",
+          "node": "Main.RootedEstimates",
+          "repo": null,
+          "revision": 2
+        }
+      }
+    ],
+    "formal": null,
+    "nl": {
+      "origin": [
+        {
+          "end_line": 241,
+          "end_locator": null,
+          "kind": "source",
+          "note": "This range gives the normalization p ≥ 0, the canonical component expansion, and both p ≥ 1 and p = 0 positivity arguments that the proof route follows.",
+          "ref": null,
+          "resource_key": null,
+          "source_path": "solution.tex",
+          "start_line": 215,
+          "start_locator": null
+        }
+      ],
+      "text": "Define I = {c : V // c is in rootedChildren G h_tree v v} and, for c : I, C_c = rootedChildComponent G v c.1 with root rho_c = rootedChildRoot G v c.1. Let S be the sigma type of pairs (c, x) with c : I and x : C_c, and let e = rootedChildComponentsEquivNonroot G h_tree v : S equivalently {u : V // u != v}. Define y_c : C_c -> Int by y_c x = z (x : V). Define its ambient zero extension Y_c : V -> Int by Y_c u = if h : u is in rootedChildComponent G v c.1 then y_c (u,h) else 0.\n\nThe intended reassembly is the pointwise equality\nz = (z v) times vertexVector v + sum over c : I of Y_c.\nAt u = v it follows from rootedChildComponent_parent_not_mem, since every Y_c v is zero. At u != v, evaluate e.inverse on (u, proof that u != v). The resulting pair (c,x) has x.val = u by rootedChildComponentsEquivNonroot_apply; rootedChildComponent_partition gives uniqueness of c. Hence exactly the c-th zero extension contributes z u and all other extensions vanish.\n\nTo derive the source identity from this reassembly, a further tracked pairing-decomposition helper is required. The available APIs only prove vertex-vector Gram entry facts:\n- rootedGram_rootedChildComponent identifies entries internal to one C_c;\n- rootedGram_root_rootedChildComponent_support gives the root row as the single -1 at rho_c;\n- rootedGram and treePairing_vertexVector_vertexVector concern pairings of vertex vectors.\nThey do not provide an equality taking arbitrary y_c and Y_c. In particular, none proves the three required arbitrary-vector facts:\n(1) treePairing G weight Y_c Y_c = treePairing C_c restrictedWeight y_c y_c;\n(2) if c != d then treePairing G weight Y_c Y_d = 0;\n(3) treePairing G weight (vertexVector v) Y_c = - y_c rho_c.\nBilinearity alone cannot establish these facts; their proof needs the nontrivial support/classification argument through the child-component partition and a coordinate expansion of arbitrary vectors against rootedGram.\n\nAfter a helper packages exactly these three facts together with the displayed reassembly, apply treePairing_add_self, treePairing_add_left, treePairing_add_right, treePairing_symm, and treePairing_vertexVector_self to obtain:\ntreePairing G weight z z + treePairing G weight (vertexVector v) z\n= weight v * p * (p + 1)\n  + sum over c : I of\n      (treePairing C_c restrictedWeight y_c y_c - (2 * p + 1) * y_c rho_c),\nwhere p = z v.\n\nThen the existing source route is formalization-ready. For 1 <= p, use rootedChildComponent_isAdmissible_of_unique_underweight and rooted_integer_estimate on every y_c; rootedCapacity_instance_irrel and rootedChildCapacitySummand identify the capacity sum, and rootedChildCapacitySum_lt_weight_of_unique_underweight makes the aggregate strict. For p = 0, root_coefficient_lt_norm makes every component summand nonnegative and a nonzero y_c summand strict. The reassembly equality gives the precise witness: if every y_c were zero, evaluating it at v and at every u != v would give z = 0, contradicting hz_nonzero. Thus choose c with y_c != 0 and apply Finset.sum_pos_iff_of_nonneg.\n\nThis declaration is blocked at Proof NL until Planner creates a tracked source-specific ambient-to-canonical-child-component pairing-decomposition helper, or makes an existing declaration with the three exact arbitrary-vector facts visible."
+    }
+  },
+  "revision": 1,
+  "state": "declared",
+  "statement": {
+    "deps": [
+      {
+        "kind": "mathlib_decl",
+        "reason": "The ambient finite tree hypothesis is explicitly part of the statement.",
+        "ref": {
+          "module": "Mathlib.Combinatorics.SimpleGraph.Acyclic",
+          "name": "SimpleGraph.IsTree"
+        }
+      },
+      {
+        "kind": "mathlib_decl",
+        "reason": "The unique-underweight and distinguished-vertex hypotheses compare weights to ambient graph degrees.",
+        "ref": {
+          "module": "Mathlib.Combinatorics.SimpleGraph.Finite",
+          "name": "SimpleGraph.degree"
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "The conclusion and positive-definiteness hypothesis are expressed using the repository tree pairing.",
+        "ref": {
+          "name": "treePairingAnchor",
+          "node": "Main.LatticeFoundations",
+          "repo": null,
+          "revision": 1
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "The conclusion uses the repository’s canonical vertex vector at v.",
+        "ref": {
+          "name": "vertexVectorAnchor",
+          "node": "Main.LatticeFoundations",
+          "repo": null,
+          "revision": 1
+        }
+      }
+    ],
+    "formal": {
+      "check": {
+        "allow_sorry": true,
+        "contains_axiom": false,
+        "contains_sorry": true,
+        "diagnostics": {
+          "diagnostics": [
+            {
+              "column": 9,
+              "line": 33,
+              "message": "declaration uses `sorry`",
+              "severity": "warning"
+            }
+          ],
+          "passed": true,
+          "raw_excerpt": "{'success': True, 'error_message': None, 'file': 'PositiveDefiniteTreeLattice.Main.IrreducibleVertex.Lemmas.normalized_pairing_positive_of_unique_underweight', 'items': [{'severity': 'warning', 'pos': {'line': 33, 'column': 9}, 'endPos': {'line': 33, 'column': 86}, 'kind': None, 'data': 'declaration uses `sorry`', 'fileName': 'PositiveDefiniteTreeLattice.Main.IrreducibleVertex.Lemmas.normalized_pairing_positive_of_unique_underweight', 'content': '  `PositiveDefiniteTreeLattice.Main.LatticeFoundations.Defs.vertexVectorAnchor`\\n-/\\ntheorem PositiveDefiniteTreeLattice.normalized_pairing_positive_of_unique_underweight\\n    {V : Type*} [Fintype V] [DecidableEq V] (G : SimpleGraph V) [DecidableRel G.Adj]\\n    (weight : V → ℤ) (v : V) (z : V → ℤ) (h_tree : G.IsTree)'}], 'total_items': 1, 'error_count': 0, 'warning_count': 1, 'info_count': 0, 'sorry_count': 1}",
+          "repo_file_path": "PositiveDefiniteTreeLattice/Main/IrreducibleVertex/Lemmas/normalized_pairing_positive_of_unique_underweight.lean",
+          "schema_version": 2,
+          "summary": "Diagnostics returned 1 items"
+        },
+        "message": "Lean check passed.",
+        "policy": "statement_formal",
+        "scan": {
+          "admit_count": 0,
+          "axiom_count": 0,
+          "contains_admit": false,
+          "contains_axiom": false,
+          "contains_opaque": false,
+          "contains_sorry": true,
+          "contains_unsafe": false,
+          "limitation": "Text scan ignores Lean comments and string literals with a conservative first-round lexer; it is not a full Lean parser.",
+          "occurrences": [
+            {
+              "column": 3,
+              "excerpt": "sorry",
+              "kind": "sorry",
+              "line": 41
+            }
+          ],
+          "opaque_count": 0,
+          "sorry_count": 1,
+          "summary": "sorry=1, admit=0, axiom=0, opaque=0, unsafe=0",
+          "unsafe_count": 0
+        },
+        "status": "passed"
+      },
+      "code": "-- lean-constellation: managed-imports-begin\nimport PositiveDefiniteTreeLattice.Main.IrreducibleVertex.Prelude\nimport Mathlib.Combinatorics.SimpleGraph.Acyclic\nimport Mathlib.Combinatorics.SimpleGraph.Finite\n-- lean-constellation: managed-imports-end\n\n-- lean-constellation: declaration-source-begin\n\n/--\n# lean-constellation target: `normalized_pairing_positive_of_unique_underweight`\n\nLet `V` be a finite type with decidable equality, let `G : SimpleGraph V` have decidable adjacency,\nlet `weight : V → ℤ`, let `v : V`, and let `z : V → ℤ`. Suppose `h_tree : G.IsTree`, `h_positive : ∀\nx : V → ℤ, x ≠ 0 → 0 < treePairing G weight x x`, `h_unique_underweight : ∃! u : V, weight u <\n(G.degree u : ℤ)`, `hv : weight v < (G.degree v : ℤ)`, `h_two : ∀ x : V, 2 ≤ weight x`, `hz_nonzero\n: z ≠ 0`, and `hzv_nonneg : 0 ≤ z v`. Then the shifted self-pairing is strictly positive:\n\n`0 < treePairing G weight z z + treePairing G weight (vertexVector v) z`.\n\n## Sources\n\n- Source `solution.tex`, lines 215–241\n\n## Statement dependencies\n\n- `SimpleGraph.IsTree` from `Mathlib.Combinatorics.SimpleGraph.Acyclic`\n- `SimpleGraph.degree` from `Mathlib.Combinatorics.SimpleGraph.Finite`\n- `Main.LatticeFoundations::treePairingAnchor` → `PositiveDefiniteTreeLattice.treePairing` from\n  `PositiveDefiniteTreeLattice.Main.LatticeFoundations.Defs.treePairingAnchor`\n- `Main.LatticeFoundations::vertexVectorAnchor` → `PositiveDefiniteTreeLattice.vertexVector` from\n  `PositiveDefiniteTreeLattice.Main.LatticeFoundations.Defs.vertexVectorAnchor`\n-/\ntheorem PositiveDefiniteTreeLattice.normalized_pairing_positive_of_unique_underweight\n    {V : Type*} [Fintype V] [DecidableEq V] (G : SimpleGraph V) [DecidableRel G.Adj]\n    (weight : V → ℤ) (v : V) (z : V → ℤ) (h_tree : G.IsTree)\n    (h_positive : ∀ x : V → ℤ, x ≠ 0 → 0 < treePairing G weight x x)\n    (h_unique_underweight : ∃! u : V, weight u < (G.degree u : ℤ))\n    (hv : weight v < (G.degree v : ℤ)) (h_two : ∀ x : V, 2 ≤ weight x)\n    (hz_nonzero : z ≠ 0) (hzv_nonneg : 0 ≤ z v) :\n    0 < treePairing G weight z z + treePairing G weight (vertexVector v) z := by\n  sorry\n"
+    },
+    "nl": {
+      "origin": [
+        {
+          "end_line": 241,
+          "end_locator": null,
+          "kind": "source",
+          "note": "These lines normalize to a nonnegative root coefficient and prove strict positivity of z² + v·z in the p≥1 and p=0 cases; the stated shifted pairing is the same source quantity in the repository pairing notation.",
+          "ref": null,
+          "resource_key": null,
+          "source_path": "solution.tex",
+          "start_line": 215,
+          "start_locator": null
+        }
+      ],
+      "text": "Let `V` be a finite type with decidable equality, let `G : SimpleGraph V` have decidable adjacency, let `weight : V → ℤ`, let `v : V`, and let `z : V → ℤ`. Suppose `h_tree : G.IsTree`, `h_positive : ∀ x : V → ℤ, x ≠ 0 → 0 < treePairing G weight x x`, `h_unique_underweight : ∃! u : V, weight u < (G.degree u : ℤ)`, `hv : weight v < (G.degree v : ℤ)`, `h_two : ∀ x : V, 2 ≤ weight x`, `hz_nonzero : z ≠ 0`, and `hzv_nonneg : 0 ≤ z v`. Then the shifted self-pairing is strictly positive:\n  \n`0 < treePairing G weight z z + treePairing G weight (vertexVector v) z`."
+    }
+  },
+  "status": "committed",
+  "updated_at": "2026-08-06T15:39:48Z"
+}

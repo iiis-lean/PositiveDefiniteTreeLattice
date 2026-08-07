@@ -1,0 +1,16 @@
+{
+  "created_at": "2026-07-30T12:04:58Z",
+  "current_revision": 2,
+  "kind": "theorem",
+  "lifecycle": "active",
+  "module": "PositiveDefiniteTreeLattice.Main.RootedCapacity.Theorems.rootedChildGram_blockDiagonal_inv",
+  "name": "rootedChildGram_blockDiagonal_inv",
+  "node_path": "Main.RootedCapacity",
+  "public": false,
+  "revision_ids": [
+    1,
+    2
+  ],
+  "summary": "The inverse of the dependent block diagonal of admissible rooted child Gram matrices is the block diagonal of their inverses.",
+  "updated_at": "2026-07-30T14:41:57Z"
+}

@@ -1,0 +1,17 @@
+{
+  "created_at": "2026-07-30T02:37:27Z",
+  "current_revision": 3,
+  "kind": "theorem",
+  "lifecycle": "active",
+  "module": "PositiveDefiniteTreeLattice.Main.RootedCapacity.Theorems.rootedChildren_rootedChildComponent",
+  "name": "rootedChildren_rootedChildComponent",
+  "node_path": "Main.RootedCapacity",
+  "public": true,
+  "revision_ids": [
+    1,
+    2,
+    3
+  ],
+  "summary": "Local rooted children in a child component map exactly to the ambient rooted children.",
+  "updated_at": "2026-07-30T06:30:54Z"
+}

@@ -1,0 +1,15 @@
+{
+  "created_at": "2026-08-01T14:00:04Z",
+  "current_revision": 1,
+  "kind": "theorem",
+  "lifecycle": "active",
+  "module": "PositiveDefiniteTreeLattice.Main.RootedEstimates.Theorems.rootCoordinateSqLeCapacityMulTreePairing",
+  "name": "rootCoordinateSqLeCapacityMulTreePairing",
+  "node_path": "Main.RootedEstimates",
+  "public": false,
+  "revision_ids": [
+    1
+  ],
+  "summary": "Cauchy–Schwarz bounds the squared rational root coordinate by rooted capacity times the treePairing norm.",
+  "updated_at": "2026-08-01T14:00:04Z"
+}

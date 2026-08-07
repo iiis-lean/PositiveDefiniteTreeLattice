@@ -1,0 +1,33 @@
+{
+  "change_summaries": {},
+  "committed_at": "2026-08-06T16:14:21Z",
+  "created_at": "2026-08-06T15:40:23Z",
+  "discard_reason": null,
+  "discarded_at": null,
+  "discarded_by": null,
+  "discarded_created_decl_names": [],
+  "discarded_restored_decl_revisions": {},
+  "discarded_revision_refs": [],
+  "execution_completed_at": "2026-08-06T16:12:32Z",
+  "execution_reason": "The accepted proof route cannot be completed within this declaration's frozen boundary: its nonroot step provides only an entrywise equality of rootedGram matrices over ℚ, whereas the target needs an equality whose diagonal fibers are the dependent component treePairing terms over ℤ. Converting a component block back to its treePairing summand requires a generic finite coordinate-expansion theorem for treePairing on an arbitrary finite vertex type (or an equivalent packaged block-quadratic-form theorem). Neither is among the visible project declarations or proof dependencies, and the objective explicitly forbids adding a generic helper/infrastructure or changing the component representation.",
+  "execution_result_kind": "blocked",
+  "node_path": "Main.IrreducibleVertex",
+  "objective": "Prove the specialized ambient-to-rooted-child-component pairing decomposition underlying equation (4) of the source.",
+  "plan_closeout_acknowledged_at": "2026-08-06T16:14:21Z",
+  "plan_closeout_acknowledged_by": "a_a235941c8c524917a1ed4a78f90c75ba",
+  "result_kind": "blocked",
+  "result_reason": "Proof Formal requires a generic finite coordinate/quadratic-form conversion absent from current visible dependencies and forbidden as local infrastructure.",
+  "revision_refs": [
+    {
+      "change_id": "pairing_decomposition_at_unique_underweight@rev:1",
+      "decl_name": "pairing_decomposition_at_unique_underweight",
+      "revision": 1
+    }
+  ],
+  "round_id": "round_e47ccd0c14ad43fa8967b6b1d85eb41c",
+  "round_index": 18,
+  "started_at": "2026-08-06T15:42:32Z",
+  "status": "committed",
+  "strategy_id": "strategy_5daa06e1443e4d7e95f091bbae0d613c",
+  "summary": "Round 18 made real staged progress: pairing_decomposition_at_unique_underweight revision 1 now has accepted Statements and Proof NL at proof_planned, but did not reach proved and is not graph-proved-policy satisfied. Proof Formal isolated a Lean-specific generic conversion frontier between the provider's rational rootedGram entrywise block identity and the source target's integral dependent component treePairing quadratic summands. The current node and visible provider APIs were checked and do not expose that conversion; adding it locally would violate the explicit exclusion of generic rooted-capacity/pairing infrastructure. The blocked helper in turn gates normalized_pairing_positive_of_unique_underweight at declared, which gates the decomposition contradiction and protected final interface. There are ten active declarations, within the expected 8–14 scale, and neither partial declaration is superseded or a cleanup target. Because Mathlib preparation has not run in this task and the missing object is a generic finite coordinate/quadratic-form theorem, the next responsible action after closeout is focused Mathlib recon rather than another unchanged Proof Formal retry or immediate terminal blocking. Retry conditions are an exact Mathlib theorem or public provider theorem compatible with arbitrary finite component types, ℤ treePairing, ℚ rootedGram coercion, and the existing dependent child indices."
+}

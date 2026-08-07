@@ -1,0 +1,33 @@
+{
+  "change_summaries": {},
+  "committed_at": "2026-07-30T05:27:58Z",
+  "created_at": "2026-07-30T05:12:01Z",
+  "discard_reason": null,
+  "discarded_at": null,
+  "discarded_by": null,
+  "discarded_created_decl_names": [],
+  "discarded_restored_decl_revisions": {},
+  "discarded_revision_refs": [],
+  "execution_completed_at": "2026-07-30T05:25:34Z",
+  "execution_reason": null,
+  "execution_result_kind": "success",
+  "node_path": "Main.RootedCapacity",
+  "objective": "Advance the preserved rootedChildComponent_path_decomposition statement from declared to proved using Main.TreePathSeparation's exact uniquePath_eq_append_through_cut provider theorem. Keep the accepted equation and binders unchanged; construct only the local cut reachability hypotheses from hc and component membership.",
+  "plan_closeout_acknowledged_at": "2026-07-30T05:27:58Z",
+  "plan_closeout_acknowledged_by": "a_a93b40977f574bad89528358fa89e022",
+  "result_kind": "success",
+  "result_reason": "The provider-backed proof completed and rootedChildComponent_path_decomposition@2 is graph-proved with its accepted statement unchanged.",
+  "revision_refs": [
+    {
+      "change_id": "rootedChildComponent_path_decomposition@rev:2",
+      "decl_name": "rootedChildComponent_path_decomposition",
+      "revision": 2
+    }
+  ],
+  "round_id": "round_a77202b9e8d44c2cbf04fbbbc224daa7",
+  "round_index": 14,
+  "started_at": "2026-07-30T05:13:12Z",
+  "status": "committed",
+  "strategy_id": "strategy_a6a7ac0a78e3413a807b0948a745c870",
+  "summary": "The resumed provider-backed strategy made its first required progress: rootedChildComponent_path_decomposition@2 reached proved state and graph-proved satisfaction while retaining the accepted statement. The generic path-separation blocker is resolved through Main.TreePathSeparation, with no local duplication or graph-hygiene issue. rootedChildren_rootedChildComponent@1 is now known dependency-closed for a proof-only retry from proof_planned to proved; rootedChildCount_rootedChildComponent must still wait for that Finset equality. The next action should be the single consumer retry round, not additional preparation."
+}

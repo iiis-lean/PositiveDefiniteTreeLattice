@@ -1,0 +1,270 @@
+{
+  "change": {
+    "anticipated_proof_dep_names": [],
+    "anticipated_statement_dep_names": [],
+    "base_revision": 1,
+    "kind": "update",
+    "objective": "Preserve the accepted statement and Proof NL plan from revision 1 and run only Proof Formal. Close the exact solution.tex:199-203 component degree equality by combining the fresh public Main.RootedCapacity declarations rootedChildCount_rootedChildComponent, rootedChildComponent_parent_not_mem, and rootedChildCount_add_one_eq_degree. The provider theorem's nonroot premise is supplied by parent exclusion for every component vertex; transport rewrites the component child count to the ambient rooted child count. This completes the previously blocked proof without changing its meaning and provides the proved dependency required by rootedChildComponent_isAdmissible_of_unique_underweight.",
+    "require_target_state_satisfied": true,
+    "reset_to_state": "proof_planned",
+    "summary": "Updated rootedChildComponent_childCount_add_one_eq_degree from committed revision 1 at proof_planned to revision 2 at proved, preserving the accepted statement and proof plan. Proof Formal passed using the fresh RootedCapacity child-count transport, parent exclusion, and generic nonroot child-count-plus-one/degree theorem. Revision 2 is proof-policy satisfied; the prior provider blocker is fully resolved and no repair remains.",
+    "target_state": "proved"
+  },
+  "lean_decl_name": "PositiveDefiniteTreeLattice.rootedChildComponent_childCount_add_one_eq_degree",
+  "proof": {
+    "deps": [
+      {
+        "kind": "mathlib_decl",
+        "reason": "The proof unfolds filtered rooted-child membership to extract the parent-child adjacency from hc.",
+        "ref": {
+          "module": "Mathlib.Data.Finset.Filter",
+          "name": "Finset.mem_filter"
+        }
+      },
+      {
+        "kind": "mathlib_decl",
+        "reason": "The proof creates the finite instance for the connected-component subtype used by rootedChildCount.",
+        "ref": {
+          "module": "Mathlib.Data.Fintype.EquivFin",
+          "name": "Fintype.ofFinite"
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "Shows the component vertex is not the deleted parent v, enabling the nonroot tree-path decomposition.",
+        "ref": {
+          "name": "rootedChildComponent_parent_not_mem",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 1
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "Applies the ambient rooted-tree degree formula after parent exclusion proves the component vertex is nonroot.",
+        "ref": {
+          "name": "rootedChildCount_add_one_eq_degree",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 1
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "Rewrites the child count in the deleted component to the ambient rooted child count at the coerced vertex.",
+        "ref": {
+          "name": "rootedChildCount_rootedChildComponent",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 2
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "Supplies the exact rooted-child membership predicate used to partition ambient neighbors.",
+        "ref": {
+          "name": "rootedChildren",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 2
+        }
+      }
+    ],
+    "formal": {
+      "check": {
+        "allow_sorry": false,
+        "contains_axiom": false,
+        "contains_sorry": false,
+        "diagnostics": {
+          "diagnostics": [],
+          "passed": true,
+          "raw_excerpt": "{'success': True, 'error_message': None, 'file': 'PositiveDefiniteTreeLattice.Main.IrreducibleVertex.Lemmas.rootedChildComponent_childCount_add_one_eq_degree', 'items': [], 'total_items': 0, 'error_count': 0, 'warning_count': 0, 'info_count': 0, 'sorry_count': 0}",
+          "repo_file_path": "PositiveDefiniteTreeLattice/Main/IrreducibleVertex/Lemmas/rootedChildComponent_childCount_add_one_eq_degree.lean",
+          "schema_version": 2,
+          "summary": "Diagnostics returned 0 items"
+        },
+        "message": "Lean check passed.",
+        "policy": "proof_formal",
+        "scan": {
+          "admit_count": 0,
+          "axiom_count": 0,
+          "contains_admit": false,
+          "contains_axiom": false,
+          "contains_opaque": false,
+          "contains_sorry": false,
+          "contains_unsafe": false,
+          "limitation": "Text scan ignores Lean comments and string literals with a conservative first-round lexer; it is not a full Lean parser.",
+          "occurrences": [],
+          "opaque_count": 0,
+          "sorry_count": 0,
+          "summary": "sorry=0, admit=0, axiom=0, opaque=0, unsafe=0",
+          "unsafe_count": 0
+        },
+        "status": "passed"
+      },
+      "code": "-- lean-constellation: managed-imports-begin\nimport PositiveDefiniteTreeLattice.Main.IrreducibleVertex.Prelude\nimport Mathlib.Combinatorics.SimpleGraph.Acyclic\nimport Mathlib.Combinatorics.SimpleGraph.Connectivity.Connected\nimport Mathlib.Combinatorics.SimpleGraph.Finite\nimport Mathlib.Data.Finset.Filter\nimport Mathlib.Data.Fintype.EquivFin\n-- lean-constellation: managed-imports-end\n\n-- lean-constellation: declaration-source-begin\n\nnoncomputable local instance rootedChildComponentFintype {V : Type*} [Fintype V]\n    (G : SimpleGraph V) (v c : V) : Fintype (rootedChildComponent G v c) :=\n  Fintype.ofFinite _\n\nnoncomputable local instance rootedChildComponentDecidableAdj {V : Type*} (G : SimpleGraph V)\n    (v c : V) : DecidableRel (rootedChildComponent G v c).toSimpleGraph.Adj :=\n  by\n    classical\n    infer_instance\n\n/--\n# lean-constellation target: `rootedChildComponent_childCount_add_one_eq_degree`\n\nLet `V` be a finite type with decidable equality, let `G : SimpleGraph V` have decidable adjacency\nand satisfy `h_tree : G.IsTree`, and let `v c : V` with `hc : c ∈ rootedChildren G h_tree v v`. For\nevery `x : rootedChildComponent G v c`, `rootedChildCount (rootedChildComponent G v c).toSimpleGraph\n(rootedChildComponent_isTree G v c h_tree) (rootedChildRoot G v c) x + 1 = G.degree (x : V)` as\nnatural numbers.\n\n## Sources\n\n- Source `solution.tex`, lines 199–203\n\n## Statement dependencies\n\n- `SimpleGraph.IsTree` from `Mathlib.Combinatorics.SimpleGraph.Acyclic`\n- `SimpleGraph.ConnectedComponent.toSimpleGraph` from\n  `Mathlib.Combinatorics.SimpleGraph.Connectivity.Connected`\n- `SimpleGraph.degree` from `Mathlib.Combinatorics.SimpleGraph.Finite`\n- `Main.RootedCapacity::rootedChildComponent` → `rootedChildComponent` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildComponent`\n- `Main.RootedCapacity::rootedChildComponent_isTree` → `rootedChildComponent_isTree` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Theorems.rootedChildComponent_isTree`\n- `Main.RootedCapacity::rootedChildCount` → `rootedChildCount` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildCount`\n- `Main.RootedCapacity::rootedChildRoot` → `rootedChildRoot` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildRoot`\n- `Main.RootedCapacity::rootedChildren` → `rootedChildren` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildren`\n\n## Proof outline\n\nFirst rewrite the component child count with the accepted restriction theorem\n`rootedChildCount_rootedChildComponent G h_tree v v c hc x`. It reduces the goal to\n`rootedChildCount G h_tree v (x : V) + 1 = G.degree (x : V)`.\n\nExtract `G.Adj v c` from `hc` by unfolding membership in `rootedChildren`. Then\n`rootedChildComponent_parent_not_mem G v c h_tree hvc x` proves `(x : V) ≠ v`. Choose the unique\nsimple path from `v` to `(x : V)` using `SimpleGraph.IsTree.existsUnique_path`; since the endpoints\ndiffer, take its final predecessor `p`, so `G.Adj p (x : V)`.\n\nProve the finite-neighbor partition\n`G.neighborFinset (x : V) = insert p (rootedChildren G h_tree v (x : V))`.\nThe predecessor is not a rooted child: otherwise the unique paths to `p` obtained by truncating the\npath to `x` and by the child condition disagree. Conversely, every neighbor `y` distinct from `p` is\na rooted child: append the edge `(x,y)` to the unique path from `v` to `x`; acyclicity shows this\nappend is a simple path, and uniqueness identifies it with the canonical path to `y`, exactly the\nmembership criterion for `rootedChildren`.\n\nTake cardinalities of this disjoint insert. Unfold `rootedChildCount` and the finite-graph degree\ndefinition (`degree` is the card of `neighborFinset`) to obtain the required natural-number\nequality. This is specialized to the deleted component and keeps the ambient degree unchanged.\n\n## Proof sources\n\n- Source `solution.tex`, lines 199–203\n\n## Proof dependencies\n\n- `Finset.mem_filter` from `Mathlib.Data.Finset.Filter`\n- `Fintype.ofFinite` from `Mathlib.Data.Fintype.EquivFin`\n- `Main.RootedCapacity::rootedChildComponent_parent_not_mem` → `rootedChildComponent_parent_not_mem`\n  from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Theorems.rootedChildComponent_parent_not_mem`\n- `Main.RootedCapacity::rootedChildCount_add_one_eq_degree` →\n  `PositiveDefiniteTreeLattice.rootedChildCount_add_one_eq_degree` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Theorems.rootedChildCount_add_one_eq_degree`\n- `Main.RootedCapacity::rootedChildCount_rootedChildComponent` →\n  `rootedChildCount_rootedChildComponent` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Theorems.rootedChildCount_rootedChildComponent`\n- `Main.RootedCapacity::rootedChildren` → `rootedChildren` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildren`\n-/\ntheorem PositiveDefiniteTreeLattice.rootedChildComponent_childCount_add_one_eq_degree\n    {V : Type*} [Fintype V] [DecidableEq V] (G : SimpleGraph V) [DecidableRel G.Adj]\n    (h_tree : G.IsTree) (v c : V) (hc : c ∈ rootedChildren G h_tree v v)\n    (x : rootedChildComponent G v c) :\n    rootedChildCount (rootedChildComponent G v c).toSimpleGraph\n        (rootedChildComponent_isTree G v c h_tree) (rootedChildRoot G v c) x + 1 =\n      G.degree (x : V) := by\n  classical\n  have hvc : G.Adj v c := by\n    rw [rootedChildren, Finset.mem_filter] at hc\n    exact hc.2.choose\n  have hxv : (x : V) ≠ v :=\n    rootedChildComponent_parent_not_mem G v c h_tree hvc x\n  calc\n    rootedChildCount (rootedChildComponent G v c).toSimpleGraph\n          (rootedChildComponent_isTree G v c h_tree) (rootedChildRoot G v c) x +\n        1 = rootedChildCount G h_tree v (x : V) + 1 := by\n      congr 1\n      simpa [rootedChildCount, rootedChildren] using\n        (rootedChildCount_rootedChildComponent G h_tree v v c hc x)\n    _ = G.degree (x : V) := rootedChildCount_add_one_eq_degree G h_tree v (x : V) hxv\n"
+    },
+    "nl": {
+      "origin": [
+        {
+          "end_line": 203,
+          "end_locator": null,
+          "kind": "source",
+          "note": "These lines give the degree decomposition: each component vertex has one parent-side incident edge in addition to its rooted children.",
+          "ref": null,
+          "resource_key": null,
+          "source_path": "solution.tex",
+          "start_line": 199,
+          "start_locator": null
+        }
+      ],
+      "text": "First rewrite the component child count with the accepted restriction theorem `rootedChildCount_rootedChildComponent G h_tree v v c hc x`. It reduces the goal to\n`rootedChildCount G h_tree v (x : V) + 1 = G.degree (x : V)`.\n\nExtract `G.Adj v c` from `hc` by unfolding membership in `rootedChildren`. Then `rootedChildComponent_parent_not_mem G v c h_tree hvc x` proves `(x : V) ≠ v`. Choose the unique simple path from `v` to `(x : V)` using `SimpleGraph.IsTree.existsUnique_path`; since the endpoints differ, take its final predecessor `p`, so `G.Adj p (x : V)`.\n\nProve the finite-neighbor partition\n`G.neighborFinset (x : V) = insert p (rootedChildren G h_tree v (x : V))`.\nThe predecessor is not a rooted child: otherwise the unique paths to `p` obtained by truncating the path to `x` and by the child condition disagree. Conversely, every neighbor `y` distinct from `p` is a rooted child: append the edge `(x,y)` to the unique path from `v` to `x`; acyclicity shows this append is a simple path, and uniqueness identifies it with the canonical path to `y`, exactly the membership criterion for `rootedChildren`.\n\nTake cardinalities of this disjoint insert. Unfold `rootedChildCount` and the finite-graph degree definition (`degree` is the card of `neighborFinset`) to obtain the required natural-number equality. This is specialized to the deleted component and keeps the ambient degree unchanged."
+    }
+  },
+  "revision": 2,
+  "state": "proved",
+  "statement": {
+    "deps": [
+      {
+        "kind": "mathlib_decl",
+        "reason": "The ambient tree witness is an explicit statement hypothesis.",
+        "ref": {
+          "module": "Mathlib.Combinatorics.SimpleGraph.Acyclic",
+          "name": "SimpleGraph.IsTree"
+        }
+      },
+      {
+        "kind": "mathlib_decl",
+        "reason": "The component-side child count is evaluated on the induced graph of the connected-component subtype.",
+        "ref": {
+          "module": "Mathlib.Combinatorics.SimpleGraph.Connectivity.Connected",
+          "name": "SimpleGraph.ConnectedComponent.toSimpleGraph"
+        }
+      },
+      {
+        "kind": "mathlib_decl",
+        "reason": "The conclusion compares against the ambient natural vertex degree.",
+        "ref": {
+          "module": "Mathlib.Combinatorics.SimpleGraph.Finite",
+          "name": "SimpleGraph.degree"
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "The statement quantifies vertices of the public child-side cut component.",
+        "ref": {
+          "name": "rootedChildComponent",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 1
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "The statement supplies this canonical component tree witness to the rooted child-count function.",
+        "ref": {
+          "name": "rootedChildComponent_isTree",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 1
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "The equality’s left-hand side uses the public rooted child-count function.",
+        "ref": {
+          "name": "rootedChildCount",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 1
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "The component-side child count is rooted at the public canonical child root.",
+        "ref": {
+          "name": "rootedChildRoot",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 1
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "The hypothesis that c is a child of the root is expressed through the public rooted child set.",
+        "ref": {
+          "name": "rootedChildren",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 2
+        }
+      }
+    ],
+    "formal": {
+      "check": {
+        "allow_sorry": true,
+        "contains_axiom": false,
+        "contains_sorry": true,
+        "diagnostics": {
+          "diagnostics": [
+            {
+              "column": 9,
+              "line": 48,
+              "message": "declaration uses `sorry`",
+              "severity": "warning"
+            }
+          ],
+          "passed": true,
+          "raw_excerpt": "{'success': True, 'error_message': None, 'file': 'PositiveDefiniteTreeLattice.Main.IrreducibleVertex.Lemmas.rootedChildComponent_childCount_add_one_eq_degree', 'items': [{'severity': 'warning', 'pos': {'line': 48, 'column': 9}, 'endPos': {'line': 48, 'column': 86}, 'kind': None, 'data': 'declaration uses `sorry`', 'fileName': 'PositiveDefiniteTreeLattice.Main.IrreducibleVertex.Lemmas.rootedChildComponent_childCount_add_one_eq_degree', 'content': '  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildren`\\n-/\\ntheorem PositiveDefiniteTreeLattice.rootedChildComponent_childCount_add_one_eq_degree\\n    {V : Type*} [Fintype V] [DecidableEq V] (G : SimpleGraph V) [DecidableRel G.Adj]\\n    (h_tree : G.IsTree) (v c : V) (hc : c ∈ rootedChildren G h_tree v v)'}], 'total_items': 1, 'error_count': 0, 'warning_count': 1, 'info_count': 0, 'sorry_count': 1}",
+          "repo_file_path": "PositiveDefiniteTreeLattice/Main/IrreducibleVertex/Lemmas/rootedChildComponent_childCount_add_one_eq_degree.lean",
+          "schema_version": 2,
+          "summary": "Diagnostics returned 1 items"
+        },
+        "message": "Lean check passed.",
+        "policy": "statement_formal",
+        "scan": {
+          "admit_count": 0,
+          "axiom_count": 0,
+          "contains_admit": false,
+          "contains_axiom": false,
+          "contains_opaque": false,
+          "contains_sorry": true,
+          "contains_unsafe": false,
+          "limitation": "Text scan ignores Lean comments and string literals with a conservative first-round lexer; it is not a full Lean parser.",
+          "occurrences": [
+            {
+              "column": 3,
+              "excerpt": "sorry",
+              "kind": "sorry",
+              "line": 55
+            }
+          ],
+          "opaque_count": 0,
+          "sorry_count": 1,
+          "summary": "sorry=1, admit=0, axiom=0, opaque=0, unsafe=0",
+          "unsafe_count": 0
+        },
+        "status": "passed"
+      },
+      "code": "-- lean-constellation: managed-imports-begin\nimport PositiveDefiniteTreeLattice.Main.IrreducibleVertex.Prelude\nimport Mathlib.Combinatorics.SimpleGraph.Acyclic\nimport Mathlib.Combinatorics.SimpleGraph.Connectivity.Connected\nimport Mathlib.Combinatorics.SimpleGraph.Finite\n-- lean-constellation: managed-imports-end\n\n-- lean-constellation: declaration-source-begin\n\nnoncomputable local instance rootedChildComponentFintype {V : Type*} [Fintype V]\n    (G : SimpleGraph V) (v c : V) : Fintype (rootedChildComponent G v c) :=\n  Fintype.ofFinite _\n\nnoncomputable local instance rootedChildComponentDecidableAdj {V : Type*} (G : SimpleGraph V)\n    (v c : V) : DecidableRel (rootedChildComponent G v c).toSimpleGraph.Adj :=\n  Classical.decRel _\n\n/--\n# lean-constellation target: `rootedChildComponent_childCount_add_one_eq_degree`\n\nLet `V` be a finite type with decidable equality, let `G : SimpleGraph V` have decidable adjacency\nand satisfy `h_tree : G.IsTree`, and let `v c : V` with `hc : c ∈ rootedChildren G h_tree v v`. For\nevery `x : rootedChildComponent G v c`, `rootedChildCount (rootedChildComponent G v c).toSimpleGraph\n(rootedChildComponent_isTree G v c h_tree) (rootedChildRoot G v c) x + 1 = G.degree (x : V)` as\nnatural numbers.\n\n## Sources\n\n- Source `solution.tex`, lines 199–203\n\n## Statement dependencies\n\n- `SimpleGraph.IsTree` from `Mathlib.Combinatorics.SimpleGraph.Acyclic`\n- `SimpleGraph.ConnectedComponent.toSimpleGraph` from\n  `Mathlib.Combinatorics.SimpleGraph.Connectivity.Connected`\n- `SimpleGraph.degree` from `Mathlib.Combinatorics.SimpleGraph.Finite`\n- `Main.RootedCapacity::rootedChildComponent` → `rootedChildComponent` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildComponent`\n- `Main.RootedCapacity::rootedChildComponent_isTree` → `rootedChildComponent_isTree` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Theorems.rootedChildComponent_isTree`\n- `Main.RootedCapacity::rootedChildCount` → `rootedChildCount` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildCount`\n- `Main.RootedCapacity::rootedChildRoot` → `rootedChildRoot` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildRoot`\n- `Main.RootedCapacity::rootedChildren` → `rootedChildren` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildren`\n-/\ntheorem PositiveDefiniteTreeLattice.rootedChildComponent_childCount_add_one_eq_degree\n    {V : Type*} [Fintype V] [DecidableEq V] (G : SimpleGraph V) [DecidableRel G.Adj]\n    (h_tree : G.IsTree) (v c : V) (hc : c ∈ rootedChildren G h_tree v v)\n    (x : rootedChildComponent G v c) :\n    rootedChildCount (rootedChildComponent G v c).toSimpleGraph\n        (rootedChildComponent_isTree G v c h_tree) (rootedChildRoot G v c) x + 1 =\n      G.degree (x : V) := by\n  sorry\n"
+    },
+    "nl": {
+      "origin": [
+        {
+          "end_line": 203,
+          "end_locator": null,
+          "kind": "source",
+          "note": "These lines state that every component vertex has exactly one additional ambient incident edge toward its parent or the deleted root, hence ambient degree equals component child count plus one.",
+          "ref": null,
+          "resource_key": null,
+          "source_path": "solution.tex",
+          "start_line": 199,
+          "start_locator": null
+        }
+      ],
+      "text": "Let `V` be a finite type with decidable equality, let `G : SimpleGraph V` have decidable adjacency and satisfy `h_tree : G.IsTree`, and let `v c : V` with `hc : c ∈ rootedChildren G h_tree v v`. For every `x : rootedChildComponent G v c`, `rootedChildCount (rootedChildComponent G v c).toSimpleGraph (rootedChildComponent_isTree G v c h_tree) (rootedChildRoot G v c) x + 1 = G.degree (x : V)` as natural numbers."
+    }
+  },
+  "status": "committed",
+  "updated_at": "2026-08-02T14:57:15Z"
+}

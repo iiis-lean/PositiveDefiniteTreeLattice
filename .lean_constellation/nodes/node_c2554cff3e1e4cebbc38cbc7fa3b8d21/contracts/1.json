@@ -1,0 +1,87 @@
+{
+  "boundary": "Main covers the full native repository formalization scope, including the prepared source corpus, formalized content, internal node tree, and repository public interface.",
+  "committed_at": "2026-08-07T07:11:34Z",
+  "constraints": null,
+  "context_refs": [],
+  "contract_kind": "scope",
+  "created_at": "2026-07-29T14:24:27Z",
+  "decl_graph_head": {},
+  "deps": [],
+  "exports": [
+    {
+      "name": "exists_irreducible_vertex",
+      "node": "Main.IrreducibleVertex",
+      "repo": null,
+      "revision": 2
+    },
+    {
+      "name": "IrreducibleAnchor",
+      "node": "Main.LatticeFoundations",
+      "repo": null,
+      "revision": 1
+    },
+    {
+      "name": "treePairingAnchor",
+      "node": "Main.LatticeFoundations",
+      "repo": null,
+      "revision": 1
+    },
+    {
+      "name": "vertexVectorAnchor",
+      "node": "Main.LatticeFoundations",
+      "repo": null,
+      "revision": 1
+    }
+  ],
+  "goal": "Produce a proved native Lean repository whose immutable public boundary exports PositiveDefiniteTreeLattice.exists_irreducible_vertex. The proof must cover every finite integer-weighted simple tree satisfying the integral positive-definiteness hypothesis and the unique underweighted-vertex condition, and return an irreducible vertex vector under the supplied pairing definition.",
+  "interfaces": [
+    {
+      "bound_decl": {
+        "name": "exists_irreducible_vertex",
+        "node": "Main.IrreducibleVertex",
+        "repo": null,
+        "revision": 2
+      },
+      "expected_statement_lean_code": "theorem exists_irreducible_vertex\n    {V : Type*} [Fintype V] [DecidableEq V]\n    (G : SimpleGraph V) [DecidableRel G.Adj] (weight : V → ℤ)\n    (h_tree : G.IsTree)\n    (h_positive : ∀ x : V → ℤ, x ≠ 0 → 0 < treePairing G weight x x)\n    (h_unique_underweight : ∃! v : V, weight v < (G.degree v : ℤ)) :\n    ∃ v : V, Irreducible G weight (vertexVector v) := by\n  sorry",
+      "kind": "theorem",
+      "name": "PositiveDefiniteTreeLattice.exists_irreducible_vertex",
+      "note": "The public theorem must preserve the integral function model, exact pairing, uniqueness hypothesis and irreducibility predicate. Benchmark identity is intentionally absent from the Agent-facing corpus.",
+      "source_refs": [
+        {
+          "kind": "source",
+          "ref": {
+            "end_line": null,
+            "path": "formal_target.lean",
+            "start_line": null
+          }
+        },
+        {
+          "kind": "source",
+          "ref": {
+            "end_line": null,
+            "path": "problem.tex",
+            "start_line": null
+          }
+        },
+        {
+          "kind": "source",
+          "ref": {
+            "end_line": null,
+            "path": "solution.tex",
+            "start_line": null
+          }
+        }
+      ],
+      "summary": "A positive-definite integer-weighted finite tree with exactly one vertex whose weight is below its degree contains an irreducible vertex vector."
+    }
+  ],
+  "mathlib_decls": [],
+  "mathlib_modules": [],
+  "objective": "Maintain the root scope for the repository Coordinator: organize child scopes/content nodes, track the public boundary, and eventually expose all required repository interfaces.",
+  "owned_refs": [],
+  "status": "committed",
+  "success_criteria": "All required repository interfaces are bound and the Main scope can be committed as the repo public boundary.",
+  "summary": "Closed Main with all five Content children ready. Bound and exported the exact proved protected theorem PositiveDefiniteTreeLattice.exists_irreducible_vertex@2, and exported only its three current-repository formal Statement prerequisites: PositiveDefiniteTreeLattice.treePairing, PositiveDefiniteTreeLattice.vertexVector, and PositiveDefiniteTreeLattice.Irreducible. Public Statement closure is complete and the scope close gate passes.",
+  "task_completion_mode": "graph_proved",
+  "version": 1
+}

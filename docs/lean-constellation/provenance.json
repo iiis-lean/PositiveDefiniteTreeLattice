@@ -1,0 +1,17 @@
+{
+  "build_command": "lake build",
+  "generated_at": "2026-08-07T12:15:30Z",
+  "lean_toolchain": "leanprover/lean4:v4.32.0",
+  "release_id": "release_b3481b2825744323892bbbf9e425a779",
+  "repo_key": "PositiveDefiniteTreeLattice",
+  "schema_version": 1,
+  "semantic_manifest_digest": "a71d5e2a56c87018b0f2dec53a62946ee9245bd03111d7edbe687fb7c74aefd9",
+  "source_files": {
+    "README.md": "d607dbdac0630664d9eb947ed551ffbff07dadda52b2c58795710beb660ccf70",
+    "formal_target.lean": "f1f6c2f14a304303d773d9ee3ce25471a04c656198165c0e3018e87101a1c2a9",
+    "problem.tex": "1359acad563a71f537e979a84e0937d026785b7cd2246bf5a1f1d616169ebe07",
+    "solution.tex": "b1b5d2719f999dfa30defd296edf9649d8eea397bc7d1581c725a542c2335e52"
+  },
+  "source_manifest_digest": "5d7d66ddb4f3a69f4f3f40d2568077d12f193509cfb22fc7d30115185cfb525a",
+  "summary": "Portable Lean Constellation provenance."
+}

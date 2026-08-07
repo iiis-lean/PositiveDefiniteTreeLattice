@@ -1,0 +1,33 @@
+{
+  "change_summaries": {},
+  "committed_at": "2026-07-30T19:45:37Z",
+  "created_at": "2026-07-30T19:34:02Z",
+  "discard_reason": null,
+  "discarded_at": null,
+  "discarded_by": null,
+  "discarded_created_decl_names": [],
+  "discarded_restored_decl_revisions": {},
+  "discarded_revision_refs": [],
+  "execution_completed_at": "2026-07-30T19:43:52Z",
+  "execution_reason": "Lean exhausts the fixed 200000-heartbeat budget while checking the definitional equality between the exact dependent summand in the theorem statement and rootedChildCapacitySum after its single permitted unfolding. Raising heartbeat limits is forbidden.",
+  "execution_result_kind": "blocked",
+  "node_path": "Main.RootedCapacity",
+  "objective": "Prove one private instance-stable b_0009 aggregation lemma: exact per-child strict capacity bounds imply rootedChildCapacitySum is strictly less than the root-child cardinality, without unfolding the dependent sum in the size induction.",
+  "plan_closeout_acknowledged_at": "2026-07-30T19:45:37Z",
+  "plan_closeout_acknowledged_by": "a_a93b40977f574bad89528358fa89e022",
+  "result_kind": "blocked",
+  "result_reason": "The exact b_0009 aggregate helper reached proof_planned, but Proof Formal exhausts the fixed heartbeat budget on the dependent summand/ rootedChildCapacitySum definitional equality. The same representation blocker has now survived parent, size-indexed, and isolated-helper routes; no source, Mathlib, or visible-provider prerequisite is missing. A Coordinator-authorized aggregate representation repair is required before retry.",
+  "revision_refs": [
+    {
+      "change_id": "rootedChildCapacitySum_lt_card_of_forall_lt_one@rev:1",
+      "decl_name": "rootedChildCapacitySum_lt_card_of_forall_lt_one",
+      "revision": 1
+    }
+  ],
+  "round_id": "round_29b1f2dff9a5419bb721170ecc0796a0",
+  "round_index": 59,
+  "started_at": "2026-07-30T19:35:09Z",
+  "status": "committed",
+  "strategy_id": "strategy_fc60f40a331d4f63bd19e22f0eec7473",
+  "summary": "Round 59 made statement-layer progress only: rootedChildCapacitySum_lt_card_of_forall_lt_one reached proof_planned with a valid exact source-derived statement and accepted proof route, but is not graph_proved. The same fixed-heartbeat dependent-instance normalization that blocked both prior capacity upper-bound induction routes now occurs inside the isolated aggregate helper itself, so the known dependency closure is mathematically complete but compiler-unstable at the rootedChildCapacitySum representation boundary. No missing Mathlib, visible provider, or source fact remains. Retry requires an authorized representation-level repair of the child capacity summand/aggregate interface, not another parent proof attempt or proof-term wrapper; afterward retry this helper, rootedCapacity_lt_one_of_card_le, then capacity_pos_lt_one. The graph now has 37 declarations against the contract's approximate final scale of 29–38, while rooted_integer_estimate and root_coefficient_lt_norm are still absent, so further helper expansion would exceed the planned scope. Next action after closeout should be terminal Content blocked for Coordinator review of the representation/scope boundary."
+}

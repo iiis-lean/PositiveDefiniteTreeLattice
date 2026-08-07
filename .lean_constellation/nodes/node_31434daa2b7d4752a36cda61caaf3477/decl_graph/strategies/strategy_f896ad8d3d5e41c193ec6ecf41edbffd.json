@@ -1,0 +1,20 @@
+{
+  "closed_at": "2026-07-30T04:57:13Z",
+  "closed_reason": "The strategy achieved its graph-proved target. Both interfaces are proved and bound, public Statement closure is complete, all theorem-like helpers are proved, and no superseded active branch or out-of-scope dependency remains.",
+  "created_at": "2026-07-30T03:31:48Z",
+  "created_round_ids": [
+    "round_40c8245f91d2455f94bbcbb04f85fef0",
+    "round_d704a71d18cc416f95fe9180b7e58d49",
+    "round_144313e1505147d79bf78443b17d9672",
+    "round_b472c3f5a2c14e7e8b277050ff69ff04",
+    "round_f3a58b8ef4d7453b8f677ad7007038c1",
+    "round_3f7ef0424d8d4a12a4c1d533280c0c9e",
+    "round_53b6e9798b1e4b0d91af634f7b6b4165"
+  ],
+  "node_path": "Main.TreePathSeparation",
+  "objective": "Build the graph-proved generic finite-tree path/cut package bottom-up from a canonical chosen simple path: first package existence, pathhood, and uniqueness from Mathlib; next prove edge-cut crossing/support separation and append simplicity; finally prove and bind PositiveDefiniteTreeLattice.uniquePath_support_separated_by_cut and PositiveDefiniteTreeLattice.uniquePath_eq_append_through_cut with root, parent, child, and x hypotheses directly instantiable by the RootedCapacity consumer.",
+  "rationale": "The owned source route is the rooted-tree branch decomposition implicit in SourceIndex b_0008–b_0009 and solution.tex lines 33–64, especially grouping vertices by child subtrees. Visible dependency recon found no repository provider. Mathlib recon verified IsTree.existsUnique_path, bridge/delete-edge reachability, support decomposition, and path append APIs. Under graph_proved, a bottom-up route avoids circularly assuming support separation: establish the chosen-path foundation, derive cut-side separation and append pathhood locally, then use tree-path uniqueness for the exact append equality. Keep the package within roughly 5–10 important declarations, make stable construction/interface statement prerequisites public, keep proof-only helpers private, and do not import RootedCapacity.",
+  "status": "closed",
+  "strategy_id": "strategy_f896ad8d3d5e41c193ec6ecf41edbffd",
+  "summary": "Completed the bottom-up generic finite-tree path/cut strategy with six active declarations: a public canonical path definition; proved private pathhood, uniqueness, and append-simplicity helpers; and both required proved public qualified interfaces."
+}

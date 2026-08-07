@@ -1,0 +1,20 @@
+{
+  "closed_at": "2026-07-29T20:56:55Z",
+  "closed_reason": "The four fresh source-exact interface anchors are committed, graph_proved-satisfied, bound to the required exact Lean identities, and the deterministic completion gate passes. Two unreferenced historical records were deleted. Historical treePairing and vertexVector remain only because Main.RootedCapacity currently references their Decl anchors; they declare nonconflicting internal Lean names and are not bound as the stable API, so they do not block this node's completion gate.",
+  "created_at": "2026-07-29T19:44:37Z",
+  "created_round_ids": [
+    "round_65d4188c84174a47a96e4f57aea1efb3",
+    "round_dece65b44d1b422291d45d6baabac1b9",
+    "round_2bd029d62f8d4c58b28dc039e404943a",
+    "round_56270f477b9c45b7b8d7b049dd2f8d05",
+    "round_547e23e4d4b1486e839473e9964a06d8",
+    "round_6efddcf7ce3b40368d02a9a52a86a597",
+    "round_9caa25c402654a559f70c78878aefaf3"
+  ],
+  "node_path": "Main.LatticeFoundations",
+  "objective": "Repair the four identity-changed interface anchors with fresh declaration records while preserving the exact graph-proved lattice-foundation API: first evacuate the historical foundation records to nonconflicting internal Lean names and create fresh exact treePairing/vertexVector anchors; then migrate Irreducible, supporting theorem dependencies, the self-pairing expansion, and the final norm-one theorem bottom-up; finally remove superseded historical anchors and bind the four fresh records.",
+  "rationale": "Contract version 2 now identifies anchor identity—not mathematics, Mathlib support, or source evidence—as the only blocker. Existing ten declarations are source-faithful and proof-policy satisfied, but all four interfaces are unbound because historical Decl anchors changed Lean identity. A staged declaration-identity repair is required: same-round evacuation plus fresh independent foundation creation avoids duplicate exact Lean names, later rounds can rewire consumers only after fresh providers are committed, and a final cleanup can remove old internal anchors without deleting any source-required capability. No preparation recon is justified because dependencies, Mathlib hints, sources, and the exact binding mismatch are already authoritative.",
+  "status": "closed",
+  "strategy_id": "strategy_2638883d005249d6a0ca57c50614cfed",
+  "summary": "Completed the namespace/interface repair bottom-up: recreated and bound all four exact namespaced interfaces, rewired and reproved every current-node consumer, removed independently deletable historical records, verified complete public Statement closure, and passed the graph_proved Content completion gate. The only retained historical records are internal-name compatibility providers still referenced by Main.RootedCapacity."
+}

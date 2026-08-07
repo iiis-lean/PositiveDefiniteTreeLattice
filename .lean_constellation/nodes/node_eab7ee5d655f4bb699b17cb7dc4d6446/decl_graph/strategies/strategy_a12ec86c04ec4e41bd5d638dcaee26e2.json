@@ -1,0 +1,14 @@
+{
+  "closed_at": "2026-08-06T10:00:17Z",
+  "closed_reason": "Content task is blocked pending a worker environment with read/write access to declaration-owned files. Retry the concise replacement after sandbox repair; no semantic, dependency, or representation change is required.",
+  "created_at": "2026-08-06T09:42:05Z",
+  "created_round_ids": [
+    "round_8273c3cfb8614b93881fd12ad6767fae"
+  ],
+  "node_path": "Main.RootedCapacity",
+  "objective": "Repair contract v6 by deleting the blocked overlong specified artifact and proving the identical scalar contraction theorem under the concise public key rootNonrootContraction_eq_childCapacitySum, then bind the existing semantic interface.",
+  "rationale": "The refreshed contract explicitly owns this capture-only repair and forbids retrying the overlong key. Solution.tex 57–68 and the accepted Statement NL fix the same B₀/D/C₀ contraction semantics. The old artifact is unreleased, specified only, and has a singleton delete closure. All mathematical providers are already accepted, so under graph_proved completion use one small delete-plus-create round with no preparation or representation changes.",
+  "status": "closed",
+  "strategy_id": "strategy_a12ec86c04ec4e41bd5d638dcaee26e2",
+  "summary": "The capture-repair strategy preserved the exact concise theorem at specified state and staged the old artifact for deletion, but Statement Formal could not access the owned file because the worker sandbox denied filesystem reads/edits."
+}

@@ -1,0 +1,15 @@
+{
+  "closed_at": "2026-07-30T05:44:06Z",
+  "closed_reason": "The resumed provider-backed route is blocked by a generic root-oriented cut-side closure theorem absent from both Mathlib and the currently exposed Main.TreePathSeparation boundary; the RootedCapacity contract explicitly excludes reimplementing that argument locally.",
+  "created_at": "2026-07-30T05:11:48Z",
+  "created_round_ids": [
+    "round_a77202b9e8d44c2cbf04fbbbc224daa7",
+    "round_b3c0ade1b88c488fbaf154bca2c080bb"
+  ],
+  "node_path": "Main.RootedCapacity",
+  "objective": "Resume the graph-proved RootedCapacity route after extraction of Main.TreePathSeparation: first prove the three preserved rooted-component transport consumers in dependency order using the provider's uniquePath support-separation and cut-append theorems, then prove child admissibility and the b_0009 capacity recursion/strict bounds, followed by the b_0010 rooted integer estimate and b_0011 root-coefficient interface.",
+  "rationale": "The updated contract explicitly owns RootedCapacity-specific transports while excluding generic finite-tree path separation, and expands the expected remaining scale to 18–28 declarations. Dependency recon compiler-verified that PositiveDefiniteTreeLattice.uniquePath_eq_append_through_cut has exactly the path orientation of rootedChildComponent_path_decomposition@1 and that uniquePath_support_separated_by_cut supplies the former missing support fact. The provider boundary imports cleanly, and no statement/index/coercion mismatch exists. Under graph_proved completion, retain all accepted statements and advance the three consumers one at a time: path decomposition, Finset rootedChildren transport, then child-count equality, before attempting parent admissibility or capacity proofs.",
+  "status": "closed",
+  "strategy_id": "strategy_a6a7ac0a78e3413a807b0948a745c870",
+  "summary": "Closed the strategy at the provider boundary. Successfully proved rootedChildComponent_path_decomposition@2 using uniquePath_eq_append_through_cut. Preserved rootedChildren_rootedChildComponent@2 at proof_planned with its exact Finset.map statement and accepted Proof NL plan, and rootedChildCount_rootedChildComponent@1 at declared. Focused Mathlib recon verified deleteEdges_adj and ConnectedComponent.mem_supp_of_adj_mem_supp but found no theorem deriving child-side reachability for an ambient rooted child. Main.TreePathSeparation must expose the smallest generic root-oriented cut-side closure theorem before the Finset transport can be retried; no superseded or retry-named graph artifacts require cleanup."
+}

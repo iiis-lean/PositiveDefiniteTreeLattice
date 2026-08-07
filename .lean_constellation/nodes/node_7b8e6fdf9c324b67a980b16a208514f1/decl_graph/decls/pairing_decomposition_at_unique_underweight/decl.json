@@ -1,0 +1,21 @@
+{
+  "created_at": "2026-08-06T15:40:38Z",
+  "current_revision": 7,
+  "kind": "lemma",
+  "lifecycle": "active",
+  "module": "PositiveDefiniteTreeLattice.Main.IrreducibleVertex.Lemmas.pairing_decomposition_at_unique_underweight",
+  "name": "pairing_decomposition_at_unique_underweight",
+  "node_path": "Main.IrreducibleVertex",
+  "public": false,
+  "revision_ids": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7
+  ],
+  "summary": "The shifted self-pairing splits into the root term and canonical rooted child-component terms.",
+  "updated_at": "2026-08-07T05:12:39Z"
+}

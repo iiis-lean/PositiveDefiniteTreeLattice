@@ -1,0 +1,18 @@
+{
+  "created_at": "2026-08-03T11:51:13Z",
+  "current_revision": 4,
+  "kind": "theorem",
+  "lifecycle": "deleted",
+  "module": "PositiveDefiniteTreeLattice.Main.RootedCapacity.Theorems.rootedNonroot_inverse_quadratic_sigma_of_child_admissible",
+  "name": "rootedNonroot_inverse_quadratic_sigma_of_child_admissible",
+  "node_path": "Main.RootedCapacity",
+  "public": false,
+  "revision_ids": [
+    1,
+    2,
+    3,
+    4
+  ],
+  "summary": "The ambient nonroot inverse quadratic is the canonical attached-child Sigma sum under pointwise child admissibility.",
+  "updated_at": "2026-08-03T14:56:36Z"
+}

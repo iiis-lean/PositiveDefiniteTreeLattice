@@ -1,0 +1,33 @@
+{
+  "change_summaries": {},
+  "committed_at": "2026-07-30T03:58:36Z",
+  "created_at": "2026-07-30T03:47:26Z",
+  "discard_reason": null,
+  "discarded_at": null,
+  "discarded_by": null,
+  "discarded_created_decl_names": [],
+  "discarded_restored_decl_revisions": {},
+  "discarded_revision_refs": [],
+  "execution_completed_at": "2026-07-30T03:57:12Z",
+  "execution_reason": null,
+  "execution_result_kind": "success",
+  "node_path": "Main.TreePathSeparation",
+  "objective": "Prove the first theorem-like foundation: the committed canonical `uniquePath G hG v w` is a simple path. This round consumes the accepted public definition `uniquePath` and the verified Mathlib witness property from `SimpleGraph.IsTree.existsUnique_path`; it supplies the proved pathhood needed before uniqueness, support, deleted-edge, and append arguments. Source/contract anchor: the unique-path structural bridge required for child-subtree grouping in SourceIndex b_0008–b_0009 / solution.tex lines 33–64.",
+  "plan_closeout_acknowledged_at": "2026-07-30T03:58:36Z",
+  "plan_closeout_acknowledged_by": "a_32cab14a2d1e497786514a39188b3e4f",
+  "result_kind": "success",
+  "result_reason": "The sole theorem passed all four stages, reached proved state, and its accepted dependency closure satisfies the graph-proved policy.",
+  "revision_refs": [
+    {
+      "change_id": "uniquePath_isPath@rev:1",
+      "decl_name": "uniquePath_isPath",
+      "revision": 1
+    }
+  ],
+  "round_id": "round_144313e1505147d79bf78443b17d9672",
+  "round_index": 3,
+  "started_at": "2026-07-30T03:48:51Z",
+  "status": "committed",
+  "strategy_id": "strategy_f896ad8d3d5e41c193ec6ecf41edbffd",
+  "summary": "The bottom-up strategy advanced cleanly: `uniquePath_isPath` revision 1 reached `proved` and is proof-policy satisfied. Together with the committed public `uniquePath` definition, the chosen-path foundation now has both its object and pathhood property. No state-only intermediate or blocker remains. The required cut-support and factorization interfaces are still unbuilt. The next dependency-visible step is the proved uniqueness eliminator for any simple walk with the same endpoints; cut crossing, append simplicity, and public parents should wait until that eliminator is committed."
+}

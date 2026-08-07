@@ -1,0 +1,14 @@
+{
+  "closed_at": "2026-07-29T18:42:37Z",
+  "closed_reason": "Superseded after deterministic draft validation showed same-round provider/consumer updates are prohibited.",
+  "created_at": "2026-07-29T18:40:38Z",
+  "created_round_ids": [
+    "round_138ee11c61f045f088325b56779095ff"
+  ],
+  "node_path": "Main.LatticeFoundations",
+  "objective": "Atomically repair the Lean namespace projection of the existing ten-declaration LatticeFoundations package: recapture every definition and theorem under namespace PositiveDefiniteTreeLattice, preserving all accepted statements, dependency edges, proof plans, proofs, public visibility, and the four namespaced interface meanings, with no global compatibility aliases.",
+  "rationale": "Contract version 2 is a projection-only continuation repair under graph_proved. Current truth shows all ten active declarations are proof-policy satisfied but compiler-confirmed at global Lean names, while the qualified interfaces require PositiveDefiniteTreeLattice.* and the generated Interfaces module must coexist with RootedCapacity Matrix.PosDef/irreducibility imports. The package is dependency-connected, so one atomic Statement Formal plus theorem proof recapture avoids an inconsistent partial namespace migration. Existing source evidence is formal_target.lean lines 7–22 and solution.tex lines 19–31; current Mathlib hints already cover the accepted proofs, so preparation recon is unnecessary.",
+  "status": "closed",
+  "strategy_id": "strategy_b465944382e94e30b7f4100d58702464",
+  "summary": "Atomic namespace migration was invalid because provider revisions reset to specified and cannot satisfy consumers in the same round. Replacing with a dependency-ordered namespace migration."
+}

@@ -1,0 +1,68 @@
+{
+  "change": {
+    "anticipated_proof_dep_names": [],
+    "anticipated_statement_dep_names": [],
+    "base_revision": null,
+    "kind": "create",
+    "objective": "Prove the exact basis-entry formula for Main.LatticeFoundations.treePairing: diagonal entries are the vertex weight, distinct adjacent entries are -1, and nonadjacent entries are 0. This source-specific bridge is implicit in solution.tex lines 57–64 and supports both rootedGram compatibility and later component/block decomposition. Consume only treePairing, vertexVector, treePairing_vertexVector_self, and finite-neighbor sum facts; it has no current-node Statement or proof prerequisite.",
+    "require_target_state_satisfied": true,
+    "reset_to_state": null,
+    "summary": "Intended private proved basis-entry bridge: diagonal weight, -1 for distinct adjacent vertices, and 0 otherwise, implicit in solution.tex lines 57–64. Statement NL was accepted and the revision reached specified, but Statement Formal was blocked before capture; proof planning/formal proof are absent and target proved was not reached. Blocker classification: visible-provider/interface import conflict. The managed Prelude cannot compile because Main.LatticeFoundations.Defs.Irreducible and Mathlib.Algebra.Group.Irreducible.Defs both install the global name `Irreducible`; no mismatch was found in treePairing, vertexVector, or the intended formula. Retry after the provider/interface compiles with the node's Mathlib imports; no additional current-node helper is a known prerequisite.",
+    "target_state": "proved"
+  },
+  "lean_decl_name": null,
+  "proof": null,
+  "revision": 1,
+  "state": "specified",
+  "statement": {
+    "deps": [
+      {
+        "kind": "mathlib_decl",
+        "reason": "The repaired statement explicitly restricts the pairing formula to the finite-tree setting required by the source and node contract.",
+        "ref": {
+          "module": "Mathlib.Combinatorics.SimpleGraph.Acyclic",
+          "name": "SimpleGraph.IsTree"
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "The theorem states an exact evaluation of this pairing.",
+        "ref": {
+          "name": "treePairing",
+          "node": "Main.LatticeFoundations",
+          "repo": null,
+          "revision": 2
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "The theorem evaluates the pairing on these basis vectors.",
+        "ref": {
+          "name": "vertexVector",
+          "node": "Main.LatticeFoundations",
+          "repo": null,
+          "revision": 2
+        }
+      }
+    ],
+    "formal": null,
+    "nl": {
+      "origin": [
+        {
+          "end_line": 64,
+          "end_locator": null,
+          "kind": "source",
+          "note": "The displayed block matrix uses diagonal weights and -1 precisely at root-child edges.",
+          "ref": null,
+          "resource_key": null,
+          "source_path": "solution.tex",
+          "start_line": 57,
+          "start_locator": null
+        }
+      ],
+      "text": "For every finite integer-weighted simple graph `G` satisfying the tree hypothesis `G.IsTree`, weight function `w`, and vertices `u` and `v`, the pairing of the corresponding vertex vectors is\n`treePairing G w (vertexVector u) (vertexVector v) = if u = v then w u else if G.Adj u v then -1 else 0`.\nEquivalently, diagonal basis entries are the vertex weights, distinct adjacent basis entries are `-1`, and distinct nonadjacent basis entries are `0`."
+    }
+  },
+  "status": "committed",
+  "updated_at": "2026-07-29T18:33:35Z"
+}

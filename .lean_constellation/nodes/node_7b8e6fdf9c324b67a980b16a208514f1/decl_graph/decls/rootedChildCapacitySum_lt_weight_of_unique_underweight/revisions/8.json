@@ -1,0 +1,499 @@
+{
+  "change": {
+    "anticipated_proof_dep_names": [
+      "rootedChildComponent_isAdmissible_of_unique_underweight",
+      "rootedGram_posDef_of_integer_positive"
+    ],
+    "anticipated_statement_dep_names": [],
+    "base_revision": 7,
+    "kind": "update",
+    "objective": "Preserve revision 7's accepted Statement and Proof NL for the exact strict Schur gap in solution.tex:204–208 and rerun only Proof Formal. Retain the previously successful ambient PosDef step from rootedGram_posDef_of_integer_positive, transport each proved child admissibility witness from rootedChildComponent_isAdmissible_of_unique_underweight through public isAdmissibleRootedTree_instance_irrel.mp, and apply rootedNonrootGram_reindex_childBlocks_inv_of_child_admissible. For each unchanged dependent child index and component, use public rootedCapacity_instance_irrel in its verified left-to-right orientation to identify the canonical block inverse diagonal with the rootedCapacity value unfolded from rootedChildCapacitySummand, then finish the already-approved support and finite-sum normalization using rootedChildComponentsEquivNonroot_apply and rootedGram_root_rootedChildComponent_support. Do not alter the Statement or Proof NL, component type, graph, weight, root, indices, capacity representation, assumptions, or strict conclusion; do not add casts, wrappers, helpers, generic infrastructure, ambient rooted admissibility, or raised heartbeats. This proved lemma is the lower input for solution.tex:210–244 and the exact protected final interface.",
+    "require_target_state_satisfied": true,
+    "reset_to_state": "proof_planned",
+    "summary": "Revision 8 preserved the accepted Statement and Proof NL for the exact solution.tex:204–208 strict capacity gap and reran only Proof Formal. The freshly public rootedCapacity_instance_irrel bridge resolved the final canonical component-instance mismatch: after the already-working child-admissibility transport, inverse-reindex theorem, strict Schur complement, equivalence evaluation, and root-support collapse, its left-to-right equality identified each canonical block inverse diagonal with the rootedChildCapacitySummand capacity value. The formal proof passed, the lemma reached proved state, and its required graph_proved proof-policy satisfaction check passed without casts, wrappers, new helpers, altered indices, ambient rooted admissibility, statement drift, or raised heartbeats.",
+    "target_state": "proved"
+  },
+  "lean_decl_name": "rootedChildCapacitySum_lt_weight_of_unique_underweight",
+  "proof": {
+    "deps": [
+      {
+        "kind": "mathlib_decl",
+        "reason": "Collapses each supported child-root fiber sum after the root-support calculation.",
+        "ref": {
+          "module": "Mathlib.Algebra.BigOperators.Group.Finset.Basic",
+          "name": "Finset.sum_eq_single"
+        }
+      },
+      {
+        "kind": "mathlib_decl",
+        "reason": "Collapses the singleton root-index Schur-complement quadratic form.",
+        "ref": {
+          "module": "Mathlib.Algebra.BigOperators.Group.Finset.Basic",
+          "name": "Fintype.sum_unique"
+        }
+      },
+      {
+        "kind": "mathlib_decl",
+        "reason": "Installs the Invertible D instance required for nonsingular-inverse cancellation.",
+        "ref": {
+          "module": "Mathlib.Algebra.Group.Invertible.Basic",
+          "name": "IsUnit.invertible"
+        }
+      },
+      {
+        "kind": "mathlib_decl",
+        "reason": "Rewrites matrix-entry sums over the sigma child-component index into childwise finite sums.",
+        "ref": {
+          "module": "Mathlib.Data.Fintype.BigOperators",
+          "name": "Fintype.sum_sigma"
+        }
+      },
+      {
+        "kind": "mathlib_decl",
+        "reason": "Makes every off-diagonal child-block inverse entry zero.",
+        "ref": {
+          "module": "Mathlib.Data.Matrix.Block",
+          "name": "Matrix.blockDiagonal'_apply'"
+        }
+      },
+      {
+        "kind": "mathlib_decl",
+        "reason": "Identifies the root-root block entry in the exact block expansion.",
+        "ref": {
+          "module": "Mathlib.Data.Matrix.Block",
+          "name": "Matrix.fromBlocks_apply₁₁"
+        }
+      },
+      {
+        "kind": "mathlib_decl",
+        "reason": "Evaluates the root-to-nonroot block entries in the completed-square expansion.",
+        "ref": {
+          "module": "Mathlib.Data.Matrix.Block",
+          "name": "Matrix.fromBlocks_apply₁₂"
+        }
+      },
+      {
+        "kind": "mathlib_decl",
+        "reason": "Evaluates the nonroot-to-root block entries in the completed-square expansion.",
+        "ref": {
+          "module": "Mathlib.Data.Matrix.Block",
+          "name": "Matrix.fromBlocks_apply₂₁"
+        }
+      },
+      {
+        "kind": "mathlib_decl",
+        "reason": "Expands the root-first Matrix.fromBlocks action on the completed-square vector.",
+        "ref": {
+          "module": "Mathlib.Data.Matrix.Block",
+          "name": "Matrix.fromBlocks_mulVec"
+        }
+      },
+      {
+        "kind": "mathlib_decl",
+        "reason": "Associates the transported positive quadratic form with the root-first block expression.",
+        "ref": {
+          "module": "Mathlib.Data.Matrix.Mul",
+          "name": "Matrix.dotProduct_mulVec"
+        }
+      },
+      {
+        "kind": "mathlib_decl",
+        "reason": "Converts matrix inverse cancellation into D *ᵥ (D⁻¹ *ᵥ z) = z.",
+        "ref": {
+          "module": "Mathlib.Data.Matrix.Mul",
+          "name": "Matrix.mulVec_mulVec"
+        }
+      },
+      {
+        "kind": "mathlib_decl",
+        "reason": "Expands the two matrix products in the child-block inverse calculation into the sigma-indexed finite sums.",
+        "ref": {
+          "module": "Mathlib.Data.Matrix.Mul",
+          "name": "Matrix.mul_apply"
+        }
+      },
+      {
+        "kind": "mathlib_decl",
+        "reason": "Transports the positive quadratic form and evaluates the inverse reindexing at sigma coordinates.",
+        "ref": {
+          "module": "Mathlib.LinearAlgebra.Matrix.Defs",
+          "name": "Matrix.reindex_apply"
+        }
+      },
+      {
+        "kind": "mathlib_decl",
+        "reason": "Normalizes the positive definite root/nonroot block quadratic form at the completed-square vector without changing the accepted statement.",
+        "ref": {
+          "module": "Mathlib.LinearAlgebra.Matrix.Hermitian",
+          "name": "Matrix.schur_complement_eq₂₂"
+        }
+      },
+      {
+        "kind": "mathlib_decl",
+        "reason": "Establishes D * D⁻¹ = 1 for the completed-square cancellation.",
+        "ref": {
+          "module": "Mathlib.LinearAlgebra.Matrix.NonsingularInverse",
+          "name": "Matrix.mul_inv_cancel_right_of_invertible"
+        }
+      },
+      {
+        "kind": "mathlib_decl",
+        "reason": "The strict Schur-complement step applies the positive-definite quadratic-form condition to the completed-square test vector.",
+        "ref": {
+          "module": "Mathlib.LinearAlgebra.Matrix.PosDef",
+          "name": "Matrix.PosDef"
+        }
+      },
+      {
+        "kind": "mathlib_decl",
+        "reason": "Supplies strict positivity for the nonzero completed-square vector.",
+        "ref": {
+          "module": "Mathlib.LinearAlgebra.Matrix.PosDef",
+          "name": "Matrix.PosDef.dotProduct_mulVec_pos"
+        }
+      },
+      {
+        "kind": "mathlib_decl",
+        "reason": "Proves the positive-definite principal block D is a matrix unit.",
+        "ref": {
+          "module": "Mathlib.LinearAlgebra.Matrix.PosDef",
+          "name": "Matrix.PosDef.isUnit"
+        }
+      },
+      {
+        "kind": "mathlib_decl",
+        "reason": "Transports ambient rooted-Gram positive definiteness to the nonroot principal block D.",
+        "ref": {
+          "module": "Mathlib.LinearAlgebra.Matrix.PosDef",
+          "name": "Matrix.PosDef.submatrix"
+        }
+      },
+      {
+        "kind": "mathlib_decl",
+        "reason": "Defines the root-first equivalence used to transport positivity and apply the required root/nonroot Matrix.fromBlocks decomposition.",
+        "ref": {
+          "module": "Mathlib.Logic.Equiv.Sum",
+          "name": "Equiv.sumCompl"
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "Supplies the pointwise child-component admissibility premise for the inverse child-block theorem.",
+        "ref": {
+          "name": "rootedChildComponent_isAdmissible_of_unique_underweight",
+          "node": "Main.IrreducibleVertex",
+          "repo": null,
+          "revision": 3
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "Supplies ambient positive definiteness of the rooted Gram matrix for the strict Schur-complement quadratic-form argument.",
+        "ref": {
+          "name": "rootedGram_posDef_of_integer_positive",
+          "node": "Main.IrreducibleVertex",
+          "repo": null,
+          "revision": 1
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "Transports each current-node child admissibility witness to the canonical local instances required by rootedNonrootGram_reindex_childBlocks_inv_of_child_admissible.",
+        "ref": {
+          "name": "isAdmissibleRootedTree_instance_irrel",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 1
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "Identifies a child capacity with the corresponding inverse rooted-Gram diagonal entry.",
+        "ref": {
+          "name": "rootedCapacity",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 1
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "Transports the child component's canonical block inverse diagonal to the rootedCapacity instance unfolded by rootedChildCapacitySummand.",
+        "ref": {
+          "name": "rootedCapacity_instance_irrel",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 1
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "Unfolds the conclusion's finite sum over rooted child capacity summands.",
+        "ref": {
+          "name": "rootedChildCapacitySum",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 2
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "Identifies each summed child term with the capacity of its rooted child component.",
+        "ref": {
+          "name": "rootedChildCapacitySummand",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 1
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "Defines the sigma fibers and their exact child matrices.",
+        "ref": {
+          "name": "rootedChildComponent",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 1
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "Evaluates sigma child-component indices as the exact nonroot vertices while rewriting the reindexing.",
+        "ref": {
+          "name": "rootedChildComponentsEquivNonroot_apply",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 1
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "Names the unique supported coordinate in every child-root interaction and capacity diagonal.",
+        "ref": {
+          "name": "rootedChildRoot",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 1
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "Unpacks the dependent child index to the adjacency premise for component admissibility.",
+        "ref": {
+          "name": "rootedChildren",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 2
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "Defines the ambient matrix and permits the root-root entry reduction.",
+        "ref": {
+          "name": "rootedGram",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 2
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "Provides the required root-first Matrix.fromBlocks decomposition.",
+        "ref": {
+          "name": "rootedGram_reindex_rootNonroot_blocks",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 1
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "Collapses root/child-component interactions to the distinguished child roots.",
+        "ref": {
+          "name": "rootedGram_root_rootedChildComponent_support",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 2
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "Rewrites the nonroot inverse into the child-component block-diagonal inverse under the established admissibility premise.",
+        "ref": {
+          "name": "rootedNonrootGram_reindex_childBlocks_inv_of_child_admissible",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 1
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "Reduces rootedGram G weight v v to (weight v : ℚ) in the root-first block.",
+        "ref": {
+          "name": "treePairing_vertexVector_vertexVector",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 2
+        }
+      }
+    ],
+    "formal": {
+      "check": {
+        "allow_sorry": false,
+        "contains_axiom": false,
+        "contains_sorry": false,
+        "diagnostics": {
+          "diagnostics": [],
+          "passed": true,
+          "raw_excerpt": "",
+          "repo_file_path": "PositiveDefiniteTreeLattice/Main/IrreducibleVertex/Lemmas/rootedChildCapacitySum_lt_weight_of_unique_underweight.lean",
+          "schema_version": 2,
+          "summary": "Command completed successfully"
+        },
+        "message": "Lean check passed.",
+        "policy": "proof_formal",
+        "scan": {
+          "admit_count": 0,
+          "axiom_count": 0,
+          "contains_admit": false,
+          "contains_axiom": false,
+          "contains_opaque": false,
+          "contains_sorry": false,
+          "contains_unsafe": false,
+          "limitation": "Text scan ignores Lean comments and string literals with a conservative first-round lexer; it is not a full Lean parser.",
+          "occurrences": [],
+          "opaque_count": 0,
+          "sorry_count": 0,
+          "summary": "sorry=0, admit=0, axiom=0, opaque=0, unsafe=0",
+          "unsafe_count": 0
+        },
+        "status": "passed"
+      },
+      "code": "-- lean-constellation: managed-imports-begin\nimport PositiveDefiniteTreeLattice.Main.IrreducibleVertex.Prelude\nimport Mathlib.Algebra.BigOperators.Group.Finset.Basic\nimport Mathlib.Algebra.Group.Invertible.Basic\nimport Mathlib.Combinatorics.SimpleGraph.Acyclic\nimport Mathlib.Combinatorics.SimpleGraph.Finite\nimport Mathlib.Data.Fintype.BigOperators\nimport Mathlib.Data.Matrix.Block\nimport Mathlib.Data.Matrix.Mul\nimport Mathlib.LinearAlgebra.Matrix.Defs\nimport Mathlib.LinearAlgebra.Matrix.Hermitian\nimport Mathlib.LinearAlgebra.Matrix.NonsingularInverse\nimport Mathlib.LinearAlgebra.Matrix.PosDef\nimport Mathlib.Logic.Equiv.Sum\nimport PositiveDefiniteTreeLattice.Main.IrreducibleVertex.Lemmas.rootedChildComponent_isAdmissible_of_unique_underweight\nimport PositiveDefiniteTreeLattice.Main.IrreducibleVertex.Lemmas.rootedGram_posDef_of_integer_positive\n-- lean-constellation: managed-imports-end\n\n-- lean-constellation: declaration-source-begin\n\n/--\n# lean-constellation target: `rootedChildCapacitySum_lt_weight_of_unique_underweight`\n\nLet `V` be a finite type with decidable equality, let `G : SimpleGraph V` have decidable adjacency,\nlet `weight : V → ℤ`, and let `v : V`. Suppose `h_tree : G.IsTree`, `h_positive : ∀ x : V → ℤ, x ≠ 0\n→ 0 < treePairing G weight x x`, `h_unique_underweight : ∃! u : V, weight u < (G.degree u : ℤ)`, `hv\n: weight v < (G.degree v : ℤ)`, and `h_two : ∀ x : V, 2 ≤ weight x`. Then the canonical sum of the\ncapacities of the rooted child-side components at `v` is strictly below the integral weight at `v`,\nviewed in `ℚ`:\n\n`rootedChildCapacitySum G h_tree weight v < (weight v : ℚ)`.\n\n## Sources\n\n- Source `solution.tex`, lines 204–208\n\n## Statement dependencies\n\n- `SimpleGraph.IsTree` from `Mathlib.Combinatorics.SimpleGraph.Acyclic`\n- `SimpleGraph.degree` from `Mathlib.Combinatorics.SimpleGraph.Finite`\n- `Main.LatticeFoundations::treePairingAnchor` → `PositiveDefiniteTreeLattice.treePairing` from\n  `PositiveDefiniteTreeLattice.Main.LatticeFoundations.Defs.treePairingAnchor`\n- `Main.RootedCapacity::rootedChildCapacitySum` → `rootedChildCapacitySum` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildCapacitySum`\n\n## Proof outline\n\nWork classically, preserving the accepted parameters G, hG, weight, v, h_positive,\nh_unique_underweight, hv, and h_two. Define:\n- R := {x : V // x ≠ v}\n- I := {c : V // c ∈ rootedChildren G hG v v}\n- S := Σ c : I, rootedChildComponent G v c.1\n- D := (rootedGram G weight).submatrix Subtype.val Subtype.val : Matrix R R ℚ.\n\nUse exactly the finite, decidable-equality, and restricted-adjacency instances of\nrootedNonrootGram_reindex_childBlocks_inv_of_child_admissible, so its I, S, and child matrices are\ndefinitionally the present ones.\n\nFor each c : I, unpack c.property with rootedChildren to get hvc : G.Adj v c.1. The proved theorem\nPositiveDefiniteTreeLattice.rootedChildComponent_isAdmissible_of_unique_underweight G weight v c.1\nhG h_positive h_unique_underweight hv h_two hvc supplies the exact pointwise premise of\nrootedNonrootGram_reindex_childBlocks_inv_of_child_admissible. Instantiate it:\nMatrix.reindex e e D⁻¹ = Matrix.blockDiagonal' (fun c => (B c)⁻¹),\nwhere e = (rootedChildComponentsEquivNonroot G hG v).symm and B c is the rooted Gram matrix of the\nc-component.\n\nEstablish invertibility before using D⁻¹. Let hQ :=\nPositiveDefiniteTreeLattice.rootedGram_posDef_of_integer_positive G weight h_positive. By the exact\nprincipal-submatrix transport\nhDpos : Matrix.PosDef D := hQ.submatrix Subtype.val_injective\nfrom Matrix.PosDef.submatrix, D is positive definite; it is definitionally the nonroot lower-right\nblock in rootedGram_reindex_rootNonroot_blocks G weight v. Hence hDunit : IsUnit D := hDpos.isUnit\nby Matrix.PosDef.isUnit. Install the local instance letI : Invertible D := hDunit.invertible using\nIsUnit.invertible. Then Matrix.mul_inv_cancel_right_of_invertible (A := D) (1 : Matrix R R ℚ),\ncomposed with Matrix.mulVec_mulVec, yields the concrete cancellation:\nD *ᵥ (D⁻¹ *ᵥ z) = z for every z : R → ℚ.\nThus no inverse cancellation or ambient rooted admissibility is assumed.\n\nLet η := Equiv.sumCompl (fun x : V => x = v) and M := Matrix.reindex η.symm η.symm (rootedGram G\nweight). Rewrite M with rootedGram_reindex_rootNonroot_blocks G weight v as Matrix.fromBlocks A B C\nD, with the root type left and R right. Transport strict positivity explicitly: for x : {x : V // x\n= v} ⊕ R → ℚ, apply hQ.dotProduct_mulVec_pos to x ∘ η.symm. Rewrite its quadratic form using\nMatrix.reindex_apply and Matrix.dotProduct_mulVec. This proves the required positive-definite\ninequality for M rather than assuming it after reindexing.\n\nLet r₀ : {x : V // x = v} := ⟨v, rfl⟩ and choose x with x (Sum.inl r₀) = 1 and x (Sum.inr r) = -(D⁻¹\n*ᵥ Ccol) r, where Ccol r := C r r₀. This x is nonzero at Sum.inl r₀. Expand M *ᵥ x using\nMatrix.fromBlocks_mulVec and the exact entry lemmas Matrix.fromBlocks_apply₁₁,\nMatrix.fromBlocks_apply₁₂, and Matrix.fromBlocks_apply₂₁. The root diagonal is explicit: the block\nidentity reduces A r₀ r₀ to rootedGram G weight v v, and simp [rootedGram,\ntreePairing_vertexVector_vertexVector G hG weight v v] proves A r₀ r₀ = (weight v : ℚ). With D *ᵥ\n(D⁻¹ *ᵥ Ccol) = Ccol, the expanded dot product normalizes to:\n0 < (weight v : ℚ) - ∑ r : R, B r₀ r * (D⁻¹ *ᵥ Ccol) r.\nThis is the strict source Schur-complement inequality, not a semidefinite replacement.\n\nCompute the inverse scalar precisely. Use Matrix.reindex_apply and\nrootedChildComponentsEquivNonroot_apply at every sigma coordinate ⟨c, x⟩ : S, so it is exactly the\ncoerced nonroot vertex with its supplied proof of inequality to v. Expand the two products with\nMatrix.mul_apply and rewrite the sums over S using Fintype.sum_sigma. Apply\nMatrix.blockDiagonal'_apply': for distinct outer child indices its if_neg branch is zero, which\nremoves every off-diagonal child term. On a fixed c-block, the pointwise and summation conclusions\nof rootedGram_root_rootedChildComponent_support G hG weight v c reduce the root row and column to -1\nat rootedChildRoot G v c.1 and zero elsewhere. Finset.sum_eq_single collapses each supported fiber.\nTherefore:\n∑ r : R, B r₀ r * (D⁻¹ *ᵥ Ccol) r\n= ∑ c : I, (B c)⁻¹ (rootedChildRoot G v c.1) (rootedChildRoot G v c.1).\n\nFinally unfold rootedChildCapacitySum, rootedChildCapacitySummand, and rootedCapacity. The\nright-hand side is definitionally rootedChildCapacitySum G hG weight v. Substitute it into the\nstrict inequality and rearrange to conclude exactly rootedChildCapacitySum G hG weight v < (weight v\n: ℚ).\n\n## Proof sources\n\n- Source `solution.tex`, lines 204–208\n\n## Proof dependencies\n\n- `Finset.sum_eq_single` from `Mathlib.Algebra.BigOperators.Group.Finset.Basic`\n- `Fintype.sum_unique` from `Mathlib.Algebra.BigOperators.Group.Finset.Basic`\n- `IsUnit.invertible` from `Mathlib.Algebra.Group.Invertible.Basic`\n- `Fintype.sum_sigma` from `Mathlib.Data.Fintype.BigOperators`\n- `Matrix.blockDiagonal'_apply'` from `Mathlib.Data.Matrix.Block`\n- `Matrix.fromBlocks_apply₁₁` from `Mathlib.Data.Matrix.Block`\n- `Matrix.fromBlocks_apply₁₂` from `Mathlib.Data.Matrix.Block`\n- `Matrix.fromBlocks_apply₂₁` from `Mathlib.Data.Matrix.Block`\n- `Matrix.fromBlocks_mulVec` from `Mathlib.Data.Matrix.Block`\n- `Matrix.dotProduct_mulVec` from `Mathlib.Data.Matrix.Mul`\n- `Matrix.mulVec_mulVec` from `Mathlib.Data.Matrix.Mul`\n- `Matrix.mul_apply` from `Mathlib.Data.Matrix.Mul`\n- `Matrix.reindex_apply` from `Mathlib.LinearAlgebra.Matrix.Defs`\n- `Matrix.schur_complement_eq₂₂` from `Mathlib.LinearAlgebra.Matrix.Hermitian`\n- `Matrix.mul_inv_cancel_right_of_invertible` from `Mathlib.LinearAlgebra.Matrix.NonsingularInverse`\n- `Matrix.PosDef` from `Mathlib.LinearAlgebra.Matrix.PosDef`\n- `Matrix.PosDef.dotProduct_mulVec_pos` from `Mathlib.LinearAlgebra.Matrix.PosDef`\n- `Matrix.PosDef.isUnit` from `Mathlib.LinearAlgebra.Matrix.PosDef`\n- `Matrix.PosDef.submatrix` from `Mathlib.LinearAlgebra.Matrix.PosDef`\n- `Equiv.sumCompl` from `Mathlib.Logic.Equiv.Sum`\n- `Main.IrreducibleVertex::rootedChildComponent_isAdmissible_of_unique_underweight` →\n  `PositiveDefiniteTreeLattice.rootedChildComponent_isAdmissible_of_unique_underweight` from `Positi\n  veDefiniteTreeLattice.Main.IrreducibleVertex.Lemmas.rootedChildComponent_isAdmissible_of_unique_un\n  derweight`\n- `Main.IrreducibleVertex::rootedGram_posDef_of_integer_positive` →\n  `PositiveDefiniteTreeLattice.rootedGram_posDef_of_integer_positive` from\n  `PositiveDefiniteTreeLattice.Main.IrreducibleVertex.Lemmas.rootedGram_posDef_of_integer_positive`\n- `Main.RootedCapacity::isAdmissibleRootedTree_instance_irrel` →\n  `isAdmissibleRootedTree_instance_irrel` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Theorems.isAdmissibleRootedTree_instance_irrel`\n- `Main.RootedCapacity::rootedCapacity` → `rootedCapacity` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedCapacity`\n- `Main.RootedCapacity::rootedCapacity_instance_irrel` → `rootedCapacity_instance_irrel` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Theorems.rootedCapacity_instance_irrel`\n- `Main.RootedCapacity::rootedChildCapacitySum` → `rootedChildCapacitySum` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildCapacitySum`\n- `Main.RootedCapacity::rootedChildCapacitySummand` → `rootedChildCapacitySummand` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildCapacitySummand`\n- `Main.RootedCapacity::rootedChildComponent` → `rootedChildComponent` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildComponent`\n- `Main.RootedCapacity::rootedChildComponentsEquivNonroot_apply` →\n  `rootedChildComponentsEquivNonroot_apply` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Theorems.rootedChildComponentsEquivNonroot_apply`\n- `Main.RootedCapacity::rootedChildRoot` → `rootedChildRoot` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildRoot`\n- `Main.RootedCapacity::rootedChildren` → `rootedChildren` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildren`\n- `Main.RootedCapacity::rootedGram` → `rootedGram` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedGram`\n- `Main.RootedCapacity::rootedGram_reindex_rootNonroot_blocks` →\n  `rootedGram_reindex_rootNonroot_blocks` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Theorems.rootedGram_reindex_rootNonroot_blocks`\n- `Main.RootedCapacity::rootedGram_root_rootedChildComponent_support` →\n  `rootedGram_root_rootedChildComponent_support` from `PositiveDefiniteTreeLattice.Main.RootedCapaci\n  ty.Theorems.rootedGram_root_rootedChildComponent_support`\n- `Main.RootedCapacity::rootedNonrootGram_reindex_childBlocks_inv_of_child_admissible` →\n  `rootedNonrootGram_reindex_childBlocks_inv_of_child_admissible` from `PositiveDefiniteTreeLattice.\n  Main.RootedCapacity.Theorems.rootedNonrootGram_reindex_childBlocks_inv_of_child_admissible`\n- `Main.RootedCapacity::treePairing_vertexVector_vertexVector` →\n  `treePairing_vertexVector_vertexVector` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Theorems.treePairing_vertexVector_vertexVector`\n-/\nlemma rootedChildCapacitySum_lt_weight_of_unique_underweight\n    {V : Type*} [Fintype V] [DecidableEq V] (G : SimpleGraph V) [DecidableRel G.Adj]\n    (hG : G.IsTree) (weight : V → ℤ) (v : V)\n    (h_positive : ∀ x : V → ℤ, x ≠ 0 →\n      0 < PositiveDefiniteTreeLattice.treePairing G weight x x)\n    (h_unique_underweight : ∃! u : V, weight u < (G.degree u : ℤ))\n    (hv : weight v < (G.degree v : ℤ)) (h_two : ∀ x : V, 2 ≤ weight x) :\n    rootedChildCapacitySum G hG weight v < (weight v : ℚ) := by\n  classical\n  let R := {x : V // x ≠ v}\n  let I := {c : V // c ∈ rootedChildren G hG v v}\n  let S := Σ c : I, rootedChildComponent G v c.1\n  let e : R ≃ S := (rootedChildComponentsEquivNonroot G hG v).symm\n  let D : Matrix R R ℚ := (rootedGram G weight).submatrix Subtype.val Subtype.val\n  letI : Fintype I := Fintype.ofFinite I\n  letI : ∀ c : I, Fintype (rootedChildComponent G v c.1) :=\n    fun c => Fintype.ofFinite _\n  letI : ∀ c : I, DecidableEq (rootedChildComponent G v c.1) :=\n    fun c => Classical.decEq _\n  letI : ∀ c : I, DecidableRel (G.deleteEdges {s(v, c.1)}).Adj :=\n    fun c => Classical.decRel _\n  letI : ∀ c : I, DecidableRel (rootedChildComponent G v c.1).toSimpleGraph.Adj :=\n    fun c => Classical.decRel _\n  let B : ∀ c : I,\n      Matrix (rootedChildComponent G v c.1) (rootedChildComponent G v c.1) ℚ := fun c =>\n    rootedGram (rootedChildComponent G v c.1).toSimpleGraph (fun x => weight (x : V))\n  have hChild : ∀ c : I, IsAdmissibleRootedTree (rootedChildComponent G v c.1).toSimpleGraph\n      (fun x => weight (x : V)) (rootedChildRoot G v c.1) := by\n    intro c\n    obtain ⟨hvc, _⟩ := by\n      simpa only [rootedChildren, Finset.mem_filter, Finset.mem_univ, true_and] using c.property\n    have hraw := PositiveDefiniteTreeLattice.rootedChildComponent_isAdmissible_of_unique_underweight\n      G weight v c.1 hG h_positive h_unique_underweight hv h_two hvc\n    exact (isAdmissibleRootedTree_instance_irrel _ _ _ _ _ _ _ _ _).mp hraw\n  have hBlock : Matrix.reindex e e D⁻¹ = Matrix.blockDiagonal' (fun c => (B c)⁻¹) := by\n    exact rootedNonrootGram_reindex_childBlocks_inv_of_child_admissible G hG weight v hChild\n  let U := {x : V // x = v}\n  let A : Matrix U U ℚ := (rootedGram G weight).submatrix Subtype.val Subtype.val\n  let B₀ : Matrix U R ℚ := (rootedGram G weight).submatrix Subtype.val Subtype.val\n  let C : Matrix R U ℚ := (rootedGram G weight).submatrix Subtype.val Subtype.val\n  let r : U := ⟨v, rfl⟩\n  have hDinv (j x : R) : D⁻¹ j x =\n      Matrix.blockDiagonal' (fun c => (B c)⁻¹) (e j) (e x) := by\n    have h := congrFun (congrFun hBlock (e j)) (e x)\n    change D⁻¹ (e.symm (e j)) (e.symm (e x)) =\n      Matrix.blockDiagonal' (fun c => (B c)⁻¹) (e j) (e x) at h\n    simpa using h\n  have hinner (c : I) (x : rootedChildComponent G v c.1) :\n      ∑ t : S, B₀ r (e.symm t) *\n        Matrix.blockDiagonal' (fun c => (B c)⁻¹) t ⟨c, x⟩ =\n          -((B c)⁻¹ (rootedChildRoot G v c.1) x) := by\n    rw [Fintype.sum_sigma]\n    rw [Finset.sum_eq_single c]\n    · simp only [Matrix.blockDiagonal'_apply', dif_pos]\n      have hc : G.Adj v c.1 := by\n        have hc' := c.property\n        obtain ⟨hc, _⟩ := by\n          simpa only [rootedChildren, Finset.mem_filter, Finset.mem_univ, true_and] using hc'\n        exact hc\n      have he (y : rootedChildComponent G v c.1) :\n          e.symm ⟨c, y⟩ =\n            ⟨(y : V), rootedChildComponent_parent_not_mem G v c.1 hG hc y⟩ := by\n        change rootedChildComponentsEquivNonroot G hG v ⟨c, y⟩ = _\n        exact rootedChildComponentsEquivNonroot_apply G hG v c y\n      have hsupport := (rootedGram_root_rootedChildComponent_support G hG weight v c).2\n      convert (hsupport (fun y => (B c)⁻¹ y x)).1 using 1\n      · simp [B₀, r, Matrix.submatrix_apply, he]\n    · intro d _ hdc\n      simp [Matrix.blockDiagonal'_apply', hdc]\n    · simp\n  have hcap (c : I) : (B c)⁻¹ (rootedChildRoot G v c.1) (rootedChildRoot G v c.1) =\n      rootedChildCapacitySummand G hG weight v c := by\n    unfold rootedChildCapacitySummand rootedCapacity B\n    exact rootedCapacity_instance_irrel _ _ _ _ _ _ _ _ _\n  have hquad : (B₀ * D⁻¹ * C) r r = rootedChildCapacitySum G hG weight v := by\n    rw [Matrix.mul_apply (M := B₀ * D⁻¹) (N := C)]\n    simp_rw [Matrix.mul_apply (M := B₀) (N := D⁻¹)]\n    calc\n      (∑ x : R, (∑ j : R, B₀ r j * D⁻¹ j x) * C x r) =\n          ∑ x : R, (∑ j : R, B₀ r j *\n            Matrix.blockDiagonal' (fun c => (B c)⁻¹) (e j) (e x)) * C x r := by\n        apply Finset.sum_congr rfl\n        intro x _\n        congr 1\n        apply Finset.sum_congr rfl\n        intro j _\n        rw [hDinv]\n      _ = ∑ z : S, (∑ t : S, B₀ r (e.symm t) *\n          Matrix.blockDiagonal' (fun c => (B c)⁻¹) t z) * C (e.symm z) r := by\n        rw [← e.sum_comp]\n        apply Finset.sum_congr rfl\n        intro x _\n        rw [← e.sum_comp]\n        simp\n      _ = ∑ c : I, ∑ x : rootedChildComponent G v c.1,\n          (∑ t : S, B₀ r (e.symm t) *\n            Matrix.blockDiagonal' (fun c => (B c)⁻¹) t ⟨c, x⟩) * C (e.symm ⟨c, x⟩) r := by\n        rw [Fintype.sum_sigma]\n      _ = rootedChildCapacitySum G hG weight v := by\n        calc\n          (∑ c : I, ∑ x : rootedChildComponent G v c.1,\n              (∑ t : S, B₀ r (e.symm t) *\n                Matrix.blockDiagonal' (fun c => (B c)⁻¹) t ⟨c, x⟩) * C (e.symm ⟨c, x⟩) r) =\n              ∑ c : I, ∑ x : rootedChildComponent G v c.1,\n                (-((B c)⁻¹ (rootedChildRoot G v c.1) x)) * C (e.symm ⟨c, x⟩) r := by\n            apply Finset.sum_congr rfl\n            intro c _\n            apply Finset.sum_congr rfl\n            intro x _\n            rw [hinner]\n          _ = ∑ c : I, (B c)⁻¹ (rootedChildRoot G v c.1) (rootedChildRoot G v c.1) := by\n            apply Finset.sum_congr rfl\n            intro c _\n            have hc : G.Adj v c.1 := by\n              have hc' := c.property\n              obtain ⟨hc, _⟩ := by\n                simpa only [rootedChildren, Finset.mem_filter, Finset.mem_univ, true_and]\n                  using hc'\n              exact hc\n            have he (x : rootedChildComponent G v c.1) :\n                e.symm ⟨c, x⟩ =\n                  ⟨(x : V), rootedChildComponent_parent_not_mem G v c.1 hG hc x⟩ := by\n              change rootedChildComponentsEquivNonroot G hG v ⟨c, x⟩ = _\n              exact rootedChildComponentsEquivNonroot_apply G hG v c x\n            have hsupport := (rootedGram_root_rootedChildComponent_support G hG weight v c).2\n            convert (hsupport (fun x => -((B c)⁻¹ (rootedChildRoot G v c.1) x))).2 using 1\n            · simp [C, r, Matrix.submatrix_apply, he]\n            · simp\n          _ = rootedChildCapacitySum G hG weight v := by\n            unfold rootedChildCapacitySum\n            have hF : (inferInstance : Fintype I) =\n                Finset.Subtype.fintype (rootedChildren G hG v v) := Subsingleton.elim _ _\n            rw [← hF]\n            apply Finset.sum_congr rfl\n            intro c _\n            exact hcap c\n  let η := Equiv.sumCompl (fun x : V => x = v)\n  let M := Matrix.fromBlocks A B₀ C D\n  have hM : Matrix.reindex η.symm η.symm (rootedGram G weight) = M := by\n    dsimp [M, A, B₀, C, D, η]\n    exact rootedGram_reindex_rootNonroot_blocks G weight v\n  have hQ : Matrix.PosDef (rootedGram G weight) :=\n    PositiveDefiniteTreeLattice.rootedGram_posDef_of_integer_positive G weight h_positive\n  have hMPos : Matrix.PosDef M := by\n    rw [← hM]\n    exact hQ.submatrix η.injective\n  have hDPos : Matrix.PosDef D := by\n    dsimp [D]\n    exact hQ.submatrix Subtype.val_injective\n  have hC : C = Matrix.conjTranspose B₀ := by\n    ext x y\n    have h := congrFun (congrFun hMPos.1.eq (Sum.inr x)) (Sum.inl y)\n    simpa only [M, Matrix.conjTranspose_apply, Matrix.fromBlocks_apply₂₁,\n      Matrix.fromBlocks_apply₁₂] using h.symm\n  letI : Invertible D := hDPos.isUnit.invertible\n  let x₀ : U → ℚ := fun _ => 1\n  let y₀ : R → ℚ := -(Matrix.mulVec (D⁻¹ * Matrix.conjTranspose B₀) x₀)\n  let z : U ⊕ R → ℚ := Sum.elim x₀ y₀\n  have hxy : z ≠ 0 := by\n    intro hzero\n    have hrzero := congrFun hzero (Sum.inl r)\n    simp [z, x₀] at hrzero\n  have hpos : 0 < dotProduct (star z)\n      (Matrix.mulVec (Matrix.fromBlocks A B₀ (Matrix.conjTranspose B₀) D) z) := by\n    rw [← hC]\n    simpa only [M] using hMPos.dotProduct_mulVec_pos hxy\n  have hsc := Matrix.schur_complement_eq₂₂ A B₀ x₀ y₀ hDPos.1\n  have hpos' := hpos\n  rw [Matrix.dotProduct_mulVec] at hpos'\n  have hsc' : Matrix.vecMul z (Matrix.fromBlocks A B₀ (Matrix.conjTranspose B₀) D) ⬝ᵥ z =\n      Matrix.vecMul x₀ (A - B₀ * D⁻¹ * Matrix.conjTranspose B₀) ⬝ᵥ x₀ := by\n    simpa [z, y₀, Matrix.mulVec, Matrix.mul_assoc] using hsc\n  have hschurpos : 0 < Matrix.vecMul x₀\n      (A - B₀ * D⁻¹ * Matrix.conjTranspose B₀) ⬝ᵥ x₀ := by\n    rw [← hsc']\n    exact hpos'\n  letI : Subsingleton U := ⟨fun x y => Subtype.ext (by simp [x.property, y.property])⟩\n  letI : Unique U := { default := r, uniq := fun x => Subsingleton.elim _ _ }\n  have hscalar (Q : Matrix U U ℚ) : Matrix.vecMul x₀ Q ⬝ᵥ x₀ = Q r r := by\n    simp only [Matrix.vecMul, dotProduct, x₀]\n    rw [Fintype.sum_unique, Fintype.sum_unique]\n    simp [show (default : U) = r from Subsingleton.elim _ _]\n  have hgap : 0 < A r r - (B₀ * D⁻¹ * C) r r := by\n    have hgap' : 0 < ((A - B₀ * D⁻¹ * Matrix.conjTranspose B₀) r r) := by\n      rw [← hscalar (A - B₀ * D⁻¹ * Matrix.conjTranspose B₀)]\n      exact hschurpos\n    rw [← hC] at hgap'\n    simpa only [Matrix.sub_apply] using hgap'\n  have hA : A r r = (weight v : ℚ) := by\n    dsimp [A, r]\n    unfold rootedGram\n    rw [treePairing_vertexVector_vertexVector G hG weight]\n    simp\n  rw [hA, hquad] at hgap\n  linarith\n"
+    },
+    "nl": {
+      "origin": [
+        {
+          "end_line": 208,
+          "end_locator": null,
+          "kind": "source",
+          "note": "These lines justify the proof route's per-child admissibility and strict Schur-complement step W − Σ γᵢ > 0.",
+          "ref": null,
+          "resource_key": null,
+          "source_path": "solution.tex",
+          "start_line": 204,
+          "start_locator": null
+        }
+      ],
+      "text": "Work classically, preserving the accepted parameters G, hG, weight, v, h_positive, h_unique_underweight, hv, and h_two. Define:\n- R := {x : V // x ≠ v}\n- I := {c : V // c ∈ rootedChildren G hG v v}\n- S := Σ c : I, rootedChildComponent G v c.1\n- D := (rootedGram G weight).submatrix Subtype.val Subtype.val : Matrix R R ℚ.\n\nUse exactly the finite, decidable-equality, and restricted-adjacency instances of rootedNonrootGram_reindex_childBlocks_inv_of_child_admissible, so its I, S, and child matrices are definitionally the present ones.\n\nFor each c : I, unpack c.property with rootedChildren to get hvc : G.Adj v c.1. The proved theorem PositiveDefiniteTreeLattice.rootedChildComponent_isAdmissible_of_unique_underweight G weight v c.1 hG h_positive h_unique_underweight hv h_two hvc supplies the exact pointwise premise of rootedNonrootGram_reindex_childBlocks_inv_of_child_admissible. Instantiate it:\nMatrix.reindex e e D⁻¹ = Matrix.blockDiagonal' (fun c => (B c)⁻¹),\nwhere e = (rootedChildComponentsEquivNonroot G hG v).symm and B c is the rooted Gram matrix of the c-component.\n\nEstablish invertibility before using D⁻¹. Let hQ := PositiveDefiniteTreeLattice.rootedGram_posDef_of_integer_positive G weight h_positive. By the exact principal-submatrix transport\nhDpos : Matrix.PosDef D := hQ.submatrix Subtype.val_injective\nfrom Matrix.PosDef.submatrix, D is positive definite; it is definitionally the nonroot lower-right block in rootedGram_reindex_rootNonroot_blocks G weight v. Hence hDunit : IsUnit D := hDpos.isUnit by Matrix.PosDef.isUnit. Install the local instance letI : Invertible D := hDunit.invertible using IsUnit.invertible. Then Matrix.mul_inv_cancel_right_of_invertible (A := D) (1 : Matrix R R ℚ), composed with Matrix.mulVec_mulVec, yields the concrete cancellation:\nD *ᵥ (D⁻¹ *ᵥ z) = z for every z : R → ℚ.\nThus no inverse cancellation or ambient rooted admissibility is assumed.\n\nLet η := Equiv.sumCompl (fun x : V => x = v) and M := Matrix.reindex η.symm η.symm (rootedGram G weight). Rewrite M with rootedGram_reindex_rootNonroot_blocks G weight v as Matrix.fromBlocks A B C D, with the root type left and R right. Transport strict positivity explicitly: for x : {x : V // x = v} ⊕ R → ℚ, apply hQ.dotProduct_mulVec_pos to x ∘ η.symm. Rewrite its quadratic form using Matrix.reindex_apply and Matrix.dotProduct_mulVec. This proves the required positive-definite inequality for M rather than assuming it after reindexing.\n\nLet r₀ : {x : V // x = v} := ⟨v, rfl⟩ and choose x with x (Sum.inl r₀) = 1 and x (Sum.inr r) = -(D⁻¹ *ᵥ Ccol) r, where Ccol r := C r r₀. This x is nonzero at Sum.inl r₀. Expand M *ᵥ x using Matrix.fromBlocks_mulVec and the exact entry lemmas Matrix.fromBlocks_apply₁₁, Matrix.fromBlocks_apply₁₂, and Matrix.fromBlocks_apply₂₁. The root diagonal is explicit: the block identity reduces A r₀ r₀ to rootedGram G weight v v, and simp [rootedGram, treePairing_vertexVector_vertexVector G hG weight v v] proves A r₀ r₀ = (weight v : ℚ). With D *ᵥ (D⁻¹ *ᵥ Ccol) = Ccol, the expanded dot product normalizes to:\n0 < (weight v : ℚ) - ∑ r : R, B r₀ r * (D⁻¹ *ᵥ Ccol) r.\nThis is the strict source Schur-complement inequality, not a semidefinite replacement.\n\nCompute the inverse scalar precisely. Use Matrix.reindex_apply and rootedChildComponentsEquivNonroot_apply at every sigma coordinate ⟨c, x⟩ : S, so it is exactly the coerced nonroot vertex with its supplied proof of inequality to v. Expand the two products with Matrix.mul_apply and rewrite the sums over S using Fintype.sum_sigma. Apply Matrix.blockDiagonal'_apply': for distinct outer child indices its if_neg branch is zero, which removes every off-diagonal child term. On a fixed c-block, the pointwise and summation conclusions of rootedGram_root_rootedChildComponent_support G hG weight v c reduce the root row and column to -1 at rootedChildRoot G v c.1 and zero elsewhere. Finset.sum_eq_single collapses each supported fiber. Therefore:\n∑ r : R, B r₀ r * (D⁻¹ *ᵥ Ccol) r\n= ∑ c : I, (B c)⁻¹ (rootedChildRoot G v c.1) (rootedChildRoot G v c.1).\n\nFinally unfold rootedChildCapacitySum, rootedChildCapacitySummand, and rootedCapacity. The right-hand side is definitionally rootedChildCapacitySum G hG weight v. Substitute it into the strict inequality and rearrange to conclude exactly rootedChildCapacitySum G hG weight v < (weight v : ℚ)."
+    }
+  },
+  "revision": 8,
+  "state": "proved",
+  "statement": {
+    "deps": [
+      {
+        "kind": "mathlib_decl",
+        "reason": "The statement assumes that the ambient graph is a tree.",
+        "ref": {
+          "module": "Mathlib.Combinatorics.SimpleGraph.Acyclic",
+          "name": "SimpleGraph.IsTree"
+        }
+      },
+      {
+        "kind": "mathlib_decl",
+        "reason": "The unique-underweight and distinguished-vertex hypotheses compare weights with the ambient graph degree.",
+        "ref": {
+          "module": "Mathlib.Combinatorics.SimpleGraph.Finite",
+          "name": "SimpleGraph.degree"
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "The positive-definiteness hypothesis in the statement is expressed using the repository tree pairing.",
+        "ref": {
+          "name": "treePairingAnchor",
+          "node": "Main.LatticeFoundations",
+          "repo": null,
+          "revision": 1
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "The conclusion uses the canonical rooted child-component capacity sum.",
+        "ref": {
+          "name": "rootedChildCapacitySum",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 2
+        }
+      }
+    ],
+    "formal": {
+      "check": {
+        "allow_sorry": true,
+        "contains_axiom": false,
+        "contains_sorry": true,
+        "diagnostics": {
+          "diagnostics": [
+            {
+              "column": 7,
+              "line": 34,
+              "message": "declaration uses `sorry`",
+              "severity": "warning"
+            }
+          ],
+          "passed": true,
+          "raw_excerpt": "{'success': True, 'error_message': None, 'file': 'PositiveDefiniteTreeLattice.Main.IrreducibleVertex.Lemmas.rootedChildCapacitySum_lt_weight_of_unique_underweight', 'items': [{'severity': 'warning', 'pos': {'line': 34, 'column': 7}, 'endPos': {'line': 34, 'column': 61}, 'kind': None, 'data': 'declaration uses `sorry`', 'fileName': 'PositiveDefiniteTreeLattice.Main.IrreducibleVertex.Lemmas.rootedChildCapacitySum_lt_weight_of_unique_underweight', 'content': '  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildCapacitySum`\\n-/\\nlemma rootedChildCapacitySum_lt_weight_of_unique_underweight\\n    {V : Type*} [Fintype V] [DecidableEq V] (G : SimpleGraph V) [DecidableRel G.Adj]\\n    (hG : G.IsTree) (weight : V → ℤ) (v : V)'}], 'total_items': 1, 'error_count': 0, 'warning_count': 1, 'info_count': 0, 'sorry_count': 1}",
+          "repo_file_path": "PositiveDefiniteTreeLattice/Main/IrreducibleVertex/Lemmas/rootedChildCapacitySum_lt_weight_of_unique_underweight.lean",
+          "schema_version": 2,
+          "summary": "Diagnostics returned 1 items"
+        },
+        "message": "Lean check passed.",
+        "policy": "statement_formal",
+        "scan": {
+          "admit_count": 0,
+          "axiom_count": 0,
+          "contains_admit": false,
+          "contains_axiom": false,
+          "contains_opaque": false,
+          "contains_sorry": true,
+          "contains_unsafe": false,
+          "limitation": "Text scan ignores Lean comments and string literals with a conservative first-round lexer; it is not a full Lean parser.",
+          "occurrences": [
+            {
+              "column": 3,
+              "excerpt": "sorry",
+              "kind": "sorry",
+              "line": 42
+            }
+          ],
+          "opaque_count": 0,
+          "sorry_count": 1,
+          "summary": "sorry=1, admit=0, axiom=0, opaque=0, unsafe=0",
+          "unsafe_count": 0
+        },
+        "status": "passed"
+      },
+      "code": "-- lean-constellation: managed-imports-begin\nimport PositiveDefiniteTreeLattice.Main.IrreducibleVertex.Prelude\nimport Mathlib.Combinatorics.SimpleGraph.Acyclic\nimport Mathlib.Combinatorics.SimpleGraph.Finite\n-- lean-constellation: managed-imports-end\n\n-- lean-constellation: declaration-source-begin\n\n/--\n# lean-constellation target: `rootedChildCapacitySum_lt_weight_of_unique_underweight`\n\nLet `V` be a finite type with decidable equality, let `G : SimpleGraph V` have decidable adjacency,\nlet `weight : V → ℤ`, and let `v : V`. Suppose `h_tree : G.IsTree`, `h_positive : ∀ x : V → ℤ, x ≠ 0\n→ 0 < treePairing G weight x x`, `h_unique_underweight : ∃! u : V, weight u < (G.degree u : ℤ)`, `hv\n: weight v < (G.degree v : ℤ)`, and `h_two : ∀ x : V, 2 ≤ weight x`. Then the canonical sum of the\ncapacities of the rooted child-side components at `v` is strictly below the integral weight at `v`,\nviewed in `ℚ`:\n\n`rootedChildCapacitySum G h_tree weight v < (weight v : ℚ)`.\n\n## Sources\n\n- Source `solution.tex`, lines 204–208\n\n## Statement dependencies\n\n- `SimpleGraph.IsTree` from `Mathlib.Combinatorics.SimpleGraph.Acyclic`\n- `SimpleGraph.degree` from `Mathlib.Combinatorics.SimpleGraph.Finite`\n- `Main.LatticeFoundations::treePairingAnchor` → `PositiveDefiniteTreeLattice.treePairing` from\n  `PositiveDefiniteTreeLattice.Main.LatticeFoundations.Defs.treePairingAnchor`\n- `Main.RootedCapacity::rootedChildCapacitySum` → `rootedChildCapacitySum` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildCapacitySum`\n-/\nlemma rootedChildCapacitySum_lt_weight_of_unique_underweight\n    {V : Type*} [Fintype V] [DecidableEq V] (G : SimpleGraph V) [DecidableRel G.Adj]\n    (hG : G.IsTree) (weight : V → ℤ) (v : V)\n    (h_positive : ∀ x : V → ℤ, x ≠ 0 →\n      0 < PositiveDefiniteTreeLattice.treePairing G weight x x)\n    (h_unique_underweight : ∃! u : V, weight u < (G.degree u : ℤ))\n    (hv : weight v < (G.degree v : ℤ)) (h_two : ∀ x : V, 2 ≤ weight x) :\n    rootedChildCapacitySum G hG weight v < (weight v : ℚ) := by\n  sorry\n"
+    },
+    "nl": {
+      "origin": [
+        {
+          "end_line": 208,
+          "end_locator": null,
+          "kind": "source",
+          "note": "These lines establish admissibility of every child component and state the positive Schur complement inequality W − Σᵢ γᵢ > 0, represented here by rootedChildCapacitySum.",
+          "ref": null,
+          "resource_key": null,
+          "source_path": "solution.tex",
+          "start_line": 204,
+          "start_locator": null
+        }
+      ],
+      "text": "Let `V` be a finite type with decidable equality, let `G : SimpleGraph V` have decidable adjacency, let `weight : V → ℤ`, and let `v : V`. Suppose `h_tree : G.IsTree`, `h_positive : ∀ x : V → ℤ, x ≠ 0 → 0 < treePairing G weight x x`, `h_unique_underweight : ∃! u : V, weight u < (G.degree u : ℤ)`, `hv : weight v < (G.degree v : ℤ)`, and `h_two : ∀ x : V, 2 ≤ weight x`. Then the canonical sum of the capacities of the rooted child-side components at `v` is strictly below the integral weight at `v`, viewed in `ℚ`:\n\n`rootedChildCapacitySum G h_tree weight v < (weight v : ℚ)`."
+    }
+  },
+  "status": "committed",
+  "updated_at": "2026-08-06T15:14:03Z"
+}

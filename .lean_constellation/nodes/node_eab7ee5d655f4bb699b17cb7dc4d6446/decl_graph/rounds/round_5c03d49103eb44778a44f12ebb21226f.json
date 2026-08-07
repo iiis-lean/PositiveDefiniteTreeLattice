@@ -1,0 +1,33 @@
+{
+  "change_summaries": {},
+  "committed_at": "2026-07-30T10:26:43Z",
+  "created_at": "2026-07-30T10:12:42Z",
+  "discard_reason": null,
+  "discarded_at": null,
+  "discarded_by": null,
+  "discarded_created_decl_names": [],
+  "discarded_restored_decl_revisions": {},
+  "discarded_revision_refs": [],
+  "execution_completed_at": "2026-07-30T10:25:04Z",
+  "execution_reason": "The required direct statement dependency Matrix.blockDiagonal' cannot be recorded because the available canonical dependency resolver rejects that exact verified Lean declaration as not found.",
+  "execution_result_kind": "blocked",
+  "node_path": "Main.RootedCapacity",
+  "objective": "Create and prove the private source-visible block-structure theorem identifying the child-component reindexing of the nonroot Gram block with the dependent block diagonal of child Gram matrices.",
+  "plan_closeout_acknowledged_at": "2026-07-30T10:26:43Z",
+  "plan_closeout_acknowledged_by": "a_a93b40977f574bad89528358fa89e022",
+  "result_kind": "blocked",
+  "result_reason": "Statement Formal is waiting only for canonical resolution of the verified Mathlib constant Matrix.blockDiagonal'; the accepted block-identification semantics remain specified for retry.",
+  "revision_refs": [
+    {
+      "change_id": "rootedNonrootGram_reindex_childBlocks@rev:1",
+      "decl_name": "rootedNonrootGram_reindex_childBlocks",
+      "revision": 1
+    }
+  ],
+  "round_id": "round_5c03d49103eb44778a44f12ebb21226f",
+  "round_index": 28,
+  "started_at": "2026-07-30T10:14:14Z",
+  "status": "committed",
+  "strategy_id": "strategy_1fbcdfb31a2e4cada1ff5b7b941de18c",
+  "summary": "Round 28 is closed blocked at Statement Formal after accepting the natural-language theorem target. rootedNonrootGram_reindex_childBlocks rev1 is specified, not declared or proof-policy satisfied. The only known blocker is canonical resolution of the verified Mathlib declaration Matrix.blockDiagonal'; the surrounding Matrix.Block module is already present, and no source, provider, resource, or design work is missing. Next perform a targeted current-node Mathlib hint correction for that exact declaration, then retry this theorem from specified to proved. rootedNonroot_inverse_childBlocks and rootedNonroot_inverse_quadratic remain dependency-ordered behind it. The strategy remains viable and graph hygiene is clean."
+}

@@ -1,0 +1,33 @@
+{
+  "change_summaries": {},
+  "committed_at": "2026-08-03T12:50:17Z",
+  "created_at": "2026-08-03T12:28:17Z",
+  "discard_reason": null,
+  "discarded_at": null,
+  "discarded_by": null,
+  "discarded_created_decl_names": [],
+  "discarded_restored_decl_revisions": {},
+  "discarded_revision_refs": [],
+  "execution_completed_at": "2026-08-03T12:48:18Z",
+  "execution_reason": "The accepted statement and reviewed transport route were preserved. The pointwise child-admissibility transport to rootedNonroot_inverse_childBlocks_of_child_admissible typechecks via `convert hChild c using 1 <;> apply Subsingleton.elim`, explicitly aligning Fintype.ofFinite, DecidableEq, and DecidableRel witnesses. After reindexing with rootedChildComponentsEquivNonroot and evaluating the provider entrywise, Lean deterministically times out at the fixed 200000-heartbeat limit while normalizing the fourfold Sigma finite sum into the child summand. The stage objective forbids raising heartbeats, changing the statement, or adding a helper. Planner action is required for rootedNonroot_inverse_quadratic_sigma_of_child_admissible: provide the concrete compiler-verified low-heartbeat final finite-sum transport term/tactic sequence from the Mathlib recon, or plan a permitted pre-collapsed interface. The current source has been restored to the accepted statement placeholder; no formal proof was captured.",
+  "execution_result_kind": "blocked",
+  "node_path": "Main.RootedCapacity",
+  "objective": "Retry the declared Sigma quadratic helper from Proof NL through Proof Formal using the compiler-verified explicit subsingleton transport of child Fintype, DecidableRel, and DecidableEq witnesses.",
+  "plan_closeout_acknowledged_at": "2026-08-03T12:50:17Z",
+  "plan_closeout_acknowledged_by": "a_a93b40977f574bad89528358fa89e022",
+  "result_kind": "blocked",
+  "result_reason": "Witness alignment is verified, but the final fourfold dependent Sigma finite-sum normalization exceeds the fixed heartbeat budget; a tracked pre-collapsed interface is required.",
+  "revision_refs": [
+    {
+      "change_id": "rootedNonroot_inverse_quadratic_sigma_of_child_admissible@rev:3",
+      "decl_name": "rootedNonroot_inverse_quadratic_sigma_of_child_admissible",
+      "revision": 3
+    }
+  ],
+  "round_id": "round_1a980af11a8c48a79d5b8ccbf85695a1",
+  "round_index": 78,
+  "started_at": "2026-08-03T12:29:51Z",
+  "status": "committed",
+  "strategy_id": "strategy_409097c1a1e547a681e983998de55d40",
+  "summary": "Round 78 advanced the route by validating the subsingleton witness transport and reaching the final finite-sum step, but Proof Formal remains blocked on deterministic heartbeat exhaustion while normalizing the fourfold dependent Sigma sum. This is a Lean-specific decomposition need, not source, provider, or Mathlib absence. No target reached proved state. The next step is one permitted private pre-collapsed Sigma inverse-quadratic theorem, kept within the contract's 42–47 scale; after it is proved, retry this helper, then the public parent. Raising heartbeats or another direct parent/helper retry is not justified."
+}

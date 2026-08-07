@@ -1,0 +1,33 @@
+{
+  "change_summaries": {},
+  "committed_at": "2026-07-30T01:51:02Z",
+  "created_at": "2026-07-30T01:32:31Z",
+  "discard_reason": null,
+  "discarded_at": null,
+  "discarded_by": null,
+  "discarded_created_decl_names": [],
+  "discarded_restored_decl_revisions": {},
+  "discarded_revision_refs": [],
+  "execution_completed_at": "2026-07-30T01:46:27Z",
+  "execution_reason": null,
+  "execution_result_kind": "success",
+  "node_path": "Main.RootedCapacity",
+  "objective": "Prove the b_0009 cut-separation fact needed by the component Gram bridge: in a tree, deleting an adjacent parent-child edge separates the parent from the connected component containing the child. This tracked rooted-component lemma will justify that the deleted edge is not internal to the child subtype.",
+  "plan_closeout_acknowledged_at": "2026-07-30T01:51:02Z",
+  "plan_closeout_acknowledged_by": "a_a93b40977f574bad89528358fa89e022",
+  "result_kind": "success",
+  "result_reason": "The public cut-separation theorem reached proved state with passing statement, proof, and policy checks.",
+  "revision_refs": [
+    {
+      "change_id": "rootedChildComponent_parent_not_mem@rev:1",
+      "decl_name": "rootedChildComponent_parent_not_mem",
+      "revision": 1
+    }
+  ],
+  "round_id": "round_7d9fea48bf6741e78b9d8b6ef97a2294",
+  "round_index": 8,
+  "started_at": "2026-07-30T01:34:41Z",
+  "status": "committed",
+  "strategy_id": "strategy_b9f2bb44ae0a40ba9081239e5f026481",
+  "summary": "The bottom-up b_0009 strategy progressed: rootedChildComponent_parent_not_mem reached proved state and graph-proved satisfaction. Together with rootedChildComponent_isTree, the structural cut layer is now closed. No blocker, state-only intermediate, superseded declaration, or scope issue remains. The next round can responsibly target the source-visible child rootedGram/principal-submatrix bridge; admissibility inheritance and capacity recursion should still wait for that bridge."
+}

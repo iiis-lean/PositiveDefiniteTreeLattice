@@ -1,0 +1,270 @@
+{
+  "change": {
+    "anticipated_proof_dep_names": [
+      "rootedChildComponent_parent_not_mem",
+      "rootedChildComponent_partition",
+      "treePairing_vertexVector_vertexVector"
+    ],
+    "anticipated_statement_dep_names": [
+      "rootedChildComponent",
+      "rootedChildren",
+      "rootedGram"
+    ],
+    "base_revision": null,
+    "kind": "create",
+    "objective": "Formalize the zero off-diagonal child-block assertion in solution.tex lines 57–63. For finite decidable V, G with decidable adjacency, hG : G.IsTree, integer weight w, root ρ, distinct c d with c,d ∈ rootedChildren G hG ρ ρ, and vertices x : rootedChildComponent G ρ c and y : rootedChildComponent G ρ d, prove rootedGram G w (x : V) (y : V) = 0. Preserve ambient rootedGram and the existing deleted-edge component indices. Use rootedChildComponent_parent_not_mem to exclude the deleted root-child edge, component reachability closure plus rootedChildComponent_partition uniqueness to rule out G.Adj (x : V) (y : V), and treePairing_vertexVector_vertexVector for the final entry evaluation. Do not introduce a generic block-diagonal API or expose this proof-only helper publicly. This theorem is the exact cross-component zero fact needed by the local nonroot inverse-quadratic identity and capacity recursion.",
+    "require_target_state_satisfied": true,
+    "reset_to_state": null,
+    "summary": "The private cross-component Gram theorem reached proved state with all stages accepted. For vertices in distinct root-child components it proves the ambient rootedGram entry is zero, using root exclusion, component reachability, partition uniqueness, and the basis-entry evaluation. It is graph-proved, remains proof-only/private, and supplies the off-diagonal zero condition for the nonroot inverse quadratic calculation.",
+    "target_state": "proved"
+  },
+  "lean_decl_name": "rootedGram_cross_rootedChildComponents",
+  "proof": {
+    "deps": [
+      {
+        "kind": "mathlib_decl",
+        "reason": "Closes the c-component membership across the surviving x-y deleted-graph adjacency.",
+        "ref": {
+          "module": "Mathlib.Combinatorics.SimpleGraph.Connectivity.Connected",
+          "name": "SimpleGraph.ConnectedComponent.mem_supp_of_adj_mem_supp"
+        }
+      },
+      {
+        "kind": "mathlib_decl",
+        "reason": "Transfers a hypothetical ambient x-y adjacency to the deleted root-c graph after proving it is not the removed edge.",
+        "ref": {
+          "module": "Mathlib.Combinatorics.SimpleGraph.DeleteEdges",
+          "name": "SimpleGraph.deleteEdges_adj"
+        }
+      },
+      {
+        "kind": "mathlib_decl",
+        "reason": "Analyzes an asserted equality of the hypothetical x-y edge with the deleted undirected root-c edge.",
+        "ref": {
+          "module": "Mathlib.Data.Sym.Sym2",
+          "name": "Sym2.eq_iff"
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "The proof preserves and unfolds this exact deleted-edge component representation when forming the two partition witnesses.",
+        "ref": {
+          "name": "rootedChildComponent",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 1
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "Excludes the root endpoint from both child components, so a hypothetical x-y edge cannot be the deleted root-c edge.",
+        "ref": {
+          "name": "rootedChildComponent_parent_not_mem",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 1
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "Its unique component index rules out both a shared underlying vertex and an ambient cross-component adjacency.",
+        "ref": {
+          "name": "rootedChildComponent_partition",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 1
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "The root-child hypotheses are unpacked to obtain the two deleted root-child edges and fed to partition uniqueness.",
+        "ref": {
+          "name": "rootedChildren",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 2
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "The final step unfolds this ambient rational Gram definition only.",
+        "ref": {
+          "name": "rootedGram",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 2
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "The proved local basis-entry formula turns distinct nonadjacent ambient vertices into a zero rootedGram entry.",
+        "ref": {
+          "name": "treePairing_vertexVector_vertexVector",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 2
+        }
+      }
+    ],
+    "formal": {
+      "check": {
+        "allow_sorry": false,
+        "contains_axiom": false,
+        "contains_sorry": false,
+        "diagnostics": {
+          "diagnostics": [],
+          "passed": true,
+          "raw_excerpt": "{'success': True, 'error_message': None, 'file': 'PositiveDefiniteTreeLattice.Main.RootedCapacity.Theorems.rootedGram_cross_rootedChildComponents', 'items': [], 'total_items': 0, 'error_count': 0, 'warning_count': 0, 'info_count': 0, 'sorry_count': 0}",
+          "repo_file_path": "PositiveDefiniteTreeLattice/Main/RootedCapacity/Theorems/rootedGram_cross_rootedChildComponents.lean",
+          "schema_version": 2,
+          "summary": "Diagnostics returned 0 items"
+        },
+        "message": "Lean check passed.",
+        "policy": "proof_formal",
+        "scan": {
+          "admit_count": 0,
+          "axiom_count": 0,
+          "contains_admit": false,
+          "contains_axiom": false,
+          "contains_opaque": false,
+          "contains_sorry": false,
+          "contains_unsafe": false,
+          "limitation": "Text scan ignores Lean comments and string literals with a conservative first-round lexer; it is not a full Lean parser.",
+          "occurrences": [],
+          "opaque_count": 0,
+          "sorry_count": 0,
+          "summary": "sorry=0, admit=0, axiom=0, opaque=0, unsafe=0",
+          "unsafe_count": 0
+        },
+        "status": "passed"
+      },
+      "code": "-- lean-constellation: managed-imports-begin\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Prelude\nimport Mathlib.Combinatorics.SimpleGraph.Acyclic\nimport Mathlib.Combinatorics.SimpleGraph.Connectivity.Connected\nimport Mathlib.Combinatorics.SimpleGraph.DeleteEdges\nimport Mathlib.Data.Sym.Sym2\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildComponent\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildren\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedGram\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Theorems.rootedChildComponent_parent_not_mem\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Theorems.rootedChildComponent_partition\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Theorems.treePairing_vertexVector_vertexVector\n-- lean-constellation: managed-imports-end\n\n-- lean-constellation: declaration-source-begin\n\n/--\n# lean-constellation target: `rootedGram_cross_rootedChildComponents`\n\nLet V be a finite type with decidable equality, let G be a simple graph on V with decidable\nadjacency, let hG : G.IsTree, let w : V → ℤ, and let ρ, c, d : V. Suppose c ∈ rootedChildren G hG ρ\nρ, d ∈ rootedChildren G hG ρ ρ, and c ≠ d. For every x : rootedChildComponent G ρ c and y :\nrootedChildComponent G ρ d, the ambient rational rooted Gram entry vanishes:\n\nrootedGram G w (x : V) (y : V) = 0.\n\nThe statement retains the existing deleted-edge child-component indices and gives precisely the zero\noff-diagonal child-block entry used in the root/rest decomposition.\n\n## Sources\n\n- Source `solution.tex`, lines 57–63\n\n## Statement dependencies\n\n- `SimpleGraph.IsTree` from `Mathlib.Combinatorics.SimpleGraph.Acyclic`\n- `Main.RootedCapacity::rootedChildComponent` → `rootedChildComponent` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildComponent`\n- `Main.RootedCapacity::rootedChildren` → `rootedChildren` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildren`\n- `Main.RootedCapacity::rootedGram` → `rootedGram` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedGram`\n\n## Proof outline\n\nFirst extract the root adjacencies `G.Adj ρ c` and `G.Adj ρ d` from `hc` and `hd`.  The public cut\ntheorem `rootedChildComponent_parent_not_mem` then gives `(x : V) ≠ ρ` and `(y : V) ≠ ρ` for the two\ncomponent vertices.\n\nShow that the underlying vertices are distinct.  If `(x : V) = (y : V)`, then that common nonroot\nvertex lies in both `rootedChildComponent G ρ c` (from `x.property`) and `rootedChildComponent G ρ\nd` (from `y.property`).  Apply the proved unique partition theorem `rootedChildComponent_partition G\nhG ρ (y : V)` to its two root-child/component witnesses; uniqueness gives `c = d`, contradicting\n`hcd`.\n\nShow `¬ G.Adj (x : V) (y : V)`.  Were such an edge present, it cannot be the deleted edge `{ρ,c}`:\neither orientation of an equality `s((x : V),(y : V)) = s(ρ,c)` would force `x = ρ` or `y = ρ`,\nexcluded above.  Hence `SimpleGraph.deleteEdges_adj` makes it an adjacency in `G.deleteEdges\n{s(ρ,c)}`.  Since `x.property` puts `x` in the `c` connected component,\n`SimpleGraph.ConnectedComponent.mem_supp_of_adj_mem_supp` puts `y` in that same component.  Together\nwith `y.property` in the `d` component and the two rooted-child hypotheses, the uniqueness clause of\n`rootedChildComponent_partition` again gives `c = d`, contradicting `hcd`.\n\nFinally unfold `rootedGram` and apply the proved private bridge\n`treePairing_vertexVector_vertexVector G hG`.  Its distinct-nonadjacent branch, using the\nestablished underlying-vertex inequality and `¬ G.Adj (x : V) (y : V)`, simplifies the ambient\nrational Gram entry to `0`.  This is a local private block helper only; it preserves the ambient\nGram and existing deleted-edge component indices.\n\n## Proof sources\n\n- Source `solution.tex`, lines 57–63\n\n## Proof dependencies\n\n- `SimpleGraph.ConnectedComponent.mem_supp_of_adj_mem_supp` from\n  `Mathlib.Combinatorics.SimpleGraph.Connectivity.Connected`\n- `SimpleGraph.deleteEdges_adj` from `Mathlib.Combinatorics.SimpleGraph.DeleteEdges`\n- `Sym2.eq_iff` from `Mathlib.Data.Sym.Sym2`\n- `Main.RootedCapacity::rootedChildComponent` → `rootedChildComponent` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildComponent`\n- `Main.RootedCapacity::rootedChildComponent_parent_not_mem` → `rootedChildComponent_parent_not_mem`\n  from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Theorems.rootedChildComponent_parent_not_mem`\n- `Main.RootedCapacity::rootedChildComponent_partition` → `rootedChildComponent_partition` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Theorems.rootedChildComponent_partition`\n- `Main.RootedCapacity::rootedChildren` → `rootedChildren` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildren`\n- `Main.RootedCapacity::rootedGram` → `rootedGram` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedGram`\n- `Main.RootedCapacity::treePairing_vertexVector_vertexVector` →\n  `treePairing_vertexVector_vertexVector` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Theorems.treePairing_vertexVector_vertexVector`\n-/\ntheorem rootedGram_cross_rootedChildComponents {V : Type*} [Fintype V] [DecidableEq V]\n    (G : SimpleGraph V) [DecidableRel G.Adj] (hG : G.IsTree) (w : V → ℤ) (ρ c d : V)\n    (hc : c ∈ rootedChildren G hG ρ ρ) (hd : d ∈ rootedChildren G hG ρ ρ) (hcd : c ≠ d)\n    (x : rootedChildComponent G ρ c) (y : rootedChildComponent G ρ d) :\n    rootedGram G w (x : V) (y : V) = 0 := by\n  classical\n  have hc' := hc\n  have hd' := hd\n  simp only [rootedChildren, Finset.mem_filter, Finset.mem_univ, true_and] at hc' hd'\n  obtain ⟨hρc, -, -, -⟩ := hc'\n  obtain ⟨hρd, -, -, -⟩ := hd'\n  have hxne : (x : V) ≠ ρ := rootedChildComponent_parent_not_mem G ρ c hG hρc x\n  have hyne : (y : V) ≠ ρ := rootedChildComponent_parent_not_mem G ρ d hG hρd y\n  have hxy_ne : (x : V) ≠ (y : V) := by\n    intro hxy\n    have hyC : (y : V) ∈ rootedChildComponent G ρ c := by\n      rw [← hxy]\n      exact x.property\n    obtain ⟨k, -, hunique⟩ := rootedChildComponent_partition G hG ρ (y : V) hyne\n    have hck : c = k := hunique c ⟨hc, hyC⟩\n    have hdk : d = k := hunique d ⟨hd, y.property⟩\n    exact hcd (hck.trans hdk.symm)\n  have hnoadj : ¬ G.Adj (x : V) (y : V) := by\n    intro hxy\n    have hnotcut : s((x : V), (y : V)) ∉ ({s(ρ, c)} : Set (Sym2 V)) := by\n      simp only [Set.mem_singleton_iff]\n      intro hcut\n      rcases Sym2.eq_iff.mp hcut with ⟨hxr, hyc⟩ | ⟨hxc, hyr⟩\n      · exact hxne hxr\n      · exact hyne hyr\n    have hxycut : (G.deleteEdges {s(ρ, c)}).Adj (x : V) (y : V) :=\n      SimpleGraph.deleteEdges_adj.mpr ⟨hxy, hnotcut⟩\n    have hyC : (y : V) ∈ rootedChildComponent G ρ c :=\n      SimpleGraph.ConnectedComponent.mem_supp_of_adj_mem_supp _ x.property hxycut\n    obtain ⟨k, -, hunique⟩ := rootedChildComponent_partition G hG ρ (y : V) hyne\n    have hck : c = k := hunique c ⟨hc, hyC⟩\n    have hdk : d = k := hunique d ⟨hd, y.property⟩\n    exact hcd (hck.trans hdk.symm)\n  unfold rootedGram\n  rw [treePairing_vertexVector_vertexVector G hG]\n  simp [hxy_ne, hnoadj]\n"
+    },
+    "nl": {
+      "origin": [
+        {
+          "end_line": 63,
+          "end_locator": null,
+          "kind": "source",
+          "note": "The source groups nonroot vertices by rooted child subtrees and identifies the nonroot Gram block as their direct sum; cross-child ambient Gram entries must therefore vanish.",
+          "ref": null,
+          "resource_key": null,
+          "source_path": "solution.tex",
+          "start_line": 57,
+          "start_locator": null
+        }
+      ],
+      "text": "First extract the root adjacencies `G.Adj ρ c` and `G.Adj ρ d` from `hc` and `hd`.  The public cut theorem `rootedChildComponent_parent_not_mem` then gives `(x : V) ≠ ρ` and `(y : V) ≠ ρ` for the two component vertices.\n\nShow that the underlying vertices are distinct.  If `(x : V) = (y : V)`, then that common nonroot vertex lies in both `rootedChildComponent G ρ c` (from `x.property`) and `rootedChildComponent G ρ d` (from `y.property`).  Apply the proved unique partition theorem `rootedChildComponent_partition G hG ρ (y : V)` to its two root-child/component witnesses; uniqueness gives `c = d`, contradicting `hcd`.\n\nShow `¬ G.Adj (x : V) (y : V)`.  Were such an edge present, it cannot be the deleted edge `{ρ,c}`: either orientation of an equality `s((x : V),(y : V)) = s(ρ,c)` would force `x = ρ` or `y = ρ`, excluded above.  Hence `SimpleGraph.deleteEdges_adj` makes it an adjacency in `G.deleteEdges {s(ρ,c)}`.  Since `x.property` puts `x` in the `c` connected component, `SimpleGraph.ConnectedComponent.mem_supp_of_adj_mem_supp` puts `y` in that same component.  Together with `y.property` in the `d` component and the two rooted-child hypotheses, the uniqueness clause of `rootedChildComponent_partition` again gives `c = d`, contradicting `hcd`.\n\nFinally unfold `rootedGram` and apply the proved private bridge `treePairing_vertexVector_vertexVector G hG`.  Its distinct-nonadjacent branch, using the established underlying-vertex inequality and `¬ G.Adj (x : V) (y : V)`, simplifies the ambient rational Gram entry to `0`.  This is a local private block helper only; it preserves the ambient Gram and existing deleted-edge component indices."
+    }
+  },
+  "revision": 1,
+  "state": "proved",
+  "statement": {
+    "deps": [
+      {
+        "kind": "mathlib_decl",
+        "reason": "Names the explicit ambient tree hypothesis hG.",
+        "ref": {
+          "module": "Mathlib.Combinatorics.SimpleGraph.Acyclic",
+          "name": "SimpleGraph.IsTree"
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "Names the deleted-edge component index types of x and y.",
+        "ref": {
+          "name": "rootedChildComponent",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 1
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "Names the oriented root-child membership hypotheses for c and d.",
+        "ref": {
+          "name": "rootedChildren",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 2
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "Names the ambient rational Gram entry asserted to be zero.",
+        "ref": {
+          "name": "rootedGram",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 2
+        }
+      }
+    ],
+    "formal": {
+      "check": {
+        "allow_sorry": true,
+        "contains_axiom": false,
+        "contains_sorry": true,
+        "diagnostics": {
+          "diagnostics": [
+            {
+              "column": 9,
+              "line": 38,
+              "message": "declaration uses `sorry`",
+              "severity": "warning"
+            }
+          ],
+          "passed": true,
+          "raw_excerpt": "{'success': True, 'error_message': None, 'file': 'PositiveDefiniteTreeLattice.Main.RootedCapacity.Theorems.rootedGram_cross_rootedChildComponents', 'items': [{'severity': 'warning', 'pos': {'line': 38, 'column': 9}, 'endPos': {'line': 38, 'column': 47}, 'kind': None, 'data': 'declaration uses `sorry`', 'fileName': 'PositiveDefiniteTreeLattice.Main.RootedCapacity.Theorems.rootedGram_cross_rootedChildComponents', 'content': '  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedGram`\\n-/\\ntheorem rootedGram_cross_rootedChildComponents {V : Type*} [Fintype V] [DecidableEq V]\\n    (G : SimpleGraph V) [DecidableRel G.Adj] (hG : G.IsTree) (w : V → ℤ) (ρ c d : V)\\n    (hc : c ∈ rootedChildren G hG ρ ρ) (hd : d ∈ rootedChildren G hG ρ ρ) (hcd : c ≠ d)'}], 'total_items': 1, 'error_count': 0, 'warning_count': 1, 'info_count': 0, 'sorry_count': 1}",
+          "repo_file_path": "PositiveDefiniteTreeLattice/Main/RootedCapacity/Theorems/rootedGram_cross_rootedChildComponents.lean",
+          "schema_version": 2,
+          "summary": "Diagnostics returned 1 items"
+        },
+        "message": "Lean check passed.",
+        "policy": "statement_formal",
+        "scan": {
+          "admit_count": 0,
+          "axiom_count": 0,
+          "contains_admit": false,
+          "contains_axiom": false,
+          "contains_opaque": false,
+          "contains_sorry": true,
+          "contains_unsafe": false,
+          "limitation": "Text scan ignores Lean comments and string literals with a conservative first-round lexer; it is not a full Lean parser.",
+          "occurrences": [
+            {
+              "column": 3,
+              "excerpt": "sorry",
+              "kind": "sorry",
+              "line": 43
+            }
+          ],
+          "opaque_count": 0,
+          "sorry_count": 1,
+          "summary": "sorry=1, admit=0, axiom=0, opaque=0, unsafe=0",
+          "unsafe_count": 0
+        },
+        "status": "passed"
+      },
+      "code": "-- lean-constellation: managed-imports-begin\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Prelude\nimport Mathlib.Combinatorics.SimpleGraph.Acyclic\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildComponent\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildren\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedGram\n-- lean-constellation: managed-imports-end\n\n-- lean-constellation: declaration-source-begin\n\n/--\n# lean-constellation target: `rootedGram_cross_rootedChildComponents`\n\nLet V be a finite type with decidable equality, let G be a simple graph on V with decidable\nadjacency, let hG : G.IsTree, let w : V → ℤ, and let ρ, c, d : V. Suppose c ∈ rootedChildren G hG ρ\nρ, d ∈ rootedChildren G hG ρ ρ, and c ≠ d. For every x : rootedChildComponent G ρ c and y :\nrootedChildComponent G ρ d, the ambient rational rooted Gram entry vanishes:\n\nrootedGram G w (x : V) (y : V) = 0.\n\nThe statement retains the existing deleted-edge child-component indices and gives precisely the zero\noff-diagonal child-block entry used in the root/rest decomposition.\n\n## Sources\n\n- Source `solution.tex`, lines 57–63\n\n## Statement dependencies\n\n- `SimpleGraph.IsTree` from `Mathlib.Combinatorics.SimpleGraph.Acyclic`\n- `Main.RootedCapacity::rootedChildComponent` → `rootedChildComponent` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildComponent`\n- `Main.RootedCapacity::rootedChildren` → `rootedChildren` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildren`\n- `Main.RootedCapacity::rootedGram` → `rootedGram` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedGram`\n-/\ntheorem rootedGram_cross_rootedChildComponents {V : Type*} [Fintype V] [DecidableEq V]\n    (G : SimpleGraph V) [DecidableRel G.Adj] (hG : G.IsTree) (w : V → ℤ) (ρ c d : V)\n    (hc : c ∈ rootedChildren G hG ρ ρ) (hd : d ∈ rootedChildren G hG ρ ρ) (hcd : c ≠ d)\n    (x : rootedChildComponent G ρ c) (y : rootedChildComponent G ρ d) :\n    rootedGram G w (x : V) (y : V) = 0 := by\n  sorry\n"
+    },
+    "nl": {
+      "origin": [
+        {
+          "end_line": 63,
+          "end_locator": null,
+          "kind": "source",
+          "note": "The source groups nonroot vertices by rooted child subtrees and states that their Gram block is the direct sum of the child subtree Gram matrices, requiring cross-child entries to vanish.",
+          "ref": null,
+          "resource_key": null,
+          "source_path": "solution.tex",
+          "start_line": 57,
+          "start_locator": null
+        }
+      ],
+      "text": "Let V be a finite type with decidable equality, let G be a simple graph on V with decidable adjacency, let hG : G.IsTree, let w : V → ℤ, and let ρ, c, d : V. Suppose c ∈ rootedChildren G hG ρ ρ, d ∈ rootedChildren G hG ρ ρ, and c ≠ d. For every x : rootedChildComponent G ρ c and y : rootedChildComponent G ρ d, the ambient rational rooted Gram entry vanishes:\n\nrootedGram G w (x : V) (y : V) = 0.\n\nThe statement retains the existing deleted-edge child-component indices and gives precisely the zero off-diagonal child-block entry used in the root/rest decomposition."
+    }
+  },
+  "status": "committed",
+  "updated_at": "2026-07-30T08:57:14Z"
+}

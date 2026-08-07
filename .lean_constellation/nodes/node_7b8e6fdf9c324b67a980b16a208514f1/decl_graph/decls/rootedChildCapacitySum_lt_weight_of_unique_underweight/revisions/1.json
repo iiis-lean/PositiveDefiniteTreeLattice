@@ -1,0 +1,238 @@
+{
+  "change": {
+    "anticipated_proof_dep_names": [
+      "rootedChildComponent_isAdmissible_of_unique_underweight",
+      "rootedGram_posDef_of_integer_positive"
+    ],
+    "anticipated_statement_dep_names": [],
+    "base_revision": null,
+    "kind": "create",
+    "objective": "Formalize solution.tex:204-208 as the exact central Schur-complement inequality: for the same positive-definite finite weighted tree, distinguished vertex, global weight-at-least-two condition, and unique-underweight/ambient degree condition consumed by rootedChildComponent_isAdmissible_of_unique_underweight, conclude `rootedChildCapacitySum G hG w v < (w v : ℚ)` (equivalently `(w v : ℚ) - rootedChildCapacitySum G hG w v > 0`). Preserve the repository's integral weight function and canonical rootedChildCapacitySum representation. Prove the component blocks admissible using rootedChildComponent_isAdmissible_of_unique_underweight, obtain ambient rational Gram PosDef from rootedGram_posDef_of_integer_positive, and implement the source Schur-complement argument at v. This private helper directly supplies the strict capacity gap required by the later rooted integer decomposition estimate and ultimately the protected exists_irreducible_vertex interface.",
+    "require_target_state_satisfied": true,
+    "reset_to_state": null,
+    "summary": "Created the source-derived central gap lemma and accepted its Statement NL and Statement Formal, so revision 1 reached declared with conclusion `rootedChildCapacitySum G hG w v < (w v : ℚ)` under the positive-definite, weight-at-least-two, and unique-underweight hypotheses serving solution.tex:204-208. Proof NL was blocked by a visible/provider dependency gap. The consumer needs the child-component block-decomposition identity equating the root/nonroot inverse quadratic contribution with the canonical `rootedChildCapacitySum`. `rootedGram_rootedChildComponent` only identifies individual component Gram entries and does not supply this assembled matrix/reindexing equality. `rootedCapacity_recursion` contains the identity internally but requires ambient `IsAdmissibleRootedTree`, which is unavailable and false at the underweighted root; its proof relies on the non-public RootedCapacity helper `rootedNonroot_inverse_quadratic` plus root/nonroot reindexing infrastructure. Inventing that generic matrix decomposition locally would violate the node boundary excluding reimplementation of generic rooted-capacity theorems. Retry only after a public provider theorem exposes the quadratic-form/child-capacity-sum identity under ambient Gram PosDef plus admissible child components, or an equivalent directly applicable positive Schur-complement denominator theorem. The accepted parent statement is not superseded and should remain declared.",
+    "target_state": "proved"
+  },
+  "lean_decl_name": "rootedChildCapacitySum_lt_weight_of_unique_underweight",
+  "proof": {
+    "deps": [
+      {
+        "kind": "mathlib_decl",
+        "reason": "Provides the strict quadratic-form positivity used to make the scalar Schur complement positive rather than merely nonnegative.",
+        "ref": {
+          "module": "Mathlib.LinearAlgebra.Matrix.PosDef",
+          "name": "Matrix.PosDef.dotProduct_mulVec_pos"
+        }
+      },
+      {
+        "kind": "mathlib_decl",
+        "reason": "Transfers positive semidefiniteness of the reindexed ambient Gram matrix to its root Schur complement.",
+        "ref": {
+          "module": "Mathlib.LinearAlgebra.Matrix.PosDef",
+          "name": "Matrix.PosDef.fromBlocks₂₂"
+        }
+      },
+      {
+        "kind": "mathlib_decl",
+        "reason": "Supplies the positive-semidefinite premise for the Schur-complement equivalence.",
+        "ref": {
+          "module": "Mathlib.LinearAlgebra.Matrix.PosDef",
+          "name": "Matrix.PosDef.posSemidef"
+        }
+      },
+      {
+        "kind": "mathlib_decl",
+        "reason": "Obtains positive definiteness, hence invertibility, for the nonroot principal block.",
+        "ref": {
+          "module": "Mathlib.LinearAlgebra.Matrix.PosDef",
+          "name": "Matrix.PosDef.submatrix"
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "Establishes admissibility and positive definiteness of every rooted child component used in the block calculation.",
+        "ref": {
+          "name": "rootedChildComponent_isAdmissible_of_unique_underweight",
+          "node": "Main.IrreducibleVertex",
+          "repo": null,
+          "revision": 3
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "Converts the integral pairing positivity hypothesis into positive definiteness of the ambient rational Gram matrix.",
+        "ref": {
+          "name": "rootedGram_posDef_of_integer_positive",
+          "node": "Main.IrreducibleVertex",
+          "repo": null,
+          "revision": 1
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "The proof unfolds the canonical child-capacity-sum representation in the final Schur complement identity.",
+        "ref": {
+          "name": "rootedChildCapacitySum",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 2
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "Identifies each summand in the block inverse quadratic form with its child component root capacity.",
+        "ref": {
+          "name": "rootedChildCapacitySummand",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 1
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "Partitions the nonroot block by rooted child components for the block-diagonal inverse calculation.",
+        "ref": {
+          "name": "rootedChildComponent_partition",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 1
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "Relates each child-component Gram block to the corresponding ambient rooted Gram submatrix.",
+        "ref": {
+          "name": "rootedGram_rootedChildComponent",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 1
+        }
+      }
+    ],
+    "formal": null,
+    "nl": {
+      "origin": [
+        {
+          "end_line": 208,
+          "end_locator": null,
+          "kind": "source",
+          "note": "These lines give the exact proof route: child components are admissible and the Schur complement at v gives W − Σᵢγᵢ > 0.",
+          "ref": null,
+          "resource_key": null,
+          "source_path": "solution.tex",
+          "start_line": 204,
+          "start_locator": null
+        }
+      ],
+      "text": "Let (M := \\mathrm{rootedGram}\\ G\\ \\mathit{weight}).  First obtain\n(h_M : M.\\mathrm{PosDef}) from\n`PositiveDefiniteTreeLattice.rootedGram_posDef_of_integer_positive G weight h_positive`.\nFor every rooted child (c) of (v), apply\n`PositiveDefiniteTreeLattice.rootedChildComponent_isAdmissible_of_unique_underweight`\nto the edge from (v) to (c).  This supplies positive definiteness and the\ninvertibility of each child-component Gram block, while preserving the\ncapacity appearing in `rootedChildCapacitySummand`.\n\nSplit the index type into the singleton root (v) and its complement, and\nreindex (M) to a block matrix\n(\begin{pmatrix}A&B\\\\B^{\\dagger}&D\\end{pmatrix}).\nUse `Matrix.PosDef.submatrix` on (h_M) to make (D) positive definite,\nhence invertible.  The root/root entry is (A_{vv}=(weight\\ v:\\mathbb Q)).\nUnfold `rootedChildCapacitySum` and\n`rootedChildCapacitySummand`; using the rooted-child component\npartition and the component admissibility just obtained, calculate the\nquadratic block term\n((B D^{-1} B^{\\dagger})_{vv}) as the finite sum of the component root\ncapacities, namely `rootedChildCapacitySum G hG weight v`.\nThis is the local block-diagonal/reindexing calculation corresponding to the\nsource's (sum_i\\gamma_i).\n\nApply `Matrix.PosDef.fromBlocks₂₂` to the positive-semidefinite consequence\nof (h_M) and the positive-definite lower-right block (D).  It yields\npositive semidefiniteness of the one-by-one Schur complement\n(S=A-BD^{-1}B^{\\dagger}).  To upgrade the scalar conclusion to strict\npositivity, use the defining strict quadratic-form clause of (h_M) on the\nnonzero completion of the root basis vector after eliminating the nonroot\ncoordinates by (D^{-1}B^{\\dagger}).  Simplification identifies that\nstrict quadratic value with the sole diagonal entry of (S).  Substitute the\ntwo preceding identities and finish by linear arithmetic:\n[\n0 < (weight\\ v:\\mathbb Q)-\\mathrm{rootedChildCapacitySum}\\ G\\ hG\\ weight\\ v,\n]\nwhich is equivalent to the required strict inequality."
+    }
+  },
+  "revision": 1,
+  "state": "declared",
+  "statement": {
+    "deps": [
+      {
+        "kind": "mathlib_decl",
+        "reason": "The statement assumes that the ambient graph is a tree.",
+        "ref": {
+          "module": "Mathlib.Combinatorics.SimpleGraph.Acyclic",
+          "name": "SimpleGraph.IsTree"
+        }
+      },
+      {
+        "kind": "mathlib_decl",
+        "reason": "The unique-underweight and distinguished-vertex hypotheses compare weights with the ambient graph degree.",
+        "ref": {
+          "module": "Mathlib.Combinatorics.SimpleGraph.Finite",
+          "name": "SimpleGraph.degree"
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "The positive-definiteness hypothesis in the statement is expressed using the repository tree pairing.",
+        "ref": {
+          "name": "treePairingAnchor",
+          "node": "Main.LatticeFoundations",
+          "repo": null,
+          "revision": 1
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "The conclusion uses the canonical rooted child-component capacity sum.",
+        "ref": {
+          "name": "rootedChildCapacitySum",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 2
+        }
+      }
+    ],
+    "formal": {
+      "check": {
+        "allow_sorry": true,
+        "contains_axiom": false,
+        "contains_sorry": true,
+        "diagnostics": {
+          "diagnostics": [
+            {
+              "column": 7,
+              "line": 34,
+              "message": "declaration uses `sorry`",
+              "severity": "warning"
+            }
+          ],
+          "passed": true,
+          "raw_excerpt": "{'success': True, 'error_message': None, 'file': 'PositiveDefiniteTreeLattice.Main.IrreducibleVertex.Lemmas.rootedChildCapacitySum_lt_weight_of_unique_underweight', 'items': [{'severity': 'warning', 'pos': {'line': 34, 'column': 7}, 'endPos': {'line': 34, 'column': 61}, 'kind': None, 'data': 'declaration uses `sorry`', 'fileName': 'PositiveDefiniteTreeLattice.Main.IrreducibleVertex.Lemmas.rootedChildCapacitySum_lt_weight_of_unique_underweight', 'content': '  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildCapacitySum`\\n-/\\nlemma rootedChildCapacitySum_lt_weight_of_unique_underweight\\n    {V : Type*} [Fintype V] [DecidableEq V] (G : SimpleGraph V) [DecidableRel G.Adj]\\n    (hG : G.IsTree) (weight : V → ℤ) (v : V)'}], 'total_items': 1, 'error_count': 0, 'warning_count': 1, 'info_count': 0, 'sorry_count': 1}",
+          "repo_file_path": "PositiveDefiniteTreeLattice/Main/IrreducibleVertex/Lemmas/rootedChildCapacitySum_lt_weight_of_unique_underweight.lean",
+          "schema_version": 2,
+          "summary": "Diagnostics returned 1 items"
+        },
+        "message": "Lean check passed.",
+        "policy": "statement_formal",
+        "scan": {
+          "admit_count": 0,
+          "axiom_count": 0,
+          "contains_admit": false,
+          "contains_axiom": false,
+          "contains_opaque": false,
+          "contains_sorry": true,
+          "contains_unsafe": false,
+          "limitation": "Text scan ignores Lean comments and string literals with a conservative first-round lexer; it is not a full Lean parser.",
+          "occurrences": [
+            {
+              "column": 3,
+              "excerpt": "sorry",
+              "kind": "sorry",
+              "line": 42
+            }
+          ],
+          "opaque_count": 0,
+          "sorry_count": 1,
+          "summary": "sorry=1, admit=0, axiom=0, opaque=0, unsafe=0",
+          "unsafe_count": 0
+        },
+        "status": "passed"
+      },
+      "code": "-- lean-constellation: managed-imports-begin\nimport PositiveDefiniteTreeLattice.Main.IrreducibleVertex.Prelude\nimport Mathlib.Combinatorics.SimpleGraph.Acyclic\nimport Mathlib.Combinatorics.SimpleGraph.Finite\n-- lean-constellation: managed-imports-end\n\n-- lean-constellation: declaration-source-begin\n\n/--\n# lean-constellation target: `rootedChildCapacitySum_lt_weight_of_unique_underweight`\n\nLet `V` be a finite type with decidable equality, let `G : SimpleGraph V` have decidable adjacency,\nlet `weight : V → ℤ`, and let `v : V`. Suppose `h_tree : G.IsTree`, `h_positive : ∀ x : V → ℤ, x ≠ 0\n→ 0 < treePairing G weight x x`, `h_unique_underweight : ∃! u : V, weight u < (G.degree u : ℤ)`, `hv\n: weight v < (G.degree v : ℤ)`, and `h_two : ∀ x : V, 2 ≤ weight x`. Then the canonical sum of the\ncapacities of the rooted child-side components at `v` is strictly below the integral weight at `v`,\nviewed in `ℚ`:\n\n`rootedChildCapacitySum G h_tree weight v < (weight v : ℚ)`.\n\n## Sources\n\n- Source `solution.tex`, lines 204–208\n\n## Statement dependencies\n\n- `SimpleGraph.IsTree` from `Mathlib.Combinatorics.SimpleGraph.Acyclic`\n- `SimpleGraph.degree` from `Mathlib.Combinatorics.SimpleGraph.Finite`\n- `Main.LatticeFoundations::treePairingAnchor` → `PositiveDefiniteTreeLattice.treePairing` from\n  `PositiveDefiniteTreeLattice.Main.LatticeFoundations.Defs.treePairingAnchor`\n- `Main.RootedCapacity::rootedChildCapacitySum` → `rootedChildCapacitySum` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildCapacitySum`\n-/\nlemma rootedChildCapacitySum_lt_weight_of_unique_underweight\n    {V : Type*} [Fintype V] [DecidableEq V] (G : SimpleGraph V) [DecidableRel G.Adj]\n    (hG : G.IsTree) (weight : V → ℤ) (v : V)\n    (h_positive : ∀ x : V → ℤ, x ≠ 0 →\n      0 < PositiveDefiniteTreeLattice.treePairing G weight x x)\n    (h_unique_underweight : ∃! u : V, weight u < (G.degree u : ℤ))\n    (hv : weight v < (G.degree v : ℤ)) (h_two : ∀ x : V, 2 ≤ weight x) :\n    rootedChildCapacitySum G hG weight v < (weight v : ℚ) := by\n  sorry\n"
+    },
+    "nl": {
+      "origin": [
+        {
+          "end_line": 208,
+          "end_locator": null,
+          "kind": "source",
+          "note": "These lines establish admissibility of every child component and state the positive Schur complement inequality W − Σᵢ γᵢ > 0, represented here by rootedChildCapacitySum.",
+          "ref": null,
+          "resource_key": null,
+          "source_path": "solution.tex",
+          "start_line": 204,
+          "start_locator": null
+        }
+      ],
+      "text": "Let `V` be a finite type with decidable equality, let `G : SimpleGraph V` have decidable adjacency, let `weight : V → ℤ`, and let `v : V`. Suppose `h_tree : G.IsTree`, `h_positive : ∀ x : V → ℤ, x ≠ 0 → 0 < treePairing G weight x x`, `h_unique_underweight : ∃! u : V, weight u < (G.degree u : ℤ)`, `hv : weight v < (G.degree v : ℤ)`, and `h_two : ∀ x : V, 2 ≤ weight x`. Then the canonical sum of the capacities of the rooted child-side components at `v` is strictly below the integral weight at `v`, viewed in `ℚ`:\n\n`rootedChildCapacitySum G h_tree weight v < (weight v : ℚ)`."
+    }
+  },
+  "status": "committed",
+  "updated_at": "2026-08-03T10:30:11Z"
+}

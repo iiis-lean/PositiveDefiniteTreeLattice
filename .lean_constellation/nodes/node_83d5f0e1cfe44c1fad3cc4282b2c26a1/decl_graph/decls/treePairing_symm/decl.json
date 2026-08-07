@@ -1,0 +1,20 @@
+{
+  "created_at": "2026-07-29T15:04:20Z",
+  "current_revision": 6,
+  "kind": "theorem",
+  "lifecycle": "active",
+  "module": "PositiveDefiniteTreeLattice.Main.LatticeFoundations.Theorems.treePairing_symm",
+  "name": "treePairing_symm",
+  "node_path": "Main.LatticeFoundations",
+  "public": true,
+  "revision_ids": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6
+  ],
+  "summary": "The weighted simple-graph pairing is symmetric.",
+  "updated_at": "2026-07-29T20:22:24Z"
+}

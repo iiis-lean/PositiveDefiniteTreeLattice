@@ -1,0 +1,716 @@
+{
+  "active_file_scope": [],
+  "blocks": {
+    "b_0001": {
+      "active": true,
+      "block_id": "b_0001",
+      "child_ids": [],
+      "created_at": "2026-07-21T19:41:10Z",
+      "kind": "section",
+      "lifecycle_status": "completed",
+      "link_ids": [
+        "link_0001",
+        "link_0003"
+      ],
+      "parent_id": "root",
+      "refs": [
+        {
+          "material_ref": {
+            "kind": "source",
+            "ref": {
+              "end_line": 25,
+              "path": "README.md",
+              "start_line": 1
+            }
+          },
+          "ref_id": "ref_0001",
+          "role": "primary"
+        }
+      ],
+      "subtype": null,
+      "summary": "README identifies the corpus as a self-contained statement and complete rooted-capacity proof, directs readers from problem to solution to formal target, and records that no proof gaps are known while broader motivation and alternatives are omitted.",
+      "title": "Corpus scope and proof map",
+      "updated_at": "2026-07-21T19:42:08Z"
+    },
+    "b_0002": {
+      "active": true,
+      "block_id": "b_0002",
+      "child_ids": [],
+      "created_at": "2026-07-21T19:41:10Z",
+      "kind": "definition",
+      "lifecycle_status": "completed",
+      "link_ids": [
+        "link_0008"
+      ],
+      "parent_id": "root",
+      "refs": [
+        {
+          "material_ref": {
+            "kind": "source",
+            "ref": {
+              "end_line": 15,
+              "path": "formal_target.lean",
+              "start_line": 7
+            }
+          },
+          "ref_id": "ref_0002",
+          "role": "primary"
+        }
+      ],
+      "subtype": null,
+      "summary": "The Lean boundary defines the integral weighted-graph pairing as a finite sum and represents a vertex by its unit coordinate function.",
+      "title": "Formal tree pairing and vertex vector",
+      "updated_at": "2026-07-21T19:42:08Z"
+    },
+    "b_0003": {
+      "active": true,
+      "block_id": "b_0003",
+      "child_ids": [],
+      "created_at": "2026-07-21T19:41:10Z",
+      "kind": "theorem",
+      "lifecycle_status": "completed",
+      "link_ids": [
+        "link_0005"
+      ],
+      "parent_id": "root",
+      "refs": [
+        {
+          "material_ref": {
+            "kind": "source",
+            "ref": {
+              "end_line": 33,
+              "path": "formal_target.lean",
+              "start_line": 24
+            }
+          },
+          "ref_id": "ref_0003",
+          "role": "primary"
+        }
+      ],
+      "subtype": null,
+      "summary": "For a finite simple graph that is a tree, integrally positive definite under treePairing, and has exactly one vertex of weight below degree, the formal target asserts existence of a vertexVector satisfying Irreducible.",
+      "title": "Required exported theorem signature",
+      "updated_at": "2026-07-21T19:42:08Z"
+    },
+    "b_0004": {
+      "active": true,
+      "block_id": "b_0004",
+      "child_ids": [],
+      "created_at": "2026-07-21T19:41:11Z",
+      "kind": "definition",
+      "lifecycle_status": "completed",
+      "link_ids": [
+        "link_0002"
+      ],
+      "parent_id": "root",
+      "refs": [
+        {
+          "material_ref": {
+            "kind": "source",
+            "ref": {
+              "end_line": 22,
+              "path": "formal_target.lean",
+              "start_line": 17
+            }
+          },
+          "ref_id": "ref_0004",
+          "role": "primary"
+        }
+      ],
+      "subtype": null,
+      "summary": "The Lean predicate excludes decompositions x = a + b with both summands nonzero and nonnegative cross-pairing.",
+      "title": "Formal irreducibility predicate",
+      "updated_at": "2026-07-21T19:42:08Z"
+    },
+    "b_0005": {
+      "active": true,
+      "block_id": "b_0005",
+      "child_ids": [],
+      "created_at": "2026-07-21T19:41:11Z",
+      "kind": "definition",
+      "lifecycle_status": "completed",
+      "link_ids": [],
+      "parent_id": "root",
+      "refs": [
+        {
+          "material_ref": {
+            "kind": "source",
+            "ref": {
+              "end_line": 33,
+              "path": "problem.tex",
+              "start_line": 13
+            }
+          },
+          "ref_id": "ref_0005",
+          "role": "primary"
+        }
+      ],
+      "subtype": null,
+      "summary": "The problem defines the weighted-tree lattice bilinear form on the vertex basis, positive definiteness on nonzero lattice vectors, and irreducibility by exclusion of nonzero decompositions with nonnegative pairing.",
+      "title": "Tree lattice, positive definiteness, and irreducibility",
+      "updated_at": "2026-07-21T19:42:08Z"
+    },
+    "b_0006": {
+      "active": true,
+      "block_id": "b_0006",
+      "child_ids": [],
+      "created_at": "2026-07-21T19:41:11Z",
+      "kind": "theorem",
+      "lifecycle_status": "completed",
+      "link_ids": [],
+      "parent_id": "root",
+      "refs": [
+        {
+          "material_ref": {
+            "kind": "source",
+            "ref": {
+              "end_line": 43,
+              "path": "problem.tex",
+              "start_line": 35
+            }
+          },
+          "ref_id": "ref_0007",
+          "role": "primary"
+        }
+      ],
+      "subtype": null,
+      "summary": "The source theorem concludes that a positive-definite finite integer-weighted tree with a unique vertex whose weight is below degree contains an irreducible basis vertex.",
+      "title": "Mathematical irreducible-vertex theorem",
+      "updated_at": "2026-07-21T19:42:08Z"
+    },
+    "b_0007": {
+      "active": true,
+      "block_id": "b_0007",
+      "child_ids": [],
+      "created_at": "2026-07-21T19:41:11Z",
+      "kind": "lemma",
+      "lifecycle_status": "completed",
+      "link_ids": [
+        "link_0007"
+      ],
+      "parent_id": "root",
+      "refs": [
+        {
+          "material_ref": {
+            "kind": "source",
+            "ref": {
+              "end_line": 31,
+              "path": "solution.tex",
+              "start_line": 19
+            }
+          },
+          "ref_id": "ref_0006",
+          "role": "primary"
+        }
+      ],
+      "subtype": null,
+      "summary": "In an integral positive-definite lattice, a vector of norm one is irreducible, since a prohibited decomposition would give norm at least two.",
+      "title": "Norm-one elements are irreducible",
+      "updated_at": "2026-07-21T19:42:08Z"
+    },
+    "b_0008": {
+      "active": true,
+      "block_id": "b_0008",
+      "child_ids": [],
+      "created_at": "2026-07-21T19:41:11Z",
+      "kind": "definition",
+      "lifecycle_status": "completed",
+      "link_ids": [
+        "link_0004",
+        "link_0006",
+        "link_0014"
+      ],
+      "parent_id": "root",
+      "refs": [
+        {
+          "material_ref": {
+            "kind": "source",
+            "ref": {
+              "end_line": 45,
+              "path": "solution.tex",
+              "start_line": 33
+            }
+          },
+          "ref_id": "ref_0012",
+          "role": "primary"
+        }
+      ],
+      "subtype": null,
+      "summary": "A rooted tree is admissible when positive definite, all weights are at least two, and each weight is at least its child count plus one; its capacity is the root diagonal entry of the inverse Gram matrix.",
+      "title": "Admissible rooted trees and capacity",
+      "updated_at": "2026-07-21T19:42:08Z"
+    },
+    "b_0009": {
+      "active": true,
+      "block_id": "b_0009",
+      "child_ids": [],
+      "created_at": "2026-07-21T19:41:11Z",
+      "kind": "lemma",
+      "lifecycle_status": "completed",
+      "link_ids": [
+        "link_0011",
+        "link_0015"
+      ],
+      "parent_id": "root",
+      "refs": [
+        {
+          "material_ref": {
+            "kind": "source",
+            "ref": {
+              "end_line": 82,
+              "path": "solution.tex",
+              "start_line": 47
+            }
+          },
+          "ref_id": "ref_0008",
+          "role": "primary"
+        }
+      ],
+      "subtype": null,
+      "summary": "For an admissible rooted tree, capacity is the reciprocal Schur complement at the root and lies strictly between zero and one.",
+      "title": "Capacity recursion and strict bounds",
+      "updated_at": "2026-07-21T19:42:08Z"
+    },
+    "b_0010": {
+      "active": true,
+      "block_id": "b_0010",
+      "child_ids": [],
+      "created_at": "2026-07-21T19:41:11Z",
+      "kind": "lemma",
+      "lifecycle_status": "completed",
+      "link_ids": [
+        "link_0010"
+      ],
+      "parent_id": "root",
+      "refs": [
+        {
+          "material_ref": {
+            "kind": "source",
+            "ref": {
+              "end_line": 153,
+              "path": "solution.tex",
+              "start_line": 84
+            }
+          },
+          "ref_id": "ref_0009",
+          "role": "primary"
+        }
+      ],
+      "subtype": null,
+      "summary": "For every vector and integer k in an admissible rooted tree, the norm-root-coefficient expression plus gamma k(k+1) is nonnegative; the proof inducts using subtree estimates and an integer-distance bound.",
+      "title": "Rooted integer estimate",
+      "updated_at": "2026-07-21T19:42:08Z"
+    },
+    "b_0011": {
+      "active": true,
+      "block_id": "b_0011",
+      "child_ids": [],
+      "created_at": "2026-07-21T19:41:11Z",
+      "kind": "lemma",
+      "lifecycle_status": "completed",
+      "link_ids": [
+        "link_0009"
+      ],
+      "parent_id": "root",
+      "refs": [
+        {
+          "material_ref": {
+            "kind": "source",
+            "ref": {
+              "end_line": 180,
+              "path": "solution.tex",
+              "start_line": 155
+            }
+          },
+          "ref_id": "ref_0010",
+          "role": "primary"
+        }
+      ],
+      "subtype": null,
+      "summary": "For a nonzero vector in an admissible rooted tree, norm minus its root coefficient is positive, using positive definiteness or the dual root vector and capacity bound.",
+      "title": "Root coefficient bound",
+      "updated_at": "2026-07-21T19:42:08Z"
+    },
+    "b_0012": {
+      "active": true,
+      "block_id": "b_0012",
+      "child_ids": [],
+      "created_at": "2026-07-21T19:41:11Z",
+      "kind": "proof",
+      "lifecycle_status": "completed",
+      "link_ids": [
+        "link_0012",
+        "link_0013"
+      ],
+      "parent_id": "root",
+      "refs": [
+        {
+          "material_ref": {
+            "kind": "source",
+            "ref": {
+              "end_line": 244,
+              "path": "solution.tex",
+              "start_line": 182
+            }
+          },
+          "ref_id": "ref_0011",
+          "role": "primary"
+        }
+      ],
+      "subtype": null,
+      "summary": "The proof treats weight-one vertices by the norm-one lemma; otherwise it roots components obtained by removing the unique underweighted vertex, proves them admissible, and rules out any decomposition in the cases p≥1 and p=0 using the rooted estimate and root bound.",
+      "title": "Final irreducibility proof by rooted components",
+      "updated_at": "2026-07-21T19:42:08Z"
+    },
+    "root": {
+      "active": true,
+      "block_id": "root",
+      "child_ids": [
+        "b_0001",
+        "b_0002",
+        "b_0003",
+        "b_0004",
+        "b_0005",
+        "b_0006",
+        "b_0007",
+        "b_0008",
+        "b_0009",
+        "b_0010",
+        "b_0011",
+        "b_0012"
+      ],
+      "created_at": "2026-07-21T19:40:00Z",
+      "kind": "root",
+      "lifecycle_status": "draft",
+      "link_ids": [],
+      "parent_id": null,
+      "refs": [],
+      "subtype": null,
+      "summary": "Root block for the source corpus.",
+      "title": "Source corpus",
+      "updated_at": "2026-07-21T19:41:11Z"
+    }
+  },
+  "committed_at": "2026-07-21T22:25:58Z",
+  "created_at": "2026-07-21T19:40:00Z",
+  "files": {
+    "README.md": {
+      "committed": true,
+      "indexing_status": "indexed",
+      "line_count": 25,
+      "path": "README.md",
+      "readable_text": true,
+      "source_sha256": "d607dbdac0630664d9eb947ed551ffbff07dadda52b2c58795710beb660ccf70",
+      "summary": "Corpus scope, provenance, reading order, formal target correspondence, and stated extraction limits.",
+      "survey_status": "surveyed"
+    },
+    "formal_target.lean": {
+      "committed": true,
+      "indexing_status": "indexed",
+      "line_count": 35,
+      "path": "formal_target.lean",
+      "readable_text": true,
+      "source_sha256": "f1f6c2f14a304303d773d9ee3ce25471a04c656198165c0e3018e87101a1c2a9",
+      "summary": "Lean definitions of pairing, vertex vector, irreducibility, and the required theorem signature.",
+      "survey_status": "surveyed"
+    },
+    "problem.tex": {
+      "committed": true,
+      "indexing_status": "indexed",
+      "line_count": 45,
+      "path": "problem.tex",
+      "readable_text": true,
+      "source_sha256": "1359acad563a71f537e979a84e0937d026785b7cd2246bf5a1f1d616169ebe07",
+      "summary": "Mathematical statement: positive-definite weighted tree with a unique underweighted vertex has an irreducible vertex.",
+      "survey_status": "surveyed"
+    },
+    "solution.tex": {
+      "committed": true,
+      "indexing_status": "indexed",
+      "line_count": 246,
+      "path": "solution.tex",
+      "readable_text": true,
+      "source_sha256": "b1b5d2719f999dfa30defd296edf9649d8eea397bc7d1581c725a542c2335e52",
+      "summary": "Complete rooted-capacity proof: preliminary norm-one lemma, capacity recursion, rooted estimate, root bound, and final theorem proof.",
+      "survey_status": "surveyed"
+    }
+  },
+  "links": {
+    "link_0001": {
+      "created_at": "2026-07-21T19:41:54Z",
+      "evidence_refs": [
+        {
+          "kind": "source",
+          "ref": {
+            "end_line": 25,
+            "path": "README.md",
+            "start_line": 1
+          }
+        }
+      ],
+      "link_id": "link_0001",
+      "link_kind": "refers_to",
+      "source_block_id": "b_0001",
+      "target_block_id": "b_0005",
+      "target_hint": null
+    },
+    "link_0002": {
+      "created_at": "2026-07-21T19:41:54Z",
+      "evidence_refs": [
+        {
+          "kind": "source",
+          "ref": {
+            "end_line": 22,
+            "path": "formal_target.lean",
+            "start_line": 17
+          }
+        }
+      ],
+      "link_id": "link_0002",
+      "link_kind": "same_as",
+      "source_block_id": "b_0004",
+      "target_block_id": "b_0005",
+      "target_hint": null
+    },
+    "link_0003": {
+      "created_at": "2026-07-21T19:41:54Z",
+      "evidence_refs": [
+        {
+          "kind": "source",
+          "ref": {
+            "end_line": 25,
+            "path": "README.md",
+            "start_line": 1
+          }
+        }
+      ],
+      "link_id": "link_0003",
+      "link_kind": "refers_to",
+      "source_block_id": "b_0001",
+      "target_block_id": "b_0003",
+      "target_hint": null
+    },
+    "link_0004": {
+      "created_at": "2026-07-21T19:41:54Z",
+      "evidence_refs": [
+        {
+          "kind": "source",
+          "ref": {
+            "end_line": 45,
+            "path": "solution.tex",
+            "start_line": 33
+          }
+        }
+      ],
+      "link_id": "link_0004",
+      "link_kind": "supports",
+      "source_block_id": "b_0008",
+      "target_block_id": "b_0009",
+      "target_hint": null
+    },
+    "link_0005": {
+      "created_at": "2026-07-21T19:41:54Z",
+      "evidence_refs": [
+        {
+          "kind": "source",
+          "ref": {
+            "end_line": 33,
+            "path": "formal_target.lean",
+            "start_line": 24
+          }
+        }
+      ],
+      "link_id": "link_0005",
+      "link_kind": "same_as",
+      "source_block_id": "b_0003",
+      "target_block_id": "b_0006",
+      "target_hint": null
+    },
+    "link_0006": {
+      "created_at": "2026-07-21T19:41:54Z",
+      "evidence_refs": [
+        {
+          "kind": "source",
+          "ref": {
+            "end_line": 45,
+            "path": "solution.tex",
+            "start_line": 33
+          }
+        }
+      ],
+      "link_id": "link_0006",
+      "link_kind": "supports",
+      "source_block_id": "b_0008",
+      "target_block_id": "b_0011",
+      "target_hint": null
+    },
+    "link_0007": {
+      "created_at": "2026-07-21T19:41:54Z",
+      "evidence_refs": [
+        {
+          "kind": "source",
+          "ref": {
+            "end_line": 31,
+            "path": "solution.tex",
+            "start_line": 19
+          }
+        }
+      ],
+      "link_id": "link_0007",
+      "link_kind": "supports",
+      "source_block_id": "b_0007",
+      "target_block_id": "b_0012",
+      "target_hint": null
+    },
+    "link_0008": {
+      "created_at": "2026-07-21T19:41:54Z",
+      "evidence_refs": [
+        {
+          "kind": "source",
+          "ref": {
+            "end_line": 15,
+            "path": "formal_target.lean",
+            "start_line": 7
+          }
+        }
+      ],
+      "link_id": "link_0008",
+      "link_kind": "same_as",
+      "source_block_id": "b_0002",
+      "target_block_id": "b_0005",
+      "target_hint": null
+    },
+    "link_0009": {
+      "created_at": "2026-07-21T19:41:54Z",
+      "evidence_refs": [
+        {
+          "kind": "source",
+          "ref": {
+            "end_line": 180,
+            "path": "solution.tex",
+            "start_line": 155
+          }
+        }
+      ],
+      "link_id": "link_0009",
+      "link_kind": "supports",
+      "source_block_id": "b_0011",
+      "target_block_id": "b_0012",
+      "target_hint": null
+    },
+    "link_0010": {
+      "created_at": "2026-07-21T19:41:54Z",
+      "evidence_refs": [
+        {
+          "kind": "source",
+          "ref": {
+            "end_line": 153,
+            "path": "solution.tex",
+            "start_line": 84
+          }
+        }
+      ],
+      "link_id": "link_0010",
+      "link_kind": "supports",
+      "source_block_id": "b_0010",
+      "target_block_id": "b_0012",
+      "target_hint": null
+    },
+    "link_0011": {
+      "created_at": "2026-07-21T19:41:54Z",
+      "evidence_refs": [
+        {
+          "kind": "source",
+          "ref": {
+            "end_line": 82,
+            "path": "solution.tex",
+            "start_line": 47
+          }
+        }
+      ],
+      "link_id": "link_0011",
+      "link_kind": "supports",
+      "source_block_id": "b_0009",
+      "target_block_id": "b_0011",
+      "target_hint": null
+    },
+    "link_0012": {
+      "created_at": "2026-07-21T19:41:54Z",
+      "evidence_refs": [
+        {
+          "kind": "source",
+          "ref": {
+            "end_line": 244,
+            "path": "solution.tex",
+            "start_line": 182
+          }
+        }
+      ],
+      "link_id": "link_0012",
+      "link_kind": "supports",
+      "source_block_id": "b_0012",
+      "target_block_id": "b_0003",
+      "target_hint": null
+    },
+    "link_0013": {
+      "created_at": "2026-07-21T19:41:54Z",
+      "evidence_refs": [
+        {
+          "kind": "source",
+          "ref": {
+            "end_line": 244,
+            "path": "solution.tex",
+            "start_line": 182
+          }
+        }
+      ],
+      "link_id": "link_0013",
+      "link_kind": "proves",
+      "source_block_id": "b_0012",
+      "target_block_id": "b_0006",
+      "target_hint": null
+    },
+    "link_0014": {
+      "created_at": "2026-07-21T19:41:54Z",
+      "evidence_refs": [
+        {
+          "kind": "source",
+          "ref": {
+            "end_line": 45,
+            "path": "solution.tex",
+            "start_line": 33
+          }
+        }
+      ],
+      "link_id": "link_0014",
+      "link_kind": "supports",
+      "source_block_id": "b_0008",
+      "target_block_id": "b_0010",
+      "target_hint": null
+    },
+    "link_0015": {
+      "created_at": "2026-07-21T19:41:54Z",
+      "evidence_refs": [
+        {
+          "kind": "source",
+          "ref": {
+            "end_line": 82,
+            "path": "solution.tex",
+            "start_line": 47
+          }
+        }
+      ],
+      "link_id": "link_0015",
+      "link_kind": "supports",
+      "source_block_id": "b_0009",
+      "target_block_id": "b_0010",
+      "target_hint": null
+    }
+  },
+  "overview": "Self-contained source corpus for the positive-definite integer-weighted tree-lattice theorem. problem.tex states the lattice, irreducibility, and unique-underweighted-vertex conclusion; solution.tex proves it via norm-one elements, admissible rooted components, capacities, a rooted integer estimate, and a final decomposition contradiction. formal_target.lean fixes the Lean-facing pairing, vertex vectors, irreducibility predicate, and required exported theorem; README.md records provenance, reading order, and extraction limits.",
+  "root_block_id": "root",
+  "schema_version": 3,
+  "status": "committed",
+  "summary": "Committed scoped SourceIndex update.",
+  "updated_at": "2026-07-21T22:25:58Z"
+}

@@ -1,0 +1,213 @@
+{
+  "change": {
+    "anticipated_proof_dep_names": [
+      "rootedChildComponent",
+      "rootedChildComponent_parent_not_mem",
+      "rootedChildren"
+    ],
+    "anticipated_statement_dep_names": [
+      "rootedChildComponent",
+      "rootedChildren"
+    ],
+    "base_revision": null,
+    "kind": "create",
+    "objective": "SourceIndex b_0009 (solution.tex lines 74–81) proves the strict capacity bound by induction on `|C|`, applying the induction hypothesis to every rooted child subtree. Create the private size-decrease theorem needed for that recursion: for a finite tree G and a parent-child edge represented by membership in the appropriate rootedChildren finset (in particular a root child), prove `Fintype.card (rootedChildComponent G parent c) < Fintype.card V`. Preserve the existing rootedChildComponent representation and tree hypotheses. Prove strictness from the injective subtype inclusion into V together with rootedChildComponent_parent_not_mem, which supplies a concrete ambient vertex outside its range; use the standard finite-cardinality injective/not-surjective argument. Add no weight or admissibility assumptions. This helper feeds the public capacity_pos_lt_one induction and has no public-interface role.",
+    "require_target_state_satisfied": true,
+    "reset_to_state": null,
+    "summary": "Successfully created and proved the private b_0009 induction helper: every rooted child-side component has strictly smaller Fintype cardinality than its ambient finite tree. The proof uses the canonical subtype inclusion and rootedChildComponent_parent_not_mem to establish non-surjectivity. The theorem reached proved and satisfies graph_proved; it now provides the well-founded decrease needed by capacity_pos_lt_one.",
+    "target_state": "proved"
+  },
+  "lean_decl_name": "rootedChildComponent_card_lt",
+  "proof": {
+    "deps": [
+      {
+        "kind": "mathlib_decl",
+        "reason": "Conclude strict cardinality from the injective subtype inclusion and the excluded parent vertex.",
+        "ref": {
+          "module": "Mathlib.Data.Fintype.Card",
+          "name": "Fintype.card_lt_of_injective_of_notMem"
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "Use the existing deleted-edge child-side component subtype and its canonical coercion to V.",
+        "ref": {
+          "name": "rootedChildComponent",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 1
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "Provide parent as the concrete vertex outside the child-component subtype range.",
+        "ref": {
+          "name": "rootedChildComponent_parent_not_mem",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 1
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "Unpack the parent-child adjacency witness from the statement’s existing rootedChildren membership.",
+        "ref": {
+          "name": "rootedChildren",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 2
+        }
+      }
+    ],
+    "formal": {
+      "check": {
+        "allow_sorry": false,
+        "contains_axiom": false,
+        "contains_sorry": false,
+        "diagnostics": {
+          "diagnostics": [],
+          "passed": true,
+          "raw_excerpt": "{'success': True, 'error_message': None, 'file': 'PositiveDefiniteTreeLattice.Main.RootedCapacity.Theorems.rootedChildComponent_card_lt', 'items': [], 'total_items': 0, 'error_count': 0, 'warning_count': 0, 'info_count': 0, 'sorry_count': 0}",
+          "repo_file_path": "PositiveDefiniteTreeLattice/Main/RootedCapacity/Theorems/rootedChildComponent_card_lt.lean",
+          "schema_version": 2,
+          "summary": "Diagnostics returned 0 items"
+        },
+        "message": "Lean check passed.",
+        "policy": "proof_formal",
+        "scan": {
+          "admit_count": 0,
+          "axiom_count": 0,
+          "contains_admit": false,
+          "contains_axiom": false,
+          "contains_opaque": false,
+          "contains_sorry": false,
+          "contains_unsafe": false,
+          "limitation": "Text scan ignores Lean comments and string literals with a conservative first-round lexer; it is not a full Lean parser.",
+          "occurrences": [],
+          "opaque_count": 0,
+          "sorry_count": 0,
+          "summary": "sorry=0, admit=0, axiom=0, opaque=0, unsafe=0",
+          "unsafe_count": 0
+        },
+        "status": "passed"
+      },
+      "code": "-- lean-constellation: managed-imports-begin\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Prelude\nimport Mathlib.Combinatorics.SimpleGraph.Acyclic\nimport Mathlib.Data.Fintype.Card\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildComponent\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildren\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Theorems.rootedChildComponent_parent_not_mem\n-- lean-constellation: managed-imports-end\n\n-- lean-constellation: declaration-source-begin\n\n/--\n# lean-constellation target: `rootedChildComponent_card_lt`\n\nLet `V` be a finite decidable vertex type and let `G` be a graph with decidable adjacency and tree\nwitness `hG : G.IsTree`. Fix an ambient root, a vertex `parent`, and a vertex `c` such that `c`\nbelongs to the existing `rootedChildren` Finset of `parent` (so `parent` and `c` are the\ncorresponding oriented parent–child edge; this includes the case of a root child).\n\nThen the existing child-side component determined by that edge is strictly smaller than the ambient\nvertex type:\n```\nFintype.card (rootedChildComponent G parent c) < Fintype.card V.\n```\nHere the component is exactly the existing subtype obtained by deleting the undirected parent–child\nedge. The result has no weight or admissibility hypothesis and is oriented for applying an induction\nhypothesis to each rooted child subtree.\n\n## Sources\n\n- Source `solution.tex`, lines 74–81\n\n## Statement dependencies\n\n- `SimpleGraph.IsTree` from `Mathlib.Combinatorics.SimpleGraph.Acyclic`\n- `Main.RootedCapacity::rootedChildComponent` → `rootedChildComponent` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildComponent`\n- `Main.RootedCapacity::rootedChildren` → `rootedChildren` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildren`\n\n## Proof outline\n\nWork classically and retain the statement’s local `Fintype (rootedChildComponent G parent c)`\ninstance.  Unfold membership in `rootedChildren G hG ρ parent` just enough to extract the adjacency\nwitness `hpc : G.Adj parent c` from `hc`; no root-orientation property beyond that witness is\nneeded.\n\nUse the canonical coercion `f : rootedChildComponent G parent c → V`, `f x := (x : V)`.  It is\ninjective by subtype extensionality (`Subtype.val_injective`).  Apply the exact finite-cardinality\nlemma `Fintype.card_lt_of_injective_of_notMem f` once it is shown that `parent ∉ Set.range f`.\n\nFor that range exclusion, suppose `parent = f x` for a component vertex `x`.  The already proved\nstructural cut lemma `rootedChildComponent_parent_not_mem G parent c hG hpc x` says `(x : V) ≠\nparent`, contradicting the assumed equality.  Thus `parent` is a concrete ambient vertex absent from\nthe subtype inclusion’s range, and the cardinality lemma concludes `Fintype.card\n(rootedChildComponent G parent c) < Fintype.card V`.\n\nThe route uses only the existing deleted-edge component and tree/child data; it introduces no\nweight, admissibility, or additional graph assumptions.\n\n## Proof sources\n\n- Source `solution.tex`, lines 74–81\n\n## Proof dependencies\n\n- `Fintype.card_lt_of_injective_of_notMem` from `Mathlib.Data.Fintype.Card`\n- `Main.RootedCapacity::rootedChildComponent` → `rootedChildComponent` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildComponent`\n- `Main.RootedCapacity::rootedChildComponent_parent_not_mem` → `rootedChildComponent_parent_not_mem`\n  from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Theorems.rootedChildComponent_parent_not_mem`\n- `Main.RootedCapacity::rootedChildren` → `rootedChildren` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildren`\n-/\ntheorem rootedChildComponent_card_lt {V : Type*} [Fintype V] [DecidableEq V]\n    (G : SimpleGraph V) [DecidableRel G.Adj] (hG : G.IsTree) (ρ parent c : V)\n    (hc : c ∈ rootedChildren G hG ρ parent) :\n    letI : Fintype (rootedChildComponent G parent c) := Fintype.ofFinite _\n    Fintype.card (rootedChildComponent G parent c) < Fintype.card V := by\n  classical\n  letI : Fintype (rootedChildComponent G parent c) := Fintype.ofFinite _\n  have hpc : G.Adj parent c := by\n    simp only [rootedChildren, Finset.mem_filter, Finset.mem_univ, true_and] at hc\n    exact hc.choose\n  refine Fintype.card_lt_of_injective_of_notMem\n    (fun x : rootedChildComponent G parent c => (x : V)) Subtype.val_injective (b := parent) ?_\n  rintro ⟨x, hx⟩\n  exact (rootedChildComponent_parent_not_mem G parent c hG hpc x) hx\n"
+    },
+    "nl": {
+      "origin": [
+        {
+          "end_line": 81,
+          "end_locator": null,
+          "kind": "source",
+          "note": "The source’s strict-capacity induction applies its hypothesis to rooted child subtrees, requiring their strict finite size decrease.",
+          "ref": null,
+          "resource_key": null,
+          "source_path": "solution.tex",
+          "start_line": 74,
+          "start_locator": null
+        }
+      ],
+      "text": "Work classically and retain the statement’s local `Fintype (rootedChildComponent G parent c)` instance.  Unfold membership in `rootedChildren G hG ρ parent` just enough to extract the adjacency witness `hpc : G.Adj parent c` from `hc`; no root-orientation property beyond that witness is needed.\n\nUse the canonical coercion `f : rootedChildComponent G parent c → V`, `f x := (x : V)`.  It is injective by subtype extensionality (`Subtype.val_injective`).  Apply the exact finite-cardinality lemma `Fintype.card_lt_of_injective_of_notMem f` once it is shown that `parent ∉ Set.range f`.\n\nFor that range exclusion, suppose `parent = f x` for a component vertex `x`.  The already proved structural cut lemma `rootedChildComponent_parent_not_mem G parent c hG hpc x` says `(x : V) ≠ parent`, contradicting the assumed equality.  Thus `parent` is a concrete ambient vertex absent from the subtype inclusion’s range, and the cardinality lemma concludes `Fintype.card (rootedChildComponent G parent c) < Fintype.card V`.\n\nThe route uses only the existing deleted-edge component and tree/child data; it introduces no weight, admissibility, or additional graph assumptions."
+    }
+  },
+  "revision": 1,
+  "state": "proved",
+  "statement": {
+    "deps": [
+      {
+        "kind": "mathlib_decl",
+        "reason": "The required finite-tree hypothesis is a witness of this predicate.",
+        "ref": {
+          "module": "Mathlib.Combinatorics.SimpleGraph.Acyclic",
+          "name": "SimpleGraph.IsTree"
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "The conclusion takes the Fintype cardinality of this existing deleted-edge child-side component subtype.",
+        "ref": {
+          "name": "rootedChildComponent",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 1
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "The required parent–child hypothesis is membership in this existing oriented child Finset.",
+        "ref": {
+          "name": "rootedChildren",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 2
+        }
+      }
+    ],
+    "formal": {
+      "check": {
+        "allow_sorry": true,
+        "contains_axiom": false,
+        "contains_sorry": true,
+        "diagnostics": {
+          "diagnostics": [
+            {
+              "column": 9,
+              "line": 40,
+              "message": "declaration uses `sorry`",
+              "severity": "warning"
+            }
+          ],
+          "passed": true,
+          "raw_excerpt": "{'success': True, 'error_message': None, 'file': 'PositiveDefiniteTreeLattice.Main.RootedCapacity.Theorems.rootedChildComponent_card_lt', 'items': [{'severity': 'warning', 'pos': {'line': 40, 'column': 9}, 'endPos': {'line': 40, 'column': 37}, 'kind': None, 'data': 'declaration uses `sorry`', 'fileName': 'PositiveDefiniteTreeLattice.Main.RootedCapacity.Theorems.rootedChildComponent_card_lt', 'content': '-/\\n\\ntheorem rootedChildComponent_card_lt {V : Type*} [Fintype V] [DecidableEq V]\\n    (G : SimpleGraph V) [DecidableRel G.Adj] (hG : G.IsTree) (ρ parent c : V)\\n    (hc : c ∈ rootedChildren G hG ρ parent) :'}], 'total_items': 1, 'error_count': 0, 'warning_count': 1, 'info_count': 0, 'sorry_count': 1}",
+          "repo_file_path": "PositiveDefiniteTreeLattice/Main/RootedCapacity/Theorems/rootedChildComponent_card_lt.lean",
+          "schema_version": 2,
+          "summary": "Diagnostics returned 1 items"
+        },
+        "message": "Lean check passed.",
+        "policy": "statement_formal",
+        "scan": {
+          "admit_count": 0,
+          "axiom_count": 0,
+          "contains_admit": false,
+          "contains_axiom": false,
+          "contains_opaque": false,
+          "contains_sorry": true,
+          "contains_unsafe": false,
+          "limitation": "Text scan ignores Lean comments and string literals with a conservative first-round lexer; it is not a full Lean parser.",
+          "occurrences": [
+            {
+              "column": 3,
+              "excerpt": "sorry",
+              "kind": "sorry",
+              "line": 45
+            }
+          ],
+          "opaque_count": 0,
+          "sorry_count": 1,
+          "summary": "sorry=1, admit=0, axiom=0, opaque=0, unsafe=0",
+          "unsafe_count": 0
+        },
+        "status": "passed"
+      },
+      "code": "-- lean-constellation: managed-imports-begin\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Prelude\nimport Mathlib.Combinatorics.SimpleGraph.Acyclic\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildComponent\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildren\n-- lean-constellation: managed-imports-end\n\n-- lean-constellation: declaration-source-begin\n\n/--\n# lean-constellation target: `rootedChildComponent_card_lt`\n\nLet `V` be a finite decidable vertex type and let `G` be a graph with decidable adjacency and tree\nwitness `hG : G.IsTree`. Fix an ambient root, a vertex `parent`, and a vertex `c` such that `c`\nbelongs to the existing `rootedChildren` Finset of `parent` (so `parent` and `c` are the\ncorresponding oriented parent–child edge; this includes the case of a root child).\n\nThen the existing child-side component determined by that edge is strictly smaller than the ambient\nvertex type:\n```\nFintype.card (rootedChildComponent G parent c) < Fintype.card V.\n```\nHere the component is exactly the existing subtype obtained by deleting the undirected parent–child\nedge. The result has no weight or admissibility hypothesis and is oriented for applying an induction\nhypothesis to each rooted child subtree.\n\n## Sources\n\n- Source `solution.tex`, lines 74–81\n\n## Statement dependencies\n\n- `SimpleGraph.IsTree` from `Mathlib.Combinatorics.SimpleGraph.Acyclic`\n- `Main.RootedCapacity::rootedChildComponent` → `rootedChildComponent` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildComponent`\n- `Main.RootedCapacity::rootedChildren` → `rootedChildren` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildren`\n-/\n\ntheorem rootedChildComponent_card_lt {V : Type*} [Fintype V] [DecidableEq V]\n    (G : SimpleGraph V) [DecidableRel G.Adj] (hG : G.IsTree) (ρ parent c : V)\n    (hc : c ∈ rootedChildren G hG ρ parent) :\n    letI : Fintype (rootedChildComponent G parent c) := Fintype.ofFinite _\n    Fintype.card (rootedChildComponent G parent c) < Fintype.card V := by\n  sorry\n"
+    },
+    "nl": {
+      "origin": [
+        {
+          "end_line": 81,
+          "end_locator": null,
+          "kind": "source",
+          "note": "The source proves the strict capacity upper bound by induction on the size of the tree and applies the induction hypothesis to each rooted child subtree.",
+          "ref": null,
+          "resource_key": null,
+          "source_path": "solution.tex",
+          "start_line": 74,
+          "start_locator": null
+        }
+      ],
+      "text": "Let `V` be a finite decidable vertex type and let `G` be a graph with decidable adjacency and tree witness `hG : G.IsTree`. Fix an ambient root, a vertex `parent`, and a vertex `c` such that `c` belongs to the existing `rootedChildren` Finset of `parent` (so `parent` and `c` are the corresponding oriented parent–child edge; this includes the case of a root child).\n\nThen the existing child-side component determined by that edge is strictly smaller than the ambient vertex type:\n```\nFintype.card (rootedChildComponent G parent c) < Fintype.card V.\n```\nHere the component is exactly the existing subtype obtained by deleting the undirected parent–child edge. The result has no weight or admissibility hypothesis and is oriented for applying an induction hypothesis to each rooted child subtree."
+    }
+  },
+  "status": "committed",
+  "updated_at": "2026-07-30T18:59:50Z"
+}

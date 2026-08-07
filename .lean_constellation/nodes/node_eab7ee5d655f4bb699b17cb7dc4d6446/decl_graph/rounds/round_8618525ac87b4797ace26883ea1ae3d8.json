@@ -1,0 +1,33 @@
+{
+  "change_summaries": {},
+  "committed_at": "2026-07-30T15:30:33Z",
+  "created_at": "2026-07-30T15:25:57Z",
+  "discard_reason": null,
+  "discarded_at": null,
+  "discarded_by": null,
+  "discarded_created_decl_names": [],
+  "discarded_restored_decl_revisions": {},
+  "discarded_revision_refs": [],
+  "execution_completed_at": "2026-07-30T15:28:32Z",
+  "execution_reason": "The accepted Statement NL for revision 5 still requires the former proof-dependent ambient embeddings `ιc : rootedChildComponent … → {v : V // v ≠ ρ}` in both inverse-entry clauses. The assigned round and current node contract instead require that this revision expose the canonical `rootedChildComponentsEquivNonroot` / dependent-Sigma index representation, with no proof-dependent embedding terms. Statement Formal may not silently change the accepted statement’s binders or index representation.",
+  "execution_result_kind": "blocked",
+  "node_path": "Main.RootedCapacity",
+  "objective": "Repair and prove the private inverse transport interface for solution.tex lines 57–68 by replacing rootedNonroot_inverse_childBlocks@4's proof-dependent ambient ι entries with the contract-authorized canonical rootedChildComponentsEquivNonroot/dependent-Sigma indexing, while preserving the same-component inverse identification, cross-component vanishing, rational total inverse, hypotheses, and downstream scalar meaning.",
+  "plan_closeout_acknowledged_at": "2026-07-30T15:30:33Z",
+  "plan_closeout_acknowledged_by": "a_a93b40977f574bad89528358fa89e022",
+  "result_kind": "blocked",
+  "result_reason": "Blocked at Statement Formal because the round retained the obsolete proof-dependent Statement NL. Close as blocked; retry from planned so Statement NL can be rewritten to the contract-authorized canonical Sigma/equivalence index representation.",
+  "revision_refs": [
+    {
+      "change_id": "rootedNonroot_inverse_childBlocks@rev:5",
+      "decl_name": "rootedNonroot_inverse_childBlocks",
+      "revision": 5
+    }
+  ],
+  "round_id": "round_8618525ac87b4797ace26883ea1ae3d8",
+  "round_index": 42,
+  "started_at": "2026-07-30T15:27:18Z",
+  "status": "committed",
+  "strategy_id": "strategy_fc60f40a331d4f63bd19e22f0eec7473",
+  "summary": "Round 42 made no accepted statement/proof progress and is blocked at Statement Formal. The strategy remains viable: the mathematical dependencies and canonical representation are known, but the round retained the obsolete Statement NL by resetting only to specified. No declaration reached its target or new graph_proved satisfaction. The precise retry is a same-declaration update from planned to proved so Statement NL can first replace the old proof-dependent ambient ι binders with the contract-required rootedChildComponentsEquivNonroot/dependent-Sigma representation; Statement Formal and the proof can then consume rootedNonrootGram_reindex_childBlocks@6, rootedChildGram_blockDiagonal_inv@2, and Matrix.inv_reindex. This is source-visible contract-authorized representation cleanup, not a new helper or external prerequisite. Next action after closeout is a corrected declaration round; no preparation recon or terminal blocker is warranted."
+}

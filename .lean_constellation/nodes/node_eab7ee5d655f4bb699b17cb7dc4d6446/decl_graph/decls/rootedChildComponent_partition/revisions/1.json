@@ -1,0 +1,304 @@
+{
+  "change": {
+    "anticipated_proof_dep_names": [
+      "rootedChildComponent_parent_not_mem",
+      "rootedChildComponent_path_decomposition"
+    ],
+    "anticipated_statement_dep_names": [
+      "rootedChildComponent",
+      "rootedChildren"
+    ],
+    "base_revision": null,
+    "kind": "create",
+    "objective": "Formalize the grouping assertion in SourceIndex b_0009 / solution.tex lines 47–61. For finite decidable V, G with decidable adjacency, hG : G.IsTree, root ρ, and every x : V with x ≠ ρ, prove that there exists a unique c : V such that c ∈ rootedChildren G hG ρ ρ and x lies in the child-side connected component rootedChildComponent G ρ c (equivalently, c and x are reachable in G.deleteEdges {s(ρ,c)}). The accepted formal statement must expose the rootedChildComponent representation or its exact defining reachability condition, not merely an untracked choice function. Existence should take the first edge of the unique root-to-x path; uniqueness should use unique paths and the proved root-through-child path decomposition/separation boundary. Do not restate generic first-intersection theorems or change the component model. This stable public partition theorem supplies the disjoint finite grouping needed for the root/rest block decomposition, cross-component zero entries, Finset.sum_biUnion, and the inverse-quadratic identity equaling rootedChildCapacitySum.",
+    "require_target_state_satisfied": true,
+    "reset_to_state": null,
+    "summary": "The new public partition theorem reached proved state with all four stages accepted. It states that each nonroot vertex belongs to exactly one deleted-edge component indexed by a root child, preserving the existing rootedChildren orientation and rootedChildComponent representation. The proof uses the unique root path and the established provider-backed path decomposition rather than duplicating generic separation. It is graph-proved and supplies the finite disjoint grouping required by the nonroot Gram block.",
+    "target_state": "proved"
+  },
+  "lean_decl_name": "rootedChildComponent_partition",
+  "proof": {
+    "deps": [
+      {
+        "kind": "mathlib_decl",
+        "reason": "Provides the unique simple root-to-x and root-to-child paths used to select and compare the first child edge.",
+        "ref": {
+          "module": "Mathlib.Combinatorics.SimpleGraph.Acyclic",
+          "name": "SimpleGraph.IsTree.existsUnique_path"
+        }
+      },
+      {
+        "kind": "mathlib_decl",
+        "reason": "Converts deleted-edge reachability from the chosen child to x into membership in rootedChildComponent.",
+        "ref": {
+          "module": "Mathlib.Combinatorics.SimpleGraph.Connectivity.Connected",
+          "name": "SimpleGraph.ConnectedComponent.sound"
+        }
+      },
+      {
+        "kind": "mathlib_decl",
+        "reason": "The existence route constructs the one-edge root-to-child walk as a simple path before uniqueness identifies it with the canonical root-to-child path.",
+        "ref": {
+          "module": "Mathlib.Combinatorics.SimpleGraph.Paths",
+          "name": "SimpleGraph.Walk.IsPath.cons"
+        }
+      },
+      {
+        "kind": "mathlib_decl",
+        "reason": "Establishes that the one-edge root-to-child walk is a simple path.",
+        "ref": {
+          "module": "Mathlib.Combinatorics.SimpleGraph.Paths",
+          "name": "SimpleGraph.Walk.IsPath.of_adj"
+        }
+      },
+      {
+        "kind": "mathlib_decl",
+        "reason": "Shows a simple root-to-root prefix in a rooted-child witness is the nil walk.",
+        "ref": {
+          "module": "Mathlib.Combinatorics.SimpleGraph.Paths",
+          "name": "SimpleGraph.Walk.isPath_iff_nil"
+        }
+      },
+      {
+        "kind": "mathlib_decl",
+        "reason": "Converts the nil predicate on a simple root-to-root prefix into equality with the nil walk.",
+        "ref": {
+          "module": "Mathlib.Combinatorics.SimpleGraph.Walk.Basic",
+          "name": "SimpleGraph.Walk.Nil.eq_nil"
+        }
+      },
+      {
+        "kind": "mathlib_decl",
+        "reason": "Expands the edge list of the first-edge decomposition.",
+        "ref": {
+          "module": "Mathlib.Combinatorics.SimpleGraph.Walk.Basic",
+          "name": "SimpleGraph.Walk.edges_cons"
+        }
+      },
+      {
+        "kind": "mathlib_decl",
+        "reason": "Decomposes the nontrivial unique root-to-x path at its first edge to construct the root child.",
+        "ref": {
+          "module": "Mathlib.Combinatorics.SimpleGraph.Walk.Basic",
+          "name": "SimpleGraph.Walk.exists_eq_cons_of_ne"
+        }
+      },
+      {
+        "kind": "mathlib_decl",
+        "reason": "Transfers the tail after the first root edge to the deleted-edge graph once edge avoidance is proved.",
+        "ref": {
+          "module": "Mathlib.Combinatorics.SimpleGraph.Walk.Maps",
+          "name": "SimpleGraph.Walk.toDeleteEdges"
+        }
+      },
+      {
+        "kind": "mathlib_decl",
+        "reason": "Shows the tail after the first root edge avoids that deleted edge.",
+        "ref": {
+          "module": "Mathlib.Combinatorics.SimpleGraph.Walk.Operations",
+          "name": "SimpleGraph.Walk.edges_nodup_of_support_nodup"
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "The proof unfolds this exact deleted-edge component representation to convert reachability into the required membership witness.",
+        "ref": {
+          "name": "rootedChildComponent",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 1
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "Gives the existing canonical root-through-child decomposition for each candidate component membership in the uniqueness argument.",
+        "ref": {
+          "name": "rootedChildComponent_path_decomposition",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 2
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "The first edge of the unique root-to-x path is shown to satisfy this exact root-child predicate.",
+        "ref": {
+          "name": "rootedChildren",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 2
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "Provides the generic canonical-path factorization boundary underlying the component path decomposition used for uniqueness.",
+        "ref": {
+          "name": "uniquePath_eq_append_through_cut",
+          "node": "Main.TreePathSeparation",
+          "repo": null,
+          "revision": 1
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "Supplies the proved cut-support separation boundary used to exclude two distinct root-child decompositions of the same canonical root path.",
+        "ref": {
+          "name": "uniquePath_support_separated_by_cut",
+          "node": "Main.TreePathSeparation",
+          "repo": null,
+          "revision": 1
+        }
+      }
+    ],
+    "formal": {
+      "check": {
+        "allow_sorry": false,
+        "contains_axiom": false,
+        "contains_sorry": false,
+        "diagnostics": {
+          "diagnostics": [],
+          "passed": true,
+          "raw_excerpt": "{'success': True, 'error_message': None, 'file': 'PositiveDefiniteTreeLattice.Main.RootedCapacity.Theorems.rootedChildComponent_partition', 'items': [], 'total_items': 0, 'error_count': 0, 'warning_count': 0, 'info_count': 0, 'sorry_count': 0}",
+          "repo_file_path": "PositiveDefiniteTreeLattice/Main/RootedCapacity/Theorems/rootedChildComponent_partition.lean",
+          "schema_version": 2,
+          "summary": "Diagnostics returned 0 items"
+        },
+        "message": "Lean check passed.",
+        "policy": "proof_formal",
+        "scan": {
+          "admit_count": 0,
+          "axiom_count": 0,
+          "contains_admit": false,
+          "contains_axiom": false,
+          "contains_opaque": false,
+          "contains_sorry": false,
+          "contains_unsafe": false,
+          "limitation": "Text scan ignores Lean comments and string literals with a conservative first-round lexer; it is not a full Lean parser.",
+          "occurrences": [],
+          "opaque_count": 0,
+          "sorry_count": 0,
+          "summary": "sorry=0, admit=0, axiom=0, opaque=0, unsafe=0",
+          "unsafe_count": 0
+        },
+        "status": "passed"
+      },
+      "code": "-- lean-constellation: managed-imports-begin\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Prelude\nimport Mathlib.Combinatorics.SimpleGraph.Acyclic\nimport Mathlib.Combinatorics.SimpleGraph.Connectivity.Connected\nimport Mathlib.Combinatorics.SimpleGraph.Paths\nimport Mathlib.Combinatorics.SimpleGraph.Walk.Basic\nimport Mathlib.Combinatorics.SimpleGraph.Walk.Maps\nimport Mathlib.Combinatorics.SimpleGraph.Walk.Operations\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildComponent\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildren\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Theorems.rootedChildComponent_path_decomposition\n-- lean-constellation: managed-imports-end\n\n-- lean-constellation: declaration-source-begin\n\n/--\n# lean-constellation target: `rootedChildComponent_partition`\n\nLet V be a finite type with decidable equality, let G be a simple graph on V with decidable\nadjacency, let hG : G.IsTree, and let ρ : V. For every x : V with x ≠ ρ, there exists a unique c : V\nsuch that\n\nc ∈ rootedChildren G hG ρ ρ\n\nand x belongs to the child-side connected component rootedChildComponent G ρ c. Equivalently, the\nunique c is a root child for which c and x are reachable in the graph obtained by deleting the edge\n{ρ, c}.\n\nThus the rooted child components indexed by rootedChildren G hG ρ ρ uniquely partition the nonroot\nvertices, using the existing deleted-edge component representation.\n\n## Sources\n\n- Source `solution.tex`, lines 47–61\n\n## Statement dependencies\n\n- `SimpleGraph.IsTree` from `Mathlib.Combinatorics.SimpleGraph.Acyclic`\n- `Main.RootedCapacity::rootedChildComponent` → `rootedChildComponent` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildComponent`\n- `Main.RootedCapacity::rootedChildren` → `rootedChildren` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildren`\n\n## Proof outline\n\nFix `x ≠ ρ` and let `p := (hG.existsUnique_path ρ x).choose`, with `p.IsPath`.  Use the verified\n`SimpleGraph.Walk.exists_eq_cons_of_ne hx p` to write this nontrivial unique path as a first edge\n`hρc : G.Adj ρ c` followed by a walk `p' : G.Walk c x`.  The one-edge walk `ρ ─c` is a simple path,\nso uniqueness of tree paths identifies it with the canonical path from `ρ` to `c`.  Taking the\nroot-prefix walk to be `nil`, this gives `c ∈ rootedChildren G hG ρ ρ` by the definition of\n`rootedChildren`.\n\nTo show `x ∈ rootedChildComponent G ρ c`, prove that the tail `p'` avoids the deleted edge `{ρ,c}`.\nIf it used that edge, the first edge of `p = hρc :: p'` would repeat, contradicting the nodup\nproperty of the simple path `p`.  Map `p'` with `SimpleGraph.Walk.toDeleteEdges` to obtain\nreachability from `c` to `x` in `G.deleteEdges {s(ρ,c)}`, then unfold `rootedChildComponent` and use\n`SimpleGraph.ConnectedComponent.sound` to obtain the component-membership witness.\n\nFor uniqueness, suppose `c` and `d` are root children and `x` lies in both corresponding\ndeleted-edge components.  Package each membership as a subtype vertex and apply\n`rootedChildComponent_path_decomposition` to obtain the two canonical decompositions of the same\nroot-to-`x` unique path, respectively through `c` and through `d`.  Each root-child membership\nidentifies the corresponding root-to-child prefix with its single initial edge.  Comparing the two\ndecompositions with uniqueness of simple tree paths forces these initial edges—and hence their child\nendpoints—to agree.  Equivalently, use\n`PositiveDefiniteTreeLattice.uniquePath_support_separated_by_cut` at the `c` cut to rule out a\ndistinct root child in the child-side tail; a distinct `d` remains on the root side after deleting\n`{ρ,c}`, while its own decomposition would place it on the same canonical root-to-`x` path.\nTherefore `c = d`.\n\nThis uses the existing deleted-edge component model and the proved RootedCapacity/TreePathSeparation\npath boundary; it introduces no choice function, generic duplicate theorem, or hypotheses beyond\n`hG` and `x ≠ ρ`.\n\n## Proof sources\n\n- Source `solution.tex`, lines 47–61\n\n## Proof dependencies\n\n- `SimpleGraph.IsTree.existsUnique_path` from `Mathlib.Combinatorics.SimpleGraph.Acyclic`\n- `SimpleGraph.ConnectedComponent.sound` from\n  `Mathlib.Combinatorics.SimpleGraph.Connectivity.Connected`\n- `SimpleGraph.Walk.IsPath.cons` from `Mathlib.Combinatorics.SimpleGraph.Paths`\n- `SimpleGraph.Walk.IsPath.of_adj` from `Mathlib.Combinatorics.SimpleGraph.Paths`\n- `SimpleGraph.Walk.isPath_iff_nil` from `Mathlib.Combinatorics.SimpleGraph.Paths`\n- `SimpleGraph.Walk.Nil.eq_nil` from `Mathlib.Combinatorics.SimpleGraph.Walk.Basic`\n- `SimpleGraph.Walk.edges_cons` from `Mathlib.Combinatorics.SimpleGraph.Walk.Basic`\n- `SimpleGraph.Walk.exists_eq_cons_of_ne` from `Mathlib.Combinatorics.SimpleGraph.Walk.Basic`\n- `SimpleGraph.Walk.toDeleteEdges` from `Mathlib.Combinatorics.SimpleGraph.Walk.Maps`\n- `SimpleGraph.Walk.edges_nodup_of_support_nodup` from\n  `Mathlib.Combinatorics.SimpleGraph.Walk.Operations`\n- `Main.RootedCapacity::rootedChildComponent` → `rootedChildComponent` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildComponent`\n- `Main.RootedCapacity::rootedChildComponent_path_decomposition` →\n  `rootedChildComponent_path_decomposition` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Theorems.rootedChildComponent_path_decomposition`\n- `Main.RootedCapacity::rootedChildren` → `rootedChildren` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildren`\n- `Main.TreePathSeparation::uniquePath_eq_append_through_cut` →\n  `PositiveDefiniteTreeLattice.uniquePath_eq_append_through_cut` from\n  `PositiveDefiniteTreeLattice.Main.TreePathSeparation.Theorems.uniquePath_eq_append_through_cut`\n- `Main.TreePathSeparation::uniquePath_support_separated_by_cut` →\n  `PositiveDefiniteTreeLattice.uniquePath_support_separated_by_cut` from\n  `PositiveDefiniteTreeLattice.Main.TreePathSeparation.Theorems.uniquePath_support_separated_by_cut`\n-/\ntheorem rootedChildComponent_partition {V : Type*} [Fintype V] [DecidableEq V]\n    (G : SimpleGraph V) [DecidableRel G.Adj] (hG : G.IsTree) (ρ x : V) (hx : x ≠ ρ) :\n    ∃! c : V, c ∈ rootedChildren G hG ρ ρ ∧ x ∈ rootedChildComponent G ρ c := by\n  classical\n  let p := (hG.existsUnique_path ρ x).choose\n  have hp : p.IsPath := (hG.existsUnique_path ρ x).choose_spec.1\n  obtain ⟨c, hρc, p', hp_eq⟩ := p.exists_eq_cons_of_ne hx.symm\n  have hsingle : (hG.existsUnique_path ρ c).choose = SimpleGraph.Walk.cons hρc .nil := by\n    apply (hG.existsUnique_path ρ c).unique\n    · exact (hG.existsUnique_path ρ c).choose_spec.1\n    · exact SimpleGraph.Walk.IsPath.of_adj hρc\n  have hc : c ∈ rootedChildren G hG ρ ρ := by\n    simp only [rootedChildren, Finset.mem_filter, Finset.mem_univ, true_and]\n    refine ⟨hρc, .nil, SimpleGraph.Walk.IsPath.nil, ?_⟩\n    simpa [SimpleGraph.Walk.concat] using hsingle\n  have havoids : ∀ e, e ∈ p'.edges → e ∉ ({s(ρ, c)} : Set (Sym2 V)) := by\n    intro e he hes\n    rw [Set.mem_singleton_iff] at hes\n    subst e\n    have hnodup : (s(ρ, c) :: p'.edges).Nodup := by\n      simpa [hp_eq, SimpleGraph.Walk.edges_cons] using\n        SimpleGraph.Walk.edges_nodup_of_support_nodup hp.support_nodup\n    exact (List.nodup_cons.mp hnodup).1 he\n  have hxC : x ∈ rootedChildComponent G ρ c := by\n    unfold rootedChildComponent\n    change (G.deleteEdges {s(ρ, c)}).connectedComponentMk x =\n      (G.deleteEdges {s(ρ, c)}).connectedComponentMk c\n    exact SimpleGraph.ConnectedComponent.sound ⟨p'.toDeleteEdges {s(ρ, c)} havoids⟩ |>.symm\n  refine ⟨c, ⟨hc, hxC⟩, ?_⟩\n  intro d hd\n  rcases hd with ⟨hdchild, hxd⟩\n  let xD : rootedChildComponent G ρ d := ⟨x, hxd⟩\n  have hdchild' := hdchild\n  simp only [rootedChildren, Finset.mem_filter, Finset.mem_univ, true_and] at hdchild'\n  obtain ⟨hρd, q, hq, hqeq⟩ := hdchild'\n  have hqnil : q = .nil := (SimpleGraph.Walk.isPath_iff_nil.mp hq).eq_nil\n  have hsingleD : (hG.existsUnique_path ρ d).choose = SimpleGraph.Walk.cons hρd .nil := by\n    calc\n      (hG.existsUnique_path ρ d).choose = q.concat hρd := hqeq\n      _ = SimpleGraph.Walk.cons hρd .nil := by simp [hqnil, SimpleGraph.Walk.concat]\n  have hpdec : p = SimpleGraph.Walk.cons hρd (hG.existsUnique_path d x).choose := by\n    rw [show p = (hG.existsUnique_path ρ x).choose from rfl]\n    rw [rootedChildComponent_path_decomposition G hG ρ ρ d hdchild xD, hsingleD]\n    simp [SimpleGraph.Walk.cons_append]\n  have hcons : SimpleGraph.Walk.cons hρc p' =\n      SimpleGraph.Walk.cons hρd (hG.existsUnique_path d x).choose := by\n    rw [← hp_eq]\n    exact hpdec\n  exact (SimpleGraph.Walk.cons.inj hcons).1.symm\n"
+    },
+    "nl": {
+      "origin": [
+        {
+          "end_line": 61,
+          "end_locator": null,
+          "kind": "source",
+          "note": "The capacity-recursion proof groups all nonroot vertices by the rooted subtrees C_i at the children of the root; this route formalizes the required unique component partition.",
+          "ref": null,
+          "resource_key": null,
+          "source_path": "solution.tex",
+          "start_line": 47,
+          "start_locator": null
+        }
+      ],
+      "text": "Fix `x ≠ ρ` and let `p := (hG.existsUnique_path ρ x).choose`, with `p.IsPath`.  Use the verified `SimpleGraph.Walk.exists_eq_cons_of_ne hx p` to write this nontrivial unique path as a first edge `hρc : G.Adj ρ c` followed by a walk `p' : G.Walk c x`.  The one-edge walk `ρ ─c` is a simple path, so uniqueness of tree paths identifies it with the canonical path from `ρ` to `c`.  Taking the root-prefix walk to be `nil`, this gives `c ∈ rootedChildren G hG ρ ρ` by the definition of `rootedChildren`.\n\nTo show `x ∈ rootedChildComponent G ρ c`, prove that the tail `p'` avoids the deleted edge `{ρ,c}`.  If it used that edge, the first edge of `p = hρc :: p'` would repeat, contradicting the nodup property of the simple path `p`.  Map `p'` with `SimpleGraph.Walk.toDeleteEdges` to obtain reachability from `c` to `x` in `G.deleteEdges {s(ρ,c)}`, then unfold `rootedChildComponent` and use `SimpleGraph.ConnectedComponent.sound` to obtain the component-membership witness.\n\nFor uniqueness, suppose `c` and `d` are root children and `x` lies in both corresponding deleted-edge components.  Package each membership as a subtype vertex and apply `rootedChildComponent_path_decomposition` to obtain the two canonical decompositions of the same root-to-`x` unique path, respectively through `c` and through `d`.  Each root-child membership identifies the corresponding root-to-child prefix with its single initial edge.  Comparing the two decompositions with uniqueness of simple tree paths forces these initial edges—and hence their child endpoints—to agree.  Equivalently, use `PositiveDefiniteTreeLattice.uniquePath_support_separated_by_cut` at the `c` cut to rule out a distinct root child in the child-side tail; a distinct `d` remains on the root side after deleting `{ρ,c}`, while its own decomposition would place it on the same canonical root-to-`x` path.  Therefore `c = d`.\n\nThis uses the existing deleted-edge component model and the proved RootedCapacity/TreePathSeparation path boundary; it introduces no choice function, generic duplicate theorem, or hypotheses beyond `hG` and `x ≠ ρ`."
+    }
+  },
+  "revision": 1,
+  "state": "proved",
+  "statement": {
+    "deps": [
+      {
+        "kind": "mathlib_decl",
+        "reason": "Names the explicit ambient tree hypothesis hG.",
+        "ref": {
+          "module": "Mathlib.Combinatorics.SimpleGraph.Acyclic",
+          "name": "SimpleGraph.IsTree"
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "Names the deleted-edge child-side component containing the nonroot vertex.",
+        "ref": {
+          "name": "rootedChildComponent",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 1
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "Names the root-oriented child index set in the unique-existence conclusion.",
+        "ref": {
+          "name": "rootedChildren",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 2
+        }
+      }
+    ],
+    "formal": {
+      "check": {
+        "allow_sorry": true,
+        "contains_axiom": false,
+        "contains_sorry": true,
+        "diagnostics": {
+          "diagnostics": [
+            {
+              "column": 9,
+              "line": 38,
+              "message": "declaration uses `sorry`",
+              "severity": "warning"
+            }
+          ],
+          "passed": true,
+          "raw_excerpt": "{'success': True, 'error_message': None, 'file': 'PositiveDefiniteTreeLattice.Main.RootedCapacity.Theorems.rootedChildComponent_partition', 'items': [{'severity': 'warning', 'pos': {'line': 38, 'column': 9}, 'endPos': {'line': 38, 'column': 39}, 'kind': None, 'data': 'declaration uses `sorry`', 'fileName': 'PositiveDefiniteTreeLattice.Main.RootedCapacity.Theorems.rootedChildComponent_partition', 'content': '  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildren`\\n-/\\ntheorem rootedChildComponent_partition {V : Type*} [Fintype V] [DecidableEq V]\\n    (G : SimpleGraph V) [DecidableRel G.Adj] (hG : G.IsTree) (ρ x : V) (hx : x ≠ ρ) :\\n    ∃! c : V, c ∈ rootedChildren G hG ρ ρ ∧ x ∈ rootedChildComponent G ρ c := by'}], 'total_items': 1, 'error_count': 0, 'warning_count': 1, 'info_count': 0, 'sorry_count': 1}",
+          "repo_file_path": "PositiveDefiniteTreeLattice/Main/RootedCapacity/Theorems/rootedChildComponent_partition.lean",
+          "schema_version": 2,
+          "summary": "Diagnostics returned 1 items"
+        },
+        "message": "Lean check passed.",
+        "policy": "statement_formal",
+        "scan": {
+          "admit_count": 0,
+          "axiom_count": 0,
+          "contains_admit": false,
+          "contains_axiom": false,
+          "contains_opaque": false,
+          "contains_sorry": true,
+          "contains_unsafe": false,
+          "limitation": "Text scan ignores Lean comments and string literals with a conservative first-round lexer; it is not a full Lean parser.",
+          "occurrences": [
+            {
+              "column": 3,
+              "excerpt": "sorry",
+              "kind": "sorry",
+              "line": 41
+            }
+          ],
+          "opaque_count": 0,
+          "sorry_count": 1,
+          "summary": "sorry=1, admit=0, axiom=0, opaque=0, unsafe=0",
+          "unsafe_count": 0
+        },
+        "status": "passed"
+      },
+      "code": "-- lean-constellation: managed-imports-begin\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Prelude\nimport Mathlib.Combinatorics.SimpleGraph.Acyclic\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildComponent\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildren\n-- lean-constellation: managed-imports-end\n\n-- lean-constellation: declaration-source-begin\n\n/--\n# lean-constellation target: `rootedChildComponent_partition`\n\nLet V be a finite type with decidable equality, let G be a simple graph on V with decidable\nadjacency, let hG : G.IsTree, and let ρ : V. For every x : V with x ≠ ρ, there exists a unique c : V\nsuch that\n\nc ∈ rootedChildren G hG ρ ρ\n\nand x belongs to the child-side connected component rootedChildComponent G ρ c. Equivalently, the\nunique c is a root child for which c and x are reachable in the graph obtained by deleting the edge\n{ρ, c}.\n\nThus the rooted child components indexed by rootedChildren G hG ρ ρ uniquely partition the nonroot\nvertices, using the existing deleted-edge component representation.\n\n## Sources\n\n- Source `solution.tex`, lines 47–61\n\n## Statement dependencies\n\n- `SimpleGraph.IsTree` from `Mathlib.Combinatorics.SimpleGraph.Acyclic`\n- `Main.RootedCapacity::rootedChildComponent` → `rootedChildComponent` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildComponent`\n- `Main.RootedCapacity::rootedChildren` → `rootedChildren` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildren`\n-/\ntheorem rootedChildComponent_partition {V : Type*} [Fintype V] [DecidableEq V]\n    (G : SimpleGraph V) [DecidableRel G.Adj] (hG : G.IsTree) (ρ x : V) (hx : x ≠ ρ) :\n    ∃! c : V, c ∈ rootedChildren G hG ρ ρ ∧ x ∈ rootedChildComponent G ρ c := by\n  sorry\n"
+    },
+    "nl": {
+      "origin": [
+        {
+          "end_line": 61,
+          "end_locator": null,
+          "kind": "source",
+          "note": "The capacity recursion proof orders the root first and groups all remaining vertices by the rooted subtrees at its children, which this partition theorem formalizes.",
+          "ref": null,
+          "resource_key": null,
+          "source_path": "solution.tex",
+          "start_line": 47,
+          "start_locator": null
+        }
+      ],
+      "text": "Let V be a finite type with decidable equality, let G be a simple graph on V with decidable adjacency, let hG : G.IsTree, and let ρ : V. For every x : V with x ≠ ρ, there exists a unique c : V such that\n\nc ∈ rootedChildren G hG ρ ρ\n\nand x belongs to the child-side connected component rootedChildComponent G ρ c. Equivalently, the unique c is a root child for which c and x are reachable in the graph obtained by deleting the edge {ρ, c}.\n\nThus the rooted child components indexed by rootedChildren G hG ρ ρ uniquely partition the nonroot vertices, using the existing deleted-edge component representation."
+    }
+  },
+  "status": "committed",
+  "updated_at": "2026-07-30T08:40:03Z"
+}

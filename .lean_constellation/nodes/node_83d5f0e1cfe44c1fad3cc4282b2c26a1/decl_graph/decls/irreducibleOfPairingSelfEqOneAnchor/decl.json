@@ -1,0 +1,15 @@
+{
+  "created_at": "2026-07-29T20:38:57Z",
+  "current_revision": 1,
+  "kind": "theorem",
+  "lifecycle": "active",
+  "module": "PositiveDefiniteTreeLattice.Main.LatticeFoundations.Theorems.irreducibleOfPairingSelfEqOneAnchor",
+  "name": "irreducibleOfPairingSelfEqOneAnchor",
+  "node_path": "Main.LatticeFoundations",
+  "public": true,
+  "revision_ids": [
+    1
+  ],
+  "summary": "Fresh compatible declaration anchor for norm-one irreducibility under integral positive definiteness.",
+  "updated_at": "2026-07-29T20:38:57Z"
+}

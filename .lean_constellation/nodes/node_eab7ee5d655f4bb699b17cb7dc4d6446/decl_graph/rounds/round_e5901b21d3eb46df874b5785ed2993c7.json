@@ -1,0 +1,33 @@
+{
+  "change_summaries": {},
+  "committed_at": "2026-08-07T01:39:58Z",
+  "created_at": "2026-08-07T01:22:39Z",
+  "discard_reason": null,
+  "discarded_at": null,
+  "discarded_by": null,
+  "discarded_created_decl_names": [],
+  "discarded_restored_decl_revisions": {},
+  "discarded_revision_refs": [],
+  "execution_completed_at": "2026-08-07T01:38:21Z",
+  "execution_reason": null,
+  "execution_result_kind": "success",
+  "node_path": "Main.RootedCapacity",
+  "objective": "Create and prove the single generic private finite-sum helper that evaluates a dependent Matrix.blockDiagonal' quadratic double sum as the sum of its within-fiber quadratic double sums.",
+  "plan_closeout_acknowledged_at": "2026-08-07T01:39:58Z",
+  "plan_closeout_acknowledged_by": "a_a93b40977f574bad89528358fa89e022",
+  "result_kind": "success",
+  "result_reason": "The sole helper reached proved state with all stages and proof-policy checks passed.",
+  "revision_refs": [
+    {
+      "change_id": "blockDiagonal_quadratic_eq_sum_blocks@rev:1",
+      "decl_name": "blockDiagonal_quadratic_eq_sum_blocks",
+      "revision": 1
+    }
+  ],
+  "round_id": "round_e5901b21d3eb46df874b5785ed2993c7",
+  "round_index": 92,
+  "started_at": "2026-08-07T01:24:25Z",
+  "status": "committed",
+  "strategy_id": "strategy_905cc106623c417d9c8c02e9fb29f237",
+  "summary": "Round 92 successfully completed the first provider stage of the contract-v8 strategy. Private blockDiagonal_quadratic_eq_sum_blocks@1 reached proved state and graph_proved satisfaction with no blocker, helper debt, representation change, or scope expansion. The exact finite-sum normalization prerequisite identified by Mathlib recon is now closed. The strategy remains valid: the next round should create and prove the public rootedNonroot_quadratic_eq_sum_childQuadratics consumer using this helper and rootedNonrootGram_reindex_childBlocks@6."
+}

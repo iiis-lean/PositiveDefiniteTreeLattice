@@ -1,0 +1,33 @@
+{
+  "change_summaries": {},
+  "committed_at": "2026-08-01T11:44:52Z",
+  "created_at": "2026-08-01T10:56:31Z",
+  "discard_reason": null,
+  "discarded_at": null,
+  "discarded_by": null,
+  "discarded_created_decl_names": [],
+  "discarded_restored_decl_revisions": {},
+  "discarded_revision_refs": [],
+  "execution_completed_at": "2026-08-01T11:42:04Z",
+  "execution_reason": "The proved child-bound bridge and the proved rooted pairing decomposition use non-definitionally-equal child-component instance stacks in their nested treePairing terms. Their mathematical pairings agree, but the current APIs do not provide an instance-transport equality, and direct unification times out under the fixed heartbeat budget.",
+  "execution_result_kind": "blocked",
+  "node_path": "Main.RootedEstimates",
+  "objective": "Create and prove the second private b_0010 bridge that aggregates the proved child induction bounds through the integral rooted pairing decomposition and rational capacity identity to source inequality (1).",
+  "plan_closeout_acknowledged_at": "2026-08-01T11:44:52Z",
+  "plan_closeout_acknowledged_by": "a_c126bbd9cf3144258d31b99169f687bb",
+  "result_kind": "blocked",
+  "result_reason": "Proof Formal requires a tracked treePairing equality transporting identical child graph/weight/vector data across non-definitionally-equal finite and decidable instance stacks.",
+  "revision_refs": [
+    {
+      "change_id": "rootedEstimateInductionAggregation@rev:1",
+      "decl_name": "rootedEstimateInductionAggregation",
+      "revision": 1
+    }
+  ],
+  "round_id": "round_f65d6fd49b784cddade4dea706c82a29",
+  "round_index": 13,
+  "started_at": "2026-08-01T10:58:06Z",
+  "status": "committed",
+  "strategy_id": "strategy_6bfc666c638344a19f7d1dee5c0a60d4",
+  "summary": "The strategy made statement/proof-plan progress on the second b_0010 bridge, but rootedEstimateInductionAggregation@1 remains proof_planned and is not graph_proved-satisfied. Its exact source inequality (1) is accepted. Proof Formal exposed one bounded Lean-representation gap: the proved child-bound and rooted-pairing decomposition APIs construct mathematically identical child treePairing terms with non-definitionally-equal Fintype/DecidableEq/DecidableRel instance stacks. Direct unification times out under the contract’s fixed heartbeat budget. This is a tracked local helper need, not new source mathematics, external dependency work, or scope overflow. The next round should prove one private instance-transport equality for treePairing under identical graph/weight/vector data and different finite/decidable stacks. After that, retry aggregation Proof Formal; retry the public parent only after aggregation reaches graph_proved. No state-only residue beyond the retained proof_planned aggregation and no graph cleanup target exists."
+}

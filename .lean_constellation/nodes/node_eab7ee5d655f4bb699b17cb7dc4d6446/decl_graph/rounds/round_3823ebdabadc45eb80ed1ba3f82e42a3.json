@@ -1,0 +1,33 @@
+{
+  "change_summaries": {},
+  "committed_at": "2026-08-06T09:26:26Z",
+  "created_at": "2026-08-03T17:55:23Z",
+  "discard_reason": null,
+  "discarded_at": null,
+  "discarded_by": null,
+  "discarded_created_decl_names": [],
+  "discarded_restored_decl_revisions": {},
+  "discarded_revision_refs": [],
+  "execution_completed_at": "2026-08-03T18:05:33Z",
+  "execution_reason": "Affected declaration: rootedGram_rootNonroot_contraction_eq_childCapacitySum_of_child_admissible. The required current-format target marker is a 107-character line and capture rejects it as linter_style_long_line. Splitting the marker across lines causes capture to reject it as target_marker_missing. The formal statement typechecks with only the permitted Statement Formal sorry. Required workflow repair: exempt the generated target marker from long-line checking or accept a multiline marker format.",
+  "execution_result_kind": "blocked",
+  "node_path": "Main.RootedCapacity",
+  "objective": "Create and prove the single public contract-v6 scalar contraction theorem in the exact root/nonroot block and attached-child conventions required by the downstream consumer.",
+  "plan_closeout_acknowledged_at": "2026-08-06T09:26:26Z",
+  "plan_closeout_acknowledged_by": "a_a93b40977f574bad89528358fa89e022",
+  "result_kind": "blocked",
+  "result_reason": "Statement Formal is blocked by an infrastructure contradiction between the mandatory 107-character target-marker line and long-line lint; multiline formatting is not recognized by capture. The formal statement otherwise typechecks, and no semantic/dependency repair is needed.",
+  "revision_refs": [
+    {
+      "change_id": "rootedGram_rootNonroot_contraction_eq_childCapacitySum_of_child_admissible@rev:1",
+      "decl_name": "rootedGram_rootNonroot_contraction_eq_childCapacitySum_of_child_admissible",
+      "revision": 1
+    }
+  ],
+  "round_id": "round_3823ebdabadc45eb80ed1ba3f82e42a3",
+  "round_index": 88,
+  "started_at": "2026-08-03T17:56:57Z",
+  "status": "committed",
+  "strategy_id": "strategy_5c78ffc88ca944c484d2b33d7030d39f",
+  "summary": "Round 88 made semantic progress only through Statement NL for the single public v6 contraction theorem; no declaration reached declared/proved or proof-policy satisfaction. Statement Formal verified that the exact formal theorem typechecks with the permitted placeholder and that the accepted root/nonroot blocks, pointwise child-admissibility premise, arbitrary root index, and rootedChildCapacitySum conclusion fit the contract and existing providers. Execution is blocked by an infrastructure-only marker/linter contradiction: the required 107-character target marker must remain on one line for capture, but the style linter rejects that line; multiline formatting makes capture report the marker missing. Known dependency closure remains sufficient: rootedGram_reindex_rootNonroot_blocks, rootedNonrootGram_reindex_childBlocks_inv_of_child_admissible, rootedChildComponentsEquivNonroot_apply, rootedGram_root_rootedChildComponent_support, rootedChildCapacitySummand, and rootedChildCapacitySum were the checked current-node frontier, with no Mathlib or external-provider gap. Parent retry condition is a workflow repair allowing this generated marker to bypass long-line lint or be recognized multiline. Because this is outside ContentPlan declaration authority, the next action after closeout should be a structured Content blocker rather than preparation or another unchanged round."
+}

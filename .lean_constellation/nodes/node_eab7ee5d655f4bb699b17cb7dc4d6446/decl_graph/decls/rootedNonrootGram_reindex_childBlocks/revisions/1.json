@@ -1,0 +1,175 @@
+{
+  "change": {
+    "anticipated_proof_dep_names": [
+      "rootedGram_cross_rootedChildComponents",
+      "rootedGram_rootedChildComponent"
+    ],
+    "anticipated_statement_dep_names": [
+      "rootedChildComponent",
+      "rootedChildComponentsEquivNonroot",
+      "rootedChildren",
+      "rootedGram"
+    ],
+    "base_revision": null,
+    "kind": "create",
+    "objective": "Formalize the source identity `Q₀ = ⊕ᵢ Q_{Cᵢ}` from solution.tex lines 57–68 as the exact private RootedCapacity matrix bridge required by both inverse transport and the later root/rest Schur decomposition. For finite decidable V, G with decidable adjacency, hG : G.IsTree, integer weight w, and root ρ, let `R := {v : V // v ≠ ρ}`, `S := Σ c : {c : V // c ∈ rootedChildren G hG ρ ρ}, rootedChildComponent G ρ c.1`, `e : R ≃ S := (rootedChildComponentsEquivNonroot G hG ρ).symm`, and `D : Matrix R R ℚ := (rootedGram G w).submatrix Subtype.val Subtype.val`. Define the dependent child block family `B c` to be `rootedGram (rootedChildComponent G ρ c.1).toSimpleGraph (fun x => w (x : V))`, with the canonical finite and decidable-adjacency instances. Prove exactly `Matrix.reindex e.symm e.symm D = Matrix.blockDiagonal' B` (or a definitionally identical spelling retaining these e, D, B objects and orientation). Prove it entrywise with Matrix.reindex_apply: for equal sigma child labels normalize all dependent transports/casts and apply rootedGram_rootedChildComponent; for unequal labels apply rootedGram_cross_rootedChildComponents and the zero branch of Matrix.blockDiagonal'_apply'. Do not add admissibility, positivity, or invertibility assumptions, and do not fold inverse conclusions into this theorem. Keep it private. It consumes rootedChildComponentsEquivNonroot, rootedGram, rootedGram_rootedChildComponent, and rootedGram_cross_rootedChildComponents; it directly unblocks rootedNonroot_inverse_childBlocks and is reusable in the subsequent Schur-complement capacity proof.",
+    "require_target_state_satisfied": true,
+    "reset_to_state": null,
+    "summary": "Created the private source-visible block-identification theorem and accepted its Statement NL, leaving revision 1 at specified. Statement Formal was blocked before durable declaration capture because the canonical dependency resolver could not record the direct Mathlib constant `Matrix.blockDiagonal'`, even though the module `Mathlib.Data.Matrix.Block` is already imported/verified and the intended formal object is exact. Classify this as a node Mathlib-hint/dependency-resolution gap, not a mathematical blocker, statement drift, provider gap, or scope overflow. The preserved consumer-side shape is the equality `Matrix.reindex e.symm e.symm D = Matrix.blockDiagonal' B` for the exact child-component equivalence e, nonroot Gram block D, and child Gram family B. Checked current-node inputs remain rootedChildComponentsEquivNonroot, rootedGram, rootedGram_rootedChildComponent, and rootedGram_cross_rootedChildComponents. Retry conditions: verify and add `Matrix.blockDiagonal'` from `Mathlib.Data.Matrix.Block` to the current node’s declaration hints/canonical resolver, then resume this revision from specified through Statement Formal, Proof NL, and Proof Formal without changing its accepted semantics. The waiting inverse-child-block theorem must not retry first. No superseded artifact or cleanup target was created.",
+    "target_state": "proved"
+  },
+  "lean_decl_name": "rootedNonrootGram_reindex_childBlocks",
+  "proof": null,
+  "revision": 1,
+  "state": "specified",
+  "statement": {
+    "deps": [
+      {
+        "kind": "mathlib_decl",
+        "reason": "Names the explicit ambient tree hypothesis hG.",
+        "ref": {
+          "module": "Mathlib.Combinatorics.SimpleGraph.Acyclic",
+          "name": "SimpleGraph.IsTree"
+        }
+      },
+      {
+        "kind": "mathlib_decl",
+        "reason": "Names the induced child-component graph defining each dependent child Gram block B.",
+        "ref": {
+          "module": "Mathlib.Combinatorics.SimpleGraph.Connectivity.Connected",
+          "name": "SimpleGraph.ConnectedComponent.toSimpleGraph"
+        }
+      },
+      {
+        "kind": "mathlib_decl",
+        "reason": "Defines the canonical local decidable adjacency instance for each child-component Gram block.",
+        "ref": {
+          "module": "Mathlib.Combinatorics.SimpleGraph.DeleteEdges",
+          "name": "SimpleGraph.deleteEdges"
+        }
+      },
+      {
+        "kind": "mathlib_decl",
+        "reason": "Names the reindexing of D from R to the sigma index S.",
+        "ref": {
+          "module": "Mathlib.LinearAlgebra.Matrix.Defs",
+          "name": "Matrix.reindex"
+        }
+      },
+      {
+        "kind": "mathlib_decl",
+        "reason": "Names the principal nonroot submatrix D.",
+        "ref": {
+          "module": "Mathlib.LinearAlgebra.Matrix.Defs",
+          "name": "Matrix.submatrix"
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "Names the dependent child-component fibers of S and B.",
+        "ref": {
+          "name": "rootedChildComponent",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 1
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "Names the exact equivalence e used to reindex the nonroot block by child components.",
+        "ref": {
+          "name": "rootedChildComponentsEquivNonroot",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 1
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "Names the root-child subtype indexing the sigma S and block family B.",
+        "ref": {
+          "name": "rootedChildren",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 2
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "Names the ambient nonroot matrix D and every dependent child Gram block B.",
+        "ref": {
+          "name": "rootedGram",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 2
+        }
+      }
+    ],
+    "formal": {
+      "check": {
+        "allow_sorry": true,
+        "contains_axiom": false,
+        "contains_sorry": true,
+        "diagnostics": {
+          "diagnostics": [
+            {
+              "column": 9,
+              "line": 60,
+              "message": "declaration uses `sorry`",
+              "severity": "warning"
+            }
+          ],
+          "passed": true,
+          "raw_excerpt": "{'success': True, 'error_message': None, 'file': 'PositiveDefiniteTreeLattice.Main.RootedCapacity.Theorems.rootedNonrootGram_reindex_childBlocks', 'items': [{'severity': 'warning', 'pos': {'line': 60, 'column': 9}, 'endPos': {'line': 60, 'column': 46}, 'kind': None, 'data': 'declaration uses `sorry`', 'fileName': 'PositiveDefiniteTreeLattice.Main.RootedCapacity.Theorems.rootedNonrootGram_reindex_childBlocks', 'content': '  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedGram`\\n-/\\ntheorem rootedNonrootGram_reindex_childBlocks {V : Type*} [Fintype V] [DecidableEq V]\\n    (G : SimpleGraph V) [DecidableRel G.Adj] (hG : G.IsTree) (w : V → ℤ) (ρ : V) :\\n    let R := {v : V // v ≠ ρ}'}], 'total_items': 1, 'error_count': 0, 'warning_count': 1, 'info_count': 0, 'sorry_count': 1}",
+          "repo_file_path": "PositiveDefiniteTreeLattice/Main/RootedCapacity/Theorems/rootedNonrootGram_reindex_childBlocks.lean",
+          "schema_version": 2,
+          "summary": "Diagnostics returned 1 items"
+        },
+        "message": "Lean check passed.",
+        "policy": "statement_formal",
+        "scan": {
+          "admit_count": 0,
+          "axiom_count": 0,
+          "contains_admit": false,
+          "contains_axiom": false,
+          "contains_opaque": false,
+          "contains_sorry": true,
+          "contains_unsafe": false,
+          "limitation": "Text scan ignores Lean comments and string literals with a conservative first-round lexer; it is not a full Lean parser.",
+          "occurrences": [
+            {
+              "column": 3,
+              "excerpt": "sorry",
+              "kind": "sorry",
+              "line": 76
+            }
+          ],
+          "opaque_count": 0,
+          "sorry_count": 1,
+          "summary": "sorry=1, admit=0, axiom=0, opaque=0, unsafe=0",
+          "unsafe_count": 0
+        },
+        "status": "passed"
+      },
+      "code": "-- lean-constellation: managed-imports-begin\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Prelude\nimport Mathlib.Combinatorics.SimpleGraph.Acyclic\nimport Mathlib.Combinatorics.SimpleGraph.Connectivity.Connected\nimport Mathlib.Combinatorics.SimpleGraph.DeleteEdges\nimport Mathlib.LinearAlgebra.Matrix.Defs\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildComponent\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildComponentsEquivNonroot\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildren\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedGram\n-- lean-constellation: managed-imports-end\n\n-- lean-constellation: declaration-source-begin\n\n/--\n# lean-constellation target: `rootedNonrootGram_reindex_childBlocks`\n\nLet V be a finite type with decidable equality, let G be a simple graph on V with decidable\nadjacency, let hG : G.IsTree, let w : V → ℤ, and let ρ : V. Put\n\nR := {v : V // v ≠ ρ},\nS := Σ c : {c : V // c ∈ rootedChildren G hG ρ ρ}, rootedChildComponent G ρ c.1,\ne : R ≃ S := (rootedChildComponentsEquivNonroot G hG ρ).symm,\nD : Matrix R R ℚ := (rootedGram G w).submatrix Subtype.val Subtype.val,\n\nand, for c in the root-child subtype, define the dependent child block\n\nB c := rootedGram (rootedChildComponent G ρ c.1).toSimpleGraph\n  (fun x : rootedChildComponent G ρ c.1 => w (x : V)),\n\nusing the canonical finite and decidable-adjacency instances of the component. Then reindexing D\nalong e from the nonroot index R to the sigma index S is the dependent block-diagonal matrix\ndetermined by B: at sigma indices ⟨c,x⟩ and ⟨d,y⟩ it is B c x y after the canonical dependent\ntransport when c = d, and it is 0 when c ≠ d.\n\nEquivalently, this is the exact identity Q₀ = ⨁ᵢ Q_{Cᵢ}, retaining the same e, D, and B objects and\norientation. It includes no admissibility, positivity, invertibility, or inverse conclusion.\n\n## Sources\n\n- Source `solution.tex`, lines 57–68\n\n## Statement dependencies\n\n- `SimpleGraph.IsTree` from `Mathlib.Combinatorics.SimpleGraph.Acyclic`\n- `SimpleGraph.ConnectedComponent.toSimpleGraph` from\n  `Mathlib.Combinatorics.SimpleGraph.Connectivity.Connected`\n- `SimpleGraph.deleteEdges` from `Mathlib.Combinatorics.SimpleGraph.DeleteEdges`\n- `Matrix.reindex` from `Mathlib.LinearAlgebra.Matrix.Defs`\n- `Matrix.submatrix` from `Mathlib.LinearAlgebra.Matrix.Defs`\n- `Main.RootedCapacity::rootedChildComponent` → `rootedChildComponent` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildComponent`\n- `Main.RootedCapacity::rootedChildComponentsEquivNonroot` → `rootedChildComponentsEquivNonroot`\n  from `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildComponentsEquivNonroot`\n- `Main.RootedCapacity::rootedChildren` → `rootedChildren` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildren`\n- `Main.RootedCapacity::rootedGram` → `rootedGram` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedGram`\n-/\ntheorem rootedNonrootGram_reindex_childBlocks {V : Type*} [Fintype V] [DecidableEq V]\n    (G : SimpleGraph V) [DecidableRel G.Adj] (hG : G.IsTree) (w : V → ℤ) (ρ : V) :\n    let R := {v : V // v ≠ ρ}\n    let S := Σ c : {c : V // c ∈ rootedChildren G hG ρ ρ}, rootedChildComponent G ρ c.1\n    let e : R ≃ S := (rootedChildComponentsEquivNonroot G hG ρ).symm\n    let D : Matrix R R ℚ := (rootedGram G w).submatrix Subtype.val Subtype.val\n    let B : ∀ c : {c : V // c ∈ rootedChildren G hG ρ ρ},\n        Matrix (rootedChildComponent G ρ c.1) (rootedChildComponent G ρ c.1) ℚ := fun c =>\n      let C := rootedChildComponent G ρ c.1\n      letI : Fintype C := Fintype.ofFinite C\n      letI : DecidableRel C.toSimpleGraph.Adj := by\n        intro x y\n        change Decidable ((G.deleteEdges {s(ρ, c.1)}).Adj (x : V) (y : V))\n        infer_instance\n      rootedGram C.toSimpleGraph (fun x : C => w (x : V))\n    Matrix.reindex e e D = Matrix.blockDiagonal' B := by\n  sorry\n"
+    },
+    "nl": {
+      "origin": [
+        {
+          "end_line": 68,
+          "end_locator": null,
+          "kind": "source",
+          "note": "After ordering the root first and grouping nonroot vertices by child subtrees, the source states Q₀ as the direct sum of the child subtree Gram matrices.",
+          "ref": null,
+          "resource_key": null,
+          "source_path": "solution.tex",
+          "start_line": 57,
+          "start_locator": null
+        }
+      ],
+      "text": "Let V be a finite type with decidable equality, let G be a simple graph on V with decidable adjacency, let hG : G.IsTree, let w : V → ℤ, and let ρ : V. Put\n\nR := {v : V // v ≠ ρ},\nS := Σ c : {c : V // c ∈ rootedChildren G hG ρ ρ}, rootedChildComponent G ρ c.1,\ne : R ≃ S := (rootedChildComponentsEquivNonroot G hG ρ).symm,\nD : Matrix R R ℚ := (rootedGram G w).submatrix Subtype.val Subtype.val,\n\nand, for c in the root-child subtype, define the dependent child block\n\nB c := rootedGram (rootedChildComponent G ρ c.1).toSimpleGraph\n  (fun x : rootedChildComponent G ρ c.1 => w (x : V)),\n\nusing the canonical finite and decidable-adjacency instances of the component. Then reindexing D along e from the nonroot index R to the sigma index S is the dependent block-diagonal matrix determined by B: at sigma indices ⟨c,x⟩ and ⟨d,y⟩ it is B c x y after the canonical dependent transport when c = d, and it is 0 when c ≠ d.\n\nEquivalently, this is the exact identity Q₀ = ⨁ᵢ Q_{Cᵢ}, retaining the same e, D, and B objects and orientation. It includes no admissibility, positivity, invertibility, or inverse conclusion."
+    }
+  },
+  "status": "committed",
+  "updated_at": "2026-07-30T10:26:43Z"
+}

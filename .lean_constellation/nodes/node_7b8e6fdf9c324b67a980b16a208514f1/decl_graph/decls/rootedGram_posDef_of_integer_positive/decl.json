@@ -1,0 +1,15 @@
+{
+  "created_at": "2026-08-02T12:35:50Z",
+  "current_revision": 1,
+  "kind": "lemma",
+  "lifecycle": "active",
+  "module": "PositiveDefiniteTreeLattice.Main.IrreducibleVertex.Lemmas.rootedGram_posDef_of_integer_positive",
+  "name": "rootedGram_posDef_of_integer_positive",
+  "node_path": "Main.IrreducibleVertex",
+  "public": false,
+  "revision_ids": [
+    1
+  ],
+  "summary": "Integer positivity of the tree pairing yields positive definiteness of the rational rooted Gram matrix.",
+  "updated_at": "2026-08-02T12:35:50Z"
+}

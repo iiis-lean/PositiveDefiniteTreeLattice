@@ -1,0 +1,18 @@
+{
+  "created_at": "2026-07-29T14:46:13Z",
+  "current_revision": 4,
+  "kind": "definition",
+  "lifecycle": "active",
+  "module": "PositiveDefiniteTreeLattice.Main.LatticeFoundations.Defs.treePairing",
+  "name": "treePairing",
+  "node_path": "Main.LatticeFoundations",
+  "public": true,
+  "revision_ids": [
+    1,
+    2,
+    3,
+    4
+  ],
+  "summary": "Integral bilinear pairing of a finite integer-weighted simple graph.",
+  "updated_at": "2026-07-29T19:45:06Z"
+}

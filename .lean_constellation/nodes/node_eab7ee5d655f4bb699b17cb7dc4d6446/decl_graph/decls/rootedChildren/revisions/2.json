@@ -1,0 +1,81 @@
+{
+  "change": {
+    "anticipated_proof_dep_names": [],
+    "anticipated_statement_dep_names": [],
+    "base_revision": 1,
+    "kind": "update",
+    "objective": "Retain the accepted b_0008 / solution.tex lines 33–34 Statement NL meaning and complete Statement Formal for the finite child set oriented away from root ρ. Consume SimpleGraph.IsTree.existsUnique_path only; the recon verified this file and RootedCapacity.Prelude compile. This public definition must serve rootedChildCount, rooted components, admissibility, and later capacity/integer-estimate induction.",
+    "require_target_state_satisfied": true,
+    "reset_to_state": "specified",
+    "summary": "Provider-repair update succeeded. Preserved the accepted b_0008 rooted-orientation meaning, captured and compiler-checked formal definition `rootedChildren`, and advanced rev2 from specified to declared. The public definition reached its target and declared-level proof-policy satisfaction, consuming only the verified finite-tree path API. It is ready to support rootedChildCount, rooted components, admissibility, and later induction statements.",
+    "target_state": "declared"
+  },
+  "lean_decl_name": "rootedChildren",
+  "proof": null,
+  "revision": 2,
+  "state": "declared",
+  "statement": {
+    "deps": [
+      {
+        "kind": "mathlib_decl",
+        "reason": "The statement defines the rooted orientation via the unique simple path from the root.",
+        "ref": {
+          "module": "Mathlib.Combinatorics.SimpleGraph.Acyclic",
+          "name": "SimpleGraph.IsTree.existsUnique_path"
+        }
+      }
+    ],
+    "formal": {
+      "check": {
+        "allow_sorry": false,
+        "contains_axiom": false,
+        "contains_sorry": false,
+        "diagnostics": {
+          "diagnostics": [],
+          "passed": true,
+          "raw_excerpt": "{'success': True, 'error_message': None, 'file': 'PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildren', 'items': [], 'total_items': 0, 'error_count': 0, 'warning_count': 0, 'info_count': 0, 'sorry_count': 0}",
+          "repo_file_path": "PositiveDefiniteTreeLattice/Main/RootedCapacity/Defs/rootedChildren.lean",
+          "schema_version": 2,
+          "summary": "Diagnostics returned 0 items"
+        },
+        "message": "Lean check passed.",
+        "policy": "statement_formal",
+        "scan": {
+          "admit_count": 0,
+          "axiom_count": 0,
+          "contains_admit": false,
+          "contains_axiom": false,
+          "contains_opaque": false,
+          "contains_sorry": false,
+          "contains_unsafe": false,
+          "limitation": "Text scan ignores Lean comments and string literals with a conservative first-round lexer; it is not a full Lean parser.",
+          "occurrences": [],
+          "opaque_count": 0,
+          "sorry_count": 0,
+          "summary": "sorry=0, admit=0, axiom=0, opaque=0, unsafe=0",
+          "unsafe_count": 0
+        },
+        "status": "passed"
+      },
+      "code": "-- lean-constellation: managed-imports-begin\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Prelude\nimport Mathlib.Combinatorics.SimpleGraph.Acyclic\n-- lean-constellation: managed-imports-end\n\n-- lean-constellation: declaration-source-begin\n\n/--\n# lean-constellation target: `rootedChildren`\n\nFor a finite simple graph `G` that is a tree, a chosen root `ρ`, and a vertex `y`, define\n`rootedChildren G ρ y` to be the finite set of vertices `z` adjacent to `y` for which the unique\nsimple path in `G` from `ρ` to `z` reaches `y` immediately before `z`.  Thus the edges of `G` are\noriented away from `ρ`, and this set is exactly the children of `y` in that rooted orientation.\n\n## Sources\n\n- Source `solution.tex`, lines 33–34\n\n## Statement dependencies\n\n- `SimpleGraph.IsTree.existsUnique_path` from `Mathlib.Combinatorics.SimpleGraph.Acyclic`\n-/\nnoncomputable def rootedChildren {V : Type*} [Fintype V] [DecidableEq V] (G : SimpleGraph V)\n    [DecidableRel G.Adj] (hG : G.IsTree) (ρ y : V) : Finset V :=\n  by\n    classical\n    exact Finset.univ.filter fun z =>\n      ∃ h : G.Adj y z, ∃ q : G.Walk ρ y, q.IsPath ∧\n        (hG.existsUnique_path ρ z).choose = q.concat h\n"
+    },
+    "nl": {
+      "origin": [
+        {
+          "end_line": 34,
+          "end_locator": null,
+          "kind": "source",
+          "note": "Defines the source rooted orientation and child notion.",
+          "ref": null,
+          "resource_key": null,
+          "source_path": "solution.tex",
+          "start_line": 33,
+          "start_locator": null
+        }
+      ],
+      "text": "For a finite simple graph `G` that is a tree, a chosen root `ρ`, and a vertex `y`, define `rootedChildren G ρ y` to be the finite set of vertices `z` adjacent to `y` for which the unique simple path in `G` from `ρ` to `z` reaches `y` immediately before `z`.  Thus the edges of `G` are oriented away from `ρ`, and this set is exactly the children of `y` in that rooted orientation."
+    }
+  },
+  "status": "committed",
+  "updated_at": "2026-07-30T00:42:45Z"
+}

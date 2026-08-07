@@ -1,0 +1,33 @@
+{
+  "change_summaries": {},
+  "committed_at": "2026-07-30T17:14:30Z",
+  "created_at": "2026-07-30T17:04:09Z",
+  "discard_reason": null,
+  "discarded_at": null,
+  "discarded_by": null,
+  "discarded_created_decl_names": [],
+  "discarded_restored_decl_revisions": {},
+  "discarded_revision_refs": [],
+  "execution_completed_at": "2026-07-30T17:12:57Z",
+  "execution_reason": null,
+  "execution_result_kind": "success",
+  "node_path": "Main.RootedCapacity",
+  "objective": "Recapture the inverse quadratic Proof NL to use rootedChildCapacitySum_attach directly, then accept the already compiler-valid canonical Sigma proof under the corrected plan.",
+  "plan_closeout_acknowledged_at": "2026-07-30T17:14:30Z",
+  "plan_closeout_acknowledged_by": "a_a93b40977f574bad89528358fa89e022",
+  "result_kind": "success",
+  "result_reason": "Proof NL and Proof Formal completed consistently and graph_proved satisfaction passed for the inverse quadratic identity.",
+  "revision_refs": [
+    {
+      "change_id": "rootedNonroot_inverse_quadratic@rev:4",
+      "decl_name": "rootedNonroot_inverse_quadratic",
+      "revision": 4
+    }
+  ],
+  "round_id": "round_fb721347c441461e936f35a0d9726dd8",
+  "round_index": 47,
+  "started_at": "2026-07-30T17:05:42Z",
+  "status": "committed",
+  "strategy_id": "strategy_fc60f40a331d4f63bd19e22f0eec7473",
+  "summary": "Round 47 completed the inverse-quadratic parent and the contract-authorized private representation cleanup. rootedNonroot_inverse_quadratic@4 reached proved and is graph_proved-satisfied; its prerequisite chain through canonical child blocks and attached-child capacity normalization is fully closed. No state-only work or retry condition remains in this layer. The strategy remains viable and now advances to the remaining source-visible b_0009 work: prove the rootedCapacity Schur-complement recursion from rootedNonroot_inverse_quadratic and the established Matrix block inverse/PosDef APIs, then derive strict `0 < capacity < 1`. The next action is one focused recursion theorem round; no dependency, Mathlib, or resource preparation is indicated."
+}

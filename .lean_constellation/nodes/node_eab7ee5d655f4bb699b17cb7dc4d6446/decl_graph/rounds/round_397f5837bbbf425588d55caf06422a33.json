@@ -1,0 +1,33 @@
+{
+  "change_summaries": {},
+  "committed_at": "2026-07-30T21:06:47Z",
+  "created_at": "2026-07-30T20:53:35Z",
+  "discard_reason": null,
+  "discarded_at": null,
+  "discarded_by": null,
+  "discarded_created_decl_names": [],
+  "discarded_restored_decl_revisions": {},
+  "discarded_revision_refs": [],
+  "execution_completed_at": "2026-07-30T21:05:06Z",
+  "execution_reason": null,
+  "execution_result_kind": "success",
+  "node_path": "Main.RootedCapacity",
+  "objective": "Recapture and prove the b_0009 strict child-capacity sum bound directly over attached children and rootedChildCapacitySummand, replacing the blocked dependent raw-summand statement.",
+  "plan_closeout_acknowledged_at": "2026-07-30T21:06:47Z",
+  "plan_closeout_acknowledged_by": "a_a93b40977f574bad89528358fa89e022",
+  "result_kind": "success",
+  "result_reason": "The recaptured attached-child strict sum theorem was proved and closed the prior representation blocker.",
+  "revision_refs": [
+    {
+      "change_id": "rootedChildCapacitySum_lt_card_of_forall_lt_one@rev:2",
+      "decl_name": "rootedChildCapacitySum_lt_card_of_forall_lt_one",
+      "revision": 2
+    }
+  ],
+  "round_id": "round_397f5837bbbf425588d55caf06422a33",
+  "round_index": 64,
+  "started_at": "2026-07-30T20:54:51Z",
+  "status": "committed",
+  "strategy_id": "strategy_20e3f41e54944d3babe462d36b22b383",
+  "summary": "Round 64 completed the critical representation repair: rootedChildCapacitySum_lt_card_of_forall_lt_one@2 is proved and proof-policy satisfied, and the old fixed-heartbeat blocker is closed. The strategy remains viable with 38 declarations. The next round should retain rootedCapacity_lt_one_of_card_le's statement but redo its induction proof so the induction hypothesis supplies attached-child rootedChildCapacitySummand bounds and the new theorem supplies the aggregate inequality. After that, retry the public interface and clean obsolete private normalization artifacts."
+}

@@ -1,0 +1,93 @@
+{
+  "change": {
+    "anticipated_proof_dep_names": [],
+    "anticipated_statement_dep_names": [
+      "rootedChildComponent"
+    ],
+    "base_revision": null,
+    "kind": "create",
+    "objective": "Formalize the phrase “C_i is the rooted subtree at ρ_i” from SourceIndex b_0009 / solution.tex lines 48–50. For any SimpleGraph G and vertices parent c, define rootedChildRoot G parent c as the subtype vertex of rootedChildComponent G parent c whose underlying value is c, using ConnectedComponent.connectedComponentMk_mem. Consume only the committed rootedChildComponent definition; do not add tree, adjacency, admissibility, finiteness, decidability, or weight hypotheses. The resulting public definition must be directly usable as the root argument to rootedChildCount and rootedCapacity on the child component and in later child-admissibility and capacity-recursion statements.",
+    "require_target_state_satisfied": true,
+    "reset_to_state": null,
+    "summary": "Created public definition rootedChildRoot and reached declared state with its formal statement passing. It names the child endpoint as the canonical vertex of rootedChildComponent without extra hypotheses. As a definition it is proof-policy satisfied and now provides the shared root index required by child rootedChildCount, rootedCapacity, admissibility inheritance, and capacity recursion.",
+    "target_state": "declared"
+  },
+  "lean_decl_name": "rootedChildRoot",
+  "proof": null,
+  "revision": 1,
+  "state": "declared",
+  "statement": {
+    "deps": [
+      {
+        "kind": "mathlib_decl",
+        "reason": "This theorem supplies the membership proof that `c` belongs to its connected component.",
+        "ref": {
+          "module": "Mathlib.Combinatorics.SimpleGraph.Connectivity.Connected",
+          "name": "SimpleGraph.ConnectedComponent.connectedComponentMk_mem"
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "The definition returns the child endpoint as a vertex of the declared child-side connected component.",
+        "ref": {
+          "name": "rootedChildComponent",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 1
+        }
+      }
+    ],
+    "formal": {
+      "check": {
+        "allow_sorry": false,
+        "contains_axiom": false,
+        "contains_sorry": false,
+        "diagnostics": {
+          "diagnostics": [],
+          "passed": true,
+          "raw_excerpt": "{'success': True, 'error_message': None, 'file': 'PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildRoot', 'items': [], 'total_items': 0, 'error_count': 0, 'warning_count': 0, 'info_count': 0, 'sorry_count': 0}",
+          "repo_file_path": "PositiveDefiniteTreeLattice/Main/RootedCapacity/Defs/rootedChildRoot.lean",
+          "schema_version": 2,
+          "summary": "Diagnostics returned 0 items"
+        },
+        "message": "Lean check passed.",
+        "policy": "statement_formal",
+        "scan": {
+          "admit_count": 0,
+          "axiom_count": 0,
+          "contains_admit": false,
+          "contains_axiom": false,
+          "contains_opaque": false,
+          "contains_sorry": false,
+          "contains_unsafe": false,
+          "limitation": "Text scan ignores Lean comments and string literals with a conservative first-round lexer; it is not a full Lean parser.",
+          "occurrences": [],
+          "opaque_count": 0,
+          "sorry_count": 0,
+          "summary": "sorry=0, admit=0, axiom=0, opaque=0, unsafe=0",
+          "unsafe_count": 0
+        },
+        "status": "passed"
+      },
+      "code": "-- lean-constellation: managed-imports-begin\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Prelude\nimport Mathlib.Combinatorics.SimpleGraph.Connectivity.Connected\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildComponent\n-- lean-constellation: managed-imports-end\n\n-- lean-constellation: declaration-source-begin\n\n/--\n# lean-constellation target: `rootedChildRoot`\n\nFor any vertex type `V`, simple graph `G : SimpleGraph V`, and vertices `parent c : V`, define\n`rootedChildRoot G parent c` to be the subtype element of `rootedChildComponent G parent c` whose\nunderlying vertex is `c`.  Its membership proof is `ConnectedComponent.connectedComponentMk_mem`,\nsince `rootedChildComponent G parent c` is the connected component containing `c` after the\ndesignated edge deletion.  Thus `(rootedChildRoot G parent c : V) = c`, providing the canonical root\nargument for constructions on the induced child component.  The definition assumes no tree,\nadjacency, admissibility, finiteness, decidability, or weight condition.\n\n## Sources\n\n- Source `solution.tex`, lines 48–50\n\n## Statement dependencies\n\n- `SimpleGraph.ConnectedComponent.connectedComponentMk_mem` from\n  `Mathlib.Combinatorics.SimpleGraph.Connectivity.Connected`\n- `Main.RootedCapacity::rootedChildComponent` → `rootedChildComponent` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildComponent`\n-/\ndef rootedChildRoot {V : Type*} (G : SimpleGraph V) (parent c : V) :\n    rootedChildComponent G parent c :=\n  ⟨c, by\n    unfold rootedChildComponent\n    exact SimpleGraph.ConnectedComponent.connectedComponentMk_mem⟩\n"
+    },
+    "nl": {
+      "origin": [
+        {
+          "end_line": 50,
+          "end_locator": null,
+          "kind": "source",
+          "note": "Lines 48–50 identify each child subtree as rooted at its child endpoint ρ_i.",
+          "ref": null,
+          "resource_key": null,
+          "source_path": "solution.tex",
+          "start_line": 48,
+          "start_locator": null
+        }
+      ],
+      "text": "For any vertex type `V`, simple graph `G : SimpleGraph V`, and vertices `parent c : V`, define `rootedChildRoot G parent c` to be the subtype element of `rootedChildComponent G parent c` whose underlying vertex is `c`.  Its membership proof is `ConnectedComponent.connectedComponentMk_mem`, since `rootedChildComponent G parent c` is the connected component containing `c` after the designated edge deletion.  Thus `(rootedChildRoot G parent c : V) = c`, providing the canonical root argument for constructions on the induced child component.  The definition assumes no tree, adjacency, admissibility, finiteness, decidability, or weight condition."
+    }
+  },
+  "status": "committed",
+  "updated_at": "2026-07-30T02:20:47Z"
+}

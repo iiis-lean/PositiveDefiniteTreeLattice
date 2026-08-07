@@ -1,0 +1,22 @@
+{
+  "created_at": "2026-08-02T15:51:51Z",
+  "current_revision": 8,
+  "kind": "lemma",
+  "lifecycle": "active",
+  "module": "PositiveDefiniteTreeLattice.Main.IrreducibleVertex.Lemmas.rootedChildCapacitySum_lt_weight_of_unique_underweight",
+  "name": "rootedChildCapacitySum_lt_weight_of_unique_underweight",
+  "node_path": "Main.IrreducibleVertex",
+  "public": false,
+  "revision_ids": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8
+  ],
+  "summary": "At the unique underweighted vertex, the total capacity of attached rooted components is strictly below its weight.",
+  "updated_at": "2026-08-06T14:43:28Z"
+}

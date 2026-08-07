@@ -1,0 +1,38 @@
+{
+  "change_summaries": {},
+  "committed_at": "2026-08-02T12:18:49Z",
+  "created_at": "2026-08-02T11:50:41Z",
+  "discard_reason": null,
+  "discarded_at": null,
+  "discarded_by": null,
+  "discarded_created_decl_names": [],
+  "discarded_restored_decl_revisions": {},
+  "discarded_revision_refs": [],
+  "execution_completed_at": "2026-08-02T12:17:28Z",
+  "execution_reason": null,
+  "execution_result_kind": "success",
+  "node_path": "Main.IrreducibleVertex",
+  "objective": "Prove the two independent local foundations used at the start of solution.tex:188-192: positivity of every vertex weight from positive definiteness, and irreducibility of a vertex vector whose weight is one.",
+  "plan_closeout_acknowledged_at": "2026-08-02T12:18:49Z",
+  "plan_closeout_acknowledged_by": "a_a235941c8c524917a1ed4a78f90c75ba",
+  "result_kind": "success",
+  "result_reason": "Both planned independent foundations reached proved state and passed required proof-policy satisfaction.",
+  "revision_refs": [
+    {
+      "change_id": "weight_pos_of_positive@rev:1",
+      "decl_name": "weight_pos_of_positive",
+      "revision": 1
+    },
+    {
+      "change_id": "irreducible_vertex_of_weight_eq_one@rev:1",
+      "decl_name": "irreducible_vertex_of_weight_eq_one",
+      "revision": 1
+    }
+  ],
+  "round_id": "round_0a00b3e547464fed8bac3a87927ea3dc",
+  "round_index": 1,
+  "started_at": "2026-08-02T11:52:02Z",
+  "status": "committed",
+  "strategy_id": "strategy_c8ba6f0b78e349faafd071c8dae0b3af",
+  "summary": "Round 1 successfully advanced the bottom-up strategy. Both independent foundations—weight_pos_of_positive and irreducible_vertex_of_weight_eq_one—reached proved state with passing formal statements and proofs and satisfy the graph_proved policy. No state-only work, blockers, superseded artifacts, or cleanup targets remain. The next step is another small round for the unique-underweighted branch, beginning the admissible rooted-component and central inequality layer before attempting the protected parent theorem."
+}

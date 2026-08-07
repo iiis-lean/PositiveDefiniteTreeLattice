@@ -1,0 +1,38 @@
+{
+  "change_summaries": {},
+  "committed_at": "2026-07-31T04:37:37Z",
+  "created_at": "2026-07-31T03:25:36Z",
+  "discard_reason": null,
+  "discarded_at": null,
+  "discarded_by": null,
+  "discarded_created_decl_names": [],
+  "discarded_restored_decl_revisions": {},
+  "discarded_revision_refs": [],
+  "execution_completed_at": "2026-07-31T04:35:34Z",
+  "execution_reason": "The accepted neighbor proof route requires a substantial reusable finite-sum transport theorem before the displayed boundary decomposition can be formalized cleanly. I did not introduce that theorem as an untracked proof-local helper. The other assigned reindexing helper is complete, captured, and formally consistent.",
+  "execution_result_kind": "blocked",
+  "node_path": "Main.RootedEstimates",
+  "objective": "Prove the two repository-local finite reindexing helpers identified by Mathlib recon: reindex non-root vertices as a sigma of rooted child components, and decompose each component vertex's ordered ambient neighbor contribution into its root boundary term plus local component neighbors.",
+  "plan_closeout_acknowledged_at": "2026-07-31T04:37:37Z",
+  "plan_closeout_acknowledged_by": "a_c126bbd9cf3144258d31b99169f687bb",
+  "result_kind": "blocked",
+  "result_reason": "The non-root sigma reindexing proof passed, but the ordered neighbor decomposition remains proof_planned pending one tracked subtype-to-ambient neighbor-sum transport theorem.",
+  "revision_refs": [
+    {
+      "change_id": "sumNonrootEqSumRootedChildComponents@rev:1",
+      "decl_name": "sumNonrootEqSumRootedChildComponents",
+      "revision": 1
+    },
+    {
+      "change_id": "sumNeighborContributionRootedChildComponent@rev:1",
+      "decl_name": "sumNeighborContributionRootedChildComponent",
+      "revision": 1
+    }
+  ],
+  "round_id": "round_f44ee56775d249c9a4605014f18c29cc",
+  "round_index": 4,
+  "started_at": "2026-07-31T03:26:49Z",
+  "status": "committed",
+  "strategy_id": "strategy_6bfc666c638344a19f7d1dee5c0a60d4",
+  "summary": "The strategy made one layer of progress. sumNonrootEqSumRootedChildComponents@1 completed all stages and passed, ready to commit as proved and graph_proved-satisfied. sumNeighborContributionRootedChildComponent@1 reached proof_planned with an accepted statement and proof plan but no Proof Formal, so it remains unsatisfied. The remaining blocker is a single predictable Lean-representation helper, not a new mathematical or provider gap: transport finite sums between C.toSimpleGraph.neighborFinset uC and the ambient G.neighborFinset u filtered to vertices of C, using subtype coercion, toSimpleGraph_adj, neighborFinset_eq_filter, and Finset.sum_bij with summand equality. The next round should create and prove that private transport theorem alone. Only afterward should the neighbor decomposition and then treePairingRootedChildDecomposition be retried. No superseded artifacts or cleanup targets were introduced."
+}

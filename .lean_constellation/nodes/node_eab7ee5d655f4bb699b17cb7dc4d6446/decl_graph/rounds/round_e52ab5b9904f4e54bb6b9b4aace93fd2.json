@@ -1,0 +1,33 @@
+{
+  "change_summaries": {},
+  "committed_at": "2026-07-30T11:52:26Z",
+  "created_at": "2026-07-30T11:40:59Z",
+  "discard_reason": null,
+  "discarded_at": null,
+  "discarded_by": null,
+  "discarded_created_decl_names": [],
+  "discarded_restored_decl_revisions": {},
+  "discarded_revision_refs": [],
+  "execution_completed_at": "2026-07-30T11:50:47Z",
+  "execution_reason": null,
+  "execution_result_kind": "success",
+  "node_path": "Main.RootedCapacity",
+  "objective": "Add the single private nested-submatrix entry theorem required by the actual normalized consumer goal of rootedNonrootGram_reindex_childBlocks. Preserve the same ambient Gram equality from solution.tex lines 57–62 and derive it from the proved reindex entry bridge, without introducing another equivalence or mathematical layer.",
+  "plan_closeout_acknowledged_at": "2026-07-30T11:52:26Z",
+  "plan_closeout_acknowledged_by": "a_a93b40977f574bad89528358fa89e022",
+  "result_kind": "success",
+  "result_reason": "The exact nested-submatrix entry theorem reached proved with all stage and graph_proved checks passing, closing the known prerequisite for the parent child-block identity.",
+  "revision_refs": [
+    {
+      "change_id": "rootedNonrootGram_submatrix_entry@rev:1",
+      "decl_name": "rootedNonrootGram_submatrix_entry",
+      "revision": 1
+    }
+  ],
+  "round_id": "round_e52ab5b9904f4e54bb6b9b4aace93fd2",
+  "round_index": 36,
+  "started_at": "2026-07-30T11:42:23Z",
+  "status": "committed",
+  "strategy_id": "strategy_1fbcdfb31a2e4cada1ff5b7b941de18c",
+  "summary": "Round 36 made the required bottom-up progress: rootedNonrootGram_submatrix_entry reached proved and is proof-policy satisfied. It is the exact consumer-shaped normalization theorem missing from round 35, not another approximate reindex interface. The active source route remains viable, and known dependency closure is now complete for a Proof-Formal-only retry of rootedNonrootGram_reindex_childBlocks: use this theorem for the normalized left entry, Matrix.blockDiagonal'_apply' on the right, then the existing same-component and cross-component Gram lemmas. The inverse child-block and inverse-quadratic theorems remain deferred. The graph now has 28 declarations, at the top of the contract's expected scale; no further rewrite wrappers should be added without cleanup or scope review."
+}

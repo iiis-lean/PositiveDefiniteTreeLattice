@@ -1,0 +1,33 @@
+{
+  "change_summaries": {},
+  "committed_at": "2026-07-31T06:05:11Z",
+  "created_at": "2026-07-31T05:25:45Z",
+  "discard_reason": null,
+  "discarded_at": null,
+  "discarded_by": null,
+  "discarded_created_decl_names": [],
+  "discarded_restored_decl_revisions": {},
+  "discarded_revision_refs": [],
+  "execution_completed_at": "2026-07-31T06:03:48Z",
+  "execution_reason": null,
+  "execution_result_kind": "success",
+  "node_path": "Main.RootedEstimates",
+  "objective": "Complete Proof Formal for the retained b_0010 rooted-child treePairing decomposition now that both tracked finite-reindexing prerequisites are proved and their dependency closure is complete, without changing the accepted statement or Proof NL plan.",
+  "plan_closeout_acknowledged_at": "2026-07-31T06:05:11Z",
+  "plan_closeout_acknowledged_by": "a_c126bbd9cf3144258d31b99169f687bb",
+  "result_kind": "success",
+  "result_reason": "treePairingRootedChildDecomposition revision 3 reached proved and passed required graph_proved satisfaction.",
+  "revision_refs": [
+    {
+      "change_id": "treePairingRootedChildDecomposition@rev:3",
+      "decl_name": "treePairingRootedChildDecomposition",
+      "revision": 3
+    }
+  ],
+  "round_id": "round_35b468748d074678bd3484ff0fc97957",
+  "round_index": 8,
+  "started_at": "2026-07-31T05:26:44Z",
+  "status": "committed",
+  "strategy_id": "strategy_6bfc666c638344a19f7d1dee5c0a60d4",
+  "summary": "The recovery strategy completed the rooted pairing structural layer: treePairingRootedChildDecomposition@3 passed Proof Formal, reached proved, and satisfies graph_proved without changing its accepted source-faithful statement or proof plan. All previously recorded provider and finite-reindexing retry conditions are now met, no declaration in this round remains unfinished, and no state-only or cleanup residue was introduced. The strategy remains viable. After commit, the next planning step is to inspect the exact b_0010 induction shape and proved prerequisite closure, then submit a focused rooted_integer_estimate foundation/interface round rather than revisit decomposition infrastructure."
+}

@@ -1,0 +1,15 @@
+{
+  "created_at": "2026-07-30T01:32:41Z",
+  "current_revision": 1,
+  "kind": "theorem",
+  "lifecycle": "active",
+  "module": "PositiveDefiniteTreeLattice.Main.RootedCapacity.Theorems.rootedChildComponent_parent_not_mem",
+  "name": "rootedChildComponent_parent_not_mem",
+  "node_path": "Main.RootedCapacity",
+  "public": true,
+  "revision_ids": [
+    1
+  ],
+  "summary": "Deleting an edge of a tree separates its parent endpoint from the child-side component.",
+  "updated_at": "2026-07-30T01:32:41Z"
+}

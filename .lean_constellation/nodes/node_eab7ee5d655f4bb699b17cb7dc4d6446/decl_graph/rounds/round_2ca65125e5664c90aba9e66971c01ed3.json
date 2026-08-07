@@ -1,0 +1,33 @@
+{
+  "change_summaries": {},
+  "committed_at": "2026-07-30T18:44:07Z",
+  "created_at": "2026-07-30T18:33:03Z",
+  "discard_reason": null,
+  "discarded_at": null,
+  "discarded_by": null,
+  "discarded_created_decl_names": [],
+  "discarded_restored_decl_revisions": {},
+  "discarded_revision_refs": [],
+  "execution_completed_at": "2026-07-30T18:42:20Z",
+  "execution_reason": null,
+  "execution_result_kind": "success",
+  "node_path": "Main.RootedCapacity",
+  "objective": "Retry only Proof Formal for the unchanged public b_0009 capacity recursion using the now-proved full-block IsUnit helper.",
+  "plan_closeout_acknowledged_at": "2026-07-30T18:44:07Z",
+  "plan_closeout_acknowledged_by": "a_a93b40977f574bad89528358fa89e022",
+  "result_kind": "success",
+  "result_reason": "The public b_0009 capacity recursion is proved and graph-policy satisfied.",
+  "revision_refs": [
+    {
+      "change_id": "rootedCapacity_recursion@rev:4",
+      "decl_name": "rootedCapacity_recursion",
+      "revision": 4
+    }
+  ],
+  "round_id": "round_2ca65125e5664c90aba9e66971c01ed3",
+  "round_index": 55,
+  "started_at": "2026-07-30T18:34:10Z",
+  "status": "committed",
+  "strategy_id": "strategy_fc60f40a331d4f63bd19e22f0eec7473",
+  "summary": "Round 55 completed the public capacity recursion and made graph_proved progress. rootedCapacity_recursion is proved and proof-policy satisfied; no intermediate closure debt remains in the Schur-complement layer. The active strategy remains viable. Next work is the b_0009 strict capacity bound, followed by b_0010 and b_0011 inequalities. Before dispatching the bound itself, verify and, if absent, prove the predictable child-component cardinal decrease needed for well-founded induction."
+}

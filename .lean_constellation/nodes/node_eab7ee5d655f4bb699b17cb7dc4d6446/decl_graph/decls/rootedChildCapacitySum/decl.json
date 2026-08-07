@@ -1,0 +1,16 @@
+{
+  "created_at": "2026-07-30T08:09:47Z",
+  "current_revision": 2,
+  "kind": "definition",
+  "lifecycle": "active",
+  "module": "PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildCapacitySum",
+  "name": "rootedChildCapacitySum",
+  "node_path": "Main.RootedCapacity",
+  "public": true,
+  "revision_ids": [
+    1,
+    2
+  ],
+  "summary": "The sum of the capacities of the rooted child-side components at the root.",
+  "updated_at": "2026-07-30T20:08:48Z"
+}

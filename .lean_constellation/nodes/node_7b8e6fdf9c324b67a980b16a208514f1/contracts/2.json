@@ -1,0 +1,384 @@
+{
+  "boundary": "Own the final source-specific assembly: identify the unique underweighted vertex, handle weight-one vertices through norm-one irreducibility, prove admissibility of the deleted rooted components, assemble the central Schur-complement positivity inequality from RootedCapacity's public block APIs, and eliminate decompositions using the rooted estimate and root bound. Exclude foundational predicate reconstruction and new generic rooted-capacity or matrix block infrastructure. Expected final scale remains about 8–14 important declarations spanning SourceIndex blocks b_0003, b_0006, and b_0012 / solution.tex 182–244.",
+  "committed_at": "2026-08-03T16:58:48Z",
+  "constraints": "Preserve the exact protected theorem header and accepted central-gap statement, integral model, pairing, uniqueness hypothesis, and Irreducible predicate. Do not separately compose rootedNonrootGram_reindex_childBlocks with rootedChildGram_blockDiagonal_inv_of_child_admissible, recreate family transports or generic block infrastructure, assume ambient rooted admissibility, revive deleted quadratic wrappers, change capacity representations, add assumptions, weaken conclusions, or raise heartbeats. The combined provider theorem is the sole repair for the recorded B-family mismatch.",
+  "context_refs": [],
+  "contract_kind": "content",
+  "created_at": "2026-08-03T15:03:38Z",
+  "decl_graph_head": {
+    "irreducible_vertex_of_weight_eq_one": 1,
+    "rootedChildCapacitySum_lt_weight_of_unique_underweight": 4,
+    "rootedChildComponent_childCount_add_one_eq_degree": 2,
+    "rootedChildComponent_isAdmissible_of_unique_underweight": 3,
+    "rootedGram_posDef_of_integer_positive": 1,
+    "weight_ge_degree_of_ne_unique_underweight": 1,
+    "weight_ge_two_of_ne_one": 1,
+    "weight_pos_of_positive": 1
+  },
+  "deps": [
+    {
+      "added_by": "coordinator",
+      "dep_id": "dep_3c31ad87d02cef2f",
+      "expected_decl_refs": [
+        {
+          "name": "IrreducibleAnchor",
+          "node": "Main.LatticeFoundations",
+          "repo": null,
+          "revision": 1
+        },
+        {
+          "name": "irreducibleOfPairingSelfEqOneAnchor",
+          "node": "Main.LatticeFoundations",
+          "repo": null,
+          "revision": 1
+        },
+        {
+          "name": "treePairingAnchor",
+          "node": "Main.LatticeFoundations",
+          "repo": null,
+          "revision": 1
+        },
+        {
+          "name": "treePairing_add_left",
+          "node": "Main.LatticeFoundations",
+          "repo": null,
+          "revision": 6
+        },
+        {
+          "name": "treePairing_add_right",
+          "node": "Main.LatticeFoundations",
+          "repo": null,
+          "revision": 6
+        },
+        {
+          "name": "treePairing_add_self",
+          "node": "Main.LatticeFoundations",
+          "repo": null,
+          "revision": 3
+        },
+        {
+          "name": "treePairing_symm",
+          "node": "Main.LatticeFoundations",
+          "repo": null,
+          "revision": 6
+        },
+        {
+          "name": "treePairing_vertexVector_self",
+          "node": "Main.LatticeFoundations",
+          "repo": null,
+          "revision": 5
+        },
+        {
+          "name": "vertexVectorAnchor",
+          "node": "Main.LatticeFoundations",
+          "repo": null,
+          "revision": 1
+        },
+        {
+          "name": "vertexVector_ne_zero",
+          "node": "Main.LatticeFoundations",
+          "repo": null,
+          "revision": 5
+        }
+      ],
+      "reason": "The protected final theorem uses the exact public pairing, vertex vectors, irreducibility predicate, norm-one irreducibility bridge, and pairing algebra.",
+      "target": {
+        "node": "Main.LatticeFoundations",
+        "repo": null
+      }
+    },
+    {
+      "added_by": "coordinator",
+      "dep_id": "dep_5e07d784efaf749b",
+      "expected_decl_refs": [
+        {
+          "name": "IsAdmissibleRootedTree",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 1
+        },
+        {
+          "name": "capacity_pos_lt_one",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 2
+        },
+        {
+          "name": "rootedCapacity",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 1
+        },
+        {
+          "name": "rootedCapacity_pos",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 1
+        },
+        {
+          "name": "rootedCapacity_recursion",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 5
+        },
+        {
+          "name": "rootedChildCapacitySum",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 2
+        },
+        {
+          "name": "rootedChildCapacitySummand",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 1
+        },
+        {
+          "name": "rootedChildComponent",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 1
+        },
+        {
+          "name": "rootedChildComponent_isTree",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 1
+        },
+        {
+          "name": "rootedChildComponent_partition",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 1
+        },
+        {
+          "name": "rootedChildCount",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 1
+        },
+        {
+          "name": "rootedChildRoot",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 1
+        },
+        {
+          "name": "rootedChildren",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 2
+        },
+        {
+          "name": "rootedGram",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 2
+        },
+        {
+          "name": "rootedGram_rootedChildComponent",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 1
+        },
+        {
+          "name": "rootedChildComponent_parent_not_mem",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 1
+        },
+        {
+          "name": "rootedChildCount_rootedChildComponent",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 2
+        },
+        {
+          "name": "rootedChildCount_add_one_eq_degree",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 1
+        },
+        {
+          "name": "treePairing_vertexVector_vertexVector",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 2
+        },
+        {
+          "name": "rootedChildComponentsEquivNonroot",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 1
+        },
+        {
+          "name": "rootedNonrootGram_reindex_childBlocks",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 6
+        },
+        {
+          "name": "rootedChildGram_blockDiagonal_inv_of_child_admissible",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 1
+        },
+        {
+          "name": "rootedGram_root_rootedChildComponent_support",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 2
+        },
+        {
+          "name": "rootedNonrootGram_reindex_childBlocks_inv_of_child_admissible",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 1
+        }
+      ],
+      "reason": "Resume rootedChildCapacitySum_lt_weight_of_unique_underweight@2 using the provider's single-family combined inverse-reindex theorem, eliminating the exact dependent B-family mismatch recorded in its blocked Proof Formal.",
+      "target": {
+        "node": "Main.RootedCapacity",
+        "repo": null
+      }
+    },
+    {
+      "added_by": "coordinator",
+      "dep_id": "dep_26bf537d0e70f14d",
+      "expected_decl_refs": [
+        {
+          "name": "rooted_integer_estimate",
+          "node": "Main.RootedEstimates",
+          "repo": null,
+          "revision": 2
+        },
+        {
+          "name": "root_coefficient_lt_norm",
+          "node": "Main.RootedEstimates",
+          "repo": null,
+          "revision": 1
+        }
+      ],
+      "reason": "The p≥1 and p=0 contradiction branches in solution.tex 229–241 consume the exact proved rooted integer estimate and strict root-coefficient bound.",
+      "target": {
+        "node": "Main.RootedEstimates",
+        "repo": null
+      }
+    }
+  ],
+  "exports": [],
+  "goal": "Prove and expose the protected theorem PositiveDefiniteTreeLattice.exists_irreducible_vertex from the foundational and rooted-capacity APIs.",
+  "interfaces": [
+    {
+      "bound_decl": null,
+      "expected_statement_lean_code": null,
+      "kind": "theorem",
+      "name": "PositiveDefiniteTreeLattice.exists_irreducible_vertex",
+      "note": "Consumer anchor: protected Main interface PositiveDefiniteTreeLattice.exists_irreducible_vertex. Preserve verbatim the header in formal_target.lean lines 26–32: arbitrary finite V, SimpleGraph V tree, integral treePairing positivity, ∃! v with weight v < degree v, and conclusion ∃ v, Irreducible G weight (vertexVector v). Reuse the public definitions and rooted estimates; do not alter assumptions or conclusion.",
+      "source_refs": [],
+      "summary": "A positive-definite integer-weighted finite tree with a unique underweighted vertex has an irreducible vertex vector."
+    }
+  ],
+  "mathlib_decls": [
+    {
+      "added_by": "worker",
+      "kind": "theorem",
+      "module": "Mathlib.Algebra.BigOperators.Group.Finset.Basic",
+      "name": "Finset.sum_erase_add",
+      "reason": null
+    },
+    {
+      "added_by": "worker",
+      "kind": "theorem",
+      "module": "Mathlib.Algebra.BigOperators.Group.Finset.Basic",
+      "name": "Finset.sum_biUnion",
+      "reason": null
+    },
+    {
+      "added_by": "worker",
+      "kind": "theorem",
+      "module": "Mathlib.Algebra.Order.BigOperators.Group.Finset",
+      "name": "Finset.sum_nonneg",
+      "reason": null
+    },
+    {
+      "added_by": "worker",
+      "kind": "theorem",
+      "module": "Mathlib.Algebra.Order.BigOperators.Group.Finset",
+      "name": "Finset.sum_le_sum",
+      "reason": null
+    },
+    {
+      "added_by": "worker",
+      "kind": "lemma",
+      "module": "Mathlib.Algebra.Order.BigOperators.Group.Finset",
+      "name": "Finset.sum_pos_iff_of_nonneg",
+      "reason": null
+    },
+    {
+      "added_by": "worker",
+      "kind": "theorem",
+      "module": "Mathlib.Algebra.Order.BigOperators.Group.Finset",
+      "name": "Finset.sum_lt_sum_of_nonempty",
+      "reason": null
+    },
+    {
+      "added_by": "worker",
+      "kind": "theorem",
+      "module": "Mathlib.Tactic.IntervalCases",
+      "name": "Int.le_sub_one_of_not_le",
+      "reason": null
+    }
+  ],
+  "mathlib_modules": [
+    {
+      "added_by": "worker",
+      "module": "Mathlib.Algebra.BigOperators.Group.Finset.Basic",
+      "reason": null
+    },
+    {
+      "added_by": "worker",
+      "module": "Mathlib.Algebra.Order.BigOperators.Group.Finset",
+      "reason": null
+    },
+    {
+      "added_by": "worker",
+      "module": "Mathlib.Tactic.IntervalCases",
+      "reason": null
+    }
+  ],
+  "objective": "Resume rootedChildCapacitySum_lt_weight_of_unique_underweight@2 from proof_planned without changing its accepted Statement or Proof NL. Replace the incompatible separate reindex/inverse rewrite step with the proved public rootedNonrootGram_reindex_childBlocks_inv_of_child_admissible@1, supplying its pointwise child admissibility from rootedChildComponent_isAdmissible_of_unique_underweight@3. Use the unchanged ambient rootedGram PosDef and rootedGram_root_rootedChildComponent_support route to collapse the Schur quadratic and prove the strict gap. Then complete the downstream source decomposition contradiction and prove/bind the exact protected PositiveDefiniteTreeLattice.exists_irreducible_vertex theorem.",
+  "owned_refs": [
+    {
+      "added_by": "coordinator",
+      "reason": "Exact protected public theorem header and conclusion.",
+      "ref": {
+        "kind": "source",
+        "ref": {
+          "end_line": 33,
+          "path": "formal_target.lean",
+          "start_line": 24
+        }
+      },
+      "ref_id": "mat_6b66ce87aa5c2d15"
+    },
+    {
+      "added_by": "coordinator",
+      "reason": "Complete final proof by rooted components, Schur complement positivity, and decomposition contradiction.",
+      "ref": {
+        "kind": "source",
+        "ref": {
+          "end_line": 244,
+          "path": "solution.tex",
+          "start_line": 182
+        }
+      },
+      "ref_id": "mat_9c9d897ba83ecbd8"
+    }
+  ],
+  "status": "committed",
+  "success_criteria": "rootedChildCapacitySum_lt_weight_of_unique_underweight@2 is proved using rootedNonrootGram_reindex_childBlocks_inv_of_child_admissible@1 with no consumer-side matrix-family transport; all downstream theorem-like declarations are proved; PositiveDefiniteTreeLattice.exists_irreducible_vertex is compiler-accepted with the exact protected statement and bound; public Statement closure is complete and the graph_proved completion gate passes.",
+  "summary": "Accepted blocked contract v2. The unchanged central-gap lemma is declared with corrected Proof NL using the combined inverse-reindex theorem, but the legal dependency boundary lacks two existing proved RootedCapacity facts required by that route. Authoritative inspection identifies the exact compatible provider facts as rootedGram_reindex_rootNonroot_blocks@1 (the full root/nonroot Matrix.fromBlocks equality with the same nonroot principal block D) and rootedChildComponentsEquivNonroot_apply@1 (the Sigma child-component equivalence evaluation needed to transport root-support sums). Both belong to the existing RootedCapacity block API; recreating them locally is excluded.",
+  "task_completion_mode": "graph_proved",
+  "version": 2
+}

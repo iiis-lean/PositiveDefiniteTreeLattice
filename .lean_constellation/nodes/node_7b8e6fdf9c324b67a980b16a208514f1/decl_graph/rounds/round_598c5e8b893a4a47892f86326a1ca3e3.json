@@ -1,0 +1,33 @@
+{
+  "change_summaries": {},
+  "committed_at": "2026-08-03T10:30:11Z",
+  "created_at": "2026-08-02T15:51:40Z",
+  "discard_reason": null,
+  "discarded_at": null,
+  "discarded_by": null,
+  "discarded_created_decl_names": [],
+  "discarded_restored_decl_revisions": {},
+  "discarded_revision_refs": [],
+  "execution_completed_at": "2026-08-02T16:10:22Z",
+  "execution_reason": "The essential child-component block-decomposition identity has no visible, applicable tracked helper. The rejected Proof NL route cannot be repaired within this stage without inventing a nontrivial matrix/reindexing proof.",
+  "execution_result_kind": "blocked",
+  "node_path": "Main.IrreducibleVertex",
+  "objective": "Prove the central child-capacity sum is strictly below the exceptional vertex weight.",
+  "plan_closeout_acknowledged_at": "2026-08-03T10:30:11Z",
+  "plan_closeout_acknowledged_by": "a_a235941c8c524917a1ed4a78f90c75ba",
+  "result_kind": "blocked",
+  "result_reason": "The central gap proof requires a generic child-component block-decomposition identity not visible on the RootedCapacity boundary; the existing recursion theorem assumes ambient admissibility and its applicable quadratic helper is non-public.",
+  "revision_refs": [
+    {
+      "change_id": "rootedChildCapacitySum_lt_weight_of_unique_underweight@rev:1",
+      "decl_name": "rootedChildCapacitySum_lt_weight_of_unique_underweight",
+      "revision": 1
+    }
+  ],
+  "round_id": "round_598c5e8b893a4a47892f86326a1ca3e3",
+  "round_index": 9,
+  "started_at": "2026-08-02T15:52:41Z",
+  "status": "committed",
+  "strategy_id": "strategy_76ba618705c64b1f82fbf54196336e0c",
+  "summary": "The strategy made statement-layer progress: rootedChildCapacitySum_lt_weight_of_unique_underweight is now declared with the exact source inequality, but it did not reach proved or become proof-policy satisfied. All earlier eight declarations remain usable, including the proved child-component admissibility lemma. The blocker is a provider-owned generic rooted-capacity block identity, not Source-visible current-node helper work or Mathlib arithmetic. Parent retry conditions are: expose a public, applicable identity between the nonroot inverse quadratic term and rootedChildCapacitySum (or a direct Schur-gap theorem) without assuming the ambient underweighted root is admissible; then resume this declaration from declared. The next step is a precise Content blocker for Coordinator/provider repair."
+}

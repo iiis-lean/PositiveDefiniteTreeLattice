@@ -1,0 +1,15 @@
+{
+  "closed_at": "2026-07-31T02:08:31Z",
+  "closed_reason": "The private component adjacency-closure helper and exact qualified public rootedEdgeClassification theorem are graph-proved; both v1 and v2 interfaces are bound, public closure is complete, and the deterministic v2 completion gate passes.",
+  "created_at": "2026-07-31T00:28:11Z",
+  "created_round_ids": [
+    "round_2370c7b374b3458e96fa0be47e23cf12",
+    "round_4491d13cb14c48cc94f23b0f6e1bf203"
+  ],
+  "node_path": "Main.RootedCapacity",
+  "objective": "Extend the preserved graph-proved v1 RootedCapacity package with the contract-v2 generic rooted-edge partition: first prove one local child-component adjacency-closure lemma using the existing deleted-edge representation, then prove and bind the qualified public rootedEdgeClassification theorem with root-child versus unique internal-component cases and sufficient endpoint/adjacency evidence for a disjoint edge-sum partition.",
+  "rationale": "Contract v2 owns only this structural extension and allows roughly 39–44 active declarations. Dependency recon verified that Main.TreePathSeparation and the retained rootedChildComponent_partition/path/cut APIs are sufficient; no Mathlib or resource recon is needed because deleteEdges_adj and connected-component adjacency closure are already validated hints. Under graph_proved completion, the bottom-up two-round route avoids hiding the only meaningful helper, preserves all v1 statements, introduces no weight/capacity assumptions or dependency on Main.RootedEstimates, and keeps the graph within scale.",
+  "status": "closed",
+  "strategy_id": "strategy_49bd9c72ea784a2f8830cfa50c01657d",
+  "summary": "Completed contract v2 in two bottom-up rounds: proved rootedChildComponent_adj_mem, then proved and bound PositiveDefiniteTreeLattice.rootedEdgeClassification as a bidirectional root-child/unique-component edge partition with endpoint and local-adjacency transport. Preserved the full v1 capacity graph and interface. Final gate checked 39 active declarations: 9 checks passed, 0 warnings."
+}

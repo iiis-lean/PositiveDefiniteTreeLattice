@@ -1,0 +1,33 @@
+{
+  "change_summaries": {},
+  "committed_at": "2026-08-06T13:47:39Z",
+  "created_at": "2026-08-06T13:22:31Z",
+  "discard_reason": null,
+  "discarded_at": null,
+  "discarded_by": null,
+  "discarded_created_decl_names": [],
+  "discarded_restored_decl_revisions": {},
+  "discarded_revision_refs": [],
+  "execution_completed_at": "2026-08-06T13:44:59Z",
+  "execution_reason": "The formal proof reaches the strict Schur complement and the transported child-block inverse, but final identification with rootedChildCapacitySum is blocked by an instance mismatch that cannot be repaired within this stage without the explicitly forbidden local instance-transport architecture.",
+  "execution_result_kind": "blocked",
+  "node_path": "Main.IrreducibleVertex",
+  "objective": "Complete only the frozen central-gap Proof Formal using the verified forward instance-irrelevance transport.",
+  "plan_closeout_acknowledged_at": "2026-08-06T13:47:39Z",
+  "plan_closeout_acknowledged_by": "a_a235941c8c524917a1ed4a78f90c75ba",
+  "result_kind": "blocked",
+  "result_reason": "The admissibility instance bridge succeeds, but final identification of the canonical child-block inverse diagonal with rootedChildCapacitySum remains blocked by non-definitionally-equal component instances. Public RootedCapacity lacks capacity-value instance transport or an exact compatible summand theorem, and local transport architecture is forbidden.",
+  "revision_refs": [
+    {
+      "change_id": "rootedChildCapacitySum_lt_weight_of_unique_underweight@rev:7",
+      "decl_name": "rootedChildCapacitySum_lt_weight_of_unique_underweight",
+      "revision": 7
+    }
+  ],
+  "round_id": "round_59619c1ec80e43a38be5ae1a3bb8cf3f",
+  "round_index": 15,
+  "started_at": "2026-08-06T13:24:41Z",
+  "status": "committed",
+  "strategy_id": "strategy_6cbe2889845247cd80504aa0b6db9354",
+  "summary": "Round 15 verified real progress at the provider frontier but did not advance the declaration state: the new admissibility instance-irrel bridge composes successfully, the inverse-reindex theorem applies, and the strict Schur calculation is reached. `rootedChildCapacitySum_lt_weight_of_unique_underweight` revision 7 remains proof_planned and not graph-proved-policy satisfied because the final inverse-diagonal/capacity identification still has incompatible component instances. Direct inspection of the full public RootedCapacity boundary found admissibility instance irrelevance, canonical capacity definitions, inverse-reindex, equivalence evaluation, and support collapse, but no theorem transporting rootedCapacity/rootedGram inverse values across instances or directly equating the canonical block inverse diagonals with rootedChildCapacitySummand. This missing item belongs to the provider's canonical representation architecture; contract v3 forbids reconstructing it locally. All other seven active declarations remain proved; the eight-declaration graph is within expected scale; there are no downstream or retry-named cleanup artifacts. Complete retry conditions are a public ready/fresh RootedCapacity capacity-value transport or exact summand identification with compatible instances, contract/dependency update, and fresh recon; then resume revision 7 from proof_planned. The next action after closeout is terminal blocked, not another unchanged Proof Formal retry, Mathlib recon, or resource recon."
+}

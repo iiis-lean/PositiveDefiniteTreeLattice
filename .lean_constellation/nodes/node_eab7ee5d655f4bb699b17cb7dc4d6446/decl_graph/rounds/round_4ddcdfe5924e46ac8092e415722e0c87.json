@@ -1,0 +1,33 @@
+{
+  "change_summaries": {},
+  "committed_at": "2026-07-30T08:40:10Z",
+  "created_at": "2026-07-30T08:18:54Z",
+  "discard_reason": null,
+  "discarded_at": null,
+  "discarded_by": null,
+  "discarded_created_decl_names": [],
+  "discarded_restored_decl_revisions": {},
+  "discarded_revision_refs": [],
+  "execution_completed_at": "2026-07-30T08:38:17Z",
+  "execution_reason": null,
+  "execution_result_kind": "success",
+  "node_path": "Main.RootedCapacity",
+  "objective": "Create and prove the public b_0009 partition theorem stating that the child-side components indexed by the root's oriented children uniquely partition all nonroot vertices. This is the exact grouping prerequisite for the nonroot Gram block and child-capacity quadratic sum.",
+  "plan_closeout_acknowledged_at": "2026-07-30T08:40:10Z",
+  "plan_closeout_acknowledged_by": "a_a93b40977f574bad89528358fa89e022",
+  "result_kind": "success",
+  "result_reason": "The public partition theorem reached proved state and passed graph-proved target satisfaction.",
+  "revision_refs": [
+    {
+      "change_id": "rootedChildComponent_partition@rev:1",
+      "decl_name": "rootedChildComponent_partition",
+      "revision": 1
+    }
+  ],
+  "round_id": "round_4ddcdfe5924e46ac8092e415722e0c87",
+  "round_index": 21,
+  "started_at": "2026-07-30T08:20:28Z",
+  "status": "committed",
+  "strategy_id": "strategy_1fbcdfb31a2e4cada1ff5b7b941de18c",
+  "summary": "Round 21 successfully formalized the source's grouping of nonroot vertices by rooted child subtrees. rootedChildComponent_partition rev1 is public, proved, and graph-proved. No blocker, state-only intermediate, superseded artifact, or graph-hygiene issue remains. The strategy remains within the contract scale. The next dependency-ordered helper is the private cross-component Gram-zero theorem, after which the local inverse-quadratic sum and Schur recursion can be attempted."
+}

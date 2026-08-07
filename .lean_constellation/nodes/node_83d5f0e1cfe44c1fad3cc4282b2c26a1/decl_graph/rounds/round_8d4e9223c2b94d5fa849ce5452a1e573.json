@@ -1,0 +1,33 @@
+{
+  "change_summaries": {},
+  "committed_at": "2026-07-29T19:24:45Z",
+  "created_at": "2026-07-29T19:16:27Z",
+  "discard_reason": null,
+  "discarded_at": null,
+  "discarded_by": null,
+  "discarded_created_decl_names": [],
+  "discarded_restored_decl_revisions": {},
+  "discarded_revision_refs": [],
+  "execution_completed_at": "2026-07-29T19:23:26Z",
+  "execution_reason": null,
+  "execution_result_kind": "success",
+  "node_path": "Main.LatticeFoundations",
+  "objective": "Migrate the proved self-pairing expansion theorem into namespace PositiveDefiniteTreeLattice after its namespaced additivity and symmetry providers became proved. Preserve the exact solution.tex lines 25–28 integer identity, accepted proof plan and proof, dependency edges, cross-term orientation, and public visibility; introduce no global alias. This parent must become proved before the final norm-one irreducibility theorem is migrated.",
+  "plan_closeout_acknowledged_at": "2026-07-29T19:24:45Z",
+  "plan_closeout_acknowledged_by": "a_60a257a14c4c469b9e17805606fa5ea4",
+  "result_kind": "success",
+  "result_reason": "The namespaced self-pairing expansion reached proved with complete graph_proved dependency closure.",
+  "revision_refs": [
+    {
+      "change_id": "treePairing_add_self@rev:2",
+      "decl_name": "treePairing_add_self",
+      "revision": 2
+    }
+  ],
+  "round_id": "round_8d4e9223c2b94d5fa849ce5452a1e573",
+  "round_index": 12,
+  "started_at": "2026-07-29T19:17:34Z",
+  "status": "committed",
+  "strategy_id": "strategy_33c8b4d4859348d8af576dc8155aa14f",
+  "summary": "The bottom-up namespace-repair strategy made the required parent-level progress. treePairing_add_self reached proved with compiler-confirmed PositiveDefiniteTreeLattice.treePairing_add_self and passed graph_proved satisfaction; its namespaced statement and proof dependency closure are complete. No state-only intermediate work, missing dependency, helper, graph-hygiene issue, scope expansion, or blocker remains. The sole remaining declaration migration is the public interface theorem irreducible_of_pairing_self_eq_one, whose declared namespaced treePairing and Irreducible dependencies and proved namespaced treePairing_add_self parent are now ready."
+}

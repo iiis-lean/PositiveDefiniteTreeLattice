@@ -1,0 +1,179 @@
+{
+  "boundary": "Own the formal definitions treePairing, vertexVector, and Irreducible, together with elementary algebraic properties needed to use them and the source norm-one irreducibility lemma. Exclude rooted-tree capacity machinery and the final unique-underweighted-vertex theorem. Expected scale: about 6–12 important Lean declarations spanning SourceIndex blocks b_0002, b_0004, b_0005, and b_0007.",
+  "committed_at": "2026-07-29T15:56:27Z",
+  "constraints": "Preserve the integral function model and exact finite-sum pairing and irreducibility semantics from formal_target.lean. Do not strengthen positivity assumptions or replace the supplied predicates.",
+  "context_refs": [],
+  "contract_kind": "content",
+  "created_at": "2026-07-29T14:27:26Z",
+  "decl_graph_head": {
+    "Irreducible": 2,
+    "irreducible_of_pairing_self_eq_one": 1,
+    "treePairing": 2,
+    "treePairing_add_left": 2,
+    "treePairing_add_right": 2,
+    "treePairing_add_self": 1,
+    "treePairing_symm": 2,
+    "treePairing_vertexVector_self": 1,
+    "vertexVector": 2,
+    "vertexVector_ne_zero": 1
+  },
+  "deps": [],
+  "exports": [],
+  "goal": "Formalize the integral weighted-tree pairing, vertex vectors, irreducibility, and the general norm-one irreducibility argument as the foundational API for the repository.",
+  "interfaces": [
+    {
+      "bound_decl": {
+        "name": "treePairing",
+        "node": "Main.LatticeFoundations",
+        "repo": null,
+        "revision": 2
+      },
+      "expected_statement_lean_code": null,
+      "kind": "definition",
+      "name": "PositiveDefiniteTreeLattice.treePairing",
+      "note": "Match formal_target.lean lines 7–11 exactly in the namespace PositiveDefiniteTreeLattice; keep the function model V → ℤ and neighborFinset sum.",
+      "source_refs": [],
+      "summary": "Integral bilinear pairing of a finite integer-weighted simple graph."
+    },
+    {
+      "bound_decl": {
+        "name": "vertexVector",
+        "node": "Main.LatticeFoundations",
+        "repo": null,
+        "revision": 2
+      },
+      "expected_statement_lean_code": null,
+      "kind": "definition",
+      "name": "PositiveDefiniteTreeLattice.vertexVector",
+      "note": "Match formal_target.lean lines 13–15 exactly.",
+      "source_refs": [],
+      "summary": "Unit coordinate function associated with a vertex."
+    },
+    {
+      "bound_decl": {
+        "name": "Irreducible",
+        "node": "Main.LatticeFoundations",
+        "repo": null,
+        "revision": 2
+      },
+      "expected_statement_lean_code": null,
+      "kind": "definition",
+      "name": "PositiveDefiniteTreeLattice.Irreducible",
+      "note": "Match formal_target.lean lines 17–22 exactly and use treePairing from this node.",
+      "source_refs": [],
+      "summary": "No decomposition into two nonzero summands with nonnegative cross-pairing."
+    },
+    {
+      "bound_decl": {
+        "name": "irreducible_of_pairing_self_eq_one",
+        "node": "Main.LatticeFoundations",
+        "repo": null,
+        "revision": 1
+      },
+      "expected_statement_lean_code": null,
+      "kind": "theorem",
+      "name": "PositiveDefiniteTreeLattice.irreducible_of_pairing_self_eq_one",
+      "note": "For the supplied treePairing, assume positivity on every nonzero integer vector and treePairing x x = 1; conclude Irreducible G weight x. Preserve the source contradiction via the self-pairings of nonzero summands.",
+      "source_refs": [],
+      "summary": "A norm-one vector is irreducible under integral positive definiteness."
+    }
+  ],
+  "mathlib_decls": [
+    {
+      "added_by": "worker",
+      "kind": "def",
+      "module": "Mathlib.Combinatorics.SimpleGraph.Finite",
+      "name": "SimpleGraph.neighborFinset",
+      "reason": null
+    },
+    {
+      "added_by": "worker",
+      "kind": "theorem",
+      "module": "Mathlib.Combinatorics.SimpleGraph.Finite",
+      "name": "SimpleGraph.mem_neighborFinset",
+      "reason": null
+    },
+    {
+      "added_by": "worker",
+      "kind": "theorem",
+      "module": "Mathlib.Combinatorics.SimpleGraph.Finite",
+      "name": "SimpleGraph.neighborFinset_eq_filter",
+      "reason": null
+    },
+    {
+      "added_by": "worker",
+      "kind": "theorem",
+      "module": "Mathlib.Algebra.BigOperators.Group.Finset.Basic",
+      "name": "Finset.sum_add_distrib",
+      "reason": null
+    },
+    {
+      "added_by": "worker",
+      "kind": "theorem",
+      "module": "Mathlib.Algebra.BigOperators.Group.Finset.Sigma",
+      "name": "Finset.sum_comm",
+      "reason": null
+    }
+  ],
+  "mathlib_modules": [
+    {
+      "added_by": "worker",
+      "module": "Mathlib.Combinatorics.SimpleGraph.Finite",
+      "reason": null
+    },
+    {
+      "added_by": "worker",
+      "module": "Mathlib.Algebra.BigOperators.Group.Finset.Sigma",
+      "reason": null
+    },
+    {
+      "added_by": "worker",
+      "module": "Mathlib.Tactic.Ring",
+      "reason": null
+    },
+    {
+      "added_by": "worker",
+      "module": "Mathlib.Tactic.Linarith",
+      "reason": null
+    },
+    {
+      "added_by": "worker",
+      "module": "Mathlib.Algebra.BigOperators.Group.Finset.Basic",
+      "reason": null
+    }
+  ],
+  "objective": "Produce a graph-proved foundational declaration package: compiler-accepted public definitions matching formal_target.lean exactly, plus proved pairing/vertex-vector facts and the norm-one-implies-irreducible theorem needed by later nodes.",
+  "owned_refs": [
+    {
+      "added_by": "coordinator",
+      "reason": "Exact source-owned definitions of treePairing, vertexVector, and Irreducible.",
+      "ref": {
+        "kind": "source",
+        "ref": {
+          "end_line": 22,
+          "path": "formal_target.lean",
+          "start_line": 7
+        }
+      },
+      "ref_id": "mat_d6dddf67893a813b"
+    },
+    {
+      "added_by": "coordinator",
+      "reason": "Source proof that norm-one elements in an integral positive-definite lattice are irreducible.",
+      "ref": {
+        "kind": "source",
+        "ref": {
+          "end_line": 31,
+          "path": "solution.tex",
+          "start_line": 19
+        }
+      },
+      "ref_id": "mat_e5392f634d0d66e3"
+    }
+  ],
+  "status": "committed",
+  "success_criteria": "All owned definitions are declared with source-faithful signatures; every theorem-like declaration is proved without admissions; the stable definitions and norm-one theorem required by downstream nodes are public.",
+  "summary": "Accepted ready outcome for contract v1. Established a graph-proved foundational boundary with 10 source-faithful declarations; all theorem-like declarations are proved, the exact treePairing, vertexVector, and Irreducible definitions plus the norm-one irreducibility theorem are public and interface-bound, and public Statement closure is complete. Downstream applicability will be checked against each consumer as those contracts are activated.",
+  "task_completion_mode": "graph_proved",
+  "version": 1
+}

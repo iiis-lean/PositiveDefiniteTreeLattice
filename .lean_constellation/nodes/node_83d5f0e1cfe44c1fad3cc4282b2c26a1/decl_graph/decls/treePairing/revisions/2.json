@@ -1,0 +1,89 @@
+{
+  "change": {
+    "anticipated_proof_dep_names": [],
+    "anticipated_statement_dep_names": [],
+    "base_revision": 1,
+    "kind": "update",
+    "objective": "Advance the unchanged rev:1 plan through formal capture using exactly formal_target.lean lines 7–11: the finite outer sum over u of x u * (weight u * y u - the neighborFinset sum of y). It consumes validated SimpleGraph.neighborFinset and finite-sum imports and supplies the accepted lower Statement required by Irreducible, pairing algebra, vertex-vector calculations, and the norm-one theorem.",
+    "require_target_state_satisfied": true,
+    "reset_to_state": "planned",
+    "summary": "Intended to advance the exact public definition from formal_target.lean lines 7–11. Statement NL and Statement Formal completed; the compiler accepted Lean declaration treePairing in PositiveDefiniteTreeLattice.Main.LatticeFoundations.Defs.treePairing, and the revision reached declared with no statement or dependency-readiness mismatch. Proof stages were skipped because this is a definition. The round nevertheless failed its literal target_state=proved check: non-theorem declarations have no proof layer and remain statically declared, although graph-proved proof-policy satisfaction for a definition reduces to declared-level satisfaction. Consumer-side shape is preserved exactly: finite V, decidable equality and adjacency, integer weight and functions, outer finite sum with neighborFinset subtraction. No helper/provider is missing. Do not retry the Statement merely to seek a nonexistent proof state; after closeout, verify declared satisfaction and use this accepted definition as the lower dependency for Irreducible and pairing lemmas.",
+    "target_state": "proved"
+  },
+  "lean_decl_name": "treePairing",
+  "proof": null,
+  "revision": 2,
+  "state": "declared",
+  "statement": {
+    "deps": [
+      {
+        "kind": "mathlib_decl",
+        "reason": "The statement uses the outer and neighbor-indexed finite sums.",
+        "ref": {
+          "module": "Mathlib.Algebra.BigOperators.Group.Finset.Defs",
+          "name": "Finset.sum"
+        }
+      },
+      {
+        "kind": "mathlib_decl",
+        "reason": "The statement defines its inner finite sum over `G.neighborFinset u`.",
+        "ref": {
+          "module": "Mathlib.Combinatorics.SimpleGraph.Finite",
+          "name": "SimpleGraph.neighborFinset"
+        }
+      }
+    ],
+    "formal": {
+      "check": {
+        "allow_sorry": false,
+        "contains_axiom": false,
+        "contains_sorry": false,
+        "diagnostics": {
+          "diagnostics": [],
+          "passed": true,
+          "raw_excerpt": "",
+          "repo_file_path": "PositiveDefiniteTreeLattice/Main/LatticeFoundations/Defs/treePairing.lean",
+          "schema_version": 2,
+          "summary": "Command completed successfully"
+        },
+        "message": "Lean check passed.",
+        "policy": "statement_formal",
+        "scan": {
+          "admit_count": 0,
+          "axiom_count": 0,
+          "contains_admit": false,
+          "contains_axiom": false,
+          "contains_opaque": false,
+          "contains_sorry": false,
+          "contains_unsafe": false,
+          "limitation": "Text scan ignores Lean comments and string literals with a conservative first-round lexer; it is not a full Lean parser.",
+          "occurrences": [],
+          "opaque_count": 0,
+          "sorry_count": 0,
+          "summary": "sorry=0, admit=0, axiom=0, opaque=0, unsafe=0",
+          "unsafe_count": 0
+        },
+        "status": "passed"
+      },
+      "code": "-- lean-constellation: managed-imports-begin\nimport PositiveDefiniteTreeLattice.Main.LatticeFoundations.Prelude\nimport Mathlib.Algebra.BigOperators.Group.Finset.Defs\nimport Mathlib.Combinatorics.SimpleGraph.Finite\n-- lean-constellation: managed-imports-end\n\n-- lean-constellation: declaration-source-begin\n\n/--\n# lean-constellation target: `treePairing`\n\nFor a finite type `V` with decidable equality, a simple graph `G : SimpleGraph V` with decidable\nadjacency, an integer-valued weight function `weight : V → ℤ`, and functions `x y : V → ℤ`,\n`treePairing G weight x y` is the integer finite sum over all vertices `u : V` of\n\n`x u * (weight u * y u - ∑ v ∈ G.neighborFinset u, y v)`.\n\nThus the inner sum is taken over the finite neighbors of `u` in `G`.\n\n## Sources\n\n- Source `formal_target.lean`, lines 7–11\n\n## Statement dependencies\n\n- `Finset.sum` from `Mathlib.Algebra.BigOperators.Group.Finset.Defs`\n- `SimpleGraph.neighborFinset` from `Mathlib.Combinatorics.SimpleGraph.Finite`\n-/\ndef treePairing {V : Type*} [Fintype V] [DecidableEq V] (G : SimpleGraph V)\n    [DecidableRel G.Adj] (weight x y : V → ℤ) : ℤ :=\n  ∑ u, x u * (weight u * y u - ∑ v ∈ G.neighborFinset u, y v)\n"
+    },
+    "nl": {
+      "origin": [
+        {
+          "end_line": 11,
+          "end_locator": null,
+          "kind": "source",
+          "note": "Exact source definition of the weighted finite-sum pairing.",
+          "ref": null,
+          "resource_key": null,
+          "source_path": "formal_target.lean",
+          "start_line": 7,
+          "start_locator": null
+        }
+      ],
+      "text": "For a finite type `V` with decidable equality, a simple graph `G : SimpleGraph V` with decidable adjacency, an integer-valued weight function `weight : V → ℤ`, and functions `x y : V → ℤ`, `treePairing G weight x y` is the integer finite sum over all vertices `u : V` of\n\n`x u * (weight u * y u - ∑ v ∈ G.neighborFinset u, y v)`.\n\nThus the inner sum is taken over the finite neighbors of `u` in `G`."
+    }
+  },
+  "status": "committed",
+  "updated_at": "2026-07-29T14:57:20Z"
+}

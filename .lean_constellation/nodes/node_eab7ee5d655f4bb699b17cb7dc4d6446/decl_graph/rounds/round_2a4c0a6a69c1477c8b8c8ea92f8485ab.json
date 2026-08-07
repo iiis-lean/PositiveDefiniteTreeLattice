@@ -1,0 +1,33 @@
+{
+  "change_summaries": {},
+  "committed_at": "2026-07-30T14:41:21Z",
+  "created_at": "2026-07-30T12:04:47Z",
+  "discard_reason": null,
+  "discarded_at": null,
+  "discarded_by": null,
+  "discarded_created_decl_names": [],
+  "discarded_restored_decl_revisions": {},
+  "discarded_revision_refs": [],
+  "execution_completed_at": "2026-07-30T12:16:41Z",
+  "execution_reason": "This is now a scope/representation cleanup issue rather than a missing mathematical wrapper. The accepted B family captures local instances inside its definition; after dsimp they cannot be reproduced definitionally for Matrix.blockDiagonal'_mul. The provider must expose a named child Gram family/instance convention or revise the statement to retain the let-bound instances through the block multiplication.",
+  "execution_result_kind": "blocked",
+  "node_path": "Main.RootedCapacity",
+  "objective": "Introduce the one private RootedCapacity-specific inverse theorem for the exact dependent family of admissible rooted child Gram blocks used in SourceIndex b_0009. This supplies the reusable block-inverse step required by the inverse-entry transport, inverse quadratic, and Schur-complement recursion.",
+  "plan_closeout_acknowledged_at": "2026-07-30T14:41:21Z",
+  "plan_closeout_acknowledged_by": "a_a93b40977f574bad89528358fa89e022",
+  "result_kind": "blocked",
+  "result_reason": "The theorem remains proof_planned pending a same-semantic private formal-statement representation repair that preserves local child-block instances across Matrix.blockDiagonal' multiplication.",
+  "revision_refs": [
+    {
+      "change_id": "rootedChildGram_blockDiagonal_inv@rev:1",
+      "decl_name": "rootedChildGram_blockDiagonal_inv",
+      "revision": 1
+    }
+  ],
+  "round_id": "round_2a4c0a6a69c1477c8b8c8ea92f8485ab",
+  "round_index": 39,
+  "started_at": "2026-07-30T12:06:17Z",
+  "status": "committed",
+  "strategy_id": "strategy_1fbcdfb31a2e4cada1ff5b7b941de18c",
+  "summary": "Round 39 established the intended child-block inverse theorem through a compiler-checked statement and accepted proof plan, but stopped at proof_planned because the statement hides local instance choices inside B and loses definitional alignment after dsimp. No new mathematics or provider dependency is missing. The strategy remains viable through a targeted private statement-representation repair: revise rootedChildGram_blockDiagonal_inv itself from the Statement Formal boundary so the exact Fintype/DecidableRel convention stays in scope for both sides and Matrix.blockDiagonal'_mul, then re-run Proof NL and Proof Formal. This keeps the graph at 29 declarations and avoids another helper. The parent inverse-entry, quadratic, and Schur stages remain blocked until this repaired theorem proves."
+}

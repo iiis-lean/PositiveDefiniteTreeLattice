@@ -1,0 +1,651 @@
+{
+  "boundary": "Own the RootedCapacity-specific rooted orientation/component transports, admissibility predicate and its instance-stable public boundary, rational Gram matrices, root/nonroot and child-block decomposition/inversion primitives, Schur recursion, and strict capacity bounds from SourceIndex b_0008–b_0009 / solution.tex 33–82. Contract v6 now repairs only IsAdmissibleRootedTree instance coherence needed by existing public block APIs; exclude the unique-underweighted inequality/final assembly, weighted estimates, foundational predicates, generic path results, and any new contraction or dependent representation chain. Expected final scale: about 44–46 active declarations.",
+  "committed_at": "2026-08-06T13:10:19Z",
+  "constraints": "Do not retain or retry either contraction declaration, add a high-level contraction theorem, mention unique-underweight hypotheses, change IsAdmissibleRootedTree semantics, alter rootedChildCapacitySum or existing public statements, add a cast/HEq wrapper chain, introduce new canonical instances, or raise heartbeats. The repair is exactly one generic public instance-independence theorem and at most one proof-local private helper, proved by equality/subsingleton elimination of instance structures.",
+  "context_refs": [
+    {
+      "added_by": "coordinator",
+      "reason": "Downstream b_0010 pairing decomposition motivates the reusable rooted edge-classification capability; the weighted identity remains owned by Main.RootedEstimates.",
+      "ref": {
+        "kind": "source",
+        "ref": {
+          "end_line": 110,
+          "path": "solution.tex",
+          "start_line": 102
+        }
+      },
+      "ref_id": "mat_faf8317a95c2767b"
+    },
+    {
+      "added_by": "coordinator",
+      "reason": "Downstream final assembly uses the generic nonroot parent/children degree equality to prove child-component admissibility; specialized admissibility remains owned by Main.IrreducibleVertex.",
+      "ref": {
+        "kind": "source",
+        "ref": {
+          "end_line": 204,
+          "path": "solution.tex",
+          "start_line": 194
+        }
+      },
+      "ref_id": "mat_168092d04351e4ef"
+    }
+  ],
+  "contract_kind": "content",
+  "created_at": "2026-08-03T17:50:14Z",
+  "decl_graph_head": {
+    "IsAdmissibleRootedTree": 1,
+    "IsAdmissibleRootedTree_rootedChildComponent": 1,
+    "capacity_pos_lt_one": 2,
+    "isAdmissibleRootedTree_instance_irrel": 1,
+    "rootedCapacity": 1,
+    "rootedCapacity_lt_one_of_card_le": 3,
+    "rootedCapacity_pos": 1,
+    "rootedCapacity_recursion": 5,
+    "rootedChildCapacitySum": 2,
+    "rootedChildCapacitySum_lt_card_of_forall_lt_one": 2,
+    "rootedChildCapacitySummand": 1,
+    "rootedChildComponent": 1,
+    "rootedChildComponent_adj_mem": 1,
+    "rootedChildComponent_card_lt": 1,
+    "rootedChildComponent_isTree": 1,
+    "rootedChildComponent_parent_not_mem": 1,
+    "rootedChildComponent_partition": 1,
+    "rootedChildComponent_path_decomposition": 2,
+    "rootedChildComponentsEquivNonroot": 1,
+    "rootedChildComponentsEquivNonroot_apply": 1,
+    "rootedChildCount": 1,
+    "rootedChildCount_add_one_eq_degree": 1,
+    "rootedChildCount_rootedChildComponent": 2,
+    "rootedChildGram_blockDiagonal_inv": 2,
+    "rootedChildGram_blockDiagonal_inv_of_child_admissible": 1,
+    "rootedChildRoot": 1,
+    "rootedChildren": 2,
+    "rootedChildren_rootedChildComponent": 3,
+    "rootedEdgeClassification": 1,
+    "rootedGram": 2,
+    "rootedGram_cross_rootedChildComponents": 1,
+    "rootedGram_reindex_rootNonroot_blocks": 1,
+    "rootedGram_rootNonroot_blocks_invertible": 3,
+    "rootedGram_root_nonroot": 1,
+    "rootedGram_root_rootedChildComponent_support": 2,
+    "rootedGram_rootedChildComponent": 1,
+    "rootedNeighborFinset_eq_insert_predecessor": 1,
+    "rootedNonrootGram_reindex_childBlocks": 6,
+    "rootedNonrootGram_reindex_childBlocks_inv_of_child_admissible": 1,
+    "rootedNonrootGram_reindex_entry": 1,
+    "rootedNonrootGram_reindex_entry_explicit": 1,
+    "rootedNonrootGram_submatrix_entry": 1,
+    "rootedNonroot_inverse_childBlocks": 6,
+    "rootedNonroot_inverse_quadratic": 5,
+    "treePairing_vertexVector_vertexVector": 2
+  },
+  "deps": [
+    {
+      "added_by": "coordinator",
+      "dep_id": "dep_3c31ad87d02cef2f",
+      "expected_decl_refs": [
+        {
+          "name": "treePairingAnchor",
+          "node": "Main.LatticeFoundations",
+          "repo": null,
+          "revision": 1
+        },
+        {
+          "name": "vertexVectorAnchor",
+          "node": "Main.LatticeFoundations",
+          "repo": null,
+          "revision": 1
+        },
+        {
+          "name": "treePairing_vertexVector_self",
+          "node": "Main.LatticeFoundations",
+          "repo": null,
+          "revision": 5
+        },
+        {
+          "name": "vertexVector_ne_zero",
+          "node": "Main.LatticeFoundations",
+          "repo": null,
+          "revision": 5
+        }
+      ],
+      "reason": "The blocked rootedGram and treePairing_vertexVector_vertexVector rev1 consumers require the exact integral pairing and unit vertex vector plus their self-pairing/nonzero facts. LatticeFoundations v2 supplies these through fresh source-faithful anchors with Lean names PositiveDefiniteTreeLattice.treePairing and PositiveDefiniteTreeLattice.vertexVector, avoiding the former global Irreducible collision while preserving all consumer objects, binders, assumptions, and conclusion direction.",
+      "target": {
+        "node": "Main.LatticeFoundations",
+        "repo": null
+      }
+    },
+    {
+      "added_by": "coordinator",
+      "dep_id": "dep_f90487418de15ecb",
+      "expected_decl_refs": [
+        {
+          "name": "uniquePath",
+          "node": "Main.TreePathSeparation",
+          "repo": null,
+          "revision": 1
+        },
+        {
+          "name": "uniquePath_support_separated_by_cut",
+          "node": "Main.TreePathSeparation",
+          "repo": null,
+          "revision": 1
+        },
+        {
+          "name": "uniquePath_eq_append_through_cut",
+          "node": "Main.TreePathSeparation",
+          "repo": null,
+          "revision": 1
+        },
+        {
+          "name": "reachable_childSide_of_uniquePath_concat",
+          "node": "Main.TreePathSeparation",
+          "repo": null,
+          "revision": 1
+        }
+      ],
+      "reason": "The rooted-component path decomposition consumes the canonical path, support separation, and append factorization. The proof-planned rootedChildren_rootedChildComponent@2 additionally requires v2's reachable_childSide_of_uniquePath_concat, whose exact cut, adjacency, concat-witness, and c-to-z conclusion were compared against the reverse Finset inclusion consumer.",
+      "target": {
+        "node": "Main.TreePathSeparation",
+        "repo": null
+      }
+    }
+  ],
+  "exports": [],
+  "goal": "Formalize the admissible rooted-tree capacity construction, Schur-complement recursion, and proved strict capacity bounds.",
+  "interfaces": [
+    {
+      "bound_decl": {
+        "name": "capacity_pos_lt_one",
+        "node": "Main.RootedCapacity",
+        "repo": null,
+        "revision": 2
+      },
+      "expected_statement_lean_code": null,
+      "kind": "theorem",
+      "name": "PositiveDefiniteTreeLattice.capacity_pos_lt_one",
+      "note": "Expose a reusable theorem faithful to solution.tex lines 47–82, together with whatever public admissibility/capacity definitions its statement requires.",
+      "source_refs": [],
+      "summary": "The capacity of an admissible rooted weighted tree lies strictly between zero and one."
+    },
+    {
+      "bound_decl": {
+        "name": "rootedEdgeClassification",
+        "node": "Main.RootedCapacity",
+        "repo": null,
+        "revision": 1
+      },
+      "expected_statement_lean_code": null,
+      "kind": "theorem",
+      "name": "PositiveDefiniteTreeLattice.rootedEdgeClassification",
+      "note": "Consumer anchor: Main.RootedEstimates::treePairingRootedChildDecomposition@1. For finite decidable V, G : SimpleGraph V, hG : G.IsTree, root rho, and an ambient adjacency G.Adj u v, classify the unordered edge {u,v} disjointly as either the root-child case (one endpoint is rho and the other is c ∈ rootedChildren G hG rho rho) or an internal case indexed by a unique c ∈ rootedChildren G hG rho rho with u and v represented in rootedChildComponent G rho c and adjacent in that component graph. The capability must provide the directions/uniqueness needed to partition the global adjacency Finset sum and transport endpoints back to V. It must use the existing rootedChildren, rootedChildComponent, and rootedChildRoot representation, assume no weights or admissibility, and not mention treePairing or Main.RootedEstimates.",
+      "source_refs": [],
+      "summary": "Every edge of a finite rooted tree is either a root-child edge or lies internally in one unique root-child component."
+    },
+    {
+      "bound_decl": {
+        "name": "rootedChildCount_add_one_eq_degree",
+        "node": "Main.RootedCapacity",
+        "repo": null,
+        "revision": 1
+      },
+      "expected_statement_lean_code": null,
+      "kind": "theorem",
+      "name": "PositiveDefiniteTreeLattice.rootedChildCount_add_one_eq_degree",
+      "note": "Consumer anchor: Main.IrreducibleVertex::rootedChildComponent_childCount_add_one_eq_degree@1. For {V} [Fintype V] [DecidableEq V], G : SimpleGraph V with decidable adjacency, hG : G.IsTree, root ρ and vertex x with hx : x ≠ ρ, prove exactly rootedChildCount G hG ρ x + 1 = G.degree x (or the symmetric equality). Use the current rootedChildren/rootedChildCount definitions. A predecessor/neighborFinset partition may be a helper, but the public capability must require no weights, admissibility, components, or consumer-specific data and must not strengthen hx. This result is applied after rootedChildCount_rootedChildComponent in the retained private consumer.",
+      "source_refs": [],
+      "summary": "Every nonroot vertex of a finite rooted tree has degree equal to its rooted child count plus one."
+    },
+    {
+      "bound_decl": {
+        "name": "rootedNonrootGram_reindex_childBlocks",
+        "node": "Main.RootedCapacity",
+        "repo": null,
+        "revision": 6
+      },
+      "expected_statement_lean_code": null,
+      "kind": "theorem",
+      "name": "rootedNonrootGram_reindex_childBlocks",
+      "note": "Expose the existing proved declaration unchanged. Consumer anchor: Main.IrreducibleVertex.rootedChildCapacitySum_lt_weight_of_unique_underweight@1. Preserve its exact R/S equivalence, principal submatrix D, child block family B, and equality Matrix.reindex e e D = Matrix.blockDiagonal' B; do not add ambient admissibility.",
+      "source_refs": [],
+      "summary": "The nonroot principal rooted Gram block, reindexed by the root-child component partition, is the block diagonal family of child-component rooted Gram matrices."
+    },
+    {
+      "bound_decl": {
+        "name": "rootedChildGram_blockDiagonal_inv_of_child_admissible",
+        "node": "Main.RootedCapacity",
+        "repo": null,
+        "revision": 1
+      },
+      "expected_statement_lean_code": null,
+      "kind": "theorem",
+      "name": "rootedChildGram_blockDiagonal_inv_of_child_admissible",
+      "note": "Expose the existing proved declaration unchanged. Preserve its pointwise attached-child IsAdmissibleRootedTree premise, canonical component indices and instances, and conclusion (Matrix.blockDiagonal' B)⁻¹ = Matrix.blockDiagonal' (fun c => (B c)⁻¹). It must remain independent of ambient root admissibility.",
+      "source_refs": [],
+      "summary": "A block diagonal family of child-component rooted Gram matrices inverts componentwise when each attached child component is admissible."
+    },
+    {
+      "bound_decl": {
+        "name": "rootedGram_root_rootedChildComponent_support",
+        "node": "Main.RootedCapacity",
+        "repo": null,
+        "revision": 2
+      },
+      "expected_statement_lean_code": null,
+      "kind": "theorem",
+      "name": "rootedGram_root_rootedChildComponent_support",
+      "note": "Expose the existing proved declaration unchanged. Preserve the child-component index, root-row/column values -1 at rootedChildRoot and 0 elsewhere, and both generic weighted-sum collapse conclusions. Consumer anchor is the central Schur inequality in Main.IrreducibleVertex@1.",
+      "source_refs": [],
+      "summary": "The ambient rooted Gram root row and column are supported exactly at each attached component's child root, including weighted finite-sum collapse laws."
+    },
+    {
+      "bound_decl": {
+        "name": "rootedNonrootGram_reindex_childBlocks_inv_of_child_admissible",
+        "node": "Main.RootedCapacity",
+        "repo": null,
+        "revision": 1
+      },
+      "expected_statement_lean_code": null,
+      "kind": "theorem",
+      "name": "rootedNonrootGram_reindex_childBlocks_inv_of_child_admissible",
+      "note": "Consumer anchor: Main.IrreducibleVertex::rootedChildCapacitySum_lt_weight_of_unique_underweight@2, frozen at proof_planned. Use verbatim the objects and local family convention from rootedNonrootGram_reindex_childBlocks@6: R := {x : V // x ≠ ρ}, S := Σ c : {c // c ∈ rootedChildren G hG ρ ρ}, rootedChildComponent G ρ c.1, e := (rootedChildComponentsEquivNonroot G hG ρ).symm, D := (rootedGram G w).submatrix Subtype.val Subtype.val, and the same B c built from the restricted child rootedGram with Fintype.ofFinite and the inferred deleted-edge/induced adjacency. Assuming each such child is IsAdmissibleRootedTree, conclude exactly Matrix.reindex e e D⁻¹ = Matrix.blockDiagonal' (fun c => (B c)⁻¹). Do not expose a second B family, require ambient root admissibility, mention capacities/sums, or change conclusion orientation. This combined result must internalize all instance-family transport so the consumer can next use rootedGram_root_rootedChildComponent_support to collapse the Schur quadratic.",
+      "source_refs": [],
+      "summary": "The inverse of the nonroot principal rooted Gram block, reindexed by the child-component partition, is the block diagonal of the same child-block family inverses under per-child admissibility."
+    },
+    {
+      "bound_decl": {
+        "name": "isAdmissibleRootedTree_instance_irrel",
+        "node": "Main.RootedCapacity",
+        "repo": null,
+        "revision": 1
+      },
+      "expected_statement_lean_code": null,
+      "kind": "theorem",
+      "name": "isAdmissibleRootedTree_instance_irrel",
+      "note": "Consumer anchor: Main.IrreducibleVertex.rootedChildCapacitySum_lt_weight_of_unique_underweight@6. Provide a public proved theorem for a fixed finite type U, fixed SimpleGraph U, fixed weight U → ℤ, and fixed root, taking an IsAdmissibleRootedTree witness elaborated under one explicit Fintype/DecidableEq/DecidableRel convention to the identical proposition under another convention. It must preserve the graph, weight, root, rootedChildren/rootedGram semantics, and conclusion direction, and be usable inside the canonical letI family installed by rootedNonrootGram_reindex_childBlocks_inv_of_child_admissible@1. Use subsingleton/proof irrelevance of the instance structures; do not expose consumer-private unique-underweight assumptions.",
+      "source_refs": [],
+      "summary": "Transport IsAdmissibleRootedTree for a fixed graph, weight, and root across arbitrary Fintype, DecidableEq, and adjacency-decidability instances."
+    }
+  ],
+  "mathlib_decls": [
+    {
+      "added_by": "worker",
+      "kind": "lemma",
+      "module": "Mathlib.Combinatorics.SimpleGraph.Acyclic",
+      "name": "SimpleGraph.IsTree.existsUnique_path",
+      "reason": null
+    },
+    {
+      "added_by": "worker",
+      "kind": "def",
+      "module": "Mathlib.Combinatorics.SimpleGraph.DeleteEdges",
+      "name": "SimpleGraph.deleteEdges",
+      "reason": null
+    },
+    {
+      "added_by": "worker",
+      "kind": "instance",
+      "module": "Mathlib.Combinatorics.SimpleGraph.Connectivity.Connected",
+      "name": "SimpleGraph.ConnectedComponent.instFinite",
+      "reason": null
+    },
+    {
+      "added_by": "worker",
+      "kind": "theorem",
+      "module": "Mathlib.Algebra.BigOperators.Group.Finset.Basic",
+      "name": "Finset.sum_union",
+      "reason": null
+    },
+    {
+      "added_by": "worker",
+      "kind": "theorem",
+      "module": "Mathlib.Algebra.BigOperators.Group.Finset.Basic",
+      "name": "Finset.sum_erase_add",
+      "reason": null
+    },
+    {
+      "added_by": "worker",
+      "kind": "theorem",
+      "module": "Mathlib.Algebra.BigOperators.Group.Finset.Basic",
+      "name": "Finset.sum_biUnion",
+      "reason": null
+    },
+    {
+      "added_by": "worker",
+      "kind": "def",
+      "module": "Mathlib.LinearAlgebra.Matrix.PosDef",
+      "name": "Matrix.PosDef",
+      "reason": null
+    },
+    {
+      "added_by": "worker",
+      "kind": "theorem",
+      "module": "Mathlib.LinearAlgebra.Matrix.PosDef",
+      "name": "Matrix.PosDef.submatrix",
+      "reason": null
+    },
+    {
+      "added_by": "worker",
+      "kind": "theorem",
+      "module": "Mathlib.LinearAlgebra.Matrix.PosDef",
+      "name": "Matrix.PosDef.inv",
+      "reason": null
+    },
+    {
+      "added_by": "worker",
+      "kind": "theorem",
+      "module": "Mathlib.LinearAlgebra.Matrix.PosDef",
+      "name": "Matrix.PosDef.fromBlocks₁₁",
+      "reason": null
+    },
+    {
+      "added_by": "worker",
+      "kind": "theorem",
+      "module": "Mathlib.LinearAlgebra.Matrix.PosDef",
+      "name": "Matrix.PosDef.fromBlocks₂₂",
+      "reason": null
+    },
+    {
+      "added_by": "worker",
+      "kind": "lemma",
+      "module": "Mathlib.Algebra.Order.Ring.Unbundled.Basic",
+      "name": "sq_nonneg",
+      "reason": null
+    },
+    {
+      "added_by": "worker",
+      "kind": "lemma",
+      "module": "Mathlib.Algebra.Order.Ring.Basic",
+      "name": "sq_pos_of_ne_zero",
+      "reason": null
+    },
+    {
+      "added_by": "worker",
+      "kind": "lemma",
+      "module": "Mathlib.Algebra.Order.Ring.Cast",
+      "name": "Int.cast_one_le_of_pos",
+      "reason": null
+    },
+    {
+      "added_by": "worker",
+      "kind": "lemma",
+      "module": "Mathlib.Combinatorics.SimpleGraph.Acyclic",
+      "name": "SimpleGraph.IsAcyclic.anti",
+      "reason": "the graph after deleting the root-child edge remains acyclic"
+    },
+    {
+      "added_by": "worker",
+      "kind": "lemma",
+      "module": "Mathlib.Combinatorics.SimpleGraph.Acyclic",
+      "name": "SimpleGraph.IsAcyclic.isTree_connectedComponent",
+      "reason": "each child component is a tree on its connected-component subtype"
+    },
+    {
+      "added_by": "worker",
+      "kind": "def",
+      "module": "Mathlib.Combinatorics.SimpleGraph.Connectivity.Connected",
+      "name": "SimpleGraph.ConnectedComponent.toSimpleGraph",
+      "reason": "exact induced subtree representation"
+    },
+    {
+      "added_by": "worker",
+      "kind": "def",
+      "module": "Mathlib.Combinatorics.SimpleGraph.Connectivity.Connected",
+      "name": "SimpleGraph.connectedComponentMk",
+      "reason": "select the component containing a child"
+    },
+    {
+      "added_by": "worker",
+      "kind": "def",
+      "module": "Mathlib.Logic.Equiv.Sum",
+      "name": "Equiv.sumCompl",
+      "reason": "split root singleton and nonroot vertices"
+    },
+    {
+      "added_by": "worker",
+      "kind": "def",
+      "module": "Mathlib.Data.Matrix.Block",
+      "name": "Matrix.fromBlocks",
+      "reason": "state the reindexed root/rest Gram block equality"
+    },
+    {
+      "added_by": "worker",
+      "kind": "theorem",
+      "module": "Mathlib.Data.Matrix.Block",
+      "name": "Matrix.fromBlocks_apply₁₁",
+      "reason": "evaluate the root block in the block equality"
+    },
+    {
+      "added_by": "worker",
+      "kind": "theorem",
+      "module": "Mathlib.LinearAlgebra.Matrix.Defs",
+      "name": "Matrix.reindex_apply",
+      "reason": "convert the reindexed Gram to principal submatrices"
+    },
+    {
+      "added_by": "worker",
+      "kind": "theorem",
+      "module": "Mathlib.LinearAlgebra.Matrix.NonsingularInverse",
+      "name": "Matrix.inv_reindex",
+      "reason": "identify the reindexed inverse entry with rootedCapacity"
+    },
+    {
+      "added_by": "worker",
+      "kind": "lemma",
+      "module": "Mathlib.LinearAlgebra.Matrix.PosDef",
+      "name": "Matrix.PosDef.diag_pos",
+      "reason": "strict positivity of inverse diagonal capacities"
+    },
+    {
+      "added_by": "worker",
+      "kind": "theorem",
+      "module": "Mathlib.LinearAlgebra.Matrix.PosDef",
+      "name": "Matrix.PosDef.isUnit",
+      "reason": "obtain invertibility of positive-definite component blocks"
+    },
+    {
+      "added_by": "worker",
+      "kind": "theorem",
+      "module": "Mathlib.Analysis.Matrix.Order",
+      "name": "Matrix.PosSemidef.posDef_iff_isUnit",
+      "reason": "upgrade Schur complement semidefiniteness to strict positivity"
+    },
+    {
+      "added_by": "worker",
+      "kind": "theorem",
+      "module": "Mathlib.LinearAlgebra.Matrix.SchurComplement",
+      "name": "Matrix.invOf_fromBlocks₂₂_eq",
+      "reason": "calculate the root inverse block from the Schur complement"
+    },
+    {
+      "added_by": "worker",
+      "kind": null,
+      "module": "Mathlib.Combinatorics.SimpleGraph.DeleteEdges",
+      "name": "SimpleGraph.deleteEdges_adj",
+      "reason": "Use to turn ambient x-z adjacency and proof the edge is not the cut into deleted-graph adjacency."
+    },
+    {
+      "added_by": "worker",
+      "kind": "lemma",
+      "module": "Mathlib.Combinatorics.SimpleGraph.Connectivity.Connected",
+      "name": "SimpleGraph.ConnectedComponent.mem_supp_of_adj_mem_supp",
+      "reason": "Use to place z in the c-component support from x's membership and deleted-graph adjacency."
+    },
+    {
+      "added_by": "worker",
+      "kind": "def",
+      "module": "Mathlib.LinearAlgebra.Matrix.SchurComplement",
+      "name": "Matrix.invertibleOfFromBlocks₂₂Invertible",
+      "reason": "Derive the root Schur-complement invertibility instance from the positive-definite nonroot and full blocks before applying Matrix.invOf_fromBlocks₂₂_eq."
+    },
+    {
+      "added_by": "worker",
+      "kind": "theorem",
+      "module": "Mathlib.LinearAlgebra.Matrix.NonsingularInverse",
+      "name": "Matrix.inv_subsingleton",
+      "reason": "Reduce the singleton root inverse block to the scalar reciprocal in the capacity recursion."
+    },
+    {
+      "added_by": "worker",
+      "kind": "theorem",
+      "module": "Mathlib.LinearAlgebra.Matrix.NonsingularInverse",
+      "name": "Matrix.invOf_eq_nonsing_inv",
+      "reason": "Rewrite the invOf output of Matrix.invOf_fromBlocks₂₂_eq to the total inverse used by rootedCapacity."
+    },
+    {
+      "added_by": "worker",
+      "kind": "def",
+      "module": "Mathlib.Data.Matrix.Block",
+      "name": "Matrix.blockDiagonal'",
+      "reason": "State the exact dependent child-component block diagonal of the nonroot Gram matrix and support its inverse transport."
+    },
+    {
+      "added_by": "worker",
+      "kind": "def",
+      "module": "Mathlib.LinearAlgebra.Matrix.NonsingularInverse",
+      "name": "Matrix.submatrixEquivInvertible",
+      "reason": "Preferred direct full-matrix route: transport hAdm's IsUnit instance across the Equiv.sumCompl reindex before copying it to Matrix.fromBlocks."
+    },
+    {
+      "added_by": "worker",
+      "kind": "def",
+      "module": "Mathlib.Algebra.Group.Invertible.Basic",
+      "name": "IsUnit.invertible",
+      "reason": "Turns Matrix.PosDef.isUnit for the Gram and nonroot block into Invertible instances required by Schur-complement declarations."
+    },
+    {
+      "added_by": "worker",
+      "kind": "abbrev",
+      "module": "Mathlib.Algebra.Group.Invertible.Defs",
+      "name": "Invertible.copy",
+      "reason": "Exact equality transport from the reindexed Gram to the root/nonroot Matrix.fromBlocks equality, using the proved equality symmetrically."
+    },
+    {
+      "added_by": "worker",
+      "kind": "def",
+      "module": "Mathlib.Data.Fintype.EquivFin",
+      "name": "Fintype.ofFinite",
+      "reason": "Use the exact scoped finite instance of rootedChildCapacitySummand before forming a typed child induction-hypothesis result."
+    },
+    {
+      "added_by": "worker",
+      "kind": "instance",
+      "module": "Mathlib.Data.Fintype.Defs",
+      "name": "Fintype.subsingleton",
+      "reason": "Equalizes the local child-component Fintype chosen by the inverse-block provider with the instance-reducible Fintype.ofFinite used by rootedChildCapacitySummand before reducing the finite double sum."
+    }
+  ],
+  "mathlib_modules": [
+    {
+      "added_by": "worker",
+      "module": "Mathlib.Combinatorics.SimpleGraph.Acyclic",
+      "reason": null
+    },
+    {
+      "added_by": "worker",
+      "module": "Mathlib.Combinatorics.SimpleGraph.DeleteEdges",
+      "reason": null
+    },
+    {
+      "added_by": "worker",
+      "module": "Mathlib.Combinatorics.SimpleGraph.Connectivity.Connected",
+      "reason": null
+    },
+    {
+      "added_by": "worker",
+      "module": "Mathlib.Algebra.BigOperators.Group.Finset.Basic",
+      "reason": null
+    },
+    {
+      "added_by": "worker",
+      "module": "Mathlib.LinearAlgebra.Matrix.PosDef",
+      "reason": null
+    },
+    {
+      "added_by": "worker",
+      "module": "Mathlib.Algebra.Order.Ring.Unbundled.Basic",
+      "reason": null
+    },
+    {
+      "added_by": "worker",
+      "module": "Mathlib.Algebra.Order.Ring.Basic",
+      "reason": null
+    },
+    {
+      "added_by": "worker",
+      "module": "Mathlib.Algebra.Order.Ring.Cast",
+      "reason": null
+    },
+    {
+      "added_by": "worker",
+      "module": "Mathlib.Data.Matrix.Block",
+      "reason": "root-versus-nonroot and child-block matrix decompositions"
+    },
+    {
+      "added_by": "worker",
+      "module": "Mathlib.LinearAlgebra.Matrix.SchurComplement",
+      "reason": "root capacity recursion through the inverse block formula"
+    },
+    {
+      "added_by": "worker",
+      "module": "Mathlib.Analysis.Matrix.Order",
+      "reason": "strict positivity of the scalar Schur complement from positivity and invertibility"
+    },
+    {
+      "added_by": "worker",
+      "module": "Mathlib.Logic.Equiv.Sum",
+      "reason": "canonical reindexing of the vertex type into root and nonroot subtypes"
+    },
+    {
+      "added_by": "worker",
+      "module": "Mathlib.LinearAlgebra.Matrix.NonsingularInverse",
+      "reason": "transport rootedCapacity through the reindexing"
+    },
+    {
+      "added_by": "worker",
+      "module": "Mathlib.LinearAlgebra.Matrix.Defs",
+      "reason": "defines Matrix.reindex_apply for the root/rest principal-submatrix reindexing"
+    },
+    {
+      "added_by": "worker",
+      "module": "Mathlib.Algebra.Group.Invertible.Basic",
+      "reason": "Direct import for IsUnit.invertible used to create the full and nonroot matrix Invertible instances."
+    },
+    {
+      "added_by": "worker",
+      "module": "Mathlib.Algebra.Group.Invertible.Defs",
+      "reason": "Direct import for Invertible.copy used to transport full-matrix invertibility across the reindex/block equality."
+    },
+    {
+      "added_by": "worker",
+      "module": "Mathlib.Data.Fintype.EquivFin",
+      "reason": "Canonical instance-reducible Fintype.ofFinite used to align the child component’s scoped induction target with rootedChildCapacitySummand."
+    },
+    {
+      "added_by": "worker",
+      "module": "Mathlib.Data.Fintype.Defs",
+      "reason": "Defining module of Fintype.subsingleton used for explicit child-component Fintype equality transport."
+    }
+  ],
+  "objective": "Complete the round-89 cleanup by keeping the overlong contraction artifact obsolete and deleting the specified concise replacement `rootNonrootContraction_eq_childCapacitySum`; the contraction interface has been removed. Add and prove one public theorem `isAdmissibleRootedTree_instance_irrel` that transports `IsAdmissibleRootedTree` for a fixed type, graph, weight, and root across two explicit Fintype/DecidableEq/DecidableRel instance conventions. Use subsingleton elimination and proof irrelevance so Main.IrreducibleVertex.rootedChildCapacitySum_lt_weight_of_unique_underweight@6 can transport its proved per-child admissibility into the canonical letI family required by `rootedNonrootGram_reindex_childBlocks_inv_of_child_admissible@1`. Bind the new interface and preserve every v1–v5 public theorem unchanged.",
+  "owned_refs": [
+    {
+      "added_by": "coordinator",
+      "reason": "Owns rooted orientation, admissibility, rational capacity, Schur recursion, positivity, and the strict capacity upper bound.",
+      "ref": {
+        "kind": "source",
+        "ref": {
+          "end_line": 82,
+          "path": "solution.tex",
+          "start_line": 33
+        }
+      },
+      "ref_id": "mat_e5a6d05a77505804"
+    }
+  ],
+  "status": "committed",
+  "success_criteria": "Both unreleased contraction artifacts are obsolete/deleted and the removed contraction interface remains absent. Public `isAdmissibleRootedTree_instance_irrel` is proved and interface-bound with an exact two-instance transport shape directly usable under the inverse-reindex theorem's canonical child family. All v1–v5 interfaces remain graph-proved, public Statement closure is complete, and the deterministic completion gate passes.",
+  "summary": "Accepted ready contract v6 at graph_proved depth. Both unreleased contraction artifacts were deleted. Public isAdmissibleRootedTree_instance_irrel@1 is proved, interface-bound, and explicitly transports the identical admissibility proposition across two Fintype/DecidableEq/DecidableRel conventions. Exact comparison with Main.IrreducibleVertex.rootedChildCapacitySum_lt_weight_of_unique_underweight@6, its proved child-admissibility witness, and the inverse-reindex canonical letI family confirms direct consumer applicability. All prior interfaces remain intact; completion passed 9 checks with 45 declarations and no warnings.",
+  "task_completion_mode": "graph_proved",
+  "version": 6
+}

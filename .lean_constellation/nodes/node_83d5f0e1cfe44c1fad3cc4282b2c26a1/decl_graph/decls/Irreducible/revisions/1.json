@@ -1,0 +1,26 @@
+{
+  "change": {
+    "anticipated_proof_dep_names": [],
+    "anticipated_statement_dep_names": [
+      "treePairing"
+    ],
+    "base_revision": null,
+    "kind": "create",
+    "objective": "Implement exactly formal_target.lean lines 17–22 using the accepted treePairing foundation: for x : V → ℤ, negate existence of a,b : V → ℤ with a ≠ 0, b ≠ 0, x = a + b, and 0 ≤ treePairing G weight a b. This public definition serves the contract interface and fixes the conclusion predicate for irreducible_of_pairing_self_eq_one; do not strengthen positivity assumptions, alter decomposition equality direction, or replace nonnegative cross-pairing semantics.",
+    "require_target_state_satisfied": true,
+    "reset_to_state": null,
+    "summary": "Planned exact public Irreducible definition from formal_target.lean lines 17–22 with Statement dependency on treePairing. Validation correctly rejected producing that provider and consumer in one round. No worker stages ran or artifacts were accepted; replan only after treePairing is committed.",
+    "target_state": "proved"
+  },
+  "lean_decl_name": null,
+  "proof": null,
+  "revision": 1,
+  "state": "planned",
+  "statement": {
+    "deps": [],
+    "formal": null,
+    "nl": null
+  },
+  "status": "committed",
+  "updated_at": "2026-07-29T14:48:17Z"
+}

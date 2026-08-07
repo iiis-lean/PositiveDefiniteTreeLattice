@@ -1,0 +1,39 @@
+{
+  "created_from_mode": "scan",
+  "entry_path": "README.md",
+  "files": [
+    {
+      "line_count": 25,
+      "path": "README.md",
+      "readable_text": true,
+      "sha256": "d607dbdac0630664d9eb947ed551ffbff07dadda52b2c58795710beb660ccf70",
+      "size_bytes": 1362
+    },
+    {
+      "line_count": 35,
+      "path": "formal_target.lean",
+      "readable_text": true,
+      "sha256": "f1f6c2f14a304303d773d9ee3ce25471a04c656198165c0e3018e87101a1c2a9",
+      "size_bytes": 1440
+    },
+    {
+      "line_count": 45,
+      "path": "problem.tex",
+      "readable_text": true,
+      "sha256": "1359acad563a71f537e979a84e0937d026785b7cd2246bf5a1f1d616169ebe07",
+      "size_bytes": 1186
+    },
+    {
+      "line_count": 246,
+      "path": "solution.tex",
+      "readable_text": true,
+      "sha256": "b1b5d2719f999dfa30defd296edf9649d8eea397bc7d1581c725a542c2335e52",
+      "size_bytes": 7844
+    }
+  ],
+  "generated_at": "2026-07-29T14:24:29Z",
+  "overview": null,
+  "relpath": ".lean_constellation/source",
+  "schema_version": 2,
+  "summary": "Scanned 4 source files."
+}

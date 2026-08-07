@@ -1,0 +1,31 @@
+{
+  "closed_at": "2026-07-30T19:46:06Z",
+  "closed_reason": "Coordinator review is required: the dependent child-capacity summand in rootedChildCapacitySum causes deterministic heartbeat exhaustion in the public induction, the Nat-indexed induction, and the isolated aggregate helper. The current contract authorizes representation redesign only for private inverse transport, forbids added proof-term wrappers and heartbeat increases, and the graph is already 37 declarations against an approximate 29–38 final scale with b_0010 and b_0011 still outstanding.",
+  "created_at": "2026-07-30T15:25:45Z",
+  "created_round_ids": [
+    "round_8618525ac87b4797ace26883ea1ae3d8",
+    "round_cdeaa261f55744f4b2b1159eb3ce96f5",
+    "round_8e5faacb1dd94a4d8a0ca10a8289507f",
+    "round_23268dc0b6e74c3084a55e1f1e6a62e4",
+    "round_f940187f670b40ca95bea98de2a49d84",
+    "round_fb721347c441461e936f35a0d9726dd8",
+    "round_6d1cdf96efc74d68820b91e6016f3873",
+    "round_9d4c98927c2a46f2bb32ad7a966d8d3f",
+    "round_5ddb5494a8424f48aa8654d438504abe",
+    "round_b8f7d754072b4406ba29a26ff1869125",
+    "round_eb93e42161aa4651ac6f233e07b54a8d",
+    "round_1123d25e1a874a96969c4490c95fc291",
+    "round_233d3ccd2a6848eaa5dfd9d8f0e9f476",
+    "round_2ca65125e5664c90aba9e66971c01ed3",
+    "round_426e698a343045db82932e482311d0d3",
+    "round_f220ed1acfe345a7b9283ceba3078a55",
+    "round_c9f3ba2d16444239b02f13b2f204a205",
+    "round_29b1f2dff9a5419bb721170ecc0796a0"
+  ],
+  "node_path": "Main.RootedCapacity",
+  "objective": "Complete the graph-proved RootedCapacity package via the contract-authorized private inverse-transport cleanup: first replace the fragile proof-dependent ambient embedding statement with a stable rootedChildComponentsEquivNonroot/Sigma-indexed inverse theorem and prove it from the established Gram block and block-inverse identities; then update and prove the inverse quadratic, finish the Schur-complement capacity recursion and strict bounds, and prove and bind the rooted integer and root-coefficient interfaces.",
+  "rationale": "The refreshed contract explicitly authorizes redesign only of the private inverse transport statement and its private consumers while preserving the accepted rootedGram, child-component matrices, rational total inverse, source conclusions, and public semantics from solution.tex lines 33–180. Under graph_proved completion, the next bottom-up action is a single update of rootedNonroot_inverse_childBlocks from its accepted Statement NL boundary through a compiler-stable equivalence/Sigma-indexed statement and proof. Its substantive prerequisites rootedNonrootGram_reindex_childBlocks@6 and rootedChildGram_blockDiagonal_inv@2 are already proved, so no dependency, Mathlib, or resource preparation is needed.",
+  "status": "closed",
+  "strategy_id": "strategy_fc60f40a331d4f63bd19e22f0eec7473",
+  "summary": "The strategy completed the authorized inverse-transport cleanup, inverse quadratic, Schur recursion, positivity, and component-size foundations, but cannot finish b_0009 strict upper bounds under the current representation and fixed heartbeat policy."
+}

@@ -1,0 +1,27 @@
+{
+  "change_summaries": {},
+  "committed_at": "2026-07-29T15:03:34Z",
+  "created_at": "2026-07-29T14:57:56Z",
+  "execution_completed_at": "2026-07-29T15:02:12Z",
+  "execution_reason": null,
+  "execution_result_kind": "success",
+  "node_path": "Main.LatticeFoundations",
+  "objective": "Capture the exact public Irreducible definition from formal_target.lean lines 17–22 now that its treePairing Statement dependency is compiler-accepted, targeting the correct non-theorem state declared so the later norm-one theorem has its source-faithful conclusion predicate.",
+  "plan_closeout_acknowledged_at": "2026-07-29T15:03:34Z",
+  "plan_closeout_acknowledged_by": "a_60a257a14c4c469b9e17805606fa5ea4",
+  "result_kind": "success",
+  "result_reason": "Irreducible compiled source-faithfully, reached declared, and passed target-state and proof-policy readiness checks.",
+  "revision_refs": [
+    {
+      "change_id": "Irreducible@rev:2",
+      "decl_name": "Irreducible",
+      "revision": 2
+    }
+  ],
+  "round_id": "round_6bea43105acc4d43be89eaa412d97083",
+  "round_index": 3,
+  "started_at": "2026-07-29T14:58:57Z",
+  "status": "committed",
+  "strategy_id": "strategy_a30e26b4dc0b4b3da567957fbd36ca03",
+  "summary": "The bottom-up strategy progressed successfully: Irreducible reached declared and passed required graph-proved satisfaction using the already accepted treePairing Statement dependency. The three contract definitions are now compiler-accepted public foundations. No state-only theorem intermediate, blocker, missing provider, interface drift, or scope expansion remains from this round. Next, retain the strategy and plan a small proved round of tracked pairing algebra (and then vertex-vector facts as appropriate) before attempting the public norm-one irreducibility theorem."
+}

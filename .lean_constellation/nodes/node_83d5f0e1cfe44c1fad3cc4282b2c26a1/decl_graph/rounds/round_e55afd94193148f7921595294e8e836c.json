@@ -1,0 +1,58 @@
+{
+  "change_summaries": {},
+  "committed_at": "2026-07-29T19:09:39Z",
+  "created_at": "2026-07-29T18:50:35Z",
+  "discard_reason": null,
+  "discarded_at": null,
+  "discarded_by": null,
+  "discarded_created_decl_names": [],
+  "discarded_restored_decl_revisions": {},
+  "discarded_revision_refs": [],
+  "execution_completed_at": "2026-07-29T19:07:22Z",
+  "execution_reason": "Decl-owned Lean file was modified after the latest capture.",
+  "execution_result_kind": "failed",
+  "node_path": "Main.LatticeFoundations",
+  "objective": "Migrate the direct-consumer layer to namespace PositiveDefiniteTreeLattice: the exact Irreducible definition, the three proved pairing laws, vertexVector nonzeroness, and the vertexVector self-pairing formula. Preserve every accepted statement, proof dependency, proof, and public visibility; consume only the now-committed namespaced treePairing and vertexVector providers; introduce no global aliases.",
+  "plan_closeout_acknowledged_at": "2026-07-29T19:09:39Z",
+  "plan_closeout_acknowledged_by": "a_60a257a14c4c469b9e17805606fa5ea4",
+  "result_kind": "failed",
+  "result_reason": "Proof Formal runtime capture-integrity failure: declaration-owned Lean files changed after latest capture. Irreducible reached declared; five theorem revisions require proof-formal-only recapture before higher consumers.",
+  "revision_refs": [
+    {
+      "change_id": "Irreducible@rev:3",
+      "decl_name": "Irreducible",
+      "revision": 3
+    },
+    {
+      "change_id": "treePairing_add_left@rev:3",
+      "decl_name": "treePairing_add_left",
+      "revision": 3
+    },
+    {
+      "change_id": "treePairing_add_right@rev:3",
+      "decl_name": "treePairing_add_right",
+      "revision": 3
+    },
+    {
+      "change_id": "treePairing_symm@rev:3",
+      "decl_name": "treePairing_symm",
+      "revision": 3
+    },
+    {
+      "change_id": "vertexVector_ne_zero@rev:2",
+      "decl_name": "vertexVector_ne_zero",
+      "revision": 2
+    },
+    {
+      "change_id": "treePairing_vertexVector_self@rev:2",
+      "decl_name": "treePairing_vertexVector_self",
+      "revision": 2
+    }
+  ],
+  "round_id": "round_e55afd94193148f7921595294e8e836c",
+  "round_index": 10,
+  "started_at": "2026-07-29T18:51:59Z",
+  "status": "committed",
+  "strategy_id": "strategy_33c8b4d4859348d8af576dc8155aa14f",
+  "summary": "The dependency-ordered namespace strategy made partial semantic progress but the round failed at Proof Formal due to a runtime capture-integrity error. Irreducible reached its declared target with compiler-confirmed PositiveDefiniteTreeLattice.Irreducible and no semantic drift. The five theorem revisions all passed Statement Formal and Proof NL, have the required namespaced Lean identities and compatible declared providers, and retain their exact consumer goals; however, each remained proof_planned because its declaration-owned Lean file was modified after the latest capture even though a formal proof artifact is present as passed. This is a runtime failure, not source evidence, provider dependency, helper, interface, graph-hygiene, or scope failure. No dependencies are missing. Before retrying higher treePairing_add_self or the final norm-one theorem, all five direct theorem revisions must complete fresh Proof Formal capture against unchanged files and become graph_proved-satisfied. The next step should be a proof-formal-only recapture round for those five revisions; Irreducible needs no retry."
+}

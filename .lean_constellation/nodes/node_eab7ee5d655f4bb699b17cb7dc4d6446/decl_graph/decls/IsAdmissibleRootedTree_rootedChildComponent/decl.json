@@ -1,0 +1,15 @@
+{
+  "created_at": "2026-07-30T06:57:21Z",
+  "current_revision": 1,
+  "kind": "theorem",
+  "lifecycle": "active",
+  "module": "PositiveDefiniteTreeLattice.Main.RootedCapacity.Theorems.IsAdmissibleRootedTree_rootedChildComponent",
+  "name": "IsAdmissibleRootedTree_rootedChildComponent",
+  "node_path": "Main.RootedCapacity",
+  "public": true,
+  "revision_ids": [
+    1
+  ],
+  "summary": "Admissibility is inherited by each rooted child-side component.",
+  "updated_at": "2026-07-30T06:57:21Z"
+}

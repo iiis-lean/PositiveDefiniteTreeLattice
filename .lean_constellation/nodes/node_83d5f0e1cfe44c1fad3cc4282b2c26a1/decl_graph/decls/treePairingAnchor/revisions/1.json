@@ -1,0 +1,89 @@
+{
+  "change": {
+    "anticipated_proof_dep_names": [],
+    "anticipated_statement_dep_names": [],
+    "base_revision": null,
+    "kind": "create",
+    "objective": "Create a fresh public declaration record, distinct from the historical treePairing record, whose compiler-confirmed Lean full name is exactly PositiveDefiniteTreeLattice.treePairing. Its definition must reproduce formal_target.lean lines 7–11 exactly: for finite V with decidable equality, G with decidable adjacency, weight : V → ℤ, and x y : V → ℤ, return ∑ u, x u * (weight u * y u - ∑ v ∈ G.neighborFinset u, y v). Preserve the exact integral representation and finite sums, add no assumptions or aliases, and serve the required interface plus all later repaired consumers.",
+    "require_target_state_satisfied": true,
+    "reset_to_state": null,
+    "summary": "Successfully created the fresh public compatible interface anchor treePairingAnchor at declared state with compiler-confirmed Lean name PositiveDefiniteTreeLattice.treePairing. Its statement exactly matches formal_target.lean lines 7–11, has no extra assumptions or aliases, and passed graph_proved declared-level satisfaction. It is ready to replace the historical treePairing record in all statement and proof dependencies.",
+    "target_state": "declared"
+  },
+  "lean_decl_name": "PositiveDefiniteTreeLattice.treePairing",
+  "proof": null,
+  "revision": 1,
+  "state": "declared",
+  "statement": {
+    "deps": [
+      {
+        "kind": "mathlib_decl",
+        "reason": "The source formula uses both outer and neighbor-indexed finite sums.",
+        "ref": {
+          "module": "Mathlib.Algebra.BigOperators.Group.Finset.Defs",
+          "name": "Finset.sum"
+        }
+      },
+      {
+        "kind": "mathlib_decl",
+        "reason": "The source formula explicitly sums over `G.neighborFinset u`.",
+        "ref": {
+          "module": "Mathlib.Combinatorics.SimpleGraph.Finite",
+          "name": "SimpleGraph.neighborFinset"
+        }
+      }
+    ],
+    "formal": {
+      "check": {
+        "allow_sorry": false,
+        "contains_axiom": false,
+        "contains_sorry": false,
+        "diagnostics": {
+          "diagnostics": [],
+          "passed": true,
+          "raw_excerpt": "{'success': True, 'error_message': None, 'file': 'PositiveDefiniteTreeLattice.Main.LatticeFoundations.Defs.treePairingAnchor', 'items': [], 'total_items': 0, 'error_count': 0, 'warning_count': 0, 'info_count': 0, 'sorry_count': 0}",
+          "repo_file_path": "PositiveDefiniteTreeLattice/Main/LatticeFoundations/Defs/treePairingAnchor.lean",
+          "schema_version": 2,
+          "summary": "Diagnostics returned 0 items"
+        },
+        "message": "Lean check passed.",
+        "policy": "statement_formal",
+        "scan": {
+          "admit_count": 0,
+          "axiom_count": 0,
+          "contains_admit": false,
+          "contains_axiom": false,
+          "contains_opaque": false,
+          "contains_sorry": false,
+          "contains_unsafe": false,
+          "limitation": "Text scan ignores Lean comments and string literals with a conservative first-round lexer; it is not a full Lean parser.",
+          "occurrences": [],
+          "opaque_count": 0,
+          "sorry_count": 0,
+          "summary": "sorry=0, admit=0, axiom=0, opaque=0, unsafe=0",
+          "unsafe_count": 0
+        },
+        "status": "passed"
+      },
+      "code": "-- lean-constellation: managed-imports-begin\nimport PositiveDefiniteTreeLattice.Main.LatticeFoundations.Prelude\nimport Mathlib.Algebra.BigOperators.Group.Finset.Defs\nimport Mathlib.Combinatorics.SimpleGraph.Finite\n-- lean-constellation: managed-imports-end\n\n-- lean-constellation: declaration-source-begin\n\n/--\n# lean-constellation target: `treePairingAnchor`\n\nDefine the public interface `PositiveDefiniteTreeLattice.treePairing` as follows. For a type `V`\nwith a finite enumeration and decidable equality, a simple graph `G : SimpleGraph V` with decidable\nadjacency, and functions `weight x y : V → ℤ`, its value is the integer\n\n`∑ u, x u * (weight u * y u - ∑ v ∈ G.neighborFinset u, y v)`.\n\nThus the definition uses exactly the finite sum over all vertices and, for each vertex, the finite\nsum over its graph neighbors; it introduces no further assumptions or aliases.\n\n## Sources\n\n- Source `formal_target.lean`, lines 7–11\n\n## Statement dependencies\n\n- `Finset.sum` from `Mathlib.Algebra.BigOperators.Group.Finset.Defs`\n- `SimpleGraph.neighborFinset` from `Mathlib.Combinatorics.SimpleGraph.Finite`\n-/\ndef PositiveDefiniteTreeLattice.treePairing {V : Type*} [Fintype V] [DecidableEq V]\n    (G : SimpleGraph V) [DecidableRel G.Adj] (weight : V → ℤ) (x y : V → ℤ) : ℤ :=\n  Finset.univ.sum fun u =>\n    x u * (weight u * y u - (G.neighborFinset u).sum fun v => y v)\n"
+    },
+    "nl": {
+      "origin": [
+        {
+          "end_line": 11,
+          "end_locator": null,
+          "kind": "source",
+          "note": "Exact source definition of the integral weighted-graph pairing, including all binders and the finite-sum formula.",
+          "ref": null,
+          "resource_key": null,
+          "source_path": "formal_target.lean",
+          "start_line": 7,
+          "start_locator": null
+        }
+      ],
+      "text": "Define the public interface `PositiveDefiniteTreeLattice.treePairing` as follows. For a type `V` with a finite enumeration and decidable equality, a simple graph `G : SimpleGraph V` with decidable adjacency, and functions `weight x y : V → ℤ`, its value is the integer\n\n`∑ u, x u * (weight u * y u - ∑ v ∈ G.neighborFinset u, y v)`.\n\nThus the definition uses exactly the finite sum over all vertices and, for each vertex, the finite sum over its graph neighbors; it introduces no further assumptions or aliases."
+    }
+  },
+  "status": "committed",
+  "updated_at": "2026-07-29T20:00:24Z"
+}

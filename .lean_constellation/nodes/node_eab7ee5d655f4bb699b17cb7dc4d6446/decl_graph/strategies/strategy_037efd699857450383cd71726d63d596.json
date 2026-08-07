@@ -1,0 +1,14 @@
+{
+  "closed_at": "2026-08-03T14:58:17Z",
+  "closed_reason": "The graph now contains 43 active declarations, all v1–v3 interfaces are preserved, public Statement closure is complete, all six interfaces are bound, and the graph_proved completion diagnostic passes with no issues.",
+  "created_at": "2026-08-03T14:52:55Z",
+  "created_round_ids": [
+    "round_950d6ceabac94ad7b94ba4db3d228545"
+  ],
+  "node_path": "Main.RootedCapacity",
+  "objective": "Repair contract v4 by removing the exhausted unreleased high-level child-admissibility quadratic chain, then expose the already-proved block reindex, per-child block inverse, and root-row support primitives with complete public Statement closure while preserving every v1–v3 interface.",
+  "rationale": "The repaired contract explicitly forbids another proof retry and reassigns the source-specific Schur inequality downstream. Solution.tex 57–68 supports the retained lower block decomposition and support APIs. The four failed declarations form exactly their own delete closure, are unreleased, and are not needed by the retained proved API. Under graph_proved completion, perform cleanup first, then curate visibility/interface bindings and run the completion gate.",
+  "status": "closed",
+  "strategy_id": "strategy_037efd699857450383cd71726d63d596",
+  "summary": "Completed the v4 route repair: removed the four exhausted unreleased quadratic-chain declarations, promoted the three proved lower block APIs plus their required statement closure, and bound all repaired contract interfaces."
+}

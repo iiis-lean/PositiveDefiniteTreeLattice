@@ -1,0 +1,33 @@
+{
+  "change_summaries": {},
+  "committed_at": "2026-07-30T08:02:09Z",
+  "created_at": "2026-07-30T07:48:07Z",
+  "discard_reason": null,
+  "discarded_at": null,
+  "discarded_by": null,
+  "discarded_created_decl_names": [],
+  "discarded_restored_decl_revisions": {},
+  "discarded_revision_refs": [],
+  "execution_completed_at": "2026-07-30T07:59:38Z",
+  "execution_reason": null,
+  "execution_result_kind": "success",
+  "node_path": "Main.RootedCapacity",
+  "objective": "Create and prove strict positivity of rootedCapacity for every admissible rooted weighted tree, as the independent positive half of the b_0009 capacity bound before Schur-complement recursion and the upper bound.",
+  "plan_closeout_acknowledged_at": "2026-07-30T08:02:09Z",
+  "plan_closeout_acknowledged_by": "a_a93b40977f574bad89528358fa89e022",
+  "result_kind": "success",
+  "result_reason": "The theorem reached proved state and passed graph-proved target satisfaction.",
+  "revision_refs": [
+    {
+      "change_id": "rootedCapacity_pos@rev:1",
+      "decl_name": "rootedCapacity_pos",
+      "revision": 1
+    }
+  ],
+  "round_id": "round_dca6584ce30845afafe99591cc677fd8",
+  "round_index": 19,
+  "started_at": "2026-07-30T07:50:40Z",
+  "status": "committed",
+  "strategy_id": "strategy_1fbcdfb31a2e4cada1ff5b7b941de18c",
+  "summary": "Round 19 successfully advanced the capacity layer: rootedCapacity_pos rev1 is public, proved, and graph-proved. No blocker, state-only intermediate, superseded declaration, or graph-hygiene issue remains. The open strategy still explains the route. The next stage is the source's root/rest Schur-complement recursion and decomposition of the nonroot quadratic term into child-component capacities; because this is the first substantial matrix-structural stage and Mathlib preparation has not run in this task cycle, the next action should be focused Mathlib recon before planning tracked block helpers."
+}

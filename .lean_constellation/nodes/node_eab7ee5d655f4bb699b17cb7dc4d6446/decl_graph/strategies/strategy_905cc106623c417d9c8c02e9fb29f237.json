@@ -1,0 +1,15 @@
+{
+  "closed_at": "2026-08-07T02:08:05Z",
+  "closed_reason": "Both planned provider-before-consumer rounds completed successfully and the public contract-v8 interface is now bound.",
+  "created_at": "2026-08-07T01:22:35Z",
+  "created_round_ids": [
+    "round_e5901b21d3eb46df874b5785ed2993c7",
+    "round_ca979cf52b404e1798d59cc12e7d8063"
+  ],
+  "node_path": "Main.RootedCapacity",
+  "objective": "Complete contract v8 bottom-up in two graph-proved rounds: first prove one generic private dependent block-diagonal quadratic-sum splitting helper using the compiler-verified Fintype.sum_sigma/Fintype.sum_eq_single route; then prove and bind public rootedNonroot_quadratic_eq_sum_childQuadratics by transporting both ordered sums along the existing rootedChildComponentsEquivNonroot orientation and rewriting rootedNonrootGram_reindex_childBlocks@6.",
+  "rationale": "Solution.tex 57–68 identifies the nonroot block as the direct sum of child blocks. The current-node reindex theorem already owns the exact R/I/S/e/D/B representation. Mathlib recon verified that one generic finite-sum helper closes the only dependent Sigma normalization gap; no node dependency, resource, representation, or broader package work is needed.",
+  "status": "closed",
+  "strategy_id": "strategy_905cc106623c417d9c8c02e9fb29f237",
+  "summary": "Contract-v8 strategy achieved: private blockDiagonal_quadratic_eq_sum_blocks and public rootedNonroot_quadratic_eq_sum_childQuadratics are proved and proof-policy satisfied; the public theorem is interface-bound with the exact canonical R/I/S/e/D/B convention and all prior declarations preserved."
+}

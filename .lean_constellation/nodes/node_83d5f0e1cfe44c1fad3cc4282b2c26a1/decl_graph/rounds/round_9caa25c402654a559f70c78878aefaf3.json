@@ -1,0 +1,38 @@
+{
+  "change_summaries": {},
+  "committed_at": "2026-07-29T20:55:55Z",
+  "created_at": "2026-07-29T20:52:51Z",
+  "discard_reason": null,
+  "discarded_at": null,
+  "discarded_by": null,
+  "discarded_created_decl_names": [],
+  "discarded_restored_decl_revisions": {},
+  "discarded_revision_refs": [],
+  "execution_completed_at": "2026-07-29T20:54:14Z",
+  "execution_reason": null,
+  "execution_result_kind": "success",
+  "node_path": "Main.LatticeFoundations",
+  "objective": "Perform the independently safe portion of historical cleanup by deleting the superseded Irreducible and norm-one theorem records after committed fresh anchors preserve their exact formal_target.lean lines 17–22 and solution.tex lines 19–31 capabilities. Delete preview is exactly these two records, with no current inbound reference or release protection. Retain historical treePairing and vertexVector temporarily because Main.RootedCapacity still records current statement and contract references to those Decl anchors; their migration lies outside this node's mutation authority.",
+  "plan_closeout_acknowledged_at": "2026-07-29T20:55:55Z",
+  "plan_closeout_acknowledged_by": "a_60a257a14c4c469b9e17805606fa5ea4",
+  "result_kind": "success",
+  "result_reason": "Both unreferenced historical records were safely deleted; their exact source capabilities remain supplied by committed fresh anchors. Remaining cleanup is blocked only by current Main.RootedCapacity inbound references to the other two historical records.",
+  "revision_refs": [
+    {
+      "change_id": "irreducible_of_pairing_self_eq_one@rev:4",
+      "decl_name": "irreducible_of_pairing_self_eq_one",
+      "revision": 4
+    },
+    {
+      "change_id": "Irreducible@rev:5",
+      "decl_name": "Irreducible",
+      "revision": 5
+    }
+  ],
+  "round_id": "round_9caa25c402654a559f70c78878aefaf3",
+  "round_index": 20,
+  "started_at": "2026-07-29T20:54:07Z",
+  "status": "committed",
+  "strategy_id": "strategy_2638883d005249d6a0ca57c50614cfed",
+  "summary": "The strategy made safe cleanup progress: the superseded historical Irreducible definition and historical norm-one theorem were removed, while their source-exact capabilities remain graph_proved-satisfied through the fresh public anchors. No state-only debt or missing same-node dependency remains. Full graph hygiene cannot yet be completed because current repository truth outside this node references historical treePairing and vertexVector: Main.RootedCapacity's contract dependency and the statements of rootedGram and treePairing_vertexVector_vertexVector. Those consumers must be migrated to treePairingAnchor and vertexVectorAnchor by their owner/Coordinator before the remaining historical records can be deleted. After closeout, bind the four fresh interfaces, run completion audit, and report the precise cross-node blocker if it persists."
+}

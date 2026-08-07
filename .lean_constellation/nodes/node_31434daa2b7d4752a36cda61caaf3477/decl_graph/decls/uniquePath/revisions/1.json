@@ -1,0 +1,69 @@
+{
+  "change": {
+    "anticipated_proof_dep_names": [],
+    "anticipated_statement_dep_names": [],
+    "base_revision": null,
+    "kind": "create",
+    "objective": "Define, for a finite simple graph G with hG : G.IsTree and vertices v w, a chosen G.Walk v w obtained from SimpleGraph.IsTree.existsUnique_path, preserving exactly the endpoints and tree parameter. This stable public construction is the path object used in both contract interfaces and later root-to-c / c-to-x append equality. It is the generic graph-theoretic bridge for the rooted child-subtree grouping implicit in SourceIndex b_0008–b_0009 and solution.tex lines 33–64. It consumes only the verified Mathlib tree-path existence API and must not mention RootedCapacity, weights, or matrices.",
+    "require_target_state_satisfied": true,
+    "reset_to_state": null,
+    "summary": "Created the public `uniquePath` definition as a canonical chosen `G.Walk v w` for a simple tree, using the verified Mathlib unique-path existence theorem. Statement NL and formal declaration both passed; revision 1 reached `declared`, which satisfies the proof policy for this non-theorem definition. It now supplies the stable path object required by the later pathhood, cut-support separation, append-simplicity, and exact factorization declarations. No blocker, RootedCapacity dependency, or out-of-scope weighted structure was introduced.",
+    "target_state": "declared"
+  },
+  "lean_decl_name": "uniquePath",
+  "proof": null,
+  "revision": 1,
+  "state": "declared",
+  "statement": {
+    "deps": [
+      {
+        "kind": "mathlib_decl",
+        "reason": "The definition selects the walk witness provided by this unique tree-path existence theorem.",
+        "ref": {
+          "module": "Mathlib.Combinatorics.SimpleGraph.Acyclic",
+          "name": "SimpleGraph.IsTree.existsUnique_path"
+        }
+      }
+    ],
+    "formal": {
+      "check": {
+        "allow_sorry": false,
+        "contains_axiom": false,
+        "contains_sorry": false,
+        "diagnostics": {
+          "diagnostics": [],
+          "passed": true,
+          "raw_excerpt": "",
+          "repo_file_path": "PositiveDefiniteTreeLattice/Main/TreePathSeparation/Defs/uniquePath.lean",
+          "schema_version": 2,
+          "summary": "Command completed successfully"
+        },
+        "message": "Lean check passed.",
+        "policy": "statement_formal",
+        "scan": {
+          "admit_count": 0,
+          "axiom_count": 0,
+          "contains_admit": false,
+          "contains_axiom": false,
+          "contains_opaque": false,
+          "contains_sorry": false,
+          "contains_unsafe": false,
+          "limitation": "Text scan ignores Lean comments and string literals with a conservative first-round lexer; it is not a full Lean parser.",
+          "occurrences": [],
+          "opaque_count": 0,
+          "sorry_count": 0,
+          "summary": "sorry=0, admit=0, axiom=0, opaque=0, unsafe=0",
+          "unsafe_count": 0
+        },
+        "status": "passed"
+      },
+      "code": "-- lean-constellation: managed-imports-begin\nimport PositiveDefiniteTreeLattice.Main.TreePathSeparation.Prelude\nimport Mathlib.Combinatorics.SimpleGraph.Acyclic\n-- lean-constellation: managed-imports-end\n\n-- lean-constellation: declaration-source-begin\n\n/--\n# lean-constellation target: `uniquePath`\n\nFor a finite vertex type `V`, a simple graph `G` on `V`, a tree certificate `hG : G.IsTree`, and\nvertices `v w : V`, define `uniquePath G hG v w : G.Walk v w` to be the walk component of the unique\npath witness supplied by `hG.existsUnique_path v w`. Thus the construction has exactly the endpoints\n`v` and `w` in its type, keeps `hG` as an explicit parameter, and selects the tree's unique path\nrather than an arbitrary walk.\n\n## Statement dependencies\n\n- `SimpleGraph.IsTree.existsUnique_path` from `Mathlib.Combinatorics.SimpleGraph.Acyclic`\n-/\nnoncomputable def uniquePath {V : Type*} [Fintype V] (G : SimpleGraph V)\n    (hG : G.IsTree) (v w : V) : G.Walk v w :=\n  Classical.choose (hG.existsUnique_path v w)\n"
+    },
+    "nl": {
+      "origin": [],
+      "text": "For a finite vertex type `V`, a simple graph `G` on `V`, a tree certificate `hG : G.IsTree`, and vertices `v w : V`, define `uniquePath G hG v w : G.Walk v w` to be the walk component of the unique path witness supplied by `hG.existsUnique_path v w`. Thus the construction has exactly the endpoints `v` and `w` in its type, keeps `hG` as an explicit parameter, and selects the tree's unique path rather than an arbitrary walk."
+    }
+  },
+  "status": "committed",
+  "updated_at": "2026-07-30T03:47:07Z"
+}

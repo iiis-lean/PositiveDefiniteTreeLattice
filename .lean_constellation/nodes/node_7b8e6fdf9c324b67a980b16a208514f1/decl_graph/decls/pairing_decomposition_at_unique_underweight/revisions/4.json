@@ -1,0 +1,431 @@
+{
+  "change": {
+    "anticipated_proof_dep_names": [],
+    "anticipated_statement_dep_names": [],
+    "base_revision": 3,
+    "kind": "update",
+    "objective": "Preserve revision 3's accepted Statement and Proof NL for solution.tex:220–226 and construct the entire Proof Formal self-contained; assume no prior formal proof fragment exists. First rebuild the reviewed coordinate conversion: instantiate Matrix.dotProduct_mulVec and Matrix.mulVec_apply on the ambient nonroot subtype and every canonical rootedChildComponent, expand ordered sums using Finset.mul_sum/Finset.sum_mul, transport ℤ sums to ℚ with Int.cast_sum/Int.cast_add/Int.cast_mul, and unfold the public treePairing and rootedGram definitions or use treePairing_vertexVector_vertexVector so the rational quadratic forms equal the casts of the exact integral pairing terms. Then apply rootedNonroot_quadratic_eq_sum_childQuadratics@1 directly to perform the complete dependent R × R to sigma child-family reindex and diagonal-fiber split. Finally combine the root row/column terms and normalize casts to prove the frozen integral equation (4). Keep exactly the existing R subtype, rootedChildren sigma index, inverse equivalence, child Gram instances, restriction vectors, rootedChildRoot, Statement, Proof NL, and equality orientation. Do not rely on unavailable artifacts, recreate the provider's reindex proof, introduce any helper/wrapper/representation, add assumptions, weaken the result, or raise heartbeats.",
+    "require_target_state_satisfied": true,
+    "reset_to_state": "proof_planned",
+    "summary": "Revision 4 preserved the accepted Statement and Proof NL and attempted a complete self-contained Proof Formal. The newly public rootedNonroot_quadratic_eq_sum_childQuadratics directly closes the dependent nonroot/nonroot R × R quadratic split with the required canonical sigma indices and instances. The remaining consumer-side goal is the root/nonroot cross-term expansion needed for equation (4): reindex the ambient nonroot root-row/root-column linear sums through rootedChildComponentsEquivNonroot, then collapse each child fiber to the negative coefficient at rootedChildRoot so the combined coefficient becomes -(2*p+1)*s_c. Existing rootedGram_root_rootedChildComponent_support is component-local; the visible public boundary does not package the ambient nonroot reindex plus child-fiber linear contraction. Reconstructing that dependent reindex locally is the same prohibited sigma/block infrastructure excluded by contract v3. Revision 4 remains proof_planned, useful, and not superseded. Retry requires either a public ready/fresh RootedCapacity root/nonroot linear/quadratic expansion theorem with identical R, sigma index, equivalence orientation, coefficient pullback, child instances, and rootedChildRoot convention, or explicit Coordinator authorization and boundary revision permitting the local infrastructure.",
+    "target_state": "proved"
+  },
+  "lean_decl_name": "PositiveDefiniteTreeLattice.pairing_decomposition_at_unique_underweight",
+  "proof": {
+    "deps": [
+      {
+        "kind": "mathlib_decl",
+        "reason": "Supports the finite disjoint-union normalization of the canonical child-component partition.",
+        "ref": {
+          "module": "Mathlib.Algebra.BigOperators.Group.Finset.Basic",
+          "name": "Finset.sum_biUnion"
+        }
+      },
+      {
+        "kind": "mathlib_decl",
+        "reason": "Separates the distinguished root coordinate from the nonroot finite coordinate sums.",
+        "ref": {
+          "module": "Mathlib.Algebra.BigOperators.Group.Finset.Basic",
+          "name": "Finset.sum_erase_add"
+        }
+      },
+      {
+        "kind": "mathlib_decl",
+        "reason": "Reindexes the finite nonroot coordinate sums through the canonical rooted-child-component equivalence.",
+        "ref": {
+          "module": "Mathlib.Algebra.BigOperators.Group.Finset.Defs",
+          "name": "Equiv.sum_comp"
+        }
+      },
+      {
+        "kind": "mathlib_decl",
+        "reason": "Transports the finite integral component double sum into ℚ.",
+        "ref": {
+          "module": "Mathlib.Algebra.BigOperators.Ring.Finset",
+          "name": "Int.cast_sum"
+        }
+      },
+      {
+        "kind": "mathlib_decl",
+        "reason": "Normalizes casted integral products in ℚ.",
+        "ref": {
+          "module": "Mathlib.Algebra.Ring.Int.Defs",
+          "name": "Int.cast_mul"
+        }
+      },
+      {
+        "kind": "mathlib_decl",
+        "reason": "Flattens the canonical sigma-indexed nonroot sum into the child-component finite sum.",
+        "ref": {
+          "module": "Mathlib.Data.Fintype.BigOperators",
+          "name": "Fintype.sum_sigma"
+        }
+      },
+      {
+        "kind": "mathlib_decl",
+        "reason": "Normalizes the casted integral decomposition in ℚ.",
+        "ref": {
+          "module": "Mathlib.Data.Int.Cast.Basic",
+          "name": "Int.cast_add"
+        }
+      },
+      {
+        "kind": "mathlib_decl",
+        "reason": "Evaluates the canonical block-diagonal Gram decomposition pointwise to eliminate cross-child terms and retain diagonal component entries.",
+        "ref": {
+          "module": "Mathlib.Data.Matrix.Block",
+          "name": "Matrix.blockDiagonal'_apply'"
+        }
+      },
+      {
+        "kind": "mathlib_decl",
+        "reason": "Expands the dependent child-block quadratic form into its ordered finite double sum.",
+        "ref": {
+          "module": "Mathlib.Data.Matrix.Mul",
+          "name": "Matrix.dotProduct_mulVec"
+        }
+      },
+      {
+        "kind": "mathlib_decl",
+        "reason": "Normalizes each dependent child-block matrix-vector product.",
+        "ref": {
+          "module": "Mathlib.Data.Matrix.Mul",
+          "name": "Matrix.mulVec_apply"
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "Expands the finite coordinate sums in the left argument of the ambient and component pairings.",
+        "ref": {
+          "name": "treePairing_add_left",
+          "node": "Main.LatticeFoundations",
+          "repo": null,
+          "revision": 6
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "Expands the finite coordinate sums in the right argument of the ambient and component pairings.",
+        "ref": {
+          "name": "treePairing_add_right",
+          "node": "Main.LatticeFoundations",
+          "repo": null,
+          "revision": 6
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "Combines the two root/component coordinate contributions in their accepted orientation.",
+        "ref": {
+          "name": "treePairing_symm",
+          "node": "Main.LatticeFoundations",
+          "repo": null,
+          "revision": 6
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "Evaluates the root/root contribution as weight v.",
+        "ref": {
+          "name": "treePairing_vertexVector_self",
+          "node": "Main.LatticeFoundations",
+          "repo": null,
+          "revision": 5
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "Defines the canonical component type on which the direct restrictions are formed.",
+        "ref": {
+          "name": "rootedChildComponent",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 1
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "Separates the root coordinate from each child component during reindexing.",
+        "ref": {
+          "name": "rootedChildComponent_parent_not_mem",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 1
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "Justifies the canonical partition and the separation of all nonroot coordinates.",
+        "ref": {
+          "name": "rootedChildComponent_partition",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 1
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "Reindexes nonroot coordinates by the canonical sigma type of child components.",
+        "ref": {
+          "name": "rootedChildComponentsEquivNonroot",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 1
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "Identifies reindexed coordinates with the direct restriction x ↦ z (x : V).",
+        "ref": {
+          "name": "rootedChildComponentsEquivNonroot_apply",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 1
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "Identifies the precise root coordinate in every linear child correction.",
+        "ref": {
+          "name": "rootedChildRoot",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 1
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "Defines the provider-owned child index subtype used throughout the finite sum.",
+        "ref": {
+          "name": "rootedChildren",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 2
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "Provides the rational coordinate matrix used for the local normalization of the pairing.",
+        "ref": {
+          "name": "rootedGram",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 2
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "Evaluates the root-to-component coordinate sum as the negative child-root coefficient.",
+        "ref": {
+          "name": "rootedGram_root_rootedChildComponent_support",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 2
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "Identifies every diagonal child block with the corresponding component Gram matrix.",
+        "ref": {
+          "name": "rootedGram_rootedChildComponent",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 1
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "Gives the canonical block-diagonal nonroot Gram decomposition that kills cross-child terms.",
+        "ref": {
+          "name": "rootedNonrootGram_reindex_childBlocks",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 6
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "Directly splits the canonical nonroot quadratic term into the required rooted-child component quadratics.",
+        "ref": {
+          "name": "rootedNonroot_quadratic_eq_sum_childQuadratics",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 1
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "Connects rootedGram entries to the exact tree-pairing entries used in the coordinate formula.",
+        "ref": {
+          "name": "treePairing_vertexVector_vertexVector",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 2
+        }
+      }
+    ],
+    "formal": null,
+    "nl": {
+      "origin": [
+        {
+          "end_line": 226,
+          "end_locator": null,
+          "kind": "source",
+          "note": "These lines supply the exact root-plus-child-component decomposition, component root coefficients, and equation (4) that this proof formalizes.",
+          "ref": null,
+          "resource_key": null,
+          "source_path": "solution.tex",
+          "start_line": 220,
+          "start_locator": null
+        }
+      ],
+      "text": "Work classically and retain the provider-owned child index I = {c : V // c in rootedChildren G h_tree v v}. For c : I let C_c = rootedChildComponent G v c.1, rho_c = rootedChildRoot G v c.1, and y_c : C_c -> Int be exactly x |-> z (x : V), as in the formal statement. Let S be the sigma type of pairs (c, x) with x : C_c, let R = {u : V // u != v}, and use the existing equivalence e = (rootedChildComponentsEquivNonroot G h_tree v).symm : R equivalently S. No new restriction or component wrapper is introduced.\n\nFirst prove the elementary coordinate-expansion fact for the existing vertexVector API: every integral function x : V -> Int is the finite sum over u of x u times vertexVector u. Pointwise, Finset.sum_eq_single leaves exactly the u-coordinate. Apply treePairing_add_left, treePairing_add_right, and the corresponding local scalar identities obtained by unfolding treePairing once to derive the rational coordinate formula\ncast(treePairing G weight x y)\n= sum over a,b : V of cast(x a) * rootedGram G weight a b * cast(y b).\nThe same one-line coordinate calculation applies to each C_c and its restricted weight. This is only a local cast normalization between the integral pairing and rootedGram; the final equation is returned to Int.\n\nSplit the ambient double coordinate sum into the root coordinate v and the nonroot coordinates using Finset.sum_erase_add. Reindex the nonroot coordinates through e. rootedChildComponentsEquivNonroot_apply identifies the resulting coefficient at (c,x) with z (x : V), i.e. the stated direct restriction y_c x. rootedChildComponent_parent_not_mem ensures no component coordinate is the root coordinate. Fintype.sum_sigma flattens the reindexed sigma sum into the outer finite sum over c : I and its C_c fibers.\n\nFor the nonroot/nonroot block, apply rootedNonrootGram_reindex_childBlocks pointwise. Matrix.blockDiagonal'_apply' makes the c,d block zero when c != d, so every cross-child contribution vanishes. In the c = d block, use rootedGram_rootedChildComponent to rewrite the remaining entry to the component Gram entry, and use the component version of the coordinate formula. This produces exactly\nsum over c : I of cast(treePairing C_c restrictedWeight y_c y_c).\n\nFor the two root/nonroot sums, apply the finite-sum form of rootedGram_root_rootedChildComponent_support to the rational coefficient function x |-> cast(y_c x). It evaluates each root/component interaction to -cast(y_c rho_c). The root/root entry is weight v by treePairing_vertexVector_self (equivalently treePairing_vertexVector_vertexVector). Combining the root-root, two symmetric root/component, and diagonal component terms gives, after ring normalization,\ncast(treePairing G weight z z + treePairing G weight (vertexVector v) z)\n= cast(weight v * z v * (z v + 1)\n  + sum over c : I of\n      (treePairing C_c restrictedWeight y_c y_c\n       - (2 * z v + 1) * z rho_c)).\nUse exact_mod_cast to conclude the accepted integral equality."
+    }
+  },
+  "revision": 4,
+  "state": "proof_planned",
+  "statement": {
+    "deps": [
+      {
+        "kind": "mathlib_decl",
+        "reason": "The conclusion is an exact finite sum over the canonical rooted-child subtype.",
+        "ref": {
+          "module": "Mathlib.Algebra.BigOperators.Group.Finset.Defs",
+          "name": "Finset.sum"
+        }
+      },
+      {
+        "kind": "mathlib_decl",
+        "reason": "The statement explicitly supplies the ambient tree witness required by rootedChildren.",
+        "ref": {
+          "module": "Mathlib.Combinatorics.SimpleGraph.Acyclic",
+          "name": "SimpleGraph.IsTree"
+        }
+      },
+      {
+        "kind": "mathlib_decl",
+        "reason": "Each component pairing is formed on the induced graph of the canonical child component.",
+        "ref": {
+          "module": "Mathlib.Combinatorics.SimpleGraph.Connectivity.Connected",
+          "name": "SimpleGraph.ConnectedComponent.toSimpleGraph"
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "Both sides use the repository tree pairing, including the ambient and child-component forms.",
+        "ref": {
+          "name": "treePairingAnchor",
+          "node": "Main.LatticeFoundations",
+          "repo": null,
+          "revision": 1
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "The left-hand side uses the canonical vertex vector at the distinguished root.",
+        "ref": {
+          "name": "vertexVectorAnchor",
+          "node": "Main.LatticeFoundations",
+          "repo": null,
+          "revision": 1
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "Each summand is the pairing on this canonical child-side component type.",
+        "ref": {
+          "name": "rootedChildComponent",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 1
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "Each linear correction evaluates the direct restriction at this canonical component root.",
+        "ref": {
+          "name": "rootedChildRoot",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 1
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "The finite sum is indexed by the exact provider-owned rooted-child subtype.",
+        "ref": {
+          "name": "rootedChildren",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 2
+        }
+      }
+    ],
+    "formal": {
+      "check": {
+        "allow_sorry": true,
+        "contains_axiom": false,
+        "contains_sorry": true,
+        "diagnostics": {
+          "diagnostics": [
+            {
+              "column": 9,
+              "line": 51,
+              "message": "declaration uses `sorry`",
+              "severity": "warning"
+            }
+          ],
+          "passed": true,
+          "raw_excerpt": "{'success': True, 'error_message': None, 'file': 'PositiveDefiniteTreeLattice.Main.IrreducibleVertex.Lemmas.pairing_decomposition_at_unique_underweight', 'items': [{'severity': 'warning', 'pos': {'line': 51, 'column': 9}, 'endPos': {'line': 51, 'column': 80}, 'kind': None, 'data': 'declaration uses `sorry`', 'fileName': 'PositiveDefiniteTreeLattice.Main.IrreducibleVertex.Lemmas.pairing_decomposition_at_unique_underweight', 'content': '  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildren`\\n-/\\ntheorem PositiveDefiniteTreeLattice.pairing_decomposition_at_unique_underweight\\n    {V : Type*} [Fintype V] [DecidableEq V] (G : SimpleGraph V) [DecidableRel G.Adj]\\n    (h_tree : G.IsTree) (weight : V → ℤ) (v : V) (z : V → ℤ) :'}], 'total_items': 1, 'error_count': 0, 'warning_count': 1, 'info_count': 0, 'sorry_count': 1}",
+          "repo_file_path": "PositiveDefiniteTreeLattice/Main/IrreducibleVertex/Lemmas/pairing_decomposition_at_unique_underweight.lean",
+          "schema_version": 2,
+          "summary": "Diagnostics returned 1 items"
+        },
+        "message": "Lean check passed.",
+        "policy": "statement_formal",
+        "scan": {
+          "admit_count": 0,
+          "axiom_count": 0,
+          "contains_admit": false,
+          "contains_axiom": false,
+          "contains_opaque": false,
+          "contains_sorry": true,
+          "contains_unsafe": false,
+          "limitation": "Text scan ignores Lean comments and string literals with a conservative first-round lexer; it is not a full Lean parser.",
+          "occurrences": [
+            {
+              "column": 3,
+              "excerpt": "sorry",
+              "kind": "sorry",
+              "line": 65
+            }
+          ],
+          "opaque_count": 0,
+          "sorry_count": 1,
+          "summary": "sorry=1, admit=0, axiom=0, opaque=0, unsafe=0",
+          "unsafe_count": 0
+        },
+        "status": "passed"
+      },
+      "code": "-- lean-constellation: managed-imports-begin\nimport PositiveDefiniteTreeLattice.Main.IrreducibleVertex.Prelude\nimport Mathlib.Algebra.BigOperators.Group.Finset.Defs\nimport Mathlib.Combinatorics.SimpleGraph.Acyclic\nimport Mathlib.Combinatorics.SimpleGraph.Connectivity.Connected\n-- lean-constellation: managed-imports-end\n\n-- lean-constellation: declaration-source-begin\n\n/--\n# lean-constellation target: `pairing_decomposition_at_unique_underweight`\n\nLet `V` be a finite type with decidable equality, let `G : SimpleGraph V` have decidable adjacency\nand satisfy `h_tree : G.IsTree`, let `weight : V → ℤ`, and let `v : V` and `z : V → ℤ`. Put `p := z\nv`. For each canonical child `c : {c // c ∈ rootedChildren G h_tree v v}`, use the direct\nrestriction `y_c : rootedChildComponent G v c.1 → ℤ` given by `y_c x = z (x : V)`, and put `s_c :=\ny_c (rootedChildRoot G v c.1)`. Then\n\n`treePairing G weight z z + treePairing G weight (vertexVector v) z`\n\nequals\n\n`weight v * p * (p + 1) + ∑ c : {c // c ∈ rootedChildren G h_tree v v}, (treePairing\n(rootedChildComponent G v c.1).toSimpleGraph (fun x => weight (x : V)) y_c y_c - (2 * p + 1) *\ns_c)`.\n\nHere the finite sum is over exactly the provider-owned rooted-child subtype, and the component\npairing and root value use the direct restriction above.\n\n## Sources\n\n- Source `solution.tex`, lines 220–226\n\n## Statement dependencies\n\n- `Finset.sum` from `Mathlib.Algebra.BigOperators.Group.Finset.Defs`\n- `SimpleGraph.IsTree` from `Mathlib.Combinatorics.SimpleGraph.Acyclic`\n- `SimpleGraph.ConnectedComponent.toSimpleGraph` from\n  `Mathlib.Combinatorics.SimpleGraph.Connectivity.Connected`\n- `Main.LatticeFoundations::treePairingAnchor` → `PositiveDefiniteTreeLattice.treePairing` from\n  `PositiveDefiniteTreeLattice.Main.LatticeFoundations.Defs.treePairingAnchor`\n- `Main.LatticeFoundations::vertexVectorAnchor` → `PositiveDefiniteTreeLattice.vertexVector` from\n  `PositiveDefiniteTreeLattice.Main.LatticeFoundations.Defs.vertexVectorAnchor`\n- `Main.RootedCapacity::rootedChildComponent` → `rootedChildComponent` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildComponent`\n- `Main.RootedCapacity::rootedChildRoot` → `rootedChildRoot` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildRoot`\n- `Main.RootedCapacity::rootedChildren` → `rootedChildren` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildren`\n-/\ntheorem PositiveDefiniteTreeLattice.pairing_decomposition_at_unique_underweight\n    {V : Type*} [Fintype V] [DecidableEq V] (G : SimpleGraph V) [DecidableRel G.Adj]\n    (h_tree : G.IsTree) (weight : V → ℤ) (v : V) (z : V → ℤ) :\n    treePairing G weight z z + treePairing G weight (vertexVector v) z =\n      weight v * z v * (z v + 1) +\n        ∑ c : {c // c ∈ rootedChildren G h_tree v v},\n          letI : Fintype (rootedChildComponent G v c.1) := Fintype.ofFinite _\n          letI : DecidableRel (rootedChildComponent G v c.1).toSimpleGraph.Adj := by\n            intro x y\n            change Decidable ((G.deleteEdges {s(v, c.1)}).Adj (x : V) (y : V))\n            infer_instance\n          treePairing (rootedChildComponent G v c.1).toSimpleGraph\n              (fun x => weight (x : V)) (fun x => z (x : V)) (fun x => z (x : V)) -\n            (2 * z v + 1) * z (rootedChildRoot G v c.1) := by\n  sorry\n"
+    },
+    "nl": {
+      "origin": [
+        {
+          "end_line": 226,
+          "end_locator": null,
+          "kind": "source",
+          "note": "These lines decompose z at the distinguished vertex into its root coefficient and deleted rooted-child components, define the component root values, and give exactly the expanded pairing identity (4).",
+          "ref": null,
+          "resource_key": null,
+          "source_path": "solution.tex",
+          "start_line": 220,
+          "start_locator": null
+        }
+      ],
+      "text": "Let `V` be a finite type with decidable equality, let `G : SimpleGraph V` have decidable adjacency and satisfy `h_tree : G.IsTree`, let `weight : V → ℤ`, and let `v : V` and `z : V → ℤ`. Put `p := z v`. For each canonical child `c : {c // c ∈ rootedChildren G h_tree v v}`, use the direct restriction `y_c : rootedChildComponent G v c.1 → ℤ` given by `y_c x = z (x : V)`, and put `s_c := y_c (rootedChildRoot G v c.1)`. Then\n\n`treePairing G weight z z + treePairing G weight (vertexVector v) z`\n\nequals\n\n`weight v * p * (p + 1) + ∑ c : {c // c ∈ rootedChildren G h_tree v v}, (treePairing (rootedChildComponent G v c.1).toSimpleGraph (fun x => weight (x : V)) y_c y_c - (2 * p + 1) * s_c)`.\n\nHere the finite sum is over exactly the provider-owned rooted-child subtype, and the component pairing and root value use the direct restriction above."
+    }
+  },
+  "status": "committed",
+  "updated_at": "2026-08-07T02:44:42Z"
+}

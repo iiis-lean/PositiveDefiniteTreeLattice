@@ -1,0 +1,33 @@
+{
+  "change_summaries": {},
+  "committed_at": "2026-07-30T01:31:18Z",
+  "created_at": "2026-07-30T01:18:35Z",
+  "discard_reason": null,
+  "discarded_at": null,
+  "discarded_by": null,
+  "discarded_created_decl_names": [],
+  "discarded_restored_decl_revisions": {},
+  "discarded_revision_refs": [],
+  "execution_completed_at": "2026-07-30T01:29:49Z",
+  "execution_reason": null,
+  "execution_result_kind": "success",
+  "node_path": "Main.RootedCapacity",
+  "objective": "Prove the first b_0009 inheritance bridge: for a tree G, the induced graph on rootedChildComponent G parent c is a tree. This consumes the declared component construction and the compiler-verified deleteEdges/acyclic/connected-component Mathlib route, and provides the structural prerequisite for child-subtree admissibility, Gram restriction, and capacity recursion.",
+  "plan_closeout_acknowledged_at": "2026-07-30T01:31:18Z",
+  "plan_closeout_acknowledged_by": "a_a93b40977f574bad89528358fa89e022",
+  "result_kind": "success",
+  "result_reason": "The public child-component tree-inheritance theorem reached proved state with passing statement, proof, and target-policy checks.",
+  "revision_refs": [
+    {
+      "change_id": "rootedChildComponent_isTree@rev:1",
+      "decl_name": "rootedChildComponent_isTree",
+      "revision": 1
+    }
+  ],
+  "round_id": "round_3781bb2dc3a44dbbb03a621639a4f1c6",
+  "round_index": 7,
+  "started_at": "2026-07-30T01:20:15Z",
+  "status": "committed",
+  "strategy_id": "strategy_b9f2bb44ae0a40ba9081239e5f026481",
+  "summary": "The bottom-up strategy progressed: rootedChildComponent_isTree reached proved state with full graph-proved satisfaction. This closes the structural tree-inheritance layer for b_0009. No blocker, state-only intermediate, superseded branch, or graph-hygiene issue was introduced. Child-subtree admissibility still requires the predictable rootedGram principal-submatrix bridge and rooted child-count inheritance, so the next action should be another lower-helper round rather than an early retry of capacity recursion."
+}

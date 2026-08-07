@@ -1,0 +1,155 @@
+{
+  "change": {
+    "anticipated_proof_dep_names": [],
+    "anticipated_statement_dep_names": [],
+    "base_revision": null,
+    "kind": "create",
+    "objective": "Formalize the rational arithmetic step of SourceIndex b_0010 / solution.tex lines 112–121: if z ≥ s - gamma*a*(a+1) and z ≥ -s - gamma*a*(a-1), conclude z ≥ -gamma*a^2 + |s-gamma*a|. This consumes only ordered-ring/absolute-value facts and will serve each rooted-child induction summand.",
+    "require_target_state_satisfied": true,
+    "reset_to_state": null,
+    "summary": "Created the private theorem twoBoundsGiveAbsLowerBound for the two-child-bound-to-absolute-value step at solution.tex 112–121. All statement and proof stages passed; revision 1 reached proved and is proof-policy satisfied. It is ready as a proof dependency of the rooted induction.",
+    "target_state": "proved"
+  },
+  "lean_decl_name": "twoBoundsGiveAbsLowerBound",
+  "proof": {
+    "deps": [
+      {
+        "kind": "mathlib_decl",
+        "reason": "Rewrites the absolute value after the nonnegative deviation case.",
+        "ref": {
+          "module": "Mathlib.Algebra.Order.Group.Unbundled.Abs",
+          "name": "abs_of_nonneg"
+        }
+      },
+      {
+        "kind": "mathlib_decl",
+        "reason": "Rewrites the absolute value after the nonpositive deviation case.",
+        "ref": {
+          "module": "Mathlib.Algebra.Order.Group.Unbundled.Abs",
+          "name": "abs_of_nonpos"
+        }
+      }
+    ],
+    "formal": {
+      "check": {
+        "allow_sorry": false,
+        "contains_axiom": false,
+        "contains_sorry": false,
+        "diagnostics": {
+          "diagnostics": [],
+          "passed": true,
+          "raw_excerpt": "{'success': True, 'error_message': None, 'file': 'PositiveDefiniteTreeLattice.Main.RootedEstimates.Theorems.twoBoundsGiveAbsLowerBound', 'items': [], 'total_items': 0, 'error_count': 0, 'warning_count': 0, 'info_count': 0, 'sorry_count': 0}",
+          "repo_file_path": "PositiveDefiniteTreeLattice/Main/RootedEstimates/Theorems/twoBoundsGiveAbsLowerBound.lean",
+          "schema_version": 2,
+          "summary": "Diagnostics returned 0 items"
+        },
+        "message": "Lean check passed.",
+        "policy": "proof_formal",
+        "scan": {
+          "admit_count": 0,
+          "axiom_count": 0,
+          "contains_admit": false,
+          "contains_axiom": false,
+          "contains_opaque": false,
+          "contains_sorry": false,
+          "contains_unsafe": false,
+          "limitation": "Text scan ignores Lean comments and string literals with a conservative first-round lexer; it is not a full Lean parser.",
+          "occurrences": [],
+          "opaque_count": 0,
+          "sorry_count": 0,
+          "summary": "sorry=0, admit=0, axiom=0, opaque=0, unsafe=0",
+          "unsafe_count": 0
+        },
+        "status": "passed"
+      },
+      "code": "-- lean-constellation: managed-imports-begin\nimport PositiveDefiniteTreeLattice.Main.RootedEstimates.Prelude\nimport Mathlib.Algebra.Order.Group.Unbundled.Abs\n-- lean-constellation: managed-imports-end\n\n-- lean-constellation: declaration-source-begin\n\n/--\n# lean-constellation target: `twoBoundsGiveAbsLowerBound`\n\nFor rational numbers `gamma`, `a`, `s`, and `z`, suppose\n\n`z ≥ s - gamma * a * (a + 1)`\n\nand\n\n`z ≥ -s - gamma * a * (a - 1)`.\n\nThen\n\n`z ≥ -gamma * a^2 + |s - gamma * a|`.\n\n## Sources\n\n- Source `solution.tex`, lines 112–120\n\n## Proof outline\n\nFollow solution.tex, lines 112–121, by combining the two inequalities as the two signs of one\ndeviation. Put `b = s - gamma * a`. Ring normalization rewrites the first lower bound as `z ≥ -gamma\n* a^2 + b` and the second as `z ≥ -gamma * a^2 - b`. Case-split with `abs_cases b`: in the\nnonnegative case replace `|b|` by `b` and use the first bound; in the negative case replace `|b|` by\n`-b` and use the second. Each final rearrangement is a lightweight ordered-ring\nnormalization/`linarith` step. No project declaration is used.\n\n## Proof sources\n\n- Source `solution.tex`, lines 112–121\n\n## Proof dependencies\n\n- `abs_of_nonneg` from `Mathlib.Algebra.Order.Group.Unbundled.Abs`\n- `abs_of_nonpos` from `Mathlib.Algebra.Order.Group.Unbundled.Abs`\n-/\ntheorem twoBoundsGiveAbsLowerBound (gamma a s z : ℚ)\n    (h₁ : z ≥ s - gamma * a * (a + 1))\n    (h₂ : z ≥ -s - gamma * a * (a - 1)) :\n    z ≥ -gamma * a ^ 2 + |s - gamma * a| := by\n  by_cases h : 0 ≤ s - gamma * a\n  · rw [abs_of_nonneg h]\n    nlinarith [h₁]\n  · rw [abs_of_nonpos (le_of_not_ge h)]\n    nlinarith [h₂]\n"
+    },
+    "nl": {
+      "origin": [
+        {
+          "end_line": 121,
+          "end_locator": null,
+          "kind": "source",
+          "note": "The two child induction bounds are explicitly combined by their maximum into the displayed absolute-value lower bound.",
+          "ref": null,
+          "resource_key": null,
+          "source_path": "solution.tex",
+          "start_line": 112,
+          "start_locator": null
+        }
+      ],
+      "text": "Follow solution.tex, lines 112–121, by combining the two inequalities as the two signs of one deviation. Put `b = s - gamma * a`. Ring normalization rewrites the first lower bound as `z ≥ -gamma * a^2 + b` and the second as `z ≥ -gamma * a^2 - b`. Case-split with `abs_cases b`: in the nonnegative case replace `|b|` by `b` and use the first bound; in the negative case replace `|b|` by `-b` and use the second. Each final rearrangement is a lightweight ordered-ring normalization/`linarith` step. No project declaration is used."
+    }
+  },
+  "revision": 1,
+  "state": "proved",
+  "statement": {
+    "deps": [],
+    "formal": {
+      "check": {
+        "allow_sorry": true,
+        "contains_axiom": false,
+        "contains_sorry": true,
+        "diagnostics": {
+          "diagnostics": [
+            {
+              "column": 9,
+              "line": 26,
+              "message": "declaration uses `sorry`",
+              "severity": "warning"
+            }
+          ],
+          "passed": true,
+          "raw_excerpt": "{'success': True, 'error_message': None, 'file': 'PositiveDefiniteTreeLattice.Main.RootedEstimates.Theorems.twoBoundsGiveAbsLowerBound', 'items': [{'severity': 'warning', 'pos': {'line': 26, 'column': 9}, 'endPos': {'line': 26, 'column': 35}, 'kind': None, 'data': 'declaration uses `sorry`', 'fileName': 'PositiveDefiniteTreeLattice.Main.RootedEstimates.Theorems.twoBoundsGiveAbsLowerBound', 'content': '- Source `solution.tex`, lines 112–120\\n-/\\ntheorem twoBoundsGiveAbsLowerBound (gamma a s z : ℚ)\\n    (h₁ : z ≥ s - gamma * a * (a + 1))\\n    (h₂ : z ≥ -s - gamma * a * (a - 1)) :'}], 'total_items': 1, 'error_count': 0, 'warning_count': 1, 'info_count': 0, 'sorry_count': 1}",
+          "repo_file_path": "PositiveDefiniteTreeLattice/Main/RootedEstimates/Theorems/twoBoundsGiveAbsLowerBound.lean",
+          "schema_version": 2,
+          "summary": "Diagnostics returned 1 items"
+        },
+        "message": "Lean check passed.",
+        "policy": "statement_formal",
+        "scan": {
+          "admit_count": 0,
+          "axiom_count": 0,
+          "contains_admit": false,
+          "contains_axiom": false,
+          "contains_opaque": false,
+          "contains_sorry": true,
+          "contains_unsafe": false,
+          "limitation": "Text scan ignores Lean comments and string literals with a conservative first-round lexer; it is not a full Lean parser.",
+          "occurrences": [
+            {
+              "column": 3,
+              "excerpt": "sorry",
+              "kind": "sorry",
+              "line": 30
+            }
+          ],
+          "opaque_count": 0,
+          "sorry_count": 1,
+          "summary": "sorry=1, admit=0, axiom=0, opaque=0, unsafe=0",
+          "unsafe_count": 0
+        },
+        "status": "passed"
+      },
+      "code": "-- lean-constellation: managed-imports-begin\nimport PositiveDefiniteTreeLattice.Main.RootedEstimates.Prelude\n-- lean-constellation: managed-imports-end\n\n-- lean-constellation: declaration-source-begin\n\n/--\n# lean-constellation target: `twoBoundsGiveAbsLowerBound`\n\nFor rational numbers `gamma`, `a`, `s`, and `z`, suppose\n\n`z ≥ s - gamma * a * (a + 1)`\n\nand\n\n`z ≥ -s - gamma * a * (a - 1)`.\n\nThen\n\n`z ≥ -gamma * a^2 + |s - gamma * a|`.\n\n## Sources\n\n- Source `solution.tex`, lines 112–120\n-/\ntheorem twoBoundsGiveAbsLowerBound (gamma a s z : ℚ)\n    (h₁ : z ≥ s - gamma * a * (a + 1))\n    (h₂ : z ≥ -s - gamma * a * (a - 1)) :\n    z ≥ -gamma * a ^ 2 + |s - gamma * a| := by\n  sorry\n"
+    },
+    "nl": {
+      "origin": [
+        {
+          "end_line": 120,
+          "end_locator": null,
+          "kind": "source",
+          "note": "The two child-induction bounds are combined by taking their maximum, yielding exactly the absolute-value lower bound.",
+          "ref": null,
+          "resource_key": null,
+          "source_path": "solution.tex",
+          "start_line": 112,
+          "start_locator": null
+        }
+      ],
+      "text": "For rational numbers `gamma`, `a`, `s`, and `z`, suppose\n\n`z ≥ s - gamma * a * (a + 1)`\n\nand\n\n`z ≥ -s - gamma * a * (a - 1)`.\n\nThen\n\n`z ≥ -gamma * a^2 + |s - gamma * a|`."
+    }
+  },
+  "status": "committed",
+  "updated_at": "2026-07-30T22:57:00Z"
+}

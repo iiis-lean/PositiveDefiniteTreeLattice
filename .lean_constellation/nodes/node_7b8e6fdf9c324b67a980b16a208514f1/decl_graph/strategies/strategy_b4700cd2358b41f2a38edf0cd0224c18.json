@@ -1,0 +1,15 @@
+{
+  "closed_at": "2026-08-02T15:23:55Z",
+  "closed_reason": "Coordinator/provider repair is required: expose an instance-stable rootedGram_rootedChildComponent theorem or the public pairing bridge needed to prove the transport.",
+  "created_at": "2026-08-02T14:45:42Z",
+  "created_round_ids": [
+    "round_c2edc1f3d5854d8fa38a9c3ea473d43a",
+    "round_b19358902d4d41df9df2aa5de8ba73de"
+  ],
+  "node_path": "Main.IrreducibleVertex",
+  "objective": "Resume the blocked component-admissibility chain using the newly supplied Main.RootedCapacity.rootedChildCount_add_one_eq_degree theorem: first complete rootedChildComponent_childCount_add_one_eq_degree from proof_planned, then complete rootedChildComponent_isAdmissible_of_unique_underweight from declared, and continue bottom-up through the central capacity inequality, decomposition estimate, and exact protected PositiveDefiniteTreeLattice.exists_irreducible_vertex interface.",
+  "rationale": "Dependency recon confirmed the Coordinator's repaired RootedCapacity boundary is accepted, ready, fresh, and signature-compatible with the precise prior Proof Formal goal. The graph_proved route should preserve all accepted statements and proof plans, repair providers before consumers, and retain the original solution.tex:182-244 source semantics and formal_target.lean:24-33 consumer shape.",
+  "status": "closed",
+  "strategy_id": "strategy_b4700cd2358b41f2a38edf0cd0224c18",
+  "summary": "The repaired child-count route succeeded, but the next admissibility parent is blocked at Proof Formal by a provider-level rootedGram instance-transport mismatch. Seven active declarations remain within the contract's expected 6–14 scale and no superseded retry-named branch requires cleanup."
+}

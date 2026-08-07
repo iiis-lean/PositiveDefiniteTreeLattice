@@ -1,0 +1,308 @@
+{
+  "change": {
+    "anticipated_proof_dep_names": [
+      "treePairingCastEqRootedGramQuadratic"
+    ],
+    "anticipated_statement_dep_names": [],
+    "base_revision": null,
+    "kind": "create",
+    "objective": "Create the second and final private b_0011 bridge, faithful to SourceIndex b_0011 / solution.tex lines 165–175. For a finite rooted integer-weighted graph G,w,rho satisfying IsAdmissibleRootedTree and any integral coordinate vector x : V → ℤ, prove the exact rational inequality `(x rho : ℚ)^2 ≤ rootedCapacity G w rho * (↑(PositiveDefiniteTreeLattice.treePairing G w x x) : ℚ)`. Preserve the existing integral vector, exact root coordinate, rational rootedCapacity, and inequality direction; do not require x ≠ 0 because the Cauchy inequality holds for all x. Use the admissibility PosDef hypothesis for `rootedGram G w`, the inverse-root vector `(rootedGram G w)⁻¹ *ᵥ Pi.single rho 1`, the definition of rootedCapacity as the inverse Gram root diagonal, and the recorded Matrix/BilinForm symmetry and `LinearMap.BilinForm.apply_sq_le_of_symm` APIs. Use proved treePairingCastEqRootedGramQuadratic to identify the first quadratic factor. Establish the inverse-vector coordinate pairing and capacity norm by finite matrix calculation from positive-definite invertibility; do not redefine rootedGram/capacity, increase heartbeat limits, or introduce untracked major helper mathematics. This private theorem is the sole planned Cauchy premise for the exact public root_coefficient_lt_norm.",
+    "require_target_state_satisfied": true,
+    "reset_to_state": null,
+    "summary": "Created rootCoordinateSqLeCapacityMulTreePairing and advanced revision 1 through all statement and proof stages to proved. The accepted source-faithful rational inequality bounds `(x rho : ℚ)^2` by rootedCapacity times the ℚ-cast treePairing norm for every integral x under rooted admissibility. Its formal proof passed using the inverse-root vector, PosDef/symmetric bilinear Cauchy–Schwarz, the provider capacity definition, and proved treePairingCastEqRootedGramQuadratic. It is private, graph_proved-satisfied, and closes the final known lower prerequisite for the public root_coefficient_lt_norm.",
+    "target_state": "proved"
+  },
+  "lean_decl_name": "rootCoordinateSqLeCapacityMulTreePairing",
+  "proof": {
+    "deps": [
+      {
+        "kind": "mathlib_decl",
+        "reason": "Collapses the finite inverse-root coordinate sum against Pi.single.",
+        "ref": {
+          "module": "Mathlib.Algebra.BigOperators.Group.Finset.Piecewise",
+          "name": "Finset.sum_ite_eq'"
+        }
+      },
+      {
+        "kind": "mathlib_decl",
+        "reason": "Installs the Invertible rootedGram instance needed for the inverse matrix identity.",
+        "ref": {
+          "module": "Mathlib.Algebra.Group.Invertible.Basic",
+          "name": "IsUnit.invertible"
+        }
+      },
+      {
+        "kind": "mathlib_decl",
+        "reason": "Evaluates the root basis vector in the coordinate-pairing and capacity calculations.",
+        "ref": {
+          "module": "Mathlib.Algebra.Notation.Pi.Basic",
+          "name": "Pi.single_apply"
+        }
+      },
+      {
+        "kind": "mathlib_decl",
+        "reason": "Expands the inverse-root vector coordinate in the finite capacity-norm calculation.",
+        "ref": {
+          "module": "Mathlib.Data.Matrix.Mul",
+          "name": "Matrix.mulVec_eq_sum"
+        }
+      },
+      {
+        "kind": "mathlib_decl",
+        "reason": "Transports the inverse-matrix identity to the inverse-root vector M⁻¹ *ᵥ Pi.single rho 1.",
+        "ref": {
+          "module": "Mathlib.Data.Matrix.Mul",
+          "name": "Matrix.mulVec_mulVec"
+        }
+      },
+      {
+        "kind": "mathlib_decl",
+        "reason": "Transfers rootedGram symmetry to the associated bilinear form.",
+        "ref": {
+          "module": "Mathlib.LinearAlgebra.Matrix.BilinearForm",
+          "name": "Matrix.isSymm_toBilin'_iff_isSymm"
+        }
+      },
+      {
+        "kind": "mathlib_decl",
+        "reason": "Identifies bilinear-form values with the dotProduct/mulVec quadratic expressions.",
+        "ref": {
+          "module": "Mathlib.LinearAlgebra.Matrix.BilinearForm",
+          "name": "Matrix.toBilin'_apply'"
+        }
+      },
+      {
+        "kind": "mathlib_decl",
+        "reason": "Converts the Hermitian part of rootedGram positive definiteness over ℚ to matrix symmetry.",
+        "ref": {
+          "module": "Mathlib.LinearAlgebra.Matrix.Hermitian",
+          "name": "Matrix.isHermitian_iff_isSymm"
+        }
+      },
+      {
+        "kind": "mathlib_decl",
+        "reason": "Rewrites rootedGram times its inverse to the identity matrix.",
+        "ref": {
+          "module": "Mathlib.LinearAlgebra.Matrix.NonsingularInverse",
+          "name": "Matrix.mul_inv_of_invertible"
+        }
+      },
+      {
+        "kind": "mathlib_decl",
+        "reason": "Derives nonnegativity of the rootedGram bilinear form for the Cauchy hypothesis, including the nonzero vector case.",
+        "ref": {
+          "module": "Mathlib.LinearAlgebra.Matrix.PosDef",
+          "name": "Matrix.PosDef.dotProduct_mulVec_pos"
+        }
+      },
+      {
+        "kind": "mathlib_decl",
+        "reason": "Obtains matrix invertibility from the admissibility positive-definite hypothesis.",
+        "ref": {
+          "module": "Mathlib.LinearAlgebra.Matrix.PosDef",
+          "name": "Matrix.PosDef.isUnit"
+        }
+      },
+      {
+        "kind": "mathlib_decl",
+        "reason": "Applies Cauchy–Schwarz to the nonnegative symmetric rootedGram bilinear form.",
+        "ref": {
+          "module": "Mathlib.LinearAlgebra.SesquilinearForm.Basic",
+          "name": "LinearMap.BilinForm.apply_sq_le_of_symm"
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "Its positive-definite rootedGram component supplies positivity, symmetry, and invertibility for the Cauchy argument.",
+        "ref": {
+          "name": "IsAdmissibleRootedTree",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 1
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "Its definition identifies the inverse-root vector norm with the target rooted capacity.",
+        "ref": {
+          "name": "rootedCapacity",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 1
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "Defines the rational matrix M used for the inverse-root vector and bilinear form.",
+        "ref": {
+          "name": "rootedGram",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 2
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "Rewrites the cast integral self-pairing to the first rootedGram quadratic factor in Cauchy–Schwarz.",
+        "ref": {
+          "name": "treePairingCastEqRootedGramQuadratic",
+          "node": "Main.RootedEstimates",
+          "repo": null,
+          "revision": 1
+        }
+      }
+    ],
+    "formal": {
+      "check": {
+        "allow_sorry": false,
+        "contains_axiom": false,
+        "contains_sorry": false,
+        "diagnostics": {
+          "diagnostics": [],
+          "passed": true,
+          "raw_excerpt": "{'success': True, 'error_message': None, 'file': 'PositiveDefiniteTreeLattice.Main.RootedEstimates.Theorems.rootCoordinateSqLeCapacityMulTreePairing', 'items': [], 'total_items': 0, 'error_count': 0, 'warning_count': 0, 'info_count': 0, 'sorry_count': 0}",
+          "repo_file_path": "PositiveDefiniteTreeLattice/Main/RootedEstimates/Theorems/rootCoordinateSqLeCapacityMulTreePairing.lean",
+          "schema_version": 2,
+          "summary": "Diagnostics returned 0 items"
+        },
+        "message": "Lean check passed.",
+        "policy": "proof_formal",
+        "scan": {
+          "admit_count": 0,
+          "axiom_count": 0,
+          "contains_admit": false,
+          "contains_axiom": false,
+          "contains_opaque": false,
+          "contains_sorry": false,
+          "contains_unsafe": false,
+          "limitation": "Text scan ignores Lean comments and string literals with a conservative first-round lexer; it is not a full Lean parser.",
+          "occurrences": [],
+          "opaque_count": 0,
+          "sorry_count": 0,
+          "summary": "sorry=0, admit=0, axiom=0, opaque=0, unsafe=0",
+          "unsafe_count": 0
+        },
+        "status": "passed"
+      },
+      "code": "-- lean-constellation: managed-imports-begin\nimport PositiveDefiniteTreeLattice.Main.RootedEstimates.Prelude\nimport Mathlib.Algebra.BigOperators.Group.Finset.Piecewise\nimport Mathlib.Algebra.Group.Invertible.Basic\nimport Mathlib.Algebra.Notation.Pi.Basic\nimport Mathlib.Data.Matrix.Mul\nimport Mathlib.LinearAlgebra.Matrix.BilinearForm\nimport Mathlib.LinearAlgebra.Matrix.Hermitian\nimport Mathlib.LinearAlgebra.Matrix.NonsingularInverse\nimport Mathlib.LinearAlgebra.Matrix.PosDef\nimport Mathlib.LinearAlgebra.SesquilinearForm.Basic\nimport PositiveDefiniteTreeLattice.Main.RootedEstimates.Theorems.treePairingCastEqRootedGramQuadratic\n-- lean-constellation: managed-imports-end\n\n-- lean-constellation: declaration-source-begin\n\n/--\n# lean-constellation target: `rootCoordinateSqLeCapacityMulTreePairing`\n\nLet `G` be a finite rooted integer-weighted graph on `V`, with weight `w`, root `rho`, and\nadmissibility hypothesis `hT : IsAdmissibleRootedTree G w rho`.  For every integral coordinate\nvector `x : V → ℤ`, the exact rational root-coordinate estimate is\n\n`(x rho : ℚ)^2 ≤ rootedCapacity G w rho * (↑(PositiveDefiniteTreeLattice.treePairing G w x x) : ℚ)`.\n\nThe inequality uses the existing rational rooted capacity, the same integral vector and exact root\ncoordinate, and the integral tree pairing cast to `ℚ`.  It is asserted for all `x`, including the\nzero vector; no nonzero hypothesis is required.\n\n## Sources\n\n- Source `solution.tex`, lines 165–175\n\n## Statement dependencies\n\n- `Main.LatticeFoundations::treePairingAnchor` → `PositiveDefiniteTreeLattice.treePairing` from\n  `PositiveDefiniteTreeLattice.Main.LatticeFoundations.Defs.treePairingAnchor`\n- `Main.RootedCapacity::IsAdmissibleRootedTree` → `IsAdmissibleRootedTree` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.IsAdmissibleRootedTree`\n- `Main.RootedCapacity::rootedCapacity` → `rootedCapacity` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedCapacity`\n\n## Proof outline\n\nLet `M := rootedGram G w`.  Destructure `hT` and retain its `hPos : Matrix.PosDef M`.  The proved\nscalar-extension bridge `treePairingCastEqRootedGramQuadratic G w x` rewrites the cast tree-pairing\nfactor to the quadratic form `q(x) := xQ ⬝ᵥ M *ᵥ xQ`, where `xQ v := (x v : ℚ)`.\n\nUse `hPos` to build the Cauchy inputs for `M.toBilin'`.  Its positivity condition follows by cases\non a rational vector `y`: the zero case is immediate, and the nonzero case is `le_of_lt\n(hPos.dotProduct_mulVec_pos hy)`, rewritten using `Matrix.toBilin'_apply'`.  Its symmetry follows\nfrom the Hermitian component of `hPos`, `Matrix.isHermitian_iff_isSymm` over `ℚ`, and\n`Matrix.isSymm_toBilin'_iff_isSymm`.\n\nLet `e := Pi.single rho 1` and `z := M⁻¹ *ᵥ e`.  From `hPos.isUnit`, install the associated\n`Invertible M` instance and use `Matrix.mul_inv_of_invertible` together with `Matrix.mulVec_mulVec`.\nThe following are direct finite matrix calculations, not new helpers: first, `M *ᵥ z = e`; hence\n`M.toBilin' xQ z = xQ rho` after `Matrix.toBilin'_apply'` and simplification of `Pi.single`.\nSecond, the same identity gives `M.toBilin' z z = z rho`; expand the final coordinate of `z` with\n`Matrix.mulVec_eq_sum` and `Pi.single_apply` to obtain `z rho = M⁻¹ rho rho = rootedCapacity G w\nrho` by the definition of rootedCapacity.  These are the formal counterparts of the inverse-Gram\nroot dual vector and its squared norm in lines 165–170.\n\nApply `LinearMap.BilinForm.apply_sq_le_of_symm` to `M.toBilin'`, `xQ`, and `z`.  Rewrite its left\nfactor with the root-coordinate calculation, its first right factor with the scalar-extension\nbridge, and its second right factor with the capacity calculation.  The result is exactly `(x rho :\nℚ)^2 ≤ rootedCapacity G w rho * ↑(treePairing G w x x)`, including the stated direction.  No nonzero\nassumption on `x` is used.\n\n## Proof sources\n\n- Source `solution.tex`, lines 165–175\n\n## Proof dependencies\n\n- `Finset.sum_ite_eq'` from `Mathlib.Algebra.BigOperators.Group.Finset.Piecewise`\n- `IsUnit.invertible` from `Mathlib.Algebra.Group.Invertible.Basic`\n- `Pi.single_apply` from `Mathlib.Algebra.Notation.Pi.Basic`\n- `Matrix.mulVec_eq_sum` from `Mathlib.Data.Matrix.Mul`\n- `Matrix.mulVec_mulVec` from `Mathlib.Data.Matrix.Mul`\n- `Matrix.isSymm_toBilin'_iff_isSymm` from `Mathlib.LinearAlgebra.Matrix.BilinearForm`\n- `Matrix.toBilin'_apply'` from `Mathlib.LinearAlgebra.Matrix.BilinearForm`\n- `Matrix.isHermitian_iff_isSymm` from `Mathlib.LinearAlgebra.Matrix.Hermitian`\n- `Matrix.mul_inv_of_invertible` from `Mathlib.LinearAlgebra.Matrix.NonsingularInverse`\n- `Matrix.PosDef.dotProduct_mulVec_pos` from `Mathlib.LinearAlgebra.Matrix.PosDef`\n- `Matrix.PosDef.isUnit` from `Mathlib.LinearAlgebra.Matrix.PosDef`\n- `LinearMap.BilinForm.apply_sq_le_of_symm` from `Mathlib.LinearAlgebra.SesquilinearForm.Basic`\n- `Main.RootedCapacity::IsAdmissibleRootedTree` → `IsAdmissibleRootedTree` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.IsAdmissibleRootedTree`\n- `Main.RootedCapacity::rootedCapacity` → `rootedCapacity` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedCapacity`\n- `Main.RootedCapacity::rootedGram` → `rootedGram` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedGram`\n- `Main.RootedEstimates::treePairingCastEqRootedGramQuadratic` →\n  `treePairingCastEqRootedGramQuadratic` from\n  `PositiveDefiniteTreeLattice.Main.RootedEstimates.Theorems.treePairingCastEqRootedGramQuadratic`\n-/\ntheorem rootCoordinateSqLeCapacityMulTreePairing {V : Type*} [Fintype V] [DecidableEq V]\n    (G : SimpleGraph V) [DecidableRel G.Adj] (w : V → ℤ) (rho : V)\n    (hT : IsAdmissibleRootedTree G w rho) (x : V → ℤ) :\n    (x rho : ℚ) ^ 2 ≤ rootedCapacity G w rho *\n      (↑(PositiveDefiniteTreeLattice.treePairing G w x x) : ℚ) := by\n  classical\n  rcases hT with ⟨hG, hPos, hw, hchildren⟩\n  let M : Matrix V V ℚ := rootedGram G w\n  let xQ : V → ℚ := fun v => (x v : ℚ)\n  let e : V → ℚ := Pi.single rho 1\n  let z : V → ℚ := Matrix.mulVec (M⁻¹) e\n  have hPosM : M.PosDef := by\n    simpa [M] using hPos\n  letI : Invertible M := hPosM.isUnit.invertible\n  have hMz : Matrix.mulVec M z = e := by\n    simp [z, Matrix.mulVec_mulVec]\n  have hnonneg : ∀ y : V → ℚ, 0 ≤ M.toBilin' y y := by\n    intro y\n    by_cases hy : y = 0\n    · subst y\n      simp\n    · rw [Matrix.toBilin'_apply']\n      exact le_of_lt (by simpa using hPosM.dotProduct_mulVec_pos hy)\n  have hsymM : M.IsSymm := by\n    rw [← Matrix.isHermitian_iff_isSymm]\n    exact hPosM.1\n  have hsym : M.toBilin'.IsSymm := Matrix.isSymm_toBilin'_iff_isSymm.mpr hsymM\n  have hsym' : LinearMap.IsSymm M.toBilin' := by\n    refine ⟨?_⟩\n    intro a b\n    simpa using hsym.eq a b\n  have hxz : M.toBilin' xQ z = xQ rho := by\n    rw [Matrix.toBilin'_apply', hMz]\n    simp [xQ, e, dotProduct, Pi.single_apply, Finset.sum_ite_eq']\n  have hzrho : z rho = rootedCapacity G w rho := by\n    dsimp [z]\n    rw [Matrix.mulVec_eq_sum, Finset.sum_apply]\n    simp only [Pi.smul_apply, Matrix.transpose_apply, MulOpposite.smul_eq_mul_unop]\n    simp only [MulOpposite.unop_op, e, Pi.single_apply, mul_ite, mul_one, mul_zero]\n    rw [Finset.sum_ite_eq']\n    simp only [Finset.mem_univ, ↓reduceIte, rootedCapacity, M]\n  have hzz : M.toBilin' z z = rootedCapacity G w rho := by\n    rw [Matrix.toBilin'_apply', hMz]\n    simpa [e, dotProduct, Pi.single_apply, Finset.sum_ite_eq'] using hzrho\n  have hxx : M.toBilin' xQ xQ =\n      (↑(PositiveDefiniteTreeLattice.treePairing G w x x) : ℚ) := by\n    rw [Matrix.toBilin'_apply']\n    symm\n    simpa [M, xQ] using treePairingCastEqRootedGramQuadratic G w x\n  calc\n    (x rho : ℚ) ^ 2 = (M.toBilin' xQ z) ^ 2 := by\n      simpa [xQ] using congrArg (fun q : ℚ => q ^ 2) hxz.symm\n    _ ≤ M.toBilin' xQ xQ * M.toBilin' z z :=\n      LinearMap.BilinForm.apply_sq_le_of_symm M.toBilin' hnonneg hsym' xQ z\n    _ = rootedCapacity G w rho *\n        (↑(PositiveDefiniteTreeLattice.treePairing G w x x) : ℚ) := by\n      rw [hxx, hzz, mul_comm]\n"
+    },
+    "nl": {
+      "origin": [
+        {
+          "end_line": 175,
+          "end_locator": null,
+          "kind": "source",
+          "note": "These lines define the inverse-Gram root dual vector, identify its squared norm with rooted capacity, and apply Cauchy–Schwarz to obtain the root-coordinate bound.",
+          "ref": null,
+          "resource_key": null,
+          "source_path": "solution.tex",
+          "start_line": 165,
+          "start_locator": null
+        }
+      ],
+      "text": "Let `M := rootedGram G w`.  Destructure `hT` and retain its `hPos : Matrix.PosDef M`.  The proved scalar-extension bridge `treePairingCastEqRootedGramQuadratic G w x` rewrites the cast tree-pairing factor to the quadratic form `q(x) := xQ ⬝ᵥ M *ᵥ xQ`, where `xQ v := (x v : ℚ)`.\n\nUse `hPos` to build the Cauchy inputs for `M.toBilin'`.  Its positivity condition follows by cases on a rational vector `y`: the zero case is immediate, and the nonzero case is `le_of_lt (hPos.dotProduct_mulVec_pos hy)`, rewritten using `Matrix.toBilin'_apply'`.  Its symmetry follows from the Hermitian component of `hPos`, `Matrix.isHermitian_iff_isSymm` over `ℚ`, and `Matrix.isSymm_toBilin'_iff_isSymm`.\n\nLet `e := Pi.single rho 1` and `z := M⁻¹ *ᵥ e`.  From `hPos.isUnit`, install the associated `Invertible M` instance and use `Matrix.mul_inv_of_invertible` together with `Matrix.mulVec_mulVec`.  The following are direct finite matrix calculations, not new helpers: first, `M *ᵥ z = e`; hence `M.toBilin' xQ z = xQ rho` after `Matrix.toBilin'_apply'` and simplification of `Pi.single`.  Second, the same identity gives `M.toBilin' z z = z rho`; expand the final coordinate of `z` with `Matrix.mulVec_eq_sum` and `Pi.single_apply` to obtain `z rho = M⁻¹ rho rho = rootedCapacity G w rho` by the definition of rootedCapacity.  These are the formal counterparts of the inverse-Gram root dual vector and its squared norm in lines 165–170.\n\nApply `LinearMap.BilinForm.apply_sq_le_of_symm` to `M.toBilin'`, `xQ`, and `z`.  Rewrite its left factor with the root-coordinate calculation, its first right factor with the scalar-extension bridge, and its second right factor with the capacity calculation.  The result is exactly `(x rho : ℚ)^2 ≤ rootedCapacity G w rho * ↑(treePairing G w x x)`, including the stated direction.  No nonzero assumption on `x` is used."
+    }
+  },
+  "revision": 1,
+  "state": "proved",
+  "statement": {
+    "deps": [
+      {
+        "kind": "repo_decl",
+        "reason": "The formal statement uses the exact public definition PositiveDefiniteTreeLattice.treePairing.",
+        "ref": {
+          "name": "treePairingAnchor",
+          "node": "Main.LatticeFoundations",
+          "repo": null,
+          "revision": 1
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "The theorem hypothesis is the existing admissible rooted-tree predicate.",
+        "ref": {
+          "name": "IsAdmissibleRootedTree",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 1
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "The right side contains the existing rational rooted capacity.",
+        "ref": {
+          "name": "rootedCapacity",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 1
+        }
+      }
+    ],
+    "formal": {
+      "check": {
+        "allow_sorry": true,
+        "contains_axiom": false,
+        "contains_sorry": true,
+        "diagnostics": {
+          "diagnostics": [
+            {
+              "column": 9,
+              "line": 33,
+              "message": "declaration uses `sorry`",
+              "severity": "warning"
+            }
+          ],
+          "passed": true,
+          "raw_excerpt": "{'success': True, 'error_message': None, 'file': 'PositiveDefiniteTreeLattice.Main.RootedEstimates.Theorems.rootCoordinateSqLeCapacityMulTreePairing', 'items': [{'severity': 'warning', 'pos': {'line': 33, 'column': 9}, 'endPos': {'line': 33, 'column': 49}, 'kind': None, 'data': 'declaration uses `sorry`', 'fileName': 'PositiveDefiniteTreeLattice.Main.RootedEstimates.Theorems.rootCoordinateSqLeCapacityMulTreePairing', 'content': '  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedCapacity`\\n-/\\ntheorem rootCoordinateSqLeCapacityMulTreePairing {V : Type*} [Fintype V] [DecidableEq V]\\n    (G : SimpleGraph V) [DecidableRel G.Adj] (w : V → ℤ) (rho : V)\\n    (hT : IsAdmissibleRootedTree G w rho) (x : V → ℤ) :'}], 'total_items': 1, 'error_count': 0, 'warning_count': 1, 'info_count': 0, 'sorry_count': 1}",
+          "repo_file_path": "PositiveDefiniteTreeLattice/Main/RootedEstimates/Theorems/rootCoordinateSqLeCapacityMulTreePairing.lean",
+          "schema_version": 2,
+          "summary": "Diagnostics returned 1 items"
+        },
+        "message": "Lean check passed.",
+        "policy": "statement_formal",
+        "scan": {
+          "admit_count": 0,
+          "axiom_count": 0,
+          "contains_admit": false,
+          "contains_axiom": false,
+          "contains_opaque": false,
+          "contains_sorry": true,
+          "contains_unsafe": false,
+          "limitation": "Text scan ignores Lean comments and string literals with a conservative first-round lexer; it is not a full Lean parser.",
+          "occurrences": [
+            {
+              "column": 3,
+              "excerpt": "sorry",
+              "kind": "sorry",
+              "line": 38
+            }
+          ],
+          "opaque_count": 0,
+          "sorry_count": 1,
+          "summary": "sorry=1, admit=0, axiom=0, opaque=0, unsafe=0",
+          "unsafe_count": 0
+        },
+        "status": "passed"
+      },
+      "code": "-- lean-constellation: managed-imports-begin\nimport PositiveDefiniteTreeLattice.Main.RootedEstimates.Prelude\n-- lean-constellation: managed-imports-end\n\n-- lean-constellation: declaration-source-begin\n\n/--\n# lean-constellation target: `rootCoordinateSqLeCapacityMulTreePairing`\n\nLet `G` be a finite rooted integer-weighted graph on `V`, with weight `w`, root `rho`, and\nadmissibility hypothesis `hT : IsAdmissibleRootedTree G w rho`.  For every integral coordinate\nvector `x : V → ℤ`, the exact rational root-coordinate estimate is\n\n`(x rho : ℚ)^2 ≤ rootedCapacity G w rho * (↑(PositiveDefiniteTreeLattice.treePairing G w x x) : ℚ)`.\n\nThe inequality uses the existing rational rooted capacity, the same integral vector and exact root\ncoordinate, and the integral tree pairing cast to `ℚ`.  It is asserted for all `x`, including the\nzero vector; no nonzero hypothesis is required.\n\n## Sources\n\n- Source `solution.tex`, lines 165–175\n\n## Statement dependencies\n\n- `Main.LatticeFoundations::treePairingAnchor` → `PositiveDefiniteTreeLattice.treePairing` from\n  `PositiveDefiniteTreeLattice.Main.LatticeFoundations.Defs.treePairingAnchor`\n- `Main.RootedCapacity::IsAdmissibleRootedTree` → `IsAdmissibleRootedTree` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.IsAdmissibleRootedTree`\n- `Main.RootedCapacity::rootedCapacity` → `rootedCapacity` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedCapacity`\n-/\ntheorem rootCoordinateSqLeCapacityMulTreePairing {V : Type*} [Fintype V] [DecidableEq V]\n    (G : SimpleGraph V) [DecidableRel G.Adj] (w : V → ℤ) (rho : V)\n    (hT : IsAdmissibleRootedTree G w rho) (x : V → ℤ) :\n    (x rho : ℚ) ^ 2 ≤ rootedCapacity G w rho *\n      (↑(PositiveDefiniteTreeLattice.treePairing G w x x) : ℚ) := by\n  sorry\n"
+    },
+    "nl": {
+      "origin": [
+        {
+          "end_line": 175,
+          "end_locator": null,
+          "kind": "source",
+          "note": "These lines define the inverse-Gram root dual vector, identify its squared norm with capacity, and state the Cauchy–Schwarz root-coordinate inequality.",
+          "ref": null,
+          "resource_key": null,
+          "source_path": "solution.tex",
+          "start_line": 165,
+          "start_locator": null
+        }
+      ],
+      "text": "Let `G` be a finite rooted integer-weighted graph on `V`, with weight `w`, root `rho`, and admissibility hypothesis `hT : IsAdmissibleRootedTree G w rho`.  For every integral coordinate vector `x : V → ℤ`, the exact rational root-coordinate estimate is\n\n`(x rho : ℚ)^2 ≤ rootedCapacity G w rho * (↑(PositiveDefiniteTreeLattice.treePairing G w x x) : ℚ)`.\n\nThe inequality uses the existing rational rooted capacity, the same integral vector and exact root coordinate, and the integral tree pairing cast to `ℚ`.  It is asserted for all `x`, including the zero vector; no nonzero hypothesis is required."
+    }
+  },
+  "status": "committed",
+  "updated_at": "2026-08-01T14:54:04Z"
+}

@@ -1,0 +1,181 @@
+{
+  "boundary": "Own the formal definitions treePairing, vertexVector, and Irreducible, together with elementary algebraic properties needed to use them and the source norm-one irreducibility lemma. Exclude rooted-tree capacity machinery and the final unique-underweighted-vertex theorem. Expected scale: about 6–12 important Lean declarations spanning SourceIndex blocks b_0002, b_0004, b_0005, and b_0007.",
+  "committed_at": "2026-07-29T21:02:42Z",
+  "constraints": "Preserve the exact integral finite-sum pairing, unit vertex vector, decomposition predicate, and norm-one theorem from the source. This is declaration-identity and interface-projection repair only. Do not add global aliases, alter assumptions or conclusions, weaken graph_proved targets, delete source-required capabilities, or change the protected root theorem's expected namespaced references.",
+  "context_refs": [],
+  "contract_kind": "content",
+  "created_at": "2026-07-29T18:37:36Z",
+  "decl_graph_head": {
+    "IrreducibleAnchor": 1,
+    "irreducibleOfPairingSelfEqOneAnchor": 1,
+    "treePairing": 4,
+    "treePairingAnchor": 1,
+    "treePairing_add_left": 6,
+    "treePairing_add_right": 6,
+    "treePairing_add_self": 3,
+    "treePairing_symm": 6,
+    "treePairing_vertexVector_self": 5,
+    "vertexVector": 4,
+    "vertexVectorAnchor": 1,
+    "vertexVector_ne_zero": 5
+  },
+  "deps": [],
+  "exports": [],
+  "goal": "Formalize the integral weighted-tree pairing, vertex vectors, irreducibility, and the general norm-one irreducibility argument as the foundational API for the repository.",
+  "interfaces": [
+    {
+      "bound_decl": {
+        "name": "treePairingAnchor",
+        "node": "Main.LatticeFoundations",
+        "repo": null,
+        "revision": 1
+      },
+      "expected_statement_lean_code": null,
+      "kind": "definition",
+      "name": "PositiveDefiniteTreeLattice.treePairing",
+      "note": "Match formal_target.lean lines 7–11 exactly in namespace PositiveDefiniteTreeLattice; retain arbitrary finite V, DecidableEq V, SimpleGraph V with DecidableRel G.Adj, weight x y : V → ℤ, and the exact neighborFinset sum.",
+      "source_refs": [],
+      "summary": "Integral bilinear pairing of a finite integer-weighted simple graph."
+    },
+    {
+      "bound_decl": {
+        "name": "vertexVectorAnchor",
+        "node": "Main.LatticeFoundations",
+        "repo": null,
+        "revision": 1
+      },
+      "expected_statement_lean_code": null,
+      "kind": "definition",
+      "name": "PositiveDefiniteTreeLattice.vertexVector",
+      "note": "Match formal_target.lean lines 13–15 exactly in namespace PositiveDefiniteTreeLattice.",
+      "source_refs": [],
+      "summary": "Unit integer coordinate function associated with a vertex."
+    },
+    {
+      "bound_decl": {
+        "name": "IrreducibleAnchor",
+        "node": "Main.LatticeFoundations",
+        "repo": null,
+        "revision": 1
+      },
+      "expected_statement_lean_code": null,
+      "kind": "definition",
+      "name": "PositiveDefiniteTreeLattice.Irreducible",
+      "note": "Match formal_target.lean lines 17–22 exactly in namespace PositiveDefiniteTreeLattice and consume PositiveDefiniteTreeLattice.treePairing; preserve x = a + b and 0 ≤ pairing a b.",
+      "source_refs": [],
+      "summary": "No decomposition into two nonzero summands with nonnegative cross-pairing."
+    },
+    {
+      "bound_decl": {
+        "name": "irreducibleOfPairingSelfEqOneAnchor",
+        "node": "Main.LatticeFoundations",
+        "repo": null,
+        "revision": 1
+      },
+      "expected_statement_lean_code": null,
+      "kind": "theorem",
+      "name": "PositiveDefiniteTreeLattice.irreducible_of_pairing_self_eq_one",
+      "note": "Consumer capability for the final theorem: with the exact PositiveDefiniteTreeLattice.treePairing, strict positivity on every nonzero y and self-pairing x x = 1 imply PositiveDefiniteTreeLattice.Irreducible G weight x; preserve the source contradiction and do not alter assumptions.",
+      "source_refs": [],
+      "summary": "A self-pairing-one vector is irreducible under integral positive definiteness."
+    }
+  ],
+  "mathlib_decls": [
+    {
+      "added_by": "worker",
+      "kind": "def",
+      "module": "Mathlib.Combinatorics.SimpleGraph.Finite",
+      "name": "SimpleGraph.neighborFinset",
+      "reason": null
+    },
+    {
+      "added_by": "worker",
+      "kind": "theorem",
+      "module": "Mathlib.Combinatorics.SimpleGraph.Finite",
+      "name": "SimpleGraph.mem_neighborFinset",
+      "reason": null
+    },
+    {
+      "added_by": "worker",
+      "kind": "theorem",
+      "module": "Mathlib.Combinatorics.SimpleGraph.Finite",
+      "name": "SimpleGraph.neighborFinset_eq_filter",
+      "reason": null
+    },
+    {
+      "added_by": "worker",
+      "kind": "theorem",
+      "module": "Mathlib.Algebra.BigOperators.Group.Finset.Basic",
+      "name": "Finset.sum_add_distrib",
+      "reason": null
+    },
+    {
+      "added_by": "worker",
+      "kind": "theorem",
+      "module": "Mathlib.Algebra.BigOperators.Group.Finset.Sigma",
+      "name": "Finset.sum_comm",
+      "reason": null
+    }
+  ],
+  "mathlib_modules": [
+    {
+      "added_by": "worker",
+      "module": "Mathlib.Combinatorics.SimpleGraph.Finite",
+      "reason": null
+    },
+    {
+      "added_by": "worker",
+      "module": "Mathlib.Algebra.BigOperators.Group.Finset.Sigma",
+      "reason": null
+    },
+    {
+      "added_by": "worker",
+      "module": "Mathlib.Tactic.Ring",
+      "reason": null
+    },
+    {
+      "added_by": "worker",
+      "module": "Mathlib.Tactic.Linarith",
+      "reason": null
+    },
+    {
+      "added_by": "worker",
+      "module": "Mathlib.Algebra.BigOperators.Group.Finset.Basic",
+      "reason": null
+    }
+  ],
+  "objective": "Complete the namespace repair under graph_proved after the binding gate exposed identity-changed historical declaration anchors. For the four interface capabilities, create fresh declaration records with new valid flat Decl.name keys whose compiler-captured Lean names are exactly PositiveDefiniteTreeLattice.treePairing, PositiveDefiniteTreeLattice.vertexVector, PositiveDefiniteTreeLattice.Irreducible, and PositiveDefiniteTreeLattice.irreducible_of_pairing_self_eq_one. Move or refactor the prior identity-changed records to nonconflicting internal names and update supporting declarations/dependencies so no duplicate or global names are imported. Preserve every accepted source statement and proof, bind the four recreated interfaces to the fresh anchors, and verify the Interfaces module with RootedCapacity's Mathlib imports.",
+  "owned_refs": [
+    {
+      "added_by": "coordinator",
+      "reason": "Exact source-owned definitions of treePairing, vertexVector, and Irreducible.",
+      "ref": {
+        "kind": "source",
+        "ref": {
+          "end_line": 22,
+          "path": "formal_target.lean",
+          "start_line": 7
+        }
+      },
+      "ref_id": "mat_d6dddf67893a813b"
+    },
+    {
+      "added_by": "coordinator",
+      "reason": "Source proof that norm-one elements in an integral positive-definite lattice are irreducible.",
+      "ref": {
+        "kind": "source",
+        "ref": {
+          "end_line": 31,
+          "path": "solution.tex",
+          "start_line": 19
+        }
+      },
+      "ref_id": "mat_e5392f634d0d66e3"
+    }
+  ],
+  "status": "committed",
+  "success_criteria": "Four fresh compatible declaration anchors are interface-bound to the exact compiler-confirmed names PositiveDefiniteTreeLattice.treePairing, PositiveDefiniteTreeLattice.vertexVector, PositiveDefiniteTreeLattice.Irreducible, and PositiveDefiniteTreeLattice.irreducible_of_pairing_self_eq_one; prior identity-changed records no longer declare conflicting global or duplicate names and are not exposed as the stable API; supporting declarations use the repaired API; every theorem-like declaration is proved; public Statement closure is complete; and the deterministic Content completion gate plus the RootedCapacity import combination pass.",
+  "summary": "Accepted ready outcome for contract v2. Fresh declaration anchors treePairingAnchor, vertexVectorAnchor, IrreducibleAnchor, and irreducibleOfPairingSelfEqOneAnchor are bound to the exact PositiveDefiniteTreeLattice Lean interface identities with source-faithful signatures; all theorem-like declarations are proved and public Statement closure is complete. Comparison with RootedCapacity rev1 confirms the repaired pairing/vector APIs have the same finite V, graph, integer-function objects, assumptions, and formula direction required by rootedGram and the basis-entry consumer. The consumer dependency must now be repointed from the historical treePairing record to treePairingAnchor before resumption.",
+  "task_completion_mode": "graph_proved",
+  "version": 2
+}

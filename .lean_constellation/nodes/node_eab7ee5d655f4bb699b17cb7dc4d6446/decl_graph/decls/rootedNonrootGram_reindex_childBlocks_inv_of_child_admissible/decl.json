@@ -1,0 +1,15 @@
+{
+  "created_at": "2026-08-03T15:50:46Z",
+  "current_revision": 1,
+  "kind": "theorem",
+  "lifecycle": "active",
+  "module": "PositiveDefiniteTreeLattice.Main.RootedCapacity.Theorems.rootedNonrootGram_reindex_childBlocks_inv_of_child_admissible",
+  "name": "rootedNonrootGram_reindex_childBlocks_inv_of_child_admissible",
+  "node_path": "Main.RootedCapacity",
+  "public": true,
+  "revision_ids": [
+    1
+  ],
+  "summary": "The reindexed inverse nonroot rooted Gram block is the block diagonal of the same attached-child Gram family inverses under pointwise child admissibility.",
+  "updated_at": "2026-08-03T15:50:46Z"
+}

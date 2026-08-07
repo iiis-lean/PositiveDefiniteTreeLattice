@@ -1,0 +1,219 @@
+{
+  "change": {
+    "anticipated_proof_dep_names": [
+      "uniquePath_isPath",
+      "uniquePath_support_separated_by_cut"
+    ],
+    "anticipated_statement_dep_names": [
+      "uniquePath"
+    ],
+    "base_revision": null,
+    "kind": "create",
+    "objective": "Copy the accepted consumer-side objects and assumptions from `PositiveDefiniteTreeLattice.uniquePath_support_separated_by_cut`: `{V} [Fintype V]`, G, hG : G.IsTree, root parent c x, `hpc : G.Adj parent c`, `hroot : (G.deleteEdges {s(parent,c)}).Reachable root parent`, and `hx : (G.deleteEdges {s(parent,c)}).Reachable c x`. Prove exactly `((uniquePath G hG root c).append (uniquePath G hG c x)).IsPath`. The statement depends only on public `uniquePath`; the proof must use proved `uniquePath_isPath` and the exact singleton-intersection result `PositiveDefiniteTreeLattice.uniquePath_support_separated_by_cut`, together with Mathlib append/support path APIs. Do not add assumptions, replace endpoints or path objects, or mention RootedCapacity. This tracked private bridge will be consumed by the required exact equality theorem `PositiveDefiniteTreeLattice.uniquePath_eq_append_through_cut`. Source anchor: SourceIndex b_0008–b_0009 / solution.tex lines 33–64.",
+    "require_target_state_satisfied": true,
+    "reset_to_state": null,
+    "summary": "Created the private theorem `uniquePath_append_isPath_through_cut` with the exact graph, tree, endpoint, adjacency, and deleted-edge reachability binders accepted by the public support-separation theorem. It proves that the append of the chosen root-to-c and c-to-x paths is an `IsPath`. All four stages passed; revision 1 reached `proved` and is proof-policy satisfied. Its accepted closure uses `uniquePath`, proved `uniquePath_isPath`, and the proved public cut-support theorem. No stronger hypotheses, alternate path objects, RootedCapacity dependency, or blocker were introduced.",
+    "target_state": "proved"
+  },
+  "lean_decl_name": "uniquePath_append_isPath_through_cut",
+  "proof": {
+    "deps": [
+      {
+        "kind": "mathlib_decl",
+        "reason": "Converts the desired IsPath statement and factor pathhood into nodup support statements.",
+        "ref": {
+          "module": "Mathlib.Combinatorics.SimpleGraph.Paths",
+          "name": "SimpleGraph.Walk.isPath_def"
+        }
+      },
+      {
+        "kind": "mathlib_decl",
+        "reason": "Decomposes the second path support into its initial endpoint c and tail, so c is excluded from the tail by nodupness.",
+        "ref": {
+          "module": "Mathlib.Combinatorics.SimpleGraph.Walk.Basic",
+          "name": "SimpleGraph.Walk.cons_tail_support"
+        }
+      },
+      {
+        "kind": "mathlib_decl",
+        "reason": "Rewrites the support of the exact target append as the first support followed by the second tail support.",
+        "ref": {
+          "module": "Mathlib.Combinatorics.SimpleGraph.Walk.Operations",
+          "name": "SimpleGraph.Walk.support_append"
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "Supplies IsPath and hence nodup support for each canonical path factor.",
+        "ref": {
+          "name": "uniquePath_isPath",
+          "node": "Main.TreePathSeparation",
+          "repo": null,
+          "revision": 1
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "Provides the exact singleton-intersection fact used to prove disjointness from the tail of the second support.",
+        "ref": {
+          "name": "uniquePath_support_separated_by_cut",
+          "node": "Main.TreePathSeparation",
+          "repo": null,
+          "revision": 1
+        }
+      }
+    ],
+    "formal": {
+      "check": {
+        "allow_sorry": false,
+        "contains_axiom": false,
+        "contains_sorry": false,
+        "diagnostics": {
+          "diagnostics": [],
+          "passed": true,
+          "raw_excerpt": "{'success': True, 'error_message': None, 'file': 'PositiveDefiniteTreeLattice.Main.TreePathSeparation.Theorems.uniquePath_append_isPath_through_cut', 'items': [], 'total_items': 0, 'error_count': 0, 'warning_count': 0, 'info_count': 0, 'sorry_count': 0}",
+          "repo_file_path": "PositiveDefiniteTreeLattice/Main/TreePathSeparation/Theorems/uniquePath_append_isPath_through_cut.lean",
+          "schema_version": 2,
+          "summary": "Diagnostics returned 0 items"
+        },
+        "message": "Lean check passed.",
+        "policy": "proof_formal",
+        "scan": {
+          "admit_count": 0,
+          "axiom_count": 0,
+          "contains_admit": false,
+          "contains_axiom": false,
+          "contains_opaque": false,
+          "contains_sorry": false,
+          "contains_unsafe": false,
+          "limitation": "Text scan ignores Lean comments and string literals with a conservative first-round lexer; it is not a full Lean parser.",
+          "occurrences": [],
+          "opaque_count": 0,
+          "sorry_count": 0,
+          "summary": "sorry=0, admit=0, axiom=0, opaque=0, unsafe=0",
+          "unsafe_count": 0
+        },
+        "status": "passed"
+      },
+      "code": "-- lean-constellation: managed-imports-begin\nimport PositiveDefiniteTreeLattice.Main.TreePathSeparation.Prelude\nimport Mathlib.Combinatorics.SimpleGraph.Connectivity.Connected\nimport Mathlib.Combinatorics.SimpleGraph.DeleteEdges\nimport Mathlib.Combinatorics.SimpleGraph.Paths\nimport Mathlib.Combinatorics.SimpleGraph.Walk.Basic\nimport Mathlib.Combinatorics.SimpleGraph.Walk.Operations\nimport PositiveDefiniteTreeLattice.Main.TreePathSeparation.Defs.uniquePath\nimport PositiveDefiniteTreeLattice.Main.TreePathSeparation.Theorems.uniquePath_isPath\nimport PositiveDefiniteTreeLattice.Main.TreePathSeparation.Theorems.uniquePath_support_separated_by_cut\n-- lean-constellation: managed-imports-end\n\n-- lean-constellation: declaration-source-begin\n\n/--\n# lean-constellation target: `uniquePath_append_isPath_through_cut`\n\nFor `{V} [Fintype V]`, a simple graph `G` on `V`, a tree certificate `hG : G.IsTree`, and vertices\n`root parent c x : V`, assume `hpc : G.Adj parent c`, `hroot : (G.deleteEdges {s(parent,\nc)}).Reachable root parent`, and `hx : (G.deleteEdges {s(parent, c)}).Reachable c x`. Then the exact\nappend of the two chosen paths is a simple path:\n\n`((uniquePath G hG root c).append (uniquePath G hG c x)).IsPath`.\n\nThis has precisely the consumer-side binders and cut hypotheses of\n`PositiveDefiniteTreeLattice.uniquePath_support_separated_by_cut`; it neither adds assumptions nor\nchanges the endpoints or chosen path objects.\n\n## Statement dependencies\n\n- `SimpleGraph.Reachable` from `Mathlib.Combinatorics.SimpleGraph.Connectivity.Connected`\n- `SimpleGraph.deleteEdges` from `Mathlib.Combinatorics.SimpleGraph.DeleteEdges`\n- `SimpleGraph.Walk.IsPath` from `Mathlib.Combinatorics.SimpleGraph.Paths`\n- `SimpleGraph.Walk.append` from `Mathlib.Combinatorics.SimpleGraph.Walk.Operations`\n- `Main.TreePathSeparation::uniquePath` → `uniquePath` from\n  `PositiveDefiniteTreeLattice.Main.TreePathSeparation.Defs.uniquePath`\n\n## Proof outline\n\nLet `p := uniquePath G hG root c` and `q := uniquePath G hG c x`. The proved helper\n`uniquePath_isPath` gives `p.IsPath` and `q.IsPath`; by `Walk.isPath_def`, both supports are nodup.\n\nUse the exact public cut theorem `PositiveDefiniteTreeLattice.uniquePath_support_separated_by_cut G\nhG root parent c x hpc hroot hx` to show `p.support.Disjoint q.support.tail`. Indeed, if a vertex\nbelongs to both lists, it belongs to both full supports, so the cut theorem makes it equal to `c`.\nBut `c` is the first vertex of `q` and `q.IsPath` makes `q.support` nodup, so `c ∉ q.support.tail`\n(equivalently, use `Walk.mem_support_iff` and the nodup contradiction).\n\nFinally rewrite the support of the exact target append with `Walk.support_append` as `p.support ++\nq.support.tail`. The nodup proofs for `p.support` and `q.support.tail`, together with the displayed\ndisjointness, give nodup of that appended list. Apply the reverse direction of `Walk.isPath_def` to\nconclude `(p.append q).IsPath`. This uses precisely the copied cut hypotheses and exact chosen path\nobjects, with no additional assumptions.\n\n## Proof sources\n\n- Source `solution.tex`, lines 33–64\n\n## Proof dependencies\n\n- `SimpleGraph.Walk.isPath_def` from `Mathlib.Combinatorics.SimpleGraph.Paths`\n- `SimpleGraph.Walk.cons_tail_support` from `Mathlib.Combinatorics.SimpleGraph.Walk.Basic`\n- `SimpleGraph.Walk.support_append` from `Mathlib.Combinatorics.SimpleGraph.Walk.Operations`\n- `Main.TreePathSeparation::uniquePath_isPath` → `uniquePath_isPath` from\n  `PositiveDefiniteTreeLattice.Main.TreePathSeparation.Theorems.uniquePath_isPath`\n- `Main.TreePathSeparation::uniquePath_support_separated_by_cut` →\n  `PositiveDefiniteTreeLattice.uniquePath_support_separated_by_cut` from\n  `PositiveDefiniteTreeLattice.Main.TreePathSeparation.Theorems.uniquePath_support_separated_by_cut`\n-/\ntheorem uniquePath_append_isPath_through_cut {V : Type*} [Fintype V]\n    (G : SimpleGraph V) (hG : G.IsTree) (root parent c x : V)\n    (hpc : G.Adj parent c)\n    (hroot : (G.deleteEdges {s(parent, c)}).Reachable root parent)\n    (hx : (G.deleteEdges {s(parent, c)}).Reachable c x) :\n    ((uniquePath G hG root c).append (uniquePath G hG c x)).IsPath := by\n  let p : G.Walk root c := uniquePath G hG root c\n  let q : G.Walk c x := uniquePath G hG c x\n  have hp : p.IsPath := by\n    dsimp [p]\n    exact uniquePath_isPath G hG root c\n  have hq : q.IsPath := by\n    dsimp [q]\n    exact uniquePath_isPath G hG c x\n  have hctail : c ∉ q.support.tail := by\n    have hq_nodup := hq.support_nodup\n    rw [← q.cons_tail_support] at hq_nodup\n    exact (List.nodup_cons.mp hq_nodup).1\n  change (p.append q).IsPath\n  apply (SimpleGraph.Walk.isPath_def _).mpr\n  rw [SimpleGraph.Walk.support_append, List.nodup_append]\n  refine ⟨hp.support_nodup, hq.support_nodup.tail, ?_⟩\n  intro y hyp w hyq hyw\n  subst w\n  have hyq_full : y ∈ q.support := List.mem_of_mem_tail hyq\n  have hyc : y = c :=\n    (PositiveDefiniteTreeLattice.uniquePath_support_separated_by_cut\n      G hG root parent c x y hpc hroot hx).mp ⟨hyp, hyq_full⟩\n  subst y\n  exact hctail hyq\n"
+    },
+    "nl": {
+      "origin": [
+        {
+          "end_line": 64,
+          "end_locator": null,
+          "kind": "source",
+          "note": "Assigned source anchor for the child-side path decomposition; this proof establishes the required simplicity of the concatenated chosen paths.",
+          "ref": null,
+          "resource_key": null,
+          "source_path": "solution.tex",
+          "start_line": 33,
+          "start_locator": null
+        }
+      ],
+      "text": "Let `p := uniquePath G hG root c` and `q := uniquePath G hG c x`. The proved helper `uniquePath_isPath` gives `p.IsPath` and `q.IsPath`; by `Walk.isPath_def`, both supports are nodup.\n\nUse the exact public cut theorem `PositiveDefiniteTreeLattice.uniquePath_support_separated_by_cut G hG root parent c x hpc hroot hx` to show `p.support.Disjoint q.support.tail`. Indeed, if a vertex belongs to both lists, it belongs to both full supports, so the cut theorem makes it equal to `c`. But `c` is the first vertex of `q` and `q.IsPath` makes `q.support` nodup, so `c ∉ q.support.tail` (equivalently, use `Walk.mem_support_iff` and the nodup contradiction).\n\nFinally rewrite the support of the exact target append with `Walk.support_append` as `p.support ++ q.support.tail`. The nodup proofs for `p.support` and `q.support.tail`, together with the displayed disjointness, give nodup of that appended list. Apply the reverse direction of `Walk.isPath_def` to conclude `(p.append q).IsPath`. This uses precisely the copied cut hypotheses and exact chosen path objects, with no additional assumptions."
+    }
+  },
+  "revision": 1,
+  "state": "proved",
+  "statement": {
+    "deps": [
+      {
+        "kind": "mathlib_decl",
+        "reason": "The copied root-side and c-side hypotheses assert reachability in the deleted-edge graph.",
+        "ref": {
+          "module": "Mathlib.Combinatorics.SimpleGraph.Connectivity.Connected",
+          "name": "SimpleGraph.Reachable"
+        }
+      },
+      {
+        "kind": "mathlib_decl",
+        "reason": "Both copied cut hypotheses refer to the graph after deleting the undirected edge.",
+        "ref": {
+          "module": "Mathlib.Combinatorics.SimpleGraph.DeleteEdges",
+          "name": "SimpleGraph.deleteEdges"
+        }
+      },
+      {
+        "kind": "mathlib_decl",
+        "reason": "The conclusion asserts the `IsPath` predicate for the exact appended walk.",
+        "ref": {
+          "module": "Mathlib.Combinatorics.SimpleGraph.Paths",
+          "name": "SimpleGraph.Walk.IsPath"
+        }
+      },
+      {
+        "kind": "mathlib_decl",
+        "reason": "The conclusion is the exact append of the chosen root-to-c and c-to-x walks.",
+        "ref": {
+          "module": "Mathlib.Combinatorics.SimpleGraph.Walk.Operations",
+          "name": "SimpleGraph.Walk.append"
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "The conclusion is formulated using exactly the accepted canonical chosen root-to-c and c-to-x walks.",
+        "ref": {
+          "name": "uniquePath",
+          "node": "Main.TreePathSeparation",
+          "repo": null,
+          "revision": 1
+        }
+      }
+    ],
+    "formal": {
+      "check": {
+        "allow_sorry": true,
+        "contains_axiom": false,
+        "contains_sorry": true,
+        "diagnostics": {
+          "diagnostics": [
+            {
+              "column": 9,
+              "line": 35,
+              "message": "declaration uses `sorry`",
+              "severity": "warning"
+            }
+          ],
+          "passed": true,
+          "raw_excerpt": "{'success': True, 'error_message': None, 'file': 'PositiveDefiniteTreeLattice.Main.TreePathSeparation.Theorems.uniquePath_append_isPath_through_cut', 'items': [{'severity': 'warning', 'pos': {'line': 35, 'column': 9}, 'endPos': {'line': 35, 'column': 45}, 'kind': None, 'data': 'declaration uses `sorry`', 'fileName': 'PositiveDefiniteTreeLattice.Main.TreePathSeparation.Theorems.uniquePath_append_isPath_through_cut', 'content': '  `PositiveDefiniteTreeLattice.Main.TreePathSeparation.Defs.uniquePath`\\n-/\\ntheorem uniquePath_append_isPath_through_cut {V : Type*} [Fintype V]\\n    (G : SimpleGraph V) (hG : G.IsTree) (root parent c x : V)\\n    (hpc : G.Adj parent c)'}], 'total_items': 1, 'error_count': 0, 'warning_count': 1, 'info_count': 0, 'sorry_count': 1}",
+          "repo_file_path": "PositiveDefiniteTreeLattice/Main/TreePathSeparation/Theorems/uniquePath_append_isPath_through_cut.lean",
+          "schema_version": 2,
+          "summary": "Diagnostics returned 1 items"
+        },
+        "message": "Lean check passed.",
+        "policy": "statement_formal",
+        "scan": {
+          "admit_count": 0,
+          "axiom_count": 0,
+          "contains_admit": false,
+          "contains_axiom": false,
+          "contains_opaque": false,
+          "contains_sorry": true,
+          "contains_unsafe": false,
+          "limitation": "Text scan ignores Lean comments and string literals with a conservative first-round lexer; it is not a full Lean parser.",
+          "occurrences": [
+            {
+              "column": 3,
+              "excerpt": "sorry",
+              "kind": "sorry",
+              "line": 41
+            }
+          ],
+          "opaque_count": 0,
+          "sorry_count": 1,
+          "summary": "sorry=1, admit=0, axiom=0, opaque=0, unsafe=0",
+          "unsafe_count": 0
+        },
+        "status": "passed"
+      },
+      "code": "-- lean-constellation: managed-imports-begin\nimport PositiveDefiniteTreeLattice.Main.TreePathSeparation.Prelude\nimport Mathlib.Combinatorics.SimpleGraph.Connectivity.Connected\nimport Mathlib.Combinatorics.SimpleGraph.DeleteEdges\nimport Mathlib.Combinatorics.SimpleGraph.Paths\nimport Mathlib.Combinatorics.SimpleGraph.Walk.Operations\nimport PositiveDefiniteTreeLattice.Main.TreePathSeparation.Defs.uniquePath\n-- lean-constellation: managed-imports-end\n\n-- lean-constellation: declaration-source-begin\n\n/--\n# lean-constellation target: `uniquePath_append_isPath_through_cut`\n\nFor `{V} [Fintype V]`, a simple graph `G` on `V`, a tree certificate `hG : G.IsTree`, and vertices\n`root parent c x : V`, assume `hpc : G.Adj parent c`, `hroot : (G.deleteEdges {s(parent,\nc)}).Reachable root parent`, and `hx : (G.deleteEdges {s(parent, c)}).Reachable c x`. Then the exact\nappend of the two chosen paths is a simple path:\n\n`((uniquePath G hG root c).append (uniquePath G hG c x)).IsPath`.\n\nThis has precisely the consumer-side binders and cut hypotheses of\n`PositiveDefiniteTreeLattice.uniquePath_support_separated_by_cut`; it neither adds assumptions nor\nchanges the endpoints or chosen path objects.\n\n## Statement dependencies\n\n- `SimpleGraph.Reachable` from `Mathlib.Combinatorics.SimpleGraph.Connectivity.Connected`\n- `SimpleGraph.deleteEdges` from `Mathlib.Combinatorics.SimpleGraph.DeleteEdges`\n- `SimpleGraph.Walk.IsPath` from `Mathlib.Combinatorics.SimpleGraph.Paths`\n- `SimpleGraph.Walk.append` from `Mathlib.Combinatorics.SimpleGraph.Walk.Operations`\n- `Main.TreePathSeparation::uniquePath` → `uniquePath` from\n  `PositiveDefiniteTreeLattice.Main.TreePathSeparation.Defs.uniquePath`\n-/\ntheorem uniquePath_append_isPath_through_cut {V : Type*} [Fintype V]\n    (G : SimpleGraph V) (hG : G.IsTree) (root parent c x : V)\n    (hpc : G.Adj parent c)\n    (hroot : (G.deleteEdges {s(parent, c)}).Reachable root parent)\n    (hx : (G.deleteEdges {s(parent, c)}).Reachable c x) :\n    ((uniquePath G hG root c).append (uniquePath G hG c x)).IsPath := by\n  sorry\n"
+    },
+    "nl": {
+      "origin": [],
+      "text": "For `{V} [Fintype V]`, a simple graph `G` on `V`, a tree certificate `hG : G.IsTree`, and vertices `root parent c x : V`, assume `hpc : G.Adj parent c`, `hroot : (G.deleteEdges {s(parent, c)}).Reachable root parent`, and `hx : (G.deleteEdges {s(parent, c)}).Reachable c x`. Then the exact append of the two chosen paths is a simple path:\n\n`((uniquePath G hG root c).append (uniquePath G hG c x)).IsPath`.\n\nThis has precisely the consumer-side binders and cut hypotheses of `PositiveDefiniteTreeLattice.uniquePath_support_separated_by_cut`; it neither adds assumptions nor changes the endpoints or chosen path objects."
+    }
+  },
+  "status": "committed",
+  "updated_at": "2026-07-30T04:46:22Z"
+}

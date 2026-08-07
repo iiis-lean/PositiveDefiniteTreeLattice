@@ -1,0 +1,15 @@
+{
+  "created_at": "2026-07-30T18:45:29Z",
+  "current_revision": 1,
+  "kind": "theorem",
+  "lifecycle": "active",
+  "module": "PositiveDefiniteTreeLattice.Main.RootedCapacity.Theorems.rootedChildComponent_card_lt",
+  "name": "rootedChildComponent_card_lt",
+  "node_path": "Main.RootedCapacity",
+  "public": true,
+  "revision_ids": [
+    1
+  ],
+  "summary": "A rooted child-side component has strictly fewer vertices than its ambient finite tree.",
+  "updated_at": "2026-07-30T22:14:11Z"
+}

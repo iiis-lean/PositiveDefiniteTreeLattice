@@ -1,0 +1,33 @@
+{
+  "change_summaries": {},
+  "committed_at": "2026-08-07T03:19:36Z",
+  "created_at": "2026-08-07T02:57:15Z",
+  "discard_reason": null,
+  "discarded_at": null,
+  "discarded_by": null,
+  "discarded_created_decl_names": [],
+  "discarded_restored_decl_revisions": {},
+  "discarded_revision_refs": [],
+  "execution_completed_at": "2026-08-07T03:17:46Z",
+  "execution_reason": null,
+  "execution_result_kind": "success",
+  "node_path": "Main.RootedCapacity",
+  "objective": "Create and prove the sole public contract-v9 ambient root/nonroot row-and-column linear contraction theorem using the existing canonical equivalence and support-collapse provider.",
+  "plan_closeout_acknowledged_at": "2026-08-07T03:19:36Z",
+  "plan_closeout_acknowledged_by": "a_a93b40977f574bad89528358fa89e022",
+  "result_kind": "success",
+  "result_reason": "The sole public contract-v9 theorem reached proved state with all stages and proof-policy checks passed.",
+  "revision_refs": [
+    {
+      "change_id": "rootedGram_root_nonroot_linear_eq_sum_childRoots@rev:1",
+      "decl_name": "rootedGram_root_nonroot_linear_eq_sum_childRoots",
+      "revision": 1
+    }
+  ],
+  "round_id": "round_f51a28a7d62a4ba6b8c9a819f881c6d1",
+  "round_index": 94,
+  "started_at": "2026-08-07T02:58:56Z",
+  "status": "committed",
+  "strategy_id": "strategy_8ec9f4179a644e7081fe3083825d5274",
+  "summary": "Round 94 fully achieved the one-round contract-v9 strategy. Public rootedGram_root_nonroot_linear_eq_sum_childRoots@1 reached proved state and graph_proved proof-policy satisfaction with both required row and column identities and no remaining fiber/Sigma sums. Existing canonical equivalence and support providers were sufficient; no Mathlib, dependency, resource, helper, representation, or scope issue remains. Next action is interface/public-boundary curation and deterministic completion checking."
+}

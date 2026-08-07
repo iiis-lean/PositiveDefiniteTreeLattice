@@ -1,0 +1,190 @@
+{
+  "change": {
+    "anticipated_proof_dep_names": [],
+    "anticipated_statement_dep_names": [
+      "rootedChildComponent"
+    ],
+    "base_revision": null,
+    "kind": "create",
+    "objective": "Capture the cut fact implicit in SourceIndex b_0009 / solution.tex lines 48–61. For a finite/decidable SimpleGraph G, hG : G.IsTree, and hpc : G.Adj parent c, prove that parent is not a vertex of rootedChildComponent G parent c (equivalently, no vertex of that connected-component subtype has underlying value parent; choose the compiler-supported membership formulation). Consume the committed rootedChildComponent definition and tree structure, preserving the exact deleted undirected edge {s(parent,c)}. The proof should use acyclicity/unique paths or an equivalent graph argument: a path from c to parent after deleting their edge together with hpc would contradict the tree property. Do not add weight, root orientation, admissibility, or matrix hypotheses. This public structural bridge must serve the later theorem that the child rootedGram is the corresponding principal submatrix and hence the b_0009 block decomposition.",
+    "require_target_state_satisfied": true,
+    "reset_to_state": null,
+    "summary": "Created public theorem rootedChildComponent_parent_not_mem and reached proved state with passing formal statement and proof. Under a tree hypothesis and adjacency of the deleted endpoints, it proves the parent is outside the child-side connected component. The theorem is proof-policy satisfied and supplies the exact cut-separation fact needed to identify the child rootedGram with the ambient principal submatrix.",
+    "target_state": "proved"
+  },
+  "lean_decl_name": "rootedChildComponent_parent_not_mem",
+  "proof": {
+    "deps": [
+      {
+        "kind": "mathlib_decl",
+        "reason": "Supplies the canonical membership of c in the selected cut-graph component.",
+        "ref": {
+          "module": "Mathlib.Combinatorics.SimpleGraph.Connectivity.Connected",
+          "name": "SimpleGraph.ConnectedComponent.connectedComponentMk_mem"
+        }
+      },
+      {
+        "kind": "mathlib_decl",
+        "reason": "Turns c and parent membership in the cut component into a reachability witness in the edge-deleted graph.",
+        "ref": {
+          "module": "Mathlib.Combinatorics.SimpleGraph.Connectivity.Connected",
+          "name": "SimpleGraph.ConnectedComponent.reachable_of_mem_supp"
+        }
+      },
+      {
+        "kind": "mathlib_decl",
+        "reason": "Converts the retained parent-child adjacency and cut-graph reachability into a forbidden cycle of G.",
+        "ref": {
+          "module": "Mathlib.Combinatorics.SimpleGraph.Connectivity.Connected",
+          "name": "SimpleGraph.adj_and_reachable_delete_edges_iff_exists_cycle"
+        }
+      },
+      {
+        "kind": "mathlib_decl",
+        "reason": "Forms exactly the graph obtained by deleting the singleton undirected edge s(parent,c).",
+        "ref": {
+          "module": "Mathlib.Combinatorics.SimpleGraph.DeleteEdges",
+          "name": "SimpleGraph.deleteEdges"
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "The proof unfolds the committed cut-edge component construction to access its support-membership invariant.",
+        "ref": {
+          "name": "rootedChildComponent",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 1
+        }
+      }
+    ],
+    "formal": {
+      "check": {
+        "allow_sorry": false,
+        "contains_axiom": false,
+        "contains_sorry": false,
+        "diagnostics": {
+          "diagnostics": [],
+          "passed": true,
+          "raw_excerpt": "{'success': True, 'error_message': None, 'file': 'PositiveDefiniteTreeLattice.Main.RootedCapacity.Theorems.rootedChildComponent_parent_not_mem', 'items': [], 'total_items': 0, 'error_count': 0, 'warning_count': 0, 'info_count': 0, 'sorry_count': 0}",
+          "repo_file_path": "PositiveDefiniteTreeLattice/Main/RootedCapacity/Theorems/rootedChildComponent_parent_not_mem.lean",
+          "schema_version": 2,
+          "summary": "Diagnostics returned 0 items"
+        },
+        "message": "Lean check passed.",
+        "policy": "proof_formal",
+        "scan": {
+          "admit_count": 0,
+          "axiom_count": 0,
+          "contains_admit": false,
+          "contains_axiom": false,
+          "contains_opaque": false,
+          "contains_sorry": false,
+          "contains_unsafe": false,
+          "limitation": "Text scan ignores Lean comments and string literals with a conservative first-round lexer; it is not a full Lean parser.",
+          "occurrences": [],
+          "opaque_count": 0,
+          "sorry_count": 0,
+          "summary": "sorry=0, admit=0, axiom=0, opaque=0, unsafe=0",
+          "unsafe_count": 0
+        },
+        "status": "passed"
+      },
+      "code": "-- lean-constellation: managed-imports-begin\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Prelude\nimport Mathlib.Combinatorics.SimpleGraph.Acyclic\nimport Mathlib.Combinatorics.SimpleGraph.Connectivity.Connected\nimport Mathlib.Combinatorics.SimpleGraph.DeleteEdges\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildComponent\n-- lean-constellation: managed-imports-end\n\n-- lean-constellation: declaration-source-begin\n\n/--\n# lean-constellation target: `rootedChildComponent_parent_not_mem`\n\nFor a finite vertex type `V` with decidable equality, a simple graph `G : SimpleGraph V`, vertices\n`parent c : V`, a tree hypothesis `hG : G.IsTree`, and an adjacency hypothesis `hpc : G.Adj parent\nc`, every vertex of the child-side cut component differs from `parent`: for every `x :\nrootedChildComponent G parent c`, `(x : V) ≠ parent`.  Equivalently, `parent` is not a vertex of the\nconnected component containing `c` after deleting exactly the singleton undirected edge joining\n`parent` and `c`.  No weight, root-orientation, admissibility, matrix, or positive-definiteness\nhypothesis is assumed.\n\n## Sources\n\n- Source `solution.tex`, lines 48–61\n\n## Statement dependencies\n\n- `SimpleGraph.IsTree` from `Mathlib.Combinatorics.SimpleGraph.Acyclic`\n- `Main.RootedCapacity::rootedChildComponent` → `rootedChildComponent` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildComponent`\n\n## Proof outline\n\nFix a component vertex `x : rootedChildComponent G parent c` and suppose `(x : V) = parent`. Unfold\n`rootedChildComponent`; the subtype property of `x` then gives membership of `parent` in the support\nof the connected component `C := (G.deleteEdges {s(parent, c)}).connectedComponentMk c`. The\ncanonical member `c ∈ C.supp` and `SimpleGraph.ConnectedComponent.reachable_of_mem_supp` yield a\ncut-graph reachability witness `(G.deleteEdges {s(parent, c)}).Reachable c parent`.\n\nPair this reachability with the reversed adjacency `hpc.symm : G.Adj c parent`. Apply\n`SimpleGraph.adj_and_reachable_delete_edges_iff_exists_cycle` to obtain a cycle in the original\ngraph `G` containing the deleted undirected edge `s(parent, c)`. This contradicts `hG.isAcyclic`,\nwhose definition excludes every graph cycle.\n\nThus no component-subtype vertex can coerce to `parent`. The argument uses exactly the singleton\ndeleted edge `{s(parent, c)}` and introduces no weight, root-orientation, admissibility, matrix, or\npositive-definiteness assumptions.\n\n## Proof dependencies\n\n- `SimpleGraph.ConnectedComponent.connectedComponentMk_mem` from\n  `Mathlib.Combinatorics.SimpleGraph.Connectivity.Connected`\n- `SimpleGraph.ConnectedComponent.reachable_of_mem_supp` from\n  `Mathlib.Combinatorics.SimpleGraph.Connectivity.Connected`\n- `SimpleGraph.adj_and_reachable_delete_edges_iff_exists_cycle` from\n  `Mathlib.Combinatorics.SimpleGraph.Connectivity.Connected`\n- `SimpleGraph.deleteEdges` from `Mathlib.Combinatorics.SimpleGraph.DeleteEdges`\n- `Main.RootedCapacity::rootedChildComponent` → `rootedChildComponent` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildComponent`\n-/\ntheorem rootedChildComponent_parent_not_mem {V : Type*} (G : SimpleGraph V) (parent c : V)\n    (hG : G.IsTree) (hpc : G.Adj parent c) :\n    ∀ x : rootedChildComponent G parent c, (x : V) ≠ parent := by\n  classical\n  intro x hx\n  have hx_mem : (x : V) ∈ (G.deleteEdges {s(parent, c)}).connectedComponentMk c := by\n    simpa only [rootedChildComponent] using x.property\n  have hparent_mem : parent ∈ (G.deleteEdges {s(parent, c)}).connectedComponentMk c := by\n    simpa only [hx] using hx_mem\n  have hc_mem : c ∈ (G.deleteEdges {s(parent, c)}).connectedComponentMk c :=\n    SimpleGraph.ConnectedComponent.connectedComponentMk_mem\n  have hreach : (G.deleteEdges {s(parent, c)}).Reachable parent c :=\n    SimpleGraph.ConnectedComponent.reachable_of_mem_supp _ hparent_mem hc_mem\n  obtain ⟨u, cycle, hcycle, _⟩ :=\n    (SimpleGraph.adj_and_reachable_delete_edges_iff_exists_cycle.mp\n      ⟨hpc, hreach⟩)\n  exact hG.isAcyclic cycle hcycle\n"
+    },
+    "nl": {
+      "origin": [],
+      "text": "Fix a component vertex `x : rootedChildComponent G parent c` and suppose `(x : V) = parent`. Unfold `rootedChildComponent`; the subtype property of `x` then gives membership of `parent` in the support of the connected component `C := (G.deleteEdges {s(parent, c)}).connectedComponentMk c`. The canonical member `c ∈ C.supp` and `SimpleGraph.ConnectedComponent.reachable_of_mem_supp` yield a cut-graph reachability witness `(G.deleteEdges {s(parent, c)}).Reachable c parent`.\n\nPair this reachability with the reversed adjacency `hpc.symm : G.Adj c parent`. Apply `SimpleGraph.adj_and_reachable_delete_edges_iff_exists_cycle` to obtain a cycle in the original graph `G` containing the deleted undirected edge `s(parent, c)`. This contradicts `hG.isAcyclic`, whose definition excludes every graph cycle.\n\nThus no component-subtype vertex can coerce to `parent`. The argument uses exactly the singleton deleted edge `{s(parent, c)}` and introduces no weight, root-orientation, admissibility, matrix, or positive-definiteness assumptions."
+    }
+  },
+  "revision": 1,
+  "state": "proved",
+  "statement": {
+    "deps": [
+      {
+        "kind": "mathlib_decl",
+        "reason": "The statement assumes `G.IsTree` for the cut-separation conclusion.",
+        "ref": {
+          "module": "Mathlib.Combinatorics.SimpleGraph.Acyclic",
+          "name": "SimpleGraph.IsTree"
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "The quantified subtype is the declared component containing `c` after deletion of the parent-child edge.",
+        "ref": {
+          "name": "rootedChildComponent",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 1
+        }
+      }
+    ],
+    "formal": {
+      "check": {
+        "allow_sorry": true,
+        "contains_axiom": false,
+        "contains_sorry": true,
+        "diagnostics": {
+          "diagnostics": [
+            {
+              "column": 9,
+              "line": 30,
+              "message": "declaration uses `sorry`",
+              "severity": "warning"
+            }
+          ],
+          "passed": true,
+          "raw_excerpt": "{'success': True, 'error_message': None, 'file': 'PositiveDefiniteTreeLattice.Main.RootedCapacity.Theorems.rootedChildComponent_parent_not_mem', 'items': [{'severity': 'warning', 'pos': {'line': 30, 'column': 9}, 'endPos': {'line': 30, 'column': 44}, 'kind': None, 'data': 'declaration uses `sorry`', 'fileName': 'PositiveDefiniteTreeLattice.Main.RootedCapacity.Theorems.rootedChildComponent_parent_not_mem', 'content': '  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildComponent`\\n-/\\ntheorem rootedChildComponent_parent_not_mem {V : Type*} (G : SimpleGraph V) (parent c : V)\\n    (hG : G.IsTree) (hpc : G.Adj parent c) :\\n    ∀ x : rootedChildComponent G parent c, (x : V) ≠ parent := by'}], 'total_items': 1, 'error_count': 0, 'warning_count': 1, 'info_count': 0, 'sorry_count': 1}",
+          "repo_file_path": "PositiveDefiniteTreeLattice/Main/RootedCapacity/Theorems/rootedChildComponent_parent_not_mem.lean",
+          "schema_version": 2,
+          "summary": "Diagnostics returned 1 items"
+        },
+        "message": "Lean check passed.",
+        "policy": "statement_formal",
+        "scan": {
+          "admit_count": 0,
+          "axiom_count": 0,
+          "contains_admit": false,
+          "contains_axiom": false,
+          "contains_opaque": false,
+          "contains_sorry": true,
+          "contains_unsafe": false,
+          "limitation": "Text scan ignores Lean comments and string literals with a conservative first-round lexer; it is not a full Lean parser.",
+          "occurrences": [
+            {
+              "column": 3,
+              "excerpt": "sorry",
+              "kind": "sorry",
+              "line": 33
+            }
+          ],
+          "opaque_count": 0,
+          "sorry_count": 1,
+          "summary": "sorry=1, admit=0, axiom=0, opaque=0, unsafe=0",
+          "unsafe_count": 0
+        },
+        "status": "passed"
+      },
+      "code": "-- lean-constellation: managed-imports-begin\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Prelude\nimport Mathlib.Combinatorics.SimpleGraph.Acyclic\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildComponent\n-- lean-constellation: managed-imports-end\n\n-- lean-constellation: declaration-source-begin\n\n/--\n# lean-constellation target: `rootedChildComponent_parent_not_mem`\n\nFor a finite vertex type `V` with decidable equality, a simple graph `G : SimpleGraph V`, vertices\n`parent c : V`, a tree hypothesis `hG : G.IsTree`, and an adjacency hypothesis `hpc : G.Adj parent\nc`, every vertex of the child-side cut component differs from `parent`: for every `x :\nrootedChildComponent G parent c`, `(x : V) ≠ parent`.  Equivalently, `parent` is not a vertex of the\nconnected component containing `c` after deleting exactly the singleton undirected edge joining\n`parent` and `c`.  No weight, root-orientation, admissibility, matrix, or positive-definiteness\nhypothesis is assumed.\n\n## Sources\n\n- Source `solution.tex`, lines 48–61\n\n## Statement dependencies\n\n- `SimpleGraph.IsTree` from `Mathlib.Combinatorics.SimpleGraph.Acyclic`\n- `Main.RootedCapacity::rootedChildComponent` → `rootedChildComponent` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildComponent`\n-/\ntheorem rootedChildComponent_parent_not_mem {V : Type*} (G : SimpleGraph V) (parent c : V)\n    (hG : G.IsTree) (hpc : G.Adj parent c) :\n    ∀ x : rootedChildComponent G parent c, (x : V) ≠ parent := by\n  sorry\n"
+    },
+    "nl": {
+      "origin": [
+        {
+          "end_line": 61,
+          "end_locator": null,
+          "kind": "source",
+          "note": "Lines 48–61 decompose the rooted tree into child subtrees after separating the root-side edge; this cut-separation fact supports the stated block decomposition.",
+          "ref": null,
+          "resource_key": null,
+          "source_path": "solution.tex",
+          "start_line": 48,
+          "start_locator": null
+        }
+      ],
+      "text": "For a finite vertex type `V` with decidable equality, a simple graph `G : SimpleGraph V`, vertices `parent c : V`, a tree hypothesis `hG : G.IsTree`, and an adjacency hypothesis `hpc : G.Adj parent c`, every vertex of the child-side cut component differs from `parent`: for every `x : rootedChildComponent G parent c`, `(x : V) ≠ parent`.  Equivalently, `parent` is not a vertex of the connected component containing `c` after deleting exactly the singleton undirected edge joining `parent` and `c`.  No weight, root-orientation, admissibility, matrix, or positive-definiteness hypothesis is assumed."
+    }
+  },
+  "status": "committed",
+  "updated_at": "2026-07-30T01:51:01Z"
+}

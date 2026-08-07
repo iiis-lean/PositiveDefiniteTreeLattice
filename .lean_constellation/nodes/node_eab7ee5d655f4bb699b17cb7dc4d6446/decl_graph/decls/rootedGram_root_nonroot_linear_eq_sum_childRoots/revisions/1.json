@@ -1,0 +1,295 @@
+{
+  "change": {
+    "anticipated_proof_dep_names": [
+      "rootedChildComponentsEquivNonroot_apply",
+      "rootedGram_root_rootedChildComponent_support"
+    ],
+    "anticipated_statement_dep_names": [
+      "rootedChildComponent",
+      "rootedChildComponentsEquivNonroot",
+      "rootedChildRoot",
+      "rootedChildren",
+      "rootedGram"
+    ],
+    "base_revision": null,
+    "kind": "create",
+    "objective": "Implement the sole public contract-v9 interface, faithful to solution.tex 57–63 where the root interaction vector is -1 exactly at child roots. Reuse exactly R := {x : V // x ≠ ρ}, I := {c : V // c ∈ rootedChildren G hG ρ ρ}, the dependent Sigma S := Σ c : I, rootedChildComponent G ρ c.1, and e := (rootedChildComponentsEquivNonroot G hG ρ).symm with the existing orientation and component instances. For arbitrary a : R → ℚ, state both identities: the ambient root-row weighted sum over R and the ambient root-column weighted sum over R each equal the negative sum over c : I of a evaluated at e.symm applied to the Sigma child-root coordinate ⟨c, rootedChildRoot G ρ c.1⟩. Preserve the natural factor order for row and column sums. Prove each identity by transporting the R sum through e using Equiv.sum_comp, flattening the Sigma sum with Fintype.sum_sigma, rewriting forward equivalence values with rootedChildComponentsEquivNonroot_apply as needed, and applying the corresponding arbitrary-function collapse clause of rootedGram_root_rootedChildComponent_support@2. Leave no fiber sum or Sigma-wide remainder. Add no assumptions, helper, new representation/equivalence, changed orientation/instances, unique-underweight or integral pairing/equation-(4) content, consumer-specific decomposition, or heartbeat change. The Lean identity must be the unqualified public name rootedGram_root_nonroot_linear_eq_sum_childRoots.",
+    "require_target_state_satisfied": true,
+    "reset_to_state": null,
+    "summary": "Created and graph-proved public rootedGram_root_nonroot_linear_eq_sum_childRoots revision 1. Its accepted statement gives both ambient root-row and root-column weighted-sum identities for arbitrary rational coefficients using the exact canonical R/I/S/e orientation, with each right side fully collapsed to the negative sum of child-root coefficients. Statement NL/Formal and Proof NL/Formal all passed. The proof transports through the existing equivalence and applies rootedGram_root_rootedChildComponent_support@2; it adds no assumptions, helper, representation, integral pairing content, or heartbeat change.",
+    "target_state": "proved"
+  },
+  "lean_decl_name": "rootedGram_root_nonroot_linear_eq_sum_childRoots",
+  "proof": {
+    "deps": [
+      {
+        "kind": "mathlib_decl",
+        "reason": "Combines the componentwise support-collapse equalities into each outer child-indexed sum.",
+        "ref": {
+          "module": "Mathlib.Algebra.BigOperators.Group.Finset.Basic",
+          "name": "Finset.sum_congr"
+        }
+      },
+      {
+        "kind": "mathlib_decl",
+        "reason": "Transports each ambient nonroot sum through e : R ≃ S with the required inverse coefficient orientation.",
+        "ref": {
+          "module": "Mathlib.Algebra.BigOperators.Group.Finset.Defs",
+          "name": "Equiv.sum_comp"
+        }
+      },
+      {
+        "kind": "mathlib_decl",
+        "reason": "Moves the outer negative across the child-indexed finite sum to obtain the stated right-hand side.",
+        "ref": {
+          "module": "Mathlib.Algebra.BigOperators.Group.Finset.Defs",
+          "name": "Finset.sum_neg_distrib"
+        }
+      },
+      {
+        "kind": "mathlib_decl",
+        "reason": "Flattens the reindexed sigma sum into child-indexed component fibers.",
+        "ref": {
+          "module": "Mathlib.Data.Fintype.BigOperators",
+          "name": "Fintype.sum_sigma"
+        }
+      },
+      {
+        "kind": "mathlib_decl",
+        "reason": "Reconciles the support theorem's finite component instance with the ambient component Fintype before applying its fiber-collapse identities.",
+        "ref": {
+          "module": "Mathlib.Data.Fintype.EquivFin",
+          "name": "Fintype.ofFinite"
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "Rewrites the reindexed sigma coordinate through the canonical forward equivalence to its ambient component vertex.",
+        "ref": {
+          "name": "rootedChildComponentsEquivNonroot_apply",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 1
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "Provides the row and column arbitrary-function fiber-sum collapses at each child root.",
+        "ref": {
+          "name": "rootedGram_root_rootedChildComponent_support",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 2
+        }
+      }
+    ],
+    "formal": {
+      "check": {
+        "allow_sorry": false,
+        "contains_axiom": false,
+        "contains_sorry": false,
+        "diagnostics": {
+          "diagnostics": [],
+          "passed": true,
+          "raw_excerpt": "{'success': True, 'error_message': None, 'file': 'PositiveDefiniteTreeLattice.Main.RootedCapacity.Theorems.rootedGram_root_nonroot_linear_eq_sum_childRoots', 'items': [], 'total_items': 0, 'error_count': 0, 'warning_count': 0, 'info_count': 0, 'sorry_count': 0}",
+          "repo_file_path": "PositiveDefiniteTreeLattice/Main/RootedCapacity/Theorems/rootedGram_root_nonroot_linear_eq_sum_childRoots.lean",
+          "schema_version": 2,
+          "summary": "Diagnostics returned 0 items"
+        },
+        "message": "Lean check passed.",
+        "policy": "proof_formal",
+        "scan": {
+          "admit_count": 0,
+          "axiom_count": 0,
+          "contains_admit": false,
+          "contains_axiom": false,
+          "contains_opaque": false,
+          "contains_sorry": false,
+          "contains_unsafe": false,
+          "limitation": "Text scan ignores Lean comments and string literals with a conservative first-round lexer; it is not a full Lean parser.",
+          "occurrences": [],
+          "opaque_count": 0,
+          "sorry_count": 0,
+          "summary": "sorry=0, admit=0, axiom=0, opaque=0, unsafe=0",
+          "unsafe_count": 0
+        },
+        "status": "passed"
+      },
+      "code": "-- lean-constellation: managed-imports-begin\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Prelude\nimport Mathlib.Algebra.BigOperators.Group.Finset.Basic\nimport Mathlib.Algebra.BigOperators.Group.Finset.Defs\nimport Mathlib.Data.Fintype.BigOperators\nimport Mathlib.Data.Fintype.EquivFin\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildComponent\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildComponentsEquivNonroot\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildRoot\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildren\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedGram\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Theorems.rootedChildComponentsEquivNonroot_apply\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Theorems.rootedGram_root_rootedChildComponent_support\n-- lean-constellation: managed-imports-end\n\n-- lean-constellation: declaration-source-begin\n\n/--\n# lean-constellation target: `rootedGram_root_nonroot_linear_eq_sum_childRoots`\n\nLet `V` be a vertex type equipped with `[Fintype V]` and `[DecidableEq V]`. Let `G : SimpleGraph V`\nbe equipped with `[DecidableRel G.Adj]`, let `hG : G.IsTree`, let `ρ : V`, and let `w : V → ℤ`.\nDefine `R := {x : V // x ≠ ρ}`, `I := {c : V // c ∈ rootedChildren G hG ρ ρ}`, `S := Σ c : I,\nrootedChildComponent G ρ c.1`, and `e := (rootedChildComponentsEquivNonroot G hG ρ).symm : R ≃ S`.\nThen, for every coefficient function `a : R → ℚ`, both ambient root/nonroot linear sums collapse to\nthe child-root coefficients:\n\n`∑ x : R, rootedGram G w ρ x.1 * a x = - ∑ c : I, a (e.symm ⟨c, rootedChildRoot G ρ c.1⟩)`,\n\nand\n\n`∑ x : R, a x * rootedGram G w x.1 ρ = - ∑ c : I, a (e.symm ⟨c, rootedChildRoot G ρ c.1⟩)`.\n\nThe first identity retains the root-row factor order and the second retains the root-column factor\norder.\n\n## Sources\n\n- Source `solution.tex`, lines 57–63\n\n## Statement dependencies\n\n- `Equiv.sum_comp` from `Mathlib.Algebra.BigOperators.Group.Finset.Defs`\n- `Fintype.sum_sigma` from `Mathlib.Data.Fintype.BigOperators`\n- `Main.RootedCapacity::rootedChildComponent` → `rootedChildComponent` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildComponent`\n- `Main.RootedCapacity::rootedChildComponentsEquivNonroot` → `rootedChildComponentsEquivNonroot`\n  from `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildComponentsEquivNonroot`\n- `Main.RootedCapacity::rootedChildComponentsEquivNonroot_apply` →\n  `rootedChildComponentsEquivNonroot_apply` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Theorems.rootedChildComponentsEquivNonroot_apply`\n- `Main.RootedCapacity::rootedChildRoot` → `rootedChildRoot` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildRoot`\n- `Main.RootedCapacity::rootedChildren` → `rootedChildren` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildren`\n- `Main.RootedCapacity::rootedGram` → `rootedGram` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedGram`\n- `Main.RootedCapacity::rootedGram_root_rootedChildComponent_support` →\n  `rootedGram_root_rootedChildComponent_support` from `PositiveDefiniteTreeLattice.Main.RootedCapaci\n  ty.Theorems.rootedGram_root_rootedChildComponent_support`\n\n## Proof outline\n\nWork under `classical`, unfold the four `let` binders, and introduce `a : R → ℚ`. Split the\nconjunction, treating the row identity first and the column identity second.\n\nFor either summand `F : R → ℚ`, transport `∑ x : R, F x` to the sigma index `S` with\n`Equiv.sum_comp` for `e : R ≃ S`, instantiated with the function `s ↦ F (e.symm s)`. Simplify the\nresulting `e.symm (e x)` on the `R` side, then use `Fintype.sum_sigma` to obtain one inner sum over\n`rootedChildComponent G ρ c.1` for each `c : I`. Rewrite the occurrence of the forward canonical\ncomponent equivalence in `e.symm ⟨c,x⟩` by `rootedChildComponentsEquivNonroot_apply`; this\nidentifies its ambient vertex with `(x : V)` while preserving the required inverse orientation in\nthe coefficient.\n\nFor the row identity take `F x := rootedGram G w ρ x.1 * a x`. In each child fiber apply the first\narbitrary-function collapse clause in `(rootedGram_root_rootedChildComponent_support G hG w ρ c).2`,\nwith `f x := a (e.symm ⟨c,x⟩)`. It gives exactly `- a (e.symm ⟨c, rootedChildRoot G ρ c.1⟩)`. Sum\nthese equalities over `c`, yielding the stated negative child-root sum with no remaining fiber term.\n\nFor the column identity repeat the identical reindexing and flattening with `F x := a x * rootedGram\nG w x.1 ρ`. Apply the second arbitrary-function collapse clause of the same support theorem to the\nsame `f`; this preserves the column factor order and produces the identical negative child-root sum.\nNo auxiliary declaration or additional assumption is needed.\n\n## Proof sources\n\n- Source `solution.tex`, lines 57–63\n\n## Proof dependencies\n\n- `Finset.sum_congr` from `Mathlib.Algebra.BigOperators.Group.Finset.Basic`\n- `Equiv.sum_comp` from `Mathlib.Algebra.BigOperators.Group.Finset.Defs`\n- `Finset.sum_neg_distrib` from `Mathlib.Algebra.BigOperators.Group.Finset.Defs`\n- `Fintype.sum_sigma` from `Mathlib.Data.Fintype.BigOperators`\n- `Fintype.ofFinite` from `Mathlib.Data.Fintype.EquivFin`\n- `Main.RootedCapacity::rootedChildComponentsEquivNonroot_apply` →\n  `rootedChildComponentsEquivNonroot_apply` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Theorems.rootedChildComponentsEquivNonroot_apply`\n- `Main.RootedCapacity::rootedGram_root_rootedChildComponent_support` →\n  `rootedGram_root_rootedChildComponent_support` from `PositiveDefiniteTreeLattice.Main.RootedCapaci\n  ty.Theorems.rootedGram_root_rootedChildComponent_support`\n-/\ntheorem rootedGram_root_nonroot_linear_eq_sum_childRoots {V : Type*} [Fintype V]\n    [DecidableEq V] (G : SimpleGraph V) [DecidableRel G.Adj] (hG : G.IsTree)\n    (w : V → ℤ) (ρ : V) :\n    let R := {x : V // x ≠ ρ}\n    let I := {c : V // c ∈ rootedChildren G hG ρ ρ}\n    let S := Σ c : I, rootedChildComponent G ρ c.1\n    let e : R ≃ S := (rootedChildComponentsEquivNonroot G hG ρ).symm\n    ∀ a : R → ℚ,\n      (∑ x : R, rootedGram G w ρ x.1 * a x) =\n        -∑ c : I, a (e.symm ⟨c, rootedChildRoot G ρ c.1⟩) ∧\n      (∑ x : R, a x * rootedGram G w x.1 ρ) =\n        -∑ c : I, a (e.symm ⟨c, rootedChildRoot G ρ c.1⟩) := by\n  classical\n  dsimp only\n  intro a\n  let e : {x : V // x ≠ ρ} ≃\n      (Σ c : {c : V // c ∈ rootedChildren G hG ρ ρ},\n        rootedChildComponent G ρ c.1) :=\n    (rootedChildComponentsEquivNonroot G hG ρ).symm\n  change\n    (∑ x : {x : V // x ≠ ρ}, rootedGram G w ρ x.1 * a x) =\n        -∑ c : {c : V // c ∈ rootedChildren G hG ρ ρ},\n          a (e.symm ⟨c, rootedChildRoot G ρ c.1⟩) ∧\n      (∑ x : {x : V // x ≠ ρ}, a x * rootedGram G w x.1 ρ) =\n        -∑ c : {c : V // c ∈ rootedChildren G hG ρ ρ},\n          a (e.symm ⟨c, rootedChildRoot G ρ c.1⟩)\n  constructor\n  · calc\n      (∑ x : {x : V // x ≠ ρ}, rootedGram G w ρ x.1 * a x) =\n          ∑ s : (Σ c : {c : V // c ∈ rootedChildren G hG ρ ρ},\n            rootedChildComponent G ρ c.1),\n            rootedGram G w ρ (e.symm s).1 * a (e.symm s) := by\n        simpa using e.sum_comp\n          (fun s => rootedGram G w ρ (e.symm s).1 * a (e.symm s))\n      _ = ∑ c : {c : V // c ∈ rootedChildren G hG ρ ρ},\n          ∑ x : rootedChildComponent G ρ c.1,\n            rootedGram G w ρ (e.symm ⟨c, x⟩).1 * a (e.symm ⟨c, x⟩) := by\n        rw [Fintype.sum_sigma]\n      _ = ∑ c : {c : V // c ∈ rootedChildren G hG ρ ρ},\n          -a (e.symm ⟨c, rootedChildRoot G ρ c.1⟩) := by\n        apply Finset.sum_congr rfl\n        intro c hc\n        have hcollapse := ((rootedGram_root_rootedChildComponent_support G hG w ρ c).2\n          (fun x => a (e.symm ⟨c, x⟩))).1\n        have hFintype : Fintype.ofFinite (rootedChildComponent G ρ c.1) =\n            (inferInstance : Fintype (rootedChildComponent G ρ c.1)) :=\n          Subsingleton.elim _ _\n        rw [hFintype] at hcollapse\n        simpa only [e, Equiv.symm_symm, rootedChildComponentsEquivNonroot_apply] using hcollapse\n      _ = -∑ c : {c : V // c ∈ rootedChildren G hG ρ ρ},\n          a (e.symm ⟨c, rootedChildRoot G ρ c.1⟩) := by\n        rw [Finset.sum_neg_distrib]\n  · calc\n      (∑ x : {x : V // x ≠ ρ}, a x * rootedGram G w x.1 ρ) =\n          ∑ s : (Σ c : {c : V // c ∈ rootedChildren G hG ρ ρ},\n            rootedChildComponent G ρ c.1),\n            a (e.symm s) * rootedGram G w (e.symm s).1 ρ := by\n        simpa using e.sum_comp\n          (fun s => a (e.symm s) * rootedGram G w (e.symm s).1 ρ)\n      _ = ∑ c : {c : V // c ∈ rootedChildren G hG ρ ρ},\n          ∑ x : rootedChildComponent G ρ c.1,\n            a (e.symm ⟨c, x⟩) * rootedGram G w (e.symm ⟨c, x⟩).1 ρ := by\n        rw [Fintype.sum_sigma]\n      _ = ∑ c : {c : V // c ∈ rootedChildren G hG ρ ρ},\n          -a (e.symm ⟨c, rootedChildRoot G ρ c.1⟩) := by\n        apply Finset.sum_congr rfl\n        intro c hc\n        have hcollapse := ((rootedGram_root_rootedChildComponent_support G hG w ρ c).2\n          (fun x => a (e.symm ⟨c, x⟩))).2\n        have hFintype : Fintype.ofFinite (rootedChildComponent G ρ c.1) =\n            (inferInstance : Fintype (rootedChildComponent G ρ c.1)) :=\n          Subsingleton.elim _ _\n        rw [hFintype] at hcollapse\n        simpa only [e, Equiv.symm_symm, rootedChildComponentsEquivNonroot_apply] using hcollapse\n      _ = -∑ c : {c : V // c ∈ rootedChildren G hG ρ ρ},\n          a (e.symm ⟨c, rootedChildRoot G ρ c.1⟩) := by\n        rw [Finset.sum_neg_distrib]\n"
+    },
+    "nl": {
+      "origin": [
+        {
+          "end_line": 63,
+          "end_locator": null,
+          "kind": "source",
+          "note": "The root/nonroot block is grouped by child subtrees, and the root interaction vector is -1 precisely at child roots; this supports the fiber-collapse route.",
+          "ref": null,
+          "resource_key": null,
+          "source_path": "solution.tex",
+          "start_line": 57,
+          "start_locator": null
+        }
+      ],
+      "text": "Work under `classical`, unfold the four `let` binders, and introduce `a : R → ℚ`. Split the conjunction, treating the row identity first and the column identity second.\n\nFor either summand `F : R → ℚ`, transport `∑ x : R, F x` to the sigma index `S` with `Equiv.sum_comp` for `e : R ≃ S`, instantiated with the function `s ↦ F (e.symm s)`. Simplify the resulting `e.symm (e x)` on the `R` side, then use `Fintype.sum_sigma` to obtain one inner sum over `rootedChildComponent G ρ c.1` for each `c : I`. Rewrite the occurrence of the forward canonical component equivalence in `e.symm ⟨c,x⟩` by `rootedChildComponentsEquivNonroot_apply`; this identifies its ambient vertex with `(x : V)` while preserving the required inverse orientation in the coefficient.\n\nFor the row identity take `F x := rootedGram G w ρ x.1 * a x`. In each child fiber apply the first arbitrary-function collapse clause in `(rootedGram_root_rootedChildComponent_support G hG w ρ c).2`, with `f x := a (e.symm ⟨c,x⟩)`. It gives exactly `- a (e.symm ⟨c, rootedChildRoot G ρ c.1⟩)`. Sum these equalities over `c`, yielding the stated negative child-root sum with no remaining fiber term.\n\nFor the column identity repeat the identical reindexing and flattening with `F x := a x * rootedGram G w x.1 ρ`. Apply the second arbitrary-function collapse clause of the same support theorem to the same `f`; this preserves the column factor order and produces the identical negative child-root sum. No auxiliary declaration or additional assumption is needed."
+    }
+  },
+  "revision": 1,
+  "state": "proved",
+  "statement": {
+    "deps": [
+      {
+        "kind": "mathlib_decl",
+        "reason": "Reindexes each ambient nonroot Fintype sum through the canonical equivalence e.",
+        "ref": {
+          "module": "Mathlib.Algebra.BigOperators.Group.Finset.Defs",
+          "name": "Equiv.sum_comp"
+        }
+      },
+      {
+        "kind": "mathlib_decl",
+        "reason": "Flattens the reindexed Sigma sum into the outer child sum and its component fibers.",
+        "ref": {
+          "module": "Mathlib.Data.Fintype.BigOperators",
+          "name": "Fintype.sum_sigma"
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "Defines the dependent component fiber in the sigma index S.",
+        "ref": {
+          "name": "rootedChildComponent",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 1
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "Defines the required equivalence e used to transport nonroot coefficients to the sigma index.",
+        "ref": {
+          "name": "rootedChildComponentsEquivNonroot",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 1
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "Rewrites the forward canonical equivalence value on a Sigma child-component coordinate while transporting the ambient sum.",
+        "ref": {
+          "name": "rootedChildComponentsEquivNonroot_apply",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 1
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "Selects the child-root coordinate in each component fiber on the right-hand side.",
+        "ref": {
+          "name": "rootedChildRoot",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 1
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "Defines the child-root index subtype I.",
+        "ref": {
+          "name": "rootedChildren",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 2
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "The two ambient sums are expressed using the rooted Gram matrix.",
+        "ref": {
+          "name": "rootedGram",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 2
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "Supplies the exact arbitrary-function root-row and root-column fiber-sum collapse laws.",
+        "ref": {
+          "name": "rootedGram_root_rootedChildComponent_support",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 2
+        }
+      }
+    ],
+    "formal": {
+      "check": {
+        "allow_sorry": true,
+        "contains_axiom": false,
+        "contains_sorry": true,
+        "diagnostics": {
+          "diagnostics": [
+            {
+              "column": 9,
+              "line": 61,
+              "message": "declaration uses `sorry`",
+              "severity": "warning"
+            }
+          ],
+          "passed": true,
+          "raw_excerpt": "{'success': True, 'error_message': None, 'file': 'PositiveDefiniteTreeLattice.Main.RootedCapacity.Theorems.rootedGram_root_nonroot_linear_eq_sum_childRoots', 'items': [{'severity': 'warning', 'pos': {'line': 61, 'column': 9}, 'endPos': {'line': 61, 'column': 57}, 'kind': None, 'data': 'declaration uses `sorry`', 'fileName': 'PositiveDefiniteTreeLattice.Main.RootedCapacity.Theorems.rootedGram_root_nonroot_linear_eq_sum_childRoots', 'content': '-/\\n\\ntheorem rootedGram_root_nonroot_linear_eq_sum_childRoots {V : Type*} [Fintype V]\\n    [DecidableEq V] (G : SimpleGraph V) [DecidableRel G.Adj] (hG : G.IsTree)\\n    (w : V → ℤ) (ρ : V) :'}], 'total_items': 1, 'error_count': 0, 'warning_count': 1, 'info_count': 0, 'sorry_count': 1}",
+          "repo_file_path": "PositiveDefiniteTreeLattice/Main/RootedCapacity/Theorems/rootedGram_root_nonroot_linear_eq_sum_childRoots.lean",
+          "schema_version": 2,
+          "summary": "Diagnostics returned 1 items"
+        },
+        "message": "Lean check passed.",
+        "policy": "statement_formal",
+        "scan": {
+          "admit_count": 0,
+          "axiom_count": 0,
+          "contains_admit": false,
+          "contains_axiom": false,
+          "contains_opaque": false,
+          "contains_sorry": true,
+          "contains_unsafe": false,
+          "limitation": "Text scan ignores Lean comments and string literals with a conservative first-round lexer; it is not a full Lean parser.",
+          "occurrences": [
+            {
+              "column": 3,
+              "excerpt": "sorry",
+              "kind": "sorry",
+              "line": 73
+            }
+          ],
+          "opaque_count": 0,
+          "sorry_count": 1,
+          "summary": "sorry=1, admit=0, axiom=0, opaque=0, unsafe=0",
+          "unsafe_count": 0
+        },
+        "status": "passed"
+      },
+      "code": "-- lean-constellation: managed-imports-begin\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Prelude\nimport Mathlib.Algebra.BigOperators.Group.Finset.Defs\nimport Mathlib.Data.Fintype.BigOperators\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildComponent\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildComponentsEquivNonroot\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildRoot\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildren\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedGram\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Theorems.rootedChildComponentsEquivNonroot_apply\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Theorems.rootedGram_root_rootedChildComponent_support\n-- lean-constellation: managed-imports-end\n\n-- lean-constellation: declaration-source-begin\n\n/--\n# lean-constellation target: `rootedGram_root_nonroot_linear_eq_sum_childRoots`\n\nLet `V` be a vertex type equipped with `[Fintype V]` and `[DecidableEq V]`. Let `G : SimpleGraph V`\nbe equipped with `[DecidableRel G.Adj]`, let `hG : G.IsTree`, let `ρ : V`, and let `w : V → ℤ`.\nDefine `R := {x : V // x ≠ ρ}`, `I := {c : V // c ∈ rootedChildren G hG ρ ρ}`, `S := Σ c : I,\nrootedChildComponent G ρ c.1`, and `e := (rootedChildComponentsEquivNonroot G hG ρ).symm : R ≃ S`.\nThen, for every coefficient function `a : R → ℚ`, both ambient root/nonroot linear sums collapse to\nthe child-root coefficients:\n\n`∑ x : R, rootedGram G w ρ x.1 * a x = - ∑ c : I, a (e.symm ⟨c, rootedChildRoot G ρ c.1⟩)`,\n\nand\n\n`∑ x : R, a x * rootedGram G w x.1 ρ = - ∑ c : I, a (e.symm ⟨c, rootedChildRoot G ρ c.1⟩)`.\n\nThe first identity retains the root-row factor order and the second retains the root-column factor\norder.\n\n## Sources\n\n- Source `solution.tex`, lines 57–63\n\n## Statement dependencies\n\n- `Equiv.sum_comp` from `Mathlib.Algebra.BigOperators.Group.Finset.Defs`\n- `Fintype.sum_sigma` from `Mathlib.Data.Fintype.BigOperators`\n- `Main.RootedCapacity::rootedChildComponent` → `rootedChildComponent` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildComponent`\n- `Main.RootedCapacity::rootedChildComponentsEquivNonroot` → `rootedChildComponentsEquivNonroot`\n  from `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildComponentsEquivNonroot`\n- `Main.RootedCapacity::rootedChildComponentsEquivNonroot_apply` →\n  `rootedChildComponentsEquivNonroot_apply` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Theorems.rootedChildComponentsEquivNonroot_apply`\n- `Main.RootedCapacity::rootedChildRoot` → `rootedChildRoot` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildRoot`\n- `Main.RootedCapacity::rootedChildren` → `rootedChildren` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildren`\n- `Main.RootedCapacity::rootedGram` → `rootedGram` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedGram`\n- `Main.RootedCapacity::rootedGram_root_rootedChildComponent_support` →\n  `rootedGram_root_rootedChildComponent_support` from `PositiveDefiniteTreeLattice.Main.RootedCapaci\n  ty.Theorems.rootedGram_root_rootedChildComponent_support`\n-/\n\ntheorem rootedGram_root_nonroot_linear_eq_sum_childRoots {V : Type*} [Fintype V]\n    [DecidableEq V] (G : SimpleGraph V) [DecidableRel G.Adj] (hG : G.IsTree)\n    (w : V → ℤ) (ρ : V) :\n    let R := {x : V // x ≠ ρ}\n    let I := {c : V // c ∈ rootedChildren G hG ρ ρ}\n    let S := Σ c : I, rootedChildComponent G ρ c.1\n    let e : R ≃ S := (rootedChildComponentsEquivNonroot G hG ρ).symm\n    ∀ a : R → ℚ,\n      (∑ x : R, rootedGram G w ρ x.1 * a x) =\n        -∑ c : I, a (e.symm ⟨c, rootedChildRoot G ρ c.1⟩) ∧\n      (∑ x : R, a x * rootedGram G w x.1 ρ) =\n        -∑ c : I, a (e.symm ⟨c, rootedChildRoot G ρ c.1⟩) := by\n  sorry\n"
+    },
+    "nl": {
+      "origin": [
+        {
+          "end_line": 63,
+          "end_locator": null,
+          "kind": "source",
+          "note": "The root/nonroot block decomposition identifies the root interaction vector as -1 at each child root and 0 elsewhere, supporting both collapsed linear identities.",
+          "ref": null,
+          "resource_key": null,
+          "source_path": "solution.tex",
+          "start_line": 57,
+          "start_locator": null
+        }
+      ],
+      "text": "Let `V` be a vertex type equipped with `[Fintype V]` and `[DecidableEq V]`. Let `G : SimpleGraph V` be equipped with `[DecidableRel G.Adj]`, let `hG : G.IsTree`, let `ρ : V`, and let `w : V → ℤ`. Define `R := {x : V // x ≠ ρ}`, `I := {c : V // c ∈ rootedChildren G hG ρ ρ}`, `S := Σ c : I, rootedChildComponent G ρ c.1`, and `e := (rootedChildComponentsEquivNonroot G hG ρ).symm : R ≃ S`. Then, for every coefficient function `a : R → ℚ`, both ambient root/nonroot linear sums collapse to the child-root coefficients:\n\n`∑ x : R, rootedGram G w ρ x.1 * a x = - ∑ c : I, a (e.symm ⟨c, rootedChildRoot G ρ c.1⟩)`,\n\nand\n\n`∑ x : R, a x * rootedGram G w x.1 ρ = - ∑ c : I, a (e.symm ⟨c, rootedChildRoot G ρ c.1⟩)`.\n\nThe first identity retains the root-row factor order and the second retains the root-column factor order."
+    }
+  },
+  "status": "committed",
+  "updated_at": "2026-08-07T03:19:31Z"
+}

@@ -1,0 +1,150 @@
+{
+  "change": {
+    "anticipated_proof_dep_names": [],
+    "anticipated_statement_dep_names": [
+      "rootedCapacity",
+      "rootedChildComponent",
+      "rootedChildRoot",
+      "rootedChildren"
+    ],
+    "base_revision": null,
+    "kind": "create",
+    "objective": "Formalize the exact ∑ᵢ γ(Cᵢ) term from SourceIndex b_0009 / solution.tex lines 47–68. For finite decidable V, G with decidable adjacency, hG : G.IsTree, integer weight w, and root ρ, define a rational value by summing over c ∈ rootedChildren G hG ρ ρ; the summand is rootedCapacity of C := rootedChildComponent G ρ c, with graph C.toSimpleGraph, restricted weight (fun x : C => w (x : V)), and root rootedChildRoot G ρ c, supplying the canonical finite and decidable-adjacency instances locally. Preserve the existing rootedChildren orientation, deleted-edge component, restricted integer weights, and rational capacity. Do not assume admissibility or positivity in the definition. This public dependent sum is the source-faithful right-hand term for the forthcoming local inverse-quadratic identity and rootedCapacity_recursion theorem, and therefore a formal Statement prerequisite of that public recursion.",
+    "require_target_state_satisfied": true,
+    "reset_to_state": null,
+    "summary": "The new public definition reached declared state with an accepted formal statement and declared-level satisfaction. It packages exactly the rational sum of rootedCapacity over the root's oriented deleted-edge child components, using restricted integer weights and canonical child roots, without admissibility assumptions. As a definition it has no proof layer. It is the formal Statement prerequisite for the local inverse-quadratic identity and capacity recursion.",
+    "target_state": "declared"
+  },
+  "lean_decl_name": "rootedChildCapacitySum",
+  "proof": null,
+  "revision": 1,
+  "state": "declared",
+  "statement": {
+    "deps": [
+      {
+        "kind": "mathlib_decl",
+        "reason": "Names the finite rational sum defining the child-capacity total.",
+        "ref": {
+          "module": "Mathlib.Algebra.BigOperators.Group.Finset.Defs",
+          "name": "Finset.sum"
+        }
+      },
+      {
+        "kind": "mathlib_decl",
+        "reason": "Names the explicit ambient tree proof hG used to orient root children.",
+        "ref": {
+          "module": "Mathlib.Combinatorics.SimpleGraph.Acyclic",
+          "name": "SimpleGraph.IsTree"
+        }
+      },
+      {
+        "kind": "mathlib_decl",
+        "reason": "Names the induced graph of each rooted child component in the summand.",
+        "ref": {
+          "module": "Mathlib.Combinatorics.SimpleGraph.Connectivity.Connected",
+          "name": "SimpleGraph.ConnectedComponent.toSimpleGraph"
+        }
+      },
+      {
+        "kind": "mathlib_decl",
+        "reason": "Defines the local decidable adjacency instance for each deleted-edge child component in the summand.",
+        "ref": {
+          "module": "Mathlib.Combinatorics.SimpleGraph.DeleteEdges",
+          "name": "SimpleGraph.deleteEdges"
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "Names the rational capacity evaluated on each rooted child component.",
+        "ref": {
+          "name": "rootedCapacity",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 1
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "Names the deleted-edge child-side component used for each summand.",
+        "ref": {
+          "name": "rootedChildComponent",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 1
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "Names the canonical root of each child component.",
+        "ref": {
+          "name": "rootedChildRoot",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 1
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "Names the finset of oriented children of the root that indexes the sum.",
+        "ref": {
+          "name": "rootedChildren",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 2
+        }
+      }
+    ],
+    "formal": {
+      "check": {
+        "allow_sorry": false,
+        "contains_axiom": false,
+        "contains_sorry": false,
+        "diagnostics": {
+          "diagnostics": [],
+          "passed": true,
+          "raw_excerpt": "{'success': True, 'error_message': None, 'file': 'PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildCapacitySum', 'items': [], 'total_items': 0, 'error_count': 0, 'warning_count': 0, 'info_count': 0, 'sorry_count': 0}",
+          "repo_file_path": "PositiveDefiniteTreeLattice/Main/RootedCapacity/Defs/rootedChildCapacitySum.lean",
+          "schema_version": 2,
+          "summary": "Diagnostics returned 0 items"
+        },
+        "message": "Lean check passed.",
+        "policy": "statement_formal",
+        "scan": {
+          "admit_count": 0,
+          "axiom_count": 0,
+          "contains_admit": false,
+          "contains_axiom": false,
+          "contains_opaque": false,
+          "contains_sorry": false,
+          "contains_unsafe": false,
+          "limitation": "Text scan ignores Lean comments and string literals with a conservative first-round lexer; it is not a full Lean parser.",
+          "occurrences": [],
+          "opaque_count": 0,
+          "sorry_count": 0,
+          "summary": "sorry=0, admit=0, axiom=0, opaque=0, unsafe=0",
+          "unsafe_count": 0
+        },
+        "status": "passed"
+      },
+      "code": "-- lean-constellation: managed-imports-begin\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Prelude\nimport Mathlib.Algebra.BigOperators.Group.Finset.Defs\nimport Mathlib.Combinatorics.SimpleGraph.Acyclic\nimport Mathlib.Combinatorics.SimpleGraph.Connectivity.Connected\nimport Mathlib.Combinatorics.SimpleGraph.DeleteEdges\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedCapacity\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildComponent\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildRoot\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildren\n-- lean-constellation: managed-imports-end\n\n-- lean-constellation: declaration-source-begin\n\n/--\n# lean-constellation target: `rootedChildCapacitySum`\n\nFor a finite type V with decidable equality, a simple graph G on V with decidable adjacency, a tree\nproof hG : G.IsTree, an integer weight w : V → ℤ, and a root ρ : V, define rootedChildCapacitySum G\nhG w ρ : ℚ by\n\n∑ c ∈ rootedChildren G hG ρ ρ,\n  rootedCapacity (rootedChildComponent G ρ c).toSimpleGraph\n    (fun x : rootedChildComponent G ρ c => w (x : V))\n    (rootedChildRoot G ρ c).\n\nThe definition uses the canonical local finite-type and decidable-adjacency instances for each\ndeleted-edge child component. It assumes neither admissibility nor positivity and preserves the\nexisting root-child orientation, component, restricted integer weight, and rational capacity.\n\n## Sources\n\n- Source `solution.tex`, lines 47–68\n\n## Statement dependencies\n\n- `Finset.sum` from `Mathlib.Algebra.BigOperators.Group.Finset.Defs`\n- `SimpleGraph.IsTree` from `Mathlib.Combinatorics.SimpleGraph.Acyclic`\n- `SimpleGraph.ConnectedComponent.toSimpleGraph` from\n  `Mathlib.Combinatorics.SimpleGraph.Connectivity.Connected`\n- `SimpleGraph.deleteEdges` from `Mathlib.Combinatorics.SimpleGraph.DeleteEdges`\n- `Main.RootedCapacity::rootedCapacity` → `rootedCapacity` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedCapacity`\n- `Main.RootedCapacity::rootedChildComponent` → `rootedChildComponent` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildComponent`\n- `Main.RootedCapacity::rootedChildRoot` → `rootedChildRoot` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildRoot`\n- `Main.RootedCapacity::rootedChildren` → `rootedChildren` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildren`\n-/\nnoncomputable def rootedChildCapacitySum {V : Type*} [Fintype V] [DecidableEq V]\n    (G : SimpleGraph V) [DecidableRel G.Adj] (hG : G.IsTree) (w : V → ℤ) (ρ : V) : ℚ :=\n  Finset.sum (rootedChildren G hG ρ ρ) fun c =>\n    let C := rootedChildComponent G ρ c\n    letI : Fintype C := Fintype.ofFinite C\n    letI : DecidableRel C.toSimpleGraph.Adj := by\n      intro x y\n      change Decidable ((G.deleteEdges {s(ρ, c)}).Adj (x : V) (y : V))\n      infer_instance\n    rootedCapacity C.toSimpleGraph (fun x : C => w (x : V)) (rootedChildRoot G ρ c)\n"
+    },
+    "nl": {
+      "origin": [
+        {
+          "end_line": 68,
+          "end_locator": null,
+          "kind": "source",
+          "note": "Identifies the capacity-recursion term as the sum of the capacities of the rooted subtrees at the root's children.",
+          "ref": null,
+          "resource_key": null,
+          "source_path": "solution.tex",
+          "start_line": 47,
+          "start_locator": null
+        }
+      ],
+      "text": "For a finite type V with decidable equality, a simple graph G on V with decidable adjacency, a tree proof hG : G.IsTree, an integer weight w : V → ℤ, and a root ρ : V, define rootedChildCapacitySum G hG w ρ : ℚ by\n\n∑ c ∈ rootedChildren G hG ρ ρ,\n  rootedCapacity (rootedChildComponent G ρ c).toSimpleGraph\n    (fun x : rootedChildComponent G ρ c => w (x : V))\n    (rootedChildRoot G ρ c).\n\nThe definition uses the canonical local finite-type and decidable-adjacency instances for each deleted-edge child component. It assumes neither admissibility nor positivity and preserves the existing root-child orientation, component, restricted integer weight, and rational capacity."
+    }
+  },
+  "status": "committed",
+  "updated_at": "2026-07-30T08:18:07Z"
+}

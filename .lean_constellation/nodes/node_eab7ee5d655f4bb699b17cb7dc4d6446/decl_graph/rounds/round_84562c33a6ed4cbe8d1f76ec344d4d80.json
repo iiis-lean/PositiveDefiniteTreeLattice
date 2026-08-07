@@ -1,0 +1,33 @@
+{
+  "change_summaries": {},
+  "committed_at": "2026-07-30T08:18:14Z",
+  "created_at": "2026-07-30T08:09:36Z",
+  "discard_reason": null,
+  "discarded_at": null,
+  "discarded_by": null,
+  "discarded_created_decl_names": [],
+  "discarded_restored_decl_revisions": {},
+  "discarded_revision_refs": [],
+  "execution_completed_at": "2026-07-30T08:16:07Z",
+  "execution_reason": null,
+  "execution_result_kind": "success",
+  "node_path": "Main.RootedCapacity",
+  "objective": "Declare the public b_0009 child-capacity sum that packages the source term ∑ᵢ γ(Cᵢ) over the root's oriented child components. This gives the Schur-complement identity and capacity recursion a single exact dependent-type target.",
+  "plan_closeout_acknowledged_at": "2026-07-30T08:18:14Z",
+  "plan_closeout_acknowledged_by": "a_a93b40977f574bad89528358fa89e022",
+  "result_kind": "success",
+  "result_reason": "The public definition reached declared state and passed the graph-proved mode's definition satisfaction gate.",
+  "revision_refs": [
+    {
+      "change_id": "rootedChildCapacitySum@rev:1",
+      "decl_name": "rootedChildCapacitySum",
+      "revision": 1
+    }
+  ],
+  "round_id": "round_84562c33a6ed4cbe8d1f76ec344d4d80",
+  "round_index": 20,
+  "started_at": "2026-07-30T08:11:16Z",
+  "status": "committed",
+  "strategy_id": "strategy_1fbcdfb31a2e4cada1ff5b7b941de18c",
+  "summary": "Round 20 successfully declared the source-faithful child-capacity sum and advanced the b_0009 matrix route. rootedChildCapacitySum rev1 is public and proof-policy satisfied for a definition. No blocker, state-only theorem, superseded branch, or graph-hygiene issue remains. The strategy remains viable. The next dependency-ordered structural theorem should express that the root-child components uniquely partition the nonroot vertices, supplying the finite grouping needed to prove cross-component block decomposition and the inverse quadratic sum."
+}

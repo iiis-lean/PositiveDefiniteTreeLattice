@@ -1,0 +1,33 @@
+{
+  "change_summaries": {},
+  "committed_at": "2026-07-30T11:40:03Z",
+  "created_at": "2026-07-30T11:35:52Z",
+  "discard_reason": null,
+  "discarded_at": null,
+  "discarded_by": null,
+  "discarded_created_decl_names": [],
+  "discarded_restored_decl_revisions": {},
+  "discarded_revision_refs": [],
+  "execution_completed_at": "2026-07-30T11:38:34Z",
+  "execution_reason": "The new explicit bridge preserved Matrix.reindex syntactically, so it does not match the actual normalized target. A truly nested-submatrix-form theorem is required; no semantic change is needed.",
+  "execution_result_kind": "blocked",
+  "node_path": "Main.RootedCapacity",
+  "objective": "Retry only Proof Formal for the accepted rootedNonrootGram_reindex_childBlocks statement from SourceIndex b_0009 / solution.tex lines 57–62. Consume the newly proved no-let entry bridge to rewrite the normalized left-hand matrix entry directly, then finish the existing equal/unequal child-label branches without changing the statement or Proof NL plan.",
+  "plan_closeout_acknowledged_at": "2026-07-30T11:40:03Z",
+  "plan_closeout_acknowledged_by": "a_a93b40977f574bad89528358fa89e022",
+  "result_kind": "blocked",
+  "result_reason": "Proof Formal is blocked solely by the missing exact nested-submatrix entry normalization theorem; the accepted block statement and proof plan remain valid and should be retried only after that tracked private helper is proved.",
+  "revision_refs": [
+    {
+      "change_id": "rootedNonrootGram_reindex_childBlocks@rev:5",
+      "decl_name": "rootedNonrootGram_reindex_childBlocks",
+      "revision": 5
+    }
+  ],
+  "round_id": "round_aa8adf9adb8441ed9e0dd088cd7229d0",
+  "round_index": 35,
+  "started_at": "2026-07-30T11:37:16Z",
+  "status": "committed",
+  "strategy_id": "strategy_1fbcdfb31a2e4cada1ff5b7b941de18c",
+  "summary": "Round 35 did not advance the parent beyond proof_planned. The source-level strategy remains mathematically viable, but the explicit reindex bridge proved in round 34 does not match the parent's post-simplification nested-submatrix entry shape. The sole missing prerequisite is a private Lean-specific normalization theorem with exactly that consumer-side formal shape; it is source-faithful implementation support for solution.tex lines 57–62, not a new mathematical assumption or provider dependency. Once proved, rootedNonrootGram_reindex_childBlocks can be retried with its accepted statement and branch proof plan unchanged; only afterward should rootedNonroot_inverse_childBlocks and rootedNonroot_inverse_quadratic resume. Given the graph currently has 27 declarations against the contract's approximate 18–28 scale, one final tracked wrapper remains proportionate, but further wrapper proliferation should trigger cleanup or scope review."
+}

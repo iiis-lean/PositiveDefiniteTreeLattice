@@ -1,0 +1,24 @@
+{
+  "closed_at": "2026-07-30T03:12:32Z",
+  "closed_reason": "Coordinator scope review is required before further declaration expansion: the rooted-component path/orientation package has exposed a third nested structural prerequisite and would push the node beyond its expected scale before contract interfaces are addressed.",
+  "created_at": "2026-07-30T00:25:53Z",
+  "created_round_ids": [
+    "round_d33bbe9b3aad43a98b839a5512dcb464",
+    "round_cf6deabaafc5407fa5cf9e5eb14f8205",
+    "round_d948835239c446789c109f9e696e921a",
+    "round_734a3ddfa1904017ba14a4ad67e1070f",
+    "round_3781bb2dc3a44dbbb03a621639a4f1c6",
+    "round_7d9fea48bf6741e78b9d8b6ef97a2294",
+    "round_1adb91eac3e041e0b4f1ed669edd5d3e",
+    "round_1596e078b4ce494588a79a487fc40983",
+    "round_9f0bc19bc18d44189806e6c003d0ebe0",
+    "round_5feebb1bb0414f799551391d1b0a7548",
+    "round_4926fda4f8d94d449271bd2b4327fd2e"
+  ],
+  "node_path": "Main.RootedCapacity",
+  "objective": "Resume the graph-proved bottom-up rooted-capacity route after provider repair: first advance the existing rootedChildren and rootedGram foundations to declared and prove the basis-vector pairing bridge using the qualified PositiveDefiniteTreeLattice provider API, then build child count/admissibility/capacity and local component bridges, prove the Schur-complement bounds, the rooted integer estimate, and the root-coefficient interface.",
+  "rationale": "SourceIndex b_0008–b_0011 and solution.tex lines 33–180 still determine the same dependency chain. The new dependency recon compiler-verified Main.LatticeFoundations.Interfaces and RootedCapacity.Prelude and mapped the repaired anchors to qualified PositiveDefiniteTreeLattice.treePairing, vertexVector, treePairing_vertexVector_self, and vertexVector_ne_zero. Existing revisions rootedChildren, rootedGram, and treePairing_vertexVector_vertexVector are already specified, so the next small repair round should retain their accepted Statement NL semantics and run Statement Formal onward. Under graph_proved completion, prove the reusable off-diagonal bridge now; later declarations remain dependency-ordered within the expected 10–18 declaration scale.",
+  "status": "closed",
+  "strategy_id": "strategy_b9f2bb44ae0a40ba9081239e5f026481",
+  "summary": "Closed the bottom-up strategy at a coherent blocked boundary. Completed and proved the provider repair, basis pairing, child-component tree/cut/Gram foundations, and declared the canonical child root. Preserved three downstream revisions with exact retry order: first prove a noncircular support-separation/first-intersection theorem; then prove rootedChildComponent_path_decomposition; then prove rootedChildren_rootedChildComponent; then prove rootedChildCount_rootedChildComponent. The node currently has 14 active declarations and no required interface is yet available, so Coordinator must decide whether the independently meaningful rooted-component path/orientation package remains here, moves to an existing node, or becomes a separate boundary before capacity, integer-estimate, and root-bound work resumes."
+}

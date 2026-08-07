@@ -1,0 +1,33 @@
+{
+  "change_summaries": {},
+  "committed_at": "2026-08-06T14:19:14Z",
+  "created_at": "2026-08-06T14:01:13Z",
+  "discard_reason": null,
+  "discarded_at": null,
+  "discarded_by": null,
+  "discarded_created_decl_names": [],
+  "discarded_restored_decl_revisions": {},
+  "discarded_revision_refs": [],
+  "execution_completed_at": "2026-08-06T14:17:14Z",
+  "execution_reason": null,
+  "execution_result_kind": "success",
+  "node_path": "Main.RootedCapacity",
+  "objective": "Create and prove the sole contract-v7 public theorem rootedCapacity_instance_irrel from the existing rootedCapacity definition, with explicit two-convention instance parameters and no semantic or representation changes.",
+  "plan_closeout_acknowledged_at": "2026-08-06T14:19:14Z",
+  "plan_closeout_acknowledged_by": "a_a93b40977f574bad89528358fa89e022",
+  "result_kind": "success",
+  "result_reason": "All planned stages completed, rootedCapacity_instance_irrel@1 is proved and proof-policy satisfied, and no unresolved work remains in round 91.",
+  "revision_refs": [
+    {
+      "change_id": "rootedCapacity_instance_irrel@rev:1",
+      "decl_name": "rootedCapacity_instance_irrel",
+      "revision": 1
+    }
+  ],
+  "round_id": "round_76abaeeed2eb47929622d78e0dbbf0ca",
+  "round_index": 91,
+  "started_at": "2026-08-06T14:03:08Z",
+  "status": "committed",
+  "strategy_id": "strategy_29062a4050064c3f90d77874ea6cbc37",
+  "summary": "Round 91 completed the one-round contract-v7 strategy. Public rootedCapacity_instance_irrel reached proved state with all four stages accepted and current graph_proved proof-policy satisfaction. It consumes the existing rootedCapacity definition, preserves every v1–v6 declaration and interface, and introduces no helper, dependency, representation, or scope expansion. No declaration remains from this strategy; next action is public-interface binding and deterministic content completion checking."
+}

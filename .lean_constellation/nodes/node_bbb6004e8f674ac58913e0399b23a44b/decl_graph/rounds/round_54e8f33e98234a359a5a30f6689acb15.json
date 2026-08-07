@@ -1,0 +1,41 @@
+{
+  "change_summaries": {},
+  "committed_at": null,
+  "created_at": "2026-07-31T11:36:22Z",
+  "discard_reason": "Draft validation rejected the same-round proof dependency from rootedEstimateInductionAggregation to newly created rootedChildInductionAbsBound; split into dependency-ordered rounds.",
+  "discarded_at": "2026-07-31T11:36:51Z",
+  "discarded_by": "a_c126bbd9cf3144258d31b99169f687bb",
+  "discarded_created_decl_names": [
+    "rootedChildInductionAbsBound",
+    "rootedEstimateInductionAggregation"
+  ],
+  "discarded_restored_decl_revisions": {},
+  "discarded_revision_refs": [
+    {
+      "change_id": "rootedChildInductionAbsBound@rev:1",
+      "decl_name": "rootedChildInductionAbsBound",
+      "revision": 1
+    },
+    {
+      "change_id": "rootedEstimateInductionAggregation@rev:1",
+      "decl_name": "rootedEstimateInductionAggregation",
+      "revision": 1
+    }
+  ],
+  "execution_completed_at": null,
+  "execution_reason": null,
+  "execution_result_kind": null,
+  "node_path": "Main.RootedEstimates",
+  "objective": "Prove the two private b_0010 induction bridges exposed by rooted_integer_estimate Proof Formal: specialize a generalized smaller-cardinality estimate to rooted child components, then aggregate/cast the child bounds into the source inequality (1).",
+  "plan_closeout_acknowledged_at": null,
+  "plan_closeout_acknowledged_by": null,
+  "result_kind": null,
+  "result_reason": null,
+  "revision_refs": [],
+  "round_id": "round_54e8f33e98234a359a5a30f6689acb15",
+  "round_index": 10,
+  "started_at": null,
+  "status": "discarded",
+  "strategy_id": "strategy_6bfc666c638344a19f7d1dee5c0a60d4",
+  "summary": null
+}

@@ -1,0 +1,14 @@
+{
+  "closed_at": "2026-08-06T14:19:51Z",
+  "closed_reason": "The sole planned declaration round completed successfully and no further declaration work remains.",
+  "created_at": "2026-08-06T14:01:08Z",
+  "created_round_ids": [
+    "round_76abaeeed2eb47929622d78e0dbbf0ca"
+  ],
+  "node_path": "Main.RootedCapacity",
+  "objective": "Complete contract v7 in one bottom-up graph-proved round by creating the single public rootedCapacity_instance_irrel theorem, quantifying two explicit Fintype/DecidableEq/DecidableRel conventions and proving equality of the corresponding rootedCapacity values by subsingleton instance equality while preserving the existing rootedCapacity representation and every v1–v6 interface.",
+  "rationale": "The contract fixes one public output and the existing rootedCapacity definition is the canonical owner. The proof is a bounded instance-irrelevance argument analogous to the proved admissibility transport; no dependency, Mathlib, resource, representation, or helper package gap is visible.",
+  "status": "closed",
+  "strategy_id": "strategy_29062a4050064c3f90d77874ea6cbc37",
+  "summary": "Contract-v7 strategy achieved: public rootedCapacity_instance_irrel is proved, proof-policy satisfied, and bound to its interface; the existing rootedCapacity representation and all v1–v6 declarations remain unchanged."
+}

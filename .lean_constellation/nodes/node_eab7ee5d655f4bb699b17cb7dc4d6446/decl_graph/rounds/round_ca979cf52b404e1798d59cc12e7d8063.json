@@ -1,0 +1,33 @@
+{
+  "change_summaries": {},
+  "committed_at": "2026-08-07T02:07:17Z",
+  "created_at": "2026-08-07T01:40:25Z",
+  "discard_reason": null,
+  "discarded_at": null,
+  "discarded_by": null,
+  "discarded_created_decl_names": [],
+  "discarded_restored_decl_revisions": {},
+  "discarded_revision_refs": [],
+  "execution_completed_at": "2026-08-07T02:05:45Z",
+  "execution_reason": null,
+  "execution_result_kind": "success",
+  "node_path": "Main.RootedCapacity",
+  "objective": "Create and prove the public contract-v8 rootedNonroot_quadratic_eq_sum_childQuadratics theorem using the committed generic finite-sum helper and the exact existing nonroot child-block reindex convention.",
+  "plan_closeout_acknowledged_at": "2026-08-07T02:07:17Z",
+  "plan_closeout_acknowledged_by": "a_a93b40977f574bad89528358fa89e022",
+  "result_kind": "success",
+  "result_reason": "The public contract-v8 theorem reached proved state with all stages and proof-policy checks passed.",
+  "revision_refs": [
+    {
+      "change_id": "rootedNonroot_quadratic_eq_sum_childQuadratics@rev:1",
+      "decl_name": "rootedNonroot_quadratic_eq_sum_childQuadratics",
+      "revision": 1
+    }
+  ],
+  "round_id": "round_ca979cf52b404e1798d59cc12e7d8063",
+  "round_index": 93,
+  "started_at": "2026-08-07T01:42:07Z",
+  "status": "committed",
+  "strategy_id": "strategy_905cc106623c417d9c8c02e9fb29f237",
+  "summary": "Round 93 completed the second and final stage of the contract-v8 strategy. Public rootedNonroot_quadratic_eq_sum_childQuadratics@1 reached proved state and graph_proved proof-policy satisfaction, consuming the already-proved canonical reindex theorem and private finite-sum helper. The exact interface shape from solution.tex 57–68 is realized with no unresolved provider, Mathlib, helper, representation, or scope issue. No declaration work remains; next action is interface/public-boundary curation and the deterministic completion check."
+}

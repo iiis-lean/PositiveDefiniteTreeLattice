@@ -1,0 +1,187 @@
+{
+  "change": {
+    "anticipated_proof_dep_names": [
+      "Irreducible",
+      "treePairing_add_self"
+    ],
+    "anticipated_statement_dep_names": [
+      "Irreducible",
+      "treePairing"
+    ],
+    "base_revision": 1,
+    "kind": "update",
+    "objective": "Recapture the unchanged required public interface theorem as compiler-confirmed PositiveDefiniteTreeLattice.irreducible_of_pairing_self_eq_one. For finite V with decidable equality, G with decidable adjacency, weight : V → ℤ, and x : V → ℤ, preserve exactly h_positive : ∀ y : V → ℤ, y ≠ 0 → 0 < treePairing G weight y y and hx : treePairing G weight x x = 1, concluding Irreducible G weight x with no tree, vertex, degree, or strengthened positivity assumption. The Statement consumes declared namespaced treePairing and Irreducible; the accepted solution.tex lines 19–31 proof consumes proved namespaced treePairing_add_self and integer linarith to contradict 1 ≥ 2. Preserve all objects, indices, assumptions, equality direction, conclusion, proof, dependencies, and public visibility; create no global alias.",
+    "require_target_state_satisfied": true,
+    "reset_to_state": "specified",
+    "summary": "Successfully recaptured the unchanged required public theorem as compiler-confirmed PositiveDefiniteTreeLattice.irreducible_of_pairing_self_eq_one. Statement Formal, Proof NL, and Proof Formal passed; the theorem reached proved and required graph_proved satisfaction passed against declared namespaced treePairing and Irreducible and proved namespaced treePairing_add_self. The integral positive-definiteness hypothesis, self-pairing-one equality, Irreducible conclusion, objects, indices, assumptions, equality direction, accepted contradiction proof, dependencies, and public visibility were preserved exactly, with no global alias. No blocker or cleanup target remains.",
+    "target_state": "proved"
+  },
+  "lean_decl_name": "PositiveDefiniteTreeLattice.irreducible_of_pairing_self_eq_one",
+  "proof": {
+    "deps": [
+      {
+        "kind": "repo_decl",
+        "reason": "Expands the self-pairing of a + b into the two positive self-pairings and twice the nonnegative cross term.",
+        "ref": {
+          "name": "treePairing_add_self",
+          "node": "Main.LatticeFoundations",
+          "repo": null,
+          "revision": 2
+        }
+      }
+    ],
+    "formal": {
+      "check": {
+        "allow_sorry": false,
+        "contains_axiom": false,
+        "contains_sorry": false,
+        "diagnostics": {
+          "diagnostics": [],
+          "passed": true,
+          "raw_excerpt": "{'success': True, 'error_message': None, 'file': 'PositiveDefiniteTreeLattice.Main.LatticeFoundations.Theorems.irreducible_of_pairing_self_eq_one', 'items': [], 'total_items': 0, 'error_count': 0, 'warning_count': 0, 'info_count': 0, 'sorry_count': 0}",
+          "repo_file_path": "PositiveDefiniteTreeLattice/Main/LatticeFoundations/Theorems/irreducible_of_pairing_self_eq_one.lean",
+          "schema_version": 2,
+          "summary": "Diagnostics returned 0 items"
+        },
+        "message": "Lean check passed.",
+        "policy": "proof_formal",
+        "scan": {
+          "admit_count": 0,
+          "axiom_count": 0,
+          "contains_admit": false,
+          "contains_axiom": false,
+          "contains_opaque": false,
+          "contains_sorry": false,
+          "contains_unsafe": false,
+          "limitation": "Text scan ignores Lean comments and string literals with a conservative first-round lexer; it is not a full Lean parser.",
+          "occurrences": [],
+          "opaque_count": 0,
+          "sorry_count": 0,
+          "summary": "sorry=0, admit=0, axiom=0, opaque=0, unsafe=0",
+          "unsafe_count": 0
+        },
+        "status": "passed"
+      },
+      "code": "-- lean-constellation: managed-imports-begin\nimport PositiveDefiniteTreeLattice.Main.LatticeFoundations.Prelude\nimport PositiveDefiniteTreeLattice.Main.LatticeFoundations.Defs.Irreducible\nimport PositiveDefiniteTreeLattice.Main.LatticeFoundations.Defs.treePairing\nimport PositiveDefiniteTreeLattice.Main.LatticeFoundations.Theorems.treePairing_add_self\n-- lean-constellation: managed-imports-end\n\n-- lean-constellation: declaration-source-begin\n\n/--\n# lean-constellation target: `irreducible_of_pairing_self_eq_one`\n\nFor a finite type `V` with decidable equality, a simple graph `G : SimpleGraph V` with decidable\nadjacency, an integer-valued weight function `weight : V → ℤ`, and `x : V → ℤ`, assume\n\n`h_positive : ∀ y : V → ℤ, y ≠ 0 → 0 < treePairing G weight y y`\n\nand\n\n`hx : treePairing G weight x x = 1`.\n\nThen `Irreducible G weight x`.\n\nNo tree, vertex, degree, or additional positivity assumption is required.\n\n## Sources\n\n- Source `solution.tex`, lines 19–31\n- Source `formal_target.lean`, lines 27–30\n\n## Statement dependencies\n\n- `Main.LatticeFoundations::Irreducible` → `PositiveDefiniteTreeLattice.Irreducible` from\n  `PositiveDefiniteTreeLattice.Main.LatticeFoundations.Defs.Irreducible`\n- `Main.LatticeFoundations::treePairing` → `PositiveDefiniteTreeLattice.treePairing` from\n  `PositiveDefiniteTreeLattice.Main.LatticeFoundations.Defs.treePairing`\n\n## Proof outline\n\nUnfold `PositiveDefiniteTreeLattice.Irreducible` and argue by contradiction.  Suppose\n`x = a + b` with `a ≠ 0`, `b ≠ 0`, and\n`0 ≤ treePairing G weight a b`.  Apply `h_positive` to the two nonzero\nsummands, obtaining strict integer inequalities\n`0 < treePairing G weight a a` and\n`0 < treePairing G weight b b`.\n\nRewrite `hx` along `x = a + b`, then use the proved theorem\n`PositiveDefiniteTreeLattice.treePairing_add_self` to obtain\n`treePairing G weight a a + treePairing G weight b b +\n  2 * treePairing G weight a b = 1`.\nTogether with the two strict positivity facts and the assumed nonnegative\ncross term, integer `linarith` derives that this same left side is at least\n`2`, contradicting its equality to `1`.\n\nThus the alleged decomposition cannot exist, establishing exactly\n`Irreducible G weight x`.  This follows the norm-one proof in solution.tex\nlines 19–31 and introduces no tree, vertex, degree, or strengthened\npositivity assumption; no helper declaration is needed.\n\n## Proof sources\n\n- Source `solution.tex`, lines 19–31\n\n## Proof dependencies\n\n- `Main.LatticeFoundations::treePairing_add_self` →\n  `PositiveDefiniteTreeLattice.treePairing_add_self` from\n  `PositiveDefiniteTreeLattice.Main.LatticeFoundations.Theorems.treePairing_add_self`\n-/\ntheorem PositiveDefiniteTreeLattice.irreducible_of_pairing_self_eq_one {V : Type*}\n    [Fintype V] [DecidableEq V] (G : SimpleGraph V) [DecidableRel G.Adj] (weight x : V → ℤ)\n    (h_positive : ∀ y : V → ℤ, y ≠ 0 →\n      0 < PositiveDefiniteTreeLattice.treePairing G weight y y)\n    (hx : PositiveDefiniteTreeLattice.treePairing G weight x x = 1) :\n    PositiveDefiniteTreeLattice.Irreducible G weight x := by\n  unfold PositiveDefiniteTreeLattice.Irreducible\n  rintro ⟨a, b, ha, hb, hab, hcross⟩\n  have haa := h_positive a ha\n  have hbb := h_positive b hb\n  rw [hab, PositiveDefiniteTreeLattice.treePairing_add_self] at hx\n  linarith\n"
+    },
+    "nl": {
+      "origin": [
+        {
+          "end_line": 31,
+          "end_locator": null,
+          "kind": "source",
+          "note": "The source norm-one lemma proves irreducibility by expanding a decomposition and deriving 1 = a² + b² + 2a·b ≥ 2.",
+          "ref": null,
+          "resource_key": null,
+          "source_path": "solution.tex",
+          "start_line": 19,
+          "start_locator": null
+        }
+      ],
+      "text": "Unfold `PositiveDefiniteTreeLattice.Irreducible` and argue by contradiction.  Suppose\n`x = a + b` with `a ≠ 0`, `b ≠ 0`, and\n`0 ≤ treePairing G weight a b`.  Apply `h_positive` to the two nonzero\nsummands, obtaining strict integer inequalities\n`0 < treePairing G weight a a` and\n`0 < treePairing G weight b b`.\n\nRewrite `hx` along `x = a + b`, then use the proved theorem\n`PositiveDefiniteTreeLattice.treePairing_add_self` to obtain\n`treePairing G weight a a + treePairing G weight b b +\n  2 * treePairing G weight a b = 1`.\nTogether with the two strict positivity facts and the assumed nonnegative\ncross term, integer `linarith` derives that this same left side is at least\n`2`, contradicting its equality to `1`.\n\nThus the alleged decomposition cannot exist, establishing exactly\n`Irreducible G weight x`.  This follows the norm-one proof in solution.tex\nlines 19–31 and introduces no tree, vertex, degree, or strengthened\npositivity assumption; no helper declaration is needed."
+    }
+  },
+  "revision": 2,
+  "state": "proved",
+  "statement": {
+    "deps": [
+      {
+        "kind": "repo_decl",
+        "reason": "The theorem conclusion is the accepted Irreducible predicate.",
+        "ref": {
+          "name": "Irreducible",
+          "node": "Main.LatticeFoundations",
+          "repo": null,
+          "revision": 3
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "Both the exact positive-definiteness hypothesis and norm-one equality are expressed with treePairing.",
+        "ref": {
+          "name": "treePairing",
+          "node": "Main.LatticeFoundations",
+          "repo": null,
+          "revision": 3
+        }
+      }
+    ],
+    "formal": {
+      "check": {
+        "allow_sorry": true,
+        "contains_axiom": false,
+        "contains_sorry": true,
+        "diagnostics": {
+          "diagnostics": [
+            {
+              "column": 9,
+              "line": 37,
+              "message": "declaration uses `sorry`",
+              "severity": "warning"
+            }
+          ],
+          "passed": true,
+          "raw_excerpt": "{'success': True, 'error_message': None, 'file': 'PositiveDefiniteTreeLattice.Main.LatticeFoundations.Theorems.irreducible_of_pairing_self_eq_one', 'items': [{'severity': 'warning', 'pos': {'line': 37, 'column': 9}, 'endPos': {'line': 37, 'column': 71}, 'kind': None, 'data': 'declaration uses `sorry`', 'fileName': 'PositiveDefiniteTreeLattice.Main.LatticeFoundations.Theorems.irreducible_of_pairing_self_eq_one', 'content': '  `PositiveDefiniteTreeLattice.Main.LatticeFoundations.Defs.treePairing`\\n-/\\ntheorem PositiveDefiniteTreeLattice.irreducible_of_pairing_self_eq_one {V : Type*}\\n    [Fintype V] [DecidableEq V] (G : SimpleGraph V) [DecidableRel G.Adj] (weight x : V → ℤ)\\n    (h_positive : ∀ y : V → ℤ, y ≠ 0 →'}], 'total_items': 1, 'error_count': 0, 'warning_count': 1, 'info_count': 0, 'sorry_count': 1}",
+          "repo_file_path": "PositiveDefiniteTreeLattice/Main/LatticeFoundations/Theorems/irreducible_of_pairing_self_eq_one.lean",
+          "schema_version": 2,
+          "summary": "Diagnostics returned 1 items"
+        },
+        "message": "Lean check passed.",
+        "policy": "statement_formal",
+        "scan": {
+          "admit_count": 0,
+          "axiom_count": 0,
+          "contains_admit": false,
+          "contains_axiom": false,
+          "contains_opaque": false,
+          "contains_sorry": true,
+          "contains_unsafe": false,
+          "limitation": "Text scan ignores Lean comments and string literals with a conservative first-round lexer; it is not a full Lean parser.",
+          "occurrences": [
+            {
+              "column": 3,
+              "excerpt": "sorry",
+              "kind": "sorry",
+              "line": 43
+            }
+          ],
+          "opaque_count": 0,
+          "sorry_count": 1,
+          "summary": "sorry=1, admit=0, axiom=0, opaque=0, unsafe=0",
+          "unsafe_count": 0
+        },
+        "status": "passed"
+      },
+      "code": "-- lean-constellation: managed-imports-begin\nimport PositiveDefiniteTreeLattice.Main.LatticeFoundations.Prelude\nimport PositiveDefiniteTreeLattice.Main.LatticeFoundations.Defs.Irreducible\nimport PositiveDefiniteTreeLattice.Main.LatticeFoundations.Defs.treePairing\n-- lean-constellation: managed-imports-end\n\n-- lean-constellation: declaration-source-begin\n\n/--\n# lean-constellation target: `irreducible_of_pairing_self_eq_one`\n\nFor a finite type `V` with decidable equality, a simple graph `G : SimpleGraph V` with decidable\nadjacency, an integer-valued weight function `weight : V → ℤ`, and `x : V → ℤ`, assume\n\n`h_positive : ∀ y : V → ℤ, y ≠ 0 → 0 < treePairing G weight y y`\n\nand\n\n`hx : treePairing G weight x x = 1`.\n\nThen `Irreducible G weight x`.\n\nNo tree, vertex, degree, or additional positivity assumption is required.\n\n## Sources\n\n- Source `solution.tex`, lines 19–31\n- Source `formal_target.lean`, lines 27–30\n\n## Statement dependencies\n\n- `Main.LatticeFoundations::Irreducible` → `PositiveDefiniteTreeLattice.Irreducible` from\n  `PositiveDefiniteTreeLattice.Main.LatticeFoundations.Defs.Irreducible`\n- `Main.LatticeFoundations::treePairing` → `PositiveDefiniteTreeLattice.treePairing` from\n  `PositiveDefiniteTreeLattice.Main.LatticeFoundations.Defs.treePairing`\n-/\ntheorem PositiveDefiniteTreeLattice.irreducible_of_pairing_self_eq_one {V : Type*}\n    [Fintype V] [DecidableEq V] (G : SimpleGraph V) [DecidableRel G.Adj] (weight x : V → ℤ)\n    (h_positive : ∀ y : V → ℤ, y ≠ 0 →\n      0 < PositiveDefiniteTreeLattice.treePairing G weight y y)\n    (hx : PositiveDefiniteTreeLattice.treePairing G weight x x = 1) :\n    PositiveDefiniteTreeLattice.Irreducible G weight x := by\n  sorry\n"
+    },
+    "nl": {
+      "origin": [
+        {
+          "end_line": 31,
+          "end_locator": null,
+          "kind": "source",
+          "note": "The source norm-one lemma states that a norm-one vector in an integral positive-definite lattice is irreducible and gives the contradiction argument.",
+          "ref": null,
+          "resource_key": null,
+          "source_path": "solution.tex",
+          "start_line": 19,
+          "start_locator": null
+        },
+        {
+          "end_line": 30,
+          "end_locator": null,
+          "kind": "source",
+          "note": "The formal source supplies the exact finite graph/function binders and strict positive-definiteness hypothesis used here.",
+          "ref": null,
+          "resource_key": null,
+          "source_path": "formal_target.lean",
+          "start_line": 27,
+          "start_locator": null
+        }
+      ],
+      "text": "For a finite type `V` with decidable equality, a simple graph `G : SimpleGraph V` with decidable adjacency, an integer-valued weight function `weight : V → ℤ`, and `x : V → ℤ`, assume\n\n`h_positive : ∀ y : V → ℤ, y ≠ 0 → 0 < treePairing G weight y y`\n\nand\n\n`hx : treePairing G weight x x = 1`.\n\nThen `Irreducible G weight x`.\n\nNo tree, vertex, degree, or additional positivity assumption is required."
+    }
+  },
+  "status": "committed",
+  "updated_at": "2026-07-29T19:33:38Z"
+}

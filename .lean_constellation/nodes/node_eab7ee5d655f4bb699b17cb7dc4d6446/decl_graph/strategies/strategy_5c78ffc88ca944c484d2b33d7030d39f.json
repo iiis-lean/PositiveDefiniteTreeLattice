@@ -1,0 +1,14 @@
+{
+  "closed_at": "2026-08-06T09:26:51Z",
+  "closed_reason": "Content task is blocked pending capture/linter infrastructure repair; retry the same theorem after generated target markers are exempted from long-line lint or multiline markers are recognized.",
+  "created_at": "2026-08-03T17:55:19Z",
+  "created_round_ids": [
+    "round_3823ebdabadc45eb80ed1ba3f82e42a3"
+  ],
+  "node_path": "Main.RootedCapacity",
+  "objective": "Complete contract v6 in one graph-proved round by composing the exact root/nonroot block convention with the proved per-child inverse-reindex and root-row support APIs to evaluate the scalar contraction as rootedChildCapacitySum.",
+  "rationale": "Solution.tex 57–68 identifies cᵀ Q₀⁻¹ c with the sum of child capacities. Contract v6 fixes the exact root subtype P, nonroot subtype R, B₀/C₀/D blocks, arbitrary r : P, and pointwise child-admissibility premise, and forbids a new representation chain. The v5 inverse-reindex composition, canonical equivalence application, weighted support theorem, and stable child summand/sum are already graph-proved or declared. Under graph_proved completion, create exactly the required public theorem and prove it directly; no preparation flow or helper is currently justified.",
+  "status": "closed",
+  "strategy_id": "strategy_5c78ffc88ca944c484d2b33d7030d39f",
+  "summary": "The v6 strategy reached a semantically valid specified theorem, but cannot advance through Statement Formal because the workflow requires a 107-character single-line target marker that its own style linter rejects."
+}

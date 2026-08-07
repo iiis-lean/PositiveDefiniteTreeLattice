@@ -1,0 +1,33 @@
+{
+  "change_summaries": {},
+  "committed_at": "2026-07-31T11:35:22Z",
+  "created_at": "2026-07-31T06:06:24Z",
+  "discard_reason": null,
+  "discarded_at": null,
+  "discarded_by": null,
+  "discarded_created_decl_names": [],
+  "discarded_restored_decl_revisions": {},
+  "discarded_revision_refs": [],
+  "execution_completed_at": "2026-07-31T07:16:13Z",
+  "execution_reason": "The accepted strong-induction route requires two untracked, reusable bridge theorems before the public theorem can be formalized without embedding major new mathematics as proof-local code. The present dependency closure provides the individual ingredients but no API that composes them at the required child-component instances and rational casts.",
+  "execution_result_kind": "blocked",
+  "node_path": "Main.RootedEstimates",
+  "objective": "Create and prove the exact qualified public b_0010 rooted integer estimate by Fintype.card induction over proved rooted child components, consuming the now-complete decomposition, capacity, distance, and arithmetic foundation package.",
+  "plan_closeout_acknowledged_at": "2026-07-31T11:35:22Z",
+  "plan_closeout_acknowledged_by": "a_c126bbd9cf3144258d31b99169f687bb",
+  "result_kind": "blocked",
+  "result_reason": "The exact public statement and proof plan are accepted, but Proof Formal requires two tracked repository-local bridges: child-component induction/capacity identification and rational cast/sum aggregation.",
+  "revision_refs": [
+    {
+      "change_id": "rooted_integer_estimate@rev:1",
+      "decl_name": "rooted_integer_estimate",
+      "revision": 1
+    }
+  ],
+  "round_id": "round_c0f9999551784b09a43a46c71e50fc92",
+  "round_index": 9,
+  "started_at": "2026-07-31T06:07:36Z",
+  "status": "committed",
+  "strategy_id": "strategy_6bfc666c638344a19f7d1dee5c0a60d4",
+  "summary": "The strategy made statement and proof-plan progress: the exact public `PositiveDefiniteTreeLattice.rooted_integer_estimate` identity and source-faithful rational inequality are compiler-accepted, and the strong-induction Proof NL plan is accepted. The theorem remains proof_planned and unsatisfied because Proof Formal exposed two bounded repository-local composition gaps: a child-component induction-instantiation/capacity-identification theorem, and a rational cast-and-sum aggregation theorem matching the proved integral rooted-child pairing decomposition to the public rational goal. All underlying provider APIs, local decomposition/arithmetic lemmas, and Mathlib cast/sum facts were checked; none currently supplies these composed shapes. Both are predictable tracked helpers within Main.RootedEstimates and the existing strategy, not external prerequisites or scope overflow. The next action after closeout should be one small helper round proving these two bridges; retry the public parent only after their closure is graph_proved. No cleanup or state-only work beyond the retained public proof_planned parent remains."
+}

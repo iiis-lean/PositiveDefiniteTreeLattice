@@ -1,0 +1,14 @@
+{
+  "closed_at": "2026-08-07T04:35:13Z",
+  "closed_reason": "All intended graph state and the contract-v10 public interface were completed successfully.",
+  "created_at": "2026-08-07T04:12:02Z",
+  "created_round_ids": [
+    "round_fe9669ef178c4ee7ad545d1edae5da85"
+  ],
+  "node_path": "Main.RootedCapacity",
+  "objective": "Complete contract v10 in one bottom-up graph-proved round by creating and proving the single public generic rootedGram_bilinear_eq_treePairing_cast theorem directly from the existing rootedGram, treePairing, and vertexVector definitions using finite-sum delta evaluation and integer-to-rational cast algebra.",
+  "rationale": "The completed dependency recon verified the exact arbitrary-graph coefficient convention and found no provider, representation, or helper gap. The contract requires exactly this public bridge, graph_proved completion, and preservation of all v1-v9 declarations; a single proved consumer round is therefore the smallest coherent route.",
+  "status": "closed",
+  "strategy_id": "strategy_db91ac3c804a44819257359e34789bf5",
+  "summary": "The one-round v10 strategy is fully achieved: the sole public generic bilinear rootedGram/treePairing bridge is proved, proof-policy satisfied, semantically matches the contract, and is interface-bound. No helper, dependency, representation, or unfinished declaration remains."
+}

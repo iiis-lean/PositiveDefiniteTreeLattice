@@ -1,0 +1,15 @@
+{
+  "created_at": "2026-07-30T00:43:40Z",
+  "current_revision": 1,
+  "kind": "definition",
+  "lifecycle": "active",
+  "module": "PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildCount",
+  "name": "rootedChildCount",
+  "node_path": "Main.RootedCapacity",
+  "public": true,
+  "revision_ids": [
+    1
+  ],
+  "summary": "The number of children of a vertex in a finite rooted tree.",
+  "updated_at": "2026-07-30T00:43:40Z"
+}

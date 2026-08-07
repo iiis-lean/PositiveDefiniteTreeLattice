@@ -1,0 +1,354 @@
+{
+  "boundary": "Own the final assembly: identify the unique underweighted vertex, handle weight-one vertices through norm-one irreducibility, form rooted components after deletion, prove their admissibility and the central Schur-complement inequality, and eliminate decompositions using the rooted estimate and root bound. Exclude reimplementation of the foundational predicates or generic rooted-capacity theorems. Expected scale: about 6–14 important declarations spanning SourceIndex blocks b_0003, b_0006, and b_0012.",
+  "committed_at": "2026-08-03T10:35:50Z",
+  "constraints": "Preserve the exact theorem header, integral function model, supplied pairing, uniqueness hypothesis, and Irreducible predicate. Do not add assumptions, weaken the conclusion, or substitute a different irreducibility notion.",
+  "context_refs": [],
+  "contract_kind": "content",
+  "created_at": "2026-07-29T14:27:26Z",
+  "decl_graph_head": {
+    "irreducible_vertex_of_weight_eq_one": 1,
+    "rootedChildCapacitySum_lt_weight_of_unique_underweight": 1,
+    "rootedChildComponent_childCount_add_one_eq_degree": 2,
+    "rootedChildComponent_isAdmissible_of_unique_underweight": 3,
+    "rootedGram_posDef_of_integer_positive": 1,
+    "weight_ge_degree_of_ne_unique_underweight": 1,
+    "weight_ge_two_of_ne_one": 1,
+    "weight_pos_of_positive": 1
+  },
+  "deps": [
+    {
+      "added_by": "coordinator",
+      "dep_id": "dep_3c31ad87d02cef2f",
+      "expected_decl_refs": [
+        {
+          "name": "IrreducibleAnchor",
+          "node": "Main.LatticeFoundations",
+          "repo": null,
+          "revision": 1
+        },
+        {
+          "name": "irreducibleOfPairingSelfEqOneAnchor",
+          "node": "Main.LatticeFoundations",
+          "repo": null,
+          "revision": 1
+        },
+        {
+          "name": "treePairingAnchor",
+          "node": "Main.LatticeFoundations",
+          "repo": null,
+          "revision": 1
+        },
+        {
+          "name": "treePairing_add_left",
+          "node": "Main.LatticeFoundations",
+          "repo": null,
+          "revision": 6
+        },
+        {
+          "name": "treePairing_add_right",
+          "node": "Main.LatticeFoundations",
+          "repo": null,
+          "revision": 6
+        },
+        {
+          "name": "treePairing_add_self",
+          "node": "Main.LatticeFoundations",
+          "repo": null,
+          "revision": 3
+        },
+        {
+          "name": "treePairing_symm",
+          "node": "Main.LatticeFoundations",
+          "repo": null,
+          "revision": 6
+        },
+        {
+          "name": "treePairing_vertexVector_self",
+          "node": "Main.LatticeFoundations",
+          "repo": null,
+          "revision": 5
+        },
+        {
+          "name": "vertexVectorAnchor",
+          "node": "Main.LatticeFoundations",
+          "repo": null,
+          "revision": 1
+        },
+        {
+          "name": "vertexVector_ne_zero",
+          "node": "Main.LatticeFoundations",
+          "repo": null,
+          "revision": 5
+        }
+      ],
+      "reason": "The protected final theorem uses the exact public pairing, vertex vectors, irreducibility predicate, norm-one irreducibility bridge, and pairing algebra.",
+      "target": {
+        "node": "Main.LatticeFoundations",
+        "repo": null
+      }
+    },
+    {
+      "added_by": "coordinator",
+      "dep_id": "dep_5e07d784efaf749b",
+      "expected_decl_refs": [
+        {
+          "name": "IsAdmissibleRootedTree",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 1
+        },
+        {
+          "name": "capacity_pos_lt_one",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 2
+        },
+        {
+          "name": "rootedCapacity",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 1
+        },
+        {
+          "name": "rootedCapacity_pos",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 1
+        },
+        {
+          "name": "rootedCapacity_recursion",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 5
+        },
+        {
+          "name": "rootedChildCapacitySum",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 2
+        },
+        {
+          "name": "rootedChildCapacitySummand",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 1
+        },
+        {
+          "name": "rootedChildComponent",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 1
+        },
+        {
+          "name": "rootedChildComponent_isTree",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 1
+        },
+        {
+          "name": "rootedChildComponent_partition",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 1
+        },
+        {
+          "name": "rootedChildCount",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 1
+        },
+        {
+          "name": "rootedChildRoot",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 1
+        },
+        {
+          "name": "rootedChildren",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 2
+        },
+        {
+          "name": "rootedGram",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 2
+        },
+        {
+          "name": "rootedGram_rootedChildComponent",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 1
+        },
+        {
+          "name": "rootedChildComponent_parent_not_mem",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 1
+        },
+        {
+          "name": "rootedChildCount_rootedChildComponent",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 2
+        },
+        {
+          "name": "rootedChildCount_add_one_eq_degree",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 1
+        },
+        {
+          "name": "treePairing_vertexVector_vertexVector",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 2
+        }
+      ],
+      "reason": "The final admissibility proof additionally consumes the promoted, instance-stable basis-entry evaluation treePairing_vertexVector_vertexVector to prove the frozen child-component rootedGram equality without crossing canonical instance representations.",
+      "target": {
+        "node": "Main.RootedCapacity",
+        "repo": null
+      }
+    },
+    {
+      "added_by": "coordinator",
+      "dep_id": "dep_26bf537d0e70f14d",
+      "expected_decl_refs": [
+        {
+          "name": "rooted_integer_estimate",
+          "node": "Main.RootedEstimates",
+          "repo": null,
+          "revision": 2
+        },
+        {
+          "name": "root_coefficient_lt_norm",
+          "node": "Main.RootedEstimates",
+          "repo": null,
+          "revision": 1
+        }
+      ],
+      "reason": "The p≥1 and p=0 contradiction branches in solution.tex 229–241 consume the exact proved rooted integer estimate and strict root-coefficient bound.",
+      "target": {
+        "node": "Main.RootedEstimates",
+        "repo": null
+      }
+    }
+  ],
+  "exports": [],
+  "goal": "Prove and expose the protected theorem PositiveDefiniteTreeLattice.exists_irreducible_vertex from the foundational and rooted-capacity APIs.",
+  "interfaces": [
+    {
+      "bound_decl": null,
+      "expected_statement_lean_code": null,
+      "kind": "theorem",
+      "name": "PositiveDefiniteTreeLattice.exists_irreducible_vertex",
+      "note": "Consumer anchor: protected Main interface PositiveDefiniteTreeLattice.exists_irreducible_vertex. Preserve verbatim the header in formal_target.lean lines 26–32: arbitrary finite V, SimpleGraph V tree, integral treePairing positivity, ∃! v with weight v < degree v, and conclusion ∃ v, Irreducible G weight (vertexVector v). Reuse the public definitions and rooted estimates; do not alter assumptions or conclusion.",
+      "source_refs": [],
+      "summary": "A positive-definite integer-weighted finite tree with a unique underweighted vertex has an irreducible vertex vector."
+    }
+  ],
+  "mathlib_decls": [
+    {
+      "added_by": "worker",
+      "kind": "theorem",
+      "module": "Mathlib.Algebra.BigOperators.Group.Finset.Basic",
+      "name": "Finset.sum_erase_add",
+      "reason": null
+    },
+    {
+      "added_by": "worker",
+      "kind": "theorem",
+      "module": "Mathlib.Algebra.BigOperators.Group.Finset.Basic",
+      "name": "Finset.sum_biUnion",
+      "reason": null
+    },
+    {
+      "added_by": "worker",
+      "kind": "theorem",
+      "module": "Mathlib.Algebra.Order.BigOperators.Group.Finset",
+      "name": "Finset.sum_nonneg",
+      "reason": null
+    },
+    {
+      "added_by": "worker",
+      "kind": "theorem",
+      "module": "Mathlib.Algebra.Order.BigOperators.Group.Finset",
+      "name": "Finset.sum_le_sum",
+      "reason": null
+    },
+    {
+      "added_by": "worker",
+      "kind": "lemma",
+      "module": "Mathlib.Algebra.Order.BigOperators.Group.Finset",
+      "name": "Finset.sum_pos_iff_of_nonneg",
+      "reason": null
+    },
+    {
+      "added_by": "worker",
+      "kind": "theorem",
+      "module": "Mathlib.Algebra.Order.BigOperators.Group.Finset",
+      "name": "Finset.sum_lt_sum_of_nonempty",
+      "reason": null
+    },
+    {
+      "added_by": "worker",
+      "kind": "theorem",
+      "module": "Mathlib.Tactic.IntervalCases",
+      "name": "Int.le_sub_one_of_not_le",
+      "reason": null
+    }
+  ],
+  "mathlib_modules": [
+    {
+      "added_by": "worker",
+      "module": "Mathlib.Algebra.BigOperators.Group.Finset.Basic",
+      "reason": null
+    },
+    {
+      "added_by": "worker",
+      "module": "Mathlib.Algebra.Order.BigOperators.Group.Finset",
+      "reason": null
+    },
+    {
+      "added_by": "worker",
+      "module": "Mathlib.Tactic.IntervalCases",
+      "reason": null
+    }
+  ],
+  "objective": "Produce a graph-proved final package whose public theorem has exactly the protected Lean statement and whose proof reuses the lower public APIs without semantic drift.",
+  "owned_refs": [
+    {
+      "added_by": "coordinator",
+      "reason": "Exact protected public theorem header and conclusion.",
+      "ref": {
+        "kind": "source",
+        "ref": {
+          "end_line": 33,
+          "path": "formal_target.lean",
+          "start_line": 24
+        }
+      },
+      "ref_id": "mat_6b66ce87aa5c2d15"
+    },
+    {
+      "added_by": "coordinator",
+      "reason": "Complete final proof by rooted components, Schur complement positivity, and decomposition contradiction.",
+      "ref": {
+        "kind": "source",
+        "ref": {
+          "end_line": 244,
+          "path": "solution.tex",
+          "start_line": 182
+        }
+      },
+      "ref_id": "mat_9c9d897ba83ecbd8"
+    }
+  ],
+  "status": "committed",
+  "success_criteria": "PositiveDefiniteTreeLattice.exists_irreducible_vertex is compiler-accepted with the exact protected statement and a proved body; all local theorem-like helpers are proved; its formal Statement prerequisites are public through the enclosing scope.",
+  "summary": "Accepted blocked outcome for contract v1. The source-faithful central gap lemma rootedChildCapacitySum_lt_weight_of_unique_underweight@1 is compiler-declared with its statement preserved, but proof completion requires RootedCapacity's assembled nonroot inverse quadratic identity (or an equivalent Schur-denominator interface) without assuming admissibility at the exceptional root. Existing local component admissibility and ambient Gram positivity are proved; the unresolved prerequisite belongs to the existing RootedCapacity matrix/capacity boundary, not this final assembly node.",
+  "task_completion_mode": "graph_proved",
+  "version": 1
+}

@@ -1,0 +1,155 @@
+{
+  "change": {
+    "anticipated_proof_dep_names": [],
+    "anticipated_statement_dep_names": [],
+    "base_revision": null,
+    "kind": "create",
+    "objective": "Prove the elementary integer fact used in the singleton base case of SourceIndex b_0010 / solution.tex lines 93–100: for every integer n, 0 ≤ n * (n - 1). It will be consumed after substituting n = W*m-k in the rooted integer estimate base case.",
+    "require_target_state_satisfied": true,
+    "reset_to_state": null,
+    "summary": "Created the private theorem consecutiveIntegerProductNonneg for the singleton base case of b_0010. Statement NL/Formal and Proof NL/Formal all passed; revision 1 reached proved and satisfies the graph_proved proof policy. No blocker or follow-up repair is known.",
+    "target_state": "proved"
+  },
+  "lean_decl_name": "consecutiveIntegerProductNonneg",
+  "proof": {
+    "deps": [
+      {
+        "kind": "mathlib_decl",
+        "reason": "Used in the positive-integer branch once 0 ≤ n and 0 ≤ n - 1 are established.",
+        "ref": {
+          "module": "Mathlib.Algebra.Order.GroupWithZero.Basic",
+          "name": "mul_nonneg"
+        }
+      },
+      {
+        "kind": "mathlib_decl",
+        "reason": "Used in the nonpositive-integer branch once n ≤ 0 and n - 1 ≤ 0 are established.",
+        "ref": {
+          "module": "Mathlib.Algebra.Order.Ring.Unbundled.Basic",
+          "name": "mul_nonneg_of_nonpos_of_nonpos"
+        }
+      }
+    ],
+    "formal": {
+      "check": {
+        "allow_sorry": false,
+        "contains_axiom": false,
+        "contains_sorry": false,
+        "diagnostics": {
+          "diagnostics": [],
+          "passed": true,
+          "raw_excerpt": "{'success': True, 'error_message': None, 'file': 'PositiveDefiniteTreeLattice.Main.RootedEstimates.Theorems.consecutiveIntegerProductNonneg', 'items': [], 'total_items': 0, 'error_count': 0, 'warning_count': 0, 'info_count': 0, 'sorry_count': 0}",
+          "repo_file_path": "PositiveDefiniteTreeLattice/Main/RootedEstimates/Theorems/consecutiveIntegerProductNonneg.lean",
+          "schema_version": 2,
+          "summary": "Diagnostics returned 0 items"
+        },
+        "message": "Lean check passed.",
+        "policy": "proof_formal",
+        "scan": {
+          "admit_count": 0,
+          "axiom_count": 0,
+          "contains_admit": false,
+          "contains_axiom": false,
+          "contains_opaque": false,
+          "contains_sorry": false,
+          "contains_unsafe": false,
+          "limitation": "Text scan ignores Lean comments and string literals with a conservative first-round lexer; it is not a full Lean parser.",
+          "occurrences": [],
+          "opaque_count": 0,
+          "sorry_count": 0,
+          "summary": "sorry=0, admit=0, axiom=0, opaque=0, unsafe=0",
+          "unsafe_count": 0
+        },
+        "status": "passed"
+      },
+      "code": "-- lean-constellation: managed-imports-begin\nimport PositiveDefiniteTreeLattice.Main.RootedEstimates.Prelude\nimport Mathlib.Algebra.Order.GroupWithZero.Basic\nimport Mathlib.Algebra.Order.Ring.Unbundled.Basic\n-- lean-constellation: managed-imports-end\n\n-- lean-constellation: declaration-source-begin\n\n/--\n# lean-constellation target: `consecutiveIntegerProductNonneg`\n\nFor every integer `n`, the product of the consecutive integers `n` and `n - 1` is nonnegative:\n\n`0 ≤ n * (n - 1)`.\n\n## Sources\n\n- Source `solution.tex`, lines 93–100\n\n## Proof outline\n\nUse the source's consecutive-integers argument (solution.tex, lines 93–100). Split on whether `n ≤\n0`. In that branch, linear integer arithmetic gives `n - 1 ≤ 0`, so `mul_nonneg_of_nonpos_of_nonpos`\nproves the product is nonnegative. In the complementary branch, integer discreteness gives `1 ≤ n`;\nhence `0 ≤ n - 1`, and `mul_nonneg` proves the result. The linear order facts are lightweight and\ncan be discharged by `omega`. No project declaration is used.\n\n## Proof sources\n\n- Source `solution.tex`, lines 93–100\n\n## Proof dependencies\n\n- `mul_nonneg` from `Mathlib.Algebra.Order.GroupWithZero.Basic`\n- `mul_nonneg_of_nonpos_of_nonpos` from `Mathlib.Algebra.Order.Ring.Unbundled.Basic`\n-/\ntheorem consecutiveIntegerProductNonneg (n : ℤ) : 0 ≤ n * (n - 1) := by\n  by_cases hn : n ≤ 0\n  · exact mul_nonneg_of_nonpos_of_nonpos hn (by omega)\n  · exact mul_nonneg (by omega) (by omega)\n"
+    },
+    "nl": {
+      "origin": [
+        {
+          "end_line": 100,
+          "end_locator": null,
+          "kind": "source",
+          "note": "The singleton base case reduces the target to the product of two consecutive integers and states its nonnegativity.",
+          "ref": null,
+          "resource_key": null,
+          "source_path": "solution.tex",
+          "start_line": 93,
+          "start_locator": null
+        }
+      ],
+      "text": "Use the source's consecutive-integers argument (solution.tex, lines 93–100). Split on whether `n ≤ 0`. In that branch, linear integer arithmetic gives `n - 1 ≤ 0`, so `mul_nonneg_of_nonpos_of_nonpos` proves the product is nonnegative. In the complementary branch, integer discreteness gives `1 ≤ n`; hence `0 ≤ n - 1`, and `mul_nonneg` proves the result. The linear order facts are lightweight and can be discharged by `omega`. No project declaration is used."
+    }
+  },
+  "revision": 1,
+  "state": "proved",
+  "statement": {
+    "deps": [],
+    "formal": {
+      "check": {
+        "allow_sorry": true,
+        "contains_axiom": false,
+        "contains_sorry": true,
+        "diagnostics": {
+          "diagnostics": [
+            {
+              "column": 9,
+              "line": 18,
+              "message": "declaration uses `sorry`",
+              "severity": "warning"
+            }
+          ],
+          "passed": true,
+          "raw_excerpt": "{'success': True, 'error_message': None, 'file': 'PositiveDefiniteTreeLattice.Main.RootedEstimates.Theorems.consecutiveIntegerProductNonneg', 'items': [{'severity': 'warning', 'pos': {'line': 18, 'column': 9}, 'endPos': {'line': 18, 'column': 40}, 'kind': None, 'data': 'declaration uses `sorry`', 'fileName': 'PositiveDefiniteTreeLattice.Main.RootedEstimates.Theorems.consecutiveIntegerProductNonneg', 'content': '- Source `solution.tex`, lines 93–100\\n-/\\ntheorem consecutiveIntegerProductNonneg (n : ℤ) : 0 ≤ n * (n - 1) := by\\n  sorry'}], 'total_items': 1, 'error_count': 0, 'warning_count': 1, 'info_count': 0, 'sorry_count': 1}",
+          "repo_file_path": "PositiveDefiniteTreeLattice/Main/RootedEstimates/Theorems/consecutiveIntegerProductNonneg.lean",
+          "schema_version": 2,
+          "summary": "Diagnostics returned 1 items"
+        },
+        "message": "Lean check passed.",
+        "policy": "statement_formal",
+        "scan": {
+          "admit_count": 0,
+          "axiom_count": 0,
+          "contains_admit": false,
+          "contains_axiom": false,
+          "contains_opaque": false,
+          "contains_sorry": true,
+          "contains_unsafe": false,
+          "limitation": "Text scan ignores Lean comments and string literals with a conservative first-round lexer; it is not a full Lean parser.",
+          "occurrences": [
+            {
+              "column": 3,
+              "excerpt": "sorry",
+              "kind": "sorry",
+              "line": 19
+            }
+          ],
+          "opaque_count": 0,
+          "sorry_count": 1,
+          "summary": "sorry=1, admit=0, axiom=0, opaque=0, unsafe=0",
+          "unsafe_count": 0
+        },
+        "status": "passed"
+      },
+      "code": "-- lean-constellation: managed-imports-begin\nimport PositiveDefiniteTreeLattice.Main.RootedEstimates.Prelude\n-- lean-constellation: managed-imports-end\n\n-- lean-constellation: declaration-source-begin\n\n/--\n# lean-constellation target: `consecutiveIntegerProductNonneg`\n\nFor every integer `n`, the product of the consecutive integers `n` and `n - 1` is nonnegative:\n\n`0 ≤ n * (n - 1)`.\n\n## Sources\n\n- Source `solution.tex`, lines 93–100\n-/\ntheorem consecutiveIntegerProductNonneg (n : ℤ) : 0 ≤ n * (n - 1) := by\n  sorry\n"
+    },
+    "nl": {
+      "origin": [
+        {
+          "end_line": 100,
+          "end_locator": null,
+          "kind": "source",
+          "note": "Singleton rooted-tree base case identifies the required product as two consecutive integers and states its nonnegativity.",
+          "ref": null,
+          "resource_key": null,
+          "source_path": "solution.tex",
+          "start_line": 93,
+          "start_locator": null
+        }
+      ],
+      "text": "For every integer `n`, the product of the consecutive integers `n` and `n - 1` is nonnegative:\n\n`0 ≤ n * (n - 1)`."
+    }
+  },
+  "status": "committed",
+  "updated_at": "2026-07-30T22:57:00Z"
+}

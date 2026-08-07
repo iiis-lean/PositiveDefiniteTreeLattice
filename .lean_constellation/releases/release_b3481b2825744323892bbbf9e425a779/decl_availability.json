@@ -1,0 +1,772 @@
+{
+  "entries": [
+    {
+      "availability": "proved",
+      "decl_state": "proved",
+      "main_export": true,
+      "name": "exists_irreducible_vertex",
+      "node": "Main.IrreducibleVertex",
+      "revision": 2
+    },
+    {
+      "availability": "proved",
+      "decl_state": "proved",
+      "main_export": false,
+      "name": "irreducible_vertex_of_weight_eq_one",
+      "node": "Main.IrreducibleVertex",
+      "revision": 1
+    },
+    {
+      "availability": "proved",
+      "decl_state": "proved",
+      "main_export": false,
+      "name": "normalized_pairing_positive_of_unique_underweight",
+      "node": "Main.IrreducibleVertex",
+      "revision": 2
+    },
+    {
+      "availability": "proved",
+      "decl_state": "proved",
+      "main_export": false,
+      "name": "pairing_decomposition_at_unique_underweight",
+      "node": "Main.IrreducibleVertex",
+      "revision": 7
+    },
+    {
+      "availability": "proved",
+      "decl_state": "proved",
+      "main_export": false,
+      "name": "rootedChildCapacitySum_lt_weight_of_unique_underweight",
+      "node": "Main.IrreducibleVertex",
+      "revision": 8
+    },
+    {
+      "availability": "proved",
+      "decl_state": "proved",
+      "main_export": false,
+      "name": "rootedChildComponent_childCount_add_one_eq_degree",
+      "node": "Main.IrreducibleVertex",
+      "revision": 2
+    },
+    {
+      "availability": "proved",
+      "decl_state": "proved",
+      "main_export": false,
+      "name": "rootedChildComponent_isAdmissible_of_unique_underweight",
+      "node": "Main.IrreducibleVertex",
+      "revision": 3
+    },
+    {
+      "availability": "proved",
+      "decl_state": "proved",
+      "main_export": false,
+      "name": "rootedGram_posDef_of_integer_positive",
+      "node": "Main.IrreducibleVertex",
+      "revision": 1
+    },
+    {
+      "availability": "proved",
+      "decl_state": "proved",
+      "main_export": false,
+      "name": "weight_ge_degree_of_ne_unique_underweight",
+      "node": "Main.IrreducibleVertex",
+      "revision": 1
+    },
+    {
+      "availability": "proved",
+      "decl_state": "proved",
+      "main_export": false,
+      "name": "weight_ge_two_of_ne_one",
+      "node": "Main.IrreducibleVertex",
+      "revision": 1
+    },
+    {
+      "availability": "proved",
+      "decl_state": "proved",
+      "main_export": false,
+      "name": "weight_pos_of_positive",
+      "node": "Main.IrreducibleVertex",
+      "revision": 1
+    },
+    {
+      "availability": "proved",
+      "decl_state": "declared",
+      "main_export": true,
+      "name": "IrreducibleAnchor",
+      "node": "Main.LatticeFoundations",
+      "revision": 1
+    },
+    {
+      "availability": "proved",
+      "decl_state": "proved",
+      "main_export": false,
+      "name": "irreducibleOfPairingSelfEqOneAnchor",
+      "node": "Main.LatticeFoundations",
+      "revision": 1
+    },
+    {
+      "availability": "proved",
+      "decl_state": "declared",
+      "main_export": false,
+      "name": "treePairing",
+      "node": "Main.LatticeFoundations",
+      "revision": 4
+    },
+    {
+      "availability": "proved",
+      "decl_state": "declared",
+      "main_export": true,
+      "name": "treePairingAnchor",
+      "node": "Main.LatticeFoundations",
+      "revision": 1
+    },
+    {
+      "availability": "proved",
+      "decl_state": "proved",
+      "main_export": false,
+      "name": "treePairing_add_left",
+      "node": "Main.LatticeFoundations",
+      "revision": 6
+    },
+    {
+      "availability": "proved",
+      "decl_state": "proved",
+      "main_export": false,
+      "name": "treePairing_add_right",
+      "node": "Main.LatticeFoundations",
+      "revision": 6
+    },
+    {
+      "availability": "proved",
+      "decl_state": "proved",
+      "main_export": false,
+      "name": "treePairing_add_self",
+      "node": "Main.LatticeFoundations",
+      "revision": 3
+    },
+    {
+      "availability": "proved",
+      "decl_state": "proved",
+      "main_export": false,
+      "name": "treePairing_symm",
+      "node": "Main.LatticeFoundations",
+      "revision": 6
+    },
+    {
+      "availability": "proved",
+      "decl_state": "proved",
+      "main_export": false,
+      "name": "treePairing_vertexVector_self",
+      "node": "Main.LatticeFoundations",
+      "revision": 5
+    },
+    {
+      "availability": "proved",
+      "decl_state": "declared",
+      "main_export": false,
+      "name": "vertexVector",
+      "node": "Main.LatticeFoundations",
+      "revision": 4
+    },
+    {
+      "availability": "proved",
+      "decl_state": "declared",
+      "main_export": true,
+      "name": "vertexVectorAnchor",
+      "node": "Main.LatticeFoundations",
+      "revision": 1
+    },
+    {
+      "availability": "proved",
+      "decl_state": "proved",
+      "main_export": false,
+      "name": "vertexVector_ne_zero",
+      "node": "Main.LatticeFoundations",
+      "revision": 5
+    },
+    {
+      "availability": "proved",
+      "decl_state": "declared",
+      "main_export": false,
+      "name": "IsAdmissibleRootedTree",
+      "node": "Main.RootedCapacity",
+      "revision": 1
+    },
+    {
+      "availability": "proved",
+      "decl_state": "proved",
+      "main_export": false,
+      "name": "IsAdmissibleRootedTree_rootedChildComponent",
+      "node": "Main.RootedCapacity",
+      "revision": 1
+    },
+    {
+      "availability": "proved",
+      "decl_state": "proved",
+      "main_export": false,
+      "name": "blockDiagonal_quadratic_eq_sum_blocks",
+      "node": "Main.RootedCapacity",
+      "revision": 1
+    },
+    {
+      "availability": "proved",
+      "decl_state": "proved",
+      "main_export": false,
+      "name": "capacity_pos_lt_one",
+      "node": "Main.RootedCapacity",
+      "revision": 2
+    },
+    {
+      "availability": "proved",
+      "decl_state": "proved",
+      "main_export": false,
+      "name": "isAdmissibleRootedTree_instance_irrel",
+      "node": "Main.RootedCapacity",
+      "revision": 1
+    },
+    {
+      "availability": "proved",
+      "decl_state": "declared",
+      "main_export": false,
+      "name": "rootedCapacity",
+      "node": "Main.RootedCapacity",
+      "revision": 1
+    },
+    {
+      "availability": "proved",
+      "decl_state": "proved",
+      "main_export": false,
+      "name": "rootedCapacity_instance_irrel",
+      "node": "Main.RootedCapacity",
+      "revision": 1
+    },
+    {
+      "availability": "proved",
+      "decl_state": "proved",
+      "main_export": false,
+      "name": "rootedCapacity_lt_one_of_card_le",
+      "node": "Main.RootedCapacity",
+      "revision": 3
+    },
+    {
+      "availability": "proved",
+      "decl_state": "proved",
+      "main_export": false,
+      "name": "rootedCapacity_pos",
+      "node": "Main.RootedCapacity",
+      "revision": 1
+    },
+    {
+      "availability": "proved",
+      "decl_state": "proved",
+      "main_export": false,
+      "name": "rootedCapacity_recursion",
+      "node": "Main.RootedCapacity",
+      "revision": 5
+    },
+    {
+      "availability": "proved",
+      "decl_state": "declared",
+      "main_export": false,
+      "name": "rootedChildCapacitySum",
+      "node": "Main.RootedCapacity",
+      "revision": 2
+    },
+    {
+      "availability": "proved",
+      "decl_state": "proved",
+      "main_export": false,
+      "name": "rootedChildCapacitySum_lt_card_of_forall_lt_one",
+      "node": "Main.RootedCapacity",
+      "revision": 2
+    },
+    {
+      "availability": "proved",
+      "decl_state": "declared",
+      "main_export": false,
+      "name": "rootedChildCapacitySummand",
+      "node": "Main.RootedCapacity",
+      "revision": 1
+    },
+    {
+      "availability": "proved",
+      "decl_state": "declared",
+      "main_export": false,
+      "name": "rootedChildComponent",
+      "node": "Main.RootedCapacity",
+      "revision": 1
+    },
+    {
+      "availability": "proved",
+      "decl_state": "proved",
+      "main_export": false,
+      "name": "rootedChildComponent_adj_mem",
+      "node": "Main.RootedCapacity",
+      "revision": 1
+    },
+    {
+      "availability": "proved",
+      "decl_state": "proved",
+      "main_export": false,
+      "name": "rootedChildComponent_card_lt",
+      "node": "Main.RootedCapacity",
+      "revision": 1
+    },
+    {
+      "availability": "proved",
+      "decl_state": "proved",
+      "main_export": false,
+      "name": "rootedChildComponent_isTree",
+      "node": "Main.RootedCapacity",
+      "revision": 1
+    },
+    {
+      "availability": "proved",
+      "decl_state": "proved",
+      "main_export": false,
+      "name": "rootedChildComponent_parent_not_mem",
+      "node": "Main.RootedCapacity",
+      "revision": 1
+    },
+    {
+      "availability": "proved",
+      "decl_state": "proved",
+      "main_export": false,
+      "name": "rootedChildComponent_partition",
+      "node": "Main.RootedCapacity",
+      "revision": 1
+    },
+    {
+      "availability": "proved",
+      "decl_state": "proved",
+      "main_export": false,
+      "name": "rootedChildComponent_path_decomposition",
+      "node": "Main.RootedCapacity",
+      "revision": 2
+    },
+    {
+      "availability": "proved",
+      "decl_state": "declared",
+      "main_export": false,
+      "name": "rootedChildComponentsEquivNonroot",
+      "node": "Main.RootedCapacity",
+      "revision": 1
+    },
+    {
+      "availability": "proved",
+      "decl_state": "proved",
+      "main_export": false,
+      "name": "rootedChildComponentsEquivNonroot_apply",
+      "node": "Main.RootedCapacity",
+      "revision": 1
+    },
+    {
+      "availability": "proved",
+      "decl_state": "declared",
+      "main_export": false,
+      "name": "rootedChildCount",
+      "node": "Main.RootedCapacity",
+      "revision": 1
+    },
+    {
+      "availability": "proved",
+      "decl_state": "proved",
+      "main_export": false,
+      "name": "rootedChildCount_add_one_eq_degree",
+      "node": "Main.RootedCapacity",
+      "revision": 1
+    },
+    {
+      "availability": "proved",
+      "decl_state": "proved",
+      "main_export": false,
+      "name": "rootedChildCount_rootedChildComponent",
+      "node": "Main.RootedCapacity",
+      "revision": 2
+    },
+    {
+      "availability": "proved",
+      "decl_state": "proved",
+      "main_export": false,
+      "name": "rootedChildGram_blockDiagonal_inv",
+      "node": "Main.RootedCapacity",
+      "revision": 2
+    },
+    {
+      "availability": "proved",
+      "decl_state": "proved",
+      "main_export": false,
+      "name": "rootedChildGram_blockDiagonal_inv_of_child_admissible",
+      "node": "Main.RootedCapacity",
+      "revision": 1
+    },
+    {
+      "availability": "proved",
+      "decl_state": "declared",
+      "main_export": false,
+      "name": "rootedChildRoot",
+      "node": "Main.RootedCapacity",
+      "revision": 1
+    },
+    {
+      "availability": "proved",
+      "decl_state": "declared",
+      "main_export": false,
+      "name": "rootedChildren",
+      "node": "Main.RootedCapacity",
+      "revision": 2
+    },
+    {
+      "availability": "proved",
+      "decl_state": "proved",
+      "main_export": false,
+      "name": "rootedChildren_rootedChildComponent",
+      "node": "Main.RootedCapacity",
+      "revision": 3
+    },
+    {
+      "availability": "proved",
+      "decl_state": "proved",
+      "main_export": false,
+      "name": "rootedEdgeClassification",
+      "node": "Main.RootedCapacity",
+      "revision": 1
+    },
+    {
+      "availability": "proved",
+      "decl_state": "declared",
+      "main_export": false,
+      "name": "rootedGram",
+      "node": "Main.RootedCapacity",
+      "revision": 2
+    },
+    {
+      "availability": "proved",
+      "decl_state": "proved",
+      "main_export": false,
+      "name": "rootedGram_bilinear_eq_treePairing_cast",
+      "node": "Main.RootedCapacity",
+      "revision": 1
+    },
+    {
+      "availability": "proved",
+      "decl_state": "proved",
+      "main_export": false,
+      "name": "rootedGram_cross_rootedChildComponents",
+      "node": "Main.RootedCapacity",
+      "revision": 1
+    },
+    {
+      "availability": "proved",
+      "decl_state": "proved",
+      "main_export": false,
+      "name": "rootedGram_reindex_rootNonroot_blocks",
+      "node": "Main.RootedCapacity",
+      "revision": 1
+    },
+    {
+      "availability": "proved",
+      "decl_state": "proved",
+      "main_export": false,
+      "name": "rootedGram_rootNonroot_blocks_invertible",
+      "node": "Main.RootedCapacity",
+      "revision": 3
+    },
+    {
+      "availability": "proved",
+      "decl_state": "proved",
+      "main_export": false,
+      "name": "rootedGram_root_nonroot",
+      "node": "Main.RootedCapacity",
+      "revision": 1
+    },
+    {
+      "availability": "proved",
+      "decl_state": "proved",
+      "main_export": false,
+      "name": "rootedGram_root_nonroot_linear_eq_sum_childRoots",
+      "node": "Main.RootedCapacity",
+      "revision": 1
+    },
+    {
+      "availability": "proved",
+      "decl_state": "proved",
+      "main_export": false,
+      "name": "rootedGram_root_rootedChildComponent_support",
+      "node": "Main.RootedCapacity",
+      "revision": 2
+    },
+    {
+      "availability": "proved",
+      "decl_state": "proved",
+      "main_export": false,
+      "name": "rootedGram_rootedChildComponent",
+      "node": "Main.RootedCapacity",
+      "revision": 1
+    },
+    {
+      "availability": "proved",
+      "decl_state": "proved",
+      "main_export": false,
+      "name": "rootedNeighborFinset_eq_insert_predecessor",
+      "node": "Main.RootedCapacity",
+      "revision": 1
+    },
+    {
+      "availability": "proved",
+      "decl_state": "proved",
+      "main_export": false,
+      "name": "rootedNonrootGram_reindex_childBlocks",
+      "node": "Main.RootedCapacity",
+      "revision": 6
+    },
+    {
+      "availability": "proved",
+      "decl_state": "proved",
+      "main_export": false,
+      "name": "rootedNonrootGram_reindex_childBlocks_inv_of_child_admissible",
+      "node": "Main.RootedCapacity",
+      "revision": 1
+    },
+    {
+      "availability": "proved",
+      "decl_state": "proved",
+      "main_export": false,
+      "name": "rootedNonrootGram_reindex_entry",
+      "node": "Main.RootedCapacity",
+      "revision": 1
+    },
+    {
+      "availability": "proved",
+      "decl_state": "proved",
+      "main_export": false,
+      "name": "rootedNonrootGram_reindex_entry_explicit",
+      "node": "Main.RootedCapacity",
+      "revision": 1
+    },
+    {
+      "availability": "proved",
+      "decl_state": "proved",
+      "main_export": false,
+      "name": "rootedNonrootGram_submatrix_entry",
+      "node": "Main.RootedCapacity",
+      "revision": 1
+    },
+    {
+      "availability": "proved",
+      "decl_state": "proved",
+      "main_export": false,
+      "name": "rootedNonroot_inverse_childBlocks",
+      "node": "Main.RootedCapacity",
+      "revision": 6
+    },
+    {
+      "availability": "proved",
+      "decl_state": "proved",
+      "main_export": false,
+      "name": "rootedNonroot_inverse_quadratic",
+      "node": "Main.RootedCapacity",
+      "revision": 5
+    },
+    {
+      "availability": "proved",
+      "decl_state": "proved",
+      "main_export": false,
+      "name": "rootedNonroot_quadratic_eq_sum_childQuadratics",
+      "node": "Main.RootedCapacity",
+      "revision": 1
+    },
+    {
+      "availability": "proved",
+      "decl_state": "proved",
+      "main_export": false,
+      "name": "treePairing_vertexVector_vertexVector",
+      "node": "Main.RootedCapacity",
+      "revision": 2
+    },
+    {
+      "availability": "proved",
+      "decl_state": "proved",
+      "main_export": false,
+      "name": "consecutiveIntegerProductNonneg",
+      "node": "Main.RootedEstimates",
+      "revision": 1
+    },
+    {
+      "availability": "proved",
+      "decl_state": "proved",
+      "main_export": false,
+      "name": "rationalUnitIntervalIntegerDistance",
+      "node": "Main.RootedEstimates",
+      "revision": 3
+    },
+    {
+      "availability": "proved",
+      "decl_state": "proved",
+      "main_export": false,
+      "name": "rootCoordinateSqLeCapacityMulTreePairing",
+      "node": "Main.RootedEstimates",
+      "revision": 1
+    },
+    {
+      "availability": "proved",
+      "decl_state": "proved",
+      "main_export": false,
+      "name": "root_coefficient_lt_norm",
+      "node": "Main.RootedEstimates",
+      "revision": 1
+    },
+    {
+      "availability": "proved",
+      "decl_state": "proved",
+      "main_export": false,
+      "name": "rootedCapacityInvEqSub",
+      "node": "Main.RootedEstimates",
+      "revision": 3
+    },
+    {
+      "availability": "proved",
+      "decl_state": "proved",
+      "main_export": false,
+      "name": "rootedChildInductionAbsBound",
+      "node": "Main.RootedEstimates",
+      "revision": 2
+    },
+    {
+      "availability": "proved",
+      "decl_state": "proved",
+      "main_export": false,
+      "name": "rootedEstimateInductionAggregation",
+      "node": "Main.RootedEstimates",
+      "revision": 2
+    },
+    {
+      "availability": "proved",
+      "decl_state": "proved",
+      "main_export": false,
+      "name": "rooted_integer_estimate",
+      "node": "Main.RootedEstimates",
+      "revision": 2
+    },
+    {
+      "availability": "proved",
+      "decl_state": "proved",
+      "main_export": false,
+      "name": "sumComponentNeighborEqSumAmbientFiltered",
+      "node": "Main.RootedEstimates",
+      "revision": 1
+    },
+    {
+      "availability": "proved",
+      "decl_state": "proved",
+      "main_export": false,
+      "name": "sumNeighborContributionRootedChildComponent",
+      "node": "Main.RootedEstimates",
+      "revision": 2
+    },
+    {
+      "availability": "proved",
+      "decl_state": "proved",
+      "main_export": false,
+      "name": "sumNonrootEqSumRootedChildComponents",
+      "node": "Main.RootedEstimates",
+      "revision": 2
+    },
+    {
+      "availability": "proved",
+      "decl_state": "proved",
+      "main_export": false,
+      "name": "treePairingCastEqRootedGramQuadratic",
+      "node": "Main.RootedEstimates",
+      "revision": 1
+    },
+    {
+      "availability": "proved",
+      "decl_state": "proved",
+      "main_export": false,
+      "name": "treePairingInstanceIndependent",
+      "node": "Main.RootedEstimates",
+      "revision": 1
+    },
+    {
+      "availability": "proved",
+      "decl_state": "proved",
+      "main_export": false,
+      "name": "treePairingRootedChildDecomposition",
+      "node": "Main.RootedEstimates",
+      "revision": 3
+    },
+    {
+      "availability": "proved",
+      "decl_state": "proved",
+      "main_export": false,
+      "name": "twoBoundsGiveAbsLowerBound",
+      "node": "Main.RootedEstimates",
+      "revision": 1
+    },
+    {
+      "availability": "proved",
+      "decl_state": "proved",
+      "main_export": false,
+      "name": "unitIntervalCompensationNonneg",
+      "node": "Main.RootedEstimates",
+      "revision": 1
+    },
+    {
+      "availability": "proved",
+      "decl_state": "proved",
+      "main_export": false,
+      "name": "eq_uniquePath_of_isPath",
+      "node": "Main.TreePathSeparation",
+      "revision": 1
+    },
+    {
+      "availability": "proved",
+      "decl_state": "proved",
+      "main_export": false,
+      "name": "reachable_childSide_of_uniquePath_concat",
+      "node": "Main.TreePathSeparation",
+      "revision": 1
+    },
+    {
+      "availability": "proved",
+      "decl_state": "declared",
+      "main_export": false,
+      "name": "uniquePath",
+      "node": "Main.TreePathSeparation",
+      "revision": 1
+    },
+    {
+      "availability": "proved",
+      "decl_state": "proved",
+      "main_export": false,
+      "name": "uniquePath_append_isPath_through_cut",
+      "node": "Main.TreePathSeparation",
+      "revision": 1
+    },
+    {
+      "availability": "proved",
+      "decl_state": "proved",
+      "main_export": false,
+      "name": "uniquePath_eq_append_through_cut",
+      "node": "Main.TreePathSeparation",
+      "revision": 1
+    },
+    {
+      "availability": "proved",
+      "decl_state": "proved",
+      "main_export": false,
+      "name": "uniquePath_isPath",
+      "node": "Main.TreePathSeparation",
+      "revision": 1
+    },
+    {
+      "availability": "proved",
+      "decl_state": "proved",
+      "main_export": false,
+      "name": "uniquePath_support_separated_by_cut",
+      "node": "Main.TreePathSeparation",
+      "revision": 1
+    }
+  ]
+}

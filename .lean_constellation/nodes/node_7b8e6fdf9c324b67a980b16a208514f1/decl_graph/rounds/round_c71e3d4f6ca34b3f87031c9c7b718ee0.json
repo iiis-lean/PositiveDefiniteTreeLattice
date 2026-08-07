@@ -1,0 +1,33 @@
+{
+  "change_summaries": {},
+  "committed_at": "2026-08-06T15:39:48Z",
+  "created_at": "2026-08-06T15:14:50Z",
+  "discard_reason": null,
+  "discarded_at": null,
+  "discarded_by": null,
+  "discarded_created_decl_names": [],
+  "discarded_restored_decl_revisions": {},
+  "discarded_revision_refs": [],
+  "execution_completed_at": "2026-08-06T15:37:41Z",
+  "execution_reason": "The required ambient-to-canonical-child-component pairing decomposition is absent from the visible API and is a nontrivial reusable support/classification argument, so this Proof NL declaration cannot responsibly leave it as an unnamed local calculation.",
+  "execution_result_kind": "blocked",
+  "node_path": "Main.IrreducibleVertex",
+  "objective": "Prove the normalized-root-coefficient positivity estimate that packages solution.tex:215–241 before the irreducibility contradiction.",
+  "plan_closeout_acknowledged_at": "2026-08-06T15:39:48Z",
+  "plan_closeout_acknowledged_by": "a_a235941c8c524917a1ed4a78f90c75ba",
+  "result_kind": "blocked",
+  "result_reason": "The accepted parent statement requires a tracked private ambient-to-canonical-child-component pairing decomposition before its Proof NL can be completed.",
+  "revision_refs": [
+    {
+      "change_id": "normalized_pairing_positive_of_unique_underweight@rev:1",
+      "decl_name": "normalized_pairing_positive_of_unique_underweight",
+      "revision": 1
+    }
+  ],
+  "round_id": "round_c71e3d4f6ca34b3f87031c9c7b718ee0",
+  "round_index": 17,
+  "started_at": "2026-08-06T15:17:19Z",
+  "status": "committed",
+  "strategy_id": "strategy_5daa06e1443e4d7e95f091bbae0d613c",
+  "summary": "Round 17 made statement-layer progress but did not reach its proved target. normalized_pairing_positive_of_unique_underweight revision 1 has accepted NL and formal Statements at declared state and is not graph-proved-policy satisfied. Proof NL isolated one predictable source-visible local helper at solution.tex:220–226: an exact ambient-vector restriction/reconstruction and treePairing expansion across the canonical rooted child-component partition. Existing current-node estimates and RootedCapacity partition/admissibility APIs cover the consumers and set partition, but not the required pairing decomposition; this is not a Mathlib or external-resource gap. Because the calculation fixes dependent child indices/coercions and is nontrivial, it should be a tracked private provider-before-consumer declaration rather than hidden proof-local work, while remaining specialized enough to fit this node's final-assembly boundary and expected 8–14 scale. The complete retry chain is: prove that helper, update this parent from declared to proved with the helper dependency, then continue the z versus -v-z irreducibility normalization and protected interface. No declaration is superseded and no cleanup is required. The next action after closeout should be the specialized helper round."
+}

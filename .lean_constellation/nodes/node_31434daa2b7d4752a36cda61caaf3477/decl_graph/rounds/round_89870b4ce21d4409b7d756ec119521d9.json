@@ -1,0 +1,33 @@
+{
+  "change_summaries": {},
+  "committed_at": "2026-07-30T06:14:59Z",
+  "created_at": "2026-07-30T05:53:33Z",
+  "discard_reason": null,
+  "discarded_at": null,
+  "discarded_by": null,
+  "discarded_created_decl_names": [],
+  "discarded_restored_decl_revisions": {},
+  "discarded_revision_refs": [],
+  "execution_completed_at": "2026-07-30T06:13:22Z",
+  "execution_reason": null,
+  "execution_result_kind": "success",
+  "node_path": "Main.TreePathSeparation",
+  "objective": "Create and prove the new contract-version-2 public interface `PositiveDefiniteTreeLattice.reachable_childSide_of_uniquePath_concat`. Reuse the released cut header G, hG, root, parent, c, x and its deleted-edge reachability assumptions; add ambient child z, adjacency x-z, and a witness/equality that the canonical root-to-z path is the canonical root-to-x path extended by that one edge; conclude `(G.deleteEdges {s(parent,c)}).Reachable c z`. The proof should show x-z is not the deleted cut edge using canonical-path simplicity/orientation, then extend the existing c-to-x deleted-edge walk. This realizes root-oriented closure of the child subtree grouping implicit in SourceIndex b_0008–b_0009 / solution.tex lines 33–64 and directly serves rootedChildren_rootedChildComponent@2 without importing RootedCapacity.",
+  "plan_closeout_acknowledged_at": "2026-07-30T06:14:59Z",
+  "plan_closeout_acknowledged_by": "a_32cab14a2d1e497786514a39188b3e4f",
+  "result_kind": "success",
+  "result_reason": "The contract-version-2 public closure theorem passed all stages, reached proved state, matches the exact qualified identity, and has a satisfied graph-proved dependency closure.",
+  "revision_refs": [
+    {
+      "change_id": "reachable_childSide_of_uniquePath_concat@rev:1",
+      "decl_name": "reachable_childSide_of_uniquePath_concat",
+      "revision": 1
+    }
+  ],
+  "round_id": "round_89870b4ce21d4409b7d756ec119521d9",
+  "round_index": 8,
+  "started_at": "2026-07-30T05:55:23Z",
+  "status": "committed",
+  "strategy_id": "strategy_b6dff31456594838ba7a5f6b6c3f59bd",
+  "summary": "The focused contract-version-2 strategy achieved its mathematical target in one round. Public `PositiveDefiniteTreeLattice.reachable_childSide_of_uniquePath_concat` revision 1 reached `proved`, is proof-policy satisfied, and matches the required qualified identity and root-oriented child-side reachability capability. All six prior declarations remain unchanged; their two released interfaces remain proved and bound. The graph now has seven active declarations, within the expected 7–10 scale, with no state-only work, superseded branch, blocker, or scope overflow. Next action is content closeout: inspect the accepted formal header and public Statement closure, bind the new interface, run the completion gate, close the achieved strategy, and submit ready if all checks pass."
+}

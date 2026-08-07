@@ -1,0 +1,33 @@
+{
+  "change_summaries": {},
+  "committed_at": "2026-07-30T15:58:20Z",
+  "created_at": "2026-07-30T15:30:56Z",
+  "discard_reason": null,
+  "discarded_at": null,
+  "discarded_by": null,
+  "discarded_created_decl_names": [],
+  "discarded_restored_decl_revisions": {},
+  "discarded_revision_refs": [],
+  "execution_completed_at": "2026-07-30T15:56:48Z",
+  "execution_reason": null,
+  "execution_result_kind": "success",
+  "node_path": "Main.RootedCapacity",
+  "objective": "Retry the authorized private inverse-transport redesign from the Statement NL stage: replace the obsolete proof-dependent ambient embeddings with canonical rootedChildComponentsEquivNonroot/dependent-Sigma indexing, then recapture and prove the stable inverse block interface needed for the source Schur-complement quadratic identity.",
+  "plan_closeout_acknowledged_at": "2026-07-30T15:58:20Z",
+  "plan_closeout_acknowledged_by": "a_a93b40977f574bad89528358fa89e022",
+  "result_kind": "success",
+  "result_reason": "All four declaration stages completed and proof-policy satisfaction passed for the canonical Sigma-indexed inverse transport theorem.",
+  "revision_refs": [
+    {
+      "change_id": "rootedNonroot_inverse_childBlocks@rev:6",
+      "decl_name": "rootedNonroot_inverse_childBlocks",
+      "revision": 6
+    }
+  ],
+  "round_id": "round_cdeaa261f55744f4b2b1159eb3ce96f5",
+  "round_index": 43,
+  "started_at": "2026-07-30T15:32:15Z",
+  "status": "committed",
+  "strategy_id": "strategy_fc60f40a331d4f63bd19e22f0eec7473",
+  "summary": "Round 43 completed the contract-authorized representation cleanup and made decisive strategy progress. rootedNonroot_inverse_childBlocks@6 reached proved and is graph_proved-satisfied with canonical rootedChildComponentsEquivNonroot/Sigma indexing; no state-only work or dependency gap remains for it. The former fragile ambient-ι interface is superseded. The immediate remaining b_0009 parent is rootedNonroot_inverse_quadratic@1 at proof_planned: its exact rational scalar equality should be preserved, but its Proof NL/Formal route must be redone to reindex/group through the canonical equivalence and consume revision 6 directly, avoiding conversion to historical proof-term embeddings. The current strategy remains viable and within scope. Next action after closeout is one focused update round for that parent; no preparation or graph cleanup is required first."
+}

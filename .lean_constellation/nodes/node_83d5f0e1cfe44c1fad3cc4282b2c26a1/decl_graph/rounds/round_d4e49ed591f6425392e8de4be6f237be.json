@@ -1,0 +1,37 @@
+{
+  "change_summaries": {},
+  "committed_at": "2026-07-29T15:21:14Z",
+  "created_at": "2026-07-29T15:04:06Z",
+  "execution_completed_at": "2026-07-29T15:19:22Z",
+  "execution_reason": "Decl-owned Lean file was modified after the latest capture.",
+  "execution_result_kind": "failed",
+  "node_path": "Main.LatticeFoundations",
+  "objective": "Prove three independent, reusable public algebraic laws of the accepted treePairing—left additivity, right additivity, and symmetry—directly from its finite-sum definition and validated Mathlib support. These tracked lemmas form the dependency layer for the later self-pairing expansion and norm-one irreducibility proof.",
+  "plan_closeout_acknowledged_at": "2026-07-29T15:21:14Z",
+  "plan_closeout_acknowledged_by": "a_60a257a14c4c469b9e17805606fa5ea4",
+  "result_kind": "failed",
+  "result_reason": "Proof Formal ended on declaration-file capture-integrity/runtime failure; all three statements and proof plans are accepted at proof_planned and proof artifacts report passed.",
+  "revision_refs": [
+    {
+      "change_id": "treePairing_add_left@rev:1",
+      "decl_name": "treePairing_add_left",
+      "revision": 1
+    },
+    {
+      "change_id": "treePairing_add_right@rev:1",
+      "decl_name": "treePairing_add_right",
+      "revision": 1
+    },
+    {
+      "change_id": "treePairing_symm@rev:1",
+      "decl_name": "treePairing_symm",
+      "revision": 1
+    }
+  ],
+  "round_id": "round_d4e49ed591f6425392e8de4be6f237be",
+  "round_index": 4,
+  "started_at": "2026-07-29T15:05:11Z",
+  "status": "committed",
+  "strategy_id": "strategy_a30e26b4dc0b4b3da567957fbd36ca03",
+  "summary": "The strategy advanced all three independent pairing lemmas through compiled statements and accepted natural-language proof plans; none reached proved or proof-policy satisfaction because Proof Formal terminated with a declaration-file capture-integrity/runtime failure. Each revision is proof_planned and each proof artifact reports passed; no consumer-side goal mismatch, missing current-node dependency, Mathlib gap, source evidence gap, or scope overflow was found. The norm-one parent theorem was not attempted. Complete retry conditions are identical and Lean-local: commit these proof_planned revisions, then run a small update round resetting each at proof_planned and targeting proved so only Proof Formal recaptures/checks the current files. The existing strategy remains explanatory; resource recon and new helpers are not justified."
+}

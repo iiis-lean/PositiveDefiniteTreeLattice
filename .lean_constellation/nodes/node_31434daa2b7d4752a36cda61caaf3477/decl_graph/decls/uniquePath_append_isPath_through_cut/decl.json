@@ -1,0 +1,15 @@
+{
+  "created_at": "2026-07-30T04:33:07Z",
+  "current_revision": 1,
+  "kind": "theorem",
+  "lifecycle": "active",
+  "module": "PositiveDefiniteTreeLattice.Main.TreePathSeparation.Theorems.uniquePath_append_isPath_through_cut",
+  "name": "uniquePath_append_isPath_through_cut",
+  "node_path": "Main.TreePathSeparation",
+  "public": false,
+  "revision_ids": [
+    1
+  ],
+  "summary": "The append of the chosen root-to-child and child-to-vertex paths is simple across the oriented cut.",
+  "updated_at": "2026-07-30T04:33:07Z"
+}

@@ -1,0 +1,33 @@
+{
+  "change_summaries": {},
+  "committed_at": "2026-08-07T05:42:10Z",
+  "created_at": "2026-08-07T05:12:29Z",
+  "discard_reason": null,
+  "discarded_at": null,
+  "discarded_by": null,
+  "discarded_created_decl_names": [],
+  "discarded_restored_decl_revisions": {},
+  "discarded_revision_refs": [],
+  "execution_completed_at": "2026-08-07T05:26:20Z",
+  "execution_reason": null,
+  "execution_result_kind": "success",
+  "node_path": "Main.IrreducibleVertex",
+  "objective": "Retry only Proof Formal for pairing_decomposition_at_unique_underweight@6 after the transient worker-stream failure, preserving all accepted artifacts and the provider-composition objective.",
+  "plan_closeout_acknowledged_at": "2026-08-07T05:42:10Z",
+  "plan_closeout_acknowledged_by": "a_a235941c8c524917a1ed4a78f90c75ba",
+  "result_kind": "success",
+  "result_reason": "Proof Formal passed and pairing_decomposition_at_unique_underweight revision 7 reached proved with required graph_proved satisfaction.",
+  "revision_refs": [
+    {
+      "change_id": "pairing_decomposition_at_unique_underweight@rev:7",
+      "decl_name": "pairing_decomposition_at_unique_underweight",
+      "revision": 7
+    }
+  ],
+  "round_id": "round_698e853434b7436e9e3b9034420e26f4",
+  "round_index": 24,
+  "started_at": "2026-08-07T05:14:34Z",
+  "status": "committed",
+  "strategy_id": "strategy_2fda3ac1fa8b4fc5bb88fd75f3367b39",
+  "summary": "Round 24 fully repaired the interrupted execution and made decisive graph_proved progress: pairing_decomposition_at_unique_underweight revision 7 reached proved state, its Proof Formal passed, and its required proof-policy satisfaction checks succeeded. The provider bridge and both canonical sigma contractions now close the source equation exactly, so no lower dependency or implementation blocker remains for the declared normalized_pairing_positive_of_unique_underweight parent. Eight previously proved foundations plus this decomposition are now proved and satisfied; normalized_pairing_positive_of_unique_underweight remains the sole active declared theorem at this layer. The strategy still explains the bottom-up route: retry that parent with the proved decomposition and existing rooted estimates/capacity gap, then add the final source contradiction and exact protected interface. The graph remains within expected scale, with no state-only dependency closure issue, superseded branch, or cleanup artifact. After closeout, the next action should be a small parent proof round rather than preparation or terminal completion."
+}

@@ -1,0 +1,15 @@
+{
+  "created_at": "2026-08-06T12:45:18Z",
+  "current_revision": 1,
+  "kind": "theorem",
+  "lifecycle": "active",
+  "module": "PositiveDefiniteTreeLattice.Main.RootedCapacity.Theorems.isAdmissibleRootedTree_instance_irrel",
+  "name": "isAdmissibleRootedTree_instance_irrel",
+  "node_path": "Main.RootedCapacity",
+  "public": true,
+  "revision_ids": [
+    1
+  ],
+  "summary": "Admissibility of a fixed rooted weighted graph is independent of the chosen finite and decidability instances.",
+  "updated_at": "2026-08-06T12:45:18Z"
+}

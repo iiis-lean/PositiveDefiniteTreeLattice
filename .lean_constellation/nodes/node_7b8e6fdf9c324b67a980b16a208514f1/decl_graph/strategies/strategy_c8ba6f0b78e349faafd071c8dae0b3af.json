@@ -1,0 +1,18 @@
+{
+  "closed_at": "2026-08-02T13:37:46Z",
+  "closed_reason": "The current route is blocked by missing generic rooted-tree parent/child degree infrastructure outside Main.IrreducibleVertex's contract boundary.",
+  "created_at": "2026-08-02T11:50:30Z",
+  "created_round_ids": [
+    "round_0a00b3e547464fed8bac3a87927ea3dc",
+    "round_0f65801bb2b84195b4ac5893465c72bb",
+    "round_3ce2ca973ba74730807619f094be6c10",
+    "round_043f8ed70c9646deae8137bf8ecc9360",
+    "round_22886b7117724f3aa8d1db96324d2f91"
+  ],
+  "node_path": "Main.IrreducibleVertex",
+  "objective": "Prove the exact protected irreducible-vertex interface bottom-up from the owned source route: establish positive weights and the weight-one irreducibility case; construct admissible rooted components at the unique underweighted vertex and prove the central capacity/Schur-complement inequality; package the integer-coefficient normalization and componentwise decomposition estimate; then eliminate every nontrivial decomposition and expose PositiveDefiniteTreeLattice.exists_irreducible_vertex.",
+  "rationale": "The repository is graph_proved, the source proof at solution.tex:182-244 is complete, and dependency/Mathlib recon verified all lower APIs and finite-sum/order support. The route keeps proof-only helpers private, targets roughly 6-14 important declarations, preserves the formal_target.lean:24-33 consumer shape exactly, and proves reusable foundations before their consumers.",
+  "status": "closed",
+  "strategy_id": "strategy_c8ba6f0b78e349faafd071c8dae0b3af",
+  "summary": "Completed five rounds and committed five proved foundations plus two resumable partial declarations. The specialized child-count equality is proof_planned and the component admissibility parent is declared. Resume after a provider node exposes a proved public nonroot theorem equating rootedChildCount + 1 with degree (or an equivalent unique-parent neighbor partition); then finish the helper, finish admissibility, and continue the central inequality and protected interface."
+}

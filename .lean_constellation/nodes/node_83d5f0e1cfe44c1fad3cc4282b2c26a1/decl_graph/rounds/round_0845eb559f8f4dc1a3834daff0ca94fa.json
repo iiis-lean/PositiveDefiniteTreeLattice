@@ -1,0 +1,37 @@
+{
+  "change_summaries": {},
+  "committed_at": "2026-07-29T14:48:17Z",
+  "created_at": "2026-07-29T14:45:54Z",
+  "execution_completed_at": null,
+  "execution_reason": null,
+  "execution_result_kind": null,
+  "node_path": "Main.LatticeFoundations",
+  "objective": "Establish the three source-faithful public definition foundations from formal_target.lean lines 7–22—treePairing first, then vertexVector and Irreducible—so later rounds can state and prove pairing identities, vertex-vector facts, and the norm-one irreducibility theorem without redesigning the contract interfaces.",
+  "plan_closeout_acknowledged_at": "2026-07-29T14:48:17Z",
+  "plan_closeout_acknowledged_by": "a_60a257a14c4c469b9e17805606fa5ea4",
+  "result_kind": "failed",
+  "result_reason": "Draft validation rejected its same-round Statement dependency before execution; no worker stages or artifacts ran.",
+  "revision_refs": [
+    {
+      "change_id": "treePairing@rev:1",
+      "decl_name": "treePairing",
+      "revision": 1
+    },
+    {
+      "change_id": "vertexVector@rev:1",
+      "decl_name": "vertexVector",
+      "revision": 1
+    },
+    {
+      "change_id": "Irreducible@rev:1",
+      "decl_name": "Irreducible",
+      "revision": 1
+    }
+  ],
+  "round_id": "round_0845eb559f8f4dc1a3834daff0ca94fa",
+  "round_index": 1,
+  "started_at": null,
+  "status": "committed",
+  "strategy_id": "strategy_a30e26b4dc0b4b3da567957fbd36ca03",
+  "summary": "Draft was never executed. Validation rejected the same-round Statement dependency Irreducible → treePairing. No declaration artifacts were accepted. Supersede with a foundation round containing only independent definitions, then create Irreducible after treePairing is committed."
+}

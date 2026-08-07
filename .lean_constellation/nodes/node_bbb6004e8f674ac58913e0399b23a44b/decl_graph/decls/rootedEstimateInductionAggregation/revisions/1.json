@@ -1,0 +1,237 @@
+{
+  "change": {
+    "anticipated_proof_dep_names": [
+      "rootedCapacityInvEqSub",
+      "rootedChildInductionAbsBound",
+      "treePairingRootedChildDecomposition"
+    ],
+    "anticipated_statement_dep_names": [],
+    "base_revision": null,
+    "kind": "create",
+    "objective": "Formalize SourceIndex b_0010 / solution.tex lines 102–127 as the second tracked bridge required by the accepted `PositiveDefiniteTreeLattice.rooted_integer_estimate` Proof NL plan. Use one explicit universe `u` for ambient V and the generalized smaller-tree induction hypothesis, matching proved rootedChildInductionAbsBound and avoiding the repaired universe mismatch. For every c ∈ rootedChildren G hT rho rho, obtain the exact rational absolute child lower bound from rootedChildInductionAbsBound; sum these inequalities over the child finset. Transport the proved integral treePairingRootedChildDecomposition through Int.cast_sum, preserving the nested rootedChildComponent pairings, root boundary term, restricted coordinates, and ℤ-to-ℚ casts. Unfold/identify rootedChildCapacitySummand and rootedChildCapacitySum, apply rootedCapacityInvEqSub with γ := rootedCapacity G w rho and τ := (x rho : ℚ)/γ, and conclude exactly source inequality (1): the public target expression is at least `γ*(τ-(k:ℚ))*(τ-(k:ℚ)-1) + ∑ c, |(x c:ℚ) - rootedChildCapacitySummand ... c*(x rho:ℚ)|`. Preserve admissibility, rootedChildren indices, integral vector, rational capacity, signs, and conclusion direction. Keep this proof-only bridge private; rooted_integer_estimate is its immediate consumer and must not be retried until this declaration is graph_proved.",
+    "require_target_state_satisfied": true,
+    "reset_to_state": null,
+    "summary": "Created the second b_0010 bridge; Statement NL/Formal and Proof NL passed with the exact source inequality (1), shared-universe induction hypothesis, rootedChildren index, rational capacity, casts, and conclusion direction. Proof Formal is absent, so revision 1 remains proof_planned and unsatisfied. The blocker is a predictable Lean-specific instance-transport helper, not source/contract drift or a provider theorem gap. The summed inequalities from proved rootedChildInductionAbsBound and the nested child terms obtained from proved treePairingRootedChildDecomposition both contain `treePairing` on the same `C := rootedChildComponent G rho c`, graph, restricted weight, and restricted vector, but each theorem installs its own `Fintype C`, `DecidableEq C`, and `DecidableRel C.toSimpleGraph.Adj` stack. These implicit instances are not definitionally equal, so the mathematically identical pairing terms do not rewrite/unify; direct unification times out under the fixed heartbeat budget, which may not be increased. Checked inputs include both proved declarations, Int.cast_sum, rootedCapacityInvEqSub, rootedChildCapacitySum/Summand, and capacity_pos_lt_one; none provides an equality transporting treePairing across instance stacks. Retry condition: first track and prove a bounded instance-independence/transport theorem equating treePairing values for identical finite graph/weight/vector data under two finite/decidable instance stacks (or its exact rooted-child specialization), using extensional finite sums rather than unification. Then retry only Proof Formal for this unchanged aggregation statement with that theorem as a dependency. Do not retry rooted_integer_estimate before aggregation is proved. No superseded declaration or cleanup target was introduced.",
+    "target_state": "proved"
+  },
+  "lean_decl_name": "rootedEstimateInductionAggregation",
+  "proof": {
+    "deps": [
+      {
+        "kind": "mathlib_decl",
+        "reason": "Transports the integral rooted pairing decomposition and its finite child sums to the rational inequality.",
+        "ref": {
+          "module": "Mathlib.Algebra.BigOperators.Ring.Finset",
+          "name": "Int.cast_sum"
+        }
+      },
+      {
+        "kind": "mathlib_decl",
+        "reason": "Sums the exact child-component lower bounds over the rooted-children finite index.",
+        "ref": {
+          "module": "Mathlib.Algebra.Order.BigOperators.Group.Finset",
+          "name": "Finset.sum_le_sum"
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "Provides positivity of gamma, hence the nonzero denominator needed to normalize tau = a / gamma.",
+        "ref": {
+          "name": "capacity_pos_lt_one",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 2
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "Its definition identifies the summed child capacity terms with the capacity recursion summand.",
+        "ref": {
+          "name": "rootedChildCapacitySum",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 2
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "Identifies each child lower-bound coefficient with the exact rooted child capacity used in the target sum.",
+        "ref": {
+          "name": "rootedChildCapacitySummand",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 1
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "Supplies the root capacity inverse identity used in the tau algebra.",
+        "ref": {
+          "name": "rootedCapacityInvEqSub",
+          "node": "Main.RootedEstimates",
+          "repo": null,
+          "revision": 3
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "Provides the exact same-universe child-component absolute lower bound for every rooted child.",
+        "ref": {
+          "name": "rootedChildInductionAbsBound",
+          "node": "Main.RootedEstimates",
+          "repo": null,
+          "revision": 2
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "Rewrites the ambient integral tree pairing into the root boundary term and nested child-component pairings.",
+        "ref": {
+          "name": "treePairingRootedChildDecomposition",
+          "node": "Main.RootedEstimates",
+          "repo": null,
+          "revision": 3
+        }
+      }
+    ],
+    "formal": null,
+    "nl": {
+      "origin": [
+        {
+          "end_line": 127,
+          "end_locator": null,
+          "kind": "source",
+          "note": "These lines give the child pairing decomposition, the two child-derived absolute lower bounds, and the capacity-inverse calculation producing source inequality (1).",
+          "ref": null,
+          "resource_key": null,
+          "source_path": "solution.tex",
+          "start_line": 102,
+          "start_locator": null
+        }
+      ],
+      "text": "Work with the single explicit universe `u` in the statement, and unfold the local `a`, `gamma`, `tau`, and rooted-children `Fintype` binders.  For each subtype child `c : {c : V // c ∈ rootedChildren G hT rho rho}`, apply the proved same-universe bridge\n`rootedChildInductionAbsBound G w rho hT hAdm x c.1 c.2 hIH`.\nIt supplies precisely the rational inequality for the pairing on `rootedChildComponent G rho c.1`, with its restricted weight and coordinate vector, lower-bounded by\n`- rootedChildCapacitySummand G hT w rho c * (a : ℚ)^2 + |(x c.1 : ℚ) - rootedChildCapacitySummand G hT w rho c * (a : ℚ)|`.\n\nApply `Finset.sum_le_sum` over `Finset.univ` to these child bounds.  Use distributivity to collect the child pairing terms, the boundary terms `2*a*x c`, and the capacity summands.  Rewrite the ambient integral pairing with `treePairingRootedChildDecomposition G hT w x rho`; then use `Int.cast_sum` (including the nested finite sums) and ring normalization to turn its rational cast into the aggregated left side.  This keeps exactly the child-component pairings, restricted coordinates, and root boundary contribution from lines 102–110.\n\nSet `D` to the resulting `∑ c, |(x c.1 : ℚ) - rootedChildCapacitySummand G hT w rho c * (a : ℚ)|`.  Unfold `rootedChildCapacitySum`, so its finite sum is the same child index and summand.  From `PositiveDefiniteTreeLattice.capacity_pos_lt_one G w rho hAdm`, obtain `gamma ≠ 0`.  Rewrite `rootedCapacityInvEqSub G hT w rho hAdm` and use the definition of `tau = (a : ℚ) / gamma`; field/ring normalization converts the remaining root term into\n`gamma * (tau - (k : ℚ)) * (tau - (k : ℚ) - 1)`.\nCombining this equality with the summed lower bound yields the formal conclusion, with the stated `≥` direction.  This is exactly the aggregation and capacity calculation in solution.tex lines 102–127 (source inequality (1))."
+    }
+  },
+  "revision": 1,
+  "state": "proof_planned",
+  "statement": {
+    "deps": [
+      {
+        "kind": "repo_decl",
+        "reason": "The formal statement uses the exact public definition PositiveDefiniteTreeLattice.treePairing.",
+        "ref": {
+          "name": "treePairingAnchor",
+          "node": "Main.LatticeFoundations",
+          "repo": null,
+          "revision": 1
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "The ambient theorem hypothesis and shared-universe induction predicate use the existing admissible rooted-tree predicate.",
+        "ref": {
+          "name": "IsAdmissibleRootedTree",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 1
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "The statement defines gamma and tau using the ambient rooted rational capacity.",
+        "ref": {
+          "name": "rootedCapacity",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 1
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "Each absolute-value summand uses the child capacity summand at the exact subtype child index.",
+        "ref": {
+          "name": "rootedChildCapacitySummand",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 1
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "The absolute-value sum retains the exact rootedChildren G hT rho rho index.",
+        "ref": {
+          "name": "rootedChildren",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 2
+        }
+      }
+    ],
+    "formal": {
+      "check": {
+        "allow_sorry": true,
+        "contains_axiom": false,
+        "contains_sorry": true,
+        "diagnostics": {
+          "diagnostics": [
+            {
+              "column": 9,
+              "line": 48,
+              "message": "declaration uses `sorry`",
+              "severity": "warning"
+            }
+          ],
+          "passed": true,
+          "raw_excerpt": "{'success': True, 'error_message': None, 'file': 'PositiveDefiniteTreeLattice.Main.RootedEstimates.Theorems.rootedEstimateInductionAggregation', 'items': [{'severity': 'warning', 'pos': {'line': 48, 'column': 9}, 'endPos': {'line': 48, 'column': 43}, 'kind': None, 'data': 'declaration uses `sorry`', 'fileName': 'PositiveDefiniteTreeLattice.Main.RootedEstimates.Theorems.rootedEstimateInductionAggregation', 'content': '  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildren`\\n-/\\ntheorem rootedEstimateInductionAggregation {V : Type u} [Fintype V] [DecidableEq V]\\n    (G : SimpleGraph V) [DecidableRel G.Adj] (w : V → ℤ) (rho : V) (hT : G.IsTree)\\n    (hAdm : IsAdmissibleRootedTree G w rho) (x : V → ℤ) (k : ℤ)'}], 'total_items': 1, 'error_count': 0, 'warning_count': 1, 'info_count': 0, 'sorry_count': 1}",
+          "repo_file_path": "PositiveDefiniteTreeLattice/Main/RootedEstimates/Theorems/rootedEstimateInductionAggregation.lean",
+          "schema_version": 2,
+          "summary": "Diagnostics returned 1 items"
+        },
+        "message": "Lean check passed.",
+        "policy": "statement_formal",
+        "scan": {
+          "admit_count": 0,
+          "axiom_count": 0,
+          "contains_admit": false,
+          "contains_axiom": false,
+          "contains_opaque": false,
+          "contains_sorry": true,
+          "contains_unsafe": false,
+          "limitation": "Text scan ignores Lean comments and string literals with a conservative first-round lexer; it is not a full Lean parser.",
+          "occurrences": [
+            {
+              "column": 3,
+              "excerpt": "sorry",
+              "kind": "sorry",
+              "line": 66
+            }
+          ],
+          "opaque_count": 0,
+          "sorry_count": 1,
+          "summary": "sorry=1, admit=0, axiom=0, opaque=0, unsafe=0",
+          "unsafe_count": 0
+        },
+        "status": "passed"
+      },
+      "code": "-- lean-constellation: managed-imports-begin\nimport PositiveDefiniteTreeLattice.Main.RootedEstimates.Prelude\n-- lean-constellation: managed-imports-end\n\n-- lean-constellation: declaration-source-begin\n\nuniverse u\n\n/--\n# lean-constellation target: `rootedEstimateInductionAggregation`\n\nFix one universe `u`.  Let `V : Type u` carry the finite and decidable data required by the existing\nAPIs, let `G` be a rooted integer-weighted tree on `V` with root `rho`, weight `w`, and\nadmissibility hypothesis `hT : IsAdmissibleRootedTree G w rho`, and let `x : V → ℤ` and `k : ℤ`.\nThe generalized smaller-tree induction hypothesis is quantified over finite rooted admissible trees\nwhose vertex types also lie in this same universe `u` and have strictly smaller cardinality.\n\nPut `a := x rho`, `gamma := rootedCapacity G w rho`, and `tau := (a : ℚ) / gamma`.  After\nspecializing that hypothesis through `rootedChildInductionAbsBound` for every `c ∈ rootedChildren G\nhT rho rho`, this theorem asserts the rational inequality\n\n`(↑(treePairing G w x x) : ℚ) - (2 * (k : ℚ) + 1) * (a : ℚ) + gamma * (k : ℚ) * ((k : ℚ) + 1) ≥\ngamma * (tau - (k : ℚ)) * (tau - (k : ℚ) - 1) + ∑ c ∈ rootedChildren G hT rho rho, |(x c : ℚ) -\nrootedChildCapacitySummand G hT w rho ⟨c, hc⟩ * (a : ℚ)|`.\n\nThe child sum has exactly the rooted-children index and the rooted child-capacity summand of each\n`⟨c, hc⟩`.  This is source inequality (1), obtained by aggregating the child component pairings and\ntheir root-boundary contribution through the proved rooted pairing decomposition and the rooted\ncapacity identity.\n\n## Sources\n\n- Source `solution.tex`, lines 102–127\n\n## Statement dependencies\n\n- `Main.LatticeFoundations::treePairingAnchor` → `PositiveDefiniteTreeLattice.treePairing` from\n  `PositiveDefiniteTreeLattice.Main.LatticeFoundations.Defs.treePairingAnchor`\n- `Main.RootedCapacity::IsAdmissibleRootedTree` → `IsAdmissibleRootedTree` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.IsAdmissibleRootedTree`\n- `Main.RootedCapacity::rootedCapacity` → `rootedCapacity` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedCapacity`\n- `Main.RootedCapacity::rootedChildCapacitySummand` → `rootedChildCapacitySummand` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildCapacitySummand`\n- `Main.RootedCapacity::rootedChildren` → `rootedChildren` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildren`\n-/\ntheorem rootedEstimateInductionAggregation {V : Type u} [Fintype V] [DecidableEq V]\n    (G : SimpleGraph V) [DecidableRel G.Adj] (w : V → ℤ) (rho : V) (hT : G.IsTree)\n    (hAdm : IsAdmissibleRootedTree G w rho) (x : V → ℤ) (k : ℤ)\n    (hIH : ∀ {W : Type u} [Fintype W] [DecidableEq W] (H : SimpleGraph W)\n      [DecidableRel H.Adj] (weight : W → ℤ) (r : W), Fintype.card W < Fintype.card V →\n        IsAdmissibleRootedTree H weight r → ∀ (y : W → ℤ) (m : ℤ),\n          0 ≤ (↑(PositiveDefiniteTreeLattice.treePairing H weight y y) : ℚ) -\n            (2 * (m : ℚ) + 1) * (y r : ℚ) + rootedCapacity H weight r * (m : ℚ) *\n              ((m : ℚ) + 1)) :\n    let a : ℤ := x rho\n    let gamma : ℚ := rootedCapacity G w rho\n    let tau : ℚ := (a : ℚ) / gamma\n    letI : Fintype {c : V // c ∈ rootedChildren G hT rho rho} := Fintype.ofFinite _\n    (↑(PositiveDefiniteTreeLattice.treePairing G w x x) : ℚ) -\n        (2 * (k : ℚ) + 1) * (a : ℚ) + gamma * (k : ℚ) * ((k : ℚ) + 1) ≥\n      gamma * (tau - (k : ℚ)) * (tau - (k : ℚ) - 1) +\n        ∑ c : {c : V // c ∈ rootedChildren G hT rho rho},\n          |(x c.1 : ℚ) - rootedChildCapacitySummand G hT w rho c * (a : ℚ)| := by\n  sorry\n"
+    },
+    "nl": {
+      "origin": [
+        {
+          "end_line": 127,
+          "end_locator": null,
+          "kind": "source",
+          "note": "These lines decompose the rooted tree pairing into child contributions, aggregate the child bounds, and derive exactly inequality (1).",
+          "ref": null,
+          "resource_key": null,
+          "source_path": "solution.tex",
+          "start_line": 102,
+          "start_locator": null
+        }
+      ],
+      "text": "Fix one universe `u`.  Let `V : Type u` carry the finite and decidable data required by the existing APIs, let `G` be a rooted integer-weighted tree on `V` with root `rho`, weight `w`, and admissibility hypothesis `hT : IsAdmissibleRootedTree G w rho`, and let `x : V → ℤ` and `k : ℤ`.  The generalized smaller-tree induction hypothesis is quantified over finite rooted admissible trees whose vertex types also lie in this same universe `u` and have strictly smaller cardinality.\n\nPut `a := x rho`, `gamma := rootedCapacity G w rho`, and `tau := (a : ℚ) / gamma`.  After specializing that hypothesis through `rootedChildInductionAbsBound` for every `c ∈ rootedChildren G hT rho rho`, this theorem asserts the rational inequality\n\n`(↑(treePairing G w x x) : ℚ) - (2 * (k : ℚ) + 1) * (a : ℚ) + gamma * (k : ℚ) * ((k : ℚ) + 1) ≥ gamma * (tau - (k : ℚ)) * (tau - (k : ℚ) - 1) + ∑ c ∈ rootedChildren G hT rho rho, |(x c : ℚ) - rootedChildCapacitySummand G hT w rho ⟨c, hc⟩ * (a : ℚ)|`.\n\nThe child sum has exactly the rooted-children index and the rooted child-capacity summand of each `⟨c, hc⟩`.  This is source inequality (1), obtained by aggregating the child component pairings and their root-boundary contribution through the proved rooted pairing decomposition and the rooted capacity identity."
+    }
+  },
+  "status": "committed",
+  "updated_at": "2026-08-01T11:44:52Z"
+}

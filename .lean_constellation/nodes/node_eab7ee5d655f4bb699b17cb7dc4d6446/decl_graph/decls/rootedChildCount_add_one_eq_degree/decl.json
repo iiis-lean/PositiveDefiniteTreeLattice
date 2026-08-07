@@ -1,0 +1,15 @@
+{
+  "created_at": "2026-08-02T14:22:30Z",
+  "current_revision": 1,
+  "kind": "theorem",
+  "lifecycle": "active",
+  "module": "PositiveDefiniteTreeLattice.Main.RootedCapacity.Theorems.rootedChildCount_add_one_eq_degree",
+  "name": "rootedChildCount_add_one_eq_degree",
+  "node_path": "Main.RootedCapacity",
+  "public": true,
+  "revision_ids": [
+    1
+  ],
+  "summary": "Every nonroot vertex of a finite rooted tree has degree equal to its rooted child count plus one.",
+  "updated_at": "2026-08-02T14:22:30Z"
+}

@@ -1,0 +1,33 @@
+{
+  "change_summaries": {},
+  "committed_at": "2026-08-01T13:09:43Z",
+  "created_at": "2026-08-01T12:33:35Z",
+  "discard_reason": null,
+  "discarded_at": null,
+  "discarded_by": null,
+  "discarded_created_decl_names": [],
+  "discarded_restored_decl_revisions": {},
+  "discarded_revision_refs": [],
+  "execution_completed_at": "2026-08-01T13:04:51Z",
+  "execution_reason": null,
+  "execution_result_kind": "success",
+  "node_path": "Main.RootedEstimates",
+  "objective": "Retry only Proof Formal for the exact public b_0010 rooted_integer_estimate now that both tracked induction bridges and all arithmetic branches are graph-proved.",
+  "plan_closeout_acknowledged_at": "2026-08-01T13:09:43Z",
+  "plan_closeout_acknowledged_by": "a_c126bbd9cf3144258d31b99169f687bb",
+  "result_kind": "success",
+  "result_reason": "The exact public rooted integer estimate passed Proof Formal and satisfies the graph_proved completion policy.",
+  "revision_refs": [
+    {
+      "change_id": "rooted_integer_estimate@rev:2",
+      "decl_name": "rooted_integer_estimate",
+      "revision": 2
+    }
+  ],
+  "round_id": "round_3dafea96bfd747458aa59b730427de4a",
+  "round_index": 16,
+  "started_at": "2026-08-01T12:35:10Z",
+  "status": "committed",
+  "strategy_id": "strategy_6bfc666c638344a19f7d1dee5c0a60d4",
+  "summary": "Round 16 completed the first contract-required public interface. PositiveDefiniteTreeLattice.rooted_integer_estimate@2 reached proved and is proof-policy satisfied; all recorded b_0010 blockers and intermediate state-only work are closed. The current strategy remains viable for its remaining b_0011 phase. With 13 active declarations against the expected 8–16 allowance, the next step must be a compact bottom-up pairing/rootedGram bridge round, followed by the exact public root_coefficient_lt_norm without unbounded helper expansion."
+}

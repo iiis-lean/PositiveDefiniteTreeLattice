@@ -1,0 +1,38 @@
+{
+  "change_summaries": {},
+  "committed_at": "2026-07-30T00:51:21Z",
+  "created_at": "2026-07-30T00:43:28Z",
+  "discard_reason": null,
+  "discarded_at": null,
+  "discarded_by": null,
+  "discarded_created_decl_names": [],
+  "discarded_restored_decl_revisions": {},
+  "discarded_revision_refs": [],
+  "execution_completed_at": "2026-07-30T00:49:55Z",
+  "execution_reason": null,
+  "execution_result_kind": "success",
+  "node_path": "Main.RootedCapacity",
+  "objective": "Create the next independent b_0008 public definition layer: rootedChildCount as the cardinality of the now-declared rootedChildren, and rootedCapacity as the root diagonal entry of the inverse of the now-declared rational rootedGram. Both declarations preserve solution.tex lines 34 and 39–45 and will provide statement-level inputs for the following admissibility and capacity-recursion rounds.",
+  "plan_closeout_acknowledged_at": "2026-07-30T00:51:21Z",
+  "plan_closeout_acknowledged_by": "a_a93b40977f574bad89528358fa89e022",
+  "result_kind": "success",
+  "result_reason": "Both public definitions reached declared state and passed required declared-level proof-policy satisfaction.",
+  "revision_refs": [
+    {
+      "change_id": "rootedChildCount@rev:1",
+      "decl_name": "rootedChildCount",
+      "revision": 1
+    },
+    {
+      "change_id": "rootedCapacity@rev:1",
+      "decl_name": "rootedCapacity",
+      "revision": 1
+    }
+  ],
+  "round_id": "round_cf6deabaafc5407fa5cf9e5eb14f8205",
+  "round_index": 4,
+  "started_at": "2026-07-30T00:45:00Z",
+  "status": "committed",
+  "strategy_id": "strategy_b9f2bb44ae0a40ba9081239e5f026481",
+  "summary": "Round 4 successfully completed the second independent b_0008 definition layer. rootedChildCount rev1 and rootedCapacity rev1 both reached declared with passed formal statements and declared-level proof-policy satisfaction. No declaration remains below target and no state-only intermediate closure remains. The strategy continues to explain the bottom-up route. The next round can now declare the public admissibility predicate from rootedChildCount and rootedGram; rooted component/subtree bridge work should follow before attempting the proved capacity recursion and strict bounds. No preparation or cleanup is currently needed."
+}

@@ -1,0 +1,33 @@
+{
+  "change_summaries": {},
+  "committed_at": "2026-07-31T02:04:50Z",
+  "created_at": "2026-07-31T00:47:38Z",
+  "discard_reason": null,
+  "discarded_at": null,
+  "discarded_by": null,
+  "discarded_created_decl_names": [],
+  "discarded_restored_decl_revisions": {},
+  "discarded_revision_refs": [],
+  "execution_completed_at": "2026-07-31T01:06:57Z",
+  "execution_reason": null,
+  "execution_result_kind": "success",
+  "node_path": "Main.RootedCapacity",
+  "objective": "Create and graph-prove the exact qualified contract-v2 rootedEdgeClassification interface as a two-way, uniquely indexed partition of ambient tree adjacency into root-child and child-component internal edges.",
+  "plan_closeout_acknowledged_at": "2026-07-31T02:04:50Z",
+  "plan_closeout_acknowledged_by": "a_a93b40977f574bad89528358fa89e022",
+  "result_kind": "success",
+  "result_reason": "The required public rooted edge classification reached proved with exact interface identity and proof-policy satisfaction.",
+  "revision_refs": [
+    {
+      "change_id": "rootedEdgeClassification@rev:1",
+      "decl_name": "rootedEdgeClassification",
+      "revision": 1
+    }
+  ],
+  "round_id": "round_4491d13cb14c48cc94f23b0f6e1bf203",
+  "round_index": 70,
+  "started_at": "2026-07-31T00:48:55Z",
+  "status": "committed",
+  "strategy_id": "strategy_49bd9c72ea784a2f8830cfa50c01657d",
+  "summary": "The v2 strategy reached its mathematical target: rootedEdgeClassification is public, proved, qualified exactly as required, and proof-policy satisfied. Its iff shape exposes both directions, symmetric root-edge cases, unique component indexing, endpoint coercion witnesses, and component-local adjacency for downstream disjoint edge-sum reindexing. The v1 graph remains unchanged. No unfinished declaration or known blocker remains; next is public-boundary inspection, interface binding, graph hygiene, and the v2 completion gate."
+}

@@ -1,0 +1,33 @@
+{
+  "change_summaries": {},
+  "committed_at": "2026-07-30T19:18:33Z",
+  "created_at": "2026-07-30T19:00:42Z",
+  "discard_reason": null,
+  "discarded_at": null,
+  "discarded_by": null,
+  "discarded_created_decl_names": [],
+  "discarded_restored_decl_revisions": {},
+  "discarded_revision_refs": [],
+  "execution_completed_at": "2026-07-30T19:16:51Z",
+  "execution_reason": "The accepted full-datum strong-induction route cannot be completed within the fixed heartbeat budget: Lean exhausts 200000 heartbeats normalizing the exact dependent child-capacity summands against the polymorphic induction predicate. Raising heartbeats is prohibited, and a reusable size-indexed capacity-bound bridge is outside this Proof Formal stage.",
+  "execution_result_kind": "blocked",
+  "node_path": "Main.RootedCapacity",
+  "objective": "Create and prove the required public b_0009 capacity_pos_lt_one interface by induction on tree size.",
+  "plan_closeout_acknowledged_at": "2026-07-30T19:18:33Z",
+  "plan_closeout_acknowledged_by": "a_a93b40977f574bad89528358fa89e022",
+  "result_kind": "blocked",
+  "result_reason": "The public proof needs a tracked size-indexed upper-bound theorem to avoid heartbeat exhaustion in the full-datum strong-induction predicate.",
+  "revision_refs": [
+    {
+      "change_id": "capacity_pos_lt_one@rev:1",
+      "decl_name": "capacity_pos_lt_one",
+      "revision": 1
+    }
+  ],
+  "round_id": "round_f220ed1acfe345a7b9283ceba3078a55",
+  "round_index": 57,
+  "started_at": "2026-07-30T19:02:06Z",
+  "status": "committed",
+  "strategy_id": "strategy_fc60f40a331d4f63bd19e22f0eec7473",
+  "summary": "Round 57 established the exact public capacity_pos_lt_one statement and Proof NL but did not prove it. The mathematical dependency closure is complete; the remaining blocker is Lean normalization in the polymorphic strong-induction representation. The strategy remains viable and the graph remains within the contract scale. Next action is one tracked private size-indexed capacity upper-bound theorem, proved by Nat induction with explicit `Fintype.card V ≤ n`; after it closes, retry only the public theorem's Proof Formal by combining the helper with rootedCapacity_pos."
+}

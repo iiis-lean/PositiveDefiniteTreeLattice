@@ -1,0 +1,206 @@
+{
+  "change": {
+    "anticipated_proof_dep_names": [],
+    "anticipated_statement_dep_names": [],
+    "base_revision": 1,
+    "kind": "update",
+    "objective": "Keep revision 1's accepted source-faithful statement unchanged and complete its proof for b_0010 lines 122–126 from Main.RootedCapacity.rootedCapacity_recursion and capacity_pos_lt_one. This proved identity will feed the tau = a/gamma algebra of the public rooted_integer_estimate.",
+    "require_target_state_satisfied": true,
+    "reset_to_state": "declared",
+    "summary": "Updated rootedCapacityInvEqSub from revision 1's declared statement without semantic change. Proof NL and Proof Formal completed and the formal proof passed using rootedCapacity_recursion and capacity positivity; the revision is ready to commit as proved and graph_proved-satisfied. No blocker remains for this declaration.",
+    "target_state": "proved"
+  },
+  "lean_decl_name": "rootedCapacityInvEqSub",
+  "proof": {
+    "deps": [
+      {
+        "kind": "mathlib_decl",
+        "reason": "Normalizes the inverse of the reciprocal supplied by rootedCapacity_recursion.",
+        "ref": {
+          "module": "Mathlib.Algebra.Group.Basic",
+          "name": "inv_div"
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "Supplies positivity, hence the nonzero field side condition in the reciprocal normalization.",
+        "ref": {
+          "name": "capacity_pos_lt_one",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 2
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "Rewrites rootedCapacity as the reciprocal of the root weight minus the child-capacity sum.",
+        "ref": {
+          "name": "rootedCapacity_recursion",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 5
+        }
+      }
+    ],
+    "formal": {
+      "check": {
+        "allow_sorry": false,
+        "contains_axiom": false,
+        "contains_sorry": false,
+        "diagnostics": {
+          "diagnostics": [],
+          "passed": true,
+          "raw_excerpt": "{'success': True, 'error_message': None, 'file': 'PositiveDefiniteTreeLattice.Main.RootedEstimates.Theorems.rootedCapacityInvEqSub', 'items': [], 'total_items': 0, 'error_count': 0, 'warning_count': 0, 'info_count': 0, 'sorry_count': 0}",
+          "repo_file_path": "PositiveDefiniteTreeLattice/Main/RootedEstimates/Theorems/rootedCapacityInvEqSub.lean",
+          "schema_version": 2,
+          "summary": "Diagnostics returned 0 items"
+        },
+        "message": "Lean check passed.",
+        "policy": "proof_formal",
+        "scan": {
+          "admit_count": 0,
+          "axiom_count": 0,
+          "contains_admit": false,
+          "contains_axiom": false,
+          "contains_opaque": false,
+          "contains_sorry": false,
+          "contains_unsafe": false,
+          "limitation": "Text scan ignores Lean comments and string literals with a conservative first-round lexer; it is not a full Lean parser.",
+          "occurrences": [],
+          "opaque_count": 0,
+          "sorry_count": 0,
+          "summary": "sorry=0, admit=0, axiom=0, opaque=0, unsafe=0",
+          "unsafe_count": 0
+        },
+        "status": "passed"
+      },
+      "code": "-- lean-constellation: managed-imports-begin\nimport PositiveDefiniteTreeLattice.Main.RootedEstimates.Prelude\nimport Mathlib.Algebra.Group.Basic\nimport Mathlib.Combinatorics.SimpleGraph.Acyclic\n-- lean-constellation: managed-imports-end\n\n-- lean-constellation: declaration-source-begin\n\n/--\n# lean-constellation target: `rootedCapacityInvEqSub`\n\nLet `V` be a finite vertex type, let `G : SimpleGraph V` have decidable adjacency, let `w : V → ℤ`,\nand let `rho : V`. Assume separately a tree witness `hG : G.IsTree` and an admissibility hypothesis\n`hAdm : IsAdmissibleRootedTree G w rho`. Then\n\n`(rootedCapacity G w rho)⁻¹ = (w rho : ℚ) - rootedChildCapacitySum G hG w rho`.\n\nThus the child-capacity sum is formed using the tree witness `hG`, while admissibility is the\ndistinct hypothesis `hAdm`.\n\n## Sources\n\n- Source `solution.tex`, lines 122–126\n\n## Statement dependencies\n\n- `SimpleGraph.IsTree` from `Mathlib.Combinatorics.SimpleGraph.Acyclic`\n- `Main.RootedCapacity::IsAdmissibleRootedTree` → `IsAdmissibleRootedTree` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.IsAdmissibleRootedTree`\n- `Main.RootedCapacity::rootedCapacity` → `rootedCapacity` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedCapacity`\n- `Main.RootedCapacity::rootedChildCapacitySum` → `rootedChildCapacitySum` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildCapacitySum`\n\n## Proof outline\n\nPut `d := (w rho : ℚ) - rootedChildCapacitySum G hG w rho`. Apply `rootedCapacity_recursion G hG w\nrho hAdm` to rewrite the left side as `(1 / d)⁻¹`. The first component of\n`PositiveDefiniteTreeLattice.capacity_pos_lt_one G w rho hAdm` supplies `0 < rootedCapacity G w\nrho`, hence any nonzero side condition required by the field normalization. Use `inv_div` and the\nsimplifier's unit inverse/division identities to normalize `(1 / d)⁻¹ = d`. Substitution of the\ndefinition of `d` is exactly the claimed equality. This implements the reciprocal substitution in\nb_0010 lines 122–126.\n\n## Proof sources\n\n- Source `solution.tex`, lines 122–126\n\n## Proof dependencies\n\n- `inv_div` from `Mathlib.Algebra.Group.Basic`\n- `Main.RootedCapacity::capacity_pos_lt_one` → `PositiveDefiniteTreeLattice.capacity_pos_lt_one`\n  from `PositiveDefiniteTreeLattice.Main.RootedCapacity.Theorems.capacity_pos_lt_one`\n- `Main.RootedCapacity::rootedCapacity_recursion` → `rootedCapacity_recursion` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Theorems.rootedCapacity_recursion`\n-/\ntheorem rootedCapacityInvEqSub {V : Type*} [Fintype V] [DecidableEq V]\n    (G : SimpleGraph V) [DecidableRel G.Adj] (hG : G.IsTree) (w : V → ℤ) (rho : V)\n    (hAdm : IsAdmissibleRootedTree G w rho) :\n    (rootedCapacity G w rho)⁻¹ = (w rho : ℚ) - rootedChildCapacitySum G hG w rho := by\n  rw [rootedCapacity_recursion G hG w rho hAdm]\n  simp\n"
+    },
+    "nl": {
+      "origin": [
+        {
+          "end_line": 126,
+          "end_locator": null,
+          "kind": "source",
+          "note": "The proof route implements the displayed capacity-reciprocal substitution used to rewrite the rooted estimate.",
+          "ref": null,
+          "resource_key": null,
+          "source_path": "solution.tex",
+          "start_line": 122,
+          "start_locator": null
+        }
+      ],
+      "text": "Put `d := (w rho : ℚ) - rootedChildCapacitySum G hG w rho`. Apply `rootedCapacity_recursion G hG w rho hAdm` to rewrite the left side as `(1 / d)⁻¹`. The first component of `PositiveDefiniteTreeLattice.capacity_pos_lt_one G w rho hAdm` supplies `0 < rootedCapacity G w rho`, hence any nonzero side condition required by the field normalization. Use `inv_div` and the simplifier's unit inverse/division identities to normalize `(1 / d)⁻¹ = d`. Substitution of the definition of `d` is exactly the claimed equality. This implements the reciprocal substitution in b_0010 lines 122–126."
+    }
+  },
+  "revision": 2,
+  "state": "proof_planned",
+  "statement": {
+    "deps": [
+      {
+        "kind": "mathlib_decl",
+        "reason": "The statement explicitly binds the separate tree witness hG : G.IsTree.",
+        "ref": {
+          "module": "Mathlib.Combinatorics.SimpleGraph.Acyclic",
+          "name": "SimpleGraph.IsTree"
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "The admissibility hypothesis occurs in the statement.",
+        "ref": {
+          "name": "IsAdmissibleRootedTree",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 1
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "The rooted capacity whose reciprocal is identified occurs in the conclusion.",
+        "ref": {
+          "name": "rootedCapacity",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 1
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "The child-capacity sum occurs in the conclusion.",
+        "ref": {
+          "name": "rootedChildCapacitySum",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 2
+        }
+      }
+    ],
+    "formal": {
+      "check": {
+        "allow_sorry": true,
+        "contains_axiom": false,
+        "contains_sorry": true,
+        "diagnostics": {
+          "diagnostics": [
+            {
+              "column": 9,
+              "line": 34,
+              "message": "declaration uses `sorry`",
+              "severity": "warning"
+            }
+          ],
+          "passed": true,
+          "raw_excerpt": "{'success': True, 'error_message': None, 'file': 'PositiveDefiniteTreeLattice.Main.RootedEstimates.Theorems.rootedCapacityInvEqSub', 'items': [{'severity': 'warning', 'pos': {'line': 34, 'column': 9}, 'endPos': {'line': 34, 'column': 31}, 'kind': None, 'data': 'declaration uses `sorry`', 'fileName': 'PositiveDefiniteTreeLattice.Main.RootedEstimates.Theorems.rootedCapacityInvEqSub', 'content': '  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildCapacitySum`\\n-/\\ntheorem rootedCapacityInvEqSub {V : Type*} [Fintype V] [DecidableEq V]\\n    (G : SimpleGraph V) [DecidableRel G.Adj] (hG : G.IsTree) (w : V → ℤ) (rho : V)\\n    (hAdm : IsAdmissibleRootedTree G w rho) :'}], 'total_items': 1, 'error_count': 0, 'warning_count': 1, 'info_count': 0, 'sorry_count': 1}",
+          "repo_file_path": "PositiveDefiniteTreeLattice/Main/RootedEstimates/Theorems/rootedCapacityInvEqSub.lean",
+          "schema_version": 2,
+          "summary": "Diagnostics returned 1 items"
+        },
+        "message": "Lean check passed.",
+        "policy": "statement_formal",
+        "scan": {
+          "admit_count": 0,
+          "axiom_count": 0,
+          "contains_admit": false,
+          "contains_axiom": false,
+          "contains_opaque": false,
+          "contains_sorry": true,
+          "contains_unsafe": false,
+          "limitation": "Text scan ignores Lean comments and string literals with a conservative first-round lexer; it is not a full Lean parser.",
+          "occurrences": [
+            {
+              "column": 3,
+              "excerpt": "sorry",
+              "kind": "sorry",
+              "line": 38
+            }
+          ],
+          "opaque_count": 0,
+          "sorry_count": 1,
+          "summary": "sorry=1, admit=0, axiom=0, opaque=0, unsafe=0",
+          "unsafe_count": 0
+        },
+        "status": "passed"
+      },
+      "code": "-- lean-constellation: managed-imports-begin\nimport PositiveDefiniteTreeLattice.Main.RootedEstimates.Prelude\nimport Mathlib.Combinatorics.SimpleGraph.Acyclic\n-- lean-constellation: managed-imports-end\n\n-- lean-constellation: declaration-source-begin\n\n/--\n# lean-constellation target: `rootedCapacityInvEqSub`\n\nLet `V` be a finite vertex type, let `G : SimpleGraph V` have decidable adjacency, let `w : V → ℤ`,\nand let `rho : V`. Assume separately a tree witness `hG : G.IsTree` and an admissibility hypothesis\n`hAdm : IsAdmissibleRootedTree G w rho`. Then\n\n`(rootedCapacity G w rho)⁻¹ = (w rho : ℚ) - rootedChildCapacitySum G hG w rho`.\n\nThus the child-capacity sum is formed using the tree witness `hG`, while admissibility is the\ndistinct hypothesis `hAdm`.\n\n## Sources\n\n- Source `solution.tex`, lines 122–126\n\n## Statement dependencies\n\n- `SimpleGraph.IsTree` from `Mathlib.Combinatorics.SimpleGraph.Acyclic`\n- `Main.RootedCapacity::IsAdmissibleRootedTree` → `IsAdmissibleRootedTree` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.IsAdmissibleRootedTree`\n- `Main.RootedCapacity::rootedCapacity` → `rootedCapacity` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedCapacity`\n- `Main.RootedCapacity::rootedChildCapacitySum` → `rootedChildCapacitySum` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildCapacitySum`\n-/\ntheorem rootedCapacityInvEqSub {V : Type*} [Fintype V] [DecidableEq V]\n    (G : SimpleGraph V) [DecidableRel G.Adj] (hG : G.IsTree) (w : V → ℤ) (rho : V)\n    (hAdm : IsAdmissibleRootedTree G w rho) :\n    (rootedCapacity G w rho)⁻¹ = (w rho : ℚ) - rootedChildCapacitySum G hG w rho := by\n  sorry\n"
+    },
+    "nl": {
+      "origin": [
+        {
+          "end_line": 126,
+          "end_locator": null,
+          "kind": "source",
+          "note": "This is the capacity-reciprocal identity substituted in the source to rewrite the rooted quadratic estimate.",
+          "ref": null,
+          "resource_key": null,
+          "source_path": "solution.tex",
+          "start_line": 122,
+          "start_locator": null
+        }
+      ],
+      "text": "Let `V` be a finite vertex type, let `G : SimpleGraph V` have decidable adjacency, let `w : V → ℤ`, and let `rho : V`. Assume separately a tree witness `hG : G.IsTree` and an admissibility hypothesis `hAdm : IsAdmissibleRootedTree G w rho`. Then\n\n`(rootedCapacity G w rho)⁻¹ = (w rho : ℚ) - rootedChildCapacitySum G hG w rho`.\n\nThus the child-capacity sum is formed using the tree witness `hG`, while admissibility is the distinct hypothesis `hAdm`."
+    }
+  },
+  "status": "committed",
+  "updated_at": "2026-07-31T03:18:16Z"
+}

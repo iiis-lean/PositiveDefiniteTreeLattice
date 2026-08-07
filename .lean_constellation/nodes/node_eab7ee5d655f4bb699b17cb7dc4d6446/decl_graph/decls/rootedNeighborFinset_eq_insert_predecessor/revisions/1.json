@@ -1,0 +1,243 @@
+{
+  "change": {
+    "anticipated_proof_dep_names": [
+      "rootedChildComponent_adj_mem",
+      "rootedChildComponent_path_decomposition",
+      "rootedChildRoot",
+      "rootedChildren"
+    ],
+    "anticipated_statement_dep_names": [
+      "rootedChildren"
+    ],
+    "base_revision": null,
+    "kind": "create",
+    "objective": "Implement the tightly necessary contract-v3 predecessor partition supported by solution.tex 194–204. For {V} [Fintype V] [DecidableEq V], G : SimpleGraph V, [DecidableRel G.Adj], hG : G.IsTree, root ρ, vertex x, and hx : x ≠ ρ, prove there exists p : V such that p ∉ rootedChildren G hG ρ x and G.neighborFinset x = insert p (rootedChildren G hG ρ x). Choose p as the predecessor on the unique root-to-x path. Use the existing rootedChildren representation, rootedChildRoot, rootedChildComponent_adj_mem, and rootedChildComponent_path_decomposition to show every other ambient neighbor is a child, and conversely every rooted child is adjacent. Introduce no weights, admissibility, capacity, or downstream-node dependency. This private generic helper is the sole bottom-up proof prerequisite for the qualified public rootedChildCount_add_one_eq_degree interface.",
+    "require_target_state_satisfied": true,
+    "reset_to_state": null,
+    "summary": "Created and graph-proved the private generic predecessor partition theorem. For every nonroot vertex, it exhibits a predecessor outside rootedChildren and identifies the ambient neighborFinset as that predecessor inserted into rootedChildren. All statement and proof stages passed, the exact weight-free rooted-tree assumptions were preserved, and the theorem is proof-policy satisfied. It closes the sole planned lower dependency for the public child-count-plus-one degree interface.",
+    "target_state": "proved"
+  },
+  "lean_decl_name": "rootedNeighborFinset_eq_insert_predecessor",
+  "proof": {
+    "deps": [
+      {
+        "kind": "mathlib_decl",
+        "reason": "Selects and identifies the unique simple paths from the root and between adjacent vertices throughout the predecessor/children partition proof.",
+        "ref": {
+          "module": "Mathlib.Combinatorics.SimpleGraph.Acyclic",
+          "name": "SimpleGraph.IsTree.existsUnique_path"
+        }
+      },
+      {
+        "kind": "mathlib_decl",
+        "reason": "Shows the one-edge walk between adjacent vertices is the unique path in the tree.",
+        "ref": {
+          "module": "Mathlib.Combinatorics.SimpleGraph.Paths",
+          "name": "SimpleGraph.Walk.IsPath.of_adj"
+        }
+      },
+      {
+        "kind": "mathlib_decl",
+        "reason": "Derives the contradiction excluding the predecessor from rootedChildren.",
+        "ref": {
+          "module": "Mathlib.Combinatorics.SimpleGraph.Paths",
+          "name": "SimpleGraph.Walk.concat_isPath_iff"
+        }
+      },
+      {
+        "kind": "mathlib_decl",
+        "reason": "Rewrites the reverse of the root-to-x path and the final one-edge path between append and concat.",
+        "ref": {
+          "module": "Mathlib.Combinatorics.SimpleGraph.Walk.Operations",
+          "name": "SimpleGraph.Walk.concat_eq_append"
+        }
+      },
+      {
+        "kind": "mathlib_decl",
+        "reason": "Expands the reversed nonempty unique root-to-x path into its predecessor prefix and final edge.",
+        "ref": {
+          "module": "Mathlib.Combinatorics.SimpleGraph.Walk.Operations",
+          "name": "SimpleGraph.Walk.reverse_cons"
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "Places each neighbor distinct from the predecessor into the predecessor-side child component.",
+        "ref": {
+          "name": "rootedChildComponent_adj_mem",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 1
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "Converts the component path to the root-to-neighbor path needed for rootedChildren membership.",
+        "ref": {
+          "name": "rootedChildComponent_path_decomposition",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 2
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "Selects the child endpoint as the canonical vertex of the deleted-edge component used by adjacency closure.",
+        "ref": {
+          "name": "rootedChildRoot",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 1
+        }
+      }
+    ],
+    "formal": {
+      "check": {
+        "allow_sorry": false,
+        "contains_axiom": false,
+        "contains_sorry": false,
+        "diagnostics": {
+          "diagnostics": [],
+          "passed": true,
+          "raw_excerpt": "{'success': True, 'error_message': None, 'file': 'PositiveDefiniteTreeLattice.Main.RootedCapacity.Theorems.rootedNeighborFinset_eq_insert_predecessor', 'items': [], 'total_items': 0, 'error_count': 0, 'warning_count': 0, 'info_count': 0, 'sorry_count': 0}",
+          "repo_file_path": "PositiveDefiniteTreeLattice/Main/RootedCapacity/Theorems/rootedNeighborFinset_eq_insert_predecessor.lean",
+          "schema_version": 2,
+          "summary": "Diagnostics returned 0 items"
+        },
+        "message": "Lean check passed.",
+        "policy": "proof_formal",
+        "scan": {
+          "admit_count": 0,
+          "axiom_count": 0,
+          "contains_admit": false,
+          "contains_axiom": false,
+          "contains_opaque": false,
+          "contains_sorry": false,
+          "contains_unsafe": false,
+          "limitation": "Text scan ignores Lean comments and string literals with a conservative first-round lexer; it is not a full Lean parser.",
+          "occurrences": [],
+          "opaque_count": 0,
+          "sorry_count": 0,
+          "summary": "sorry=0, admit=0, axiom=0, opaque=0, unsafe=0",
+          "unsafe_count": 0
+        },
+        "status": "passed"
+      },
+      "code": "-- lean-constellation: managed-imports-begin\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Prelude\nimport Mathlib.Combinatorics.SimpleGraph.Acyclic\nimport Mathlib.Combinatorics.SimpleGraph.Finite\nimport Mathlib.Combinatorics.SimpleGraph.Paths\nimport Mathlib.Combinatorics.SimpleGraph.Walk.Operations\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildRoot\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildren\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Theorems.rootedChildComponent_adj_mem\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Theorems.rootedChildComponent_path_decomposition\n-- lean-constellation: managed-imports-end\n\n-- lean-constellation: declaration-source-begin\n\n/--\n# lean-constellation target: `rootedNeighborFinset_eq_insert_predecessor`\n\nLet `V` be a finite type with decidable equality, let `G : SimpleGraph V` have decidable adjacency,\nlet `hG : G.IsTree`, and fix a root `ρ : V`. For every vertex `x : V` with `x ≠ ρ`, there exists a\nvertex `p : V` such that `p ∉ rootedChildren G hG ρ x` and\n\n`G.neighborFinset x = insert p (rootedChildren G hG ρ x)`.\n\nHere `p` is the unique predecessor of `x` on the root-to-`x` path; all remaining neighbors of `x`\nare exactly its rooted children.\n\n## Sources\n\n- Source `solution.tex`, lines 194–204\n\n## Statement dependencies\n\n- `SimpleGraph.IsTree` from `Mathlib.Combinatorics.SimpleGraph.Acyclic`\n- `SimpleGraph.neighborFinset` from `Mathlib.Combinatorics.SimpleGraph.Finite`\n- `Main.RootedCapacity::rootedChildren` → `rootedChildren` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildren`\n\n## Proof outline\n\nLet `P := (hG.existsUnique_path ρ x).choose`.  Since `hx : x ≠ ρ`, `P` is nonempty.  Set `p :=\nP.penultimate`, and let `hpx : G.Adj p x` be its final edge.  The local walk facts `P.dropLast :\nG.Walk ρ p`, `P.IsPath.dropLast`, and the reconstruction of `P` from `P.dropLast` and `hpx` show, by\nunfolding `rootedChildren`, that `x ∈ rootedChildren G hG ρ p`.\n\nFor the first conjunct, suppose `p ∈ rootedChildren G hG ρ x`.  Its defining equality says that the\nunique root-to-`p` path is `P.concat hxp`.  On the other hand, the dropped-last path is the unique\nroot-to-`p` path.  Rewriting by uniqueness makes `P.concat hxp` a path;\n`SimpleGraph.Walk.concat_isPath_iff` then says that `p ∉ P.support`, contradicting that the\npenultimate vertex lies on `P`.  Hence `p ∉ rootedChildren G hG ρ x`.\n\nProve the finset equality by extensionality.  Membership in `G.neighborFinset x` is ambient\nadjacency.  The forward inclusion splits on whether a neighbor `y` equals `p`.  In the other case,\nuse `rootedChildRoot G p x` as the vertex `x` of the deleted-edge component `rootedChildComponent G\np x`; then `rootedChildComponent_adj_mem G hG ρ p x hchild (rootedChildRoot G p x) y hxy hy` places\n`y` in that component.  Package it as `yC`.\n\nApply `rootedChildComponent_path_decomposition G hG ρ p x hchild yC`.  The unique root-to-`y` path\nis thereby the unique root-to-`x` path followed by the unique `x`-to-`y` component path.  The\none-edge walk supplied by `hxy` is a path, so uniqueness in the child component identifies that\nfactor with the edge `x-y`.  Rewriting gives exactly the `rootedChildren` membership witness for `y`\nat parent `x`.  Thus every ambient neighbor is either `p` or a rooted child.  Conversely, unfold\n`rootedChildren`: its first witness is precisely ambient adjacency from `x`, hence every inserted\nchild belongs to `G.neighborFinset x`.  Simplify the two membership characterizations to conclude\n`G.neighborFinset x = insert p (rootedChildren G hG ρ x)`.\n\nThe only nontrivial library ingredients are the verified tree unique-path API and standard\n`Walk.dropLast`/path-concatenation facts; finset extensionality and insert membership are\nlightweight local simplifications.\n\n## Proof sources\n\n- Source `solution.tex`, lines 194–204\n\n## Proof dependencies\n\n- `SimpleGraph.IsTree.existsUnique_path` from `Mathlib.Combinatorics.SimpleGraph.Acyclic`\n- `SimpleGraph.Walk.IsPath.of_adj` from `Mathlib.Combinatorics.SimpleGraph.Paths`\n- `SimpleGraph.Walk.concat_isPath_iff` from `Mathlib.Combinatorics.SimpleGraph.Paths`\n- `SimpleGraph.Walk.concat_eq_append` from `Mathlib.Combinatorics.SimpleGraph.Walk.Operations`\n- `SimpleGraph.Walk.reverse_cons` from `Mathlib.Combinatorics.SimpleGraph.Walk.Operations`\n- `Main.RootedCapacity::rootedChildComponent_adj_mem` → `rootedChildComponent_adj_mem` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Theorems.rootedChildComponent_adj_mem`\n- `Main.RootedCapacity::rootedChildComponent_path_decomposition` →\n  `rootedChildComponent_path_decomposition` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Theorems.rootedChildComponent_path_decomposition`\n- `Main.RootedCapacity::rootedChildRoot` → `rootedChildRoot` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildRoot`\n-/\ntheorem rootedNeighborFinset_eq_insert_predecessor {V : Type*} [Fintype V]\n    [DecidableEq V] (G : SimpleGraph V) [DecidableRel G.Adj] (hG : G.IsTree)\n    (ρ x : V) (hx : x ≠ ρ) :\n    ∃ p : V, p ∉ rootedChildren G hG ρ x ∧\n      G.neighborFinset x = insert p (rootedChildren G hG ρ x) := by\n  classical\n  let P := (hG.existsUnique_path ρ x).choose\n  have hP : P.IsPath := by\n    exact (hG.existsUnique_path ρ x).choose_spec.1\n  generalize hrev : P.reverse = W\n  cases W with\n  | nil =>\n      exact (hx rfl).elim\n  | cons h R =>\n      rename_i _ _ _ p\n      have hPdecomp : P = R.reverse.concat h.symm := by\n        calc\n          P = P.reverse.reverse := by simp\n          _ = (SimpleGraph.Walk.cons h R).reverse := by rw [hrev]\n          _ = R.reverse.concat h.symm := by\n            simpa only [SimpleGraph.Walk.reverse_cons] using\n              (R.reverse.concat_eq_append h.symm).symm\n      have hcatPath : (R.reverse.concat h.symm).IsPath := by\n        rw [← hPdecomp]\n        exact hP\n      have hRpath : R.reverse.IsPath :=\n        (SimpleGraph.Walk.concat_isPath_iff h.symm).mp hcatPath |>.1\n      have hchild : x ∈ rootedChildren G hG ρ p := by\n        simp only [rootedChildren, Finset.mem_filter, Finset.mem_univ, true_and]\n        refine ⟨h.symm, R.reverse, hRpath, ?_⟩\n        simpa [P] using hPdecomp\n      have hnotchild : p ∉ rootedChildren G hG ρ x := by\n        intro hm\n        simp only [rootedChildren, Finset.mem_filter, Finset.mem_univ, true_and] at hm\n        obtain ⟨hxm, q, hq, hqeq⟩ := hm\n        have hqP : q = P := by\n          simpa [P] using (hG.existsUnique_path ρ x).unique hq\n            (hG.existsUnique_path ρ x).choose_spec.1\n        have hqcat : (q.concat hxm).IsPath := by\n          rw [← hqeq]\n          exact (hG.existsUnique_path ρ p).choose_spec.1\n        have hnotmem : p ∉ q.support :=\n          (SimpleGraph.Walk.concat_isPath_iff hxm).mp hqcat |>.2\n        apply hnotmem\n        rw [hqP, hPdecomp]\n        simp\n      refine ⟨p, hnotchild, ?_⟩\n      ext y\n      simp only [SimpleGraph.mem_neighborFinset, Finset.mem_insert]\n      constructor\n      · intro hxy\n        by_cases hy : y = p\n        · exact Or.inl hy\n        · right\n          simp only [rootedChildren, Finset.mem_filter, Finset.mem_univ, true_and]\n          have hyC : y ∈ rootedChildComponent G p x := by\n            exact rootedChildComponent_adj_mem G hG ρ p x hchild\n              (rootedChildRoot G p x) y hxy hy\n          have hdecomp := rootedChildComponent_path_decomposition G hG ρ p x hchild\n            ⟨y, hyC⟩\n          have hxyunique : (hG.existsUnique_path x y).choose = hxy.toWalk := by\n            symm\n            exact (hG.existsUnique_path x y).unique (SimpleGraph.Walk.IsPath.of_adj hxy)\n              (hG.existsUnique_path x y).choose_spec.1\n          refine ⟨hxy, P, hP, ?_⟩\n          calc\n            (hG.existsUnique_path ρ y).choose =\n                (hG.existsUnique_path ρ x).choose.append\n                  (hG.existsUnique_path x y).choose := hdecomp\n            _ = P.append hxy.toWalk := by simp [P, hxyunique]\n            _ = P.concat hxy := (P.concat_eq_append hxy).symm\n      · intro hy\n        rcases hy with rfl | hy\n        · exact h\n        · simp only [rootedChildren, Finset.mem_filter, Finset.mem_univ, true_and] at hy\n          exact hy.1\n"
+    },
+    "nl": {
+      "origin": [
+        {
+          "end_line": 204,
+          "end_locator": null,
+          "kind": "source",
+          "note": "Lines 199–203 justify the proof route’s predecessor-versus-children partition: a nonroot vertex has one parent-side incident edge and all remaining incident edges point to children.",
+          "ref": null,
+          "resource_key": null,
+          "source_path": "solution.tex",
+          "start_line": 194,
+          "start_locator": null
+        }
+      ],
+      "text": "Let `P := (hG.existsUnique_path ρ x).choose`.  Since `hx : x ≠ ρ`, `P` is nonempty.  Set `p := P.penultimate`, and let `hpx : G.Adj p x` be its final edge.  The local walk facts `P.dropLast : G.Walk ρ p`, `P.IsPath.dropLast`, and the reconstruction of `P` from `P.dropLast` and `hpx` show, by unfolding `rootedChildren`, that `x ∈ rootedChildren G hG ρ p`.\n\nFor the first conjunct, suppose `p ∈ rootedChildren G hG ρ x`.  Its defining equality says that the unique root-to-`p` path is `P.concat hxp`.  On the other hand, the dropped-last path is the unique root-to-`p` path.  Rewriting by uniqueness makes `P.concat hxp` a path; `SimpleGraph.Walk.concat_isPath_iff` then says that `p ∉ P.support`, contradicting that the penultimate vertex lies on `P`.  Hence `p ∉ rootedChildren G hG ρ x`.\n\nProve the finset equality by extensionality.  Membership in `G.neighborFinset x` is ambient adjacency.  The forward inclusion splits on whether a neighbor `y` equals `p`.  In the other case, use `rootedChildRoot G p x` as the vertex `x` of the deleted-edge component `rootedChildComponent G p x`; then `rootedChildComponent_adj_mem G hG ρ p x hchild (rootedChildRoot G p x) y hxy hy` places `y` in that component.  Package it as `yC`.\n\nApply `rootedChildComponent_path_decomposition G hG ρ p x hchild yC`.  The unique root-to-`y` path is thereby the unique root-to-`x` path followed by the unique `x`-to-`y` component path.  The one-edge walk supplied by `hxy` is a path, so uniqueness in the child component identifies that factor with the edge `x-y`.  Rewriting gives exactly the `rootedChildren` membership witness for `y` at parent `x`.  Thus every ambient neighbor is either `p` or a rooted child.  Conversely, unfold `rootedChildren`: its first witness is precisely ambient adjacency from `x`, hence every inserted child belongs to `G.neighborFinset x`.  Simplify the two membership characterizations to conclude `G.neighborFinset x = insert p (rootedChildren G hG ρ x)`.\n\nThe only nontrivial library ingredients are the verified tree unique-path API and standard `Walk.dropLast`/path-concatenation facts; finset extensionality and insert membership are lightweight local simplifications."
+    }
+  },
+  "revision": 1,
+  "state": "proved",
+  "statement": {
+    "deps": [
+      {
+        "kind": "mathlib_decl",
+        "reason": "The theorem is quantified over a tree witness `hG : G.IsTree`.",
+        "ref": {
+          "module": "Mathlib.Combinatorics.SimpleGraph.Acyclic",
+          "name": "SimpleGraph.IsTree"
+        }
+      },
+      {
+        "kind": "mathlib_decl",
+        "reason": "The conclusion is stated as an equality of the ambient neighbor finset.",
+        "ref": {
+          "module": "Mathlib.Combinatorics.SimpleGraph.Finite",
+          "name": "SimpleGraph.neighborFinset"
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "The statement identifies the non-predecessor neighbors with this existing rooted-child finset.",
+        "ref": {
+          "name": "rootedChildren",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 2
+        }
+      }
+    ],
+    "formal": {
+      "check": {
+        "allow_sorry": true,
+        "contains_axiom": false,
+        "contains_sorry": true,
+        "diagnostics": {
+          "diagnostics": [
+            {
+              "column": 9,
+              "line": 33,
+              "message": "declaration uses `sorry`",
+              "severity": "warning"
+            }
+          ],
+          "passed": true,
+          "raw_excerpt": "{'success': True, 'error_message': None, 'file': 'PositiveDefiniteTreeLattice.Main.RootedCapacity.Theorems.rootedNeighborFinset_eq_insert_predecessor', 'items': [{'severity': 'warning', 'pos': {'line': 33, 'column': 9}, 'endPos': {'line': 33, 'column': 51}, 'kind': None, 'data': 'declaration uses `sorry`', 'fileName': 'PositiveDefiniteTreeLattice.Main.RootedCapacity.Theorems.rootedNeighborFinset_eq_insert_predecessor', 'content': '  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildren`\\n-/\\ntheorem rootedNeighborFinset_eq_insert_predecessor {V : Type*} [Fintype V]\\n    [DecidableEq V] (G : SimpleGraph V) [DecidableRel G.Adj] (hG : G.IsTree)\\n    (ρ x : V) (hx : x ≠ ρ) :'}], 'total_items': 1, 'error_count': 0, 'warning_count': 1, 'info_count': 0, 'sorry_count': 1}",
+          "repo_file_path": "PositiveDefiniteTreeLattice/Main/RootedCapacity/Theorems/rootedNeighborFinset_eq_insert_predecessor.lean",
+          "schema_version": 2,
+          "summary": "Diagnostics returned 1 items"
+        },
+        "message": "Lean check passed.",
+        "policy": "statement_formal",
+        "scan": {
+          "admit_count": 0,
+          "axiom_count": 0,
+          "contains_admit": false,
+          "contains_axiom": false,
+          "contains_opaque": false,
+          "contains_sorry": true,
+          "contains_unsafe": false,
+          "limitation": "Text scan ignores Lean comments and string literals with a conservative first-round lexer; it is not a full Lean parser.",
+          "occurrences": [
+            {
+              "column": 3,
+              "excerpt": "sorry",
+              "kind": "sorry",
+              "line": 38
+            }
+          ],
+          "opaque_count": 0,
+          "sorry_count": 1,
+          "summary": "sorry=1, admit=0, axiom=0, opaque=0, unsafe=0",
+          "unsafe_count": 0
+        },
+        "status": "passed"
+      },
+      "code": "-- lean-constellation: managed-imports-begin\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Prelude\nimport Mathlib.Combinatorics.SimpleGraph.Acyclic\nimport Mathlib.Combinatorics.SimpleGraph.Finite\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildren\n-- lean-constellation: managed-imports-end\n\n-- lean-constellation: declaration-source-begin\n\n/--\n# lean-constellation target: `rootedNeighborFinset_eq_insert_predecessor`\n\nLet `V` be a finite type with decidable equality, let `G : SimpleGraph V` have decidable adjacency,\nlet `hG : G.IsTree`, and fix a root `ρ : V`. For every vertex `x : V` with `x ≠ ρ`, there exists a\nvertex `p : V` such that `p ∉ rootedChildren G hG ρ x` and\n\n`G.neighborFinset x = insert p (rootedChildren G hG ρ x)`.\n\nHere `p` is the unique predecessor of `x` on the root-to-`x` path; all remaining neighbors of `x`\nare exactly its rooted children.\n\n## Sources\n\n- Source `solution.tex`, lines 194–204\n\n## Statement dependencies\n\n- `SimpleGraph.IsTree` from `Mathlib.Combinatorics.SimpleGraph.Acyclic`\n- `SimpleGraph.neighborFinset` from `Mathlib.Combinatorics.SimpleGraph.Finite`\n- `Main.RootedCapacity::rootedChildren` → `rootedChildren` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildren`\n-/\ntheorem rootedNeighborFinset_eq_insert_predecessor {V : Type*} [Fintype V]\n    [DecidableEq V] (G : SimpleGraph V) [DecidableRel G.Adj] (hG : G.IsTree)\n    (ρ x : V) (hx : x ≠ ρ) :\n    ∃ p : V, p ∉ rootedChildren G hG ρ x ∧\n      G.neighborFinset x = insert p (rootedChildren G hG ρ x) := by\n  sorry\n"
+    },
+    "nl": {
+      "origin": [
+        {
+          "end_line": 204,
+          "end_locator": null,
+          "kind": "source",
+          "note": "The source states that every nonroot vertex has one incident edge toward its parent and the remaining incident edges toward its children, motivating this generic predecessor/children neighbor partition.",
+          "ref": null,
+          "resource_key": null,
+          "source_path": "solution.tex",
+          "start_line": 194,
+          "start_locator": null
+        }
+      ],
+      "text": "Let `V` be a finite type with decidable equality, let `G : SimpleGraph V` have decidable adjacency, let `hG : G.IsTree`, and fix a root `ρ : V`. For every vertex `x : V` with `x ≠ ρ`, there exists a vertex `p : V` such that `p ∉ rootedChildren G hG ρ x` and\n\n`G.neighborFinset x = insert p (rootedChildren G hG ρ x)`.\n\nHere `p` is the unique predecessor of `x` on the root-to-`x` path; all remaining neighbors of `x` are exactly its rooted children."
+    }
+  },
+  "status": "committed",
+  "updated_at": "2026-08-02T14:21:50Z"
+}

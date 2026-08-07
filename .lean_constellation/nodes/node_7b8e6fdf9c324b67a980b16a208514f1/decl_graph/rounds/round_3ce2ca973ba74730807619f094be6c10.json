@@ -1,0 +1,33 @@
+{
+  "change_summaries": {},
+  "committed_at": "2026-08-02T13:00:49Z",
+  "created_at": "2026-08-02T12:35:43Z",
+  "discard_reason": null,
+  "discarded_at": null,
+  "discarded_by": null,
+  "discarded_created_decl_names": [],
+  "discarded_restored_decl_revisions": {},
+  "discarded_revision_refs": [],
+  "execution_completed_at": "2026-08-02T12:59:42Z",
+  "execution_reason": null,
+  "execution_result_kind": "success",
+  "node_path": "Main.IrreducibleVertex",
+  "objective": "Prove the scalar-extension bridge underlying solution.tex:196: positivity of the supplied integer tree pairing implies positive definiteness of the rational rootedGram.",
+  "plan_closeout_acknowledged_at": "2026-08-02T13:00:49Z",
+  "plan_closeout_acknowledged_by": "a_a235941c8c524917a1ed4a78f90c75ba",
+  "result_kind": "success",
+  "result_reason": "The scalar-extension bridge reached proved state and passed required proof-policy satisfaction.",
+  "revision_refs": [
+    {
+      "change_id": "rootedGram_posDef_of_integer_positive@rev:1",
+      "decl_name": "rootedGram_posDef_of_integer_positive",
+      "revision": 1
+    }
+  ],
+  "round_id": "round_3ce2ca973ba74730807619f094be6c10",
+  "round_index": 3,
+  "started_at": "2026-08-02T12:36:44Z",
+  "status": "committed",
+  "strategy_id": "strategy_c8ba6f0b78e349faafd071c8dae0b3af",
+  "summary": "Round 3 successfully advanced the bottom-up strategy. rootedGram_posDef_of_integer_positive reached proved state with passing statement and proof and satisfies graph_proved. No state-only intermediate, blocker, superseded artifact, or cleanup target remains. Together with the committed weight and nonexceptional-degree lemmas, the dependency closure is now ready for the rooted-child-component admissibility declaration; the central capacity inequality and protected parent remain deferred."
+}

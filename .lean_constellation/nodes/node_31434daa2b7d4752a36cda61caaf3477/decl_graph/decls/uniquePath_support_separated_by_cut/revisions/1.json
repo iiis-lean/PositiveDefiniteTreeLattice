@@ -1,0 +1,305 @@
+{
+  "change": {
+    "anticipated_proof_dep_names": [
+      "eq_uniquePath_of_isPath",
+      "uniquePath_isPath"
+    ],
+    "anticipated_statement_dep_names": [
+      "uniquePath"
+    ],
+    "base_revision": null,
+    "kind": "create",
+    "objective": "Create the exact qualified Lean declaration `PositiveDefiniteTreeLattice.uniquePath_support_separated_by_cut`. Quantify a finite simple graph G, hG : G.IsTree, and vertices root parent c x. Its hypotheses must generically express (not assume the conclusion) that parent-c is the terminal oriented edge on the chosen root-to-c path and that x is in the c-side component of `G.deleteEdges {s(parent,c)}`. A compiler-equivalent directly consumable encoding is `G.Adj parent c`, root-to-parent reachability in the deleted graph (or an exact terminal-edge property of `uniquePath G hG root c`), and c-to-x reachability in the deleted graph. Conclude exactly that a vertex lies in both `(uniquePath G hG root c).support` and `(uniquePath G hG c x).support` iff it equals c, or an equivalent singleton-intersection statement preserving those two path objects and endpoints. Do not weaken to mere reachability, do not assume support separation, and do not mention RootedCapacity. The statement consumes public `uniquePath`; the proof may use proved `uniquePath_isPath` and `eq_uniquePath_of_isPath` plus the verified Mathlib bridge, delete-edge, path-decomposition, and support APIs. This is the noncircular cut theorem required by the contract and will feed append simplicity and `PositiveDefiniteTreeLattice.uniquePath_eq_append_through_cut`. Source anchor: SourceIndex b_0008–b_0009 / solution.tex lines 33–64.",
+    "require_target_state_satisfied": true,
+    "reset_to_state": null,
+    "summary": "Created the public theorem `PositiveDefiniteTreeLattice.uniquePath_support_separated_by_cut` with generic finite-tree oriented-cut/deleted-edge side hypotheses and the required exact support-separation conclusion for the chosen root-to-c and c-to-x paths. All four stages passed; revision 1 reached `proved`, is proof-policy satisfied, and has the exact qualified interface identity. Its statement depends on public `uniquePath`; its accepted proof closure uses the proved chosen-path helpers and Mathlib bridge/delete-edge/support APIs. It remains independent of RootedCapacity and introduces no weighted or matrix assumptions. No blocker remains.",
+    "target_state": "proved"
+  },
+  "lean_decl_name": "PositiveDefiniteTreeLattice.uniquePath_support_separated_by_cut",
+  "proof": {
+    "deps": [
+      {
+        "kind": "mathlib_decl",
+        "reason": "Turns the tree's acyclicity and hpc into the bridge property of the cut edge.",
+        "ref": {
+          "module": "Mathlib.Combinatorics.SimpleGraph.Acyclic",
+          "name": "SimpleGraph.isAcyclic_iff_forall_adj_isBridge"
+        }
+      },
+      {
+        "kind": "mathlib_decl",
+        "reason": "Lifts the deleted-edge walk's edge-membership proof along the graph inclusion used by Walk.transfer.",
+        "ref": {
+          "module": "Mathlib.Combinatorics.SimpleGraph.Basic",
+          "name": "SimpleGraph.edgeSet_mono"
+        }
+      },
+      {
+        "kind": "mathlib_decl",
+        "reason": "Defines the bridge condition as failure of deleted-edge reachability between parent and c.",
+        "ref": {
+          "module": "Mathlib.Combinatorics.SimpleGraph.Connectivity.Connected",
+          "name": "SimpleGraph.IsBridge"
+        }
+      },
+      {
+        "kind": "mathlib_decl",
+        "reason": "Normalizes each deleted-edge reachability hypothesis to an IsPath walk with the same endpoints.",
+        "ref": {
+          "module": "Mathlib.Combinatorics.SimpleGraph.Connectivity.Connected",
+          "name": "SimpleGraph.Reachable.exists_isPath"
+        }
+      },
+      {
+        "kind": "mathlib_decl",
+        "reason": "Transfers each deleted-edge witness into the original graph via the canonical inclusion.",
+        "ref": {
+          "module": "Mathlib.Combinatorics.SimpleGraph.DeleteEdges",
+          "name": "SimpleGraph.deleteEdges_le"
+        }
+      },
+      {
+        "kind": "mathlib_decl",
+        "reason": "Constructs the simple root-to-c path by adjoining the terminal edge after showing c is absent from the root-side support.",
+        "ref": {
+          "module": "Mathlib.Combinatorics.SimpleGraph.Paths",
+          "name": "SimpleGraph.Walk.IsPath.cons"
+        }
+      },
+      {
+        "kind": "mathlib_decl",
+        "reason": "Splits a simple deleted-edge path at a support vertex to construct the contradictory component-crossing walk.",
+        "ref": {
+          "module": "Mathlib.Combinatorics.SimpleGraph.Paths",
+          "name": "SimpleGraph.Walk.IsPath.mem_support_iff_exists_append"
+        }
+      },
+      {
+        "kind": "mathlib_decl",
+        "reason": "Transfers the IsPath construction across reversal when expressing the terminal-edge append in the required orientation.",
+        "ref": {
+          "module": "Mathlib.Combinatorics.SimpleGraph.Paths",
+          "name": "SimpleGraph.Walk.IsPath.reverse"
+        }
+      },
+      {
+        "kind": "mathlib_decl",
+        "reason": "Preserves IsPath when transferring a deleted-edge path back to G.",
+        "ref": {
+          "module": "Mathlib.Combinatorics.SimpleGraph.Paths",
+          "name": "SimpleGraph.Walk.IsPath.transfer"
+        }
+      },
+      {
+        "kind": "mathlib_decl",
+        "reason": "Transfers each witness walk by showing its walked edges belong to the deleted graph edge set.",
+        "ref": {
+          "module": "Mathlib.Combinatorics.SimpleGraph.Walk.Basic",
+          "name": "SimpleGraph.Walk.edges_subset_edgeSet"
+        }
+      },
+      {
+        "kind": "mathlib_decl",
+        "reason": "Establishes that c is in the support of the constructed root-to-c walk.",
+        "ref": {
+          "module": "Mathlib.Combinatorics.SimpleGraph.Walk.Basic",
+          "name": "SimpleGraph.Walk.end_mem_support"
+        }
+      },
+      {
+        "kind": "mathlib_decl",
+        "reason": "Establishes that c is in the support of the transferred c-to-x walk.",
+        "ref": {
+          "module": "Mathlib.Combinatorics.SimpleGraph.Walk.Basic",
+          "name": "SimpleGraph.Walk.start_mem_support"
+        }
+      },
+      {
+        "kind": "mathlib_decl",
+        "reason": "Preserves supports when paths are transferred between the deleted graph and G.",
+        "ref": {
+          "module": "Mathlib.Combinatorics.SimpleGraph.Walk.Maps",
+          "name": "SimpleGraph.Walk.support_transfer"
+        }
+      },
+      {
+        "kind": "mathlib_decl",
+        "reason": "Views the deleted-edge simple paths as walks in the original graph.",
+        "ref": {
+          "module": "Mathlib.Combinatorics.SimpleGraph.Walk.Maps",
+          "name": "SimpleGraph.Walk.transfer"
+        }
+      },
+      {
+        "kind": "mathlib_decl",
+        "reason": "Concatenates the deleted-edge segments to contradict the bridge condition.",
+        "ref": {
+          "module": "Mathlib.Combinatorics.SimpleGraph.Walk.Operations",
+          "name": "SimpleGraph.Walk.append"
+        }
+      },
+      {
+        "kind": "mathlib_decl",
+        "reason": "Reverses the suffix from z to parent when constructing deleted-edge reachability from c to parent.",
+        "ref": {
+          "module": "Mathlib.Combinatorics.SimpleGraph.Walk.Operations",
+          "name": "SimpleGraph.Walk.reverse"
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "Identifies each transferred simple witness path, and the root-side path with its terminal edge, with the respective canonical uniquePath.",
+        "ref": {
+          "name": "eq_uniquePath_of_isPath",
+          "node": "Main.TreePathSeparation",
+          "repo": null,
+          "revision": 1
+        }
+      }
+    ],
+    "formal": {
+      "check": {
+        "allow_sorry": false,
+        "contains_axiom": false,
+        "contains_sorry": false,
+        "diagnostics": {
+          "diagnostics": [],
+          "passed": true,
+          "raw_excerpt": "{'success': True, 'error_message': None, 'file': 'PositiveDefiniteTreeLattice.Main.TreePathSeparation.Theorems.uniquePath_support_separated_by_cut', 'items': [], 'total_items': 0, 'error_count': 0, 'warning_count': 0, 'info_count': 0, 'sorry_count': 0}",
+          "repo_file_path": "PositiveDefiniteTreeLattice/Main/TreePathSeparation/Theorems/uniquePath_support_separated_by_cut.lean",
+          "schema_version": 2,
+          "summary": "Diagnostics returned 0 items"
+        },
+        "message": "Lean check passed.",
+        "policy": "proof_formal",
+        "scan": {
+          "admit_count": 0,
+          "axiom_count": 0,
+          "contains_admit": false,
+          "contains_axiom": false,
+          "contains_opaque": false,
+          "contains_sorry": false,
+          "contains_unsafe": false,
+          "limitation": "Text scan ignores Lean comments and string literals with a conservative first-round lexer; it is not a full Lean parser.",
+          "occurrences": [],
+          "opaque_count": 0,
+          "sorry_count": 0,
+          "summary": "sorry=0, admit=0, axiom=0, opaque=0, unsafe=0",
+          "unsafe_count": 0
+        },
+        "status": "passed"
+      },
+      "code": "-- lean-constellation: managed-imports-begin\nimport PositiveDefiniteTreeLattice.Main.TreePathSeparation.Prelude\nimport Mathlib.Combinatorics.SimpleGraph.Acyclic\nimport Mathlib.Combinatorics.SimpleGraph.Basic\nimport Mathlib.Combinatorics.SimpleGraph.Connectivity.Connected\nimport Mathlib.Combinatorics.SimpleGraph.DeleteEdges\nimport Mathlib.Combinatorics.SimpleGraph.Paths\nimport Mathlib.Combinatorics.SimpleGraph.Walk.Basic\nimport Mathlib.Combinatorics.SimpleGraph.Walk.Maps\nimport Mathlib.Combinatorics.SimpleGraph.Walk.Operations\nimport PositiveDefiniteTreeLattice.Main.TreePathSeparation.Defs.uniquePath\nimport PositiveDefiniteTreeLattice.Main.TreePathSeparation.Theorems.eq_uniquePath_of_isPath\n-- lean-constellation: managed-imports-end\n\n-- lean-constellation: declaration-source-begin\n\n/--\n# lean-constellation target: `uniquePath_support_separated_by_cut`\n\nThe public theorem `PositiveDefiniteTreeLattice.uniquePath_support_separated_by_cut` has the\nfollowing statement. Let `V` be finite, `G` a simple graph on `V`, `hG : G.IsTree`, and let `root\nparent c x z : V`. Assume `G.Adj parent c`, `(G.deleteEdges {s(parent, c)}).Reachable root parent`,\nand `(G.deleteEdges {s(parent, c)}).Reachable c x`. Then\n\n`z ∈ (uniquePath G hG root c).support ∧ z ∈ (uniquePath G hG c x).support ↔ z = c`.\n\nThe two deleted-edge reachability hypotheses express that `parent—c` is the terminal oriented edge\nof the chosen root-to-`c` path and that `x` lies on the `c`-side of that cut. The conclusion is\nexact support separation for those two chosen path objects; it introduces no RootedCapacity,\nweighted, matrix, or assumed-separation hypothesis.\n\n## Statement dependencies\n\n- `SimpleGraph.Reachable` from `Mathlib.Combinatorics.SimpleGraph.Connectivity.Connected`\n- `SimpleGraph.deleteEdges` from `Mathlib.Combinatorics.SimpleGraph.DeleteEdges`\n- `SimpleGraph.Walk.support` from `Mathlib.Combinatorics.SimpleGraph.Walk.Basic`\n- `Main.TreePathSeparation::uniquePath` → `uniquePath` from\n  `PositiveDefiniteTreeLattice.Main.TreePathSeparation.Defs.uniquePath`\n\n## Proof outline\n\nPut `D := G.deleteEdges {s(parent, c)}`. From the tree certificate and `hpc`, derive that\n`s(parent,c)` is a bridge using `SimpleGraph.isAcyclic_iff_forall_adj_isBridge`; after unfolding\n`SimpleGraph.IsBridge`, obtain `hbridge : ¬ D.Reachable parent c`.\n\nFirst normalize the root-side witness `hroot`: choose its `D`-walk and replace it by `Walk.toPath`,\nobtaining a simple deleted-edge path `a : D.Walk root parent`. Its support cannot contain `c`:\notherwise `a.IsPath.mem_support_iff_exists_append` splits it at `c`, and the suffix yields\n`D.Reachable c parent`, contradicting `hbridge`. Transfer `a` back to `G` with `Walk.transfer`;\n`IsPath.transfer` preserves simplicity and `support_transfer` preserves its support. Append the\none-edge walk for `hpc`. The preceding exclusion of `c` proves this append is an `IsPath`. Apply\n`eq_uniquePath_of_isPath` to identify that append with `uniquePath G hG root c`. By\n`support_append`, every vertex of this canonical root-to-`c` support other than `c` lies in the\nsupport of the transferred root-side path `a`.\n\nSimilarly, normalize `hx` to a simple `D`-path `b : D.Walk c x`, transfer it to `G`, and use\n`eq_uniquePath_of_isPath` to identify it with `uniquePath G hG c x`. Its support is unchanged by\ntransfer.\n\nFor the forward implication, take `z` in both canonical supports and suppose `z ≠ c`. The first\nidentification and the support formula place `z` in `a.support`; the second places it in\n`b.support`. Apply `IsPath.mem_support_iff_exists_append` to both deleted-edge paths at `z`. The\nprefix of `b` gives a deleted-edge walk from `c` to `z`; reverse the suffix of `a` to obtain a\ndeleted-edge walk from `z` to `parent`. Append them (or use `Reachable.trans`) to get `D.Reachable c\nparent`, contradicting the bridge condition. Thus `z = c`.\n\nFor the reverse implication, substitute `z = c`; `c` is the terminal vertex of `uniquePath G hG root\nc` and the initial vertex of `uniquePath G hG c x`, hence belongs to both supports. All nontrivial\nmathematical steps are applications of the verified bridge, path-decomposition, transfer, support,\nreverse, and reachability APIs; the remaining work is local witness extraction and simplification.\n\n## Proof sources\n\n- Source `solution.tex`, lines 33–64\n\n## Proof dependencies\n\n- `SimpleGraph.isAcyclic_iff_forall_adj_isBridge` from `Mathlib.Combinatorics.SimpleGraph.Acyclic`\n- `SimpleGraph.edgeSet_mono` from `Mathlib.Combinatorics.SimpleGraph.Basic`\n- `SimpleGraph.IsBridge` from `Mathlib.Combinatorics.SimpleGraph.Connectivity.Connected`\n- `SimpleGraph.Reachable.exists_isPath` from\n  `Mathlib.Combinatorics.SimpleGraph.Connectivity.Connected`\n- `SimpleGraph.deleteEdges_le` from `Mathlib.Combinatorics.SimpleGraph.DeleteEdges`\n- `SimpleGraph.Walk.IsPath.cons` from `Mathlib.Combinatorics.SimpleGraph.Paths`\n- `SimpleGraph.Walk.IsPath.mem_support_iff_exists_append` from\n  `Mathlib.Combinatorics.SimpleGraph.Paths`\n- `SimpleGraph.Walk.IsPath.reverse` from `Mathlib.Combinatorics.SimpleGraph.Paths`\n- `SimpleGraph.Walk.IsPath.transfer` from `Mathlib.Combinatorics.SimpleGraph.Paths`\n- `SimpleGraph.Walk.edges_subset_edgeSet` from `Mathlib.Combinatorics.SimpleGraph.Walk.Basic`\n- `SimpleGraph.Walk.end_mem_support` from `Mathlib.Combinatorics.SimpleGraph.Walk.Basic`\n- `SimpleGraph.Walk.start_mem_support` from `Mathlib.Combinatorics.SimpleGraph.Walk.Basic`\n- `SimpleGraph.Walk.support_transfer` from `Mathlib.Combinatorics.SimpleGraph.Walk.Maps`\n- `SimpleGraph.Walk.transfer` from `Mathlib.Combinatorics.SimpleGraph.Walk.Maps`\n- `SimpleGraph.Walk.append` from `Mathlib.Combinatorics.SimpleGraph.Walk.Operations`\n- `SimpleGraph.Walk.reverse` from `Mathlib.Combinatorics.SimpleGraph.Walk.Operations`\n- `Main.TreePathSeparation::eq_uniquePath_of_isPath` → `eq_uniquePath_of_isPath` from\n  `PositiveDefiniteTreeLattice.Main.TreePathSeparation.Theorems.eq_uniquePath_of_isPath`\n-/\ntheorem PositiveDefiniteTreeLattice.uniquePath_support_separated_by_cut\n    {V : Type*} [Fintype V] (G : SimpleGraph V) (hG : G.IsTree)\n    (root parent c x z : V) (hpc : G.Adj parent c)\n    (hroot : (G.deleteEdges {s(parent, c)}).Reachable root parent)\n    (hx : (G.deleteEdges {s(parent, c)}).Reachable c x) :\n    z ∈ (uniquePath G hG root c).support ∧ z ∈ (uniquePath G hG c x).support ↔ z = c := by\n  classical\n  have hbridge : ¬ (G.deleteEdges {s(parent, c)}).Reachable parent c := by\n    simpa [SimpleGraph.IsBridge] using\n      (SimpleGraph.isAcyclic_iff_forall_adj_isBridge.mp hG.isAcyclic hpc)\n  obtain ⟨a, ha⟩ := hroot.exists_isPath\n  have hca : c ∉ a.support := by\n    intro hca\n    obtain ⟨q, r, hq, hr, har⟩ := (ha.mem_support_iff_exists_append.mp hca)\n    apply hbridge\n    exact ⟨r.reverse⟩\n  have ha_to_G : ∀ e, e ∈ a.edges → e ∈ G.edgeSet := by\n    intro e he\n    exact (SimpleGraph.edgeSet_mono (G.deleteEdges_le _)) (a.edges_subset_edgeSet he)\n  let aG : G.Walk root parent := a.transfer G ha_to_G\n  have haG : aG.IsPath := by\n    dsimp [aG]\n    exact ha.transfer ha_to_G\n  have hcaG : c ∉ aG.support := by\n    simpa [aG] using hca\n  let p : G.Walk root c := (SimpleGraph.Walk.cons hpc.symm aG.reverse).reverse\n  have hp : p.IsPath := by\n    dsimp [p]\n    exact (haG.reverse.cons (by simpa using hcaG)).reverse\n  have hp_eq : p = uniquePath G hG root c :=\n    eq_uniquePath_of_isPath G hG root c p hp\n  obtain ⟨b, hb⟩ := hx.exists_isPath\n  have hb_to_G : ∀ e, e ∈ b.edges → e ∈ G.edgeSet := by\n    intro e he\n    exact (SimpleGraph.edgeSet_mono (G.deleteEdges_le _)) (b.edges_subset_edgeSet he)\n  let bG : G.Walk c x := b.transfer G hb_to_G\n  have hbG : bG.IsPath := by\n    dsimp [bG]\n    exact hb.transfer hb_to_G\n  have hb_eq : bG = uniquePath G hG c x :=\n    eq_uniquePath_of_isPath G hG c x bG hbG\n  constructor\n  · rintro ⟨hzp, hzb⟩\n    by_contra hzc\n    have hzp' : z ∈ p.support := by simpa [hp_eq] using hzp\n    have hzb' : z ∈ bG.support := by simpa [hb_eq] using hzb\n    have hza_or : z ∈ a.support ∨ z = parent := by\n      simpa [p, aG, hzc] using hzp'\n    have hza : z ∈ a.support := hza_or.elim id fun hz => hz ▸ a.end_mem_support\n    have hzb : z ∈ b.support := by simpa [bG] using hzb'\n    obtain ⟨q, r, hq, hr, har⟩ := ha.mem_support_iff_exists_append.mp hza\n    obtain ⟨s, t, hs, ht, hbt⟩ := hb.mem_support_iff_exists_append.mp hzb\n    apply hbridge\n    exact ⟨(s.append r).reverse⟩\n  · intro hzc\n    subst z\n    constructor\n    · rw [← hp_eq]\n      exact p.end_mem_support\n    · rw [← hb_eq]\n      exact bG.start_mem_support\n"
+    },
+    "nl": {
+      "origin": [
+        {
+          "end_line": 64,
+          "end_locator": null,
+          "kind": "source",
+          "note": "Assigned source anchor for the rooted-tree child-side separation; this route formalizes its generic edge-cut path-support core.",
+          "ref": null,
+          "resource_key": null,
+          "source_path": "solution.tex",
+          "start_line": 33,
+          "start_locator": null
+        }
+      ],
+      "text": "Put `D := G.deleteEdges {s(parent, c)}`. From the tree certificate and `hpc`, derive that `s(parent,c)` is a bridge using `SimpleGraph.isAcyclic_iff_forall_adj_isBridge`; after unfolding `SimpleGraph.IsBridge`, obtain `hbridge : ¬ D.Reachable parent c`.\n\nFirst normalize the root-side witness `hroot`: choose its `D`-walk and replace it by `Walk.toPath`, obtaining a simple deleted-edge path `a : D.Walk root parent`. Its support cannot contain `c`: otherwise `a.IsPath.mem_support_iff_exists_append` splits it at `c`, and the suffix yields `D.Reachable c parent`, contradicting `hbridge`. Transfer `a` back to `G` with `Walk.transfer`; `IsPath.transfer` preserves simplicity and `support_transfer` preserves its support. Append the one-edge walk for `hpc`. The preceding exclusion of `c` proves this append is an `IsPath`. Apply `eq_uniquePath_of_isPath` to identify that append with `uniquePath G hG root c`. By `support_append`, every vertex of this canonical root-to-`c` support other than `c` lies in the support of the transferred root-side path `a`.\n\nSimilarly, normalize `hx` to a simple `D`-path `b : D.Walk c x`, transfer it to `G`, and use `eq_uniquePath_of_isPath` to identify it with `uniquePath G hG c x`. Its support is unchanged by transfer.\n\nFor the forward implication, take `z` in both canonical supports and suppose `z ≠ c`. The first identification and the support formula place `z` in `a.support`; the second places it in `b.support`. Apply `IsPath.mem_support_iff_exists_append` to both deleted-edge paths at `z`. The prefix of `b` gives a deleted-edge walk from `c` to `z`; reverse the suffix of `a` to obtain a deleted-edge walk from `z` to `parent`. Append them (or use `Reachable.trans`) to get `D.Reachable c parent`, contradicting the bridge condition. Thus `z = c`.\n\nFor the reverse implication, substitute `z = c`; `c` is the terminal vertex of `uniquePath G hG root c` and the initial vertex of `uniquePath G hG c x`, hence belongs to both supports. All nontrivial mathematical steps are applications of the verified bridge, path-decomposition, transfer, support, reverse, and reachability APIs; the remaining work is local witness extraction and simplification."
+    }
+  },
+  "revision": 1,
+  "state": "proved",
+  "statement": {
+    "deps": [
+      {
+        "kind": "mathlib_decl",
+        "reason": "The cut-side hypotheses use reachability in the deleted-edge graph.",
+        "ref": {
+          "module": "Mathlib.Combinatorics.SimpleGraph.Connectivity.Connected",
+          "name": "SimpleGraph.Reachable"
+        }
+      },
+      {
+        "kind": "mathlib_decl",
+        "reason": "The hypotheses state reachability in the graph formed by deleting the undirected cut edge.",
+        "ref": {
+          "module": "Mathlib.Combinatorics.SimpleGraph.DeleteEdges",
+          "name": "SimpleGraph.deleteEdges"
+        }
+      },
+      {
+        "kind": "mathlib_decl",
+        "reason": "The conclusion asserts membership in the supports of the two chosen walks.",
+        "ref": {
+          "module": "Mathlib.Combinatorics.SimpleGraph.Walk.Basic",
+          "name": "SimpleGraph.Walk.support"
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "Both path supports in the conclusion are supports of the accepted canonical chosen tree walks.",
+        "ref": {
+          "name": "uniquePath",
+          "node": "Main.TreePathSeparation",
+          "repo": null,
+          "revision": 1
+        }
+      }
+    ],
+    "formal": {
+      "check": {
+        "allow_sorry": true,
+        "contains_axiom": false,
+        "contains_sorry": true,
+        "diagnostics": {
+          "diagnostics": [
+            {
+              "column": 9,
+              "line": 34,
+              "message": "declaration uses `sorry`",
+              "severity": "warning"
+            }
+          ],
+          "passed": true,
+          "raw_excerpt": "{'success': True, 'error_message': None, 'file': 'PositiveDefiniteTreeLattice.Main.TreePathSeparation.Theorems.uniquePath_support_separated_by_cut', 'items': [{'severity': 'warning', 'pos': {'line': 34, 'column': 9}, 'endPos': {'line': 34, 'column': 72}, 'kind': None, 'data': 'declaration uses `sorry`', 'fileName': 'PositiveDefiniteTreeLattice.Main.TreePathSeparation.Theorems.uniquePath_support_separated_by_cut', 'content': '  `PositiveDefiniteTreeLattice.Main.TreePathSeparation.Defs.uniquePath`\\n-/\\ntheorem PositiveDefiniteTreeLattice.uniquePath_support_separated_by_cut\\n    {V : Type*} [Fintype V] (G : SimpleGraph V) (hG : G.IsTree)\\n    (root parent c x z : V) (hpc : G.Adj parent c)'}], 'total_items': 1, 'error_count': 0, 'warning_count': 1, 'info_count': 0, 'sorry_count': 1}",
+          "repo_file_path": "PositiveDefiniteTreeLattice/Main/TreePathSeparation/Theorems/uniquePath_support_separated_by_cut.lean",
+          "schema_version": 2,
+          "summary": "Diagnostics returned 1 items"
+        },
+        "message": "Lean check passed.",
+        "policy": "statement_formal",
+        "scan": {
+          "admit_count": 0,
+          "axiom_count": 0,
+          "contains_admit": false,
+          "contains_axiom": false,
+          "contains_opaque": false,
+          "contains_sorry": true,
+          "contains_unsafe": false,
+          "limitation": "Text scan ignores Lean comments and string literals with a conservative first-round lexer; it is not a full Lean parser.",
+          "occurrences": [
+            {
+              "column": 3,
+              "excerpt": "sorry",
+              "kind": "sorry",
+              "line": 40
+            }
+          ],
+          "opaque_count": 0,
+          "sorry_count": 1,
+          "summary": "sorry=1, admit=0, axiom=0, opaque=0, unsafe=0",
+          "unsafe_count": 0
+        },
+        "status": "passed"
+      },
+      "code": "-- lean-constellation: managed-imports-begin\nimport PositiveDefiniteTreeLattice.Main.TreePathSeparation.Prelude\nimport Mathlib.Combinatorics.SimpleGraph.Connectivity.Connected\nimport Mathlib.Combinatorics.SimpleGraph.DeleteEdges\nimport Mathlib.Combinatorics.SimpleGraph.Walk.Basic\nimport PositiveDefiniteTreeLattice.Main.TreePathSeparation.Defs.uniquePath\n-- lean-constellation: managed-imports-end\n\n-- lean-constellation: declaration-source-begin\n\n/--\n# lean-constellation target: `uniquePath_support_separated_by_cut`\n\nThe public theorem `PositiveDefiniteTreeLattice.uniquePath_support_separated_by_cut` has the\nfollowing statement. Let `V` be finite, `G` a simple graph on `V`, `hG : G.IsTree`, and let `root\nparent c x z : V`. Assume `G.Adj parent c`, `(G.deleteEdges {s(parent, c)}).Reachable root parent`,\nand `(G.deleteEdges {s(parent, c)}).Reachable c x`. Then\n\n`z ∈ (uniquePath G hG root c).support ∧ z ∈ (uniquePath G hG c x).support ↔ z = c`.\n\nThe two deleted-edge reachability hypotheses express that `parent—c` is the terminal oriented edge\nof the chosen root-to-`c` path and that `x` lies on the `c`-side of that cut. The conclusion is\nexact support separation for those two chosen path objects; it introduces no RootedCapacity,\nweighted, matrix, or assumed-separation hypothesis.\n\n## Statement dependencies\n\n- `SimpleGraph.Reachable` from `Mathlib.Combinatorics.SimpleGraph.Connectivity.Connected`\n- `SimpleGraph.deleteEdges` from `Mathlib.Combinatorics.SimpleGraph.DeleteEdges`\n- `SimpleGraph.Walk.support` from `Mathlib.Combinatorics.SimpleGraph.Walk.Basic`\n- `Main.TreePathSeparation::uniquePath` → `uniquePath` from\n  `PositiveDefiniteTreeLattice.Main.TreePathSeparation.Defs.uniquePath`\n-/\ntheorem PositiveDefiniteTreeLattice.uniquePath_support_separated_by_cut\n    {V : Type*} [Fintype V] (G : SimpleGraph V) (hG : G.IsTree)\n    (root parent c x z : V) (hpc : G.Adj parent c)\n    (hroot : (G.deleteEdges {s(parent, c)}).Reachable root parent)\n    (hx : (G.deleteEdges {s(parent, c)}).Reachable c x) :\n    z ∈ (uniquePath G hG root c).support ∧ z ∈ (uniquePath G hG c x).support ↔ z = c := by\n  sorry\n"
+    },
+    "nl": {
+      "origin": [],
+      "text": "The public theorem `PositiveDefiniteTreeLattice.uniquePath_support_separated_by_cut` has the following statement. Let `V` be finite, `G` a simple graph on `V`, `hG : G.IsTree`, and let `root parent c x z : V`. Assume `G.Adj parent c`, `(G.deleteEdges {s(parent, c)}).Reachable root parent`, and `(G.deleteEdges {s(parent, c)}).Reachable c x`. Then\n\n`z ∈ (uniquePath G hG root c).support ∧ z ∈ (uniquePath G hG c x).support ↔ z = c`.\n\nThe two deleted-edge reachability hypotheses express that `parent—c` is the terminal oriented edge of the chosen root-to-`c` path and that `x` lies on the `c`-side of that cut. The conclusion is exact support separation for those two chosen path objects; it introduces no RootedCapacity, weighted, matrix, or assumed-separation hypothesis."
+    }
+  },
+  "status": "committed",
+  "updated_at": "2026-07-30T04:32:32Z"
+}

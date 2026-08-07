@@ -1,0 +1,17 @@
+{
+  "created_at": "2026-07-30T19:19:15Z",
+  "current_revision": 3,
+  "kind": "theorem",
+  "lifecycle": "active",
+  "module": "PositiveDefiniteTreeLattice.Main.RootedCapacity.Theorems.rootedCapacity_lt_one_of_card_le",
+  "name": "rootedCapacity_lt_one_of_card_le",
+  "node_path": "Main.RootedCapacity",
+  "public": false,
+  "revision_ids": [
+    1,
+    2,
+    3
+  ],
+  "summary": "An admissible rooted tree whose vertex cardinality is bounded by n has capacity strictly below one.",
+  "updated_at": "2026-07-30T21:40:59Z"
+}

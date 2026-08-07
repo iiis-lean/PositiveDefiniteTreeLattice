@@ -1,0 +1,33 @@
+{
+  "change_summaries": {},
+  "committed_at": "2026-07-30T15:15:32Z",
+  "created_at": "2026-07-30T15:04:23Z",
+  "discard_reason": null,
+  "discarded_at": null,
+  "discarded_by": null,
+  "discarded_created_decl_names": [],
+  "discarded_restored_decl_revisions": {},
+  "discarded_revision_refs": [],
+  "execution_completed_at": "2026-07-30T15:13:47Z",
+  "execution_reason": "The required exact route reaches the distinct-child entry after Matrix.reindex_apply, forward-embedding equalities, Matrix.blockDiagonal'_apply', and dif_neg for the distinct child labels. The resulting hEntry and goal are both normalized to D⁻¹ (ι c hc x) (ι d hd y) = 0, but Lean deterministically times out at whnf (200000 heartbeats) on the final rw/exact conversion (line 312). This is the statement's dependent ι representation conversion, not a missing mathematical dependency. The assignment expressly forbids another helper and requires returning this exact scope/representation mismatch if it remains.",
+  "execution_result_kind": "blocked",
+  "node_path": "Main.RootedCapacity",
+  "objective": "Retry only Proof Formal for rootedNonroot_inverse_childBlocks now that both the exact child Gram block decomposition and the repaired, proved block-inverse identity are available. Preserve the accepted inverse-entry statement and remain within the existing graph.",
+  "plan_closeout_acknowledged_at": "2026-07-30T15:15:32Z",
+  "plan_closeout_acknowledged_by": "a_a93b40977f574bad89528358fa89e022",
+  "result_kind": "blocked",
+  "result_reason": "All mathematical dependencies are proved, but the final distinct-child clause deterministically times out converting the private statement's dependent ι representations; further local helper/retry expansion is prohibited and requires Coordinator representation cleanup.",
+  "revision_refs": [
+    {
+      "change_id": "rootedNonroot_inverse_childBlocks@rev:4",
+      "decl_name": "rootedNonroot_inverse_childBlocks",
+      "revision": 4
+    }
+  ],
+  "round_id": "round_8bdb539fcdf342488cfe7a7d8357bb65",
+  "round_index": 41,
+  "started_at": "2026-07-30T15:05:42Z",
+  "status": "committed",
+  "strategy_id": "strategy_1fbcdfb31a2e4cada1ff5b7b941de18c",
+  "summary": "Round 41 reached the final distinct-child inverse entry through all proved mathematical dependencies but remained proof_planned because Lean times out converting two definitionally intended forms of the statement's dependent ι indices. The strategy no longer responsibly supports another local retry: the graph has grown to 29 declarations, all substantive block mathematics is proved, the exact same normalized equality is present on both sides, and the round explicitly prohibited another conversion helper. Finishing now requires a Coordinator-approved cleanup/redesign of the private inverse-entry representation—such as replacing the dependent ι statement with a stable equivalence-indexed form and updating downstream consumers—or a broader node split/representation convention. Until that decision, rootedNonroot_inverse_quadratic, capacity recursion/strict upper bound, and the three public interfaces cannot proceed. Next action should be terminal Content blocked after strategy closeout, not preparation, resource recon, or another round."
+}

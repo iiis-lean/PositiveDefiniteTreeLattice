@@ -1,0 +1,33 @@
+{
+  "change_summaries": {},
+  "committed_at": "2026-08-03T17:45:35Z",
+  "created_at": "2026-08-03T17:08:17Z",
+  "discard_reason": null,
+  "discarded_at": null,
+  "discarded_by": null,
+  "discarded_created_decl_names": [],
+  "discarded_restored_decl_revisions": {},
+  "discarded_revision_refs": [],
+  "execution_completed_at": "2026-08-03T17:43:07Z",
+  "execution_reason": "The strict root/nonroot Schur-complement calculation and the admissibility-instantiated child-block inverse both elaborate, but the remaining required equality `(B * D⁻¹ * C) r r = rootedChildCapacitySum G hG weight v` cannot be discharged from the visible provider boundary without recreating the provider's nonpublic reindexed quadratic contraction. The only known contraction route is `rootedNonroot_inverse_quadratic`, which is not public and moreover requires ambient `IsAdmissibleRootedTree G weight v`; that premise is incompatible with the retained underweight hypothesis `hv : weight v < (G.degree v : ℤ)`.",
+  "execution_result_kind": "blocked",
+  "node_path": "Main.IrreducibleVertex",
+  "objective": "Retry the retained central-gap lemma from declared through Proof NL and Proof Formal using the two contract-v3 provider repairs.",
+  "plan_closeout_acknowledged_at": "2026-08-03T17:45:35Z",
+  "plan_closeout_acknowledged_by": "a_a235941c8c524917a1ed4a78f90c75ba",
+  "result_kind": "blocked",
+  "result_reason": "Proof Formal is blocked on the provider-owned equality `(B * D⁻¹ * C) r r = rootedChildCapacitySum G hG weight v`. No visible public RootedCapacity theorem supplies it under pointwise child admissibility; the only known nonpublic contraction requires incompatible ambient admissibility.",
+  "revision_refs": [
+    {
+      "change_id": "rootedChildCapacitySum_lt_weight_of_unique_underweight@rev:5",
+      "decl_name": "rootedChildCapacitySum_lt_weight_of_unique_underweight",
+      "revision": 5
+    }
+  ],
+  "round_id": "round_d21d0a3dae0840f68f1ccc30ebde51f8",
+  "round_index": 13,
+  "started_at": "2026-08-03T17:09:41Z",
+  "status": "committed",
+  "strategy_id": "strategy_c83b9a86debe4941baf6740c54d22396",
+  "summary": "Round 13 made bounded progress: `rootedChildCapacitySum_lt_weight_of_unique_underweight` revision 5 reached proof_planned with accepted Proof NL, and the intended Schur/block calculation elaborates through the final contraction; it did not reach proved or graph-proved satisfaction. All other seven active declarations remain unchanged and proved; there are no downstream consumers or retry-named graph artifacts to clean up. The sole blocker is provider-owned, not a Source-visible current-node helper: public RootedCapacity lacks a contraction theorem identifying `(B * D⁻¹ * C) r r` with `rootedChildCapacitySum G hG weight v` under the retained pointwise child-admissibility and ambient PosDef route. The known nonpublic `rootedNonroot_inverse_quadratic` cannot serve because it assumes ambient `IsAdmissibleRootedTree G weight v`, contradicted by the unique-underweight hypothesis. Parent retry conditions are a public, ready, fresh contraction API with the exact root/nonroot and Sigma-child indices and no ambient-admissibility premise, followed by dependency recon; then resume revision 5 from proof_planned so only Proof Formal reruns. Since contract v3 forbids recreating this provider matrix proof locally, the next action after closeout is a terminal Content blocker for Coordinator/provider repair."
+}

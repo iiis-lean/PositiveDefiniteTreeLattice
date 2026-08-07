@@ -1,0 +1,33 @@
+{
+  "change_summaries": {},
+  "committed_at": "2026-08-06T12:28:34Z",
+  "created_at": "2026-08-06T12:11:25Z",
+  "discard_reason": null,
+  "discarded_at": null,
+  "discarded_by": null,
+  "discarded_created_decl_names": [],
+  "discarded_restored_decl_revisions": {},
+  "discarded_revision_refs": [],
+  "execution_completed_at": "2026-08-06T12:23:21Z",
+  "execution_reason": "The required composition of the two designated public providers is not type-checkable under the normal heartbeat limit: their `IsAdmissibleRootedTree` premises are indexed by incompatible component instances. Completing the scalar normalization would require an upstream instance-transport interface (or changing the inverse provider’s premise), which is outside Proof Formal authority.",
+  "execution_result_kind": "blocked",
+  "node_path": "Main.IrreducibleVertex",
+  "objective": "Complete only Proof Formal for the frozen central-gap revision using the contract-authorized proof-local scalar normalization.",
+  "plan_closeout_acknowledged_at": "2026-08-06T12:28:34Z",
+  "plan_closeout_acknowledged_by": "a_a235941c8c524917a1ed4a78f90c75ba",
+  "result_kind": "blocked",
+  "result_reason": "Proof Formal cannot compose the designated inverse-reindex provider with the proved child-admissibility fact because their `IsAdmissibleRootedTree` premises use incompatible component instances. The required upstream instance transport or provider-premise repair is outside current Proof Formal and contract authority.",
+  "revision_refs": [
+    {
+      "change_id": "rootedChildCapacitySum_lt_weight_of_unique_underweight@rev:6",
+      "decl_name": "rootedChildCapacitySum_lt_weight_of_unique_underweight",
+      "revision": 6
+    }
+  ],
+  "round_id": "round_d337509d97a24de49d619439453f6227",
+  "round_index": 14,
+  "started_at": "2026-08-06T12:14:16Z",
+  "status": "committed",
+  "strategy_id": "strategy_a62fa6e411fa4b4893b633b718858072",
+  "summary": "Round 14 did not advance `rootedChildCapacitySum_lt_weight_of_unique_underweight` beyond proof_planned and no declaration became newly proof-policy satisfied. The strategy's proposed one-consumer scalar normalization is not type-checkable because the designated public inverse-reindex provider and the proved per-child admissibility fact quantify over incompatible component instances. Direct provider inspection confirms the inverse theorem fixes canonical `Fintype.ofFinite`/component matrix conventions, while the support theorem only supplies entrywise and sum collapses; neither closes the `IsAdmissibleRootedTree` instance transport. Mathlib is not the missing semantic owner, and the current node cannot introduce a representation/instance bridge under contract v3's explicit constraints. All other seven active declarations remain proved, the graph stays at eight declarations within expected scale, and there are no downstream or retry-named artifacts requiring cleanup. Complete retry conditions are an upstream RootedCapacity premise/interface repair or public instance-transport theorem with the exact component indices, plus a contract/dependency update and fresh recon; then resume this lemma from proof_planned. The next action after closeout is a terminal Content blocker, not another semantic retry or preparation flow."
+}

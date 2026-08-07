@@ -1,0 +1,236 @@
+{
+  "change": {
+    "anticipated_proof_dep_names": [
+      "rootedGram"
+    ],
+    "anticipated_statement_dep_names": [
+      "rootedGram"
+    ],
+    "base_revision": null,
+    "kind": "create",
+    "objective": "Formalize the reusable matrix identity implicit in SourceIndex b_0009 / solution.tex lines 57–64. For finite decidable V, graph G with decidable adjacency, integer weight w, and root ρ, let P := {v : V // v = ρ}, R := {v : V // v ≠ ρ}, and e := Equiv.sumCompl (fun v : V => v = ρ) : P ⊕ R ≃ V. Prove that `Matrix.reindex e e (rootedGram G w)` is exactly `Matrix.fromBlocks A B C D`, where A, B, C, and D are the four corresponding `rootedGram G w` submatrices along Subtype.val and, critically, `D = (rootedGram G w).submatrix Subtype.val Subtype.val` on R with the same type and orientation used by rootedNonroot_inverse_quadratic and rootedCapacity_recursion. State the full block equality so Matrix.invertibleOfFromBlocks₂₂Invertible and Matrix.invOf_fromBlocks₂₂_eq can rewrite directly. Prove entrywise using Matrix.reindex_apply and the four Matrix.fromBlocks cases; do not assume tree structure, admissibility, positivity, or invertibility, and do not evaluate the block entries beyond their submatrix definitions. Keep it private as a proof-structure interface feeding rootedCapacity_recursion@1 and later Schur-complement positivity.",
+    "require_target_state_satisfied": true,
+    "reset_to_state": null,
+    "summary": "Created and proved the private exact root/nonroot block decomposition. Its accepted statement reindexes rootedGram along `Equiv.sumCompl (fun v => v = ρ)` and identifies it with `Matrix.fromBlocks` of the four corresponding submatrices, with the lower-right block definitionally the exact nonroot principal submatrix used by rootedNonroot_inverse_quadratic and rootedCapacity_recursion. All statement/proof stages and graph_proved satisfaction checks passed. It adds no tree, admissibility, positivity, or invertibility assumptions and is ready as the missing structural rewrite for the Schur-complement parent.",
+    "target_state": "proved"
+  },
+  "lean_decl_name": "rootedGram_reindex_rootNonroot_blocks",
+  "proof": {
+    "deps": [
+      {
+        "kind": "mathlib_decl",
+        "reason": "Evaluate the upper-left block entry.",
+        "ref": {
+          "module": "Mathlib.Data.Matrix.Block",
+          "name": "Matrix.fromBlocks_apply₁₁"
+        }
+      },
+      {
+        "kind": "mathlib_decl",
+        "reason": "Evaluate the lower-right nonroot block entry.",
+        "ref": {
+          "module": "Mathlib.Data.Matrix.Block",
+          "name": "Matrix.fromBlocks_apply₂₂"
+        }
+      },
+      {
+        "kind": "mathlib_decl",
+        "reason": "Reduce the claimed matrix equality to entries.",
+        "ref": {
+          "module": "Mathlib.LinearAlgebra.Matrix.Defs",
+          "name": "Matrix.ext"
+        }
+      },
+      {
+        "kind": "mathlib_decl",
+        "reason": "Evaluate the reindexed Gram entry after splitting the sum indices.",
+        "ref": {
+          "module": "Mathlib.LinearAlgebra.Matrix.Defs",
+          "name": "Matrix.reindex_apply"
+        }
+      },
+      {
+        "kind": "mathlib_decl",
+        "reason": "Use the canonical root/nonroot equivalence in the four entry cases.",
+        "ref": {
+          "module": "Mathlib.Logic.Equiv.Sum",
+          "name": "Equiv.sumCompl"
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "Every block entry in the reindexed matrix is an entry of the existing rooted Gram matrix.",
+        "ref": {
+          "name": "rootedGram",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 2
+        }
+      }
+    ],
+    "formal": {
+      "check": {
+        "allow_sorry": false,
+        "contains_axiom": false,
+        "contains_sorry": false,
+        "diagnostics": {
+          "diagnostics": [],
+          "passed": true,
+          "raw_excerpt": "{'success': True, 'error_message': None, 'file': 'PositiveDefiniteTreeLattice.Main.RootedCapacity.Theorems.rootedGram_reindex_rootNonroot_blocks', 'items': [], 'total_items': 0, 'error_count': 0, 'warning_count': 0, 'info_count': 0, 'sorry_count': 0}",
+          "repo_file_path": "PositiveDefiniteTreeLattice/Main/RootedCapacity/Theorems/rootedGram_reindex_rootNonroot_blocks.lean",
+          "schema_version": 2,
+          "summary": "Diagnostics returned 0 items"
+        },
+        "message": "Lean check passed.",
+        "policy": "proof_formal",
+        "scan": {
+          "admit_count": 0,
+          "axiom_count": 0,
+          "contains_admit": false,
+          "contains_axiom": false,
+          "contains_opaque": false,
+          "contains_sorry": false,
+          "contains_unsafe": false,
+          "limitation": "Text scan ignores Lean comments and string literals with a conservative first-round lexer; it is not a full Lean parser.",
+          "occurrences": [],
+          "opaque_count": 0,
+          "sorry_count": 0,
+          "summary": "sorry=0, admit=0, axiom=0, opaque=0, unsafe=0",
+          "unsafe_count": 0
+        },
+        "status": "passed"
+      },
+      "code": "-- lean-constellation: managed-imports-begin\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Prelude\nimport Mathlib.Data.Matrix.Block\nimport Mathlib.LinearAlgebra.Matrix.Defs\nimport Mathlib.Logic.Equiv.Sum\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedGram\n-- lean-constellation: managed-imports-end\n\n-- lean-constellation: declaration-source-begin\n\n/--\n# lean-constellation target: `rootedGram_reindex_rootNonroot_blocks`\n\nFor every finite decidable vertex type `V`, graph `G` with decidable adjacency, integer weight `w`,\nand root `ρ`, set\n`P := {v : V // v = ρ}`, `R := {v : V // v ≠ ρ}`, and\n`e := Equiv.sumCompl (fun v : V => v = ρ) : P ⊕ R ≃ V`.\n\nThen reindexing `rootedGram G w` along `e` on both axes is exactly the full block matrix\n`Matrix.fromBlocks A B C D`, where `A`, `B`, `C`, and `D` are respectively the root/root,\nroot/nonroot, nonroot/root, and nonroot/nonroot submatrices of `rootedGram G w` obtained using\n`Subtype.val`.  In particular, the lower-right block is definitionally the nonroot principal block\n`D = (rootedGram G w).submatrix Subtype.val Subtype.val : Matrix R R ℚ`,\nwith this precise index type and orientation.\n\nThis is a purely entrywise matrix decomposition: it assumes neither a tree witness, admissibility,\npositivity, nor invertibility, and it leaves all four entries unevaluated beyond their indicated\nsubmatrix definitions.\n\n## Sources\n\n- Source `solution.tex`, lines 57–64\n\n## Statement dependencies\n\n- `Matrix.fromBlocks` from `Mathlib.Data.Matrix.Block`\n- `Matrix.reindex` from `Mathlib.LinearAlgebra.Matrix.Defs`\n- `Matrix.submatrix` from `Mathlib.LinearAlgebra.Matrix.Defs`\n- `Equiv.sumCompl` from `Mathlib.Logic.Equiv.Sum`\n- `Main.RootedCapacity::rootedGram` → `rootedGram` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedGram`\n\n## Proof outline\n\nLet `P := {v : V // v = ρ}`, `R := {v : V // v ≠ ρ}`, and `e := Equiv.sumCompl (fun v : V => v = ρ)\n: P ⊕ R ≃ V`.  The formal left-hand side is `Matrix.reindex e.symm e.symm (rootedGram G w)`, since\n`Matrix.reindex` is supplied the equivalence from the original vertex index to the sum index.\n\nApply `Matrix.ext` and split both sum indices, giving the four cases `(Sum.inl p, Sum.inl q)`,\n`(Sum.inl p, Sum.inr r)`, `(Sum.inr r, Sum.inl p)`, and `(Sum.inr r, Sum.inr s)`.  In each case\nunfold `Matrix.reindex_apply` and the corresponding entry of `Matrix.fromBlocks`; use\n`Matrix.fromBlocks_apply₁₁` and `Matrix.fromBlocks_apply₂₂` for the diagonal cases, while the two\nmixed entries reduce definitionally.  The value of `e` on each branch is the relevant `Subtype.val`,\nso every resulting equality is exactly the matching `rootedGram` submatrix entry.  Thus no\nevaluation of Gram entries, and no graph/tree, admissibility, positivity, or inverse input, is\nrequired.\n\nIn particular, the bottom-right case identifies the `R × R` block with `(rootedGram G w).submatrix\nSubtype.val Subtype.val` with its displayed orientation, so the equality can rewrite the nonroot\nblock directly in the later Schur-complement argument.\n\n## Proof sources\n\n- Source `solution.tex`, lines 57–64\n\n## Proof dependencies\n\n- `Matrix.fromBlocks_apply₁₁` from `Mathlib.Data.Matrix.Block`\n- `Matrix.fromBlocks_apply₂₂` from `Mathlib.Data.Matrix.Block`\n- `Matrix.ext` from `Mathlib.LinearAlgebra.Matrix.Defs`\n- `Matrix.reindex_apply` from `Mathlib.LinearAlgebra.Matrix.Defs`\n- `Equiv.sumCompl` from `Mathlib.Logic.Equiv.Sum`\n- `Main.RootedCapacity::rootedGram` → `rootedGram` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedGram`\n-/\ntheorem rootedGram_reindex_rootNonroot_blocks {V : Type*} [Fintype V] [DecidableEq V]\n    (G : SimpleGraph V) [DecidableRel G.Adj] (w : V → ℤ) (ρ : V) :\n    Matrix.reindex (Equiv.sumCompl fun v : V => v = ρ).symm\n        (Equiv.sumCompl fun v : V => v = ρ).symm (rootedGram G w) =\n      Matrix.fromBlocks\n        ((rootedGram G w).submatrix Subtype.val Subtype.val)\n        ((rootedGram G w).submatrix Subtype.val Subtype.val)\n        ((rootedGram G w).submatrix Subtype.val Subtype.val)\n        ((rootedGram G w).submatrix Subtype.val Subtype.val) := by\n  ext i j\n  rcases i with p | r <;> rcases j with q | s <;> rfl\n"
+    },
+    "nl": {
+      "origin": [
+        {
+          "end_line": 64,
+          "end_locator": null,
+          "kind": "source",
+          "note": "The root-versus-nonroot block ordering in the source is the matrix decomposition normalized by this entrywise proof.",
+          "ref": null,
+          "resource_key": null,
+          "source_path": "solution.tex",
+          "start_line": 57,
+          "start_locator": null
+        }
+      ],
+      "text": "Let `P := {v : V // v = ρ}`, `R := {v : V // v ≠ ρ}`, and `e := Equiv.sumCompl (fun v : V => v = ρ) : P ⊕ R ≃ V`.  The formal left-hand side is `Matrix.reindex e.symm e.symm (rootedGram G w)`, since `Matrix.reindex` is supplied the equivalence from the original vertex index to the sum index.\n\nApply `Matrix.ext` and split both sum indices, giving the four cases `(Sum.inl p, Sum.inl q)`, `(Sum.inl p, Sum.inr r)`, `(Sum.inr r, Sum.inl p)`, and `(Sum.inr r, Sum.inr s)`.  In each case unfold `Matrix.reindex_apply` and the corresponding entry of `Matrix.fromBlocks`; use `Matrix.fromBlocks_apply₁₁` and `Matrix.fromBlocks_apply₂₂` for the diagonal cases, while the two mixed entries reduce definitionally.  The value of `e` on each branch is the relevant `Subtype.val`, so every resulting equality is exactly the matching `rootedGram` submatrix entry.  Thus no evaluation of Gram entries, and no graph/tree, admissibility, positivity, or inverse input, is required.\n\nIn particular, the bottom-right case identifies the `R × R` block with `(rootedGram G w).submatrix Subtype.val Subtype.val` with its displayed orientation, so the equality can rewrite the nonroot block directly in the later Schur-complement argument."
+    }
+  },
+  "revision": 1,
+  "state": "proved",
+  "statement": {
+    "deps": [
+      {
+        "kind": "mathlib_decl",
+        "reason": "The statement is an equality with this full root/nonroot block matrix.",
+        "ref": {
+          "module": "Mathlib.Data.Matrix.Block",
+          "name": "Matrix.fromBlocks"
+        }
+      },
+      {
+        "kind": "mathlib_decl",
+        "reason": "The statement reindexes rootedGram along the root/nonroot equivalence.",
+        "ref": {
+          "module": "Mathlib.LinearAlgebra.Matrix.Defs",
+          "name": "Matrix.reindex"
+        }
+      },
+      {
+        "kind": "mathlib_decl",
+        "reason": "The four named blocks, especially the nonroot lower-right block, are submatrices along Subtype.val.",
+        "ref": {
+          "module": "Mathlib.LinearAlgebra.Matrix.Defs",
+          "name": "Matrix.submatrix"
+        }
+      },
+      {
+        "kind": "mathlib_decl",
+        "reason": "The statement uses this canonical equivalence from the root singleton subtype plus its complement to V.",
+        "ref": {
+          "module": "Mathlib.Logic.Equiv.Sum",
+          "name": "Equiv.sumCompl"
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "The statement decomposes this existing rational Gram matrix into its root/nonroot blocks.",
+        "ref": {
+          "name": "rootedGram",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 2
+        }
+      }
+    ],
+    "formal": {
+      "check": {
+        "allow_sorry": true,
+        "contains_axiom": false,
+        "contains_sorry": true,
+        "diagnostics": {
+          "diagnostics": [
+            {
+              "column": 9,
+              "line": 44,
+              "message": "declaration uses `sorry`",
+              "severity": "warning"
+            }
+          ],
+          "passed": true,
+          "raw_excerpt": "{'success': True, 'error_message': None, 'file': 'PositiveDefiniteTreeLattice.Main.RootedCapacity.Theorems.rootedGram_reindex_rootNonroot_blocks', 'items': [{'severity': 'warning', 'pos': {'line': 44, 'column': 9}, 'endPos': {'line': 44, 'column': 46}, 'kind': None, 'data': 'declaration uses `sorry`', 'fileName': 'PositiveDefiniteTreeLattice.Main.RootedCapacity.Theorems.rootedGram_reindex_rootNonroot_blocks', 'content': '-/\\n\\ntheorem rootedGram_reindex_rootNonroot_blocks {V : Type*} [Fintype V] [DecidableEq V]\\n    (G : SimpleGraph V) [DecidableRel G.Adj] (w : V → ℤ) (ρ : V) :\\n    Matrix.reindex (Equiv.sumCompl fun v : V => v = ρ).symm'}], 'total_items': 1, 'error_count': 0, 'warning_count': 1, 'info_count': 0, 'sorry_count': 1}",
+          "repo_file_path": "PositiveDefiniteTreeLattice/Main/RootedCapacity/Theorems/rootedGram_reindex_rootNonroot_blocks.lean",
+          "schema_version": 2,
+          "summary": "Diagnostics returned 1 items"
+        },
+        "message": "Lean check passed.",
+        "policy": "statement_formal",
+        "scan": {
+          "admit_count": 0,
+          "axiom_count": 0,
+          "contains_admit": false,
+          "contains_axiom": false,
+          "contains_opaque": false,
+          "contains_sorry": true,
+          "contains_unsafe": false,
+          "limitation": "Text scan ignores Lean comments and string literals with a conservative first-round lexer; it is not a full Lean parser.",
+          "occurrences": [
+            {
+              "column": 3,
+              "excerpt": "sorry",
+              "kind": "sorry",
+              "line": 53
+            }
+          ],
+          "opaque_count": 0,
+          "sorry_count": 1,
+          "summary": "sorry=1, admit=0, axiom=0, opaque=0, unsafe=0",
+          "unsafe_count": 0
+        },
+        "status": "passed"
+      },
+      "code": "-- lean-constellation: managed-imports-begin\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Prelude\nimport Mathlib.Data.Matrix.Block\nimport Mathlib.LinearAlgebra.Matrix.Defs\nimport Mathlib.Logic.Equiv.Sum\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedGram\n-- lean-constellation: managed-imports-end\n\n-- lean-constellation: declaration-source-begin\n\n/--\n# lean-constellation target: `rootedGram_reindex_rootNonroot_blocks`\n\nFor every finite decidable vertex type `V`, graph `G` with decidable adjacency, integer weight `w`,\nand root `ρ`, set\n`P := {v : V // v = ρ}`, `R := {v : V // v ≠ ρ}`, and\n`e := Equiv.sumCompl (fun v : V => v = ρ) : P ⊕ R ≃ V`.\n\nThen reindexing `rootedGram G w` along `e` on both axes is exactly the full block matrix\n`Matrix.fromBlocks A B C D`, where `A`, `B`, `C`, and `D` are respectively the root/root,\nroot/nonroot, nonroot/root, and nonroot/nonroot submatrices of `rootedGram G w` obtained using\n`Subtype.val`.  In particular, the lower-right block is definitionally the nonroot principal block\n`D = (rootedGram G w).submatrix Subtype.val Subtype.val : Matrix R R ℚ`,\nwith this precise index type and orientation.\n\nThis is a purely entrywise matrix decomposition: it assumes neither a tree witness, admissibility,\npositivity, nor invertibility, and it leaves all four entries unevaluated beyond their indicated\nsubmatrix definitions.\n\n## Sources\n\n- Source `solution.tex`, lines 57–64\n\n## Statement dependencies\n\n- `Matrix.fromBlocks` from `Mathlib.Data.Matrix.Block`\n- `Matrix.reindex` from `Mathlib.LinearAlgebra.Matrix.Defs`\n- `Matrix.submatrix` from `Mathlib.LinearAlgebra.Matrix.Defs`\n- `Equiv.sumCompl` from `Mathlib.Logic.Equiv.Sum`\n- `Main.RootedCapacity::rootedGram` → `rootedGram` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedGram`\n-/\n\ntheorem rootedGram_reindex_rootNonroot_blocks {V : Type*} [Fintype V] [DecidableEq V]\n    (G : SimpleGraph V) [DecidableRel G.Adj] (w : V → ℤ) (ρ : V) :\n    Matrix.reindex (Equiv.sumCompl fun v : V => v = ρ).symm\n        (Equiv.sumCompl fun v : V => v = ρ).symm (rootedGram G w) =\n      Matrix.fromBlocks\n        ((rootedGram G w).submatrix Subtype.val Subtype.val)\n        ((rootedGram G w).submatrix Subtype.val Subtype.val)\n        ((rootedGram G w).submatrix Subtype.val Subtype.val)\n        ((rootedGram G w).submatrix Subtype.val Subtype.val) := by\n  sorry\n"
+    },
+    "nl": {
+      "origin": [
+        {
+          "end_line": 64,
+          "end_locator": null,
+          "kind": "source",
+          "note": "The source orders the root first and writes the Gram matrix as a two-by-two root/nonroot block matrix, supporting this representation identity.",
+          "ref": null,
+          "resource_key": null,
+          "source_path": "solution.tex",
+          "start_line": 57,
+          "start_locator": null
+        }
+      ],
+      "text": "For every finite decidable vertex type `V`, graph `G` with decidable adjacency, integer weight `w`, and root `ρ`, set\n`P := {v : V // v = ρ}`, `R := {v : V // v ≠ ρ}`, and\n`e := Equiv.sumCompl (fun v : V => v = ρ) : P ⊕ R ≃ V`.\n\nThen reindexing `rootedGram G w` along `e` on both axes is exactly the full block matrix\n`Matrix.fromBlocks A B C D`, where `A`, `B`, `C`, and `D` are respectively the root/root, root/nonroot, nonroot/root, and nonroot/nonroot submatrices of `rootedGram G w` obtained using `Subtype.val`.  In particular, the lower-right block is definitionally the nonroot principal block\n`D = (rootedGram G w).submatrix Subtype.val Subtype.val : Matrix R R ℚ`,\nwith this precise index type and orientation.\n\nThis is a purely entrywise matrix decomposition: it assumes neither a tree witness, admissibility, positivity, nor invertibility, and it leaves all four entries unevaluated beyond their indicated submatrix definitions."
+    }
+  },
+  "status": "committed",
+  "updated_at": "2026-07-30T17:41:12Z"
+}

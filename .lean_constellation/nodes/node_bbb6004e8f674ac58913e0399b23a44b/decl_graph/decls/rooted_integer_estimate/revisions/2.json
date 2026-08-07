@@ -1,0 +1,355 @@
+{
+  "change": {
+    "anticipated_proof_dep_names": [
+      "consecutiveIntegerProductNonneg",
+      "rationalUnitIntervalIntegerDistance",
+      "rootedEstimateInductionAggregation",
+      "unitIntervalCompensationNonneg"
+    ],
+    "anticipated_statement_dep_names": [],
+    "base_revision": 1,
+    "kind": "update",
+    "objective": "Preserve revision 1's compiler-confirmed exact qualified public interface `PositiveDefiniteTreeLattice.rooted_integer_estimate`, its accepted Statement and Proof NL, and SourceIndex b_0010 / solution.tex lines 84–153. Rerun only Proof Formal for the unchanged theorem: admissible rooted tree G,w,rho; integral x : V → ℤ and k : ℤ; rational rootedCapacity; exact root coordinate; and conclusion `0 ≤ (↑(treePairing G w x x) : ℚ) - (2*(k:ℚ)+1)*(x rho:ℚ) + rootedCapacity G w rho*(k:ℚ)*((k:ℚ)+1)`. Follow the accepted strong induction on Fintype.card V. Consume proved consecutiveIntegerProductNonneg for the singleton case; proved rootedEstimateInductionAggregation for source inequality (1), including child induction specialization and rational cast/sum aggregation; proved rationalUnitIntervalIntegerDistance for the integer-distance lower bound; and proved unitIntervalCompensationNonneg for the interior unit-interval branch, together with the external admissibility/capacity facts already in the accepted closure. Do not alter assumptions, objects, casts, inequality direction, namespace identity, or heartbeat limits, and do not add untracked helper mathematics. This theorem must become graph_proved before beginning the b_0011 root-coefficient package.",
+    "require_target_state_satisfied": true,
+    "reset_to_state": "proof_planned",
+    "summary": "Preserved the exact qualified public b_0010 statement and accepted strong-induction proof plan, reran only Proof Formal, and advanced rooted_integer_estimate revision 2 to proved. The proof passed using the complete proved local package: consecutiveIntegerProductNonneg, rootedEstimateInductionAggregation, rationalUnitIntervalIntegerDistance, and unitIntervalCompensationNonneg. The compiler-confirmed Lean identity remains PositiveDefiniteTreeLattice.rooted_integer_estimate, with unchanged integral vector, rational capacity, root coordinate, casts, assumptions, and inequality direction. The declaration is public and graph_proved-satisfied.",
+    "target_state": "proved"
+  },
+  "lean_decl_name": "PositiveDefiniteTreeLattice.rooted_integer_estimate",
+  "proof": {
+    "deps": [
+      {
+        "kind": "mathlib_decl",
+        "reason": "Reindexes the subtype coordinate sum to the rootedChildren finset defining the integer N.",
+        "ref": {
+          "module": "Mathlib.Algebra.BigOperators.Group.Finset.Basic",
+          "name": "Finset.sum_attach"
+        }
+      },
+      {
+        "kind": "mathlib_decl",
+        "reason": "Transports the child-capacity sum across the two finite subtype instances.",
+        "ref": {
+          "module": "Mathlib.Algebra.BigOperators.Group.Finset.Basic",
+          "name": "Finset.sum_congr"
+        }
+      },
+      {
+        "kind": "mathlib_decl",
+        "reason": "Shows the rooted child-capacity sum vanishes after the singleton branch proves the child subtype empty.",
+        "ref": {
+          "module": "Mathlib.Algebra.BigOperators.Group.Finset.Basic",
+          "name": "Finset.sum_eq_zero"
+        }
+      },
+      {
+        "kind": "mathlib_decl",
+        "reason": "Expands the tau-minus-integer error sum componentwise.",
+        "ref": {
+          "module": "Mathlib.Algebra.BigOperators.Group.Finset.Defs",
+          "name": "Finset.sum_sub_distrib"
+        }
+      },
+      {
+        "kind": "mathlib_decl",
+        "reason": "Factors the root coordinate from the summed child capacities in the tau identity.",
+        "ref": {
+          "module": "Mathlib.Algebra.BigOperators.Ring.Finset",
+          "name": "Finset.sum_mul"
+        }
+      },
+      {
+        "kind": "mathlib_decl",
+        "reason": "Casts the integral child pairing decomposition and integer child-root sums into the rational inequality.",
+        "ref": {
+          "module": "Mathlib.Algebra.BigOperators.Ring.Finset",
+          "name": "Int.cast_sum"
+        }
+      },
+      {
+        "kind": "mathlib_decl",
+        "reason": "Bounds the absolute value of the tau-N finite sum by D in the interior-unit-interval case.",
+        "ref": {
+          "module": "Mathlib.Algebra.Order.BigOperators.Group.Finset",
+          "name": "Finset.abs_sum_le_sum_abs"
+        }
+      },
+      {
+        "kind": "mathlib_decl",
+        "reason": "Establishes nonnegativity of the finite sum D of absolute-value child terms in the exterior tau cases.",
+        "ref": {
+          "module": "Mathlib.Algebra.Order.BigOperators.Group.Finset",
+          "name": "Finset.sum_nonneg"
+        }
+      },
+      {
+        "kind": "mathlib_decl",
+        "reason": "Derives the subsingleton vertex type needed to make rooted-child sums empty in the explicit singleton base case.",
+        "ref": {
+          "module": "Mathlib.Data.Fintype.EquivFin",
+          "name": "Fintype.card_le_one_iff_subsingleton"
+        }
+      },
+      {
+        "kind": "mathlib_decl",
+        "reason": "Carries out the stated strong induction on Fintype.card V with recursive calls on strictly smaller child components.",
+        "ref": {
+          "module": "Mathlib.Data.Nat.Init",
+          "name": "Nat.strong_induction_on"
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "Supplies 0 < rootedCapacity < 1 for reciprocal algebra and the interior compensation lemma.",
+        "ref": {
+          "name": "capacity_pos_lt_one",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 2
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "Is unfolded to identify the capacity sum in rootedCapacityInvEqSub with the child capacities.",
+        "ref": {
+          "name": "rootedChildCapacitySum",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 2
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "Identifies each recursive child capacity with the summand of rootedChildCapacitySum.",
+        "ref": {
+          "name": "rootedChildCapacitySummand",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 1
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "Indexes the finite child sums and all recursive component calls.",
+        "ref": {
+          "name": "rootedChildren",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 2
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "Closes the explicit singleton base case after the pairing and capacity normalization.",
+        "ref": {
+          "name": "consecutiveIntegerProductNonneg",
+          "node": "Main.RootedEstimates",
+          "repo": null,
+          "revision": 1
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "Bounds the distance from tau to the constructed integer N in the interior unit-interval case.",
+        "ref": {
+          "name": "rationalUnitIntervalIntegerDistance",
+          "node": "Main.RootedEstimates",
+          "repo": null,
+          "revision": 3
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "Rewrites the inverse root capacity as the root weight minus the child-capacity sum.",
+        "ref": {
+          "name": "rootedCapacityInvEqSub",
+          "node": "Main.RootedEstimates",
+          "repo": null,
+          "revision": 3
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "Provides the proved strong-induction aggregation from child estimates to source inequality (1).",
+        "ref": {
+          "name": "rootedEstimateInductionAggregation",
+          "node": "Main.RootedEstimates",
+          "repo": null,
+          "revision": 2
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "Reduces the singleton base-case pairing to the root quadratic term.",
+        "ref": {
+          "name": "treePairingRootedChildDecomposition",
+          "node": "Main.RootedEstimates",
+          "repo": null,
+          "revision": 3
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "Closes the strict interior tau interval after the finite-sum distance lower bound.",
+        "ref": {
+          "name": "unitIntervalCompensationNonneg",
+          "node": "Main.RootedEstimates",
+          "repo": null,
+          "revision": 1
+        }
+      }
+    ],
+    "formal": {
+      "check": {
+        "allow_sorry": false,
+        "contains_axiom": false,
+        "contains_sorry": false,
+        "diagnostics": {
+          "diagnostics": [],
+          "passed": true,
+          "raw_excerpt": "{'success': True, 'error_message': None, 'file': 'PositiveDefiniteTreeLattice.Main.RootedEstimates.Theorems.rooted_integer_estimate', 'items': [], 'total_items': 0, 'error_count': 0, 'warning_count': 0, 'info_count': 0, 'sorry_count': 0}",
+          "repo_file_path": "PositiveDefiniteTreeLattice/Main/RootedEstimates/Theorems/rooted_integer_estimate.lean",
+          "schema_version": 2,
+          "summary": "Diagnostics returned 0 items"
+        },
+        "message": "Lean check passed.",
+        "policy": "proof_formal",
+        "scan": {
+          "admit_count": 0,
+          "axiom_count": 0,
+          "contains_admit": false,
+          "contains_axiom": false,
+          "contains_opaque": false,
+          "contains_sorry": false,
+          "contains_unsafe": false,
+          "limitation": "Text scan ignores Lean comments and string literals with a conservative first-round lexer; it is not a full Lean parser.",
+          "occurrences": [],
+          "opaque_count": 0,
+          "sorry_count": 0,
+          "summary": "sorry=0, admit=0, axiom=0, opaque=0, unsafe=0",
+          "unsafe_count": 0
+        },
+        "status": "passed"
+      },
+      "code": "-- lean-constellation: managed-imports-begin\nimport PositiveDefiniteTreeLattice.Main.RootedEstimates.Prelude\nimport Mathlib.Algebra.BigOperators.Group.Finset.Basic\nimport Mathlib.Algebra.BigOperators.Group.Finset.Defs\nimport Mathlib.Algebra.BigOperators.Ring.Finset\nimport Mathlib.Algebra.Order.BigOperators.Group.Finset\nimport Mathlib.Data.Fintype.EquivFin\nimport Mathlib.Data.Nat.Init\nimport PositiveDefiniteTreeLattice.Main.RootedEstimates.Theorems.consecutiveIntegerProductNonneg\nimport PositiveDefiniteTreeLattice.Main.RootedEstimates.Theorems.rationalUnitIntervalIntegerDistance\nimport PositiveDefiniteTreeLattice.Main.RootedEstimates.Theorems.rootedCapacityInvEqSub\nimport PositiveDefiniteTreeLattice.Main.RootedEstimates.Theorems.rootedEstimateInductionAggregation\nimport PositiveDefiniteTreeLattice.Main.RootedEstimates.Theorems.treePairingRootedChildDecomposition\nimport PositiveDefiniteTreeLattice.Main.RootedEstimates.Theorems.unitIntervalCompensationNonneg\n-- lean-constellation: managed-imports-end\n\n-- lean-constellation: declaration-source-begin\n\n/--\n# lean-constellation target: `rooted_integer_estimate`\n\nFor a finite decidable simple graph `G` on `V`, an integer weight function `w : V → ℤ`, and a root\n`rho`, assume `hG : IsAdmissibleRootedTree G w rho`.  For every integral coordinate vector `x : V →\nℤ` and every integer `k`, the exact public theorem\n`PositiveDefiniteTreeLattice.rooted_integer_estimate` asserts the rational inequality\n\n`0 ≤ (↑(treePairing G w x x) : ℚ) - (2 * (k : ℚ) + 1) * (x rho : ℚ) + rootedCapacity G w rho * (k :\nℚ) * ((k : ℚ) + 1)`.\n\nThus the integral tree-pairing norm, the exact root coordinate, and the rooted rational capacity\noccur with the source’s unchanged signs and conclusion direction.  The finite and decidable\nstructure assumed is only that required to form the existing tree-pairing and rooted-capacity APIs.\n\n## Sources\n\n- Source `solution.tex`, lines 84–89\n\n## Statement dependencies\n\n- `Main.LatticeFoundations::treePairingAnchor` → `PositiveDefiniteTreeLattice.treePairing` from\n  `PositiveDefiniteTreeLattice.Main.LatticeFoundations.Defs.treePairingAnchor`\n- `Main.RootedCapacity::IsAdmissibleRootedTree` → `IsAdmissibleRootedTree` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.IsAdmissibleRootedTree`\n- `Main.RootedCapacity::rootedCapacity` → `rootedCapacity` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedCapacity`\n\n## Proof outline\n\nProve the exact public statement by strong induction on Fintype.card V, with the induction predicate\ngeneralized over the finite vertex type, graph, weights, root, admissibility witness, integer\ncoordinate vector, and integer k. Destructure the admissibility witness once to obtain the tree\nwitness hT : G.IsTree; retain the original admissibility proposition for the capacity and\nchild-admissibility APIs.\n\nBase case: hT and the chosen root imply the card is at least one, so the minimal case has card V =\n1. The vertex type is then subsingleton, hence rootedChildren is empty. Use\ntreePairingRootedChildDecomposition to reduce treePairing G w x x to w rho * (x rho)^2, and\nrootedCapacityInvEqSub (with the zero child-capacity sum) to rewrite the capacity relation. The\npositive capacity from PositiveDefiniteTreeLattice.capacity_pos_lt_one lets ordered-field\nnormalization rewrite the target as a positive rational multiple of the integer product (w rho * x\nrho - k) * (w rho * x rho - k - 1). Apply consecutiveIntegerProductNonneg and cast/order\nnormalization to conclude.\n\nInduction step: for each c in rootedChildren G hT rho rho, let C be rootedChildComponent G rho c,\nwith its induced graph, restricted weight and restricted coordinate vector, child root, and child\ncapacity gamma_c = rootedChildCapacitySummand G hT w rho ⟨c,hc⟩.\nIsAdmissibleRootedTree_rootedChildComponent supplies admissibility of C, and\nrootedChildComponent_card_lt supplies its strict cardinality bound. Invoke the strong induction\nhypothesis on C twice, first at the integer a := x rho and then at a - 1. After rearranging each\nconclusion over the rationals, these are exactly the two source bounds for the child self-pairing\nminus 2*a*s_c, where s_c is x at the child root. Apply twoBoundsGiveAbsLowerBound to obtain the\nsource lower bound -gamma_c*a^2 + |s_c - gamma_c*a|. Sum it over the children with\nFinset.sum_le_sum.\n\nUse treePairingRootedChildDecomposition and Int.cast_sum to substitute the integral root/child\ndecomposition. Unfold rootedChildCapacitySum and rootedChildCapacitySummand so that the summed child\ncapacities are the same gamma_c just used in the induction. Apply rootedCapacityInvEqSub, and use 0\n< gamma < 1 from capacity_pos_lt_one. With tau := (a : Q) / gamma and D := sum_c |s_c - gamma_c*a|,\nordered-field/ring normalization gives the source inequality\nE >= gamma * (tau - k) * (tau - k - 1) + D,\nwhere E is the target left-hand expression.\n\nFor the exterior cases, split into tau <= k and k + 1 <= tau. In either case the two factors of the\nquadratic have the same sign, so their product is nonnegative; gamma is positive and D is a finite\nsum of nonnegative absolute values. Thus E is nonnegative.\n\nFor the interior case k < tau < k + 1, define the integer N := w rho * a - sum_c s_c. The\ncapacity-inverse identity and finite-sum algebra give tau - (N : Q) = sum_c (s_c - gamma_c*a).\nFinset.abs_sum_le_sum_abs yields |tau - (N : Q)| <= D. Apply rationalUnitIntervalIntegerDistance to\nget the endpoint minimum below that absolute value, hence below D. Finally\nunitIntervalCompensationNonneg, using 0 < gamma < 1 and the strict interval hypotheses, proves gamma\n* (tau-k) * (tau-k-1) + D is nonnegative. Combine with the earlier lower bound for E. This is\nexactly the b_0010 argument from lines 84–153 and preserves the required casts, root coordinate, and\nconclusion direction.\n\n## Proof sources\n\n- Source `solution.tex`, lines 84–153\n\n## Proof dependencies\n\n- `Finset.sum_attach` from `Mathlib.Algebra.BigOperators.Group.Finset.Basic`\n- `Finset.sum_congr` from `Mathlib.Algebra.BigOperators.Group.Finset.Basic`\n- `Finset.sum_eq_zero` from `Mathlib.Algebra.BigOperators.Group.Finset.Basic`\n- `Finset.sum_sub_distrib` from `Mathlib.Algebra.BigOperators.Group.Finset.Defs`\n- `Finset.sum_mul` from `Mathlib.Algebra.BigOperators.Ring.Finset`\n- `Int.cast_sum` from `Mathlib.Algebra.BigOperators.Ring.Finset`\n- `Finset.abs_sum_le_sum_abs` from `Mathlib.Algebra.Order.BigOperators.Group.Finset`\n- `Finset.sum_nonneg` from `Mathlib.Algebra.Order.BigOperators.Group.Finset`\n- `Fintype.card_le_one_iff_subsingleton` from `Mathlib.Data.Fintype.EquivFin`\n- `Nat.strong_induction_on` from `Mathlib.Data.Nat.Init`\n- `Main.RootedCapacity::capacity_pos_lt_one` → `PositiveDefiniteTreeLattice.capacity_pos_lt_one`\n  from `PositiveDefiniteTreeLattice.Main.RootedCapacity.Theorems.capacity_pos_lt_one`\n- `Main.RootedCapacity::rootedChildCapacitySum` → `rootedChildCapacitySum` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildCapacitySum`\n- `Main.RootedCapacity::rootedChildCapacitySummand` → `rootedChildCapacitySummand` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildCapacitySummand`\n- `Main.RootedCapacity::rootedChildren` → `rootedChildren` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildren`\n- `Main.RootedEstimates::consecutiveIntegerProductNonneg` → `consecutiveIntegerProductNonneg` from\n  `PositiveDefiniteTreeLattice.Main.RootedEstimates.Theorems.consecutiveIntegerProductNonneg`\n- `Main.RootedEstimates::rationalUnitIntervalIntegerDistance` →\n  `rationalUnitIntervalIntegerDistance` from\n  `PositiveDefiniteTreeLattice.Main.RootedEstimates.Theorems.rationalUnitIntervalIntegerDistance`\n- `Main.RootedEstimates::rootedCapacityInvEqSub` → `rootedCapacityInvEqSub` from\n  `PositiveDefiniteTreeLattice.Main.RootedEstimates.Theorems.rootedCapacityInvEqSub`\n- `Main.RootedEstimates::rootedEstimateInductionAggregation` → `rootedEstimateInductionAggregation`\n  from\n  `PositiveDefiniteTreeLattice.Main.RootedEstimates.Theorems.rootedEstimateInductionAggregation`\n- `Main.RootedEstimates::treePairingRootedChildDecomposition` →\n  `treePairingRootedChildDecomposition` from\n  `PositiveDefiniteTreeLattice.Main.RootedEstimates.Theorems.treePairingRootedChildDecomposition`\n- `Main.RootedEstimates::unitIntervalCompensationNonneg` → `unitIntervalCompensationNonneg` from\n  `PositiveDefiniteTreeLattice.Main.RootedEstimates.Theorems.unitIntervalCompensationNonneg`\n-/\ntheorem PositiveDefiniteTreeLattice.rooted_integer_estimate {V : Type*} [Fintype V]\n    [DecidableEq V]\n    (G : SimpleGraph V) [DecidableRel G.Adj] (w : V → ℤ) (rho : V)\n    (hG : IsAdmissibleRootedTree G w rho) (x : V → ℤ) (k : ℤ) :\n    0 ≤ (↑(treePairing G w x x) : ℚ) - (2 * (k : ℚ) + 1) * (x rho : ℚ) +\n  rootedCapacity G w rho * (k : ℚ) * ((k : ℚ) + 1) := by\n  classical\n  let P : ℕ → Prop := fun n =>\n    ∀ {W : Type _} [Fintype W] [DecidableEq W] (H : SimpleGraph W)\n      [DecidableRel H.Adj] (weight : W → ℤ) (r : W), Fintype.card W = n →\n        IsAdmissibleRootedTree H weight r → ∀ (y : W → ℤ) (m : ℤ),\n          0 ≤ (↑(treePairing H weight y y) : ℚ) - (2 * (m : ℚ) + 1) * (y r : ℚ) +\n            rootedCapacity H weight r * (m : ℚ) * ((m : ℚ) + 1)\n  have hP : ∀ n, P n := by\n    intro n\n    induction n using Nat.strong_induction_on with\n    | h n ih =>\n      intro W instW decW H decAdjW weight r hcard hAdm y m\n      have hT : H.IsTree := hAdm.choose\n      have hsingleton_base (hsingle : Fintype.card W = 1) :\n          0 ≤ (↑(treePairing H weight y y) : ℚ) -\n            (2 * (m : ℚ) + 1) * (y r : ℚ) +\n              rootedCapacity H weight r * (m : ℚ) * ((m : ℚ) + 1) := by\n        have hsub : Subsingleton W :=\n          Fintype.card_le_one_iff_subsingleton.mp (by omega)\n        have hchildren : rootedChildren H hT r r = ∅ := by\n          ext c\n          constructor\n          · intro hc\n            rw [rootedChildren] at hc\n            rcases Finset.mem_filter.mp hc with ⟨_, hadj, _⟩\n            have hcr : c = r := hsub.elim _ _\n            subst c\n            exact (H.loopless.irrefl _ hadj).elim\n          · simp\n        have hpair : treePairing H weight y y = weight r * (y r) ^ 2 := by\n          simpa [hchildren] using treePairingRootedChildDecomposition H hT weight y r\n        have hcapsum : rootedChildCapacitySum H hT weight r = 0 := by\n          unfold rootedChildCapacitySum\n          apply Finset.sum_eq_zero\n          intro c _\n          exfalso\n          have hcempty : c.1 ∈ (∅ : Finset W) := by\n            simpa only [← hchildren] using c.2\n          simp at hcempty\n        have hinv : (rootedCapacity H weight r)⁻¹ = (weight r : ℚ) := by\n          rw [rootedCapacityInvEqSub H hT weight r hAdm, hcapsum]\n          simp\n        have hgamma_pos : 0 < rootedCapacity H weight r :=\n          (PositiveDefiniteTreeLattice.capacity_pos_lt_one H weight r hAdm).1\n        let z : ℤ := weight r * y r - m\n        have hz : 0 ≤ z * (z - 1) := consecutiveIntegerProductNonneg z\n        have hzQ : 0 ≤ (↑(z * (z - 1)) : ℚ) := by\n          exact_mod_cast hz\n        have hbase_eq :\n            (↑(treePairing H weight y y) : ℚ) -\n                (2 * (m : ℚ) + 1) * (y r : ℚ) +\n                  rootedCapacity H weight r * (m : ℚ) * ((m : ℚ) + 1) =\n              rootedCapacity H weight r * (↑(z * (z - 1)) : ℚ) := by\n          rw [hpair]\n          push_cast\n          dsimp [z]\n          push_cast\n          rw [← hinv]\n          field_simp [ne_of_gt hgamma_pos]\n          ring\n        rw [hbase_eq]\n        exact mul_nonneg (le_of_lt hgamma_pos) hzQ\n      by_cases hsingle : Fintype.card W = 1\n      · exact hsingleton_base hsingle\n      · have hagg := rootedEstimateInductionAggregation H weight r hT hAdm y m\n          (fun {U} instU decU K decAdjU weightU rU hlt hAdmU z q => by\n            exact ih (Fintype.card U) (by simpa [← hcard] using hlt)\n              K weightU rU rfl hAdmU z q)\n        let a : ℤ := y r\n        let gamma : ℚ := rootedCapacity H weight r\n        let tau : ℚ := (a : ℚ) / gamma\n        letI : Fintype {c : W // c ∈ rootedChildren H hT r r} := Fintype.ofFinite _\n        let D : ℚ := ∑ c : {c : W // c ∈ rootedChildren H hT r r},\n          |(y c.1 : ℚ) - rootedChildCapacitySummand H hT weight r c * (a : ℚ)|\n        have hagg' :\n            (↑(treePairing H weight y y) : ℚ) - (2 * (m : ℚ) + 1) * (a : ℚ) +\n                gamma * (m : ℚ) * ((m : ℚ) + 1) ≥\n              gamma * (tau - (m : ℚ)) * (tau - (m : ℚ) - 1) + D := by\n          simpa [a, gamma, tau, D] using hagg\n        have hgamma_pos : 0 < gamma := by\n          simpa [gamma] using (PositiveDefiniteTreeLattice.capacity_pos_lt_one H weight r hAdm).1\n        have hgamma_nonneg : 0 ≤ gamma := le_of_lt hgamma_pos\n        have hD_nonneg : 0 ≤ D := by\n          dsimp [D]\n          apply Finset.sum_nonneg\n          intro c _\n          exact abs_nonneg _\n        by_cases hleft : tau ≤ (m : ℚ)\n        · have hquad : 0 ≤ gamma * (tau - (m : ℚ)) * (tau - (m : ℚ) - 1) := by\n            rw [mul_assoc]\n            exact mul_nonneg hgamma_nonneg\n              (mul_nonneg_of_nonpos_of_nonpos (by linarith) (by linarith))\n          dsimp [a, gamma] at hagg' ⊢\n          nlinarith\n        by_cases hright : (m : ℚ) + 1 ≤ tau\n        · have hquad : 0 ≤ gamma * (tau - (m : ℚ)) * (tau - (m : ℚ) - 1) := by\n            rw [mul_assoc]\n            exact mul_nonneg hgamma_nonneg (mul_nonneg (by linarith) (by linarith))\n          dsimp [a, gamma] at hagg' ⊢\n          nlinarith\n        have hm_lt_tau : (m : ℚ) < tau := lt_of_not_ge hleft\n        have htau_lt_m_one : tau < (m : ℚ) + 1 := lt_of_not_ge hright\n        have hgamma_lt_one : gamma < 1 := by\n          simpa [gamma] using (PositiveDefiniteTreeLattice.capacity_pos_lt_one H weight r hAdm).2\n        have hgamma_ne : gamma ≠ 0 := ne_of_gt hgamma_pos\n        have hinv : gamma⁻¹ = (weight r : ℚ) - rootedChildCapacitySum H hT weight r := by\n          simpa [gamma] using rootedCapacityInvEqSub H hT weight r hAdm\n        have hcap_sum :\n            (∑ c : {c : W // c ∈ rootedChildren H hT r r},\n              rootedChildCapacitySummand H hT weight r c) =\n              rootedChildCapacitySum H hT weight r := by\n          unfold rootedChildCapacitySum\n          apply Finset.sum_congr\n          · ext c\n            simp\n          · intro c _\n            rfl\n        have hy_sum :\n            (∑ c : {c : W // c ∈ rootedChildren H hT r r}, (y c.1 : ℚ)) =\n              ∑ c ∈ rootedChildren H hT r r, (y c : ℚ) := by\n          calc\n            (∑ c : {c : W // c ∈ rootedChildren H hT r r}, (y c.1 : ℚ)) =\n                ∑ c ∈ (rootedChildren H hT r r).attach, (y c.1 : ℚ) := by\n                  rw [show (Finset.univ : Finset {c : W // c ∈ rootedChildren H hT r r}) =\n                    (rootedChildren H hT r r).attach by\n                    ext c\n                    simp]\n            _ = ∑ c ∈ rootedChildren H hT r r, (y c : ℚ) :=\n              Finset.sum_attach (rootedChildren H hT r r) (fun c => (y c : ℚ))\n        have herror_sum :\n            (∑ c : {c : W // c ∈ rootedChildren H hT r r},\n              ((y c.1 : ℚ) - rootedChildCapacitySummand H hT weight r c * (a : ℚ))) =\n                (∑ c ∈ rootedChildren H hT r r, (y c : ℚ)) -\n                  rootedChildCapacitySum H hT weight r * (a : ℚ) := by\n          rw [Finset.sum_sub_distrib, ← Finset.sum_mul, hy_sum, hcap_sum]\n        let N : ℤ := weight r * a - ∑ c ∈ rootedChildren H hT r r, y c\n        have htau_N : tau - (N : ℚ) =\n            ∑ c : {c : W // c ∈ rootedChildren H hT r r},\n              ((y c.1 : ℚ) - rootedChildCapacitySummand H hT weight r c * (a : ℚ)) := by\n          dsimp [tau, N]\n          push_cast\n          rw [div_eq_mul_inv, hinv, herror_sum]\n          ring\n        have habs : |tau - (N : ℚ)| ≤ D := by\n          dsimp [D]\n          rw [htau_N]\n          exact Finset.abs_sum_le_sum_abs _ _\n        have hD : D ≥ min (tau - (m : ℚ)) ((m : ℚ) + 1 - tau) :=\n          le_trans (rationalUnitIntervalIntegerDistance m N tau hm_lt_tau htau_lt_m_one) habs\n        have hcomp := unitIntervalCompensationNonneg gamma tau D m hgamma_pos hgamma_lt_one\n          hm_lt_tau htau_lt_m_one hD\n        dsimp [a, gamma] at hagg' ⊢\n        nlinarith\n  exact hP (Fintype.card V) G w rho rfl hG x k\n"
+    },
+    "nl": {
+      "origin": [
+        {
+          "end_line": 153,
+          "end_locator": null,
+          "kind": "source",
+          "note": "The proof route follows the complete source induction: singleton consecutive-product base, child-component bounds, capacity algebra, and the exterior/interior tau split.",
+          "ref": null,
+          "resource_key": null,
+          "source_path": "solution.tex",
+          "start_line": 84,
+          "start_locator": null
+        }
+      ],
+      "text": "Prove the exact public statement by strong induction on Fintype.card V, with the induction predicate generalized over the finite vertex type, graph, weights, root, admissibility witness, integer coordinate vector, and integer k. Destructure the admissibility witness once to obtain the tree witness hT : G.IsTree; retain the original admissibility proposition for the capacity and child-admissibility APIs.\n\nBase case: hT and the chosen root imply the card is at least one, so the minimal case has card V = 1. The vertex type is then subsingleton, hence rootedChildren is empty. Use treePairingRootedChildDecomposition to reduce treePairing G w x x to w rho * (x rho)^2, and rootedCapacityInvEqSub (with the zero child-capacity sum) to rewrite the capacity relation. The positive capacity from PositiveDefiniteTreeLattice.capacity_pos_lt_one lets ordered-field normalization rewrite the target as a positive rational multiple of the integer product (w rho * x rho - k) * (w rho * x rho - k - 1). Apply consecutiveIntegerProductNonneg and cast/order normalization to conclude.\n\nInduction step: for each c in rootedChildren G hT rho rho, let C be rootedChildComponent G rho c, with its induced graph, restricted weight and restricted coordinate vector, child root, and child capacity gamma_c = rootedChildCapacitySummand G hT w rho ⟨c,hc⟩. IsAdmissibleRootedTree_rootedChildComponent supplies admissibility of C, and rootedChildComponent_card_lt supplies its strict cardinality bound. Invoke the strong induction hypothesis on C twice, first at the integer a := x rho and then at a - 1. After rearranging each conclusion over the rationals, these are exactly the two source bounds for the child self-pairing minus 2*a*s_c, where s_c is x at the child root. Apply twoBoundsGiveAbsLowerBound to obtain the source lower bound -gamma_c*a^2 + |s_c - gamma_c*a|. Sum it over the children with Finset.sum_le_sum.\n\nUse treePairingRootedChildDecomposition and Int.cast_sum to substitute the integral root/child decomposition. Unfold rootedChildCapacitySum and rootedChildCapacitySummand so that the summed child capacities are the same gamma_c just used in the induction. Apply rootedCapacityInvEqSub, and use 0 < gamma < 1 from capacity_pos_lt_one. With tau := (a : Q) / gamma and D := sum_c |s_c - gamma_c*a|, ordered-field/ring normalization gives the source inequality\nE >= gamma * (tau - k) * (tau - k - 1) + D,\nwhere E is the target left-hand expression.\n\nFor the exterior cases, split into tau <= k and k + 1 <= tau. In either case the two factors of the quadratic have the same sign, so their product is nonnegative; gamma is positive and D is a finite sum of nonnegative absolute values. Thus E is nonnegative.\n\nFor the interior case k < tau < k + 1, define the integer N := w rho * a - sum_c s_c. The capacity-inverse identity and finite-sum algebra give tau - (N : Q) = sum_c (s_c - gamma_c*a). Finset.abs_sum_le_sum_abs yields |tau - (N : Q)| <= D. Apply rationalUnitIntervalIntegerDistance to get the endpoint minimum below that absolute value, hence below D. Finally unitIntervalCompensationNonneg, using 0 < gamma < 1 and the strict interval hypotheses, proves gamma * (tau-k) * (tau-k-1) + D is nonnegative. Combine with the earlier lower bound for E. This is exactly the b_0010 argument from lines 84–153 and preserves the required casts, root coordinate, and conclusion direction."
+    }
+  },
+  "revision": 2,
+  "state": "proved",
+  "statement": {
+    "deps": [
+      {
+        "kind": "repo_decl",
+        "reason": "The formal statement must use the exact public definition PositiveDefiniteTreeLattice.treePairing required by the contract interface.",
+        "ref": {
+          "name": "treePairingAnchor",
+          "node": "Main.LatticeFoundations",
+          "repo": null,
+          "revision": 1
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "The theorem hypothesis is the existing admissible rooted-tree predicate.",
+        "ref": {
+          "name": "IsAdmissibleRootedTree",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 1
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "The conclusion contains the rooted rational capacity at rho.",
+        "ref": {
+          "name": "rootedCapacity",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 1
+        }
+      }
+    ],
+    "formal": {
+      "check": {
+        "allow_sorry": true,
+        "contains_axiom": false,
+        "contains_sorry": true,
+        "diagnostics": {
+          "diagnostics": [
+            {
+              "column": 9,
+              "line": 35,
+              "message": "declaration uses `sorry`",
+              "severity": "warning"
+            }
+          ],
+          "passed": true,
+          "raw_excerpt": "{'success': True, 'error_message': None, 'file': 'PositiveDefiniteTreeLattice.Main.RootedEstimates.Theorems.rooted_integer_estimate', 'items': [{'severity': 'warning', 'pos': {'line': 35, 'column': 9}, 'endPos': {'line': 35, 'column': 60}, 'kind': None, 'data': 'declaration uses `sorry`', 'fileName': 'PositiveDefiniteTreeLattice.Main.RootedEstimates.Theorems.rooted_integer_estimate', 'content': '  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedCapacity`\\n-/\\ntheorem PositiveDefiniteTreeLattice.rooted_integer_estimate {V : Type*} [Fintype V]\\n    [DecidableEq V]\\n    (G : SimpleGraph V) [DecidableRel G.Adj] (w : V → ℤ) (rho : V)'}], 'total_items': 1, 'error_count': 0, 'warning_count': 1, 'info_count': 0, 'sorry_count': 1}",
+          "repo_file_path": "PositiveDefiniteTreeLattice/Main/RootedEstimates/Theorems/rooted_integer_estimate.lean",
+          "schema_version": 2,
+          "summary": "Diagnostics returned 1 items"
+        },
+        "message": "Lean check passed.",
+        "policy": "statement_formal",
+        "scan": {
+          "admit_count": 0,
+          "axiom_count": 0,
+          "contains_admit": false,
+          "contains_axiom": false,
+          "contains_opaque": false,
+          "contains_sorry": true,
+          "contains_unsafe": false,
+          "limitation": "Text scan ignores Lean comments and string literals with a conservative first-round lexer; it is not a full Lean parser.",
+          "occurrences": [
+            {
+              "column": 3,
+              "excerpt": "sorry",
+              "kind": "sorry",
+              "line": 41
+            }
+          ],
+          "opaque_count": 0,
+          "sorry_count": 1,
+          "summary": "sorry=1, admit=0, axiom=0, opaque=0, unsafe=0",
+          "unsafe_count": 0
+        },
+        "status": "passed"
+      },
+      "code": "-- lean-constellation: managed-imports-begin\nimport PositiveDefiniteTreeLattice.Main.RootedEstimates.Prelude\n-- lean-constellation: managed-imports-end\n\n-- lean-constellation: declaration-source-begin\n\n/--\n# lean-constellation target: `rooted_integer_estimate`\n\nFor a finite decidable simple graph `G` on `V`, an integer weight function `w : V → ℤ`, and a root\n`rho`, assume `hG : IsAdmissibleRootedTree G w rho`.  For every integral coordinate vector `x : V →\nℤ` and every integer `k`, the exact public theorem\n`PositiveDefiniteTreeLattice.rooted_integer_estimate` asserts the rational inequality\n\n`0 ≤ (↑(treePairing G w x x) : ℚ) - (2 * (k : ℚ) + 1) * (x rho : ℚ) + rootedCapacity G w rho * (k :\nℚ) * ((k : ℚ) + 1)`.\n\nThus the integral tree-pairing norm, the exact root coordinate, and the rooted rational capacity\noccur with the source’s unchanged signs and conclusion direction.  The finite and decidable\nstructure assumed is only that required to form the existing tree-pairing and rooted-capacity APIs.\n\n## Sources\n\n- Source `solution.tex`, lines 84–89\n\n## Statement dependencies\n\n- `Main.LatticeFoundations::treePairingAnchor` → `PositiveDefiniteTreeLattice.treePairing` from\n  `PositiveDefiniteTreeLattice.Main.LatticeFoundations.Defs.treePairingAnchor`\n- `Main.RootedCapacity::IsAdmissibleRootedTree` → `IsAdmissibleRootedTree` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.IsAdmissibleRootedTree`\n- `Main.RootedCapacity::rootedCapacity` → `rootedCapacity` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedCapacity`\n-/\ntheorem PositiveDefiniteTreeLattice.rooted_integer_estimate {V : Type*} [Fintype V]\n    [DecidableEq V]\n    (G : SimpleGraph V) [DecidableRel G.Adj] (w : V → ℤ) (rho : V)\n    (hG : IsAdmissibleRootedTree G w rho) (x : V → ℤ) (k : ℤ) :\n    0 ≤ (↑(treePairing G w x x) : ℚ) - (2 * (k : ℚ) + 1) * (x rho : ℚ) +\n  rootedCapacity G w rho * (k : ℚ) * ((k : ℚ) + 1) := by\n  sorry\n"
+    },
+    "nl": {
+      "origin": [
+        {
+          "end_line": 89,
+          "end_locator": null,
+          "kind": "source",
+          "note": "This is the exact source lemma statement, including admissibility, integer k, the root coordinate, capacity term, and nonnegative conclusion.",
+          "ref": null,
+          "resource_key": null,
+          "source_path": "solution.tex",
+          "start_line": 84,
+          "start_locator": null
+        }
+      ],
+      "text": "For a finite decidable simple graph `G` on `V`, an integer weight function `w : V → ℤ`, and a root `rho`, assume `hG : IsAdmissibleRootedTree G w rho`.  For every integral coordinate vector `x : V → ℤ` and every integer `k`, the exact public theorem `PositiveDefiniteTreeLattice.rooted_integer_estimate` asserts the rational inequality\n\n`0 ≤ (↑(treePairing G w x x) : ℚ) - (2 * (k : ℚ) + 1) * (x rho : ℚ) + rootedCapacity G w rho * (k : ℚ) * ((k : ℚ) + 1)`.\n\nThus the integral tree-pairing norm, the exact root coordinate, and the rooted rational capacity occur with the source’s unchanged signs and conclusion direction.  The finite and decidable structure assumed is only that required to form the existing tree-pairing and rooted-capacity APIs."
+    }
+  },
+  "status": "committed",
+  "updated_at": "2026-08-01T13:06:26Z"
+}

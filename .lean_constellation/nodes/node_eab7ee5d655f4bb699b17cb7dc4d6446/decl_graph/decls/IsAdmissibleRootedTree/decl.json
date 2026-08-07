@@ -1,0 +1,15 @@
+{
+  "created_at": "2026-07-30T00:51:58Z",
+  "current_revision": 1,
+  "kind": "definition",
+  "lifecycle": "active",
+  "module": "PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.IsAdmissibleRootedTree",
+  "name": "IsAdmissibleRootedTree",
+  "node_path": "Main.RootedCapacity",
+  "public": true,
+  "revision_ids": [
+    1
+  ],
+  "summary": "Admissibility of a finite rooted integer-weighted tree.",
+  "updated_at": "2026-07-30T00:51:58Z"
+}

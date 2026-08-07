@@ -1,0 +1,138 @@
+{
+  "change": {
+    "anticipated_proof_dep_names": [],
+    "anticipated_statement_dep_names": [],
+    "base_revision": null,
+    "kind": "create",
+    "objective": "Formalize SourceIndex b_0010 / solution.tex lines 129–148: for integers k and N and rational tau with k < tau < k+1, prove min (tau-k) (k+1-tau) ≤ |tau-N|, with integer casts made explicit in the formal statement. This will combine with the triangle inequality and unitIntervalCompensationNonneg in the rooted induction.",
+    "require_target_state_satisfied": true,
+    "reset_to_state": null,
+    "summary": "Created rationalUnitIntervalIntegerDistance and accepted its NL and formal statement at declared state; an NL proof plan is present, but Proof Formal did not run after the sibling pairing decomposition blocked the round. It is not yet proved or graph_proved-satisfied. Its ordered-rational route remains viable and requires no new provider dependency; it may be resumed independently after closeout.",
+    "target_state": "proved"
+  },
+  "lean_decl_name": "rationalUnitIntervalIntegerDistance",
+  "proof": {
+    "deps": [
+      {
+        "kind": "mathlib_decl",
+        "reason": "Rewrites |tau - N| to N - tau in the k + 1 ≤ N case.",
+        "ref": {
+          "module": "Mathlib.Algebra.Order.Group.Unbundled.Abs",
+          "name": "abs_of_neg"
+        }
+      },
+      {
+        "kind": "mathlib_decl",
+        "reason": "Rewrites |tau - N| to tau - N in the N ≤ k case.",
+        "ref": {
+          "module": "Mathlib.Algebra.Order.Group.Unbundled.Abs",
+          "name": "abs_of_nonneg"
+        }
+      },
+      {
+        "kind": "mathlib_decl",
+        "reason": "Bounds the endpoint minimum by tau - k in the left-integer case.",
+        "ref": {
+          "module": "Mathlib.Order.Defs.LinearOrder",
+          "name": "min_le_left"
+        }
+      },
+      {
+        "kind": "mathlib_decl",
+        "reason": "Bounds the endpoint minimum by k + 1 - tau in the right-integer case.",
+        "ref": {
+          "module": "Mathlib.Order.Defs.LinearOrder",
+          "name": "min_le_right"
+        }
+      }
+    ],
+    "formal": null,
+    "nl": {
+      "origin": [
+        {
+          "end_line": 148,
+          "end_locator": null,
+          "kind": "source",
+          "note": "The source identifies the distance to any integer from a point in the open unit interval as bounded below by the minimum distance to its two adjacent integer endpoints.",
+          "ref": null,
+          "resource_key": null,
+          "source_path": "solution.tex",
+          "start_line": 129,
+          "start_locator": null
+        }
+      ],
+      "text": "Follow solution.tex, lines 129–148, by comparing the arbitrary integer `N` with the two consecutive endpoints. Split on `N ≤ k`. After casting this integer inequality to `ℚ`, the lower interval hypothesis gives `0 ≤ tau - N`; rewrite the absolute value with `abs_of_nonneg`. Then `min (tau-k) (k+1-tau) ≤ tau-k ≤ tau-N`, using `min_le_left` and subtraction monotonicity. In the other branch, integer discreteness gives `k + 1 ≤ N`; cast it to `ℚ`, use `tau < N` to rewrite the absolute value with `abs_of_neg`, and prove `min (tau-k) (k+1-tau) ≤ k+1-tau ≤ N-tau` with `min_le_right`. The cast transfers and linear inequalities are lightweight `norm_cast`/`omega` steps. No project declaration is used."
+    }
+  },
+  "revision": 1,
+  "state": "declared",
+  "statement": {
+    "deps": [],
+    "formal": {
+      "check": {
+        "allow_sorry": true,
+        "contains_axiom": false,
+        "contains_sorry": true,
+        "diagnostics": {
+          "diagnostics": [
+            {
+              "column": 9,
+              "line": 22,
+              "message": "declaration uses `sorry`",
+              "severity": "warning"
+            }
+          ],
+          "passed": true,
+          "raw_excerpt": "{'success': True, 'error_message': None, 'file': 'PositiveDefiniteTreeLattice.Main.RootedEstimates.Theorems.rationalUnitIntervalIntegerDistance', 'items': [{'severity': 'warning', 'pos': {'line': 22, 'column': 9}, 'endPos': {'line': 22, 'column': 44}, 'kind': None, 'data': 'declaration uses `sorry`', 'fileName': 'PositiveDefiniteTreeLattice.Main.RootedEstimates.Theorems.rationalUnitIntervalIntegerDistance', 'content': '- Source `solution.tex`, lines 129–148\\n-/\\ntheorem rationalUnitIntervalIntegerDistance (k N : ℤ) (tau : ℚ)\\n    (hk_lt_tau : (k : ℚ) < tau) (htau_lt_k_one : tau < (k : ℚ) + 1) :\\n    min (tau - (k : ℚ)) ((k : ℚ) + 1 - tau) ≤ |tau - (N : ℚ)| := by'}], 'total_items': 1, 'error_count': 0, 'warning_count': 1, 'info_count': 0, 'sorry_count': 1}",
+          "repo_file_path": "PositiveDefiniteTreeLattice/Main/RootedEstimates/Theorems/rationalUnitIntervalIntegerDistance.lean",
+          "schema_version": 2,
+          "summary": "Diagnostics returned 1 items"
+        },
+        "message": "Lean check passed.",
+        "policy": "statement_formal",
+        "scan": {
+          "admit_count": 0,
+          "axiom_count": 0,
+          "contains_admit": false,
+          "contains_axiom": false,
+          "contains_opaque": false,
+          "contains_sorry": true,
+          "contains_unsafe": false,
+          "limitation": "Text scan ignores Lean comments and string literals with a conservative first-round lexer; it is not a full Lean parser.",
+          "occurrences": [
+            {
+              "column": 3,
+              "excerpt": "sorry",
+              "kind": "sorry",
+              "line": 25
+            }
+          ],
+          "opaque_count": 0,
+          "sorry_count": 1,
+          "summary": "sorry=1, admit=0, axiom=0, opaque=0, unsafe=0",
+          "unsafe_count": 0
+        },
+        "status": "passed"
+      },
+      "code": "-- lean-constellation: managed-imports-begin\nimport PositiveDefiniteTreeLattice.Main.RootedEstimates.Prelude\n-- lean-constellation: managed-imports-end\n\n-- lean-constellation: declaration-source-begin\n\n/--\n# lean-constellation target: `rationalUnitIntervalIntegerDistance`\n\nLet `k` and `N` be integers and let `tau` be a rational number. Assume\n\n`(k : ℚ) < tau` and `tau < (k : ℚ) + 1`.\n\nThen the distance from `tau` to the arbitrary integer `N` bounds both endpoint distances below:\n\n`min (tau - (k : ℚ)) ((k : ℚ) + 1 - tau) ≤ |tau - (N : ℚ)|`.\n\n## Sources\n\n- Source `solution.tex`, lines 129–148\n-/\ntheorem rationalUnitIntervalIntegerDistance (k N : ℤ) (tau : ℚ)\n    (hk_lt_tau : (k : ℚ) < tau) (htau_lt_k_one : tau < (k : ℚ) + 1) :\n    min (tau - (k : ℚ)) ((k : ℚ) + 1 - tau) ≤ |tau - (N : ℚ)| := by\n  sorry\n"
+    },
+    "nl": {
+      "origin": [
+        {
+          "end_line": 148,
+          "end_locator": null,
+          "kind": "source",
+          "note": "The source identifies the distance to the integers, for tau in the open interval from k to k+1, with the minimum of the two endpoint distances.",
+          "ref": null,
+          "resource_key": null,
+          "source_path": "solution.tex",
+          "start_line": 129,
+          "start_locator": null
+        }
+      ],
+      "text": "Let `k` and `N` be integers and let `tau` be a rational number. Assume\n\n`(k : ℚ) < tau` and `tau < (k : ℚ) + 1`.\n\nThen the distance from `tau` to the arbitrary integer `N` bounds both endpoint distances below:\n\n`min (tau - (k : ℚ)) ((k : ℚ) + 1 - tau) ≤ |tau - (N : ℚ)|`."
+    }
+  },
+  "status": "committed",
+  "updated_at": "2026-07-31T00:09:56Z"
+}

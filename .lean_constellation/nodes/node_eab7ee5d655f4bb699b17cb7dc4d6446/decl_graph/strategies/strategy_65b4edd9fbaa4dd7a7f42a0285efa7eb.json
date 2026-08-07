@@ -1,0 +1,14 @@
+{
+  "closed_at": "2026-08-06T13:02:40Z",
+  "closed_reason": "The strategy’s cleanup and instance-coherence objectives are fully achieved with graph_proved satisfaction and no remaining provider or helper gap.",
+  "created_at": "2026-08-06T12:44:42Z",
+  "created_round_ids": [
+    "round_bb77c73e06e34731a6f3f63ebd732600"
+  ],
+  "node_path": "Main.RootedCapacity",
+  "objective": "Complete repaired contract v6 by deleting both unreleased contraction artifacts and proving one public generic IsAdmissibleRootedTree instance-independence theorem for transport between explicit Fintype, DecidableEq, and DecidableRel conventions.",
+  "rationale": "The current contract has removed the contraction interface and explicitly selects instance coherence as the sole v6 output. Source lines 33–38 and the current IsAdmissibleRootedTree definition show that admissibility semantics are fixed; only typeclass witnesses differ. The two contraction artifacts are unreleased and their combined delete closure is exactly themselves. Mathlib context already records Fintype.subsingleton, while DecidableEq/DecidableRel witnesses are subsingletons, so graph_proved completion supports a single cleanup-plus-public-theorem round using equality/subsingleton elimination with no representation package or preparation flow.",
+  "status": "closed",
+  "strategy_id": "strategy_65b4edd9fbaa4dd7a7f42a0285efa7eb",
+  "summary": "Completed repaired contract v6: deleted both unreleased contraction artifacts, proved the generic public IsAdmissibleRootedTree instance-independence theorem, verified public Statement closure, and bound the new interface."
+}

@@ -1,0 +1,33 @@
+{
+  "change_summaries": {},
+  "committed_at": "2026-08-07T03:55:04Z",
+  "created_at": "2026-08-07T03:41:37Z",
+  "discard_reason": null,
+  "discarded_at": null,
+  "discarded_by": null,
+  "discarded_created_decl_names": [],
+  "discarded_restored_decl_revisions": {},
+  "discarded_revision_refs": [],
+  "execution_completed_at": "2026-08-07T03:52:51Z",
+  "execution_reason": "The frozen proof cannot be completed within the allowed no-helper/no-wrapper boundary because the available RootedCapacity contractions are rational-coordinate identities while the frozen conclusion is integral treePairing. Their signatures do not supply the required casted coordinate expansion bridge for either the ambient graph or the dependent child-component graphs.",
+  "execution_result_kind": "blocked",
+  "node_path": "Main.IrreducibleVertex",
+  "objective": "Complete only Proof Formal for pairing_decomposition_at_unique_underweight@4 using the two exact RootedCapacity contractions while preserving its accepted Statement and Proof NL.",
+  "plan_closeout_acknowledged_at": "2026-08-07T03:55:04Z",
+  "plan_closeout_acknowledged_by": "a_a235941c8c524917a1ed4a78f90c75ba",
+  "result_kind": "blocked",
+  "result_reason": "Proof Formal cannot cross the repository-specific scalar bridge from integral treePairing to the rational rootedGram coordinate identities supplied by the two public contractions; contract v3 forbids building that bridge locally.",
+  "revision_refs": [
+    {
+      "change_id": "pairing_decomposition_at_unique_underweight@rev:5",
+      "decl_name": "pairing_decomposition_at_unique_underweight",
+      "revision": 5
+    }
+  ],
+  "round_id": "round_03be3cb5ade94166858dfce4c9bcec1d",
+  "round_index": 22,
+  "started_at": "2026-08-07T03:43:23Z",
+  "status": "committed",
+  "strategy_id": "strategy_c7956f63087f4965ac944b87b0e79a25",
+  "summary": "Round 22 did not advance pairing_decomposition_at_unique_underweight beyond proof_planned and no declaration reached its proved target or became newly proof-policy satisfied. It did verify that the two RootedCapacity v8/v9 contractions cover the dependent nonroot quadratic and root/nonroot linear reindexing shapes, but exposed a separate missing scalar bridge: both APIs start from rational rootedGram coordinate sums, whereas the frozen source conclusion at solution.tex:220–226 is integral treePairing on the ambient graph and every dependent component. Generic Mathlib coordinate/cast lemmas are already recorded and cannot supply repository-specific treePairing/rootedGram semantics; the current node and visible provider boundary contain the entrywise pairing theorem and the rational contractions but no public casted quadratic/linear expansion theorem with the necessary ambient/component instance conventions. Contract v3 explicitly forbids implementing this bridge locally through helpers, wrappers, new representations, or dependent-sigma infrastructure. Thus the open strategy cannot continue responsibly, and another unchanged parent retry, Mathlib recon, or resource recon is not justified. Eight declarations remain proved and graph-proved-policy satisfied; normalized_pairing_positive_of_unique_underweight remains declared; pairing_decomposition_at_unique_underweight revision 5 remains proof_planned. There are ten active declarations within expected scale, no downstream graph edges from the partial helper, no superseded branch, and no cleanup artifact. Complete retry conditions are Coordinator/provider addition of a public ready/fresh theorem equating casts of integral treePairing coordinate expressions with rational rootedGram sums for both ambient and arbitrary finite component graphs under exact local instances, or an explicit contract boundary change authorizing local ownership; then update the dependency contract, run fresh recon, and resume revision 5 before its normalized parent. After closeout the strategy should close blocked and the Content task should submit terminal blocked."
+}

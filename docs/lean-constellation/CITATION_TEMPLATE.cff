@@ -1,0 +1,8 @@
+cff-version: 1.2.0
+message: "If you use this formalization, please cite it using this metadata."
+title: "REPLACE WITH THE FORMALIZATION TITLE"
+type: software
+authors:
+  - name: "REPLACE WITH THE FORMALIZATION AUTHOR OR TEAM"
+repository-code: "REPLACE WITH THE CANONICAL REPOSITORY URL"
+license: "REPLACE WITH AN SPDX IDENTIFIER"

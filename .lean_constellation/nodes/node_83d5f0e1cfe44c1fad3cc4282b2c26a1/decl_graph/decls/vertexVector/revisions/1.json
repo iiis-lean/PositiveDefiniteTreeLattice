@@ -1,0 +1,24 @@
+{
+  "change": {
+    "anticipated_proof_dep_names": [],
+    "anticipated_statement_dep_names": [],
+    "base_revision": null,
+    "kind": "create",
+    "objective": "Implement exactly formal_target.lean lines 13–15: for V with decidable equality and v : V, define the integer-valued function u ↦ if u = v then 1 else 0. This public definition has no current-node lower dependency and supplies the exact consumer object for later vertex-vector pairing facts and downstream tree-lattice arguments; preserve the equality orientation and ℤ codomain.",
+    "require_target_state_satisfied": true,
+    "reset_to_state": null,
+    "summary": "Planned exact public vertexVector definition from formal_target.lean lines 13–15. No worker stages ran and no artifacts were accepted; the change is being abandoned with the invalid draft and will be replanned unchanged.",
+    "target_state": "proved"
+  },
+  "lean_decl_name": null,
+  "proof": null,
+  "revision": 1,
+  "state": "planned",
+  "statement": {
+    "deps": [],
+    "formal": null,
+    "nl": null
+  },
+  "status": "committed",
+  "updated_at": "2026-07-29T14:48:17Z"
+}

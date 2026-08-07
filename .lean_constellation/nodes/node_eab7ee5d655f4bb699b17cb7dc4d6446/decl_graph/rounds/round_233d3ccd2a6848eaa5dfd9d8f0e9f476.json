@@ -1,0 +1,33 @@
+{
+  "change_summaries": {},
+  "committed_at": "2026-07-30T18:32:34Z",
+  "created_at": "2026-07-30T18:18:36Z",
+  "discard_reason": null,
+  "discarded_at": null,
+  "discarded_by": null,
+  "discarded_created_decl_names": [],
+  "discarded_restored_decl_revisions": {},
+  "discarded_revision_refs": [],
+  "execution_completed_at": "2026-07-30T18:30:58Z",
+  "execution_reason": null,
+  "execution_result_kind": "success",
+  "node_path": "Main.RootedCapacity",
+  "objective": "Recapture and prove the private root/nonroot block helper with a consistent IsUnit statement across every declaration stage.",
+  "plan_closeout_acknowledged_at": "2026-07-30T18:32:34Z",
+  "plan_closeout_acknowledged_by": "a_a93b40977f574bad89528358fa89e022",
+  "result_kind": "success",
+  "result_reason": "The private IsUnit block-invertibility helper is proved and graph-policy satisfied, closing the recursion parent's last known assembly prerequisite.",
+  "revision_refs": [
+    {
+      "change_id": "rootedGram_rootNonroot_blocks_invertible@rev:3",
+      "decl_name": "rootedGram_rootNonroot_blocks_invertible",
+      "revision": 3
+    }
+  ],
+  "round_id": "round_233d3ccd2a6848eaa5dfd9d8f0e9f476",
+  "round_index": 54,
+  "started_at": "2026-07-30T18:19:38Z",
+  "status": "committed",
+  "strategy_id": "strategy_fc60f40a331d4f63bd19e22f0eec7473",
+  "summary": "Round 54 completed all four stages and made the intended bottom-up progress. rootedGram_rootNonroot_blocks_invertible reached proved with graph_proved satisfaction; there is no state-only closure debt. The known full-block invertibility prerequisite for rootedCapacity_recursion is now closed, alongside the previously proved block decomposition, nonroot inverse quadratic, and Mathlib Schur APIs. The strategy remains viable and the next action is a Proof-Formal-only retry of the unchanged public recursion using this helper via IsUnit.invertible."
+}

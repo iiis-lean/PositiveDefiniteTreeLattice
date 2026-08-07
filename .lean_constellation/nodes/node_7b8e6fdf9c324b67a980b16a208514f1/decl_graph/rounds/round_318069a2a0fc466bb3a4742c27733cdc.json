@@ -1,0 +1,33 @@
+{
+  "change_summaries": {},
+  "committed_at": "2026-08-07T02:36:54Z",
+  "created_at": "2026-08-07T02:24:55Z",
+  "discard_reason": null,
+  "discarded_at": null,
+  "discarded_by": null,
+  "discarded_created_decl_names": [],
+  "discarded_restored_decl_revisions": {},
+  "discarded_revision_refs": [],
+  "execution_completed_at": "2026-08-07T02:35:21Z",
+  "execution_reason": "The round requires retaining revision 2's already-verified integral treePairing-to-rational rootedGram component-conversion proof, but that artifact is unavailable in the current revision.",
+  "execution_result_kind": "blocked",
+  "node_path": "Main.IrreducibleVertex",
+  "objective": "Complete the frozen pairing decomposition Proof Formal with the exact RootedCapacity nonroot quadratic splitting theorem.",
+  "plan_closeout_acknowledged_at": "2026-08-07T02:36:54Z",
+  "plan_closeout_acknowledged_by": "a_a235941c8c524917a1ed4a78f90c75ba",
+  "result_kind": "blocked",
+  "result_reason": "The Proof Formal objective incorrectly assumed a prior conversion proof artifact existed; a self-contained formal retry is required.",
+  "revision_refs": [
+    {
+      "change_id": "pairing_decomposition_at_unique_underweight@rev:3",
+      "decl_name": "pairing_decomposition_at_unique_underweight",
+      "revision": 3
+    }
+  ],
+  "round_id": "round_318069a2a0fc466bb3a4742c27733cdc",
+  "round_index": 20,
+  "started_at": "2026-08-07T02:26:09Z",
+  "status": "committed",
+  "strategy_id": "strategy_6a6348d3799a499fab36c54b472a37e9",
+  "summary": "Round 20 did not advance pairing_decomposition_at_unique_underweight beyond proof_planned and it remains unsatisfied under graph_proved. It did not invalidate the repaired strategy: fresh dependency recon still closes the prior provider frontier exactly. The sole issue is that the Proof Formal objective assumed an earlier formal conversion proof artifact existed, while revisions 1–2 only recorded accepted Statement/Proof NL and diagnostic evidence. The next round should remain under the same strategy, preserve the accepted artifacts, and run one self-contained Proof Formal that reconstructs the already-reviewed Matrix.dotProduct_mulVec/Int cast conversion before directly applying rootedNonroot_quadratic_eq_sum_childQuadratics. No new helper, preparation, statement change, branch cleanup, or Coordinator escalation is required. The graph still has ten active declarations within expected scale; normalized_pairing_positive_of_unique_underweight remains declared and waits on this provider."
+}

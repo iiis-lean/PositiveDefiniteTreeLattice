@@ -1,0 +1,18 @@
+/.lake/build
+/.agent_runtime
+/.runtime
+
+# BEGIN Lean Constellation managed ignores
+/.lake/
+/.agent_runtime/
+/.runtime/
+/.lean_constellation/snapshots/
+/.lean_constellation/checkpoints/
+/.lean_constellation/locks/
+/.lean_constellation/.locks/
+/.lean_constellation/staging/
+/.lean_constellation/publication/remote_receipts/
+/.env
+/.env.*
+!/.env.example
+# END Lean Constellation managed ignores

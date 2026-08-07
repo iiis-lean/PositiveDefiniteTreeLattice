@@ -1,0 +1,33 @@
+{
+  "change_summaries": {},
+  "committed_at": "2026-08-02T14:21:53Z",
+  "created_at": "2026-08-02T13:56:37Z",
+  "discard_reason": null,
+  "discarded_at": null,
+  "discarded_by": null,
+  "discarded_created_decl_names": [],
+  "discarded_restored_decl_revisions": {},
+  "discarded_revision_refs": [],
+  "execution_completed_at": "2026-08-02T14:20:43Z",
+  "execution_reason": null,
+  "execution_result_kind": "success",
+  "node_path": "Main.RootedCapacity",
+  "objective": "Create and graph-prove the contract-v3 private predecessor/neighborFinset partition helper for every nonroot vertex, using the retained rooted orientation and component/path transports.",
+  "plan_closeout_acknowledged_at": "2026-08-02T14:21:53Z",
+  "plan_closeout_acknowledged_by": "a_a93b40977f574bad89528358fa89e022",
+  "result_kind": "success",
+  "result_reason": "The sole helper declaration reached proved with graph-proved satisfaction and exactly supplies the planned dependency for the public v3 theorem.",
+  "revision_refs": [
+    {
+      "change_id": "rootedNeighborFinset_eq_insert_predecessor@rev:1",
+      "decl_name": "rootedNeighborFinset_eq_insert_predecessor",
+      "revision": 1
+    }
+  ],
+  "round_id": "round_99a0f7d0e69c499e9be6b575ea4691be",
+  "round_index": 71,
+  "started_at": "2026-08-02T13:57:54Z",
+  "status": "committed",
+  "strategy_id": "strategy_7cd022e702a846d785b5387334cfe431",
+  "summary": "Round 71 completed the bottom-up helper stage of the contract-v3 strategy. rootedNeighborFinset_eq_insert_predecessor@1 reached proved and graph_proved satisfaction with no blocker, state-only intermediate, or scope expansion. The preserved v1/v2 graph is unchanged. Known dependency closure is now ready for a single public theorem round deriving rootedChildCount + 1 = degree by taking cardinalities; no Mathlib or resource preparation is justified."
+}

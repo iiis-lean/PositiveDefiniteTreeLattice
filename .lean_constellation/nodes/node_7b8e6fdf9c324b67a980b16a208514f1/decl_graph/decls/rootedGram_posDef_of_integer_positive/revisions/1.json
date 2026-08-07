@@ -1,0 +1,218 @@
+{
+  "change": {
+    "anticipated_proof_dep_names": [],
+    "anticipated_statement_dep_names": [],
+    "base_revision": null,
+    "kind": "create",
+    "objective": "Formalize the positive-definite scalar-extension step used at solution.tex:196 for the contract's exact data: from h_positive : ∀ x : V → ℤ, x ≠ 0 → 0 < treePairing G weight x x, prove Matrix.PosDef (rootedGram G weight) over ℚ. Preserve the supplied integral function model and pairing, use the accepted Main.RootedCapacity rootedGram definition and finite denominator clearing as needed, and do not replace h_positive with a stronger rational-vector assumption. This private reusable bridge will feed principal-submatrix positivity in the rooted-child-component admissibility proof and ultimately PositiveDefiniteTreeLattice.exists_irreducible_vertex.",
+    "require_target_state_satisfied": true,
+    "reset_to_state": null,
+    "summary": "Created the private lemma PositiveDefiniteTreeLattice.rootedGram_posDef_of_integer_positive and completed all stages through proved. The accepted formal statement preserves the contract's integer-valued positivity hypothesis and concludes Matrix.PosDef for the rational rootedGram; the checked proof supplies the required scalar-extension bridge. Revision 1 is proof-policy satisfied, with no blocker or repair outstanding.",
+    "target_state": "proved"
+  },
+  "lean_decl_name": "PositiveDefiniteTreeLattice.rootedGram_posDef_of_integer_positive",
+  "proof": {
+    "deps": [
+      {
+        "kind": "mathlib_decl",
+        "reason": "Expresses the common finite product of coordinate denominators as a selected denominator times the complementary product.",
+        "ref": {
+          "module": "Mathlib.Algebra.BigOperators.Group.Finset.Basic",
+          "name": "Finset.mul_prod_erase"
+        }
+      },
+      {
+        "kind": "mathlib_decl",
+        "reason": "Rewrites each rational coordinate multiplied by its positive denominator as its integer numerator when clearing denominators.",
+        "ref": {
+          "module": "Mathlib.Algebra.Ring.Rat",
+          "name": "Rat.mul_den_eq_num"
+        }
+      },
+      {
+        "kind": "mathlib_decl",
+        "reason": "Rewrites the integer pairing neighbor sum into the ambient finite adjacency sum in the scalar-extension identity.",
+        "ref": {
+          "module": "Mathlib.Combinatorics.SimpleGraph.Finite",
+          "name": "SimpleGraph.neighborFinset_eq_filter"
+        }
+      },
+      {
+        "kind": "mathlib_decl",
+        "reason": "Converts Hermitianity of the rational rootedGram to entrywise symmetry before applying the positive-definite constructor.",
+        "ref": {
+          "module": "Mathlib.LinearAlgebra.Matrix.Hermitian",
+          "name": "Matrix.isHermitian_iff_isSymm"
+        }
+      },
+      {
+        "kind": "mathlib_decl",
+        "reason": "Builds Matrix.PosDef from the Hermitian proof and strict positivity of every nonzero rational quadratic expression.",
+        "ref": {
+          "module": "Mathlib.LinearAlgebra.Matrix.PosDef",
+          "name": "Matrix.PosDef.of_dotProduct_mulVec_pos"
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "Establishes Hermitian symmetry of rootedGram entries by symmetry of the supplied integer pairing.",
+        "ref": {
+          "name": "treePairing_symm",
+          "node": "Main.LatticeFoundations",
+          "repo": null,
+          "revision": 6
+        }
+      }
+    ],
+    "formal": {
+      "check": {
+        "allow_sorry": false,
+        "contains_axiom": false,
+        "contains_sorry": false,
+        "diagnostics": {
+          "diagnostics": [],
+          "passed": true,
+          "raw_excerpt": "{'success': True, 'error_message': None, 'file': 'PositiveDefiniteTreeLattice.Main.IrreducibleVertex.Lemmas.rootedGram_posDef_of_integer_positive', 'items': [], 'total_items': 0, 'error_count': 0, 'warning_count': 0, 'info_count': 0, 'sorry_count': 0}",
+          "repo_file_path": "PositiveDefiniteTreeLattice/Main/IrreducibleVertex/Lemmas/rootedGram_posDef_of_integer_positive.lean",
+          "schema_version": 2,
+          "summary": "Diagnostics returned 0 items"
+        },
+        "message": "Lean check passed.",
+        "policy": "proof_formal",
+        "scan": {
+          "admit_count": 0,
+          "axiom_count": 0,
+          "contains_admit": false,
+          "contains_axiom": false,
+          "contains_opaque": false,
+          "contains_sorry": false,
+          "contains_unsafe": false,
+          "limitation": "Text scan ignores Lean comments and string literals with a conservative first-round lexer; it is not a full Lean parser.",
+          "occurrences": [],
+          "opaque_count": 0,
+          "sorry_count": 0,
+          "summary": "sorry=0, admit=0, axiom=0, opaque=0, unsafe=0",
+          "unsafe_count": 0
+        },
+        "status": "passed"
+      },
+      "code": "-- lean-constellation: managed-imports-begin\nimport PositiveDefiniteTreeLattice.Main.IrreducibleVertex.Prelude\nimport Mathlib.Algebra.BigOperators.Group.Finset.Basic\nimport Mathlib.Algebra.Ring.Rat\nimport Mathlib.Combinatorics.SimpleGraph.Finite\nimport Mathlib.LinearAlgebra.Matrix.Hermitian\nimport Mathlib.LinearAlgebra.Matrix.PosDef\n-- lean-constellation: managed-imports-end\n\n-- lean-constellation: declaration-source-begin\n\n/--\n# lean-constellation target: `rootedGram_posDef_of_integer_positive`\n\nLet `V` be a finite type with decidable equality, let `G : SimpleGraph V` have decidable adjacency,\nand let `weight : V → ℤ`. If `h_positive : ∀ x : V → ℤ, x ≠ 0 → 0 < treePairing G weight x x`, then\nthe rational matrix `rootedGram G weight` is positive definite: `Matrix.PosDef (rootedGram G\nweight)`.\n\n## Sources\n\n- Source `solution.tex`, line 196\n\n## Statement dependencies\n\n- `Matrix.PosDef` from `Mathlib.LinearAlgebra.Matrix.PosDef`\n- `Main.LatticeFoundations::treePairingAnchor` → `PositiveDefiniteTreeLattice.treePairing` from\n  `PositiveDefiniteTreeLattice.Main.LatticeFoundations.Defs.treePairingAnchor`\n- `Main.RootedCapacity::rootedGram` → `rootedGram` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedGram`\n\n## Proof outline\n\nApply `Matrix.PosDef.of_dotProduct_mulVec_pos`. For Hermitian symmetry, unfold `rootedGram` and\n`Matrix.IsHermitian`; the off-diagonal entries are equal after applying the tracked symmetry theorem\n`treePairing_symm` to the two vertex vectors (over `ℚ`, conjugation is trivial).\n\nFor strict positivity, fix a nonzero rational coordinate vector `q : V → ℚ` (equivalently the\nfinite-support vector required by `Matrix.PosDef`). Since `V` is finite, clear the finitely many\ncoordinate denominators: choose a positive natural `D` divisible by every denominator and define an\ninteger vector `z` by `(z u : ℚ) = D * q u`. The nonzeroness of `q` and `D ≠ 0` give `z ≠ 0`.\n\nEstablish the representation identity\n`((treePairing G weight z z : ℤ) : ℚ) = (D : ℚ)^2 * (star q ⬝ᵥ (rootedGram G weight *ᵥ q))`.\nThis is a local finite-sum calculation: unfold `rootedGram`, `treePairing`, `vertexVector`,\n`Matrix.mulVec`, and `dotProduct`; substitute the coordinate identities for `z`; then normalize\ncasts and finite sums with `ring`. It preserves the original integral pairing rather than assuming\npositivity on rational vectors.\n\nApply `h_positive z hz` and cast its strict inequality to `ℚ`. The representation identity and\npositivity of the nonzero square `(D : ℚ)^2` imply the desired strict positivity of the rational\nquadratic expression. This completes `Matrix.PosDef` without strengthening `h_positive`.\n\n## Proof sources\n\n- Source `solution.tex`, line 196\n\n## Proof dependencies\n\n- `Finset.mul_prod_erase` from `Mathlib.Algebra.BigOperators.Group.Finset.Basic`\n- `Rat.mul_den_eq_num` from `Mathlib.Algebra.Ring.Rat`\n- `SimpleGraph.neighborFinset_eq_filter` from `Mathlib.Combinatorics.SimpleGraph.Finite`\n- `Matrix.isHermitian_iff_isSymm` from `Mathlib.LinearAlgebra.Matrix.Hermitian`\n- `Matrix.PosDef.of_dotProduct_mulVec_pos` from `Mathlib.LinearAlgebra.Matrix.PosDef`\n- `Main.LatticeFoundations::treePairing_symm` → `PositiveDefiniteTreeLattice.treePairing_symm` from\n  `PositiveDefiniteTreeLattice.Main.LatticeFoundations.Theorems.treePairing_symm`\n-/\ntheorem PositiveDefiniteTreeLattice.rootedGram_posDef_of_integer_positive {V : Type*} [Fintype V]\n    [DecidableEq V] (G : SimpleGraph V) [DecidableRel G.Adj] (weight : V → ℤ)\n    (h_positive : ∀ x : V → ℤ, x ≠ 0 → 0 < PositiveDefiniteTreeLattice.treePairing G weight x x) :\n    Matrix.PosDef (rootedGram G weight) := by\n  refine Matrix.PosDef.of_dotProduct_mulVec_pos ?_ ?_\n  · apply Matrix.isHermitian_iff_isSymm.mpr\n    ext u v\n    simp only [Matrix.transpose_apply, rootedGram]\n    exact_mod_cast (PositiveDefiniteTreeLattice.treePairing_symm G weight\n      (PositiveDefiniteTreeLattice.vertexVector u)\n      (PositiveDefiniteTreeLattice.vertexVector v)).symm\n  · intro q hq\n    let D : ℕ := ∏ u, (q u).den\n    let z : V → ℤ := fun u => (q u).num * ∏ w ∈ Finset.univ.erase u, (q w).den\n    have hz_scale (u : V) : (z u : ℚ) = D * q u := by\n      simp only [z, D]\n      push_cast\n      rw [← Rat.mul_den_eq_num (q u)]\n      have hprod : (q u).den * ∏ w ∈ Finset.univ.erase u, (q w).den =\n          ∏ w, (q w).den :=\n        Finset.mul_prod_erase Finset.univ (fun w => (q w).den) (Finset.mem_univ u)\n      have hprodQ : (↑(q u).den : ℚ) * ∏ w ∈ Finset.univ.erase u, ↑(q w).den =\n          ∏ w, ↑(q w).den := by\n        exact_mod_cast hprod\n      rw [← hprodQ]\n      ring\n    have hD_pos : 0 < D := by\n      dsimp [D]\n      positivity\n    have hz_ne : z ≠ 0 := by\n      intro hz\n      apply hq\n      ext u\n      have hu := hz_scale u\n      rw [hz] at hu\n      exact (mul_eq_zero.mp hu.symm).resolve_left (by exact_mod_cast (ne_of_gt hD_pos))\n    have hquad : ((PositiveDefiniteTreeLattice.treePairing G weight z z : ℤ) : ℚ) =\n        (D : ℚ) ^ 2 * dotProduct (star (q : V → ℚ))\n          (Matrix.mulVec (rootedGram G weight) (q : V → ℚ)) := by\n      simp only [rootedGram, Matrix.mulVec, dotProduct, star_trivial]\n      simp only [PositiveDefiniteTreeLattice.treePairing]\n      simp only [Int.cast_sum, Int.cast_mul, Int.cast_sub, PositiveDefiniteTreeLattice.vertexVector,\n        mul_ite, mul_one, mul_zero, Finset.sum_ite_eq', SimpleGraph.mem_neighborFinset, ite_mul,\n        one_mul, zero_mul, Finset.mem_univ, reduceIte, Int.cast_ite, Int.cast_zero, Int.cast_one]\n      simp_rw [hz_scale]\n      simp_rw [SimpleGraph.neighborFinset_eq_filter]\n      simp only [Finset.sum_filter]\n      ring_nf\n      rw [Finset.mul_sum]\n      apply Finset.sum_congr rfl\n      intro x _\n      have hscale_inner : (∑ y, if G.Adj x y then (D : ℚ) * q y else 0) =\n          (D : ℚ) * ∑ y, if G.Adj x y then q y else 0 := by\n        rw [Finset.mul_sum]\n        apply Finset.sum_congr rfl\n        intro y _\n        by_cases hxy : G.Adj x y\n        · simp [hxy]\n        · simp [hxy]\n      rw [hscale_inner]\n      have hbase : (∑ y, ((if x = y then (weight x : ℚ) else 0) * q y -\n          (if G.Adj x y then 1 else 0) * q y)) =\n          (weight x : ℚ) * q x - ∑ y, if G.Adj x y then q y else 0 := by\n        simp only [ite_mul, zero_mul, one_mul, Finset.sum_sub_distrib, Finset.sum_ite_eq,\n          Finset.mem_univ, reduceIte]\n      rw [hbase]\n      ring\n    have hpair_pos : 0 < ((PositiveDefiniteTreeLattice.treePairing G weight z z : ℤ) : ℚ) := by\n      exact_mod_cast h_positive z hz_ne\n    have hD_pos_Q : 0 < (D : ℚ) := by\n      exact_mod_cast hD_pos\n    have hD_sq_pos : 0 < (D : ℚ) ^ 2 := sq_pos_of_pos hD_pos_Q\n    have hmul : 0 < (D : ℚ) ^ 2 * dotProduct (star (q : V → ℚ))\n        (Matrix.mulVec (rootedGram G weight) (q : V → ℚ)) := by\n      rw [← hquad]\n      exact hpair_pos\n    rcases (mul_pos_iff.mp hmul) with hpos | hneg\n    · exact hpos.2\n    · linarith\n"
+    },
+    "nl": {
+      "origin": [
+        {
+          "end_line": 196,
+          "end_locator": null,
+          "kind": "source",
+          "note": "This line invokes positive definiteness of the ambient rational Gram matrix before passing to the rooted component form.",
+          "ref": null,
+          "resource_key": null,
+          "source_path": "solution.tex",
+          "start_line": 196,
+          "start_locator": null
+        }
+      ],
+      "text": "Apply `Matrix.PosDef.of_dotProduct_mulVec_pos`. For Hermitian symmetry, unfold `rootedGram` and `Matrix.IsHermitian`; the off-diagonal entries are equal after applying the tracked symmetry theorem `treePairing_symm` to the two vertex vectors (over `ℚ`, conjugation is trivial).\n\nFor strict positivity, fix a nonzero rational coordinate vector `q : V → ℚ` (equivalently the finite-support vector required by `Matrix.PosDef`). Since `V` is finite, clear the finitely many coordinate denominators: choose a positive natural `D` divisible by every denominator and define an integer vector `z` by `(z u : ℚ) = D * q u`. The nonzeroness of `q` and `D ≠ 0` give `z ≠ 0`.\n\nEstablish the representation identity\n`((treePairing G weight z z : ℤ) : ℚ) = (D : ℚ)^2 * (star q ⬝ᵥ (rootedGram G weight *ᵥ q))`.\nThis is a local finite-sum calculation: unfold `rootedGram`, `treePairing`, `vertexVector`, `Matrix.mulVec`, and `dotProduct`; substitute the coordinate identities for `z`; then normalize casts and finite sums with `ring`. It preserves the original integral pairing rather than assuming positivity on rational vectors.\n\nApply `h_positive z hz` and cast its strict inequality to `ℚ`. The representation identity and positivity of the nonzero square `(D : ℚ)^2` imply the desired strict positivity of the rational quadratic expression. This completes `Matrix.PosDef` without strengthening `h_positive`."
+    }
+  },
+  "revision": 1,
+  "state": "proved",
+  "statement": {
+    "deps": [
+      {
+        "kind": "mathlib_decl",
+        "reason": "The conclusion uses Mathlib's positive-definite matrix predicate over ℚ.",
+        "ref": {
+          "module": "Mathlib.LinearAlgebra.Matrix.PosDef",
+          "name": "Matrix.PosDef"
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "The supplied integer-vector positive-definiteness hypothesis is expressed using the public treePairing.",
+        "ref": {
+          "name": "treePairingAnchor",
+          "node": "Main.LatticeFoundations",
+          "repo": null,
+          "revision": 1
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "The conclusion is stated about the accepted rational rootedGram matrix.",
+        "ref": {
+          "name": "rootedGram",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 2
+        }
+      }
+    ],
+    "formal": {
+      "check": {
+        "allow_sorry": true,
+        "contains_axiom": false,
+        "contains_sorry": true,
+        "diagnostics": {
+          "diagnostics": [
+            {
+              "column": 9,
+              "line": 28,
+              "message": "declaration uses `sorry`",
+              "severity": "warning"
+            }
+          ],
+          "passed": true,
+          "raw_excerpt": "{'success': True, 'error_message': None, 'file': 'PositiveDefiniteTreeLattice.Main.IrreducibleVertex.Lemmas.rootedGram_posDef_of_integer_positive', 'items': [{'severity': 'warning', 'pos': {'line': 28, 'column': 9}, 'endPos': {'line': 28, 'column': 74}, 'kind': None, 'data': 'declaration uses `sorry`', 'fileName': 'PositiveDefiniteTreeLattice.Main.IrreducibleVertex.Lemmas.rootedGram_posDef_of_integer_positive', 'content': '  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedGram`\\n-/\\ntheorem PositiveDefiniteTreeLattice.rootedGram_posDef_of_integer_positive {V : Type*} [Fintype V]\\n    [DecidableEq V] (G : SimpleGraph V) [DecidableRel G.Adj] (weight : V → ℤ)\\n    (h_positive : ∀ x : V → ℤ, x ≠ 0 → 0 < PositiveDefiniteTreeLattice.treePairing G weight x x) :'}], 'total_items': 1, 'error_count': 0, 'warning_count': 1, 'info_count': 0, 'sorry_count': 1}",
+          "repo_file_path": "PositiveDefiniteTreeLattice/Main/IrreducibleVertex/Lemmas/rootedGram_posDef_of_integer_positive.lean",
+          "schema_version": 2,
+          "summary": "Diagnostics returned 1 items"
+        },
+        "message": "Lean check passed.",
+        "policy": "statement_formal",
+        "scan": {
+          "admit_count": 0,
+          "axiom_count": 0,
+          "contains_admit": false,
+          "contains_axiom": false,
+          "contains_opaque": false,
+          "contains_sorry": true,
+          "contains_unsafe": false,
+          "limitation": "Text scan ignores Lean comments and string literals with a conservative first-round lexer; it is not a full Lean parser.",
+          "occurrences": [
+            {
+              "column": 3,
+              "excerpt": "sorry",
+              "kind": "sorry",
+              "line": 32
+            }
+          ],
+          "opaque_count": 0,
+          "sorry_count": 1,
+          "summary": "sorry=1, admit=0, axiom=0, opaque=0, unsafe=0",
+          "unsafe_count": 0
+        },
+        "status": "passed"
+      },
+      "code": "-- lean-constellation: managed-imports-begin\nimport PositiveDefiniteTreeLattice.Main.IrreducibleVertex.Prelude\nimport Mathlib.LinearAlgebra.Matrix.PosDef\n-- lean-constellation: managed-imports-end\n\n-- lean-constellation: declaration-source-begin\n\n/--\n# lean-constellation target: `rootedGram_posDef_of_integer_positive`\n\nLet `V` be a finite type with decidable equality, let `G : SimpleGraph V` have decidable adjacency,\nand let `weight : V → ℤ`. If `h_positive : ∀ x : V → ℤ, x ≠ 0 → 0 < treePairing G weight x x`, then\nthe rational matrix `rootedGram G weight` is positive definite: `Matrix.PosDef (rootedGram G\nweight)`.\n\n## Sources\n\n- Source `solution.tex`, line 196\n\n## Statement dependencies\n\n- `Matrix.PosDef` from `Mathlib.LinearAlgebra.Matrix.PosDef`\n- `Main.LatticeFoundations::treePairingAnchor` → `PositiveDefiniteTreeLattice.treePairing` from\n  `PositiveDefiniteTreeLattice.Main.LatticeFoundations.Defs.treePairingAnchor`\n- `Main.RootedCapacity::rootedGram` → `rootedGram` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedGram`\n-/\ntheorem PositiveDefiniteTreeLattice.rootedGram_posDef_of_integer_positive {V : Type*} [Fintype V]\n    [DecidableEq V] (G : SimpleGraph V) [DecidableRel G.Adj] (weight : V → ℤ)\n    (h_positive : ∀ x : V → ℤ, x ≠ 0 → 0 < PositiveDefiniteTreeLattice.treePairing G weight x x) :\n    Matrix.PosDef (rootedGram G weight) := by\n  sorry\n"
+    },
+    "nl": {
+      "origin": [
+        {
+          "end_line": 196,
+          "end_locator": null,
+          "kind": "source",
+          "note": "The source invokes the positive-definite ambient matrix whose principal submatrices supply positive-definite component forms.",
+          "ref": null,
+          "resource_key": null,
+          "source_path": "solution.tex",
+          "start_line": 196,
+          "start_locator": null
+        }
+      ],
+      "text": "Let `V` be a finite type with decidable equality, let `G : SimpleGraph V` have decidable adjacency, and let `weight : V → ℤ`. If `h_positive : ∀ x : V → ℤ, x ≠ 0 → 0 < treePairing G weight x x`, then the rational matrix `rootedGram G weight` is positive definite: `Matrix.PosDef (rootedGram G weight)`."
+    }
+  },
+  "status": "committed",
+  "updated_at": "2026-08-02T13:00:49Z"
+}

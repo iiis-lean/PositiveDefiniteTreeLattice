@@ -1,0 +1,155 @@
+{
+  "change": {
+    "anticipated_proof_dep_names": [],
+    "anticipated_statement_dep_names": [],
+    "base_revision": null,
+    "kind": "create",
+    "objective": "Formalize the closing rational inequality from SourceIndex b_0010 / solution.tex lines 129–152: for 0 < gamma < 1, tau strictly between an integer k and k+1, and D at least min(tau-k, k+1-tau), prove 0 ≤ gamma*(tau-k)*(tau-k-1)+D. Preserve the source inequality direction; this will be consumed after the triangle/integer-distance estimate in the rooted induction.",
+    "require_target_state_satisfied": true,
+    "reset_to_state": null,
+    "summary": "Created the private theorem unitIntervalCompensationNonneg for the interior unit-interval compensation step at solution.tex 129–152. All statement and proof stages passed; revision 1 reached proved and is proof-policy satisfied. It is ready for the final arithmetic branch of the rooted induction.",
+    "target_state": "proved"
+  },
+  "lean_decl_name": "unitIntervalCompensationNonneg",
+  "proof": {
+    "deps": [
+      {
+        "kind": "mathlib_decl",
+        "reason": "Rewrites min α β to α in the α ≤ β case.",
+        "ref": {
+          "module": "Mathlib.Order.Defs.LinearOrder",
+          "name": "min_eq_left"
+        }
+      },
+      {
+        "kind": "mathlib_decl",
+        "reason": "Rewrites min α β to β in the complementary β ≤ α case.",
+        "ref": {
+          "module": "Mathlib.Order.Defs.LinearOrder",
+          "name": "min_eq_right"
+        }
+      }
+    ],
+    "formal": {
+      "check": {
+        "allow_sorry": false,
+        "contains_axiom": false,
+        "contains_sorry": false,
+        "diagnostics": {
+          "diagnostics": [],
+          "passed": true,
+          "raw_excerpt": "{'success': True, 'error_message': None, 'file': 'PositiveDefiniteTreeLattice.Main.RootedEstimates.Theorems.unitIntervalCompensationNonneg', 'items': [], 'total_items': 0, 'error_count': 0, 'warning_count': 0, 'info_count': 0, 'sorry_count': 0}",
+          "repo_file_path": "PositiveDefiniteTreeLattice/Main/RootedEstimates/Theorems/unitIntervalCompensationNonneg.lean",
+          "schema_version": 2,
+          "summary": "Diagnostics returned 0 items"
+        },
+        "message": "Lean check passed.",
+        "policy": "proof_formal",
+        "scan": {
+          "admit_count": 0,
+          "axiom_count": 0,
+          "contains_admit": false,
+          "contains_axiom": false,
+          "contains_opaque": false,
+          "contains_sorry": false,
+          "contains_unsafe": false,
+          "limitation": "Text scan ignores Lean comments and string literals with a conservative first-round lexer; it is not a full Lean parser.",
+          "occurrences": [],
+          "opaque_count": 0,
+          "sorry_count": 0,
+          "summary": "sorry=0, admit=0, axiom=0, opaque=0, unsafe=0",
+          "unsafe_count": 0
+        },
+        "status": "passed"
+      },
+      "code": "-- lean-constellation: managed-imports-begin\nimport PositiveDefiniteTreeLattice.Main.RootedEstimates.Prelude\nimport Mathlib.Order.Defs.LinearOrder\n-- lean-constellation: managed-imports-end\n\n-- lean-constellation: declaration-source-begin\n\n/--\n# lean-constellation target: `unitIntervalCompensationNonneg`\n\nLet `gamma`, `tau`, and `D` be rational numbers and let `k` be an integer. Assume `0 < gamma < 1`,\n`(k : ℚ) < tau`, `tau < (k : ℚ) + 1`, and\n\n`D ≥ min (tau - (k : ℚ)) ((k : ℚ) + 1 - tau)`.\n\nThen\n\n`0 ≤ gamma * (tau - (k : ℚ)) * (tau - (k : ℚ) - 1) + D`.\n\n## Sources\n\n- Source `solution.tex`, lines 129–152\n\n## Proof outline\n\nUse the closing estimate from solution.tex, lines 129–152. Set `α = tau - (k : ℚ)` and `β = (k : ℚ)\n+ 1 - tau`; the strict interval hypotheses give `0 < α`, `0 < β`, and `α + β = 1`. Rewrite the\nquadratic term as `-gamma * α * β`. It is enough, by the hypothesis on `D`, to prove `gamma * α * β\n≤ min α β`. Split on `α ≤ β`: rewrite the minimum with `min_eq_left`, then use `β ≤ 1` and `gamma <\n1` together with positivity to show `gamma * α * β ≤ α`. In the opposite branch, rewrite with\n`min_eq_right` and symmetrically use `α ≤ 1` to show `gamma * α * β ≤ β`. Finish by transitivity\nwith `hD` and ordered-ring normalization. No project declaration is used.\n\n## Proof sources\n\n- Source `solution.tex`, lines 129–152\n\n## Proof dependencies\n\n- `min_eq_left` from `Mathlib.Order.Defs.LinearOrder`\n- `min_eq_right` from `Mathlib.Order.Defs.LinearOrder`\n-/\ntheorem unitIntervalCompensationNonneg (gamma tau D : ℚ) (k : ℤ)\n    (hgamma_pos : 0 < gamma) (hgamma_lt_one : gamma < 1)\n    (hk_lt_tau : (k : ℚ) < tau) (htau_lt_k_one : tau < (k : ℚ) + 1)\n    (hD : D ≥ min (tau - (k : ℚ)) ((k : ℚ) + 1 - tau)) :\n    0 ≤ gamma * (tau - (k : ℚ)) * (tau - (k : ℚ) - 1) + D := by\n  let x : ℚ := tau - (k : ℚ)\n  let y : ℚ := (k : ℚ) + 1 - tau\n  have hx : 0 ≤ x := by\n    dsimp [x]\n    linarith\n  have hy : 0 ≤ y := by\n    dsimp [y]\n    linarith\n  have hsum : x + y = 1 := by\n    dsimp [x, y]\n    ring\n  have hgamma : gamma ≤ 1 := le_of_lt hgamma_lt_one\n  have hgamma_nonneg : 0 ≤ gamma := le_of_lt hgamma_pos\n  have hproduct_nonneg : 0 ≤ gamma * x * y :=\n    mul_nonneg (mul_nonneg hgamma_nonneg hx) hy\n  have hbound : gamma * x * y ≤ min x y := by\n    by_cases hxy : x ≤ y\n    · rw [min_eq_left hxy]\n      have hy_one : y ≤ 1 := by linarith\n      have hgy : gamma * y ≤ 1 := by\n        calc\n          gamma * y ≤ 1 * y := mul_le_mul_of_nonneg_right hgamma hy\n          _ ≤ 1 := by simpa using hy_one\n      calc\n        gamma * x * y = x * (gamma * y) := by ring\n        _ ≤ x * 1 := mul_le_mul_of_nonneg_left hgy hx\n        _ = x := by ring\n    · have hyx : y ≤ x := le_of_not_ge hxy\n      rw [min_eq_right hyx]\n      have hx_one : x ≤ 1 := by linarith\n      have hgx : gamma * x ≤ 1 := by\n        calc\n          gamma * x ≤ 1 * x := mul_le_mul_of_nonneg_right hgamma hx\n          _ ≤ 1 := by simpa using hx_one\n      calc\n        gamma * x * y = y * (gamma * x) := by ring\n        _ ≤ y * 1 := mul_le_mul_of_nonneg_left hgx hy\n        _ = y := by ring\n  have hD' : D ≥ min x y := by simpa [x, y] using hD\n  have hquadratic :\n      gamma * (tau - (k : ℚ)) * (tau - (k : ℚ) - 1) = -gamma * x * y := by\n    dsimp [x, y]\n    ring\n  nlinarith [hproduct_nonneg]\n"
+    },
+    "nl": {
+      "origin": [
+        {
+          "end_line": 152,
+          "end_locator": null,
+          "kind": "source",
+          "note": "The interior-unit-interval argument introduces α and β, bounds D by their minimum, and uses 0 < γ < 1 to compensate the negative quadratic term.",
+          "ref": null,
+          "resource_key": null,
+          "source_path": "solution.tex",
+          "start_line": 129,
+          "start_locator": null
+        }
+      ],
+      "text": "Use the closing estimate from solution.tex, lines 129–152. Set `α = tau - (k : ℚ)` and `β = (k : ℚ) + 1 - tau`; the strict interval hypotheses give `0 < α`, `0 < β`, and `α + β = 1`. Rewrite the quadratic term as `-gamma * α * β`. It is enough, by the hypothesis on `D`, to prove `gamma * α * β ≤ min α β`. Split on `α ≤ β`: rewrite the minimum with `min_eq_left`, then use `β ≤ 1` and `gamma < 1` together with positivity to show `gamma * α * β ≤ α`. In the opposite branch, rewrite with `min_eq_right` and symmetrically use `α ≤ 1` to show `gamma * α * β ≤ β`. Finish by transitivity with `hD` and ordered-ring normalization. No project declaration is used."
+    }
+  },
+  "revision": 1,
+  "state": "proved",
+  "statement": {
+    "deps": [],
+    "formal": {
+      "check": {
+        "allow_sorry": true,
+        "contains_axiom": false,
+        "contains_sorry": true,
+        "diagnostics": {
+          "diagnostics": [
+            {
+              "column": 9,
+              "line": 23,
+              "message": "declaration uses `sorry`",
+              "severity": "warning"
+            }
+          ],
+          "passed": true,
+          "raw_excerpt": "{'success': True, 'error_message': None, 'file': 'PositiveDefiniteTreeLattice.Main.RootedEstimates.Theorems.unitIntervalCompensationNonneg', 'items': [{'severity': 'warning', 'pos': {'line': 23, 'column': 9}, 'endPos': {'line': 23, 'column': 39}, 'kind': None, 'data': 'declaration uses `sorry`', 'fileName': 'PositiveDefiniteTreeLattice.Main.RootedEstimates.Theorems.unitIntervalCompensationNonneg', 'content': '- Source `solution.tex`, lines 129–152\\n-/\\ntheorem unitIntervalCompensationNonneg (gamma tau D : ℚ) (k : ℤ)\\n    (hgamma_pos : 0 < gamma) (hgamma_lt_one : gamma < 1)\\n    (hk_lt_tau : (k : ℚ) < tau) (htau_lt_k_one : tau < (k : ℚ) + 1)'}], 'total_items': 1, 'error_count': 0, 'warning_count': 1, 'info_count': 0, 'sorry_count': 1}",
+          "repo_file_path": "PositiveDefiniteTreeLattice/Main/RootedEstimates/Theorems/unitIntervalCompensationNonneg.lean",
+          "schema_version": 2,
+          "summary": "Diagnostics returned 1 items"
+        },
+        "message": "Lean check passed.",
+        "policy": "statement_formal",
+        "scan": {
+          "admit_count": 0,
+          "axiom_count": 0,
+          "contains_admit": false,
+          "contains_axiom": false,
+          "contains_opaque": false,
+          "contains_sorry": true,
+          "contains_unsafe": false,
+          "limitation": "Text scan ignores Lean comments and string literals with a conservative first-round lexer; it is not a full Lean parser.",
+          "occurrences": [
+            {
+              "column": 3,
+              "excerpt": "sorry",
+              "kind": "sorry",
+              "line": 28
+            }
+          ],
+          "opaque_count": 0,
+          "sorry_count": 1,
+          "summary": "sorry=1, admit=0, axiom=0, opaque=0, unsafe=0",
+          "unsafe_count": 0
+        },
+        "status": "passed"
+      },
+      "code": "-- lean-constellation: managed-imports-begin\nimport PositiveDefiniteTreeLattice.Main.RootedEstimates.Prelude\n-- lean-constellation: managed-imports-end\n\n-- lean-constellation: declaration-source-begin\n\n/--\n# lean-constellation target: `unitIntervalCompensationNonneg`\n\nLet `gamma`, `tau`, and `D` be rational numbers and let `k` be an integer. Assume `0 < gamma < 1`,\n`(k : ℚ) < tau`, `tau < (k : ℚ) + 1`, and\n\n`D ≥ min (tau - (k : ℚ)) ((k : ℚ) + 1 - tau)`.\n\nThen\n\n`0 ≤ gamma * (tau - (k : ℚ)) * (tau - (k : ℚ) - 1) + D`.\n\n## Sources\n\n- Source `solution.tex`, lines 129–152\n-/\ntheorem unitIntervalCompensationNonneg (gamma tau D : ℚ) (k : ℤ)\n    (hgamma_pos : 0 < gamma) (hgamma_lt_one : gamma < 1)\n    (hk_lt_tau : (k : ℚ) < tau) (htau_lt_k_one : tau < (k : ℚ) + 1)\n    (hD : D ≥ min (tau - (k : ℚ)) ((k : ℚ) + 1 - tau)) :\n    0 ≤ gamma * (tau - (k : ℚ)) * (tau - (k : ℚ) - 1) + D := by\n  sorry\n"
+    },
+    "nl": {
+      "origin": [
+        {
+          "end_line": 152,
+          "end_locator": null,
+          "kind": "source",
+          "note": "For tau strictly between k and k+1, the source bounds D below by the minimum endpoint distance and uses 0 < gamma < 1 to compensate the negative quadratic term.",
+          "ref": null,
+          "resource_key": null,
+          "source_path": "solution.tex",
+          "start_line": 129,
+          "start_locator": null
+        }
+      ],
+      "text": "Let `gamma`, `tau`, and `D` be rational numbers and let `k` be an integer. Assume `0 < gamma < 1`, `(k : ℚ) < tau`, `tau < (k : ℚ) + 1`, and\n\n`D ≥ min (tau - (k : ℚ)) ((k : ℚ) + 1 - tau)`.\n\nThen\n\n`0 ≤ gamma * (tau - (k : ℚ)) * (tau - (k : ℚ) - 1) + D`."
+    }
+  },
+  "status": "committed",
+  "updated_at": "2026-07-30T22:57:00Z"
+}

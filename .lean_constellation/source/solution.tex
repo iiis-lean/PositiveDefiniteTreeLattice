@@ -1,0 +1,246 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\DeclareMathOperator{\ch}{ch}
+
+\begin{document}
+
+\title{Irreducible Vertices in Positive-definite Tree Lattices: Solution}
+\date{}
+\maketitle
+
+We use $x^2$ for $x\mathbin{\cdot}x$.  If $C$ is a weighted tree, then
+$Q_C$ denotes its Gram matrix in the vertex basis.  Coefficients of a lattice
+element $x=\sum_y x_y y$ are denoted by $x_y$.
+
+\begin{lemma}[Norm-one elements]
+If $L$ is a positive-definite integral lattice and $x\in L$ satisfies
+$x^2=1$, then $x$ is irreducible.
+\end{lemma}
+
+\begin{proof}
+If $x=a+b$ with $a,b\neq 0$ and $a\mathbin{\cdot}b\geq0$, integrality and
+positive definiteness give $a^2,b^2\in\mathbb Z_{>0}$.  Hence
+\[
+ 1=x^2=a^2+b^2+2a\mathbin{\cdot}b\geq2,
+\]
+a contradiction.
+\end{proof}
+
+Root a weighted tree $C$ at $\rho$ and orient its edges away from $\rho$.
+Let $\ch_C(y)$ be the number of children of $y$.  Call $C$ \emph{admissible}
+when its form is positive definite, all its weights are at least $2$, and
+\[
+ w(y)\geq \ch_C(y)+1\qquad(y\in C).
+\]
+For a positive-definite rooted tree define its \emph{capacity} by
+\[
+ \gamma(C)=(Q_C^{-1})_{\rho\rho}.
+\]
+The inverse exists because $Q_C$ is positive definite.  It has rational
+entries, so $\gamma(C)\in\mathbb Q$; inequalities below may equivalently be
+read after extending scalars to $\mathbb R$.
+
+\begin{lemma}[Capacity recursion]
+Let $C$ be admissible.  If the root has children
+$\rho_1,\ldots,\rho_t$ and $C_i$ is the rooted subtree at $\rho_i$, then
+\[
+ \gamma(C)=\frac{1}{w(\rho)-\sum_{i=1}^t\gamma(C_i)}
+ \qquad\text{and}\qquad 0<\gamma(C)<1.
+\]
+\end{lemma}
+
+\begin{proof}
+Order the root first and group the other vertices by the subtrees $C_i$.
+Then
+\[
+ Q_C=\begin{pmatrix}w(\rho)&c^T\\c&Q_0\end{pmatrix},
+ \qquad Q_0=\bigoplus_i Q_{C_i},
+\]
+where $c$ has entry $-1$ at each child root and $0$ elsewhere.  Block
+Gaussian elimination, or the inverse formula for a Schur complement, gives
+\[
+ (Q_C^{-1})_{\rho\rho}
+ =\frac{1}{w(\rho)-c^TQ_0^{-1}c}
+ =\frac{1}{w(\rho)-\sum_i\gamma(C_i)}.
+\]
+The denominator is positive: it is the Schur complement of the
+positive-definite principal block $Q_0$ in the positive-definite matrix
+$Q_C$.  This also proves $\gamma(C)>0$.
+
+We prove the upper bound by induction on $|C|$.  For a single vertex,
+$\gamma(C)=1/w(\rho)<1$ because $w(\rho)\geq2$.  Otherwise the induction
+hypothesis gives $\gamma(C_i)<1$.  Thus, using
+$w(\rho)\geq t+1$,
+\[
+ w(\rho)-\sum_i\gamma(C_i)>w(\rho)-t\geq1,
+\]
+and the displayed reciprocal formula yields $\gamma(C)<1$.
+\end{proof}
+
+\begin{lemma}[Rooted integer estimate]\label{lem:rooted-estimate}
+Let $C$ be admissible with root $\rho$ and capacity $\gamma$.  For every
+$x\in L(C)$ and every $k\in\mathbb Z$,
+\[
+ x^2-(2k+1)x_\rho+\gamma k(k+1)\geq0.
+\]
+\end{lemma}
+
+\begin{proof}
+We induct on $|C|$.  If $C$ consists only of $\rho$, write $x=m\rho$ and
+$W=w(\rho)$.  Since $\gamma=1/W$, multiplying the asserted inequality by
+$W>0$ gives
+\[
+ W\left(Wm^2-(2k+1)m+\frac{k(k+1)}W\right)
+ =(Wm-k)(Wm-k-1)\geq0.
+\]
+The last inequality holds because the two factors are consecutive integers.
+
+Now let the children of $\rho$ be $\rho_1,\ldots,\rho_t$, let $C_i$ be the
+corresponding rooted subtrees, and write
+\[
+ x=a\rho+\sum_i x_i,\qquad x_i\in L(C_i),\qquad
+ s_i=(x_i)_{\rho_i},\qquad\gamma_i=\gamma(C_i).
+\]
+The tree-lattice form gives
+\[
+ x^2=w(\rho)a^2-2a\sum_i s_i+\sum_i x_i^2.
+\]
+Apply the induction hypothesis in $C_i$ first with the integer $a$ and then
+with $a-1$.  The two resulting bounds are
+\begin{align*}
+ x_i^2-2as_i&\geq s_i-\gamma_i a(a+1),\\
+ x_i^2-2as_i&\geq-s_i-\gamma_i a(a-1).
+\end{align*}
+Taking their maximum gives
+\[
+ x_i^2-2as_i\geq-\gamma_i a^2+|s_i-\gamma_i a|.
+\]
+Set $D=\sum_i|s_i-\gamma_i a|$.  Since
+$\gamma^{-1}=w(\rho)-\sum_i\gamma_i$, and setting $\tau=a/\gamma$, we obtain
+\begin{align*}
+ x^2-(2k+1)a+\gamma k(k+1)
+ &\geq \gamma(\tau-k)(\tau-k-1)+D. \tag{1}
+\end{align*}
+
+If $\tau\notin(k,k+1)$, the quadratic term in (1) is nonnegative.  Otherwise
+write $\alpha=\tau-k$ and $\beta=k+1-\tau$.  Then
+$0<\alpha,\beta<1$, $\alpha+\beta=1$, and the quadratic term is
+$-\gamma\alpha\beta$.  It remains to bound $D$.
+
+The integer
+\[
+ N=w(\rho)a-\sum_i s_i
+\]
+satisfies
+\[
+ \tau-N
+ =\left(w(\rho)-\sum_i\gamma_i\right)a
+   -\left(w(\rho)a-\sum_i s_i\right)
+ =\sum_i(s_i-\gamma_i a).
+\]
+Consequently the triangle inequality gives
+\[
+ D\geq|\tau-N|\geq\operatorname{dist}(\tau,\mathbb Z)
+ =\min\{\alpha,\beta\}.
+\]
+Because $0<\gamma<1$ and
+$\alpha\beta\leq\min\{\alpha,\beta\}$, we have
+$D\geq\gamma\alpha\beta$.  Substitution into (1) finishes the induction.
+\end{proof}
+
+\begin{lemma}[Root coefficient bound]\label{lem:root-bound}
+If $C$ is admissible and $0\neq x\in L(C)$, then
+\[
+ x^2-x_\rho>0.
+\]
+\end{lemma}
+
+\begin{proof}
+Let $\gamma=\gamma(C)$.  If $x_\rho\leq0$, positive definiteness gives
+$x^2-x_\rho>0$.  Suppose $x_\rho>0$.  Let
+$\rho^\#\in L(C)\otimes\mathbb Q$ be the dual vector characterized by
+\[
+ \rho^\#\mathbin{\cdot}y=y_\rho\qquad(y\in L(C)).
+\]
+Its coefficient vector is $Q_C^{-1}e_\rho$, and therefore
+$(\rho^\#)^2=\gamma$.  Cauchy--Schwarz in the positive-definite real
+extension gives
+\[
+ x_\rho^2=(x\mathbin{\cdot}\rho^\#)^2
+ \leq x^2(\rho^\#)^2=\gamma x^2.
+\]
+Since $0<\gamma<1$ and $x_\rho$ is a positive integer,
+\[
+ x^2\geq\frac{x_\rho^2}{\gamma}>x_\rho^2\geq x_\rho.
+\]
+\end{proof}
+
+\begin{theorem}
+Let $T$ be a finite integer-weighted tree whose tree-lattice form is positive
+definite.  If there is a unique vertex $v$ satisfying
+$w(v)<d_T(v)$, then $T$ contains a vertex irreducible in $L(T)$.
+\end{theorem}
+
+\begin{proof}
+Applying positive definiteness to each vertex basis vector shows that every
+weight is a positive integer.  If a vertex has weight $1$, it is irreducible
+by the norm-one lemma.  We may therefore assume that every weight is at least
+$2$; we prove that the unique vertex $v$ with $w(v)<d_T(v)$ is irreducible.
+
+Let $C_1,\ldots,C_m$ be the connected components of $T\setminus\{v\}$.
+For each $i$, root $C_i$ at the unique vertex $\rho_i$ adjacent to $v$.
+Each $Q_{C_i}$ is a principal submatrix of the positive-definite matrix
+$Q_T$, so the form on $C_i$ is positive definite.  Every $x\in C_i$ is not
+the exceptional vertex, hence $w(x)\geq d_T(x)$.  With edges oriented away
+from $\rho_i$, every such $x$ has one additional incident edge toward its
+parent, or toward $v$ when $x=\rho_i$.  Thus
+\[
+ d_T(x)=\ch_{C_i}(x)+1,
+\]
+so every $C_i$ is admissible.  Write $\gamma_i=\gamma(C_i)$ and
+$W=w(v)$.  The Schur complement at $v$ in $Q_T$ is positive, whence
+\[
+ W-\sum_i\gamma_i>0. \tag{2}
+\]
+
+Assume for a contradiction that $v=a+b$, where $a,b\neq0$ and
+$a\mathbin{\cdot}b\geq0$.  Put $z=-b$, so $a=v+z$ and
+\[
+ z^2+v\mathbin{\cdot}z\leq0. \tag{3}
+\]
+Moreover, $z\neq0$ and $z\neq-v$.  Let $q$ be the coefficient of $v$ in
+$z$.  If $q\leq-1$, replace $z$ by $-v-z$; this exchanges $a$ and $b$,
+preserves $z\mathbin{\cdot}(z+v)$, and changes the coefficient to
+$-1-q\geq0$.  Thus we may write
+\[
+ z=pv+\sum_i y_i,qquad p\in\mathbb Z_{\geq0},\qquad y_i\in L(C_i).
+\]
+Let $s_i=(y_i)_{\rho_i}$.  Since
+$v\mathbin{\cdot}y_i=-s_i$, direct expansion gives
+\[
+ z^2+v\mathbin{\cdot}z
+ =Wp(p+1)+\sum_i\bigl(y_i^2-(2p+1)s_i\bigr). \tag{4}
+\]
+
+If $p\geq1$, Lemma~\ref{lem:rooted-estimate}, with $k=p$, changes (4) into
+\[
+ z^2+v\mathbin{\cdot}z
+ \geq\left(W-\sum_i\gamma_i\right)p(p+1)>0
+\]
+by (2), contradicting (3).
+
+If $p=0$, equation (4) becomes
+\[
+ z^2+v\mathbin{\cdot}z=\sum_i(y_i^2-s_i).
+\]
+Every summand is zero when $y_i=0$ and strictly positive otherwise by
+Lemma~\ref{lem:root-bound}.  At least one $y_i$ is nonzero because $z\neq0$.
+The sum is therefore positive, again contradicting (3).  Hence $v$ is
+irreducible.
+\end{proof}
+
+\end{document}

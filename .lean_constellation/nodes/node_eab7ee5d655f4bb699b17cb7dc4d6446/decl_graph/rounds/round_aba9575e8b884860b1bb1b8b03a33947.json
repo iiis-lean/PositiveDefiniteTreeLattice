@@ -1,0 +1,65 @@
+{
+  "change_summaries": {},
+  "committed_at": null,
+  "created_at": "2026-07-29T16:08:23Z",
+  "discard_reason": "The unsubmitted draft is invalid: validation found four round-internal Statement dependencies whose providers are only planned in the same round. Discard all artifact-free, unreleased planned revisions so the fresh task cycle can proceed from authoritative clean graph truth and dependency-ordered rounds.",
+  "discarded_at": "2026-07-29T17:19:03Z",
+  "discarded_by": "a_a93b40977f574bad89528358fa89e022",
+  "discarded_created_decl_names": [
+    "IsAdmissibleRootedTree",
+    "rootedCapacity",
+    "rootedChildCount",
+    "rootedChildren",
+    "rootedGram",
+    "treePairing_vertexVector_vertexVector"
+  ],
+  "discarded_restored_decl_revisions": {},
+  "discarded_revision_refs": [
+    {
+      "change_id": "rootedChildren@rev:1",
+      "decl_name": "rootedChildren",
+      "revision": 1
+    },
+    {
+      "change_id": "rootedChildCount@rev:1",
+      "decl_name": "rootedChildCount",
+      "revision": 1
+    },
+    {
+      "change_id": "rootedGram@rev:1",
+      "decl_name": "rootedGram",
+      "revision": 1
+    },
+    {
+      "change_id": "treePairing_vertexVector_vertexVector@rev:1",
+      "decl_name": "treePairing_vertexVector_vertexVector",
+      "revision": 1
+    },
+    {
+      "change_id": "IsAdmissibleRootedTree@rev:1",
+      "decl_name": "IsAdmissibleRootedTree",
+      "revision": 1
+    },
+    {
+      "change_id": "rootedCapacity@rev:1",
+      "decl_name": "rootedCapacity",
+      "revision": 1
+    }
+  ],
+  "execution_completed_at": null,
+  "execution_reason": null,
+  "execution_result_kind": null,
+  "node_path": "Main.RootedCapacity",
+  "objective": "Establish the b_0008 foundation layer from solution.tex lines 33–45: rooted child orientation/count, admissibility, rational Gram matrix, and capacity, together with the local basis-entry bridge needed to connect treePairing to the matrix representation. These declarations consume Main.LatticeFoundations.treePairing/vertexVector and Mathlib unique-path and Matrix.PosDef infrastructure, and serve the later subtree recursion, capacity_pos_lt_one, rooted_integer_estimate, and root_coefficient_lt_norm declarations.",
+  "plan_closeout_acknowledged_at": null,
+  "plan_closeout_acknowledged_by": null,
+  "result_kind": null,
+  "result_reason": null,
+  "revision_refs": [],
+  "round_id": "round_aba9575e8b884860b1bb1b8b03a33947",
+  "round_index": 1,
+  "started_at": null,
+  "status": "discarded",
+  "strategy_id": "strategy_0eaf76953f3b42128ba5881da4e26d4f",
+  "summary": null
+}

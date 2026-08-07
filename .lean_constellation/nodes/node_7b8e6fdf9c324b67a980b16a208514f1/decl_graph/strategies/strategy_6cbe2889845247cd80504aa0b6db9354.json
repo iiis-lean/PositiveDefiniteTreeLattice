@@ -1,0 +1,14 @@
+{
+  "closed_at": "2026-08-06T13:48:06Z",
+  "closed_reason": "The admissibility instance bridge succeeds, but RootedCapacity still lacks a compatible capacity-value instance interface for the final block-inverse-to-child-capacity identification.",
+  "created_at": "2026-08-06T13:22:25Z",
+  "created_round_ids": [
+    "round_59619c1ec80e43a38be5ae1a3bb8cf3f"
+  ],
+  "node_path": "Main.IrreducibleVertex",
+  "objective": "Resume the graph-proved source route by completing Proof Formal for rootedChildCapacitySum_lt_weight_of_unique_underweight@6 with the verified public instance-irrelevance bridge: transport each existing per-child admissibility witness through `isAdmissibleRootedTree_instance_irrel.mp` into the inverse-reindex theorem's canonical component-instance premise, then finish the frozen scalar support normalization; afterward continue bottom-up through solution.tex:210–244 and expose the exact protected PositiveDefiniteTreeLattice.exists_irreducible_vertex interface.",
+  "rationale": "Fresh dependency recon and direct provider inspection confirm the public bridge is accepted, ready, fresh, bidirectional, and explicitly parameterized over both Fintype, DecidableEq, and DecidableRel families. Its forward direction unifies the same child-component graph, weight, root, and dependent child index, repairing the sole prior canonical-instance frontier without local casts or architecture. Revision 6 already has accepted Statement and Proof NL; all current-node proof providers are proved; task and repository targets are graph_proved; and the graph remains within the expected 8–14 declarations.",
+  "status": "closed",
+  "strategy_id": "strategy_6cbe2889845247cd80504aa0b6db9354",
+  "summary": "Round 15 transported child admissibility and applied the inverse-reindex theorem successfully, but the final scalar term cannot be identified with rootedChildCapacitySum because rootedCapacity/rootedChildCapacitySummand and the block inverse use non-definitionally-equal component instances. The public boundary contains no capacity-value instance irrelevance or exact compatible summand theorem, and contract v3 forbids local transport architecture. The strategy is blocked pending Coordinator/provider repair."
+}

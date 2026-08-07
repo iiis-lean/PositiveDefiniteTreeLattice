@@ -1,0 +1,33 @@
+{
+  "change_summaries": {},
+  "committed_at": "2026-07-30T16:28:39Z",
+  "created_at": "2026-07-30T15:59:01Z",
+  "discard_reason": null,
+  "discarded_at": null,
+  "discarded_by": null,
+  "discarded_created_decl_names": [],
+  "discarded_restored_decl_revisions": {},
+  "discarded_revision_refs": [],
+  "execution_completed_at": "2026-07-30T16:27:07Z",
+  "execution_reason": "The canonical Sigma proof reduces the frozen quadratic statement to the child inverse diagonal sum, but the final identity with rootedChildCapacitySum requires a tracked bridge that aligns the dependent attached child index produced by rootedNonroot_inverse_childBlocks with rootedChildCapacitySum's raw Finset child index and its local child-matrix instance convention. Without that bridge, Finset.sum_attach cannot unify the two scalar families; forcing the explicit lambda causes deterministic isDefEq heartbeat exhaustion, which the contract forbids increasing.",
+  "execution_result_kind": "blocked",
+  "node_path": "Main.RootedCapacity",
+  "objective": "Advance the b_0009 inverse quadratic from its preserved exact scalar statement to a proof using the newly proved canonical Sigma/equivalence-indexed inverse block theorem, eliminating the obsolete ambient-embedding proof route.",
+  "plan_closeout_acknowledged_at": "2026-07-30T16:28:39Z",
+  "plan_closeout_acknowledged_by": "a_a93b40977f574bad89528358fa89e022",
+  "result_kind": "blocked",
+  "result_reason": "Blocked at Proof Formal on the tracked attached-child/raw-child capacity-sum representation bridge; preserve the exact scalar statement and canonical Proof NL plan for retry after that helper is proved.",
+  "revision_refs": [
+    {
+      "change_id": "rootedNonroot_inverse_quadratic@rev:2",
+      "decl_name": "rootedNonroot_inverse_quadratic",
+      "revision": 2
+    }
+  ],
+  "round_id": "round_8e5faacb1dd94a4d8a0ca10a8289507f",
+  "round_index": 44,
+  "started_at": "2026-07-30T16:00:20Z",
+  "status": "committed",
+  "strategy_id": "strategy_fc60f40a331d4f63bd19e22f0eec7473",
+  "summary": "Round 44 made partial strategy progress: rootedNonroot_inverse_quadratic@2 retained its accepted exact b_0009 scalar statement and gained a canonical Sigma-based Proof NL plan, but did not reach proved or graph_proved satisfaction. The inverse block theorem now performs all substantive matrix reduction; the only missing prerequisite is a small tracked private attached-child/raw-child scalar-sum bridge aligning dependent child indices and local instance conventions with rootedChildCapacitySum. This is a Lean-specific implementation theorem within the contract-authorized RootedCapacity representation cleanup and the 29–38 declaration scale, not external preparation or scope expansion. Retry order is strict: create and prove that bridge first, then retry rootedNonroot_inverse_quadratic from proof_planned. The current strategy remains viable; no other parent should be retried until the bridge is proved."
+}

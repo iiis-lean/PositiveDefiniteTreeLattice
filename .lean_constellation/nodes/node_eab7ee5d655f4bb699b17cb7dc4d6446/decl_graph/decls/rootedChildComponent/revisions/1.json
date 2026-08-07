@@ -1,0 +1,89 @@
+{
+  "change": {
+    "anticipated_proof_dep_names": [],
+    "anticipated_statement_dep_names": [],
+    "base_revision": null,
+    "kind": "create",
+    "objective": "Formalize the rooted subtree C_i from SourceIndex b_0009 / solution.tex lines 48–50 as the connected component containing child c in G.deleteEdges {edge parent c}. Consume the compiler-verified SimpleGraph.deleteEdges and connectedComponentMk APIs, with no current-node dependency in the definition itself. The resulting ConnectedComponent must expose its finite subtype and toSimpleGraph so later public capacity_recursion can apply rootedGram/rootedCapacity to the induced child-rooted graph with restricted weight. Do not require admissibility or child membership inside the definition; later theorems will supply those hypotheses.",
+    "require_target_state_satisfied": true,
+    "reset_to_state": null,
+    "summary": "Created the public definition rootedChildComponent and reached declared state with its formal statement passing. It implements the b_0009 child-side component as the connected component containing the child after deleting the parent-child edge, without imposing admissibility or child-membership hypotheses. As a definition it is proof-policy satisfied at declared level; later rounds must prove tree/admissibility inheritance and the rootedGram principal-block bridge before capacity recursion is attempted.",
+    "target_state": "declared"
+  },
+  "lean_decl_name": "rootedChildComponent",
+  "proof": null,
+  "revision": 1,
+  "state": "declared",
+  "statement": {
+    "deps": [
+      {
+        "kind": "mathlib_decl",
+        "reason": "The definition selects the connected component of the cut graph containing `c`.",
+        "ref": {
+          "module": "Mathlib.Combinatorics.SimpleGraph.Connectivity.Connected",
+          "name": "SimpleGraph.connectedComponentMk"
+        }
+      },
+      {
+        "kind": "mathlib_decl",
+        "reason": "The definition cuts the singleton undirected parent-child edge from `G`.",
+        "ref": {
+          "module": "Mathlib.Combinatorics.SimpleGraph.DeleteEdges",
+          "name": "SimpleGraph.deleteEdges"
+        }
+      }
+    ],
+    "formal": {
+      "check": {
+        "allow_sorry": false,
+        "contains_axiom": false,
+        "contains_sorry": false,
+        "diagnostics": {
+          "diagnostics": [],
+          "passed": true,
+          "raw_excerpt": "",
+          "repo_file_path": "PositiveDefiniteTreeLattice/Main/RootedCapacity/Defs/rootedChildComponent.lean",
+          "schema_version": 2,
+          "summary": "Command completed successfully"
+        },
+        "message": "Lean check passed.",
+        "policy": "statement_formal",
+        "scan": {
+          "admit_count": 0,
+          "axiom_count": 0,
+          "contains_admit": false,
+          "contains_axiom": false,
+          "contains_opaque": false,
+          "contains_sorry": false,
+          "contains_unsafe": false,
+          "limitation": "Text scan ignores Lean comments and string literals with a conservative first-round lexer; it is not a full Lean parser.",
+          "occurrences": [],
+          "opaque_count": 0,
+          "sorry_count": 0,
+          "summary": "sorry=0, admit=0, axiom=0, opaque=0, unsafe=0",
+          "unsafe_count": 0
+        },
+        "status": "passed"
+      },
+      "code": "-- lean-constellation: managed-imports-begin\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Prelude\nimport Mathlib.Combinatorics.SimpleGraph.Connectivity.Connected\nimport Mathlib.Combinatorics.SimpleGraph.DeleteEdges\n-- lean-constellation: managed-imports-end\n\n-- lean-constellation: declaration-source-begin\n\n/--\n# lean-constellation target: `rootedChildComponent`\n\nFor a finite vertex type `V`, a simple graph `G : SimpleGraph V`, and vertices `parent c : V`,\ndefine `rootedChildComponent G parent c` to be the connected component containing `c` in the graph\nobtained from `G` by deleting the singleton set containing the undirected edge joining `parent` and\n`c`: `(G.deleteEdges {edge parent c}).connectedComponentMk c`.  No adjacency, child-membership,\ntree, or admissibility hypothesis is part of this definition.  On the finite vertex type, this\nconnected component has a finite subtype and its induced graph is available through\n`ConnectedComponent.toSimpleGraph`, so subsequent statements can use it as the child-rooted graph\nwith a restricted weight.\n\n## Sources\n\n- Source `solution.tex`, lines 48–50\n\n## Statement dependencies\n\n- `SimpleGraph.connectedComponentMk` from `Mathlib.Combinatorics.SimpleGraph.Connectivity.Connected`\n- `SimpleGraph.deleteEdges` from `Mathlib.Combinatorics.SimpleGraph.DeleteEdges`\n-/\ndef rootedChildComponent {V : Type*} (G : SimpleGraph V) (parent c : V) :\n    (G.deleteEdges {s(parent, c)}).ConnectedComponent :=\n  (G.deleteEdges {s(parent, c)}).connectedComponentMk c\n"
+    },
+    "nl": {
+      "origin": [
+        {
+          "end_line": 50,
+          "end_locator": null,
+          "kind": "source",
+          "note": "Lines 48–50 introduce the rooted subtrees at the root's children that the cut-edge component construction formalizes.",
+          "ref": null,
+          "resource_key": null,
+          "source_path": "solution.tex",
+          "start_line": 48,
+          "start_locator": null
+        }
+      ],
+      "text": "For a finite vertex type `V`, a simple graph `G : SimpleGraph V`, and vertices `parent c : V`, define `rootedChildComponent G parent c` to be the connected component containing `c` in the graph obtained from `G` by deleting the singleton set containing the undirected edge joining `parent` and `c`: `(G.deleteEdges {edge parent c}).connectedComponentMk c`.  No adjacency, child-membership, tree, or admissibility hypothesis is part of this definition.  On the finite vertex type, this connected component has a finite subtype and its induced graph is available through `ConnectedComponent.toSimpleGraph`, so subsequent statements can use it as the child-rooted graph with a restricted weight."
+    }
+  },
+  "status": "committed",
+  "updated_at": "2026-07-30T01:17:09Z"
+}

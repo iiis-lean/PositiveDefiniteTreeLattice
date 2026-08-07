@@ -1,0 +1,219 @@
+{
+  "change": {
+    "anticipated_proof_dep_names": [
+      "twoBoundsGiveAbsLowerBound"
+    ],
+    "anticipated_statement_dep_names": [],
+    "base_revision": null,
+    "kind": "create",
+    "objective": "Formalize the first blocked bridge for SourceIndex b_0010 / solution.tex lines 112–121. For a child c ∈ rootedChildren G hT rho rho, package the provider-generated rootedChildComponent finite/decidable instances, restricted weight and coordinate vector, rootedChildRoot, admissibility from IsAdmissibleRootedTree_rootedChildComponent, and strict size decrease from rootedChildComponent_card_lt. Given the generalized strong-induction hypothesis asserting the exact rooted estimate for every smaller finite rooted admissible tree, instantiate it on this child at integers a := x rho and a-1, identify the child rooted capacity with rootedChildCapacitySummand G hT w rho ⟨c,hc⟩, and combine the two rational inequalities with twoBoundsGiveAbsLowerBound to conclude the exact source bound `childPairing - 2*a*s_c ≥ -γ_c*a^2 + |s_c-γ_c*a|` with appropriate ℤ-to-ℚ casts. Keep the helper generic enough for the accepted rooted_integer_estimate Proof NL induction predicate, but do not strengthen admissibility hypotheses or alter the child index representation.",
+    "require_target_state_satisfied": true,
+    "reset_to_state": null,
+    "summary": "Created the intended private child-component bridge; Statement NL/Formal and Proof NL passed, but Proof Formal is absent, so revision 1 remains proof_planned and unsatisfied. The blocker is statement/interface drift in the helper’s generalized induction-hypothesis binder, not missing mathematics or a provider dependency. The frozen statement declares ambient `V : Type u` but quantifies `hIH` over `W : Type u₁` at an independent universe. The proof’s required application `@hIH C ...`, where `C := rootedChildComponent G rho c : Type u`, therefore cannot elaborate even though IsAdmissibleRootedTree_rootedChildComponent and rootedChildComponent_card_lt provide the exact admissibility and cardinality premises. The consumer goal remains the b_0010 lines 112–121 rational bound `childPairing - 2*a*sC ≥ -gammaC*a^2 + |sC-gammaC*a|` with the same rooted child index and casts. Retry condition: create a new revision that reruns Statement Formal with one explicit universe `u` shared by both `V : Type u` and the generalized `W : Type u`, preserving every mathematical binder and conclusion; then rerun Proof NL/Formal. Do not retry the aggregation helper or rooted_integer_estimate until this repaired revision is proved. Revision 1 is superseded by that planned repair but is not a deletion target.",
+    "target_state": "proved"
+  },
+  "lean_decl_name": "rootedChildInductionAbsBound",
+  "proof": {
+    "deps": [
+      {
+        "kind": "repo_decl",
+        "reason": "Provides admissibility of the induced child graph required by the generalized induction hypothesis.",
+        "ref": {
+          "name": "IsAdmissibleRootedTree_rootedChildComponent",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 1
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "Unfolds to identify the child rooted capacity in both induction conclusions with gammaC.",
+        "ref": {
+          "name": "rootedChildCapacitySummand",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 1
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "Supplies the strict Fintype.card decrease required to apply the generalized induction hypothesis.",
+        "ref": {
+          "name": "rootedChildComponent_card_lt",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 1
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "Supplies the exact child root at which the generalized induction hypothesis is instantiated.",
+        "ref": {
+          "name": "rootedChildRoot",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 1
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "Combines the two child induction inequalities into the exact absolute-value lower bound.",
+        "ref": {
+          "name": "twoBoundsGiveAbsLowerBound",
+          "node": "Main.RootedEstimates",
+          "repo": null,
+          "revision": 1
+        }
+      }
+    ],
+    "formal": null,
+    "nl": {
+      "origin": [
+        {
+          "end_line": 121,
+          "end_locator": null,
+          "kind": "source",
+          "note": "The route follows the source's two child induction estimates at a and a-1 and their absolute-value combination.",
+          "ref": null,
+          "resource_key": null,
+          "source_path": "solution.tex",
+          "start_line": 112,
+          "start_locator": null
+        }
+      ],
+      "text": "Work classically and unfold the statement's lets only far enough to name C := rootedChildComponent G rho c and to install its displayed Fintype, DecidableEq, and local DecidableRel instances. Put a := x rho, sC := x c, and gammaC := rootedChildCapacitySummand G hT w rho ⟨c,hc⟩. Obtain hAdmC from IsAdmissibleRootedTree_rootedChildComponent G w rho rho c hT hc hAdm and hcard from rootedChildComponent_card_lt G hT rho rho c hc.\n\nInstantiate the generalized hypothesis hIH on the induced child graph C.toSimpleGraph, restricted weight fun u => w (u : V), child root rootedChildRoot G rho c, the strict bound hcard, and hAdmC. Use the restricted coordinate vector fun u => x (u : V), first with the integer a and then with a - 1. Unfold rootedChildCapacitySummand at both resulting conclusions; its definition makes their rooted-capacity term definitionally gammaC and their root coordinate definitionally sC.\n\nCast and normalize the first induction conclusion over Q to obtain childPairing - 2*a*sC >= sC - gammaC*a*(a+1). Normalize the second conclusion, at a-1, to obtain childPairing - 2*a*sC >= -sC - gammaC*a*(a-1). The casts of the restricted pairing and child-root coordinate agree with the formal conclusion by rfl/simp; the remaining rearrangements are ring normalization and linear rational arithmetic.\n\nApply twoBoundsGiveAbsLowerBound gammaC a sC childPairing to these two inequalities. Its conclusion is exactly childPairing - 2*a*sC >= -gammaC*a^2 + |sC-gammaC*a|, with the required integer-to-rational casts. This is the source's two child estimates followed by their absolute-value combination in b_0010 lines 112-121, and it retains the original rootedChildren G hT rho rho index and admissibility assumptions."
+    }
+  },
+  "revision": 1,
+  "state": "proof_planned",
+  "statement": {
+    "deps": [
+      {
+        "kind": "repo_decl",
+        "reason": "The formal conclusion uses the exact public tree-pairing definition on the child component graph.",
+        "ref": {
+          "name": "treePairingAnchor",
+          "node": "Main.LatticeFoundations",
+          "repo": null,
+          "revision": 1
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "The ambient admissibility hypothesis and the generalized induction predicate are expressed using this predicate.",
+        "ref": {
+          "name": "IsAdmissibleRootedTree",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 1
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "The generalized rooted-estimate induction hypothesis is stated with the rooted capacity of each smaller tree.",
+        "ref": {
+          "name": "rootedCapacity",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 1
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "The conclusion names gamma_c as the capacity summand of the exact child index.",
+        "ref": {
+          "name": "rootedChildCapacitySummand",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 1
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "The child pairing and restricted coordinate vector are formed on this exact child-side component subtype.",
+        "ref": {
+          "name": "rootedChildComponent",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 1
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "The child parameter is required to use the exact rootedChildren G hT rho rho index.",
+        "ref": {
+          "name": "rootedChildren",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 2
+        }
+      }
+    ],
+    "formal": {
+      "check": {
+        "allow_sorry": true,
+        "contains_axiom": false,
+        "contains_sorry": true,
+        "diagnostics": {
+          "diagnostics": [
+            {
+              "column": 9,
+              "line": 48,
+              "message": "declaration uses `sorry`",
+              "severity": "warning"
+            }
+          ],
+          "passed": true,
+          "raw_excerpt": "{'success': True, 'error_message': None, 'file': 'PositiveDefiniteTreeLattice.Main.RootedEstimates.Theorems.rootedChildInductionAbsBound', 'items': [{'severity': 'warning', 'pos': {'line': 48, 'column': 9}, 'endPos': {'line': 48, 'column': 37}, 'kind': None, 'data': 'declaration uses `sorry`', 'fileName': 'PositiveDefiniteTreeLattice.Main.RootedEstimates.Theorems.rootedChildInductionAbsBound', 'content': '  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildren`\\n-/\\ntheorem rootedChildInductionAbsBound {V : Type*} [Fintype V] [DecidableEq V]\\n    (G : SimpleGraph V) [DecidableRel G.Adj] (w : V → ℤ) (rho : V) (hT : G.IsTree)\\n    (hAdm : IsAdmissibleRootedTree G w rho) (x : V → ℤ) (c : V)'}], 'total_items': 1, 'error_count': 0, 'warning_count': 1, 'info_count': 0, 'sorry_count': 1}",
+          "repo_file_path": "PositiveDefiniteTreeLattice/Main/RootedEstimates/Theorems/rootedChildInductionAbsBound.lean",
+          "schema_version": 2,
+          "summary": "Diagnostics returned 1 items"
+        },
+        "message": "Lean check passed.",
+        "policy": "statement_formal",
+        "scan": {
+          "admit_count": 0,
+          "axiom_count": 0,
+          "contains_admit": false,
+          "contains_axiom": false,
+          "contains_opaque": false,
+          "contains_sorry": true,
+          "contains_unsafe": false,
+          "limitation": "Text scan ignores Lean comments and string literals with a conservative first-round lexer; it is not a full Lean parser.",
+          "occurrences": [
+            {
+              "column": 3,
+              "excerpt": "sorry",
+              "kind": "sorry",
+              "line": 72
+            }
+          ],
+          "opaque_count": 0,
+          "sorry_count": 1,
+          "summary": "sorry=1, admit=0, axiom=0, opaque=0, unsafe=0",
+          "unsafe_count": 0
+        },
+        "status": "passed"
+      },
+      "code": "-- lean-constellation: managed-imports-begin\nimport PositiveDefiniteTreeLattice.Main.RootedEstimates.Prelude\n-- lean-constellation: managed-imports-end\n\n-- lean-constellation: declaration-source-begin\n\n/--\n# lean-constellation target: `rootedChildInductionAbsBound`\n\nLet `G` be a finite rooted integer-weighted tree with root `rho`, weight `w`, and admissibility\nhypothesis `hT : IsAdmissibleRootedTree G w rho`.  Let `x : V → ℤ`, let `c ∈ rootedChildren G hT rho\nrho`, and write `C := rootedChildComponent G rho c` with its provider-generated finite and decidable\nstructure and local root `rootedChildRoot G rho ⟨c, hc⟩`.  Set `a := x rho`, `s_c := x c`, and\n`gamma_c := rootedChildCapacitySummand G hT w rho ⟨c, hc⟩`.\n\nAssume the generalized strong-induction hypothesis for the rooted integer estimate: it supplies that\nestimate, for every finite rooted admissible integer-weighted tree with strictly smaller\nvertex-cardinality than `V`, every integral coordinate vector, and every integer parameter.  Applied\nto `C` at the two integers `a` and `a - 1`, with the restricted weight and restricted coordinate\nvector, it yields\n\n`(↑childPairing : ℚ) - 2 * (a : ℚ) * (s_c : ℚ) ≥ -gamma_c * (a : ℚ)^2 + |(s_c : ℚ) - gamma_c * (a :\nℚ)|`,\n\nwhere `childPairing` is the tree pairing of the child component graph on the restricted coordinate\nvector.  The component’s rooted capacity is identified with `gamma_c`, and the child index remains\nexactly `c ∈ rootedChildren G hT rho rho`.\n\n## Sources\n\n- Source `solution.tex`, lines 112–121\n\n## Statement dependencies\n\n- `Main.LatticeFoundations::treePairingAnchor` → `PositiveDefiniteTreeLattice.treePairing` from\n  `PositiveDefiniteTreeLattice.Main.LatticeFoundations.Defs.treePairingAnchor`\n- `Main.RootedCapacity::IsAdmissibleRootedTree` → `IsAdmissibleRootedTree` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.IsAdmissibleRootedTree`\n- `Main.RootedCapacity::rootedCapacity` → `rootedCapacity` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedCapacity`\n- `Main.RootedCapacity::rootedChildCapacitySummand` → `rootedChildCapacitySummand` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildCapacitySummand`\n- `Main.RootedCapacity::rootedChildComponent` → `rootedChildComponent` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildComponent`\n- `Main.RootedCapacity::rootedChildren` → `rootedChildren` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildren`\n-/\ntheorem rootedChildInductionAbsBound {V : Type*} [Fintype V] [DecidableEq V]\n    (G : SimpleGraph V) [DecidableRel G.Adj] (w : V → ℤ) (rho : V) (hT : G.IsTree)\n    (hAdm : IsAdmissibleRootedTree G w rho) (x : V → ℤ) (c : V)\n    (hc : c ∈ rootedChildren G hT rho rho)\n    (hIH : ∀ {W : Type*} [Fintype W] [DecidableEq W] (H : SimpleGraph W)\n      [DecidableRel H.Adj] (weight : W → ℤ) (r : W), Fintype.card W < Fintype.card V →\n        IsAdmissibleRootedTree H weight r → ∀ (y : W → ℤ) (k : ℤ),\n          0 ≤ (↑(PositiveDefiniteTreeLattice.treePairing H weight y y) : ℚ) -\n            (2 * (k : ℚ) + 1) * (y r : ℚ) + rootedCapacity H weight r * (k : ℚ) *\n              ((k : ℚ) + 1)) :\n    let C := rootedChildComponent G rho c\n    letI : Fintype C := Fintype.ofFinite C\n    letI : DecidableEq C := Classical.decEq C\n    letI : DecidableRel C.toSimpleGraph.Adj := by\n      intro u v\n      change Decidable ((G.deleteEdges {s(rho, c)}).Adj (u : V) (v : V))\n      infer_instance\n    let a : ℤ := x rho\n    let sC : ℤ := x c\n    let gammaC : ℚ := rootedChildCapacitySummand G hT w rho ⟨c, hc⟩\n    (↑(PositiveDefiniteTreeLattice.treePairing C.toSimpleGraph (fun u => w (u : V))\n      (fun u => x (u : V)) (fun u => x (u : V))) : ℚ) -\n        2 * (a : ℚ) * (sC : ℚ) ≥ -gammaC * (a : ℚ) ^ 2 +\n          |(sC : ℚ) - gammaC * (a : ℚ)| := by\n  sorry\n"
+    },
+    "nl": {
+      "origin": [
+        {
+          "end_line": 121,
+          "end_locator": null,
+          "kind": "source",
+          "note": "These lines apply the child induction hypothesis at a and a−1 and derive exactly the stated absolute-value lower bound.",
+          "ref": null,
+          "resource_key": null,
+          "source_path": "solution.tex",
+          "start_line": 112,
+          "start_locator": null
+        }
+      ],
+      "text": "Let `G` be a finite rooted integer-weighted tree with root `rho`, weight `w`, and admissibility hypothesis `hT : IsAdmissibleRootedTree G w rho`.  Let `x : V → ℤ`, let `c ∈ rootedChildren G hT rho rho`, and write `C := rootedChildComponent G rho c` with its provider-generated finite and decidable structure and local root `rootedChildRoot G rho ⟨c, hc⟩`.  Set `a := x rho`, `s_c := x c`, and `gamma_c := rootedChildCapacitySummand G hT w rho ⟨c, hc⟩`.\n\nAssume the generalized strong-induction hypothesis for the rooted integer estimate: it supplies that estimate, for every finite rooted admissible integer-weighted tree with strictly smaller vertex-cardinality than `V`, every integral coordinate vector, and every integer parameter.  Applied to `C` at the two integers `a` and `a - 1`, with the restricted weight and restricted coordinate vector, it yields\n\n`(↑childPairing : ℚ) - 2 * (a : ℚ) * (s_c : ℚ) ≥ -gamma_c * (a : ℚ)^2 + |(s_c : ℚ) - gamma_c * (a : ℚ)|`,\n\nwhere `childPairing` is the tree pairing of the child component graph on the restricted coordinate vector.  The component’s rooted capacity is identified with `gamma_c`, and the child index remains exactly `c ∈ rootedChildren G hT rho rho`."
+    }
+  },
+  "status": "committed",
+  "updated_at": "2026-08-01T10:10:30Z"
+}

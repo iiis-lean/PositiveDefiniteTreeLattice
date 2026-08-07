@@ -1,0 +1,354 @@
+{
+  "boundary": "Own SourceIndex b_0010–b_0011 / solution.tex lines 84–180: the rooted integer estimate for lattice vectors and integers k, and the nonzero root-coefficient bound. Consume the completed public admissibility/capacity API from Main.RootedCapacity. Exclude rooted orientation, Gram/block inverse construction, capacity recursion, generic tree-path results, and final unique-underweighted-vertex assembly. Expect roughly 8–16 important declarations covering subtree induction, the consecutive-integer base case, absolute-value/distance estimate, and the final coefficient inequality.",
+  "committed_at": "2026-08-01T16:27:17Z",
+  "constraints": "Preserve the integral vector model, rational capacity, exact rooted coordinate, admissibility hypotheses, and inequality directions from b_0010–b_0011. Consume Main.RootedCapacity rather than redefining capacity or its recursion. Do not strengthen hypotheses, weaken conclusions, increase heartbeat limits, or introduce a dependency back from Main.RootedCapacity.",
+  "context_refs": [],
+  "contract_kind": "content",
+  "created_at": "2026-07-30T19:52:03Z",
+  "decl_graph_head": {
+    "consecutiveIntegerProductNonneg": 1,
+    "rationalUnitIntervalIntegerDistance": 3,
+    "rootCoordinateSqLeCapacityMulTreePairing": 1,
+    "root_coefficient_lt_norm": 1,
+    "rootedCapacityInvEqSub": 3,
+    "rootedChildInductionAbsBound": 2,
+    "rootedEstimateInductionAggregation": 2,
+    "rooted_integer_estimate": 2,
+    "sumComponentNeighborEqSumAmbientFiltered": 1,
+    "sumNeighborContributionRootedChildComponent": 2,
+    "sumNonrootEqSumRootedChildComponents": 2,
+    "treePairingCastEqRootedGramQuadratic": 1,
+    "treePairingInstanceIndependent": 1,
+    "treePairingRootedChildDecomposition": 3,
+    "twoBoundsGiveAbsLowerBound": 1,
+    "unitIntervalCompensationNonneg": 1
+  },
+  "deps": [
+    {
+      "added_by": "coordinator",
+      "dep_id": "dep_5e07d784efaf749b",
+      "expected_decl_refs": [
+        {
+          "name": "IsAdmissibleRootedTree",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 1
+        },
+        {
+          "name": "IsAdmissibleRootedTree_rootedChildComponent",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 1
+        },
+        {
+          "name": "capacity_pos_lt_one",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 2
+        },
+        {
+          "name": "rootedCapacity",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 1
+        },
+        {
+          "name": "rootedCapacity_recursion",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 5
+        },
+        {
+          "name": "rootedChildCapacitySum",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 2
+        },
+        {
+          "name": "rootedChildCapacitySummand",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 1
+        },
+        {
+          "name": "rootedChildComponent",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 1
+        },
+        {
+          "name": "rootedChildComponent_card_lt",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 1
+        },
+        {
+          "name": "rootedChildComponent_isTree",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 1
+        },
+        {
+          "name": "rootedChildComponent_partition",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 1
+        },
+        {
+          "name": "rootedChildRoot",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 1
+        },
+        {
+          "name": "rootedChildren",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 2
+        },
+        {
+          "name": "rootedChildren_rootedChildComponent",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 3
+        },
+        {
+          "name": "rootedEdgeClassification",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 1
+        }
+      ],
+      "reason": "The b_0010 induction consumes the exact capacity/component API, and treePairingRootedChildDecomposition@1 now additionally consumes the proved bidirectional rooted edge classification with unique child-component index and local adjacency witnesses.",
+      "target": {
+        "node": "Main.RootedCapacity",
+        "repo": null
+      }
+    },
+    {
+      "added_by": "coordinator",
+      "dep_id": "dep_3c31ad87d02cef2f",
+      "expected_decl_refs": [
+        {
+          "name": "treePairingAnchor",
+          "node": "Main.LatticeFoundations",
+          "repo": null,
+          "revision": 1
+        },
+        {
+          "name": "treePairing_add_left",
+          "node": "Main.LatticeFoundations",
+          "repo": null,
+          "revision": 6
+        },
+        {
+          "name": "treePairing_add_right",
+          "node": "Main.LatticeFoundations",
+          "repo": null,
+          "revision": 6
+        },
+        {
+          "name": "treePairing_add_self",
+          "node": "Main.LatticeFoundations",
+          "repo": null,
+          "revision": 3
+        },
+        {
+          "name": "treePairing_symm",
+          "node": "Main.LatticeFoundations",
+          "repo": null,
+          "revision": 6
+        }
+      ],
+      "reason": "The rooted integer inequalities are stated and expanded in the repository's exact integral treePairing model.",
+      "target": {
+        "node": "Main.LatticeFoundations",
+        "repo": null
+      }
+    }
+  ],
+  "exports": [],
+  "goal": "Formalize the two rooted integer inequalities that convert the admissible-tree capacity theory into coefficient control.",
+  "interfaces": [
+    {
+      "bound_decl": {
+        "name": "rooted_integer_estimate",
+        "node": "Main.RootedEstimates",
+        "repo": null,
+        "revision": 2
+      },
+      "expected_statement_lean_code": null,
+      "kind": "theorem",
+      "name": "PositiveDefiniteTreeLattice.rooted_integer_estimate",
+      "note": "Consumer anchor: Main.IrreducibleVertex final assembly. For the same finite decidable rooted weighted tree data and hAdm : IsAdmissibleRootedTree G w ρ used by Main.RootedCapacity, with γ := rootedCapacity G w ρ, prove for every integer vector x : V → ℤ and k : ℤ the exact source inequality treePairing G w x x - (2*k+1) * x ρ + γ * k*(k+1) ≥ 0 after the necessary canonical casts to ℚ. Preserve the integral vector model, exact rooted coordinate, and conclusion direction from solution.tex 84–153; consume rootedCapacity_recursion and capacity_pos_lt_one without strengthening admissibility.",
+      "source_refs": [],
+      "summary": "The source quadratic rooted estimate for integer vectors and integer k."
+    },
+    {
+      "bound_decl": {
+        "name": "root_coefficient_lt_norm",
+        "node": "Main.RootedEstimates",
+        "repo": null,
+        "revision": 1
+      },
+      "expected_statement_lean_code": null,
+      "kind": "theorem",
+      "name": "PositiveDefiniteTreeLattice.root_coefficient_lt_norm",
+      "note": "Consumer anchor: Main.IrreducibleVertex final assembly. For the same admissible rooted weighted tree data, prove that every nonzero integer vector x has the exact source conclusion 0 < treePairing G w x x - x ρ (equivalently x ρ < treePairing G w x x), faithful to solution.tex 155–180. Preserve the integral model, nonzero hypothesis, exact root coordinate and strict direction; consume capacity_pos_lt_one and the existing positive-definiteness semantics, without replacing capacity or strengthening assumptions.",
+      "source_refs": [],
+      "summary": "A nonzero vector in an admissible rooted tree has root coefficient strictly below its norm."
+    }
+  ],
+  "mathlib_decls": [
+    {
+      "added_by": "worker",
+      "kind": "lemma",
+      "module": "Mathlib.LinearAlgebra.Matrix.PosDef",
+      "name": "Matrix.PosDef.dotProduct_mulVec_pos",
+      "reason": null
+    },
+    {
+      "added_by": "worker",
+      "kind": "theorem",
+      "module": "Mathlib.LinearAlgebra.Matrix.BilinearForm",
+      "name": "Matrix.toBilin'_apply'",
+      "reason": null
+    },
+    {
+      "added_by": "worker",
+      "kind": "lemma",
+      "module": "Mathlib.LinearAlgebra.Matrix.BilinearForm",
+      "name": "Matrix.isSymm_toBilin'_iff_isSymm",
+      "reason": null
+    },
+    {
+      "added_by": "worker",
+      "kind": "lemma",
+      "module": "Mathlib.LinearAlgebra.Matrix.Hermitian",
+      "name": "Matrix.isHermitian_iff_isSymm",
+      "reason": null
+    },
+    {
+      "added_by": "worker",
+      "kind": "lemma",
+      "module": "Mathlib.LinearAlgebra.SesquilinearForm.Basic",
+      "name": "LinearMap.BilinForm.apply_sq_le_of_symm",
+      "reason": null
+    },
+    {
+      "added_by": "worker",
+      "kind": "lemma",
+      "module": "Mathlib.Algebra.BigOperators.Ring.Finset",
+      "name": "Int.cast_sum",
+      "reason": null
+    },
+    {
+      "added_by": "worker",
+      "kind": "theorem",
+      "module": "Mathlib.Algebra.BigOperators.Group.Finset.Defs",
+      "name": "Finset.sum_bij",
+      "reason": null
+    },
+    {
+      "added_by": "worker",
+      "kind": "theorem",
+      "module": "Mathlib.Algebra.BigOperators.Group.Finset.Sigma",
+      "name": "Finset.sum_sigma",
+      "reason": null
+    },
+    {
+      "added_by": "worker",
+      "kind": "theorem",
+      "module": "Mathlib.Algebra.BigOperators.Group.Finset.Basic",
+      "name": "Finset.sum_disjiUnion",
+      "reason": null
+    },
+    {
+      "added_by": "worker",
+      "kind": "theorem",
+      "module": "Mathlib.Combinatorics.SimpleGraph.Finite",
+      "name": "SimpleGraph.neighborFinset_eq_filter",
+      "reason": null
+    },
+    {
+      "added_by": "worker",
+      "kind": "lemma",
+      "module": "Mathlib.Combinatorics.SimpleGraph.Connectivity.Connected",
+      "name": "SimpleGraph.ConnectedComponent.toSimpleGraph_adj",
+      "reason": null
+    }
+  ],
+  "mathlib_modules": [
+    {
+      "added_by": "worker",
+      "module": "Mathlib.LinearAlgebra.Matrix.PosDef",
+      "reason": null
+    },
+    {
+      "added_by": "worker",
+      "module": "Mathlib.LinearAlgebra.Matrix.BilinearForm",
+      "reason": null
+    },
+    {
+      "added_by": "worker",
+      "module": "Mathlib.LinearAlgebra.SesquilinearForm.Basic",
+      "reason": null
+    },
+    {
+      "added_by": "worker",
+      "module": "Mathlib.Algebra.BigOperators.Ring.Finset",
+      "reason": null
+    },
+    {
+      "added_by": "worker",
+      "module": "Mathlib.LinearAlgebra.Matrix.Hermitian",
+      "reason": null
+    },
+    {
+      "added_by": "worker",
+      "module": "Mathlib.Algebra.BigOperators.Group.Finset.Basic",
+      "reason": null
+    },
+    {
+      "added_by": "worker",
+      "module": "Mathlib.Algebra.BigOperators.Group.Finset.Sigma",
+      "reason": null
+    },
+    {
+      "added_by": "worker",
+      "module": "Mathlib.Combinatorics.SimpleGraph.Finite",
+      "reason": null
+    },
+    {
+      "added_by": "worker",
+      "module": "Mathlib.Combinatorics.SimpleGraph.Connectivity.Connected",
+      "reason": null
+    },
+    {
+      "added_by": "worker",
+      "module": "Mathlib.Algebra.BigOperators.Group.Finset.Defs",
+      "reason": null
+    }
+  ],
+  "objective": "Build a graph-proved package faithful to solution.tex lines 84–180. Prove the rooted integer estimate by induction over the rooted child decomposition using the exact public capacity recursion and 0 < γ < 1, then prove the root-coefficient bound with the source's positive-definite/Cauchy–Schwarz argument or a semantically equivalent route. Bind both exact qualified public interfaces.",
+  "owned_refs": [
+    {
+      "added_by": "coordinator",
+      "reason": "Owns the rooted integer estimate and root coefficient bound, including their source induction and positivity arguments.",
+      "ref": {
+        "kind": "source",
+        "ref": {
+          "end_line": 180,
+          "path": "solution.tex",
+          "start_line": 84
+        }
+      },
+      "ref_id": "mat_a8991dc524e8a377"
+    }
+  ],
+  "status": "committed",
+  "success_criteria": "All theorem-like helpers are graph-proved; PositiveDefiniteTreeLattice.rooted_integer_estimate and PositiveDefiniteTreeLattice.root_coefficient_lt_norm are bound to proved public declarations with source-faithful assumptions and conclusions; their Statement closure is public; no capacity construction or final theorem work is duplicated; the deterministic completion gate passes.",
+  "summary": "Reviewed failed contract v1 as a completion-gate runtime failure only. Current truth shows 16 active graph-proved declarations; PositiveDefiniteTreeLattice.rooted_integer_estimate@2 and PositiveDefiniteTreeLattice.root_coefficient_lt_norm@1 are proved, public, non-stale, source-faithful, and bound to the exact interfaces. The rooted decomposition and all arithmetic/matrix helpers are complete with clean graph hygiene and public Statement closure. No mathematical, source, dependency, interface, or boundary prerequisite remains; finalization depends solely on obtaining an authoritative deterministic completion-gate result.",
+  "task_completion_mode": "graph_proved",
+  "version": 1
+}

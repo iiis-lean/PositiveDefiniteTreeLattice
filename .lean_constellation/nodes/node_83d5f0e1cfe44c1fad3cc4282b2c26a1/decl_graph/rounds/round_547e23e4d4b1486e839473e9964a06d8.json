@@ -1,0 +1,38 @@
+{
+  "change_summaries": {},
+  "committed_at": "2026-07-29T20:51:35Z",
+  "created_at": "2026-07-29T20:38:37Z",
+  "discard_reason": null,
+  "discarded_at": null,
+  "discarded_by": null,
+  "discarded_created_decl_names": [],
+  "discarded_restored_decl_revisions": {},
+  "discarded_revision_refs": [],
+  "execution_completed_at": "2026-07-29T20:50:01Z",
+  "execution_reason": null,
+  "execution_result_kind": "success",
+  "node_path": "Main.LatticeFoundations",
+  "objective": "Evacuate the historical final theorem record to a nonconflicting internal Lean identity and create a fresh public contract anchor whose compiler-confirmed name is exactly PositiveDefiniteTreeLattice.irreducible_of_pairing_self_eq_one. Preserve formal_target.lean lines 17–22 and solution.tex lines 19–31 exactly, consume committed treePairingAnchor and IrreducibleAnchor in the statement and proved treePairing_add_self in the contradiction proof, and leave no global alias. This is the last interface-anchor migration before deleting superseded historical records and binding the four interfaces.",
+  "plan_closeout_acknowledged_at": "2026-07-29T20:51:35Z",
+  "plan_closeout_acknowledged_by": "a_60a257a14c4c469b9e17805606fa5ea4",
+  "result_kind": "success",
+  "result_reason": "Both theorem revisions passed all scheduled stages and target-state satisfaction. The fresh exact interface theorem is proved; the historical theorem is internally namespaced and ready for deletion.",
+  "revision_refs": [
+    {
+      "change_id": "irreducible_of_pairing_self_eq_one@rev:3",
+      "decl_name": "irreducible_of_pairing_self_eq_one",
+      "revision": 3
+    },
+    {
+      "change_id": "irreducibleOfPairingSelfEqOneAnchor@rev:1",
+      "decl_name": "irreducibleOfPairingSelfEqOneAnchor",
+      "revision": 1
+    }
+  ],
+  "round_id": "round_547e23e4d4b1486e839473e9964a06d8",
+  "round_index": 18,
+  "started_at": "2026-07-29T20:40:13Z",
+  "status": "committed",
+  "strategy_id": "strategy_2638883d005249d6a0ca57c50614cfed",
+  "summary": "The fresh-anchor strategy completed its final interface migration. The historical norm-one theorem record was moved to a nonconflicting internal identity and remained proved; irreducibleOfPairingSelfEqOneAnchor was created at the exact required Lean identity, proved, and graph_proved-satisfied against fresh treePairingAnchor, IrreducibleAnchor, and proved treePairing_add_self. There are no missing dependencies, helpers, consumer-shape mismatches, blockers, or state-only debts. The only remaining graph work is the strategy-planned cleanup of four superseded historical records, followed by binding the four fresh anchors and running the deterministic completion gate."
+}

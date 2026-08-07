@@ -1,0 +1,33 @@
+{
+  "change_summaries": {},
+  "committed_at": "2026-07-30T10:40:18Z",
+  "created_at": "2026-07-30T10:27:38Z",
+  "discard_reason": null,
+  "discarded_at": null,
+  "discarded_by": null,
+  "discarded_created_decl_names": [],
+  "discarded_restored_decl_revisions": {},
+  "discarded_revision_refs": [],
+  "execution_completed_at": "2026-07-30T10:38:52Z",
+  "execution_reason": "The newly isolated block theorem still needs an explicit evaluation lemma for the noncomputable dependent equivalence. Its current definition contains the partition choice and dependent Sigma proof terms; delta reduction through it causes the compiler heartbeat failure before either equal- or unequal-child Gram lemma can be applied. A small tracked lemma exposing `rootedChildComponentsEquivNonroot G hG ρ ⟨c,x⟩` as the canonical embedding (up to Subtype.ext) will let Matrix.reindex_apply normalize without unfolding the choice construction, preserving the accepted statement and proof route.",
+  "execution_result_kind": "blocked",
+  "node_path": "Main.RootedCapacity",
+  "objective": "Retry rootedNonrootGram_reindex_childBlocks from its accepted specified state after recording and validating the exact Matrix.blockDiagonal' Mathlib dependency.",
+  "plan_closeout_acknowledged_at": "2026-07-30T10:40:18Z",
+  "plan_closeout_acknowledged_by": "a_a93b40977f574bad89528358fa89e022",
+  "result_kind": "blocked",
+  "result_reason": "The block theorem is formally declared and proof-planned; Proof Formal now requires a tracked forward-evaluation lemma for rootedChildComponentsEquivNonroot to avoid unfolding its noncomputable partition choice.",
+  "revision_refs": [
+    {
+      "change_id": "rootedNonrootGram_reindex_childBlocks@rev:2",
+      "decl_name": "rootedNonrootGram_reindex_childBlocks",
+      "revision": 2
+    }
+  ],
+  "round_id": "round_f25ceb46f46c49089ce052969a4da729",
+  "round_index": 29,
+  "started_at": "2026-07-30T10:29:41Z",
+  "status": "committed",
+  "strategy_id": "strategy_1fbcdfb31a2e4cada1ff5b7b941de18c",
+  "summary": "Round 29 made substantive progress: rootedNonrootGram_reindex_childBlocks rev2 is now formally declared and proof-planned, but not proved or proof-policy satisfied. The Matrix.blockDiagonal' dependency repair succeeded. The remaining blocker is one small tracked Lean evaluation lemma exposing the forward computation of rootedChildComponentsEquivNonroot at a sigma child/component input; this avoids delta-reducing the noncomputable partition inverse and is a predictable current-node helper. Plan that lemma next, then retry the block theorem from proof_planned. No preparation, resource request, scope escalation, or graph cleanup is needed, and the existing strategy remains viable."
+}

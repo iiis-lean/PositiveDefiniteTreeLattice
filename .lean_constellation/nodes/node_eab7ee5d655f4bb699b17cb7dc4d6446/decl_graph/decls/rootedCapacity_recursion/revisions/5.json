@@ -1,0 +1,435 @@
+{
+  "change": {
+    "anticipated_proof_dep_names": [
+      "rootedChildCapacitySum",
+      "rootedGram_reindex_rootNonroot_blocks",
+      "rootedGram_rootNonroot_blocks_invertible",
+      "rootedGram_root_nonroot",
+      "rootedNonroot_inverse_quadratic"
+    ],
+    "anticipated_statement_dep_names": [
+      "rootedCapacity",
+      "rootedChildCapacitySum"
+    ],
+    "base_revision": 4,
+    "kind": "update",
+    "objective": "Preserve the accepted public b_0009 statement, hypotheses, objects, rational total-inverse semantics, and Proof NL exactly: `rootedCapacity G w ρ = 1 / ((w ρ : ℚ) - rootedChildCapacitySum G hG w ρ)`. Run only Proof Formal against rootedChildCapacitySum@2 and proved rootedNonroot_inverse_quadratic@5. Reuse the established root/nonroot Matrix.fromBlocks decomposition, full-block IsUnit/invertibility, nonroot PosDef/invertibility, Schur-complement inverse formula, root singleton simplification, and root-row identity exactly as revision 4 did. The public equation and admissibility assumptions must not change; do not unfold the named child summand, add helpers, revive rootedChildCapacitySum_attach, or raise heartbeat limits. Reach proved with graph_proved satisfaction so the strict-bound induction can consume the recursion.",
+    "require_target_state_satisfied": true,
+    "reset_to_state": "proof_planned",
+    "summary": "Refreshed Proof Formal for the unchanged public b_0009 Schur-complement recursion against rootedChildCapacitySum@2 and rootedNonroot_inverse_quadratic@5. The formal proof passed and the theorem remains proved and graph_proved-satisfied. Its exact conclusion is preserved: rootedCapacity equals the reciprocal of root weight minus the recaptured sum of child capacities, under the same admissibility and tree hypotheses.",
+    "target_state": "proved"
+  },
+  "lean_decl_name": "rootedCapacity_recursion",
+  "proof": {
+    "deps": [
+      {
+        "kind": "mathlib_decl",
+        "reason": "Aligns each outer summand after commuting the finite product expansion to the exact rooted nonroot inverse quadratic form.",
+        "ref": {
+          "module": "Mathlib.Algebra.BigOperators.Group.Finset.Basic",
+          "name": "Finset.sum_congr"
+        }
+      },
+      {
+        "kind": "mathlib_decl",
+        "reason": "Swaps the two finite summation coordinates when identifying the Schur product entry with the quadratic form.",
+        "ref": {
+          "module": "Mathlib.Algebra.BigOperators.Group.Finset.Sigma",
+          "name": "Finset.sum_comm"
+        }
+      },
+      {
+        "kind": "mathlib_decl",
+        "reason": "Distributes the remaining finite sum over the right root-column factor in the Schur product entry.",
+        "ref": {
+          "module": "Mathlib.Algebra.BigOperators.Ring.Finset",
+          "name": "Finset.sum_mul"
+        }
+      },
+      {
+        "kind": "mathlib_decl",
+        "reason": "Writes the final rational field inverse in the required reciprocal form.",
+        "ref": {
+          "module": "Mathlib.Algebra.Group.Defs",
+          "name": "inv_eq_one_div"
+        }
+      },
+      {
+        "kind": "mathlib_decl",
+        "reason": "Installs local invertibility instances for the positive-definite nonroot block and the proved full block unit.",
+        "ref": {
+          "module": "Mathlib.Algebra.Group.Invertible.Basic",
+          "name": "IsUnit.invertible"
+        }
+      },
+      {
+        "kind": "mathlib_decl",
+        "reason": "Converts the scalar Ring.inverse obtained from the singleton matrix inverse to the ordinary field inverse.",
+        "ref": {
+          "module": "Mathlib.Algebra.GroupWithZero.Units.Basic",
+          "name": "Ring.inverse_eq_inv"
+        }
+      },
+      {
+        "kind": "mathlib_decl",
+        "reason": "States the reindexed root/nonroot Gram matrix as a 2-by-2 block matrix.",
+        "ref": {
+          "module": "Mathlib.Data.Matrix.Block",
+          "name": "Matrix.fromBlocks"
+        }
+      },
+      {
+        "kind": "mathlib_decl",
+        "reason": "Evaluates the singleton root block in the block equality.",
+        "ref": {
+          "module": "Mathlib.Data.Matrix.Block",
+          "name": "Matrix.fromBlocks_apply₁₁"
+        }
+      },
+      {
+        "kind": "mathlib_decl",
+        "reason": "Evaluates the singleton Schur-complement inverse diagonal after Matrix.inv_subsingleton.",
+        "ref": {
+          "module": "Mathlib.Data.Matrix.Diagonal",
+          "name": "Matrix.diagonal_apply_eq"
+        }
+      },
+      {
+        "kind": "mathlib_decl",
+        "reason": "Expands the B * D⁻¹ * C root entry into the finite double sum.",
+        "ref": {
+          "module": "Mathlib.Data.Matrix.Mul",
+          "name": "Matrix.mul_apply"
+        }
+      },
+      {
+        "kind": "mathlib_decl",
+        "reason": "Normalizes the root/nonroot reindexing and its entries.",
+        "ref": {
+          "module": "Mathlib.LinearAlgebra.Matrix.Defs",
+          "name": "Matrix.reindex_apply"
+        }
+      },
+      {
+        "kind": "mathlib_decl",
+        "reason": "Evaluates the singleton Schur-complement diagonal as a scalar difference.",
+        "ref": {
+          "module": "Mathlib.LinearAlgebra.Matrix.Defs",
+          "name": "Matrix.sub_apply"
+        }
+      },
+      {
+        "kind": "mathlib_decl",
+        "reason": "Normalizes the A, B, C, and D submatrix entries when matching the expanded Schur product with rootedNonroot_inverse_quadratic.",
+        "ref": {
+          "module": "Mathlib.LinearAlgebra.Matrix.Defs",
+          "name": "Matrix.submatrix_apply"
+        }
+      },
+      {
+        "kind": "mathlib_decl",
+        "reason": "Rewrites invOf outputs as the repository's rational total matrix inverses.",
+        "ref": {
+          "module": "Mathlib.LinearAlgebra.Matrix.NonsingularInverse",
+          "name": "Matrix.invOf_eq_nonsing_inv"
+        }
+      },
+      {
+        "kind": "mathlib_decl",
+        "reason": "Transports the inverse of the reindexed block matrix back to rootedGram.",
+        "ref": {
+          "module": "Mathlib.LinearAlgebra.Matrix.NonsingularInverse",
+          "name": "Matrix.inv_reindex"
+        }
+      },
+      {
+        "kind": "mathlib_decl",
+        "reason": "Reduces the singleton root Schur-complement inverse block to its scalar reciprocal.",
+        "ref": {
+          "module": "Mathlib.LinearAlgebra.Matrix.NonsingularInverse",
+          "name": "Matrix.inv_subsingleton"
+        }
+      },
+      {
+        "kind": "mathlib_decl",
+        "reason": "Obtains the invertibility instances required by the Schur-complement formula.",
+        "ref": {
+          "module": "Mathlib.LinearAlgebra.Matrix.PosDef",
+          "name": "Matrix.PosDef.isUnit"
+        }
+      },
+      {
+        "kind": "mathlib_decl",
+        "reason": "Derives positive definiteness of the nonroot principal block.",
+        "ref": {
+          "module": "Mathlib.LinearAlgebra.Matrix.PosDef",
+          "name": "Matrix.PosDef.submatrix"
+        }
+      },
+      {
+        "kind": "mathlib_decl",
+        "reason": "Computes the inverse of the root/nonroot block matrix through its lower-right Schur complement.",
+        "ref": {
+          "module": "Mathlib.LinearAlgebra.Matrix.SchurComplement",
+          "name": "Matrix.invOf_fromBlocks₂₂_eq"
+        }
+      },
+      {
+        "kind": "mathlib_decl",
+        "reason": "Constructs invertibility of the scalar Schur complement from the full and nonroot blocks.",
+        "ref": {
+          "module": "Mathlib.LinearAlgebra.Matrix.SchurComplement",
+          "name": "Matrix.invertibleOfFromBlocks₂₂Invertible"
+        }
+      },
+      {
+        "kind": "mathlib_decl",
+        "reason": "Splits the vertex index into the root singleton and the nonroot subtype.",
+        "ref": {
+          "module": "Mathlib.Logic.Equiv.Sum",
+          "name": "Equiv.sumCompl"
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "Supplies the positive-definiteness field used to make the nonroot block and Schur complement invertible.",
+        "ref": {
+          "name": "IsAdmissibleRootedTree",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 1
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "Defines the left-hand root inverse diagonal extracted from the reindexed full inverse.",
+        "ref": {
+          "name": "rootedCapacity",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 1
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "Is the exact scalar substituted into the final Schur-complement denominator.",
+        "ref": {
+          "name": "rootedChildCapacitySum",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 2
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "Defines the full rational matrix and its nonroot principal block.",
+        "ref": {
+          "name": "rootedGram",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 2
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "Rewrites the root/nonroot reindexing of rootedGram to the exact Matrix.fromBlocks decomposition required by the Schur-complement inverse formula.",
+        "ref": {
+          "name": "rootedGram_reindex_rootNonroot_blocks",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 1
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "Provides the exact IsUnit proof for the root/nonroot Matrix.fromBlocks, installed locally as the full-block Invertible instance in the Schur-complement proof.",
+        "ref": {
+          "name": "rootedGram_rootNonroot_blocks_invertible",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 3
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "Rewrites the expanded root-row/nonroot-inverse/root-column quadratic term to rootedChildCapacitySum.",
+        "ref": {
+          "name": "rootedNonroot_inverse_quadratic",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 5
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "Evaluates the root block and root/nonroot off-diagonal entries in the root-versus-nonroot block equality.",
+        "ref": {
+          "name": "treePairing_vertexVector_vertexVector",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 2
+        }
+      }
+    ],
+    "formal": {
+      "check": {
+        "allow_sorry": false,
+        "contains_axiom": false,
+        "contains_sorry": false,
+        "diagnostics": {
+          "diagnostics": [],
+          "passed": true,
+          "raw_excerpt": "{'success': True, 'error_message': None, 'file': 'PositiveDefiniteTreeLattice.Main.RootedCapacity.Theorems.rootedCapacity_recursion', 'items': [], 'total_items': 0, 'error_count': 0, 'warning_count': 0, 'info_count': 0, 'sorry_count': 0}",
+          "repo_file_path": "PositiveDefiniteTreeLattice/Main/RootedCapacity/Theorems/rootedCapacity_recursion.lean",
+          "schema_version": 2,
+          "summary": "Diagnostics returned 0 items"
+        },
+        "message": "Lean check passed.",
+        "policy": "proof_formal",
+        "scan": {
+          "admit_count": 0,
+          "axiom_count": 0,
+          "contains_admit": false,
+          "contains_axiom": false,
+          "contains_opaque": false,
+          "contains_sorry": false,
+          "contains_unsafe": false,
+          "limitation": "Text scan ignores Lean comments and string literals with a conservative first-round lexer; it is not a full Lean parser.",
+          "occurrences": [],
+          "opaque_count": 0,
+          "sorry_count": 0,
+          "summary": "sorry=0, admit=0, axiom=0, opaque=0, unsafe=0",
+          "unsafe_count": 0
+        },
+        "status": "passed"
+      },
+      "code": "-- lean-constellation: managed-imports-begin\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Prelude\nimport Mathlib.Algebra.BigOperators.Group.Finset.Basic\nimport Mathlib.Algebra.BigOperators.Group.Finset.Sigma\nimport Mathlib.Algebra.BigOperators.Ring.Finset\nimport Mathlib.Algebra.Group.Defs\nimport Mathlib.Algebra.Group.Invertible.Basic\nimport Mathlib.Algebra.GroupWithZero.Units.Basic\nimport Mathlib.Combinatorics.SimpleGraph.Acyclic\nimport Mathlib.Data.Matrix.Block\nimport Mathlib.Data.Matrix.Diagonal\nimport Mathlib.Data.Matrix.Mul\nimport Mathlib.LinearAlgebra.Matrix.Defs\nimport Mathlib.LinearAlgebra.Matrix.NonsingularInverse\nimport Mathlib.LinearAlgebra.Matrix.PosDef\nimport Mathlib.LinearAlgebra.Matrix.SchurComplement\nimport Mathlib.Logic.Equiv.Sum\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.IsAdmissibleRootedTree\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedCapacity\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildCapacitySum\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedGram\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Theorems.rootedGram_reindex_rootNonroot_blocks\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Theorems.rootedGram_rootNonroot_blocks_invertible\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Theorems.rootedNonroot_inverse_quadratic\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Theorems.treePairing_vertexVector_vertexVector\n-- lean-constellation: managed-imports-end\n\n-- lean-constellation: declaration-source-begin\n\n/--\n# lean-constellation target: `rootedCapacity_recursion`\n\nFor every finite decidable vertex type `V`, simple graph `G` with decidable adjacency, tree witness\n`hG : G.IsTree`, integer weight `w : V → ℤ`, root `ρ : V`, and admissibility witness `hAdm :\nIsAdmissibleRootedTree G w ρ`, the existing rational rooted capacity satisfies\n```\nrootedCapacity G w ρ =\n  1 / ((w ρ : ℚ) - rootedChildCapacitySum G hG w ρ).\n```\n\nThis is the reciprocal Schur-complement recursion with the original rational total-inverse meaning\nof `rootedCapacity` and the existing raw-root-child sum `rootedChildCapacitySum`.  In particular, it\nintroduces no nonzero-denominator hypothesis: the denominator is supplied by the positive-definite\nrooted Gram situation already contained in `hAdm`.  The equality is oriented from capacity to the\nexact scalar expression needed by the subsequent strict capacity bound.\n\n## Sources\n\n- Source `solution.tex`, lines 57–72\n\n## Statement dependencies\n\n- `SimpleGraph.IsTree` from `Mathlib.Combinatorics.SimpleGraph.Acyclic`\n- `Main.RootedCapacity::IsAdmissibleRootedTree` → `IsAdmissibleRootedTree` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.IsAdmissibleRootedTree`\n- `Main.RootedCapacity::rootedCapacity` → `rootedCapacity` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedCapacity`\n- `Main.RootedCapacity::rootedChildCapacitySum` → `rootedChildCapacitySum` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildCapacitySum`\n\n## Proof outline\n\nWork classically. Destructure `hAdm` and use proof irrelevance to identify its stored tree\nwitness with the explicit `hG`; retain the resulting positive-definiteness proof\n`hPos : Matrix.PosDef (rootedGram G w)`.\n\nLet `R := {v : V // v ≠ ρ}` and use the root/nonroot equivalence\n`e := Equiv.sumCompl (fun v : V => v = ρ)`. Reindex `rootedGram G w` along the corresponding\nequivalence from `V` to the sum of the root singleton and `R`. By matrix extensionality and the\nbasis-entry formula, identify this reindexed matrix with\n`Matrix.fromBlocks A B C D`, where `A` is the singleton root block with entry `(w ρ : ℚ)`,\n`D = (rootedGram G w).submatrix Subtype.val Subtype.val`, and `B,C` are the exact root\nrow/column blocks. Keep this as a matrix equality; do not change the capacity or child-component\ndefinitions.\n\nUse `hPos.submatrix` on the nonroot inclusion to obtain `D.PosDef`, hence `D.isUnit`.\nTransport `hPos.isUnit` across the reindex/block equality to get the full block matrix unit.\nInstall the resulting invertibility instances for `D` and `Matrix.fromBlocks A B C D`, and then\nuse `Matrix.invertibleOfFromBlocks₂₂Invertible A B C D` for the Schur complement\n`S := A - B * ⅟D * C`. Thus no separate nonzero-denominator hypothesis is introduced.\n\nApply `Matrix.invOf_fromBlocks₂₂_eq A B C D`; its upper-left block is `⅟S`. Rewrite each\n`invOf` to the rational total inverse using `Matrix.invOf_eq_nonsing_inv`, and use\n`Matrix.inv_reindex` to transport the full inverse back to `(rootedGram G w)⁻¹`. Evaluate the\nroot singleton diagonal. Unfold only `rootedCapacity` at this final point and use\n`Matrix.inv_subsingleton` plus singleton-block simplification to reduce that entry to the scalar\ninverse of\n`(w ρ : ℚ) - (B * D⁻¹ * C)` at the unique root index.\n\nFinally expand the matrix product entry into its finite double sum. The root-row factor, inverse\nentry, and root-column factor are exactly the formal left side of\n`rootedNonroot_inverse_quadratic G hG w ρ hAdm`; rewrite it to\n`rootedChildCapacitySum G hG w ρ`. Simplify the singleton scalar inverse to\n`1 / ((w ρ : ℚ) - rootedChildCapacitySum G hG w ρ)`, preserving the stated orientation.\n\n## Proof sources\n\n- Source `solution.tex`, lines 57–72\n\n## Proof dependencies\n\n- `Finset.sum_congr` from `Mathlib.Algebra.BigOperators.Group.Finset.Basic`\n- `Finset.sum_comm` from `Mathlib.Algebra.BigOperators.Group.Finset.Sigma`\n- `Finset.sum_mul` from `Mathlib.Algebra.BigOperators.Ring.Finset`\n- `inv_eq_one_div` from `Mathlib.Algebra.Group.Defs`\n- `IsUnit.invertible` from `Mathlib.Algebra.Group.Invertible.Basic`\n- `Ring.inverse_eq_inv` from `Mathlib.Algebra.GroupWithZero.Units.Basic`\n- `Matrix.fromBlocks` from `Mathlib.Data.Matrix.Block`\n- `Matrix.fromBlocks_apply₁₁` from `Mathlib.Data.Matrix.Block`\n- `Matrix.diagonal_apply_eq` from `Mathlib.Data.Matrix.Diagonal`\n- `Matrix.mul_apply` from `Mathlib.Data.Matrix.Mul`\n- `Matrix.reindex_apply` from `Mathlib.LinearAlgebra.Matrix.Defs`\n- `Matrix.sub_apply` from `Mathlib.LinearAlgebra.Matrix.Defs`\n- `Matrix.submatrix_apply` from `Mathlib.LinearAlgebra.Matrix.Defs`\n- `Matrix.invOf_eq_nonsing_inv` from `Mathlib.LinearAlgebra.Matrix.NonsingularInverse`\n- `Matrix.inv_reindex` from `Mathlib.LinearAlgebra.Matrix.NonsingularInverse`\n- `Matrix.inv_subsingleton` from `Mathlib.LinearAlgebra.Matrix.NonsingularInverse`\n- `Matrix.PosDef.isUnit` from `Mathlib.LinearAlgebra.Matrix.PosDef`\n- `Matrix.PosDef.submatrix` from `Mathlib.LinearAlgebra.Matrix.PosDef`\n- `Matrix.invOf_fromBlocks₂₂_eq` from `Mathlib.LinearAlgebra.Matrix.SchurComplement`\n- `Matrix.invertibleOfFromBlocks₂₂Invertible` from `Mathlib.LinearAlgebra.Matrix.SchurComplement`\n- `Equiv.sumCompl` from `Mathlib.Logic.Equiv.Sum`\n- `Main.RootedCapacity::IsAdmissibleRootedTree` → `IsAdmissibleRootedTree` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.IsAdmissibleRootedTree`\n- `Main.RootedCapacity::rootedCapacity` → `rootedCapacity` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedCapacity`\n- `Main.RootedCapacity::rootedChildCapacitySum` → `rootedChildCapacitySum` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildCapacitySum`\n- `Main.RootedCapacity::rootedGram` → `rootedGram` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedGram`\n- `Main.RootedCapacity::rootedGram_reindex_rootNonroot_blocks` →\n  `rootedGram_reindex_rootNonroot_blocks` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Theorems.rootedGram_reindex_rootNonroot_blocks`\n- `Main.RootedCapacity::rootedGram_rootNonroot_blocks_invertible` →\n  `rootedGram_rootNonroot_blocks_invertible` from `PositiveDefiniteTreeLattice.Main.RootedCapacity.T\n  heorems.rootedGram_rootNonroot_blocks_invertible`\n- `Main.RootedCapacity::rootedNonroot_inverse_quadratic` → `rootedNonroot_inverse_quadratic` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Theorems.rootedNonroot_inverse_quadratic`\n- `Main.RootedCapacity::treePairing_vertexVector_vertexVector` →\n  `treePairing_vertexVector_vertexVector` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Theorems.treePairing_vertexVector_vertexVector`\n-/\ntheorem rootedCapacity_recursion {V : Type*} [Fintype V] [DecidableEq V]\n    (G : SimpleGraph V) [DecidableRel G.Adj] (hG : G.IsTree) (w : V → ℤ) (ρ : V)\n    (hAdm : IsAdmissibleRootedTree G w ρ) :\n    rootedCapacity G w ρ = 1 / ((w ρ : ℚ) - rootedChildCapacitySum G hG w ρ) := by\n  classical\n  let U := {v : V // v = ρ}\n  let R := {v : V // v ≠ ρ}\n  let e := Equiv.sumCompl (fun v : V => v = ρ)\n  let A : Matrix U U ℚ := (rootedGram G w).submatrix Subtype.val Subtype.val\n  let B : Matrix U R ℚ := (rootedGram G w).submatrix Subtype.val Subtype.val\n  let C : Matrix R U ℚ := (rootedGram G w).submatrix Subtype.val Subtype.val\n  let D : Matrix R R ℚ := (rootedGram G w).submatrix Subtype.val Subtype.val\n  let M := Matrix.fromBlocks A B C D\n  let r : U := ⟨ρ, rfl⟩\n  have hM : Matrix.reindex e.symm e.symm (rootedGram G w) = M := by\n    dsimp [M, A, B, C, D, e]\n    exact rootedGram_reindex_rootNonroot_blocks G w ρ\n  have hPos : Matrix.PosDef (rootedGram G w) := by\n    rcases hAdm with ⟨_, hPos, _, _⟩\n    exact hPos\n  have hPosD : Matrix.PosDef D := by\n    dsimp [D]\n    exact hPos.submatrix Subtype.val_injective\n  have hUnitM : IsUnit M := by\n    dsimp [M, A, B, C, D]\n    exact rootedGram_rootNonroot_blocks_invertible G w ρ hAdm\n  letI : Invertible D := hPosD.isUnit.invertible\n  letI : Invertible M := hUnitM.invertible\n  let S := A - B * ⅟D * C\n  letI : Invertible S := Matrix.invertibleOfFromBlocks₂₂Invertible A B C D\n  have hMinv : M⁻¹ = Matrix.reindex e.symm e.symm ((rootedGram G w)⁻¹) := by\n    rw [← hM]\n    exact Matrix.inv_reindex e.symm e.symm (rootedGram G w)\n  have hSchur : M⁻¹ =\n      Matrix.fromBlocks S⁻¹ (-(S⁻¹ * B * D⁻¹))\n        (-(D⁻¹ * C * S⁻¹)) (D⁻¹ + D⁻¹ * C * S⁻¹ * B * D⁻¹) := by\n    calc\n      M⁻¹ = ⅟M := (Matrix.invOf_eq_nonsing_inv M).symm\n      _ = Matrix.fromBlocks (⅟S) (-(⅟S * B * ⅟D))\n          (-(⅟D * C * ⅟S)) (⅟D + ⅟D * C * ⅟S * B * ⅟D) :=\n        Matrix.invOf_fromBlocks₂₂_eq A B C D\n      _ = Matrix.fromBlocks S⁻¹ (-(S⁻¹ * B * D⁻¹))\n          (-(D⁻¹ * C * S⁻¹)) (D⁻¹ + D⁻¹ * C * S⁻¹ * B * D⁻¹) := by\n        rw [Matrix.invOf_eq_nonsing_inv S, Matrix.invOf_eq_nonsing_inv D]\n  have hroot : (rootedGram G w)⁻¹ ρ ρ = M⁻¹ (.inl r) (.inl r) := by\n    rw [hMinv, Matrix.reindex_apply]\n    rfl\n  have hquad : (B * D⁻¹ * C) r r = rootedChildCapacitySum G hG w ρ := by\n    rw [Matrix.mul_apply (M := B * D⁻¹) (N := C)]\n    simp_rw [Matrix.mul_apply (M := B) (N := D⁻¹)]\n    calc\n      (∑ x, (∑ j, B r j * D⁻¹ j x) * C x r) =\n          ∑ x, ∑ j, (B r j * D⁻¹ j x) * C x r := by\n        apply Finset.sum_congr rfl\n        intro x hx\n        exact Finset.sum_mul Finset.univ _ _\n      _ = ∑ j, ∑ x, (B r j * D⁻¹ j x) * C x r := Finset.sum_comm\n      _ = rootedChildCapacitySum G hG w ρ := by\n        simpa only [B, C, D, r, Matrix.submatrix_apply] using\n          rootedNonroot_inverse_quadratic G hG w ρ hAdm\n  unfold rootedCapacity\n  rw [hroot, hSchur, Matrix.fromBlocks_apply₁₁]\n  rw [Matrix.inv_subsingleton S, Matrix.diagonal_apply_eq]\n  dsimp only [S]\n  rw [Matrix.sub_apply, Matrix.invOf_eq_nonsing_inv D]\n  change Ring.inverse (A r r - (B * D⁻¹ * C) r r) = _\n  rw [hquad]\n  have hA : A r r = (w ρ : ℚ) := by\n    dsimp [A, r]\n    unfold rootedGram\n    rw [treePairing_vertexVector_vertexVector G hG w]\n    simp\n  rw [hA]\n  rw [Ring.inverse_eq_inv, inv_eq_one_div]\n"
+    },
+    "nl": {
+      "origin": [
+        {
+          "end_line": 72,
+          "end_locator": null,
+          "kind": "source",
+          "note": "These lines perform the root/nonroot block decomposition, identify the inverse quadratic term with the child-capacity sum, and derive the reciprocal Schur-complement recursion.",
+          "ref": null,
+          "resource_key": null,
+          "source_path": "solution.tex",
+          "start_line": 57,
+          "start_locator": null
+        }
+      ],
+      "text": "Work classically. Destructure `hAdm` and use proof irrelevance to identify its stored tree\nwitness with the explicit `hG`; retain the resulting positive-definiteness proof\n`hPos : Matrix.PosDef (rootedGram G w)`.\n\nLet `R := {v : V // v ≠ ρ}` and use the root/nonroot equivalence\n`e := Equiv.sumCompl (fun v : V => v = ρ)`. Reindex `rootedGram G w` along the corresponding\nequivalence from `V` to the sum of the root singleton and `R`. By matrix extensionality and the\nbasis-entry formula, identify this reindexed matrix with\n`Matrix.fromBlocks A B C D`, where `A` is the singleton root block with entry `(w ρ : ℚ)`,\n`D = (rootedGram G w).submatrix Subtype.val Subtype.val`, and `B,C` are the exact root\nrow/column blocks. Keep this as a matrix equality; do not change the capacity or child-component\ndefinitions.\n\nUse `hPos.submatrix` on the nonroot inclusion to obtain `D.PosDef`, hence `D.isUnit`.\nTransport `hPos.isUnit` across the reindex/block equality to get the full block matrix unit.\nInstall the resulting invertibility instances for `D` and `Matrix.fromBlocks A B C D`, and then\nuse `Matrix.invertibleOfFromBlocks₂₂Invertible A B C D` for the Schur complement\n`S := A - B * ⅟D * C`. Thus no separate nonzero-denominator hypothesis is introduced.\n\nApply `Matrix.invOf_fromBlocks₂₂_eq A B C D`; its upper-left block is `⅟S`. Rewrite each\n`invOf` to the rational total inverse using `Matrix.invOf_eq_nonsing_inv`, and use\n`Matrix.inv_reindex` to transport the full inverse back to `(rootedGram G w)⁻¹`. Evaluate the\nroot singleton diagonal. Unfold only `rootedCapacity` at this final point and use\n`Matrix.inv_subsingleton` plus singleton-block simplification to reduce that entry to the scalar\ninverse of\n`(w ρ : ℚ) - (B * D⁻¹ * C)` at the unique root index.\n\nFinally expand the matrix product entry into its finite double sum. The root-row factor, inverse\nentry, and root-column factor are exactly the formal left side of\n`rootedNonroot_inverse_quadratic G hG w ρ hAdm`; rewrite it to\n`rootedChildCapacitySum G hG w ρ`. Simplify the singleton scalar inverse to\n`1 / ((w ρ : ℚ) - rootedChildCapacitySum G hG w ρ)`, preserving the stated orientation."
+    }
+  },
+  "revision": 5,
+  "state": "proved",
+  "statement": {
+    "deps": [
+      {
+        "kind": "mathlib_decl",
+        "reason": "The formal statement's required tree witness has type G.IsTree.",
+        "ref": {
+          "module": "Mathlib.Combinatorics.SimpleGraph.Acyclic",
+          "name": "SimpleGraph.IsTree"
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "The required admissibility witness in the theorem binder has this existing predicate type.",
+        "ref": {
+          "name": "IsAdmissibleRootedTree",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 1
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "The left-hand side is this existing rational total-inverse capacity.",
+        "ref": {
+          "name": "rootedCapacity",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 1
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "The right-hand denominator uses this existing raw-root-child capacity sum.",
+        "ref": {
+          "name": "rootedChildCapacitySum",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 2
+        }
+      }
+    ],
+    "formal": {
+      "check": {
+        "allow_sorry": true,
+        "contains_axiom": false,
+        "contains_sorry": true,
+        "diagnostics": {
+          "diagnostics": [
+            {
+              "column": 9,
+              "line": 43,
+              "message": "declaration uses `sorry`",
+              "severity": "warning"
+            }
+          ],
+          "passed": true,
+          "raw_excerpt": "{'success': True, 'error_message': None, 'file': 'PositiveDefiniteTreeLattice.Main.RootedCapacity.Theorems.rootedCapacity_recursion', 'items': [{'severity': 'warning', 'pos': {'line': 43, 'column': 9}, 'endPos': {'line': 43, 'column': 33}, 'kind': None, 'data': 'declaration uses `sorry`', 'fileName': 'PositiveDefiniteTreeLattice.Main.RootedCapacity.Theorems.rootedCapacity_recursion', 'content': '-/\\n\\ntheorem rootedCapacity_recursion {V : Type*} [Fintype V] [DecidableEq V]\\n    (G : SimpleGraph V) [DecidableRel G.Adj] (hG : G.IsTree) (w : V → ℤ) (ρ : V)\\n    (hAdm : IsAdmissibleRootedTree G w ρ) :'}], 'total_items': 1, 'error_count': 0, 'warning_count': 1, 'info_count': 0, 'sorry_count': 1}",
+          "repo_file_path": "PositiveDefiniteTreeLattice/Main/RootedCapacity/Theorems/rootedCapacity_recursion.lean",
+          "schema_version": 2,
+          "summary": "Diagnostics returned 1 items"
+        },
+        "message": "Lean check passed.",
+        "policy": "statement_formal",
+        "scan": {
+          "admit_count": 0,
+          "axiom_count": 0,
+          "contains_admit": false,
+          "contains_axiom": false,
+          "contains_opaque": false,
+          "contains_sorry": true,
+          "contains_unsafe": false,
+          "limitation": "Text scan ignores Lean comments and string literals with a conservative first-round lexer; it is not a full Lean parser.",
+          "occurrences": [
+            {
+              "column": 3,
+              "excerpt": "sorry",
+              "kind": "sorry",
+              "line": 47
+            }
+          ],
+          "opaque_count": 0,
+          "sorry_count": 1,
+          "summary": "sorry=1, admit=0, axiom=0, opaque=0, unsafe=0",
+          "unsafe_count": 0
+        },
+        "status": "passed"
+      },
+      "code": "-- lean-constellation: managed-imports-begin\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Prelude\nimport Mathlib.Combinatorics.SimpleGraph.Acyclic\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.IsAdmissibleRootedTree\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedCapacity\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildCapacitySum\n-- lean-constellation: managed-imports-end\n\n-- lean-constellation: declaration-source-begin\n\n/--\n# lean-constellation target: `rootedCapacity_recursion`\n\nFor every finite decidable vertex type `V`, simple graph `G` with decidable adjacency, tree witness\n`hG : G.IsTree`, integer weight `w : V → ℤ`, root `ρ : V`, and admissibility witness `hAdm :\nIsAdmissibleRootedTree G w ρ`, the existing rational rooted capacity satisfies\n```\nrootedCapacity G w ρ =\n  1 / ((w ρ : ℚ) - rootedChildCapacitySum G hG w ρ).\n```\n\nThis is the reciprocal Schur-complement recursion with the original rational total-inverse meaning\nof `rootedCapacity` and the existing raw-root-child sum `rootedChildCapacitySum`.  In particular, it\nintroduces no nonzero-denominator hypothesis: the denominator is supplied by the positive-definite\nrooted Gram situation already contained in `hAdm`.  The equality is oriented from capacity to the\nexact scalar expression needed by the subsequent strict capacity bound.\n\n## Sources\n\n- Source `solution.tex`, lines 57–72\n\n## Statement dependencies\n\n- `SimpleGraph.IsTree` from `Mathlib.Combinatorics.SimpleGraph.Acyclic`\n- `Main.RootedCapacity::IsAdmissibleRootedTree` → `IsAdmissibleRootedTree` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.IsAdmissibleRootedTree`\n- `Main.RootedCapacity::rootedCapacity` → `rootedCapacity` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedCapacity`\n- `Main.RootedCapacity::rootedChildCapacitySum` → `rootedChildCapacitySum` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildCapacitySum`\n-/\n\ntheorem rootedCapacity_recursion {V : Type*} [Fintype V] [DecidableEq V]\n    (G : SimpleGraph V) [DecidableRel G.Adj] (hG : G.IsTree) (w : V → ℤ) (ρ : V)\n    (hAdm : IsAdmissibleRootedTree G w ρ) :\n    rootedCapacity G w ρ = 1 / ((w ρ : ℚ) - rootedChildCapacitySum G hG w ρ) := by\n  sorry\n"
+    },
+    "nl": {
+      "origin": [
+        {
+          "end_line": 72,
+          "end_locator": null,
+          "kind": "source",
+          "note": "The source derives the root inverse diagonal as the reciprocal Schur complement and substitutes the sum of child capacities, including positivity of the denominator.",
+          "ref": null,
+          "resource_key": null,
+          "source_path": "solution.tex",
+          "start_line": 57,
+          "start_locator": null
+        }
+      ],
+      "text": "For every finite decidable vertex type `V`, simple graph `G` with decidable adjacency, tree witness `hG : G.IsTree`, integer weight `w : V → ℤ`, root `ρ : V`, and admissibility witness `hAdm : IsAdmissibleRootedTree G w ρ`, the existing rational rooted capacity satisfies\n```\nrootedCapacity G w ρ =\n  1 / ((w ρ : ℚ) - rootedChildCapacitySum G hG w ρ).\n```\n\nThis is the reciprocal Schur-complement recursion with the original rational total-inverse meaning of `rootedCapacity` and the existing raw-root-child sum `rootedChildCapacitySum`.  In particular, it introduces no nonzero-denominator hypothesis: the denominator is supplied by the positive-definite rooted Gram situation already contained in `hAdm`.  The equality is oriented from capacity to the exact scalar expression needed by the subsequent strict capacity bound."
+    }
+  },
+  "status": "committed",
+  "updated_at": "2026-07-30T20:53:04Z"
+}

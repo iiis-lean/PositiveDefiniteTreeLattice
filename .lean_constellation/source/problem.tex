@@ -1,0 +1,45 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+
+\newtheorem{theorem}{Theorem}
+
+\begin{document}
+
+\title{An Irreducible Vertex in a Positive-definite Tree Lattice}
+\date{}
+\maketitle
+
+Let $T$ be a finite tree with vertex set $V$, edge set $E$, and an
+integer-valued weight function $w:V\to\mathbb Z$.  Its \emph{tree lattice}
+$L(T)$ is the free abelian group with basis $V$, equipped with the symmetric
+bilinear form determined on basis vectors by
+\[
+ u\mathbin{\cdot}v=
+ \begin{cases}
+   w(u),&u=v,\\
+   -1,&\{u,v\}\in E,\\
+   0,&\text{otherwise}.
+ \end{cases}
+\]
+The form is \emph{positive definite} if $x\mathbin{\cdot}x>0$ for every
+nonzero $x\in L(T)$.
+
+An element $x$ of a positive-definite lattice is \emph{irreducible} if there
+are no nonzero elements $a,b$ such that
+\[
+ x=a+b \qquad\text{and}\qquad a\mathbin{\cdot}b\geq 0.
+\]
+Write $d_T(v)$ for the degree of a vertex $v$ in $T$.
+
+\begin{theorem}
+Suppose the form on $L(T)$ is positive definite and there is a unique vertex
+$v\in V$ for which
+\[
+ w(v)<d_T(v).
+\]
+Then some vertex of $T$, regarded as a basis element of $L(T)$, is
+irreducible.
+\end{theorem}
+
+\end{document}

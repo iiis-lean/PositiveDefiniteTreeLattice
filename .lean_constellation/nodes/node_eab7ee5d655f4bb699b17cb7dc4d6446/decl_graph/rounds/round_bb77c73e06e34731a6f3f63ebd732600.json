@@ -1,0 +1,43 @@
+{
+  "change_summaries": {},
+  "committed_at": "2026-08-06T13:02:01Z",
+  "created_at": "2026-08-06T12:44:46Z",
+  "discard_reason": null,
+  "discarded_at": null,
+  "discarded_by": null,
+  "discarded_created_decl_names": [],
+  "discarded_restored_decl_revisions": {},
+  "discarded_revision_refs": [],
+  "execution_completed_at": "2026-08-06T12:58:12Z",
+  "execution_reason": null,
+  "execution_result_kind": "success",
+  "node_path": "Main.RootedCapacity",
+  "objective": "Delete both obsolete contraction artifacts and create/prove the public two-instance IsAdmissibleRootedTree transport theorem.",
+  "plan_closeout_acknowledged_at": "2026-08-06T13:02:01Z",
+  "plan_closeout_acknowledged_by": "a_a93b40977f574bad89528358fa89e022",
+  "result_kind": "success",
+  "result_reason": "Both contraction artifacts were successfully deleted and the public two-instance admissibility transport theorem was proved with all graph_proved checks passing.",
+  "revision_refs": [
+    {
+      "change_id": "rootedGram_rootNonroot_contraction_eq_childCapacitySum_of_child_admissible@rev:3",
+      "decl_name": "rootedGram_rootNonroot_contraction_eq_childCapacitySum_of_child_admissible",
+      "revision": 3
+    },
+    {
+      "change_id": "rootNonrootContraction_eq_childCapacitySum@rev:2",
+      "decl_name": "rootNonrootContraction_eq_childCapacitySum",
+      "revision": 2
+    },
+    {
+      "change_id": "isAdmissibleRootedTree_instance_irrel@rev:1",
+      "decl_name": "isAdmissibleRootedTree_instance_irrel",
+      "revision": 1
+    }
+  ],
+  "round_id": "round_bb77c73e06e34731a6f3f63ebd732600",
+  "round_index": 90,
+  "started_at": "2026-08-06T12:47:03Z",
+  "status": "committed",
+  "strategy_id": "strategy_65b4edd9fbaa4dd7a7f42a0285efa7eb",
+  "summary": "Round 90 fully achieved the repaired graph-proved v6 strategy. Both unreleased contraction artifacts reached obsolete deletion targets, removing the superseded branches and the removed contraction interface implementation. The new public theorem isAdmissibleRootedTree_instance_irrel passed all four declaration stages and is proof-policy satisfied. It transports the fixed IsAdmissibleRootedTree proposition bidirectionally across two explicit Fintype/DecidableEq/DecidableRel conventions by subsingleton equality, preserving solution.tex 33–38 semantics and the existing predicate unchanged. Its sole current-node semantic dependency IsAdmissibleRootedTree is declared and satisfied; the required Fintype.subsingleton Mathlib support was already validated. No blocker, state-only intermediate, helper debt, provider mismatch, retry artifact, or node-scope expansion remains. After terminal commit, the next action is public-boundary/interface curation followed by the completion gate and ready submission."
+}

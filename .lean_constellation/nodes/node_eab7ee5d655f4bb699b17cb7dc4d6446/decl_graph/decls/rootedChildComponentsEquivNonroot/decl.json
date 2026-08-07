@@ -1,0 +1,15 @@
+{
+  "created_at": "2026-07-30T09:51:32Z",
+  "current_revision": 1,
+  "kind": "definition",
+  "lifecycle": "active",
+  "module": "PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildComponentsEquivNonroot",
+  "name": "rootedChildComponentsEquivNonroot",
+  "node_path": "Main.RootedCapacity",
+  "public": true,
+  "revision_ids": [
+    1
+  ],
+  "summary": "The dependent family of root-child components is equivalent to the subtype of nonroot vertices.",
+  "updated_at": "2026-08-03T14:57:16Z"
+}

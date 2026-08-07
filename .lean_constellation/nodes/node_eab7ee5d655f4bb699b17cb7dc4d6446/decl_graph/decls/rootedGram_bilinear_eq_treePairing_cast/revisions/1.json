@@ -1,0 +1,256 @@
+{
+  "change": {
+    "anticipated_proof_dep_names": [
+      "rootedGram"
+    ],
+    "anticipated_statement_dep_names": [
+      "rootedGram"
+    ],
+    "base_revision": null,
+    "kind": "create",
+    "objective": "Implement the exact contract-v10 public interface from the generic rootedGram/treePairing representation, anchored in the node-owned solution.tex 33–45 and 47–82 matrix-form context: for arbitrary finite V with DecidableEq, arbitrary decidable SimpleGraph G, weight w : V → ℤ, and x y : V → ℤ, prove the ordered double sum ∑ u, ∑ t, (x u : ℚ) * rootedGram G w u t * (y t : ℚ) equals (PositiveDefiniteTreeLattice.treePairing G w x y : ℚ). Preserve coefficient order and all generic instances; add no tree, root, admissibility, capacity, or other assumptions. Prove directly by unfolding the existing rootedGram, treePairing, and vertexVector definitions, evaluating the vertex-vector finite sums, and normalizing integer casts. This declaration is the sole new v10 interface and must remain usable unchanged for ambient and child-component graphs.",
+    "require_target_state_satisfied": true,
+    "reset_to_state": null,
+    "summary": "Created the sole contract-v10 public theorem and advanced it through all four stages to proved. The accepted statement is fully generic in a finite vertex type, decidable simple graph, integer weight, and two integral coefficient functions; it identifies the ordered rational rootedGram double sum with the rational cast of PositiveDefiniteTreeLattice.treePairing, with no tree, root, admissibility, capacity, or consumer-specific assumptions. The proof directly uses the existing rootedGram/treePairing/vertexVector representation and finite-sum/cast algebra. Formal statement and proof checks passed, the rootedGram dependency is satisfied, and no helper, representation change, or unresolved blocker remains.",
+    "target_state": "proved"
+  },
+  "lean_decl_name": "rootedGram_bilinear_eq_treePairing_cast",
+  "proof": {
+    "deps": [
+      {
+        "kind": "mathlib_decl",
+        "reason": "Moves the integral defining finite pairing sum to its rational coordinate sum.",
+        "ref": {
+          "module": "Mathlib.Algebra.BigOperators.Ring.Finset",
+          "name": "Int.cast_sum"
+        }
+      },
+      {
+        "kind": "mathlib_decl",
+        "reason": "Normalizes products of integral coefficients after scalar extension to ℚ.",
+        "ref": {
+          "module": "Mathlib.Algebra.Ring.Int.Defs",
+          "name": "Int.cast_mul"
+        }
+      },
+      {
+        "kind": "mathlib_decl",
+        "reason": "Rewrites the adjacency-indicator sum produced by the coordinate-vector expansion as the neighborFinset sum in treePairing.",
+        "ref": {
+          "module": "Mathlib.Combinatorics.SimpleGraph.Finite",
+          "name": "SimpleGraph.neighborFinset_eq_filter"
+        }
+      },
+      {
+        "kind": "mathlib_decl",
+        "reason": "Supports the additive integer-cast normalization in the expanded finite sums.",
+        "ref": {
+          "module": "Mathlib.Data.Int.Cast.Basic",
+          "name": "Int.cast_add"
+        }
+      },
+      {
+        "kind": "mathlib_decl",
+        "reason": "The cast-expanded definition of treePairing contains an integer subtraction, normalized in the stated proof route.",
+        "ref": {
+          "module": "Mathlib.Data.Int.Cast.Basic",
+          "name": "Int.cast_sub"
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "The proof unfolds PositiveDefiniteTreeLattice.treePairing on the right and in each Gram entry.",
+        "ref": {
+          "name": "treePairingAnchor",
+          "node": "Main.LatticeFoundations",
+          "repo": null,
+          "revision": 1
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "The proof evaluates the coordinate delta-vectors occurring in rootedGram.",
+        "ref": {
+          "name": "vertexVectorAnchor",
+          "node": "Main.LatticeFoundations",
+          "repo": null,
+          "revision": 1
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "The proof unfolds the rational Gram-entry definition.",
+        "ref": {
+          "name": "rootedGram",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 2
+        }
+      }
+    ],
+    "formal": {
+      "check": {
+        "allow_sorry": false,
+        "contains_axiom": false,
+        "contains_sorry": false,
+        "diagnostics": {
+          "diagnostics": [],
+          "passed": true,
+          "raw_excerpt": "{'success': True, 'error_message': None, 'file': 'PositiveDefiniteTreeLattice.Main.RootedCapacity.Theorems.rootedGram_bilinear_eq_treePairing_cast', 'items': [], 'total_items': 0, 'error_count': 0, 'warning_count': 0, 'info_count': 0, 'sorry_count': 0}",
+          "repo_file_path": "PositiveDefiniteTreeLattice/Main/RootedCapacity/Theorems/rootedGram_bilinear_eq_treePairing_cast.lean",
+          "schema_version": 2,
+          "summary": "Diagnostics returned 0 items"
+        },
+        "message": "Lean check passed.",
+        "policy": "proof_formal",
+        "scan": {
+          "admit_count": 0,
+          "axiom_count": 0,
+          "contains_admit": false,
+          "contains_axiom": false,
+          "contains_opaque": false,
+          "contains_sorry": false,
+          "contains_unsafe": false,
+          "limitation": "Text scan ignores Lean comments and string literals with a conservative first-round lexer; it is not a full Lean parser.",
+          "occurrences": [],
+          "opaque_count": 0,
+          "sorry_count": 0,
+          "summary": "sorry=0, admit=0, axiom=0, opaque=0, unsafe=0",
+          "unsafe_count": 0
+        },
+        "status": "passed"
+      },
+      "code": "-- lean-constellation: managed-imports-begin\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Prelude\nimport Mathlib.Algebra.BigOperators.Ring.Finset\nimport Mathlib.Algebra.Ring.Int.Defs\nimport Mathlib.Combinatorics.SimpleGraph.Finite\nimport Mathlib.Data.Int.Cast.Basic\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedGram\n-- lean-constellation: managed-imports-end\n\n-- lean-constellation: declaration-source-begin\n\n/--\n# lean-constellation target: `rootedGram_bilinear_eq_treePairing_cast`\n\nFor every type `V` with finite and decidable equality instances, every simple graph `G : SimpleGraph\nV` with decidable adjacency, every integer weight function `w : V → ℤ`, and all integer coefficient\nfunctions `x y : V → ℤ`,\n\n```lean\n∑ u, ∑ t, (x u : ℚ) * rootedGram G w u t * (y t : ℚ) =\n  (PositiveDefiniteTreeLattice.treePairing G w x y : ℚ)\n```\n\nThe equality preserves the displayed ordered coefficient product and is asserted with no tree, root,\nadmissibility, capacity, or other structural hypotheses.\n\n## Sources\n\n- Source `solution.tex`, lines 33–45\n- Source `solution.tex`, lines 47–82\n\n## Statement dependencies\n\n- `Main.LatticeFoundations::treePairingAnchor` → `PositiveDefiniteTreeLattice.treePairing` from\n  `PositiveDefiniteTreeLattice.Main.LatticeFoundations.Defs.treePairingAnchor`\n- `Main.RootedCapacity::rootedGram` → `rootedGram` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedGram`\n\n## Proof outline\n\nUnfold `rootedGram`, `PositiveDefiniteTreeLattice.treePairing`, and\n`PositiveDefiniteTreeLattice.vertexVector`. The left side then has the ordered finite double sum of\nthe scalar extension of the pairing of two coordinate delta-vectors, while the right side is the\ncast of the defining integral finite sum.\n\nFirst rewrite the cast on the right through its outer finite sum using `Int.cast_sum`; use the simp\ncast rules, in particular `Int.cast_mul` (and the standard casts for subtraction and zero), to put\neach summand in `ℚ`. For the coordinate entry at fixed `u, t`, evaluate the finite sum in\n`treePairing G w (vertexVector u) (vertexVector t)`: the outer delta-vector sum selects `u`, and the\nneighbor finite sum of the inner delta-vector is the adjacency indicator at `u, t`. This is a direct\nfinite-`Finset` simplification from the definition of `vertexVector`; no graph property is used.\n\nSubstitute that evaluated entry into the displayed ordered double sum. Distribute/reassociate the\nfinite sums only with the existing finite-sum algebra, and normalize the rational casts and ring\nexpressions. The resulting summand-by-summand finite sum is exactly the cast-expanded definition of\n`treePairing G w x y`, with the coefficient order `(x u : ℚ) * rootedGram G w u t * (y t : ℚ)`\nretained. The implementation should therefore be a direct `simp`/finite-sum normalization proof\nafter these unfolds; if simplification leaves the delta-vector selection explicit, split on the\ncorresponding equality and use the `if` branches before the same normalization. This is a\nlightweight local computation, not a missing reusable helper.\n\n## Proof sources\n\n- Source `solution.tex`, lines 33–45\n- Source `solution.tex`, lines 47–82\n\n## Proof dependencies\n\n- `Int.cast_sum` from `Mathlib.Algebra.BigOperators.Ring.Finset`\n- `Int.cast_mul` from `Mathlib.Algebra.Ring.Int.Defs`\n- `SimpleGraph.neighborFinset_eq_filter` from `Mathlib.Combinatorics.SimpleGraph.Finite`\n- `Int.cast_add` from `Mathlib.Data.Int.Cast.Basic`\n- `Int.cast_sub` from `Mathlib.Data.Int.Cast.Basic`\n- `Main.LatticeFoundations::treePairingAnchor` → `PositiveDefiniteTreeLattice.treePairing` from\n  `PositiveDefiniteTreeLattice.Main.LatticeFoundations.Defs.treePairingAnchor`\n- `Main.LatticeFoundations::vertexVectorAnchor` → `PositiveDefiniteTreeLattice.vertexVector` from\n  `PositiveDefiniteTreeLattice.Main.LatticeFoundations.Defs.vertexVectorAnchor`\n- `Main.RootedCapacity::rootedGram` → `rootedGram` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedGram`\n-/\ntheorem rootedGram_bilinear_eq_treePairing_cast {V : Type*} [Fintype V] [DecidableEq V]\n    (G : SimpleGraph V) [DecidableRel G.Adj] (w : V → ℤ) (x y : V → ℤ) :\n    ∑ u, ∑ t, (x u : ℚ) * rootedGram G w u t * (y t : ℚ) =\n      (PositiveDefiniteTreeLattice.treePairing G w x y : ℚ) := by\n  simp only [rootedGram, PositiveDefiniteTreeLattice.treePairing,\n    PositiveDefiniteTreeLattice.vertexVector, mul_ite, mul_one, mul_zero,\n    Finset.sum_ite_eq', SimpleGraph.mem_neighborFinset, ite_mul, one_mul,\n    zero_mul, Finset.mem_univ, ↓reduceIte, Int.cast_sub, Int.cast_ite,\n    Int.cast_zero, Int.cast_one, Int.cast_sum, Int.cast_mul]\n  apply Finset.sum_congr rfl\n  intro u _\n  simp_rw [mul_sub, sub_mul]\n  rw [Finset.sum_sub_distrib]\n  simp only [mul_ite, mul_zero, ite_mul, zero_mul, Finset.sum_ite_eq,\n    Finset.mem_univ, ↓reduceIte, mul_one]\n  rw [mul_assoc, Finset.mul_sum, SimpleGraph.neighborFinset_eq_filter]\n  rw [← Finset.sum_filter]\n"
+    },
+    "nl": {
+      "origin": [
+        {
+          "end_line": 45,
+          "end_locator": null,
+          "kind": "source",
+          "note": "This matrix-form passage supplies the source setting for expressing the weighted integral form through rational coordinates, which the proof computes from the definitions.",
+          "ref": null,
+          "resource_key": null,
+          "source_path": "solution.tex",
+          "start_line": 33,
+          "start_locator": null
+        },
+        {
+          "end_line": 82,
+          "end_locator": null,
+          "kind": "source",
+          "note": "The capacity matrix calculations use the same rooted weighted Gram-coordinate representation whose generic bilinear expansion is established here.",
+          "ref": null,
+          "resource_key": null,
+          "source_path": "solution.tex",
+          "start_line": 47,
+          "start_locator": null
+        }
+      ],
+      "text": "Unfold `rootedGram`, `PositiveDefiniteTreeLattice.treePairing`, and `PositiveDefiniteTreeLattice.vertexVector`. The left side then has the ordered finite double sum of the scalar extension of the pairing of two coordinate delta-vectors, while the right side is the cast of the defining integral finite sum.\n\nFirst rewrite the cast on the right through its outer finite sum using `Int.cast_sum`; use the simp cast rules, in particular `Int.cast_mul` (and the standard casts for subtraction and zero), to put each summand in `ℚ`. For the coordinate entry at fixed `u, t`, evaluate the finite sum in `treePairing G w (vertexVector u) (vertexVector t)`: the outer delta-vector sum selects `u`, and the neighbor finite sum of the inner delta-vector is the adjacency indicator at `u, t`. This is a direct finite-`Finset` simplification from the definition of `vertexVector`; no graph property is used.\n\nSubstitute that evaluated entry into the displayed ordered double sum. Distribute/reassociate the finite sums only with the existing finite-sum algebra, and normalize the rational casts and ring expressions. The resulting summand-by-summand finite sum is exactly the cast-expanded definition of `treePairing G w x y`, with the coefficient order `(x u : ℚ) * rootedGram G w u t * (y t : ℚ)` retained. The implementation should therefore be a direct `simp`/finite-sum normalization proof after these unfolds; if simplification leaves the delta-vector selection explicit, split on the corresponding equality and use the `if` branches before the same normalization. This is a lightweight local computation, not a missing reusable helper."
+    }
+  },
+  "revision": 1,
+  "state": "proved",
+  "statement": {
+    "deps": [
+      {
+        "kind": "repo_decl",
+        "reason": "The right-hand side is the public PositiveDefiniteTreeLattice.treePairing interface.",
+        "ref": {
+          "name": "treePairingAnchor",
+          "node": "Main.LatticeFoundations",
+          "repo": null,
+          "revision": 1
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "The left-hand rational coordinate sum is stated using rootedGram.",
+        "ref": {
+          "name": "rootedGram",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 2
+        }
+      }
+    ],
+    "formal": {
+      "check": {
+        "allow_sorry": true,
+        "contains_axiom": false,
+        "contains_sorry": true,
+        "diagnostics": {
+          "diagnostics": [
+            {
+              "column": 9,
+              "line": 35,
+              "message": "declaration uses `sorry`",
+              "severity": "warning"
+            }
+          ],
+          "passed": true,
+          "raw_excerpt": "{'success': True, 'error_message': None, 'file': 'PositiveDefiniteTreeLattice.Main.RootedCapacity.Theorems.rootedGram_bilinear_eq_treePairing_cast', 'items': [{'severity': 'warning', 'pos': {'line': 35, 'column': 9}, 'endPos': {'line': 35, 'column': 48}, 'kind': None, 'data': 'declaration uses `sorry`', 'fileName': 'PositiveDefiniteTreeLattice.Main.RootedCapacity.Theorems.rootedGram_bilinear_eq_treePairing_cast', 'content': '  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedGram`\\n-/\\ntheorem rootedGram_bilinear_eq_treePairing_cast {V : Type*} [Fintype V] [DecidableEq V]\\n    (G : SimpleGraph V) [DecidableRel G.Adj] (w : V → ℤ) (x y : V → ℤ) :\\n    ∑ u, ∑ t, (x u : ℚ) * rootedGram G w u t * (y t : ℚ) ='}], 'total_items': 1, 'error_count': 0, 'warning_count': 1, 'info_count': 0, 'sorry_count': 1}",
+          "repo_file_path": "PositiveDefiniteTreeLattice/Main/RootedCapacity/Theorems/rootedGram_bilinear_eq_treePairing_cast.lean",
+          "schema_version": 2,
+          "summary": "Diagnostics returned 1 items"
+        },
+        "message": "Lean check passed.",
+        "policy": "statement_formal",
+        "scan": {
+          "admit_count": 0,
+          "axiom_count": 0,
+          "contains_admit": false,
+          "contains_axiom": false,
+          "contains_opaque": false,
+          "contains_sorry": true,
+          "contains_unsafe": false,
+          "limitation": "Text scan ignores Lean comments and string literals with a conservative first-round lexer; it is not a full Lean parser.",
+          "occurrences": [
+            {
+              "column": 3,
+              "excerpt": "sorry",
+              "kind": "sorry",
+              "line": 39
+            }
+          ],
+          "opaque_count": 0,
+          "sorry_count": 1,
+          "summary": "sorry=1, admit=0, axiom=0, opaque=0, unsafe=0",
+          "unsafe_count": 0
+        },
+        "status": "passed"
+      },
+      "code": "-- lean-constellation: managed-imports-begin\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Prelude\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedGram\n-- lean-constellation: managed-imports-end\n\n-- lean-constellation: declaration-source-begin\n\n/--\n# lean-constellation target: `rootedGram_bilinear_eq_treePairing_cast`\n\nFor every type `V` with finite and decidable equality instances, every simple graph `G : SimpleGraph\nV` with decidable adjacency, every integer weight function `w : V → ℤ`, and all integer coefficient\nfunctions `x y : V → ℤ`,\n\n```lean\n∑ u, ∑ t, (x u : ℚ) * rootedGram G w u t * (y t : ℚ) =\n  (PositiveDefiniteTreeLattice.treePairing G w x y : ℚ)\n```\n\nThe equality preserves the displayed ordered coefficient product and is asserted with no tree, root,\nadmissibility, capacity, or other structural hypotheses.\n\n## Sources\n\n- Source `solution.tex`, lines 33–45\n- Source `solution.tex`, lines 47–82\n\n## Statement dependencies\n\n- `Main.LatticeFoundations::treePairingAnchor` → `PositiveDefiniteTreeLattice.treePairing` from\n  `PositiveDefiniteTreeLattice.Main.LatticeFoundations.Defs.treePairingAnchor`\n- `Main.RootedCapacity::rootedGram` → `rootedGram` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedGram`\n-/\ntheorem rootedGram_bilinear_eq_treePairing_cast {V : Type*} [Fintype V] [DecidableEq V]\n    (G : SimpleGraph V) [DecidableRel G.Adj] (w : V → ℤ) (x y : V → ℤ) :\n    ∑ u, ∑ t, (x u : ℚ) * rootedGram G w u t * (y t : ℚ) =\n      (PositiveDefiniteTreeLattice.treePairing G w x y : ℚ) := by\n  sorry\n"
+    },
+    "nl": {
+      "origin": [
+        {
+          "end_line": 45,
+          "end_locator": null,
+          "kind": "source",
+          "note": "Introduces the weighted-tree matrix form Q_C and its rational scalar extension context.",
+          "ref": null,
+          "resource_key": null,
+          "source_path": "solution.tex",
+          "start_line": 33,
+          "start_locator": null
+        },
+        {
+          "end_line": 82,
+          "end_locator": null,
+          "kind": "source",
+          "note": "Uses the rooted weighted-tree matrix Q_C and its coordinate/block calculations, motivating the generic rational Gram-coordinate bridge.",
+          "ref": null,
+          "resource_key": null,
+          "source_path": "solution.tex",
+          "start_line": 47,
+          "start_locator": null
+        }
+      ],
+      "text": "For every type `V` with finite and decidable equality instances, every simple graph `G : SimpleGraph V` with decidable adjacency, every integer weight function `w : V → ℤ`, and all integer coefficient functions `x y : V → ℤ`,\n\n```lean\n∑ u, ∑ t, (x u : ℚ) * rootedGram G w u t * (y t : ℚ) =\n  (PositiveDefiniteTreeLattice.treePairing G w x y : ℚ)\n```\n\nThe equality preserves the displayed ordered coefficient product and is asserted with no tree, root, admissibility, capacity, or other structural hypotheses."
+    }
+  },
+  "status": "committed",
+  "updated_at": "2026-08-07T04:34:28Z"
+}

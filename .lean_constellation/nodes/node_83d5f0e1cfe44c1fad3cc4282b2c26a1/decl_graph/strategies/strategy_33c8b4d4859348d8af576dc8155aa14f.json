@@ -1,0 +1,18 @@
+{
+  "closed_at": "2026-07-29T19:34:40Z",
+  "closed_reason": "Achieved the contract version 2 dependency-ordered namespace projection repair and passed the deterministic content completion gate.",
+  "created_at": "2026-07-29T18:42:42Z",
+  "created_round_ids": [
+    "round_a69506ab3aae4ff4af217e6479def7b3",
+    "round_e55afd94193148f7921595294e8e836c",
+    "round_1568caeb1a47446696034b660a091005",
+    "round_8d4e9223c2b94d5fa849ce5452a1e573",
+    "round_7ba88b06896a4a9aba1a7e15d4547a49"
+  ],
+  "node_path": "Main.LatticeFoundations",
+  "objective": "Repair the namespace projection of the existing ten-declaration LatticeFoundations package in dependency order, recapturing each declaration under namespace PositiveDefiniteTreeLattice while preserving accepted statements, proof dependencies, proofs, visibility, and interface semantics, with no global aliases.",
+  "rationale": "Contract version 2 is projection-only under graph_proved. Validation proves provider and consumer updates cannot share a round because each updated provider resets to specified. Proceed bottom-up: independent definitions treePairing and vertexVector; then Irreducible and direct algebra/vertex consumers; then higher self-pairing and final irreducibility consumers. Existing source and Mathlib evidence remain sufficient, so no preparation recon is needed.",
+  "status": "closed",
+  "strategy_id": "strategy_33c8b4d4859348d8af576dc8155aa14f",
+  "summary": "All ten declarations are compiler-confirmed in namespace PositiveDefiniteTreeLattice, definitions are declared, theorem-like declarations are proved under graph_proved, public Statement closure is complete, and the content completion gate passed 9 checks with no warnings."
+}

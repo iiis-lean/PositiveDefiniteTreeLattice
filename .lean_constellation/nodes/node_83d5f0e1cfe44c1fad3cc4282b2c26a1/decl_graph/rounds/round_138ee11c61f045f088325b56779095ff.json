@@ -1,0 +1,89 @@
+{
+  "change_summaries": {},
+  "committed_at": null,
+  "created_at": "2026-07-29T18:40:57Z",
+  "discard_reason": "Draft validation found 21 round-internal dependency failures because updating the full namespace-connected package resets providers to specified. Replan in dependency order, beginning with independent treePairing and vertexVector definitions.",
+  "discarded_at": "2026-07-29T18:42:15Z",
+  "discarded_by": "a_60a257a14c4c469b9e17805606fa5ea4",
+  "discarded_created_decl_names": [],
+  "discarded_restored_decl_revisions": {
+    "Irreducible": 2,
+    "irreducible_of_pairing_self_eq_one": 1,
+    "treePairing": 2,
+    "treePairing_add_left": 2,
+    "treePairing_add_right": 2,
+    "treePairing_add_self": 1,
+    "treePairing_symm": 2,
+    "treePairing_vertexVector_self": 1,
+    "vertexVector": 2,
+    "vertexVector_ne_zero": 1
+  },
+  "discarded_revision_refs": [
+    {
+      "change_id": "treePairing@rev:3",
+      "decl_name": "treePairing",
+      "revision": 3
+    },
+    {
+      "change_id": "vertexVector@rev:3",
+      "decl_name": "vertexVector",
+      "revision": 3
+    },
+    {
+      "change_id": "Irreducible@rev:3",
+      "decl_name": "Irreducible",
+      "revision": 3
+    },
+    {
+      "change_id": "treePairing_add_left@rev:3",
+      "decl_name": "treePairing_add_left",
+      "revision": 3
+    },
+    {
+      "change_id": "treePairing_add_right@rev:3",
+      "decl_name": "treePairing_add_right",
+      "revision": 3
+    },
+    {
+      "change_id": "treePairing_symm@rev:3",
+      "decl_name": "treePairing_symm",
+      "revision": 3
+    },
+    {
+      "change_id": "treePairing_add_self@rev:2",
+      "decl_name": "treePairing_add_self",
+      "revision": 2
+    },
+    {
+      "change_id": "vertexVector_ne_zero@rev:2",
+      "decl_name": "vertexVector_ne_zero",
+      "revision": 2
+    },
+    {
+      "change_id": "treePairing_vertexVector_self@rev:2",
+      "decl_name": "treePairing_vertexVector_self",
+      "revision": 2
+    },
+    {
+      "change_id": "irreducible_of_pairing_self_eq_one@rev:2",
+      "decl_name": "irreducible_of_pairing_self_eq_one",
+      "revision": 2
+    }
+  ],
+  "execution_completed_at": null,
+  "execution_reason": null,
+  "execution_result_kind": null,
+  "node_path": "Main.LatticeFoundations",
+  "objective": "Recapture the complete ten-declaration LatticeFoundations package inside namespace PositiveDefiniteTreeLattice in one dependency-coherent round. Preserve every accepted mathematical statement, proof route, dependency, public visibility, and interface meaning; remove the incorrect global projections rather than adding global aliases; and restore graph-proved satisfaction for all theorem-like declarations.",
+  "plan_closeout_acknowledged_at": null,
+  "plan_closeout_acknowledged_by": null,
+  "result_kind": null,
+  "result_reason": null,
+  "revision_refs": [],
+  "round_id": "round_138ee11c61f045f088325b56779095ff",
+  "round_index": 8,
+  "started_at": null,
+  "status": "discarded",
+  "strategy_id": "strategy_b465944382e94e30b7f4100d58702464",
+  "summary": null
+}

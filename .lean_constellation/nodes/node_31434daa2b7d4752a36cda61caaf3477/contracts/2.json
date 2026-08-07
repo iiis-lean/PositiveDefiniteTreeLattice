@@ -1,0 +1,191 @@
+{
+  "boundary": "Own generic graph-theoretic results for finite simple trees about chosen unique paths, first intersections of path supports, support separation across a deleted edge, simplicity/factorization of appended paths, and root-oriented closure of the child side of an edge cut under one-step path extension. Exclude weighted pairings, rooted capacities, admissibility, matrices, and the RootedCapacity-specific rootedChildren/rootedChildComponent definitions and Finset transport theorems. Expected total scale after this continuation: about 7–10 important graph declarations implementing the structural bridge implicit in SourceIndex b_0008–b_0009 / solution.tex lines 33–64.",
+  "committed_at": "2026-07-30T06:19:42Z",
+  "constraints": "Use only finite simple-tree and Mathlib path/connectivity notions. The factorization conclusion must preserve equality with the chosen unique path and append of the chosen root-to-c and c-to-x paths, or a compiler-equivalent packaged equality with exactly those endpoints and factors. Do not weaken to reachability/support membership, assume the desired support separation, or import RootedCapacity and create a dependency cycle.",
+  "context_refs": [],
+  "contract_kind": "content",
+  "created_at": "2026-07-30T05:49:02Z",
+  "decl_graph_head": {
+    "eq_uniquePath_of_isPath": 1,
+    "reachable_childSide_of_uniquePath_concat": 1,
+    "uniquePath": 1,
+    "uniquePath_append_isPath_through_cut": 1,
+    "uniquePath_eq_append_through_cut": 1,
+    "uniquePath_isPath": 1,
+    "uniquePath_support_separated_by_cut": 1
+  },
+  "deps": [],
+  "exports": [],
+  "goal": "Formalize reusable path-support and edge-cut factorization theorems for finite trees, sufficient to decompose a unique root-to-vertex path through the root of a child-side component.",
+  "interfaces": [
+    {
+      "bound_decl": {
+        "name": "uniquePath_support_separated_by_cut",
+        "node": "Main.TreePathSeparation",
+        "repo": null,
+        "revision": 1
+      },
+      "expected_statement_lean_code": null,
+      "kind": "theorem",
+      "name": "PositiveDefiniteTreeLattice.uniquePath_support_separated_by_cut",
+      "note": "Consumer anchor: Main.RootedCapacity::rootedChildComponent_path_decomposition@1. For hG : G.IsTree and vertices ρ parent c x, assume parent-c is the terminal oriented edge on the chosen path from ρ to c and x lies in the c-side connected component of G after deleting edge parent-c. Conclude the chosen ρ-to-c and c-to-x path supports have no common vertex other than c, in a form sufficient to prove their append is a Path. Prove this noncircularly via a first common vertex and path uniqueness; do not assume append simplicity.",
+      "source_refs": [],
+      "summary": "Across an oriented edge cut in a finite tree, the root-side and child-side chosen path supports meet only at the child endpoint."
+    },
+    {
+      "bound_decl": {
+        "name": "uniquePath_eq_append_through_cut",
+        "node": "Main.TreePathSeparation",
+        "repo": null,
+        "revision": 1
+      },
+      "expected_statement_lean_code": null,
+      "kind": "theorem",
+      "name": "PositiveDefiniteTreeLattice.uniquePath_eq_append_through_cut",
+      "note": "Consumer anchor: exact accepted goal Main.RootedCapacity::rootedChildComponent_path_decomposition@1. With hG : G.IsTree, root ρ, cut edge parent-c oriented away from ρ, and x on the c-side component after deleting parent-c, conclude (hG.existsUnique_path ρ x).choose = (hG.existsUnique_path ρ c).choose.append (hG.existsUnique_path c x).choose, or a compiler-equivalent packaged equality whose factors are exactly those chosen paths. Hypotheses must be directly derivable from hc : c ∈ rootedChildren G hG ρ parent and x : rootedChildComponent G parent c; do not mention RootedCapacity declarations in this node's formal statement.",
+      "source_refs": [],
+      "summary": "A finite-tree unique path factors through the child endpoint of an oriented cut edge."
+    },
+    {
+      "bound_decl": {
+        "name": "reachable_childSide_of_uniquePath_concat",
+        "node": "Main.TreePathSeparation",
+        "repo": null,
+        "revision": 1
+      },
+      "expected_statement_lean_code": null,
+      "kind": "theorem",
+      "name": "PositiveDefiniteTreeLattice.reachable_childSide_of_uniquePath_concat",
+      "note": "Consumer anchor: Main.RootedCapacity::rootedChildren_rootedChildComponent@2 reverse Finset inclusion. For finite V, tree G with hG, vertices root parent c x z, assume hpc : G.Adj parent c, hroot : (G.deleteEdges {s(parent,c)}).Reachable root parent, hx : (G.deleteEdges {s(parent,c)}).Reachable c x, hxz : G.Adj x z, and the oriented-child witness that uniquePath G hG root z equals (uniquePath G hG root x).concat hxz (or the compiler-equivalent equality furnished by rootedChildren membership). Conclude (G.deleteEdges {s(parent,c)}).Reachable c z. Preserve the direction and exact c-side conclusion; derive that x-z is not the deleted cut edge using tree path uniqueness/orientation, and do not require z-side reachability as an assumption. The formal statement must remain generic and must not mention rootedChildren, rootedChildComponent, Finset, subtypes, weights, or matrices.",
+      "source_refs": [],
+      "summary": "An ambient child extending an oriented root path from the child side of a tree-edge cut remains reachable on that child side after deleting the cut edge."
+    }
+  ],
+  "mathlib_decls": [
+    {
+      "added_by": "worker",
+      "kind": "lemma",
+      "module": "Mathlib.Combinatorics.SimpleGraph.Acyclic",
+      "name": "SimpleGraph.IsTree.existsUnique_path",
+      "reason": null
+    },
+    {
+      "added_by": "worker",
+      "kind": "lemma",
+      "module": "Mathlib.Combinatorics.SimpleGraph.Acyclic",
+      "name": "SimpleGraph.isAcyclic_iff_forall_adj_isBridge",
+      "reason": null
+    },
+    {
+      "added_by": "worker",
+      "kind": "def",
+      "module": "Mathlib.Combinatorics.SimpleGraph.Connectivity.Connected",
+      "name": "SimpleGraph.IsBridge",
+      "reason": null
+    },
+    {
+      "added_by": "worker",
+      "kind": "abbrev",
+      "module": "Mathlib.Combinatorics.SimpleGraph.Walk.Maps",
+      "name": "SimpleGraph.Walk.toDeleteEdges",
+      "reason": null
+    },
+    {
+      "added_by": "worker",
+      "kind": "theorem",
+      "module": "Mathlib.Combinatorics.SimpleGraph.Paths",
+      "name": "SimpleGraph.Walk.IsPath.toDeleteEdges",
+      "reason": null
+    },
+    {
+      "added_by": "worker",
+      "kind": "def",
+      "module": "Mathlib.Combinatorics.SimpleGraph.Walk.Operations",
+      "name": "SimpleGraph.Walk.append",
+      "reason": null
+    },
+    {
+      "added_by": "worker",
+      "kind": "def",
+      "module": "Mathlib.Combinatorics.SimpleGraph.Walk.Operations",
+      "name": "SimpleGraph.Walk.reverse",
+      "reason": null
+    },
+    {
+      "added_by": "worker",
+      "kind": "theorem",
+      "module": "Mathlib.Combinatorics.SimpleGraph.Walk.Operations",
+      "name": "SimpleGraph.Walk.support_append",
+      "reason": null
+    },
+    {
+      "added_by": "worker",
+      "kind": "lemma",
+      "module": "Mathlib.Combinatorics.SimpleGraph.Paths",
+      "name": "SimpleGraph.Walk.IsPath.disjoint_support_of_append",
+      "reason": null
+    },
+    {
+      "added_by": "worker",
+      "kind": "lemma",
+      "module": "Mathlib.Combinatorics.SimpleGraph.Paths",
+      "name": "SimpleGraph.Walk.IsPath.mem_support_iff_exists_append",
+      "reason": null
+    },
+    {
+      "added_by": "worker",
+      "kind": "theorem",
+      "module": "Mathlib.Combinatorics.SimpleGraph.Paths",
+      "name": "SimpleGraph.Path.nodup_support",
+      "reason": null
+    }
+  ],
+  "mathlib_modules": [
+    {
+      "added_by": "worker",
+      "module": "Mathlib.Combinatorics.SimpleGraph.Acyclic",
+      "reason": null
+    },
+    {
+      "added_by": "worker",
+      "module": "Mathlib.Combinatorics.SimpleGraph.Paths",
+      "reason": null
+    },
+    {
+      "added_by": "worker",
+      "module": "Mathlib.Combinatorics.SimpleGraph.Connectivity.Connected",
+      "reason": null
+    },
+    {
+      "added_by": "worker",
+      "module": "Mathlib.Combinatorics.SimpleGraph.Walk.Maps",
+      "reason": null
+    },
+    {
+      "added_by": "worker",
+      "module": "Mathlib.Combinatorics.SimpleGraph.Walk.Operations",
+      "reason": null
+    }
+  ],
+  "objective": "Continuation v2 under graph_proved: extend the proved cut package with a generic root-oriented cut-side closure theorem. Given tree/cut data, root-to-parent and c-to-x reachability in the deleted-edge graph, ambient adjacency x-z, and an equality/witness that the canonical root-to-z path extends the canonical root-to-x path by x-z, prove deleted-edge reachability from c to z. The result must directly discharge the reverse-inclusion gap in Main.RootedCapacity::rootedChildren_rootedChildComponent@2 without depending on RootedCapacity.",
+  "owned_refs": [
+    {
+      "added_by": "coordinator",
+      "reason": "The source roots trees, orients edges away from the root, treats child branches as independent rooted subtrees, and groups vertices by those subtrees; the generic unique-path/cut separation package is the Lean structural bridge needed to formalize that decomposition.",
+      "ref": {
+        "kind": "source",
+        "ref": {
+          "end_line": 64,
+          "path": "solution.tex",
+          "start_line": 33
+        }
+      },
+      "ref_id": "mat_c4760eb9e19769cd"
+    }
+  ],
+  "status": "committed",
+  "success_criteria": "A public, interface-bound oriented cut-side closure theorem has a compiler-accepted statement and proof; its objects, assumptions, indices, and conclusion are directly instantiable by rootedChildren_rootedChildComponent@2; all prior path interfaces remain proved and bound; every theorem-like helper is proved; no RootedCapacity or weighted/matrix dependency is added; public Statement closure and the deterministic completion gate pass.",
+  "summary": "Accepted ready outcome for contract v2. The new proved, interface-bound theorem reachable_childSide_of_uniquePath_concat takes exactly the finite tree, cut edge, root-to-parent and c-to-x deleted-edge reachability, ambient adjacency x-z, and canonical root-path concat equality available in rootedChildren_rootedChildComponent@2, and concludes the required c-to-z deleted-edge reachability. Objects, indices, hypothesis direction, and conclusion match the reverse Finset inclusion consumer without RootedCapacity-specific notions. The seven-declaration path graph is graph-proved, prior interfaces remain bound, and public Statement closure is complete.",
+  "task_completion_mode": "graph_proved",
+  "version": 2
+}

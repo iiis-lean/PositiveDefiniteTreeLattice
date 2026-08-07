@@ -1,0 +1,26 @@
+{
+  "closed_at": "2026-08-03T14:40:10Z",
+  "closed_reason": "Automated route exhausted after repeated same-semantic representation repairs: the strengthened inverse provider remains proof_planned because its dependent R/I/C/S/e/D/B statement representation cannot be opened while preserving shared local Fintype/DecidableEq/DecidableRel instances. Earlier shared-instance, subsingleton-transport, pre-collapsed Sigma, weighted-support, named-M, and explicit-expression variants either timed out or hit the same dependent-let opacity. No mathematical, source, Mathlib, or external-provider prerequisite is missing.",
+  "created_at": "2026-08-03T10:44:39Z",
+  "created_round_ids": [
+    "round_eb8d5c5503694b5eb1b58b58664b2c6a",
+    "round_34c2b6f9bf334455bf1f4a611d49fc51",
+    "round_ea16eee28a804c80bc5491db65040d6a",
+    "round_7a5ad3b4c7224a43a4f2cee5740cbdf6",
+    "round_2b671e7586db40339f45f5b0eafdee3a",
+    "round_1a980af11a8c48a79d5b8ccbf85695a1",
+    "round_7fa11fac5c4e46a3990fcb8a47c0bddf",
+    "round_eb8a55d7642e4c2c93e513bc6536240a",
+    "round_7104effe70584e6696793e71bce2253a",
+    "round_d3290b8eb61f4429a3362752371a510d",
+    "round_849ffe3085ba46cf90612fe7a64f76ee",
+    "round_dc0e58f819034e43896cfe80cbc605b5",
+    "round_c12840623029446aada488f8f41da2cc"
+  ],
+  "node_path": "Main.RootedCapacity",
+  "objective": "Extend the preserved graph-proved RootedCapacity inverse-block route with assumption-minimal per-attached-child admissibility: first prove the dependent child-Gram block inverse identity from pointwise child admissibility, then prove the canonical nonroot inverse block transport under the same premise, and finally export the exact qualified nonroot inverse quadratic equality to rootedChildCapacitySum.",
+  "rationale": "Contract v4 and solution.tex 57–68 already identify the nonroot Gram block as the direct sum of attached child Grams and its inverse quadratic as the sum of child capacities. Boundary recon shows the Gram reindex theorem is assumption-free and ambient admissibility is used only to obtain each child block's PosDef/IsUnit. To preserve all v1–v3 declarations and public interfaces, add parallel `_of_child_admissible` generalizations rather than rewriting existing private statements. Under graph_proved completion, prove them bottom-up in three small rounds with the exact canonical child subtype, local instance convention, rational matrices, and existing rootedChildCapacitySummand/rootedChildCapacitySum representation. No Mathlib/resource or external-node work is needed; expected active scale becomes 44, within 42–47.",
+  "status": "failed",
+  "strategy_id": "strategy_409097c1a1e547a681e983998de55d40",
+  "summary": "The per-child-admissible inverse-block strategy proved the block-diagonal inverse foundation and substantial support/collapse infrastructure, but the remaining canonical inverse quadratic transport could not be completed under the fixed heartbeat and representation constraints."
+}

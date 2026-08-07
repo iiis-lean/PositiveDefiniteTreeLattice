@@ -1,0 +1,5 @@
+{
+  "completion_mode": "graph_proved",
+  "default_requirement_proof_availability": "declared",
+  "publication": null
+}

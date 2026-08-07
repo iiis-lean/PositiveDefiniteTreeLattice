@@ -1,0 +1,37 @@
+{
+  "change_summaries": {},
+  "committed_at": "2026-07-29T15:41:53Z",
+  "created_at": "2026-07-29T15:27:13Z",
+  "execution_completed_at": "2026-07-29T15:40:43Z",
+  "execution_reason": null,
+  "execution_result_kind": "success",
+  "node_path": "Main.LatticeFoundations",
+  "objective": "Prove the next independent foundational facts from accepted lower declarations: the source-shaped self-pairing expansion for a sum, nonzeroness of every vertexVector, and treePairing of a vertexVector with itself equals its weight. These close the algebraic and vertex-vector prerequisites before the public norm-one irreducibility theorem.",
+  "plan_closeout_acknowledged_at": "2026-07-29T15:41:53Z",
+  "plan_closeout_acknowledged_by": "a_60a257a14c4c469b9e17805606fa5ea4",
+  "result_kind": "success",
+  "result_reason": "All three foundational theorems reached proved and passed graph-proved readiness checks.",
+  "revision_refs": [
+    {
+      "change_id": "treePairing_add_self@rev:1",
+      "decl_name": "treePairing_add_self",
+      "revision": 1
+    },
+    {
+      "change_id": "vertexVector_ne_zero@rev:1",
+      "decl_name": "vertexVector_ne_zero",
+      "revision": 1
+    },
+    {
+      "change_id": "treePairing_vertexVector_self@rev:1",
+      "decl_name": "treePairing_vertexVector_self",
+      "revision": 1
+    }
+  ],
+  "round_id": "round_4dac2a8f94ea41d0ab3cdfccdbff86ac",
+  "round_index": 6,
+  "started_at": "2026-07-29T15:28:16Z",
+  "status": "committed",
+  "strategy_id": "strategy_a30e26b4dc0b4b3da567957fbd36ca03",
+  "summary": "The strategy made complete planned progress in this layer: the self-pairing expansion, vertexVector nonzeroness, and vertexVector self-pairing formula all reached proved and satisfy graph-proved policy. No declarations remain state-only, blocked, or missing closure from this round. The graph now has nine important declarations, within the contract’s expected 6–12 scale. The known dependency closure for the public norm-one theorem is ready: declared treePairing and Irreducible, proved treePairing_add_self (itself backed by proved additivity/symmetry), and integer linarith support. Next plan the public norm-one irreducibility theorem; no resource recon or further helper is currently justified."
+}

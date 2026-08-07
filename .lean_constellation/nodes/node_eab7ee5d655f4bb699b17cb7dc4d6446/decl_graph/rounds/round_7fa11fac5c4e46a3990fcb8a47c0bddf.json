@@ -1,0 +1,33 @@
+{
+  "change_summaries": {},
+  "committed_at": "2026-08-03T13:09:42Z",
+  "created_at": "2026-08-03T12:50:53Z",
+  "discard_reason": null,
+  "discarded_at": null,
+  "discarded_by": null,
+  "discarded_created_decl_names": [],
+  "discarded_restored_decl_revisions": {},
+  "discarded_revision_refs": [],
+  "execution_completed_at": "2026-08-03T13:06:59Z",
+  "execution_reason": "For rootedNonroot_inverse_sigma_quadratic_collapsed_of_child_admissible, the accepted Sigma-only statement and route were preserved. The exact childwise admissibility transport to rootedNonroot_inverse_childBlocks_of_child_admissible typechecks with `convert hChild c using 1 <;> apply Subsingleton.elim`, aligning the Fintype.ofFinite, DecidableEq, and DecidableRel witnesses. The attempted proof then expands the two Sigma binders, collapses the outer x coordinate before rewriting the inverse entry, and only afterwards applies the provider entrywise, Matrix.blockDiagonal'_apply', and controlled Finset.sum_eq_single reductions. Lean still deterministically exhausts the fixed 200000-heartbeat limit at the off-root x branch (`rw [if_neg hxmem, zero_mul, zero_mul]`), even without the ambient R-indexed reindexing. The stage forbids changing the statement, adding a helper, or raising heartbeats. Planner action is needed: either supply the compiler-verified low-heartbeat term for the controlled collapse, or plan smaller support/collapse lemmas that can reduce the expression before the provider transport. The declaration file is restored to its valid statement placeholder; no proof formal capture was made.",
+  "execution_result_kind": "blocked",
+  "node_path": "Main.RootedCapacity",
+  "objective": "Create and graph-prove a private pre-collapsed canonical Sigma inverse-quadratic theorem that reduces the reindexed fourfold child-component sum to the canonical attached-child capacity sum within the fixed heartbeat budget.",
+  "plan_closeout_acknowledged_at": "2026-08-03T13:09:42Z",
+  "plan_closeout_acknowledged_by": "a_a93b40977f574bad89528358fa89e022",
+  "result_kind": "blocked",
+  "result_reason": "Fixed-heartbeat Lean normalization timeout in the off-root Sigma support branch; requires smaller tracked support/collapse decomposition or a verified low-heartbeat proof term before retrying parent quadratics.",
+  "revision_refs": [
+    {
+      "change_id": "rootedNonroot_inverse_sigma_quadratic_collapsed_of_child_admissible@rev:1",
+      "decl_name": "rootedNonroot_inverse_sigma_quadratic_collapsed_of_child_admissible",
+      "revision": 1
+    }
+  ],
+  "round_id": "round_7fa11fac5c4e46a3990fcb8a47c0bddf",
+  "round_index": 79,
+  "started_at": "2026-08-03T12:52:24Z",
+  "status": "committed",
+  "strategy_id": "strategy_409097c1a1e547a681e983998de55d40",
+  "summary": "Round 79 made statement- and proof-plan progress but did not prove its target. The new private Sigma-only theorem is now proof_planned and its exact pointwise-admissibility/instance transport is verified. The remaining blocker is a deterministic Lean normalization timeout during the off-root support branch, even after removing ambient nonroot reindexing. The current provider closure is otherwise known: rootedNonroot_inverse_childBlocks_of_child_admissible, rootedNonrootGram_reindex_childBlocks, rootedChildComponentsEquivNonroot_apply, rootedGram_root_nonroot, and explicit subsingleton instance transport. Parent retries for rootedNonroot_inverse_quadratic_sigma_of_child_admissible and the public rootedNonroot_inverse_quadratic_of_child_admissible must wait until a smaller support/collapse interface reduces the finite sum before inverse-provider transport. The strategy remains mathematically viable, but the node is at the contract's expected active-declaration ceiling, so the next planning action must reuse or replace private unproved artifacts rather than expand the graph unboundedly."
+}

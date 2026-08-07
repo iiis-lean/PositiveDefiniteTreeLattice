@@ -1,0 +1,33 @@
+{
+  "change_summaries": {},
+  "committed_at": "2026-07-30T09:11:00Z",
+  "created_at": "2026-07-30T08:57:58Z",
+  "discard_reason": null,
+  "discarded_at": null,
+  "discarded_by": null,
+  "discarded_created_decl_names": [],
+  "discarded_restored_decl_revisions": {},
+  "discarded_revision_refs": [],
+  "execution_completed_at": "2026-07-30T09:09:11Z",
+  "execution_reason": null,
+  "execution_result_kind": "success",
+  "node_path": "Main.RootedCapacity",
+  "objective": "Create and prove the private b_0009 root-row helper identifying rootedGram at the root against a nonroot vertex as -1 precisely for root children and zero otherwise. This captures the source vector c before the inverse-quadratic sum.",
+  "plan_closeout_acknowledged_at": "2026-07-30T09:11:00Z",
+  "plan_closeout_acknowledged_by": "a_a93b40977f574bad89528358fa89e022",
+  "result_kind": "success",
+  "result_reason": "The private root-row theorem reached proved state and passed graph-proved target satisfaction.",
+  "revision_refs": [
+    {
+      "change_id": "rootedGram_root_nonroot@rev:1",
+      "decl_name": "rootedGram_root_nonroot",
+      "revision": 1
+    }
+  ],
+  "round_id": "round_72c1d52bc2984adaa02cd46dd4d4fb96",
+  "round_index": 23,
+  "started_at": "2026-07-30T08:59:45Z",
+  "status": "committed",
+  "strategy_id": "strategy_1fbcdfb31a2e4cada1ff5b7b941de18c",
+  "summary": "Round 23 successfully completed the final predictable entrywise helper: rootedGram_root_nonroot rev1 is private, proved, and graph-proved. Together with child-component partition, cross-component Gram zeros, component Gram restriction, and child admissibility, the local matrix closure for the inverse-quadratic identity is now complete. No blocker, state-only intermediate, superseded artifact, or scope issue remains. The next round should prove that exact private identity, after which public capacity recursion can use the verified Schur-complement API."
+}

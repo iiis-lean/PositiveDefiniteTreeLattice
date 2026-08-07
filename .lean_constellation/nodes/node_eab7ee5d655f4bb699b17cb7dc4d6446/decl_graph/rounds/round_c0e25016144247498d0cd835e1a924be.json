@@ -1,0 +1,33 @@
+{
+  "change_summaries": {},
+  "committed_at": "2026-07-30T15:04:02Z",
+  "created_at": "2026-07-30T14:41:47Z",
+  "discard_reason": null,
+  "discarded_at": null,
+  "discarded_by": null,
+  "discarded_created_decl_names": [],
+  "discarded_restored_decl_revisions": {},
+  "discarded_revision_refs": [],
+  "execution_completed_at": "2026-07-30T15:02:07Z",
+  "execution_reason": null,
+  "execution_result_kind": "success",
+  "node_path": "Main.RootedCapacity",
+  "objective": "Repair the private rootedChildGram_blockDiagonal_inv representation without changing its mathematical identity: revise the formal statement so one explicit let-bound child-component Fintype/adjacency convention is shared by B and every inverse block, then re-plan and prove the same dependent block-inverse theorem.",
+  "plan_closeout_acknowledged_at": "2026-07-30T15:04:02Z",
+  "plan_closeout_acknowledged_by": "a_a93b40977f574bad89528358fa89e022",
+  "result_kind": "success",
+  "result_reason": "The repaired child-block inverse theorem reached proved with all statement, proof, and graph_proved checks passing, completing the parent inverse-entry theorem's known dependency closure.",
+  "revision_refs": [
+    {
+      "change_id": "rootedChildGram_blockDiagonal_inv@rev:2",
+      "decl_name": "rootedChildGram_blockDiagonal_inv",
+      "revision": 2
+    }
+  ],
+  "round_id": "round_c0e25016144247498d0cd835e1a924be",
+  "round_index": 40,
+  "started_at": "2026-07-30T14:43:13Z",
+  "status": "committed",
+  "strategy_id": "strategy_1fbcdfb31a2e4cada1ff5b7b941de18c",
+  "summary": "Round 40 successfully repaired and proved rootedChildGram_blockDiagonal_inv, which is now proof-policy satisfied. The strategy made the needed matrix-level progress without adding another declaration or changing source semantics. Known dependency closure for rootedNonroot_inverse_childBlocks is now complete: combine rootedNonrootGram_reindex_childBlocks, this block-inverse identity, rootedChildComponentsEquivNonroot, and Matrix.inv_reindex, then evaluate at the accepted ι indices for the same- and cross-component clauses. The next action is a Proof-Formal-only parent retry; rootedNonroot_inverse_quadratic remains deferred. The graph stays at 29 declarations, so further helper growth remains disallowed absent cleanup or scope review."
+}

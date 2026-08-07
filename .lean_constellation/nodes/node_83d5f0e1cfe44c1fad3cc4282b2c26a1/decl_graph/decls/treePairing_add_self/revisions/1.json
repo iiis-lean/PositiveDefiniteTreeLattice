@@ -1,0 +1,186 @@
+{
+  "change": {
+    "anticipated_proof_dep_names": [
+      "treePairing_add_left",
+      "treePairing_add_right",
+      "treePairing_symm"
+    ],
+    "anticipated_statement_dep_names": [
+      "treePairing"
+    ],
+    "base_revision": null,
+    "kind": "create",
+    "objective": "For a,b : V → ℤ in the exact accepted weighted SimpleGraph pairing, prove the source-shaped identity treePairing G weight (a + b) (a + b) = treePairing G weight a a + treePairing G weight b b + 2 * treePairing G weight a b, matching solution.tex lines 25–28. Its Statement consumes treePairing; its proof consumes the proved treePairing_add_left, treePairing_add_right, and treePairing_symm laws plus ring normalization. Preserve the integer model and cross-term orientation. This reusable public lemma directly feeds the norm-one contradiction.",
+    "require_target_state_satisfied": true,
+    "reset_to_state": null,
+    "summary": "Successfully created and proved the public source-shaped expansion treePairing (a+b) (a+b) = treePairing a a + treePairing b b + 2 * treePairing a b. Statement and proof passed using proved additivity and symmetry, and graph-proved satisfaction passed. This exactly supplies the algebraic equality used in solution.tex lines 25–28.",
+    "target_state": "proved"
+  },
+  "lean_decl_name": "treePairing_add_self",
+  "proof": {
+    "deps": [
+      {
+        "kind": "repo_decl",
+        "reason": "First expands the pairing in its left argument.",
+        "ref": {
+          "name": "treePairing_add_left",
+          "node": "Main.LatticeFoundations",
+          "repo": null,
+          "revision": 2
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "Expands both resulting pairings in their right argument.",
+        "ref": {
+          "name": "treePairing_add_right",
+          "node": "Main.LatticeFoundations",
+          "repo": null,
+          "revision": 2
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "Reorients the b,a cross term to the required a,b cross term.",
+        "ref": {
+          "name": "treePairing_symm",
+          "node": "Main.LatticeFoundations",
+          "repo": null,
+          "revision": 2
+        }
+      }
+    ],
+    "formal": {
+      "check": {
+        "allow_sorry": false,
+        "contains_axiom": false,
+        "contains_sorry": false,
+        "diagnostics": {
+          "diagnostics": [],
+          "passed": true,
+          "raw_excerpt": "{'success': True, 'error_message': None, 'file': 'PositiveDefiniteTreeLattice.Main.LatticeFoundations.Theorems.treePairing_add_self', 'items': [], 'total_items': 0, 'error_count': 0, 'warning_count': 0, 'info_count': 0, 'sorry_count': 0}",
+          "repo_file_path": "PositiveDefiniteTreeLattice/Main/LatticeFoundations/Theorems/treePairing_add_self.lean",
+          "schema_version": 2,
+          "summary": "Diagnostics returned 0 items"
+        },
+        "message": "Lean check passed.",
+        "policy": "proof_formal",
+        "scan": {
+          "admit_count": 0,
+          "axiom_count": 0,
+          "contains_admit": false,
+          "contains_axiom": false,
+          "contains_opaque": false,
+          "contains_sorry": false,
+          "contains_unsafe": false,
+          "limitation": "Text scan ignores Lean comments and string literals with a conservative first-round lexer; it is not a full Lean parser.",
+          "occurrences": [],
+          "opaque_count": 0,
+          "sorry_count": 0,
+          "summary": "sorry=0, admit=0, axiom=0, opaque=0, unsafe=0",
+          "unsafe_count": 0
+        },
+        "status": "passed"
+      },
+      "code": "-- lean-constellation: managed-imports-begin\nimport PositiveDefiniteTreeLattice.Main.LatticeFoundations.Prelude\nimport PositiveDefiniteTreeLattice.Main.LatticeFoundations.Defs.treePairing\nimport PositiveDefiniteTreeLattice.Main.LatticeFoundations.Theorems.treePairing_add_left\nimport PositiveDefiniteTreeLattice.Main.LatticeFoundations.Theorems.treePairing_add_right\nimport PositiveDefiniteTreeLattice.Main.LatticeFoundations.Theorems.treePairing_symm\n-- lean-constellation: managed-imports-end\n\n-- lean-constellation: declaration-source-begin\n\n/--\n# lean-constellation target: `treePairing_add_self`\n\nFor a finite type `V` with decidable equality, a simple graph `G : SimpleGraph V` with decidable\nadjacency, an integer-valued weight function `weight : V → ℤ`, and functions `a b : V → ℤ`, the\nself-pairing of their pointwise sum satisfies\n\n`treePairing G weight (a + b) (a + b) = treePairing G weight a a + treePairing G weight b b + 2 *\ntreePairing G weight a b`.\n\nThe cross term is oriented as `treePairing G weight a b`.\n\n## Sources\n\n- Source `solution.tex`, lines 25–28\n\n## Statement dependencies\n\n- `Main.LatticeFoundations::treePairing` → `treePairing` from\n  `PositiveDefiniteTreeLattice.Main.LatticeFoundations.Defs.treePairing`\n\n## Proof outline\n\nRewrite the left-hand side first with the accepted left-additivity law, obtaining `treePairing G\nweight a (a + b) + treePairing G weight b (a + b)`. Rewrite both terms with the accepted\nright-additivity law, giving the four terms `treePairing G weight a a`, `treePairing G weight a b`,\n`treePairing G weight b a`, and `treePairing G weight b b`. Apply the accepted symmetry law to\nreplace `treePairing G weight b a` by `treePairing G weight a b`. Finally normalize the integer\nexpression by ring arithmetic to obtain the stated orientation `2 * treePairing G weight a b`. This\nis exactly the source expansion and uses no unfolding or same-round declaration.\n\n## Proof sources\n\n- Source `solution.tex`, lines 25–28\n\n## Proof dependencies\n\n- `Main.LatticeFoundations::treePairing_add_left` → `treePairing_add_left` from\n  `PositiveDefiniteTreeLattice.Main.LatticeFoundations.Theorems.treePairing_add_left`\n- `Main.LatticeFoundations::treePairing_add_right` → `treePairing_add_right` from\n  `PositiveDefiniteTreeLattice.Main.LatticeFoundations.Theorems.treePairing_add_right`\n- `Main.LatticeFoundations::treePairing_symm` → `treePairing_symm` from\n  `PositiveDefiniteTreeLattice.Main.LatticeFoundations.Theorems.treePairing_symm`\n-/\ntheorem treePairing_add_self {V : Type*} [Fintype V] [DecidableEq V] (G : SimpleGraph V)\n    [DecidableRel G.Adj] (weight a b : V → ℤ) :\n    treePairing G weight (a + b) (a + b) =\n      treePairing G weight a a + treePairing G weight b b + 2 * treePairing G weight a b := by\n  rw [treePairing_add_left, treePairing_add_right, treePairing_add_right]\n  rw [treePairing_symm G weight b a]\n  ring\n"
+    },
+    "nl": {
+      "origin": [
+        {
+          "end_line": 28,
+          "end_locator": null,
+          "kind": "source",
+          "note": "The source norm-one argument uses exactly this self-pairing expansion and cross-term coefficient.",
+          "ref": null,
+          "resource_key": null,
+          "source_path": "solution.tex",
+          "start_line": 25,
+          "start_locator": null
+        }
+      ],
+      "text": "Rewrite the left-hand side first with the accepted left-additivity law, obtaining `treePairing G weight a (a + b) + treePairing G weight b (a + b)`. Rewrite both terms with the accepted right-additivity law, giving the four terms `treePairing G weight a a`, `treePairing G weight a b`, `treePairing G weight b a`, and `treePairing G weight b b`. Apply the accepted symmetry law to replace `treePairing G weight b a` by `treePairing G weight a b`. Finally normalize the integer expression by ring arithmetic to obtain the stated orientation `2 * treePairing G weight a b`. This is exactly the source expansion and uses no unfolding or same-round declaration."
+    }
+  },
+  "revision": 1,
+  "state": "proved",
+  "statement": {
+    "deps": [
+      {
+        "kind": "repo_decl",
+        "reason": "The self-pairing expansion is stated entirely in terms of the accepted integral pairing.",
+        "ref": {
+          "name": "treePairing",
+          "node": "Main.LatticeFoundations",
+          "repo": null,
+          "revision": 2
+        }
+      }
+    ],
+    "formal": {
+      "check": {
+        "allow_sorry": true,
+        "contains_axiom": false,
+        "contains_sorry": true,
+        "diagnostics": {
+          "diagnostics": [
+            {
+              "column": 9,
+              "line": 29,
+              "message": "declaration uses `sorry`",
+              "severity": "warning"
+            }
+          ],
+          "passed": true,
+          "raw_excerpt": "{'success': True, 'error_message': None, 'file': 'PositiveDefiniteTreeLattice.Main.LatticeFoundations.Theorems.treePairing_add_self', 'items': [{'severity': 'warning', 'pos': {'line': 29, 'column': 9}, 'endPos': {'line': 29, 'column': 29}, 'kind': None, 'data': 'declaration uses `sorry`', 'fileName': 'PositiveDefiniteTreeLattice.Main.LatticeFoundations.Theorems.treePairing_add_self', 'content': '  `PositiveDefiniteTreeLattice.Main.LatticeFoundations.Defs.treePairing`\\n-/\\ntheorem treePairing_add_self {V : Type*} [Fintype V] [DecidableEq V] (G : SimpleGraph V)\\n    [DecidableRel G.Adj] (weight a b : V → ℤ) :\\n    treePairing G weight (a + b) (a + b) ='}], 'total_items': 1, 'error_count': 0, 'warning_count': 1, 'info_count': 0, 'sorry_count': 1}",
+          "repo_file_path": "PositiveDefiniteTreeLattice/Main/LatticeFoundations/Theorems/treePairing_add_self.lean",
+          "schema_version": 2,
+          "summary": "Diagnostics returned 1 items"
+        },
+        "message": "Lean check passed.",
+        "policy": "statement_formal",
+        "scan": {
+          "admit_count": 0,
+          "axiom_count": 0,
+          "contains_admit": false,
+          "contains_axiom": false,
+          "contains_opaque": false,
+          "contains_sorry": true,
+          "contains_unsafe": false,
+          "limitation": "Text scan ignores Lean comments and string literals with a conservative first-round lexer; it is not a full Lean parser.",
+          "occurrences": [
+            {
+              "column": 3,
+              "excerpt": "sorry",
+              "kind": "sorry",
+              "line": 33
+            }
+          ],
+          "opaque_count": 0,
+          "sorry_count": 1,
+          "summary": "sorry=1, admit=0, axiom=0, opaque=0, unsafe=0",
+          "unsafe_count": 0
+        },
+        "status": "passed"
+      },
+      "code": "-- lean-constellation: managed-imports-begin\nimport PositiveDefiniteTreeLattice.Main.LatticeFoundations.Prelude\nimport PositiveDefiniteTreeLattice.Main.LatticeFoundations.Defs.treePairing\n-- lean-constellation: managed-imports-end\n\n-- lean-constellation: declaration-source-begin\n\n/--\n# lean-constellation target: `treePairing_add_self`\n\nFor a finite type `V` with decidable equality, a simple graph `G : SimpleGraph V` with decidable\nadjacency, an integer-valued weight function `weight : V → ℤ`, and functions `a b : V → ℤ`, the\nself-pairing of their pointwise sum satisfies\n\n`treePairing G weight (a + b) (a + b) = treePairing G weight a a + treePairing G weight b b + 2 *\ntreePairing G weight a b`.\n\nThe cross term is oriented as `treePairing G weight a b`.\n\n## Sources\n\n- Source `solution.tex`, lines 25–28\n\n## Statement dependencies\n\n- `Main.LatticeFoundations::treePairing` → `treePairing` from\n  `PositiveDefiniteTreeLattice.Main.LatticeFoundations.Defs.treePairing`\n-/\ntheorem treePairing_add_self {V : Type*} [Fintype V] [DecidableEq V] (G : SimpleGraph V)\n    [DecidableRel G.Adj] (weight a b : V → ℤ) :\n    treePairing G weight (a + b) (a + b) =\n      treePairing G weight a a + treePairing G weight b b + 2 * treePairing G weight a b := by\n  sorry\n"
+    },
+    "nl": {
+      "origin": [
+        {
+          "end_line": 28,
+          "end_locator": null,
+          "kind": "source",
+          "note": "The source norm-one argument uses precisely the self-pairing expansion with two cross terms.",
+          "ref": null,
+          "resource_key": null,
+          "source_path": "solution.tex",
+          "start_line": 25,
+          "start_locator": null
+        }
+      ],
+      "text": "For a finite type `V` with decidable equality, a simple graph `G : SimpleGraph V` with decidable adjacency, an integer-valued weight function `weight : V → ℤ`, and functions `a b : V → ℤ`, the self-pairing of their pointwise sum satisfies\n\n`treePairing G weight (a + b) (a + b) = treePairing G weight a a + treePairing G weight b b + 2 * treePairing G weight a b`.\n\nThe cross term is oriented as `treePairing G weight a b`."
+    }
+  },
+  "status": "committed",
+  "updated_at": "2026-07-29T15:41:52Z"
+}

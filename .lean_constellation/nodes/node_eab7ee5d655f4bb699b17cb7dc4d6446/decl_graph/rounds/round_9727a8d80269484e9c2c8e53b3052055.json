@@ -1,0 +1,33 @@
+{
+  "change_summaries": {},
+  "committed_at": "2026-07-30T10:58:01Z",
+  "created_at": "2026-07-30T10:53:06Z",
+  "discard_reason": null,
+  "discarded_at": null,
+  "discarded_by": null,
+  "discarded_created_decl_names": [],
+  "discarded_restored_decl_revisions": {},
+  "discarded_revision_refs": [],
+  "execution_completed_at": "2026-07-30T10:56:33Z",
+  "execution_reason": "A small specialized reindexed-entry bridge is required to avoid Lean's dependent-coercion elaboration timeout before the equal/unequal child block branches. It should be tracked privately and used directly by this theorem; it preserves the existing statement and proof route.",
+  "execution_result_kind": "blocked",
+  "node_path": "Main.RootedCapacity",
+  "objective": "Retry only Proof Formal for rootedNonrootGram_reindex_childBlocks using the proved subtype-valued forward-evaluation lemma, with the accepted statement and proof plan unchanged.",
+  "plan_closeout_acknowledged_at": "2026-07-30T10:58:01Z",
+  "plan_closeout_acknowledged_by": "a_a93b40977f574bad89528358fa89e022",
+  "result_kind": "blocked",
+  "result_reason": "The accepted block theorem remains proof_planned until a private entrywise bridge reduces its exact reindexed nonroot Gram entry to the ambient rootedGram entry without dependent-coercion timeout.",
+  "revision_refs": [
+    {
+      "change_id": "rootedNonrootGram_reindex_childBlocks@rev:3",
+      "decl_name": "rootedNonrootGram_reindex_childBlocks",
+      "revision": 3
+    }
+  ],
+  "round_id": "round_9727a8d80269484e9c2c8e53b3052055",
+  "round_index": 31,
+  "started_at": "2026-07-30T10:54:34Z",
+  "status": "committed",
+  "strategy_id": "strategy_1fbcdfb31a2e4cada1ff5b7b941de18c",
+  "summary": "Round 31 is closed blocked at Proof Formal. rootedNonrootGram_reindex_childBlocks rev3 remains formally declared and proof-planned, but not proved. The previous evaluation helper is valid; the newly isolated missing item is one private entrywise reindex bridge that packages the remaining dependent coercion normalization. This helper is narrow, directly reusable by the block theorem, and remains within the current node’s matrix implementation boundary and expected declaration scale. Plan and prove it next, then retry the block theorem. No preparation, resource request, Coordinator escalation, or graph cleanup is needed; the overall strategy remains viable."
+}

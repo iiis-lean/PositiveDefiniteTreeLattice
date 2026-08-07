@@ -1,0 +1,16 @@
+{
+  "created_at": "2026-07-29T17:23:56Z",
+  "current_revision": 2,
+  "kind": "definition",
+  "lifecycle": "active",
+  "module": "PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildren",
+  "name": "rootedChildren",
+  "node_path": "Main.RootedCapacity",
+  "public": true,
+  "revision_ids": [
+    1,
+    2
+  ],
+  "summary": "The finite set of children of a vertex in a finite tree rooted at a chosen vertex.",
+  "updated_at": "2026-07-30T00:26:16Z"
+}

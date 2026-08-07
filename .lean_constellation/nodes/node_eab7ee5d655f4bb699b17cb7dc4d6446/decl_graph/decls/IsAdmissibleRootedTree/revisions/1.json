@@ -1,0 +1,112 @@
+{
+  "change": {
+    "anticipated_proof_dep_names": [],
+    "anticipated_statement_dep_names": [
+      "rootedChildCount",
+      "rootedGram"
+    ],
+    "base_revision": null,
+    "kind": "create",
+    "objective": "Package exactly SourceIndex b_0008 / solution.tex lines 33–38 for the same graph G, integer weight w, and root ρ used by the public capacity interfaces: G is a finite tree rooted at ρ; the rational rootedGram is Matrix.PosDef; every w y is at least 2; and every w y is at least the integer cast of rootedChildCount G ρ y plus 1. Consume declared rootedChildCount and rootedGram. Do not add stronger connectivity, weight, or scalar assumptions, and expose this public predicate unchanged to capacity_pos_lt_one, rooted_integer_estimate, and root_coefficient_lt_norm.",
+    "require_target_state_satisfied": true,
+    "reset_to_state": null,
+    "summary": "Creation succeeded. Captured and compiler-checked public definition `IsAdmissibleRootedTree` with exactly the b_0008 / solution.tex lines 33–38 conditions: finite tree structure, rootedGram positive definiteness, weights at least two, and the rootedChildCount plus one bound. Rev1 reached declared and declared-level proof-policy satisfaction. It is ready as the shared hypothesis for capacity_pos_lt_one, rooted_integer_estimate, and root_coefficient_lt_norm.",
+    "target_state": "declared"
+  },
+  "lean_decl_name": "IsAdmissibleRootedTree",
+  "proof": null,
+  "revision": 1,
+  "state": "declared",
+  "statement": {
+    "deps": [
+      {
+        "kind": "mathlib_decl",
+        "reason": "The predicate requires the graph to be a tree.",
+        "ref": {
+          "module": "Mathlib.Combinatorics.SimpleGraph.Acyclic",
+          "name": "SimpleGraph.IsTree"
+        }
+      },
+      {
+        "kind": "mathlib_decl",
+        "reason": "The predicate requires positive definiteness of `rootedGram G w`.",
+        "ref": {
+          "module": "Mathlib.LinearAlgebra.Matrix.PosDef",
+          "name": "Matrix.PosDef"
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "The admissibility inequality is expressed using the declared natural child count.",
+        "ref": {
+          "name": "rootedChildCount",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 1
+        }
+      },
+      {
+        "kind": "repo_decl",
+        "reason": "Positive definiteness is required of the declared rational rooted Gram matrix.",
+        "ref": {
+          "name": "rootedGram",
+          "node": "Main.RootedCapacity",
+          "repo": null,
+          "revision": 2
+        }
+      }
+    ],
+    "formal": {
+      "check": {
+        "allow_sorry": false,
+        "contains_axiom": false,
+        "contains_sorry": false,
+        "diagnostics": {
+          "diagnostics": [],
+          "passed": true,
+          "raw_excerpt": "{'success': True, 'error_message': None, 'file': 'PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.IsAdmissibleRootedTree', 'items': [], 'total_items': 0, 'error_count': 0, 'warning_count': 0, 'info_count': 0, 'sorry_count': 0}",
+          "repo_file_path": "PositiveDefiniteTreeLattice/Main/RootedCapacity/Defs/IsAdmissibleRootedTree.lean",
+          "schema_version": 2,
+          "summary": "Diagnostics returned 0 items"
+        },
+        "message": "Lean check passed.",
+        "policy": "statement_formal",
+        "scan": {
+          "admit_count": 0,
+          "axiom_count": 0,
+          "contains_admit": false,
+          "contains_axiom": false,
+          "contains_opaque": false,
+          "contains_sorry": false,
+          "contains_unsafe": false,
+          "limitation": "Text scan ignores Lean comments and string literals with a conservative first-round lexer; it is not a full Lean parser.",
+          "occurrences": [],
+          "opaque_count": 0,
+          "sorry_count": 0,
+          "summary": "sorry=0, admit=0, axiom=0, opaque=0, unsafe=0",
+          "unsafe_count": 0
+        },
+        "status": "passed"
+      },
+      "code": "-- lean-constellation: managed-imports-begin\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Prelude\nimport Mathlib.Combinatorics.SimpleGraph.Acyclic\nimport Mathlib.LinearAlgebra.Matrix.PosDef\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildCount\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedGram\n-- lean-constellation: managed-imports-end\n\n-- lean-constellation: declaration-source-begin\n\n/--\n# lean-constellation target: `IsAdmissibleRootedTree`\n\nFor a finite vertex type `V`, a simple graph `G : SimpleGraph V`, an integer weight function `w : V\n→ ℤ`, and a root `ρ : V`, define `IsAdmissibleRootedTree G w ρ` to hold exactly when: `G` is a tree\n(and hence, on the finite vertex type, a finite tree); the rational matrix `rootedGram G w` is\n`Matrix.PosDef`; for every vertex `y`, `2 ≤ w y`; and for every vertex `y`, `(rootedChildCount G ρ y\n: ℤ) + 1 ≤ w y`.  This packages the source admissibility condition for the rooted weighted tree,\nwithout any additional connectivity, weight, or scalar assumptions.\n\n## Sources\n\n- Source `solution.tex`, lines 33–38\n\n## Statement dependencies\n\n- `SimpleGraph.IsTree` from `Mathlib.Combinatorics.SimpleGraph.Acyclic`\n- `Matrix.PosDef` from `Mathlib.LinearAlgebra.Matrix.PosDef`\n- `Main.RootedCapacity::rootedChildCount` → `rootedChildCount` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildCount`\n- `Main.RootedCapacity::rootedGram` → `rootedGram` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedGram`\n-/\ndef IsAdmissibleRootedTree {V : Type*} [Fintype V] [DecidableEq V]\n    (G : SimpleGraph V) [DecidableRel G.Adj] (w : V → ℤ) (ρ : V) : Prop :=\n  ∃ hG : G.IsTree,\n    Matrix.PosDef (rootedGram G w) ∧\n      (∀ y, (2 : ℤ) ≤ w y) ∧\n        ∀ y, (rootedChildCount G hG ρ y : ℤ) + 1 ≤ w y\n"
+    },
+    "nl": {
+      "origin": [
+        {
+          "end_line": 38,
+          "end_locator": null,
+          "kind": "source",
+          "note": "Lines 33–38 define a rooted weighted tree as admissible by positive definiteness, weight at least two, and the child-count weight inequality.",
+          "ref": null,
+          "resource_key": null,
+          "source_path": "solution.tex",
+          "start_line": 33,
+          "start_locator": null
+        }
+      ],
+      "text": "For a finite vertex type `V`, a simple graph `G : SimpleGraph V`, an integer weight function `w : V → ℤ`, and a root `ρ : V`, define `IsAdmissibleRootedTree G w ρ` to hold exactly when: `G` is a tree (and hence, on the finite vertex type, a finite tree); the rational matrix `rootedGram G w` is `Matrix.PosDef`; for every vertex `y`, `2 ≤ w y`; and for every vertex `y`, `(rootedChildCount G ρ y : ℤ) + 1 ≤ w y`.  This packages the source admissibility condition for the rooted weighted tree, without any additional connectivity, weight, or scalar assumptions."
+    }
+  },
+  "status": "committed",
+  "updated_at": "2026-07-30T00:58:34Z"
+}
