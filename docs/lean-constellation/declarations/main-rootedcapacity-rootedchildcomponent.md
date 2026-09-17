@@ -1,4 +1,4 @@
-[← Public API](../PUBLIC_API.md) · [Public boundaries](../PUBLIC_BOUNDARIES.md)
+[← Public API](../PUBLIC_API.md) · [Public boundaries](../PUBLIC_BOUNDARIES.md) · [Complete graph](../DECLARATION_GRAPH.md)
 
 # `rootedChildComponent`
 
@@ -10,9 +10,13 @@ The child-side connected component obtained by deleting a parent-child edge.
 - State: `declared`
 - Revision status: `committed`
 - Repository completion: `graph_proved`
-- Formal code: final statement projection
+- Compatibility `formal_code`: final statement projection
 
-## Lean code
+## Statement NL
+
+For a finite vertex type `V`, a simple graph `G : SimpleGraph V`, and vertices `parent c : V`, define `rootedChildComponent G parent c` to be the connected component containing `c` in the graph obtained from `G` by deleting the singleton set containing the undirected edge joining `parent` and `c`: `(G.deleteEdges {edge parent c}).connectedComponentMk c`.  No adjacency, child-membership, tree, or admissibility hypothesis is part of this definition.  On the finite vertex type, this connected component has a finite subtype and its induced graph is available through `ConnectedComponent.toSimpleGraph`, so subsequent statements can use it as the child-rooted graph with a restricted weight.
+
+## Statement Formal
 
 ```lean
 -- lean-constellation: managed-imports-begin
@@ -48,6 +52,14 @@ def rootedChildComponent {V : Type*} (G : SimpleGraph V) (parent c : V) :
     (G.deleteEdges {s(parent, c)}).ConnectedComponent :=
   (G.deleteEdges {s(parent, c)}).connectedComponentMk c
 ```
+
+## Proof NL
+
+Not recorded.
+
+## Proof Formal
+
+Not recorded.
 
 ## Statement dependencies
 

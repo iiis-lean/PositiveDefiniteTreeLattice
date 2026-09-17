@@ -1,18 +1,13 @@
 {
-  "change_summaries": {},
   "committed_at": "2026-07-31T05:24:00Z",
   "created_at": "2026-07-31T05:08:56Z",
-  "discard_reason": null,
   "discarded_at": null,
   "discarded_by": null,
-  "discarded_created_decl_names": [],
-  "discarded_restored_decl_revisions": {},
-  "discarded_revision_refs": [],
   "execution_completed_at": "2026-07-31T05:22:43Z",
   "execution_reason": null,
   "execution_result_kind": "success",
   "node_path": "Main.RootedEstimates",
-  "objective": "Advance three retained declarations with already accepted proof plans from proof_planned to proved so the b_0010 parent dependency closure is graph_proved-satisfied: rootedCapacityInvEqSub, rationalUnitIntervalIntegerDistance, and sumNonrootEqSumRootedChildComponents.",
+  "objective": "Round A records the proved prerequisite-state repair for rootedCapacityInvEqSub, rationalUnitIntervalIntegerDistance, and sumNonrootEqSumRootedChildComponents; their accepted proof plans now satisfy the b_0010 parent dependency closure at graph_proved.",
   "plan_closeout_acknowledged_at": "2026-07-31T05:24:00Z",
   "plan_closeout_acknowledged_by": "a_c126bbd9cf3144258d31b99169f687bb",
   "result_kind": "success",
@@ -39,5 +34,6 @@
   "started_at": "2026-07-31T05:09:57Z",
   "status": "committed",
   "strategy_id": "strategy_6bfc666c638344a19f7d1dee5c0a60d4",
-  "summary": "The strategy completed the prerequisite-state repair: rootedCapacityInvEqSub@3, rationalUnitIntervalIntegerDistance@3, and sumNonrootEqSumRootedChildComponents@2 all passed Proof Formal, reached proved, and satisfy graph_proved. No declaration in this round remains unfinished and no cleanup target was created. With sumNeighborContributionRootedChildComponent and the transport helper already proved, the known local prerequisites for treePairingRootedChildDecomposition are now complete; the next step is to recompute its closure and submit a proof-formal-only parent retry if the audit remains clean."
+  "summary": "The strategy completed the prerequisite-state repair: rootedCapacityInvEqSub@3, rationalUnitIntervalIntegerDistance@3, and sumNonrootEqSumRootedChildComponents@2 all passed Proof Formal, reached proved, and satisfy graph_proved. No declaration in this round remains unfinished and no cleanup target was created. With sumNeighborContributionRootedChildComponent and the transport helper already proved, the known local prerequisites for treePairingRootedChildDecomposition are complete.",
+  "execution_constraints": "Recompute the treePairingRootedChildDecomposition dependency closure and submit a Proof-Formal-only parent retry if the audit remains clean."
 }

@@ -1,16 +1,9 @@
 {
   "change": {
-    "anticipated_proof_dep_names": [
-      "IsAdmissibleRootedTree"
-    ],
-    "anticipated_statement_dep_names": [
-      "IsAdmissibleRootedTree"
-    ],
     "base_revision": null,
     "kind": "create",
     "objective": "Implement the sole repaired contract-v6 public interface while preserving SourceIndex b_0008 / solution.tex 33–38 and the existing IsAdmissibleRootedTree definition unchanged. For one fixed type V, graph G, integer weight w, and root ρ, quantify two explicit complete instance conventions: `Fintype V`, `DecidableEq V`, and `DecidableRel G.Adj` on the source side and a second instance of each on the target side. State a bidirectional transport/equivalence between the two corresponding explicit `@IsAdmissibleRootedTree` propositions, so a downstream consumer can move a proved per-child admissibility fact into the exact canonical letI convention required by rootedNonrootGram_reindex_childBlocks_inv_of_child_admissible@1. Prove only by equality/subsingleton elimination of the Fintype, DecidableEq, and DecidableRel structures plus proof irrelevance/reflexivity; use the recorded `Fintype.subsingleton` and ordinary subsingleton elimination for decidability witnesses. Do not unfold or change admissibility semantics, introduce canonical instances, add graph/tree/weight hypotheses, create cast/HEq wrappers, mention contractions or unique-underweight assumptions, modify existing public statements, or raise heartbeats. The Lean declaration should use the concise unqualified interface identity `isAdmissibleRootedTree_instance_irrel` and be directly usable under locally installed component instances.",
     "require_target_state_satisfied": true,
-    "reset_to_state": null,
     "summary": "Created and graph-proved the public theorem isAdmissibleRootedTree_instance_irrel. Its formal statement quantifies two explicit Fintype, DecidableEq, and DecidableRel G.Adj conventions for one fixed V/G/w/ρ and gives the accepted bidirectional transport between the corresponding explicit IsAdmissibleRootedTree propositions. Statement NL/Formal and Proof NL/Formal all passed. The proof uses instance-structure subsingleton equality/proof irrelevance, preserves IsAdmissibleRootedTree semantics from solution.tex 33–38, introduces no canonical instance or cast/HEq chain, and directly satisfies the downstream per-child admissibility transport need. It is public, compiler-confirmed under the exact unqualified interface identity, and proof-policy satisfied.",
     "target_state": "proved"
   },
@@ -39,6 +32,11 @@
           "schema_version": 2,
           "summary": "Diagnostics returned 0 items"
         },
+        "fingerprint": {
+          "environment_sha256": null,
+          "source_sha256": "7a13149196159c17513254281313d677a505bee0d80e07650ca1bf1516149be1",
+          "upstream_revision": null
+        },
         "message": "Lean check passed.",
         "policy": "proof_formal",
         "scan": {
@@ -56,7 +54,15 @@
           "summary": "sorry=0, admit=0, axiom=0, opaque=0, unsafe=0",
           "unsafe_count": 0
         },
-        "status": "passed"
+        "schema_version": 1,
+        "status": "passed",
+        "subject": {
+          "declaration_name": null,
+          "module": "PositiveDefiniteTreeLattice.Main.RootedCapacity.Theorems.isAdmissibleRootedTree_instance_irrel",
+          "repo_file_path": "PositiveDefiniteTreeLattice/Main/RootedCapacity/Theorems/isAdmissibleRootedTree_instance_irrel.lean",
+          "repo_kind": "native",
+          "stage": "proof"
+        }
       },
       "code": "-- lean-constellation: managed-imports-begin\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Prelude\nimport Mathlib.Data.Fintype.Defs\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.IsAdmissibleRootedTree\n-- lean-constellation: managed-imports-end\n\n-- lean-constellation: declaration-source-begin\n\n/--\n# lean-constellation target: `isAdmissibleRootedTree_instance_irrel`\n\nFor any type `V`, simple graph `G : SimpleGraph V`, integer weight `w : V → ℤ`, and root `ρ : V`,\nlet `(fintype₁, decEq₁, decAdj₁)` and `(fintype₂, decEq₂, decAdj₂)` be two explicit instance\nconventions consisting respectively of a `Fintype V`, a `DecidableEq V`, and a `DecidableRel G.Adj`.\nThen the two explicitly instantiated propositions `@IsAdmissibleRootedTree` obtained from these\nconventions are logically equivalent. Thus admissibility for the fixed `(G, w, ρ)` transports in\neither direction between any two locally installed finite-type, equality-decidability, and\nadjacency-decidability instances.\n\n## Sources\n\n- Source `solution.tex`, lines 33–38\n\n## Statement dependencies\n\n- `Main.RootedCapacity::IsAdmissibleRootedTree` → `IsAdmissibleRootedTree` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.IsAdmissibleRootedTree`\n\n## Proof outline\n\nUse instance irrelevance only. First obtain `fintype₁ = fintype₂` from the `Subsingleton (Fintype\nV)` instance supplied by `Fintype.subsingleton`, and eliminate that equality so both explicitly\ninstantiated admissibility propositions use the same finite-type witness. Next obtain and eliminate\n`decEq₁ = decEq₂` and `decAdj₁ = decAdj₂` by ordinary subsingleton elimination for the decidability\nwitnesses. After these three substitutions the two propositions are definitionally identical, so\nconclude the biconditional by `rfl`. The argument neither unfolds `IsAdmissibleRootedTree` nor uses\ngraph, tree, or weight hypotheses.\n\n## Proof dependencies\n\n- `Fintype.subsingleton` from `Mathlib.Data.Fintype.Defs`\n-/\ntheorem isAdmissibleRootedTree_instance_irrel {V : Type*} (G : SimpleGraph V)\n    (w : V → ℤ) (ρ : V) (fintype₁ fintype₂ : Fintype V)\n    (decEq₁ decEq₂ : DecidableEq V) (decAdj₁ decAdj₂ : DecidableRel G.Adj) :\n    @IsAdmissibleRootedTree V fintype₁ decEq₁ G decAdj₁ w ρ ↔\n      @IsAdmissibleRootedTree V fintype₂ decEq₂ G decAdj₂ w ρ := by\n  have hFintype : fintype₁ = fintype₂ := Subsingleton.elim _ _\n  subst fintype₂\n  have hDecEq : decEq₁ = decEq₂ := Subsingleton.elim _ _\n  subst decEq₂\n  have hDecAdj : decAdj₁ = decAdj₂ := Subsingleton.elim _ _\n  subst decAdj₂\n  rfl\n"
     },
@@ -93,6 +99,11 @@
           "schema_version": 2,
           "summary": "Diagnostics returned 0 items"
         },
+        "fingerprint": {
+          "environment_sha256": null,
+          "source_sha256": "05ab9f9d3b93c3aa42ae02801e68804182aa02367bd90344b579a8180eefd453",
+          "upstream_revision": null
+        },
         "message": "Lean check passed.",
         "policy": "statement_formal",
         "scan": {
@@ -110,7 +121,15 @@
           "summary": "sorry=0, admit=0, axiom=0, opaque=0, unsafe=0",
           "unsafe_count": 0
         },
-        "status": "passed"
+        "schema_version": 1,
+        "status": "passed",
+        "subject": {
+          "declaration_name": null,
+          "module": "PositiveDefiniteTreeLattice.Main.RootedCapacity.Theorems.isAdmissibleRootedTree_instance_irrel",
+          "repo_file_path": "PositiveDefiniteTreeLattice/Main/RootedCapacity/Theorems/isAdmissibleRootedTree_instance_irrel.lean",
+          "repo_kind": "native",
+          "stage": "statement"
+        }
       },
       "code": "-- lean-constellation: managed-imports-begin\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Prelude\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.IsAdmissibleRootedTree\n-- lean-constellation: managed-imports-end\n\n-- lean-constellation: declaration-source-begin\n\n/--\n# lean-constellation target: `isAdmissibleRootedTree_instance_irrel`\n\nFor any type `V`, simple graph `G : SimpleGraph V`, integer weight `w : V → ℤ`, and root `ρ : V`,\nlet `(fintype₁, decEq₁, decAdj₁)` and `(fintype₂, decEq₂, decAdj₂)` be two explicit instance\nconventions consisting respectively of a `Fintype V`, a `DecidableEq V`, and a `DecidableRel G.Adj`.\nThen the two explicitly instantiated propositions `@IsAdmissibleRootedTree` obtained from these\nconventions are logically equivalent. Thus admissibility for the fixed `(G, w, ρ)` transports in\neither direction between any two locally installed finite-type, equality-decidability, and\nadjacency-decidability instances.\n\n## Sources\n\n- Source `solution.tex`, lines 33–38\n\n## Statement dependencies\n\n- `Main.RootedCapacity::IsAdmissibleRootedTree` → `IsAdmissibleRootedTree` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.IsAdmissibleRootedTree`\n-/\ntheorem isAdmissibleRootedTree_instance_irrel {V : Type*} (G : SimpleGraph V)\n    (w : V → ℤ) (ρ : V) (fintype₁ fintype₂ : Fintype V)\n    (decEq₁ decEq₂ : DecidableEq V) (decAdj₁ decAdj₂ : DecidableRel G.Adj) :\n    @IsAdmissibleRootedTree V fintype₁ decEq₁ G decAdj₁ w ρ ↔\n      @IsAdmissibleRootedTree V fintype₂ decEq₂ G decAdj₂ w ρ := by\n  have hFintype : fintype₁ = fintype₂ := Subsingleton.elim _ _\n  subst fintype₂\n  have hDecEq : decEq₁ = decEq₂ := Subsingleton.elim _ _\n  subst decEq₂\n  have hDecAdj : decAdj₁ = decAdj₂ := Subsingleton.elim _ _\n  subst decAdj₂\n  rfl\n"
     },

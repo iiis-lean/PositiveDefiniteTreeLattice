@@ -330,7 +330,7 @@
       "reason": null
     }
   ],
-  "objective": "Build a graph-proved package faithful to solution.tex lines 84–180. Prove the rooted integer estimate by induction over the rooted child decomposition using the exact public capacity recursion and 0 < γ < 1, then prove the root-coefficient bound with the source's positive-definite/Cauchy–Schwarz argument or a semantically equivalent route. Bind both exact qualified public interfaces.",
+  "objective": "The contract's graph-proved package is faithful to solution.tex lines 84–180: it contains the rooted integer estimate by induction over the rooted child decomposition using the exact public capacity recursion and `0 < γ < 1`, the root-coefficient bound through the source positive-definite/Cauchy–Schwarz argument or a semantically equivalent route, and both exact qualified public interfaces.",
   "owned_refs": [
     {
       "added_by": "coordinator",

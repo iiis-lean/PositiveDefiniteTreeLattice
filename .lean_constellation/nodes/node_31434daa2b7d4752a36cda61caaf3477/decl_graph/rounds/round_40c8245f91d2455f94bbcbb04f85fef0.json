@@ -1,33 +1,8 @@
 {
-  "change_summaries": {},
   "committed_at": null,
   "created_at": "2026-07-30T03:31:54Z",
-  "discard_reason": "Deterministic draft validation rejected all three same-round dependency edges: uniquePath must be declared before uniquePath_isPath, and both must be ready before eq_uniquePath_of_isPath. Replace this draft with a dependency-ordered first round creating only uniquePath.",
   "discarded_at": "2026-07-30T03:32:36Z",
   "discarded_by": "a_32cab14a2d1e497786514a39188b3e4f",
-  "discarded_created_decl_names": [
-    "eq_uniquePath_of_isPath",
-    "uniquePath",
-    "uniquePath_isPath"
-  ],
-  "discarded_restored_decl_revisions": {},
-  "discarded_revision_refs": [
-    {
-      "change_id": "uniquePath@rev:1",
-      "decl_name": "uniquePath",
-      "revision": 1
-    },
-    {
-      "change_id": "uniquePath_isPath@rev:1",
-      "decl_name": "uniquePath_isPath",
-      "revision": 1
-    },
-    {
-      "change_id": "eq_uniquePath_of_isPath@rev:1",
-      "decl_name": "eq_uniquePath_of_isPath",
-      "revision": 1
-    }
-  ],
   "execution_completed_at": null,
   "execution_reason": null,
   "execution_result_kind": null,

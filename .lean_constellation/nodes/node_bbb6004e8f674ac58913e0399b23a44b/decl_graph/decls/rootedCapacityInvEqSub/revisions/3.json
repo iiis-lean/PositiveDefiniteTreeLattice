@@ -1,14 +1,13 @@
 {
   "change": {
-    "anticipated_proof_dep_names": [],
-    "anticipated_statement_dep_names": [],
     "base_revision": 2,
     "kind": "update",
-    "objective": "Preserve revision 2's accepted statement and Proof NL plan for b_0010 lines 122–126 and rerun only Proof Formal to commit the already captured rooted-capacity inverse identity at proved. Its external dependencies rootedCapacity_recursion and capacity_pos_lt_one are ready; this serves rooted_integer_estimate.",
+    "objective": "Revision 3 records the proved rooted-capacity inverse identity from b_0010 lines 122–126: `(rootedCapacity G w rho)⁻¹ = (w rho : ℚ) - rootedChildCapacitySum G hG w rho`, with ready `rootedCapacity_recursion` and `capacity_pos_lt_one` dependencies. It supplies the reciprocal capacity relation for `rooted_integer_estimate`.",
     "require_target_state_satisfied": true,
-    "reset_to_state": "proof_planned",
+    "start_stage": "proof_formal",
     "summary": "Advanced the retained rooted-capacity inverse identity through Proof Formal without changing its statement or proof plan. Revision 3 passed and reached proved with graph_proved satisfaction; it is ready for the rooted integer induction.",
-    "target_state": "proved"
+    "target_state": "proved",
+    "execution_constraints": "Preserve revision 2's accepted statement and Proof NL plan for b_0010 lines 122–126, and rerun only Proof Formal to commit the already captured rooted-capacity inverse identity at proved."
   },
   "lean_decl_name": "rootedCapacityInvEqSub",
   "proof": {
@@ -55,6 +54,11 @@
           "schema_version": 2,
           "summary": "Diagnostics returned 0 items"
         },
+        "fingerprint": {
+          "environment_sha256": null,
+          "source_sha256": "11ac479411bb8ca233a9e04a15ba9c70b4bfb68fc5fdfd72569e776111e1a8bf",
+          "upstream_revision": null
+        },
         "message": "Lean check passed.",
         "policy": "proof_formal",
         "scan": {
@@ -72,7 +76,15 @@
           "summary": "sorry=0, admit=0, axiom=0, opaque=0, unsafe=0",
           "unsafe_count": 0
         },
-        "status": "passed"
+        "schema_version": 1,
+        "status": "passed",
+        "subject": {
+          "declaration_name": null,
+          "module": "PositiveDefiniteTreeLattice.Main.RootedEstimates.Theorems.rootedCapacityInvEqSub",
+          "repo_file_path": "PositiveDefiniteTreeLattice/Main/RootedEstimates/Theorems/rootedCapacityInvEqSub.lean",
+          "repo_kind": "native",
+          "stage": "proof"
+        }
       },
       "code": "-- lean-constellation: managed-imports-begin\nimport PositiveDefiniteTreeLattice.Main.RootedEstimates.Prelude\nimport Mathlib.Algebra.Group.Basic\nimport Mathlib.Combinatorics.SimpleGraph.Acyclic\n-- lean-constellation: managed-imports-end\n\n-- lean-constellation: declaration-source-begin\n\n/--\n# lean-constellation target: `rootedCapacityInvEqSub`\n\nLet `V` be a finite vertex type, let `G : SimpleGraph V` have decidable adjacency, let `w : V → ℤ`,\nand let `rho : V`. Assume separately a tree witness `hG : G.IsTree` and an admissibility hypothesis\n`hAdm : IsAdmissibleRootedTree G w rho`. Then\n\n`(rootedCapacity G w rho)⁻¹ = (w rho : ℚ) - rootedChildCapacitySum G hG w rho`.\n\nThus the child-capacity sum is formed using the tree witness `hG`, while admissibility is the\ndistinct hypothesis `hAdm`.\n\n## Sources\n\n- Source `solution.tex`, lines 122–126\n\n## Statement dependencies\n\n- `SimpleGraph.IsTree` from `Mathlib.Combinatorics.SimpleGraph.Acyclic`\n- `Main.RootedCapacity::IsAdmissibleRootedTree` → `IsAdmissibleRootedTree` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.IsAdmissibleRootedTree`\n- `Main.RootedCapacity::rootedCapacity` → `rootedCapacity` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedCapacity`\n- `Main.RootedCapacity::rootedChildCapacitySum` → `rootedChildCapacitySum` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildCapacitySum`\n\n## Proof outline\n\nPut `d := (w rho : ℚ) - rootedChildCapacitySum G hG w rho`. Apply `rootedCapacity_recursion G hG w\nrho hAdm` to rewrite the left side as `(1 / d)⁻¹`. The first component of\n`PositiveDefiniteTreeLattice.capacity_pos_lt_one G w rho hAdm` supplies `0 < rootedCapacity G w\nrho`, hence any nonzero side condition required by the field normalization. Use `inv_div` and the\nsimplifier's unit inverse/division identities to normalize `(1 / d)⁻¹ = d`. Substitution of the\ndefinition of `d` is exactly the claimed equality. This implements the reciprocal substitution in\nb_0010 lines 122–126.\n\n## Proof sources\n\n- Source `solution.tex`, lines 122–126\n\n## Proof dependencies\n\n- `inv_div` from `Mathlib.Algebra.Group.Basic`\n- `Main.RootedCapacity::capacity_pos_lt_one` → `PositiveDefiniteTreeLattice.capacity_pos_lt_one`\n  from `PositiveDefiniteTreeLattice.Main.RootedCapacity.Theorems.capacity_pos_lt_one`\n- `Main.RootedCapacity::rootedCapacity_recursion` → `rootedCapacity_recursion` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Theorems.rootedCapacity_recursion`\n-/\ntheorem rootedCapacityInvEqSub {V : Type*} [Fintype V] [DecidableEq V]\n    (G : SimpleGraph V) [DecidableRel G.Adj] (hG : G.IsTree) (w : V → ℤ) (rho : V)\n    (hAdm : IsAdmissibleRootedTree G w rho) :\n    (rootedCapacity G w rho)⁻¹ = (w rho : ℚ) - rootedChildCapacitySum G hG w rho := by\n  rw [rootedCapacity_recursion G hG w rho hAdm]\n  simp\n"
     },
@@ -156,6 +168,11 @@
           "schema_version": 2,
           "summary": "Diagnostics returned 1 items"
         },
+        "fingerprint": {
+          "environment_sha256": null,
+          "source_sha256": "af78eded7f821d89bc730659e0a20079f6e4496df185a2131d6c30279e65c6ed",
+          "upstream_revision": null
+        },
         "message": "Lean check passed.",
         "policy": "statement_formal",
         "scan": {
@@ -180,7 +197,15 @@
           "summary": "sorry=1, admit=0, axiom=0, opaque=0, unsafe=0",
           "unsafe_count": 0
         },
-        "status": "passed"
+        "schema_version": 1,
+        "status": "passed",
+        "subject": {
+          "declaration_name": null,
+          "module": "PositiveDefiniteTreeLattice.Main.RootedEstimates.Theorems.rootedCapacityInvEqSub",
+          "repo_file_path": "PositiveDefiniteTreeLattice/Main/RootedEstimates/Theorems/rootedCapacityInvEqSub.lean",
+          "repo_kind": "native",
+          "stage": "statement"
+        }
       },
       "code": "-- lean-constellation: managed-imports-begin\nimport PositiveDefiniteTreeLattice.Main.RootedEstimates.Prelude\nimport Mathlib.Combinatorics.SimpleGraph.Acyclic\n-- lean-constellation: managed-imports-end\n\n-- lean-constellation: declaration-source-begin\n\n/--\n# lean-constellation target: `rootedCapacityInvEqSub`\n\nLet `V` be a finite vertex type, let `G : SimpleGraph V` have decidable adjacency, let `w : V → ℤ`,\nand let `rho : V`. Assume separately a tree witness `hG : G.IsTree` and an admissibility hypothesis\n`hAdm : IsAdmissibleRootedTree G w rho`. Then\n\n`(rootedCapacity G w rho)⁻¹ = (w rho : ℚ) - rootedChildCapacitySum G hG w rho`.\n\nThus the child-capacity sum is formed using the tree witness `hG`, while admissibility is the\ndistinct hypothesis `hAdm`.\n\n## Sources\n\n- Source `solution.tex`, lines 122–126\n\n## Statement dependencies\n\n- `SimpleGraph.IsTree` from `Mathlib.Combinatorics.SimpleGraph.Acyclic`\n- `Main.RootedCapacity::IsAdmissibleRootedTree` → `IsAdmissibleRootedTree` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.IsAdmissibleRootedTree`\n- `Main.RootedCapacity::rootedCapacity` → `rootedCapacity` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedCapacity`\n- `Main.RootedCapacity::rootedChildCapacitySum` → `rootedChildCapacitySum` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildCapacitySum`\n-/\ntheorem rootedCapacityInvEqSub {V : Type*} [Fintype V] [DecidableEq V]\n    (G : SimpleGraph V) [DecidableRel G.Adj] (hG : G.IsTree) (w : V → ℤ) (rho : V)\n    (hAdm : IsAdmissibleRootedTree G w rho) :\n    (rootedCapacity G w rho)⁻¹ = (w rho : ℚ) - rootedChildCapacitySum G hG w rho := by\n  sorry\n"
     },

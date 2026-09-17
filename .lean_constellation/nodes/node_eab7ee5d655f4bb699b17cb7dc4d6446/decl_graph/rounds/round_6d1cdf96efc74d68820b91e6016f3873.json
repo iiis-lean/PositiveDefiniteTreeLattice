@@ -1,18 +1,13 @@
 {
-  "change_summaries": {},
   "committed_at": "2026-07-30T17:27:30Z",
   "created_at": "2026-07-30T17:14:54Z",
-  "discard_reason": null,
   "discarded_at": null,
   "discarded_by": null,
-  "discarded_created_decl_names": [],
-  "discarded_restored_decl_revisions": {},
-  "discarded_revision_refs": [],
   "execution_completed_at": "2026-07-30T17:25:49Z",
   "execution_reason": "The reviewed Schur-complement route requires a reusable root-versus-nonroot block decomposition interface that is not currently provided by any visible declaration. The proof cannot apply Matrix.invertibleOfFromBlocks₂₂Invertible or Matrix.invOf_fromBlocks₂₂_eq until rootedGram reindexed along Equiv.sumCompl is identified with Matrix.fromBlocks whose lower-right block is the exact nonroot principal submatrix.",
   "execution_result_kind": "blocked",
   "node_path": "Main.RootedCapacity",
-  "objective": "Prove the public b_0009 rootedCapacity Schur-complement recursion from the completed nonroot inverse quadratic identity, preserving the exact rational denominator `w ρ - rootedChildCapacitySum`.",
+  "objective": "`rootedCapacity_recursion@rev:1` is the public b_0009 Schur-complement recursion derived from the completed nonroot inverse quadratic identity, with exact rational denominator `w ρ - rootedChildCapacitySum`.",
   "plan_closeout_acknowledged_at": "2026-07-30T17:27:30Z",
   "plan_closeout_acknowledged_by": "a_a93b40977f574bad89528358fa89e022",
   "result_kind": "blocked",
@@ -29,5 +24,6 @@
   "started_at": "2026-07-30T17:16:21Z",
   "status": "committed",
   "strategy_id": "strategy_fc60f40a331d4f63bd19e22f0eec7473",
-  "summary": "Round 48 captured the stable public capacity recursion statement and a source-faithful Schur-complement Proof NL plan, but rootedCapacity_recursion@1 remains proof_planned and not graph_proved-satisfied. The sole known blocker is the source-visible root/nonroot block decomposition helper needed to connect rootedGram to the generic Matrix.fromBlocks inverse API; the exact required lower-right block and equivalence orientation are known. This is local tracked work within the contract scale (31 declarations currently, 29–38 authorized). The strategy remains viable. Next action after closeout is to create and prove that private decomposition theorem; only then should the public recursion be retried. No preparation recon or terminal escalation is needed."
+  "summary": "Round 48 captured the stable public capacity recursion statement and a source-faithful Schur-complement Proof NL plan, but `rootedCapacity_recursion@1` remains `proof_planned` and not graph_proved-satisfied. The sole known blocker is the source-visible root/nonroot block decomposition helper needed to connect `rootedGram` to the generic `Matrix.fromBlocks` inverse API; the exact required lower-right block and equivalence orientation are known. This is local tracked work within the contract scale (31 declarations currently, 29–38 authorized). The strategy remains viable. No preparation recon or terminal escalation occurred in this round.",
+  "execution_constraints": "Create and prove the private root/nonroot `Matrix.fromBlocks` decomposition theorem, preserving its exact lower-right block and equivalence orientation, then retry the public recursion; no preparation recon or terminal escalation is needed."
 }

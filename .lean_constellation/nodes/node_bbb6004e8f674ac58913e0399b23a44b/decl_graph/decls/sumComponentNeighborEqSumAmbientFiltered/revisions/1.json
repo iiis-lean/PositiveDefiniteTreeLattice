@@ -1,14 +1,12 @@
 {
   "change": {
-    "anticipated_proof_dep_names": [],
-    "anticipated_statement_dep_names": [],
     "base_revision": null,
     "kind": "create",
-    "objective": "Create the single reusable finite-sum transport theorem required before retrying sumNeighborContributionRootedChildComponent@1. For a finite simple graph, a connected component C, uC : C, an additive target, and a summand on ambient vertices (or an equivalent compatible local summand), identify the sum over C.toSimpleGraph.neighborFinset uC with the sum over the ambient neighborFinset of uC.val filtered to vertices belonging to C, after subtype coercion. Consume Mathlib SimpleGraph.neighborFinset_eq_filter, ConnectedComponent.toSimpleGraph_adj, and Finset.sum_bij; prove membership, bijectivity, surjectivity, and summand equality explicitly. This is the representation bridge for SourceIndex b_0010 lines 102–110 and the ordered-neighbor helper, not a new mathematical assumption or alternative route.",
+    "objective": "Revision 1 records the reusable finite-sum transport theorem for a finite simple graph, connected component `C`, `uC : C`, additive target, and ambient summand: the sum over `C.toSimpleGraph.neighborFinset uC` equals the ambient `neighborFinset` sum at `uC.val` filtered to vertices in `C`, after subtype coercion. The theorem uses the exact subtype-to-ambient representation bridge for SourceIndex b_0010 lines 102–110 and the ordered-neighbor helper, without adding a mathematical assumption or alternative route.",
     "require_target_state_satisfied": true,
-    "reset_to_state": null,
     "summary": "Created the private subtype-to-ambient neighbor-sum transport theorem. All statement and proof stages passed; revision 1 reached proved and satisfies graph_proved. It explicitly bridges C.toSimpleGraph.neighborFinset uC to the filtered ambient neighborFinset under coercion and is now the known proof dependency required by sumNeighborContributionRootedChildComponent.",
-    "target_state": "proved"
+    "target_state": "proved",
+    "execution_constraints": "Use SimpleGraph.neighborFinset_eq_filter, ConnectedComponent.toSimpleGraph_adj, and Finset.sum_bij; establish membership, bijectivity, surjectivity, and summand equality explicitly. Keep this transport theorem as the representation bridge for the ordered-neighbor helper without changing source mathematics or ordered/double-counted convention."
   },
   "lean_decl_name": "sumComponentNeighborEqSumAmbientFiltered",
   "proof": {
@@ -51,6 +49,11 @@
           "schema_version": 2,
           "summary": "Diagnostics returned 0 items"
         },
+        "fingerprint": {
+          "environment_sha256": null,
+          "source_sha256": "169ff89744ddf148d7bedcbfd064e2938e143103ba20034998c1065051f2ab20",
+          "upstream_revision": null
+        },
         "message": "Lean check passed.",
         "policy": "proof_formal",
         "scan": {
@@ -68,7 +71,15 @@
           "summary": "sorry=0, admit=0, axiom=0, opaque=0, unsafe=0",
           "unsafe_count": 0
         },
-        "status": "passed"
+        "schema_version": 1,
+        "status": "passed",
+        "subject": {
+          "declaration_name": null,
+          "module": "PositiveDefiniteTreeLattice.Main.RootedEstimates.Theorems.sumComponentNeighborEqSumAmbientFiltered",
+          "repo_file_path": "PositiveDefiniteTreeLattice/Main/RootedEstimates/Theorems/sumComponentNeighborEqSumAmbientFiltered.lean",
+          "repo_kind": "native",
+          "stage": "proof"
+        }
       },
       "code": "-- lean-constellation: managed-imports-begin\nimport PositiveDefiniteTreeLattice.Main.RootedEstimates.Prelude\nimport Mathlib.Algebra.BigOperators.Group.Finset.Defs\nimport Mathlib.Combinatorics.SimpleGraph.Connectivity.Connected\nimport Mathlib.Combinatorics.SimpleGraph.Finite\n-- lean-constellation: managed-imports-end\n\n-- lean-constellation: declaration-source-begin\n\n/--\n# lean-constellation target: `sumComponentNeighborEqSumAmbientFiltered`\n\nLet `G` be a finite simple graph on ambient vertices `V`, let `C : G.ConnectedComponent`, and let\n`uC : C`.  For every commutative additive target `A` and every summand `Phi : V → A`, the neighbor\nsum in the component graph equals the ambient neighbor sum filtered to the vertices of that\ncomponent:\n\n`∑ vC ∈ C.toSimpleGraph.neighborFinset uC, Phi (↑vC) = ∑ v ∈ (G.neighborFinset (↑uC)).filter (fun v\n=> v ∈ C), Phi v`.\n\nThe equality uses the subtype-to-ambient coercion on the left.  Thus the local neighbor index is\nexactly the filtered ambient ordered-neighbor index, with each compatible ambient neighbor\nrepresented once by its component subtype.\n\n## Sources\n\n- Source `solution.tex`, lines 102–110\n\n## Statement dependencies\n\n- `SimpleGraph.ConnectedComponent.toSimpleGraph` from\n  `Mathlib.Combinatorics.SimpleGraph.Connectivity.Connected`\n- `SimpleGraph.neighborFinset` from `Mathlib.Combinatorics.SimpleGraph.Finite`\n\n## Proof outline\n\nWork classically and use the Fintype, decidable-equality, local-adjacency, and membership-decision\ninstances already introduced by the formal statement. Rewrite the local and ambient neighbor finsets\nwith SimpleGraph.neighborFinset_eq_filter. Apply Finset.sum_bij to the coercion map sending a local\nneighbor vC : C to its ambient value (vC : V).\n\nFor membership, a local neighbor satisfies C.toSimpleGraph.Adj uC vC;\nSimpleGraph.ConnectedComponent.toSimpleGraph_adj converts this to G.Adj (uC : V) (vC : V), and\nvC.property supplies the required component-filter membership. Injectivity is Subtype.ext applied to\nequality of ambient values. For surjectivity, an ambient vertex v in the filtered neighbor finset\nhas both G.Adj (uC : V) v and hv : v ∈ C. Form the subtype vC := ⟨v, hv⟩; the reverse direction of\ntoSimpleGraph_adj proves it is a local neighbor, and its coercion is v. Finally each transported\nsummand is definitionally Phi (vC : V), so the summand-equality premise of sum_bij is reflexive.\n\nThe resulting equality is exactly the ordered local-neighbor sum and the ambient neighborFinset\nfiltered by membership in C. It supplies the representation bridge used when expanding the\nchild-subtree contribution in b_0010 lines 102–110, without changing the source mathematics or the\nordered/double-counted convention.\n\n## Proof sources\n\n- Source `solution.tex`, lines 102–110\n\n## Proof dependencies\n\n- `Finset.sum_bij` from `Mathlib.Algebra.BigOperators.Group.Finset.Defs`\n- `SimpleGraph.ConnectedComponent.toSimpleGraph_adj` from\n  `Mathlib.Combinatorics.SimpleGraph.Connectivity.Connected`\n- `SimpleGraph.neighborFinset_eq_filter` from `Mathlib.Combinatorics.SimpleGraph.Finite`\n-/\ntheorem sumComponentNeighborEqSumAmbientFiltered {V A : Type*} [Fintype V] [AddCommMonoid A]\n    (G : SimpleGraph V) [DecidableRel G.Adj] (C : G.ConnectedComponent)\n    (uC : C) (Phi : V → A) :\n    letI : Fintype C := Fintype.ofFinite C\n    letI : DecidableEq C := Classical.decEq C\n    letI : DecidableRel C.toSimpleGraph.Adj := by\n      intro u v\n      change Decidable (G.Adj (u : V) (v : V))\n      infer_instance\n    letI : DecidablePred (fun v : V => v ∈ C) := Classical.decPred _\n    ∑ vC ∈ C.toSimpleGraph.neighborFinset uC, Phi (vC : V) =\n      ∑ v ∈ (G.neighborFinset (uC : V)).filter (fun v => v ∈ C), Phi v := by\n  classical\n  rw [SimpleGraph.neighborFinset_eq_filter,\n    SimpleGraph.neighborFinset_eq_filter]\n  refine Finset.sum_bij (fun vC _ => (vC : V)) ?_ ?_ ?_ ?_\n  · intro vC hvC\n    have hlocal : C.toSimpleGraph.Adj uC vC := by\n      simpa only [Finset.mem_filter, Finset.mem_univ, true_and] using hvC\n    refine Finset.mem_filter.mpr ⟨?_, vC.property⟩\n    simpa only [Finset.mem_filter, Finset.mem_univ, true_and] using\n      (SimpleGraph.ConnectedComponent.toSimpleGraph_adj C uC.property vC.property).mp hlocal\n  · intro vC₁ hvC₁ vC₂ hvC₂ hEq\n    exact Subtype.ext hEq\n  · intro v hv\n    have hvAdj : G.Adj (uC : V) v := by\n      simpa only [Finset.mem_filter, Finset.mem_univ, true_and] using\n        (Finset.mem_filter.mp hv).1\n    have hvC : v ∈ C := (Finset.mem_filter.mp hv).2\n    refine ⟨⟨v, hvC⟩, ?_, rfl⟩\n    have hlocal : C.toSimpleGraph.Adj uC ⟨v, hvC⟩ :=\n      (SimpleGraph.ConnectedComponent.toSimpleGraph_adj C uC.property hvC).mpr hvAdj\n    simpa only [Finset.mem_filter, Finset.mem_univ, true_and] using hlocal\n  · intro vC hvC\n    rfl\n"
     },
@@ -130,6 +141,11 @@
           "schema_version": 2,
           "summary": "Diagnostics returned 1 items"
         },
+        "fingerprint": {
+          "environment_sha256": null,
+          "source_sha256": "8155e0e38880554ff58498bfdb79a7a65e6c61c94d912a3c2083a8f56e2b95c8",
+          "upstream_revision": null
+        },
         "message": "Lean check passed.",
         "policy": "statement_formal",
         "scan": {
@@ -154,7 +170,15 @@
           "summary": "sorry=1, admit=0, axiom=0, opaque=0, unsafe=0",
           "unsafe_count": 0
         },
-        "status": "passed"
+        "schema_version": 1,
+        "status": "passed",
+        "subject": {
+          "declaration_name": null,
+          "module": "PositiveDefiniteTreeLattice.Main.RootedEstimates.Theorems.sumComponentNeighborEqSumAmbientFiltered",
+          "repo_file_path": "PositiveDefiniteTreeLattice/Main/RootedEstimates/Theorems/sumComponentNeighborEqSumAmbientFiltered.lean",
+          "repo_kind": "native",
+          "stage": "statement"
+        }
       },
       "code": "-- lean-constellation: managed-imports-begin\nimport PositiveDefiniteTreeLattice.Main.RootedEstimates.Prelude\nimport Mathlib.Combinatorics.SimpleGraph.Connectivity.Connected\nimport Mathlib.Combinatorics.SimpleGraph.Finite\n-- lean-constellation: managed-imports-end\n\n-- lean-constellation: declaration-source-begin\n\n/--\n# lean-constellation target: `sumComponentNeighborEqSumAmbientFiltered`\n\nLet `G` be a finite simple graph on ambient vertices `V`, let `C : G.ConnectedComponent`, and let\n`uC : C`.  For every commutative additive target `A` and every summand `Phi : V → A`, the neighbor\nsum in the component graph equals the ambient neighbor sum filtered to the vertices of that\ncomponent:\n\n`∑ vC ∈ C.toSimpleGraph.neighborFinset uC, Phi (↑vC) = ∑ v ∈ (G.neighborFinset (↑uC)).filter (fun v\n=> v ∈ C), Phi v`.\n\nThe equality uses the subtype-to-ambient coercion on the left.  Thus the local neighbor index is\nexactly the filtered ambient ordered-neighbor index, with each compatible ambient neighbor\nrepresented once by its component subtype.\n\n## Sources\n\n- Source `solution.tex`, lines 102–110\n\n## Statement dependencies\n\n- `SimpleGraph.ConnectedComponent.toSimpleGraph` from\n  `Mathlib.Combinatorics.SimpleGraph.Connectivity.Connected`\n- `SimpleGraph.neighborFinset` from `Mathlib.Combinatorics.SimpleGraph.Finite`\n-/\ntheorem sumComponentNeighborEqSumAmbientFiltered {V A : Type*} [Fintype V] [AddCommMonoid A]\n    (G : SimpleGraph V) [DecidableRel G.Adj] (C : G.ConnectedComponent)\n    (uC : C) (Phi : V → A) :\n    letI : Fintype C := Fintype.ofFinite C\n    letI : DecidableEq C := Classical.decEq C\n    letI : DecidableRel C.toSimpleGraph.Adj := by\n      intro u v\n      change Decidable (G.Adj (u : V) (v : V))\n      infer_instance\n    letI : DecidablePred (fun v : V => v ∈ C) := Classical.decPred _\n    ∑ vC ∈ C.toSimpleGraph.neighborFinset uC, Phi (vC : V) =\n      ∑ v ∈ (G.neighborFinset (uC : V)).filter (fun v => v ∈ C), Phi v := by\n  sorry\n"
     },

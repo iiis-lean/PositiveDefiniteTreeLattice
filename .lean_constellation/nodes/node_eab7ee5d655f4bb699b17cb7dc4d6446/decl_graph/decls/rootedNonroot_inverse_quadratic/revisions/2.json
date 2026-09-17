@@ -1,23 +1,13 @@
 {
   "change": {
-    "anticipated_proof_dep_names": [
-      "rootedChildCapacitySum",
-      "rootedChildComponentsEquivNonroot",
-      "rootedGram_root_nonroot",
-      "rootedNonroot_inverse_childBlocks"
-    ],
-    "anticipated_statement_dep_names": [
-      "IsAdmissibleRootedTree",
-      "rootedChildCapacitySum",
-      "rootedGram"
-    ],
     "base_revision": 1,
     "kind": "update",
-    "objective": "Preserve revision 1's compiler-checked private statement and exact source equality from SourceIndex b_0009 / solution.tex lines 57–68: for R := {v : V // v ≠ ρ} and D := (rootedGram G w).submatrix Subtype.val Subtype.val, the explicit finite rational double sum of the root row, D⁻¹, and root column equals rootedChildCapacitySum G hG w ρ under the existing finite decidable tree and admissibility hypotheses. Redo Proof NL and Proof Formal so the proof transports the finite sum once along rootedChildComponentsEquivNonroot, evaluates the inverse entirely with proved rootedNonroot_inverse_childBlocks@6 on canonical dependent-Sigma indices, uses rootedGram_root_nonroot to reduce the root row/column to child-root support, and groups the surviving same-child contributions into the existing rootedCapacity terms/rootedChildCapacitySum. Do not change the formal statement, add assumptions, convert the new inverse theorem back through historical proof-dependent ambient embeddings, unfold the noncomputable partition choice, add another transport wrapper, or raise heartbeat limits. The proved equality must remain directly usable by the next Schur-complement rootedCapacity recursion theorem.",
+    "objective": "Revision 2 preserves the compiler-checked private equality from SourceIndex b_0009 / solution.tex lines 57–68: for the exact nonroot subtype R and principal block D, the finite rational double sum of the root row, D⁻¹, and root column equals rootedChildCapacitySum under the existing finite decidable tree and admissibility hypotheses. Its mathematical route is a single reindexing of both sum coordinates along rootedChildComponentsEquivNonroot, canonical-Sigma evaluation of rootedNonroot_inverse_childBlocks@6, root-child support reduction by rootedGram_root_nonroot, and finite grouping of the surviving same-child terms into the existing child-capacity definition. The result remains directly usable by the Schur-complement rootedCapacity recursion theorem without changing the statement or inverse semantics.",
     "require_target_state_satisfied": true,
-    "reset_to_state": "declared",
+    "start_stage": "proof_nl",
     "summary": "Blocked at Proof Formal after accepting a revised Proof NL plan; revision 2 remains proof_planned with its compiler-checked exact rational double-sum statement unchanged. Classification: predictable tracked RootedCapacity-specific Lean representation bridge, not source drift, provider/Mathlib absence, or missing inverse mathematics. The canonical Sigma proof successfully reindexes the frozen nonroot quadratic and reduces it using proved rootedNonroot_inverse_childBlocks@6 to the sum of child inverse diagonal entries. The remaining consumer-side goal is equality of that attached-child dependent scalar sum with rootedChildCapacitySum's raw `rootedChildren` Finset sum. `Finset.sum_attach` cannot unify the attached dependent child index and local child-matrix instance convention with the raw child summand; forcing the explicit lambda deterministically exhausts heartbeats in isDefEq, and the contract forbids raising limits. Checked inputs include rootedNonroot_inverse_childBlocks@6, rootedChildComponentsEquivNonroot, rootedGram_root_nonroot, and rootedChildCapacitySum. Retry condition: first prove one tracked private bridge identifying the attached-child diagonal inverse scalar family/sum with the corresponding raw-child rootedCapacity family/sum under the exact shared child graph, restricted weight, root, and instance convention; then resume this parent from proof_planned using that bridge, without ambient ι conversion or unfolding partition choices.",
-    "target_state": "proved"
+    "target_state": "proved",
+    "execution_constraints": "Keep the exact statement, R/D objects, conclusion direction, rational total inverse, and dependent child-capacity definition. Transport the double sum once along rootedChildComponentsEquivNonroot; evaluate inverse entries only with rootedNonroot_inverse_childBlocks@6 and Matrix.reindex_apply in canonical Sigma coordinates, reduce root factors with rootedGram_root_nonroot and the symmetry-normalized column formula, and perform the finite child grouping with the existing APIs. Do not convert through ambient ι embeddings, unfold the noncomputable partition choice, add a transport/helper wrapper or assumptions, alter semantics, or raise heartbeat limits."
   },
   "lean_decl_name": "rootedNonroot_inverse_quadratic",
   "proof": {
@@ -276,6 +266,11 @@
           "schema_version": 2,
           "summary": "Diagnostics returned 1 items"
         },
+        "fingerprint": {
+          "environment_sha256": null,
+          "source_sha256": "73f5691ec6b4ac4a7fb0b171697cf46ce0594028cfc35358da12e3aafbe69893",
+          "upstream_revision": null
+        },
         "message": "Lean check passed.",
         "policy": "statement_formal",
         "scan": {
@@ -300,7 +295,15 @@
           "summary": "sorry=1, admit=0, axiom=0, opaque=0, unsafe=0",
           "unsafe_count": 0
         },
-        "status": "passed"
+        "schema_version": 1,
+        "status": "passed",
+        "subject": {
+          "declaration_name": null,
+          "module": "PositiveDefiniteTreeLattice.Main.RootedCapacity.Theorems.rootedNonroot_inverse_quadratic",
+          "repo_file_path": "PositiveDefiniteTreeLattice/Main/RootedCapacity/Theorems/rootedNonroot_inverse_quadratic.lean",
+          "repo_kind": "native",
+          "stage": "statement"
+        }
       },
       "code": "-- lean-constellation: managed-imports-begin\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Prelude\nimport Mathlib.Algebra.BigOperators.Group.Finset.Defs\nimport Mathlib.Combinatorics.SimpleGraph.Acyclic\nimport Mathlib.LinearAlgebra.Matrix.Defs\nimport Mathlib.LinearAlgebra.Matrix.NonsingularInverse\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.IsAdmissibleRootedTree\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildCapacitySum\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedGram\n-- lean-constellation: managed-imports-end\n\n-- lean-constellation: declaration-source-begin\n\n/--\n# lean-constellation target: `rootedNonroot_inverse_quadratic`\n\nLet V be a finite type with decidable equality, let G be a simple graph on V with decidable\nadjacency, let hG : G.IsTree, let w : V → ℤ, let ρ : V, and suppose hAdm : IsAdmissibleRootedTree G\nw ρ. Put\n\nR := {v : V // v ≠ ρ}\n\nand let D : Matrix R R ℚ be the principal nonroot submatrix\n\nD := (rootedGram G w).submatrix Subtype.val Subtype.val.\n\nThen the explicit finite inverse quadratic form of the root row equals the child-capacity sum:\n\n∑ x : R, ∑ y : R,\n  rootedGram G w ρ (x : V) * D⁻¹ x y * rootedGram G w (y : V) ρ\n  = rootedChildCapacitySum G hG w ρ.\n\nThe equality uses the rational total inverse of this exact nonroot principal submatrix and the\nexisting dependent child-capacity definition.\n\n## Sources\n\n- Source `solution.tex`, lines 57–68\n\n## Statement dependencies\n\n- `Finset.sum` from `Mathlib.Algebra.BigOperators.Group.Finset.Defs`\n- `SimpleGraph.IsTree` from `Mathlib.Combinatorics.SimpleGraph.Acyclic`\n- `Matrix.submatrix` from `Mathlib.LinearAlgebra.Matrix.Defs`\n- `Matrix.inv` from `Mathlib.LinearAlgebra.Matrix.NonsingularInverse`\n- `Main.RootedCapacity::IsAdmissibleRootedTree` → `IsAdmissibleRootedTree` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.IsAdmissibleRootedTree`\n- `Main.RootedCapacity::rootedChildCapacitySum` → `rootedChildCapacitySum` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildCapacitySum`\n- `Main.RootedCapacity::rootedGram` → `rootedGram` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedGram`\n-/\ntheorem rootedNonroot_inverse_quadratic {V : Type*} [Fintype V] [DecidableEq V]\n    (G : SimpleGraph V) [DecidableRel G.Adj] (hG : G.IsTree) (w : V → ℤ) (ρ : V)\n    (hAdm : IsAdmissibleRootedTree G w ρ) :\n    let R := {v : V // v ≠ ρ}\n    let D : Matrix R R ℚ := (rootedGram G w).submatrix Subtype.val Subtype.val\n    (Finset.sum Finset.univ fun x : R =>\n      Finset.sum Finset.univ fun y : R =>\n        rootedGram G w ρ (x : V) * D⁻¹ x y * rootedGram G w (y : V) ρ) =\n      rootedChildCapacitySum G hG w ρ := by\n  sorry\n"
     },

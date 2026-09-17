@@ -1,18 +1,13 @@
 {
-  "change_summaries": {},
   "committed_at": "2026-07-30T18:44:07Z",
   "created_at": "2026-07-30T18:33:03Z",
-  "discard_reason": null,
   "discarded_at": null,
   "discarded_by": null,
-  "discarded_created_decl_names": [],
-  "discarded_restored_decl_revisions": {},
-  "discarded_revision_refs": [],
   "execution_completed_at": "2026-07-30T18:42:20Z",
   "execution_reason": null,
   "execution_result_kind": "success",
   "node_path": "Main.RootedCapacity",
-  "objective": "Retry only Proof Formal for the unchanged public b_0009 capacity recursion using the now-proved full-block IsUnit helper.",
+  "objective": "Round 55 records the proved public b_0009 capacity recursion using the full-block IsUnit helper and preserving the public equation.",
   "plan_closeout_acknowledged_at": "2026-07-30T18:44:07Z",
   "plan_closeout_acknowledged_by": "a_a93b40977f574bad89528358fa89e022",
   "result_kind": "success",
@@ -29,5 +24,6 @@
   "started_at": "2026-07-30T18:34:10Z",
   "status": "committed",
   "strategy_id": "strategy_fc60f40a331d4f63bd19e22f0eec7473",
-  "summary": "Round 55 completed the public capacity recursion and made graph_proved progress. rootedCapacity_recursion is proved and proof-policy satisfied; no intermediate closure debt remains in the Schur-complement layer. The active strategy remains viable. Next work is the b_0009 strict capacity bound, followed by b_0010 and b_0011 inequalities. Before dispatching the bound itself, verify and, if absent, prove the predictable child-component cardinal decrease needed for well-founded induction."
+  "summary": "Round 55 completed the public capacity recursion and made graph_proved progress. rootedCapacity_recursion is proved and proof-policy satisfied; no intermediate closure debt remains in the Schur-complement layer. The active strategy remained viable. The recursion is the prerequisite for the b_0009 strict capacity bound and later b_0010/b_0011 inequalities, while the predictable child-component cardinal decrease remains the lower helper needed for well-founded induction.",
+  "execution_constraints": "Before dispatching the strict bound, verify and, if absent, prove the predictable child-component cardinal decrease needed for well-founded induction. Then proceed through the b_0009 strict bound and the b_0010/b_0011 inequalities."
 }

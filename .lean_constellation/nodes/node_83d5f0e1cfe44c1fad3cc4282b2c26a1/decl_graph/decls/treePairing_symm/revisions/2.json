@@ -1,18 +1,13 @@
 {
   "change": {
-    "anticipated_proof_dep_names": [
-      "treePairing"
-    ],
-    "anticipated_statement_dep_names": [
-      "treePairing"
-    ],
     "base_revision": 1,
     "kind": "update",
-    "objective": "Retain the accepted public statement and proof plan for symmetry unchanged, and rerun only Proof Formal from proof_planned to recapture/check the current declaration-owned file after the prior runtime integrity failure. The consumer goal remains treePairing G weight x y = treePairing G weight y x on the same finite weighted SimpleGraph; treePairing and validated finite-graph sum support remain the lower dependencies. No extra hypothesis, representation change, helper redesign, or proof-plan change is authorized.",
+    "objective": "Revision 2 records the proved public symmetry theorem `treePairing_symm` with the accepted statement and proof plan unchanged: `treePairing G weight x y = treePairing G weight y x` on the same finite weighted `SimpleGraph`, with `treePairing` and validated finite-graph sum support as lower dependencies and no extra hypothesis, representation change, helper redesign, or proof-plan change.",
     "require_target_state_satisfied": true,
-    "reset_to_state": "proof_planned",
+    "start_stage": "proof_formal",
     "summary": "Successfully retained the accepted symmetry statement and proof plan and reran only Proof Formal. The declaration-file capture-integrity issue is resolved; treePairing_symm reached proved, its formal proof passed, and required graph-proved satisfaction passed against declared treePairing and validated finite-graph sum support. No hypothesis or representation changed.",
-    "target_state": "proved"
+    "target_state": "proved",
+    "execution_constraints": "Retain the accepted public statement and proof plan, and rerun only Proof Formal from proof_planned against the current declaration-owned file after the prior runtime integrity failure. Make no extra hypothesis, representation change, helper redesign, or proof-plan change."
   },
   "lean_decl_name": "treePairing_symm",
   "proof": {
@@ -97,6 +92,11 @@
           "schema_version": 2,
           "summary": "Diagnostics returned 0 items"
         },
+        "fingerprint": {
+          "environment_sha256": null,
+          "source_sha256": "5b83794ffe9fee52f76c141485b81aaff494d8ebe072ad5c9761a5f41df42538",
+          "upstream_revision": null
+        },
         "message": "Lean check passed.",
         "policy": "proof_formal",
         "scan": {
@@ -114,7 +114,15 @@
           "summary": "sorry=0, admit=0, axiom=0, opaque=0, unsafe=0",
           "unsafe_count": 0
         },
-        "status": "passed"
+        "schema_version": 1,
+        "status": "passed",
+        "subject": {
+          "declaration_name": null,
+          "module": "PositiveDefiniteTreeLattice.Main.LatticeFoundations.Theorems.treePairing_symm",
+          "repo_file_path": "PositiveDefiniteTreeLattice/Main/LatticeFoundations/Theorems/treePairing_symm.lean",
+          "repo_kind": "native",
+          "stage": "proof"
+        }
       },
       "code": "-- lean-constellation: managed-imports-begin\nimport PositiveDefiniteTreeLattice.Main.LatticeFoundations.Prelude\nimport Mathlib.Algebra.BigOperators.Group.Finset.Basic\nimport Mathlib.Algebra.BigOperators.Group.Finset.Defs\nimport Mathlib.Algebra.BigOperators.Group.Finset.Sigma\nimport Mathlib.Algebra.BigOperators.Ring.Finset\nimport Mathlib.Combinatorics.SimpleGraph.Basic\nimport Mathlib.Combinatorics.SimpleGraph.Finite\nimport PositiveDefiniteTreeLattice.Main.LatticeFoundations.Defs.treePairing\n-- lean-constellation: managed-imports-end\n\n-- lean-constellation: declaration-source-begin\n\n/--\n# lean-constellation target: `treePairing_symm`\n\nFor a finite type `V` with decidable equality, a simple graph `G : SimpleGraph V` with decidable\nadjacency, an integer-valued weight function `weight : V → ℤ`, and functions `x y : V → ℤ`, the\npairing is symmetric:\n\n`treePairing G weight x y = treePairing G weight y x`.\n\n## Statement dependencies\n\n- `Main.LatticeFoundations::treePairing` → `treePairing` from\n  `PositiveDefiniteTreeLattice.Main.LatticeFoundations.Defs.treePairing`\n\n## Proof outline\n\nUnfold `treePairing` on both sides. The diagonal terms agree after commuting the two integer\nfactors. For the adjacency contribution, rewrite each `G.neighborFinset u` with\n`SimpleGraph.neighborFinset_eq_filter`, then use `Finset.sum_filter` to express the inner sum over\n`Finset.univ` with the conditional summand for `G.Adj u v`. Apply `Finset.sum_comm` to interchange\nthe two universal finite sums. For each pair `u,v`, use the symmetry field of the simple graph to\nreplace `G.Adj u v` by `G.Adj v u`; in the adjacent case commute `x u * y v` to `y v * x u`, and in\nthe non-adjacent case both conditional summands are zero. Ring normalization then recombines the\ndiagonal and adjacency pieces into `treePairing G weight y x`. This directly proves the accepted\nsymmetry statement from `treePairing` and does not rely on either same-round additivity lemma.\n\n## Proof sources\n\n- Source `formal_target.lean`, lines 7–11\n\n## Proof dependencies\n\n- `Finset.sum_congr` from `Mathlib.Algebra.BigOperators.Group.Finset.Basic`\n- `Finset.sum_filter` from `Mathlib.Algebra.BigOperators.Group.Finset.Basic`\n- `Finset.sum_sub_distrib` from `Mathlib.Algebra.BigOperators.Group.Finset.Defs`\n- `Finset.sum_comm` from `Mathlib.Algebra.BigOperators.Group.Finset.Sigma`\n- `Finset.mul_sum` from `Mathlib.Algebra.BigOperators.Ring.Finset`\n- `SimpleGraph.adj_comm` from `Mathlib.Combinatorics.SimpleGraph.Basic`\n- `SimpleGraph.neighborFinset_eq_filter` from `Mathlib.Combinatorics.SimpleGraph.Finite`\n- `Main.LatticeFoundations::treePairing` → `treePairing` from\n  `PositiveDefiniteTreeLattice.Main.LatticeFoundations.Defs.treePairing`\n-/\ntheorem treePairing_symm {V : Type*} [Fintype V] [DecidableEq V] (G : SimpleGraph V)\n    [DecidableRel G.Adj] (weight x y : V → ℤ) :\n    treePairing G weight x y = treePairing G weight y x := by\n  have h_adj :\n      (∑ u, x u * ∑ v ∈ G.neighborFinset u, y v) =\n        ∑ u, y u * ∑ v ∈ G.neighborFinset u, x v := by\n    simp only [SimpleGraph.neighborFinset_eq_filter, Finset.sum_filter]\n    simp_rw [Finset.mul_sum]\n    rw [Finset.sum_comm]\n    apply Finset.sum_congr rfl\n    intro v _\n    apply Finset.sum_congr rfl\n    intro u _\n    by_cases h : G.Adj u v\n    · rw [if_pos h, if_pos ((G.adj_comm u v).mp h)]\n      ring\n    · rw [if_neg h, if_neg (fun h' => h ((G.adj_comm u v).mpr h'))]\n      ring\n  unfold treePairing\n  simp only [mul_sub, Finset.sum_sub_distrib]\n  rw [h_adj]\n  congr 1\n  apply Finset.sum_congr rfl\n  intro u _\n  ring\n"
     },
@@ -170,6 +178,11 @@
           "schema_version": 2,
           "summary": "Diagnostics returned 1 items"
         },
+        "fingerprint": {
+          "environment_sha256": null,
+          "source_sha256": "c7f2fa9ee68d5ca08541307acefc1c70177f9a65cd69e5779c0cb771a66825bf",
+          "upstream_revision": null
+        },
         "message": "Lean check passed.",
         "policy": "statement_formal",
         "scan": {
@@ -194,7 +207,15 @@
           "summary": "sorry=1, admit=0, axiom=0, opaque=0, unsafe=0",
           "unsafe_count": 0
         },
-        "status": "passed"
+        "schema_version": 1,
+        "status": "passed",
+        "subject": {
+          "declaration_name": null,
+          "module": "PositiveDefiniteTreeLattice.Main.LatticeFoundations.Theorems.treePairing_symm",
+          "repo_file_path": "PositiveDefiniteTreeLattice/Main/LatticeFoundations/Theorems/treePairing_symm.lean",
+          "repo_kind": "native",
+          "stage": "statement"
+        }
       },
       "code": "-- lean-constellation: managed-imports-begin\nimport PositiveDefiniteTreeLattice.Main.LatticeFoundations.Prelude\nimport PositiveDefiniteTreeLattice.Main.LatticeFoundations.Defs.treePairing\n-- lean-constellation: managed-imports-end\n\n-- lean-constellation: declaration-source-begin\n\n/--\n# lean-constellation target: `treePairing_symm`\n\nFor a finite type `V` with decidable equality, a simple graph `G : SimpleGraph V` with decidable\nadjacency, an integer-valued weight function `weight : V → ℤ`, and functions `x y : V → ℤ`, the\npairing is symmetric:\n\n`treePairing G weight x y = treePairing G weight y x`.\n\n## Statement dependencies\n\n- `Main.LatticeFoundations::treePairing` → `treePairing` from\n  `PositiveDefiniteTreeLattice.Main.LatticeFoundations.Defs.treePairing`\n-/\ntheorem treePairing_symm {V : Type*} [Fintype V] [DecidableEq V] (G : SimpleGraph V)\n    [DecidableRel G.Adj] (weight x y : V → ℤ) :\n    treePairing G weight x y = treePairing G weight y x := by\n  sorry\n"
     },

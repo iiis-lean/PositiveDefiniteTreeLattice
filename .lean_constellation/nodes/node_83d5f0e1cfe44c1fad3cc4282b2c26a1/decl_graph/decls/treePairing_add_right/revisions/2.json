@@ -1,18 +1,13 @@
 {
   "change": {
-    "anticipated_proof_dep_names": [
-      "treePairing"
-    ],
-    "anticipated_statement_dep_names": [
-      "treePairing"
-    ],
     "base_revision": 1,
     "kind": "update",
-    "objective": "Retain the accepted public statement and proof plan for right additivity unchanged, and rerun only Proof Formal from proof_planned to recapture/check the current declaration-owned file after the prior runtime integrity failure. The consumer goal remains treePairing G weight x (y + z) = treePairing G weight x y + treePairing G weight x z; treePairing is the already declared lower dependency. No source, interface, assumption, or proof strategy change is authorized.",
+    "objective": "Revision 2 records the proved public right-additivity theorem `treePairing_add_right` with the accepted statement and proof plan unchanged: `treePairing G weight x (y + z) = treePairing G weight x y + treePairing G weight x z`, with declared `treePairing` as its lower dependency and no source, interface, assumption, or proof-strategy change.",
     "require_target_state_satisfied": true,
-    "reset_to_state": "proof_planned",
+    "start_stage": "proof_formal",
     "summary": "Successfully retained the accepted right-additivity statement and proof plan and reran only Proof Formal. The declaration-file capture-integrity issue is resolved; treePairing_add_right reached proved, its formal proof passed, and required graph-proved satisfaction passed against declared treePairing. No semantic artifact changed.",
-    "target_state": "proved"
+    "target_state": "proved",
+    "execution_constraints": "Retain the accepted public statement and proof plan, and rerun only Proof Formal from proof_planned against the current declaration-owned file after the prior runtime integrity failure. Make no source, interface, assumption, or proof-strategy change."
   },
   "lean_decl_name": "treePairing_add_right",
   "proof": {
@@ -57,6 +52,11 @@
           "schema_version": 2,
           "summary": "Diagnostics returned 0 items"
         },
+        "fingerprint": {
+          "environment_sha256": null,
+          "source_sha256": "b31bb4476ef274ef4fbb8f90e6958c10d01303c254e9068e3241cccccaac2af6",
+          "upstream_revision": null
+        },
         "message": "Lean check passed.",
         "policy": "proof_formal",
         "scan": {
@@ -74,7 +74,15 @@
           "summary": "sorry=0, admit=0, axiom=0, opaque=0, unsafe=0",
           "unsafe_count": 0
         },
-        "status": "passed"
+        "schema_version": 1,
+        "status": "passed",
+        "subject": {
+          "declaration_name": null,
+          "module": "PositiveDefiniteTreeLattice.Main.LatticeFoundations.Theorems.treePairing_add_right",
+          "repo_file_path": "PositiveDefiniteTreeLattice/Main/LatticeFoundations/Theorems/treePairing_add_right.lean",
+          "repo_kind": "native",
+          "stage": "proof"
+        }
       },
       "code": "-- lean-constellation: managed-imports-begin\nimport PositiveDefiniteTreeLattice.Main.LatticeFoundations.Prelude\nimport Mathlib.Algebra.BigOperators.Group.Finset.Basic\nimport PositiveDefiniteTreeLattice.Main.LatticeFoundations.Defs.treePairing\n-- lean-constellation: managed-imports-end\n\n-- lean-constellation: declaration-source-begin\n\n/--\n# lean-constellation target: `treePairing_add_right`\n\nFor a finite type `V` with decidable equality, a simple graph `G : SimpleGraph V` with decidable\nadjacency, an integer-valued weight function `weight : V → ℤ`, and functions `x y z : V → ℤ`, the\npairing is additive in its right argument:\n\n`treePairing G weight x (y + z) = treePairing G weight x y + treePairing G weight x z`.\n\nHere `y + z` is pointwise addition of functions `V → ℤ`.\n\n## Statement dependencies\n\n- `Main.LatticeFoundations::treePairing` → `treePairing` from\n  `PositiveDefiniteTreeLattice.Main.LatticeFoundations.Defs.treePairing`\n\n## Proof outline\n\nUnfold `treePairing`. Pointwise addition gives `(y + z) u = y u + z u` and `(y + z) v = y v + z v`.\nFirst use `Finset.sum_add_distrib` on each neighbor sum to rewrite `∑ v ∈ G.neighborFinset u, (y v +\nz v)` as the sum of the separate neighbor sums. Then use distributivity in `ℤ` to split the\nresulting outer summand into the `y` contribution and the `z` contribution. A final application of\n`Finset.sum_add_distrib` splits the outer finite sum and gives the two required pairings. Ring\nnormalization closes the local integer identities. This route uses only the accepted definition\n`treePairing`, not the new left-additivity theorem.\n\n## Proof sources\n\n- Source `formal_target.lean`, lines 7–11\n\n## Proof dependencies\n\n- `Finset.sum_add_distrib` from `Mathlib.Algebra.BigOperators.Group.Finset.Basic`\n- `Finset.sum_congr` from `Mathlib.Algebra.BigOperators.Group.Finset.Basic`\n- `Main.LatticeFoundations::treePairing` → `treePairing` from\n  `PositiveDefiniteTreeLattice.Main.LatticeFoundations.Defs.treePairing`\n-/\ntheorem treePairing_add_right {V : Type*} [Fintype V] [DecidableEq V] (G : SimpleGraph V)\n    [DecidableRel G.Adj] (weight x y z : V → ℤ) :\n    treePairing G weight x (y + z) = treePairing G weight x y + treePairing G weight x z := by\n  unfold treePairing\n  simp only [Pi.add_apply, Finset.sum_add_distrib]\n  rw [← Finset.sum_add_distrib]\n  apply Finset.sum_congr rfl\n  intro u _\n  ring\n"
     },
@@ -130,6 +138,11 @@
           "schema_version": 2,
           "summary": "Diagnostics returned 1 items"
         },
+        "fingerprint": {
+          "environment_sha256": null,
+          "source_sha256": "525f7d6846fb93eede98d203e0165af9abbd0270a4905e0860fc5915b014d6d8",
+          "upstream_revision": null
+        },
         "message": "Lean check passed.",
         "policy": "statement_formal",
         "scan": {
@@ -154,7 +167,15 @@
           "summary": "sorry=1, admit=0, axiom=0, opaque=0, unsafe=0",
           "unsafe_count": 0
         },
-        "status": "passed"
+        "schema_version": 1,
+        "status": "passed",
+        "subject": {
+          "declaration_name": null,
+          "module": "PositiveDefiniteTreeLattice.Main.LatticeFoundations.Theorems.treePairing_add_right",
+          "repo_file_path": "PositiveDefiniteTreeLattice/Main/LatticeFoundations/Theorems/treePairing_add_right.lean",
+          "repo_kind": "native",
+          "stage": "statement"
+        }
       },
       "code": "-- lean-constellation: managed-imports-begin\nimport PositiveDefiniteTreeLattice.Main.LatticeFoundations.Prelude\nimport PositiveDefiniteTreeLattice.Main.LatticeFoundations.Defs.treePairing\n-- lean-constellation: managed-imports-end\n\n-- lean-constellation: declaration-source-begin\n\n/--\n# lean-constellation target: `treePairing_add_right`\n\nFor a finite type `V` with decidable equality, a simple graph `G : SimpleGraph V` with decidable\nadjacency, an integer-valued weight function `weight : V → ℤ`, and functions `x y z : V → ℤ`, the\npairing is additive in its right argument:\n\n`treePairing G weight x (y + z) = treePairing G weight x y + treePairing G weight x z`.\n\nHere `y + z` is pointwise addition of functions `V → ℤ`.\n\n## Statement dependencies\n\n- `Main.LatticeFoundations::treePairing` → `treePairing` from\n  `PositiveDefiniteTreeLattice.Main.LatticeFoundations.Defs.treePairing`\n-/\ntheorem treePairing_add_right {V : Type*} [Fintype V] [DecidableEq V] (G : SimpleGraph V)\n    [DecidableRel G.Adj] (weight x y z : V → ℤ) :\n    treePairing G weight x (y + z) = treePairing G weight x y + treePairing G weight x z := by\n  sorry\n"
     },

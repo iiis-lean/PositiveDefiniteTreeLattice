@@ -1,13 +1,8 @@
 {
-  "change_summaries": {},
   "committed_at": "2026-08-06T13:47:39Z",
   "created_at": "2026-08-06T13:22:31Z",
-  "discard_reason": null,
   "discarded_at": null,
   "discarded_by": null,
-  "discarded_created_decl_names": [],
-  "discarded_restored_decl_revisions": {},
-  "discarded_revision_refs": [],
   "execution_completed_at": "2026-08-06T13:44:59Z",
   "execution_reason": "The formal proof reaches the strict Schur complement and the transported child-block inverse, but final identification with rootedChildCapacitySum is blocked by an instance mismatch that cannot be repaired within this stage without the explicitly forbidden local instance-transport architecture.",
   "execution_result_kind": "blocked",

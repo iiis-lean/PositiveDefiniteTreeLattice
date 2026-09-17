@@ -1,4 +1,4 @@
-[← Public API](../PUBLIC_API.md) · [Public boundaries](../PUBLIC_BOUNDARIES.md)
+[← Public API](../PUBLIC_API.md) · [Public boundaries](../PUBLIC_BOUNDARIES.md) · [Complete graph](../DECLARATION_GRAPH.md)
 
 # `rootedChildCount`
 
@@ -10,9 +10,13 @@ The number of children of a vertex in a finite rooted tree.
 - State: `declared`
 - Revision status: `committed`
 - Repository completion: `graph_proved`
-- Formal code: final statement projection
+- Compatibility `formal_code`: final statement projection
 
-## Lean code
+## Statement NL
+
+For a finite simple graph `G` that is a tree, a chosen root `ρ`, and a vertex `y`, define `rootedChildCount G ρ y : ℕ` to be the cardinality of the finite set `rootedChildren G ρ y`.  Thus `rootedChildCount G ρ y` is exactly `ch_C(y)`, the number of children of `y` in the orientation of the rooted tree away from `ρ`.
+
+## Statement Formal
 
 ```lean
 -- lean-constellation: managed-imports-begin
@@ -43,6 +47,14 @@ noncomputable def rootedChildCount {V : Type*} [Fintype V] [DecidableEq V] (G : 
     [DecidableRel G.Adj] (hG : G.IsTree) (ρ y : V) : ℕ :=
   (rootedChildren G hG ρ y).card
 ```
+
+## Proof NL
+
+Not recorded.
+
+## Proof Formal
+
+Not recorded.
 
 ## Statement dependencies
 

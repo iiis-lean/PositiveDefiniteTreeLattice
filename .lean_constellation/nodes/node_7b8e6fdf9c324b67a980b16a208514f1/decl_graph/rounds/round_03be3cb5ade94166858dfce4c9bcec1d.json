@@ -1,13 +1,8 @@
 {
-  "change_summaries": {},
   "committed_at": "2026-08-07T03:55:04Z",
   "created_at": "2026-08-07T03:41:37Z",
-  "discard_reason": null,
   "discarded_at": null,
   "discarded_by": null,
-  "discarded_created_decl_names": [],
-  "discarded_restored_decl_revisions": {},
-  "discarded_revision_refs": [],
   "execution_completed_at": "2026-08-07T03:52:51Z",
   "execution_reason": "The frozen proof cannot be completed within the allowed no-helper/no-wrapper boundary because the available RootedCapacity contractions are rational-coordinate identities while the frozen conclusion is integral treePairing. Their signatures do not supply the required casted coordinate expansion bridge for either the ambient graph or the dependent child-component graphs.",
   "execution_result_kind": "blocked",

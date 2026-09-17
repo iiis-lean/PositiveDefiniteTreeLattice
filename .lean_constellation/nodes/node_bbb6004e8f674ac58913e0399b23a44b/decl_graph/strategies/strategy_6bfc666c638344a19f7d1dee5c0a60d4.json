@@ -22,9 +22,10 @@
     "round_b879c48c60134fd6be529729d9adc767"
   ],
   "node_path": "Main.RootedEstimates",
-  "objective": "Recover the retained graph after the provider API repair: prove rootedCapacityInvEqSub, rationalUnitIntervalIntegerDistance, and treePairingRootedChildDecomposition using the new proved rootedEdgeClassification; then build the b_0010 rooted induction and the b_0011 pairing/rootedGram Cauchy–Schwarz package bottom-up before creating the two exact qualified public interfaces.",
-  "rationale": "The repository remains graph_proved. Three arithmetic foundations are already proved. Dependency recon confirms PositiveDefiniteTreeLattice.rootedEdgeClassification is proved and uses exactly the rootedChildren/rootedChildComponent representation of treePairingRootedChildDecomposition revision 1, eliminating the prior external blocker without changing the accepted statements. Preserve all source-faithful integral/rational objects and use small repair rounds before parent proofs.",
+  "objective": "Strategy 6B records the completed repaired bottom-up rooted-estimate graph: the 16-declaration package proves rootedCapacityInvEqSub, rationalUnitIntervalIntegerDistance, and treePairingRootedChildDecomposition using proved rootedEdgeClassification, then proves the b_0010 rooted induction and b_0011 pairing/rootedGram Cauchy–Schwarz package with both exact qualified public interfaces.",
+  "rationale": "The repository remains graph_proved. Three arithmetic foundations are already proved. Dependency recon confirms PositiveDefiniteTreeLattice.rootedEdgeClassification is proved and uses exactly the rootedChildren/rootedChildComponent representation of treePairingRootedChildDecomposition revision 1, eliminating the prior external blocker without changing the accepted statements. The package preserves all source-faithful integral/rational objects.",
   "status": "closed",
   "strategy_id": "strategy_6bfc666c638344a19f7d1dee5c0a60d4",
-  "summary": "Completed the repaired bottom-up rooted-estimate strategy: the 16-declaration graph proves the b_0010 rooted integer estimate and the b_0011 Cauchy/root coefficient bound, with both exact public interface identities ready."
+  "summary": "Completed the repaired bottom-up rooted-estimate strategy: the 16-declaration graph proves the b_0010 rooted integer estimate and the b_0011 Cauchy/root coefficient bound, with both exact public interface identities ready.",
+  "execution_constraints": "Use small repair rounds before parent proofs, preserving all source-faithful integral/rational objects and the accepted statements; process the rooted-capacity/decomposition prerequisites before the b_0010 induction and the b_0011 pairing/rootedGram Cauchy–Schwarz package."
 }

@@ -1,15 +1,9 @@
 {
   "change": {
-    "anticipated_proof_dep_names": [
-      "irreducible_vertex_of_weight_eq_one",
-      "normalized_pairing_positive_of_unique_underweight"
-    ],
-    "anticipated_statement_dep_names": [],
     "base_revision": null,
     "kind": "create",
     "objective": "Create the exact contract interface declaration with compiler-confirmed full Lean name PositiveDefiniteTreeLattice.exists_irreducible_vertex and verbatim formal shape from formal_target.lean:24–33: `{V : Type*} [Fintype V] [DecidableEq V] (G : SimpleGraph V) [DecidableRel G.Adj] (weight : V → ℤ) (h_tree : G.IsTree) (h_positive : ∀ x : V → ℤ, x ≠ 0 → 0 < treePairing G weight x x) (h_unique_underweight : ∃! v : V, weight v < (G.degree v : ℤ)) : ∃ v : V, Irreducible G weight (vertexVector v)`. Prove the source theorem at solution.tex:182–244 bottom-up from the accepted helpers. Select the unique underweighted vertex v. If weight v = 1, return v using irreducible_vertex_of_weight_eq_one. Otherwise prove v is irreducible: unfold only the accepted Irreducible interface, assume a forbidden nontrivial decomposition vertexVector v = a + b with nonnegative cross-pairing, and set z := -b so a = vertexVector v + z and the shifted pairing is nonpositive by bilinearity/symmetry. Use nontriviality to establish z ≠ 0 and z ≠ -vertexVector v. Let q := z v. If 0 ≤ q, apply normalized_pairing_positive_of_unique_underweight directly. Otherwise use Int.le_sub_one_of_not_le to get q ≤ -1, replace z by -vertexVector v - z (equivalently exchange a and b), prove its root coefficient -1-q is nonnegative and it is nonzero, and apply the same normalized lemma; use treePairing_add_left/right/self and symmetry to show the shifted quantity is invariant. Either branch contradicts the nonpositive pairing, yielding irreducibility and the existential witness v. Preserve the exact hypotheses, integral treePairing, vertexVector and Irreducible objects, conclusion direction, and namespace. Do not add assumptions, change the protected statement, expose helper representations, weaken irreducibility, recreate rooted-component proofs, or raise heartbeats.",
     "require_target_state_satisfied": true,
-    "reset_to_state": null,
     "summary": "Created public theorem exists_irreducible_vertex revision 1 with the exact compiler-confirmed Lean name PositiveDefiniteTreeLattice.exists_irreducible_vertex and protected formal statement from formal_target.lean:24–33. Statement NL, Statement Formal, and Proof NL were accepted, advancing the declaration to proof_planned. Proof Formal did not complete because the worker response stream disconnected before completion; no Lean mismatch or missing dependency was reported, and the formal proof artifact remains absent. This is classified as a runtime failure. Retry conditions: retain revision 1’s accepted statement and proof plan, keep proof dependencies irreducible_vertex_of_weight_eq_one and normalized_pairing_positive_of_unique_underweight, and rerun only Proof Formal under the same source route.",
     "target_state": "proved"
   },
@@ -212,6 +206,11 @@
           "schema_version": 2,
           "summary": "Diagnostics returned 1 items"
         },
+        "fingerprint": {
+          "environment_sha256": null,
+          "source_sha256": "6609a40eb58345cc4ddca6bf6f8cf0cc1f0cbecca59e44f627086b25c04a2d93",
+          "upstream_revision": null
+        },
         "message": "Lean check passed.",
         "policy": "statement_formal",
         "scan": {
@@ -236,7 +235,15 @@
           "summary": "sorry=1, admit=0, axiom=0, opaque=0, unsafe=0",
           "unsafe_count": 0
         },
-        "status": "passed"
+        "schema_version": 1,
+        "status": "passed",
+        "subject": {
+          "declaration_name": null,
+          "module": "PositiveDefiniteTreeLattice.Main.IrreducibleVertex.Theorems.exists_irreducible_vertex",
+          "repo_file_path": "PositiveDefiniteTreeLattice/Main/IrreducibleVertex/Theorems/exists_irreducible_vertex.lean",
+          "repo_kind": "native",
+          "stage": "statement"
+        }
       },
       "code": "-- lean-constellation: managed-imports-begin\nimport PositiveDefiniteTreeLattice.Main.IrreducibleVertex.Prelude\nimport Mathlib.Combinatorics.SimpleGraph.Acyclic\nimport Mathlib.Combinatorics.SimpleGraph.Basic\nimport Mathlib.Combinatorics.SimpleGraph.Finite\n-- lean-constellation: managed-imports-end\n\n-- lean-constellation: declaration-source-begin\n\nnamespace PositiveDefiniteTreeLattice\n\n/--\n# lean-constellation target: `exists_irreducible_vertex`\n\nLet `V` be a finite type with decidable equality, let `G : SimpleGraph V` have decidable adjacency,\nand let `weight : V → ℤ`. Assume that `G` is a tree, that the integral tree pairing is positive\ndefinite on every nonzero integer vector—namely, for every `x : V → ℤ` with `x ≠ 0`, `0 <\ntreePairing G weight x x`—and that there exists exactly one vertex `v` with `weight v < (G.degree v\n: ℤ)`. Then there exists a vertex `v : V` such that the vertex vector `vertexVector v` is\nirreducible for `G` and `weight`, i.e. `Irreducible G weight (vertexVector v)`.\n\n## Sources\n\n- Source `formal_target.lean`, lines 24–33\n- Source `solution.tex`, lines 182–186\n\n## Statement dependencies\n\n- `SimpleGraph.IsTree` from `Mathlib.Combinatorics.SimpleGraph.Acyclic`\n- `SimpleGraph` from `Mathlib.Combinatorics.SimpleGraph.Basic`\n- `SimpleGraph.degree` from `Mathlib.Combinatorics.SimpleGraph.Finite`\n- `Main.LatticeFoundations::IrreducibleAnchor` → `PositiveDefiniteTreeLattice.Irreducible` from\n  `PositiveDefiniteTreeLattice.Main.LatticeFoundations.Defs.IrreducibleAnchor`\n- `Main.LatticeFoundations::treePairingAnchor` → `PositiveDefiniteTreeLattice.treePairing` from\n  `PositiveDefiniteTreeLattice.Main.LatticeFoundations.Defs.treePairingAnchor`\n- `Main.LatticeFoundations::vertexVectorAnchor` → `PositiveDefiniteTreeLattice.vertexVector` from\n  `PositiveDefiniteTreeLattice.Main.LatticeFoundations.Defs.vertexVectorAnchor`\n-/\ntheorem exists_irreducible_vertex\n    {V : Type*} [Fintype V] [DecidableEq V] (G : SimpleGraph V) [DecidableRel G.Adj]\n    (weight : V → ℤ) (h_tree : G.IsTree)\n    (h_positive : ∀ x : V → ℤ, x ≠ 0 → 0 < treePairing G weight x x)\n    (h_unique_underweight : ∃! v : V, weight v < (G.degree v : ℤ)) :\n    ∃ v : V, Irreducible G weight (vertexVector v) := by\n  sorry\n\nend PositiveDefiniteTreeLattice\n"
     },

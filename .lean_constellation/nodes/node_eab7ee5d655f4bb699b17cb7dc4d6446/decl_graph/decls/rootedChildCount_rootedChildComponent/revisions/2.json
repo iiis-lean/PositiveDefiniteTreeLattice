@@ -1,21 +1,13 @@
 {
   "change": {
-    "anticipated_proof_dep_names": [
-      "rootedChildren_rootedChildComponent"
-    ],
-    "anticipated_statement_dep_names": [
-      "rootedChildComponent",
-      "rootedChildComponent_isTree",
-      "rootedChildCount",
-      "rootedChildRoot"
-    ],
     "base_revision": 1,
     "kind": "update",
-    "objective": "Preserve the accepted public theorem statement exactly: under hG : G.IsTree and hc : c ∈ rootedChildren G hG ρ parent, every x in rootedChildComponent G parent c has the same rootedChildCount in the induced child component rooted at rootedChildRoot as in the ambient rooted tree. This is the RootedCapacity-specific orientation inheritance implicit in SourceIndex b_0009 / solution.tex lines 47–63. Prove it by unfolding rootedChildCount and taking Finset.card of the proved rootedChildren_rootedChildComponent@3 Finset.map equality, using injectivity of the subtype embedding. Do not add admissibility, weight, or positivity hypotheses and do not weaken equality. The proved theorem feeds child-subtree admissibility and the later capacity recursion/strict-bound interface.",
+    "objective": "Revision 2 establishes the accepted public b_0009 orientation-inheritance equality from solution.tex lines 47–63: under hG and hc, every x in rootedChildComponent G parent c has the same rootedChildCount in the induced child component rooted at rootedChildRoot as in the ambient rooted tree. The natural-number equality has no admissibility, weight, or positivity hypotheses and supplies the child-subtree admissibility and later capacity-recursion/strict-bound interfaces.",
     "require_target_state_satisfied": true,
-    "reset_to_state": "declared",
+    "start_stage": "proof_nl",
     "summary": "The declared-to-proved retry succeeded. rootedChildCount_rootedChildComponent rev2 preserves its public b_0009 equality and hypotheses, and now has accepted Proof NL and Proof Formal artifacts. It derives the count equality from the proved rootedChildren_rootedChildComponent Finset transport without adding weight, positivity, or admissibility assumptions. The theorem reaches proved state and supplies the rooted-child-count inheritance needed for child-component admissibility.",
-    "target_state": "proved"
+    "target_state": "proved",
+    "execution_constraints": "Prove by unfolding rootedChildCount and taking Finset.card of the proved rootedChildren_rootedChildComponent@3 Finset.map equality, using injectivity of the subtype embedding. Do not add admissibility, weight, or positivity hypotheses or weaken the equality."
   },
   "lean_decl_name": "rootedChildCount_rootedChildComponent",
   "proof": {
@@ -62,6 +54,11 @@
           "schema_version": 2,
           "summary": "Command completed successfully"
         },
+        "fingerprint": {
+          "environment_sha256": null,
+          "source_sha256": "43f5f74e04fe2fdb6b6449940cfc627c32ce080bd1540e434c8e8a1c9eef88b4",
+          "upstream_revision": null
+        },
         "message": "Lean check passed.",
         "policy": "proof_formal",
         "scan": {
@@ -79,7 +76,15 @@
           "summary": "sorry=0, admit=0, axiom=0, opaque=0, unsafe=0",
           "unsafe_count": 0
         },
-        "status": "passed"
+        "schema_version": 1,
+        "status": "passed",
+        "subject": {
+          "declaration_name": null,
+          "module": "PositiveDefiniteTreeLattice.Main.RootedCapacity.Theorems.rootedChildCount_rootedChildComponent",
+          "repo_file_path": "PositiveDefiniteTreeLattice/Main/RootedCapacity/Theorems/rootedChildCount_rootedChildComponent.lean",
+          "repo_kind": "native",
+          "stage": "proof"
+        }
       },
       "code": "-- lean-constellation: managed-imports-begin\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Prelude\nimport Mathlib.Combinatorics.SimpleGraph.Acyclic\nimport Mathlib.Combinatorics.SimpleGraph.Connectivity.Connected\nimport Mathlib.Data.Finset.Card\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildComponent\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildCount\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildRoot\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildren\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Theorems.rootedChildComponent_isTree\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Theorems.rootedChildren_rootedChildComponent\n-- lean-constellation: managed-imports-end\n\n-- lean-constellation: declaration-source-begin\n\n/--\n# lean-constellation target: `rootedChildCount_rootedChildComponent`\n\nFor a finite vertex type `V` with decidable equality, a simple graph `G : SimpleGraph V`, a tree\nproof `hG : G.IsTree`, an ambient root `ρ : V`, vertices `parent c : V`, and a hypothesis `hc : c ∈\nrootedChildren G hG ρ parent`, let `C := rootedChildComponent G parent c`.  Then, for every `x : C`,\nthe child count in the induced component rooted at its canonical child root equals the ambient child\ncount: `rootedChildCount C.toSimpleGraph (rootedChildComponent_isTree G parent c hG)\n(rootedChildRoot G parent c) x = rootedChildCount G hG ρ (x : V)`.  This is an equality of natural\nnumbers, with no weight, positive-definiteness, or admissibility hypothesis.\n\n## Sources\n\n- Source `solution.tex`, lines 48–61\n\n## Statement dependencies\n\n- `SimpleGraph.IsTree` from `Mathlib.Combinatorics.SimpleGraph.Acyclic`\n- `SimpleGraph.ConnectedComponent.toSimpleGraph` from\n  `Mathlib.Combinatorics.SimpleGraph.Connectivity.Connected`\n- `Main.RootedCapacity::rootedChildComponent` → `rootedChildComponent` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildComponent`\n- `Main.RootedCapacity::rootedChildComponent_isTree` → `rootedChildComponent_isTree` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Theorems.rootedChildComponent_isTree`\n- `Main.RootedCapacity::rootedChildCount` → `rootedChildCount` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildCount`\n- `Main.RootedCapacity::rootedChildRoot` → `rootedChildRoot` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildRoot`\n- `Main.RootedCapacity::rootedChildren` → `rootedChildren` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildren`\n\n## Proof outline\n\nWork under the existing `let`-bound child component, its finite and adjacency instances, and an\narbitrary `x : rootedChildComponent G parent c`; introduce `x` after discharging those local\nbinders.  Use the canonical subtype embedding\n`e : rootedChildComponent G parent c ↪ V`, `e x = (x : V)`, whose injectivity is `Subtype.ext`.\n\nUnfold `rootedChildCount` on both sides.  Apply `congrArg Finset.card` to the already proved public\ntransport theorem `rootedChildren_rootedChildComponent G hG ρ parent c hc x`.  Its conclusion is\nexactly the equality between the ambient child finset and the `Finset.map e` of the component child\nfinset.  Rewrite the cardinality of that mapped finset with `Finset.card_map e`; this theorem\napplies precisely because `e` is an embedding (hence injective), and leaves the component child\nfinset's cardinality.  The resulting equality is the required equality of the two unfolded child\ncounts.\n\nThis proof uses only the stated tree and rooted-child hypotheses.  In particular, it introduces no\nadmissibility, weight, positivity, or nonemptiness assumptions; all orientation transport is\ndelegated to the proved `rootedChildren_rootedChildComponent` equality.\n\n## Proof sources\n\n- Source `solution.tex`, lines 47–63\n\n## Proof dependencies\n\n- `Finset.card_map` from `Mathlib.Data.Finset.Card`\n- `Main.RootedCapacity::rootedChildCount` → `rootedChildCount` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildCount`\n- `Main.RootedCapacity::rootedChildren_rootedChildComponent` → `rootedChildren_rootedChildComponent`\n  from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Theorems.rootedChildren_rootedChildComponent`\n-/\ntheorem rootedChildCount_rootedChildComponent {V : Type*} [Fintype V] [DecidableEq V]\n    (G : SimpleGraph V) [DecidableRel G.Adj] (hG : G.IsTree) (ρ parent c : V)\n    (hc : c ∈ rootedChildren G hG ρ parent) :\n    let C := rootedChildComponent G parent c\n    letI : Fintype C := Fintype.ofFinite C\n    letI : DecidableRel C.toSimpleGraph.Adj := by\n      intro x y\n      change Decidable ((G.deleteEdges {s(parent, c)}).Adj (x : V) (y : V))\n      infer_instance\n    ∀ x : C,\n      rootedChildCount C.toSimpleGraph (rootedChildComponent_isTree G parent c hG)\n          (rootedChildRoot G parent c) x =\n        rootedChildCount G hG ρ (x : V) := by\n  classical\n  dsimp\n  intro x\n  unfold rootedChildCount\n  have h := congrArg Finset.card\n    (rootedChildren_rootedChildComponent G hG ρ parent c hc x)\n  simpa only [Finset.card_map] using h\n"
     },
@@ -191,6 +196,11 @@
           "schema_version": 2,
           "summary": "Diagnostics returned 1 items"
         },
+        "fingerprint": {
+          "environment_sha256": null,
+          "source_sha256": "324d468de5e9a05f3f6753c0e7a6589fbb81d7860b571aed3aef5447e8491a35",
+          "upstream_revision": null
+        },
         "message": "Lean check passed.",
         "policy": "statement_formal",
         "scan": {
@@ -215,7 +225,15 @@
           "summary": "sorry=1, admit=0, axiom=0, opaque=0, unsafe=0",
           "unsafe_count": 0
         },
-        "status": "passed"
+        "schema_version": 1,
+        "status": "passed",
+        "subject": {
+          "declaration_name": null,
+          "module": "PositiveDefiniteTreeLattice.Main.RootedCapacity.Theorems.rootedChildCount_rootedChildComponent",
+          "repo_file_path": "PositiveDefiniteTreeLattice/Main/RootedCapacity/Theorems/rootedChildCount_rootedChildComponent.lean",
+          "repo_kind": "native",
+          "stage": "statement"
+        }
       },
       "code": "-- lean-constellation: managed-imports-begin\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Prelude\nimport Mathlib.Combinatorics.SimpleGraph.Acyclic\nimport Mathlib.Combinatorics.SimpleGraph.Connectivity.Connected\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildComponent\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildCount\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildRoot\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildren\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Theorems.rootedChildComponent_isTree\n-- lean-constellation: managed-imports-end\n\n-- lean-constellation: declaration-source-begin\n\n/--\n# lean-constellation target: `rootedChildCount_rootedChildComponent`\n\nFor a finite vertex type `V` with decidable equality, a simple graph `G : SimpleGraph V`, a tree\nproof `hG : G.IsTree`, an ambient root `ρ : V`, vertices `parent c : V`, and a hypothesis `hc : c ∈\nrootedChildren G hG ρ parent`, let `C := rootedChildComponent G parent c`.  Then, for every `x : C`,\nthe child count in the induced component rooted at its canonical child root equals the ambient child\ncount: `rootedChildCount C.toSimpleGraph (rootedChildComponent_isTree G parent c hG)\n(rootedChildRoot G parent c) x = rootedChildCount G hG ρ (x : V)`.  This is an equality of natural\nnumbers, with no weight, positive-definiteness, or admissibility hypothesis.\n\n## Sources\n\n- Source `solution.tex`, lines 48–61\n\n## Statement dependencies\n\n- `SimpleGraph.IsTree` from `Mathlib.Combinatorics.SimpleGraph.Acyclic`\n- `SimpleGraph.ConnectedComponent.toSimpleGraph` from\n  `Mathlib.Combinatorics.SimpleGraph.Connectivity.Connected`\n- `Main.RootedCapacity::rootedChildComponent` → `rootedChildComponent` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildComponent`\n- `Main.RootedCapacity::rootedChildComponent_isTree` → `rootedChildComponent_isTree` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Theorems.rootedChildComponent_isTree`\n- `Main.RootedCapacity::rootedChildCount` → `rootedChildCount` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildCount`\n- `Main.RootedCapacity::rootedChildRoot` → `rootedChildRoot` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildRoot`\n- `Main.RootedCapacity::rootedChildren` → `rootedChildren` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildren`\n-/\ntheorem rootedChildCount_rootedChildComponent {V : Type*} [Fintype V] [DecidableEq V]\n    (G : SimpleGraph V) [DecidableRel G.Adj] (hG : G.IsTree) (ρ parent c : V)\n    (hc : c ∈ rootedChildren G hG ρ parent) :\n    let C := rootedChildComponent G parent c\n    letI : Fintype C := Fintype.ofFinite C\n    letI : DecidableRel C.toSimpleGraph.Adj := by\n      intro x y\n      change Decidable ((G.deleteEdges {s(parent, c)}).Adj (x : V) (y : V))\n      infer_instance\n    ∀ x : C,\n      rootedChildCount C.toSimpleGraph (rootedChildComponent_isTree G parent c hG)\n          (rootedChildRoot G parent c) x =\n        rootedChildCount G hG ρ (x : V) := by\n  sorry\n"
     },

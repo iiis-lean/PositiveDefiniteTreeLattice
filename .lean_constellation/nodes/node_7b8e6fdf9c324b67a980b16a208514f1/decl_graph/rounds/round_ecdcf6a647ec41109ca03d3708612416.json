@@ -1,13 +1,8 @@
 {
-  "change_summaries": {},
   "committed_at": "2026-08-06T15:14:03Z",
   "created_at": "2026-08-06T14:43:17Z",
-  "discard_reason": null,
   "discarded_at": null,
   "discarded_by": null,
-  "discarded_created_decl_names": [],
-  "discarded_restored_decl_revisions": {},
-  "discarded_revision_refs": [],
   "execution_completed_at": "2026-08-06T15:12:19Z",
   "execution_reason": null,
   "execution_result_kind": "success",

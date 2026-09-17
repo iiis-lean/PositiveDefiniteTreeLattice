@@ -1,13 +1,8 @@
 {
-  "change_summaries": {},
   "committed_at": "2026-08-06T16:14:21Z",
   "created_at": "2026-08-06T15:40:23Z",
-  "discard_reason": null,
   "discarded_at": null,
   "discarded_by": null,
-  "discarded_created_decl_names": [],
-  "discarded_restored_decl_revisions": {},
-  "discarded_revision_refs": [],
   "execution_completed_at": "2026-08-06T16:12:32Z",
   "execution_reason": "The accepted proof route cannot be completed within this declaration's frozen boundary: its nonroot step provides only an entrywise equality of rootedGram matrices over ℚ, whereas the target needs an equality whose diagonal fibers are the dependent component treePairing terms over ℤ. Converting a component block back to its treePairing summand requires a generic finite coordinate-expansion theorem for treePairing on an arbitrary finite vertex type (or an equivalent packaged block-quadratic-form theorem). Neither is among the visible project declarations or proof dependencies, and the objective explicitly forbids adding a generic helper/infrastructure or changing the component representation.",
   "execution_result_kind": "blocked",

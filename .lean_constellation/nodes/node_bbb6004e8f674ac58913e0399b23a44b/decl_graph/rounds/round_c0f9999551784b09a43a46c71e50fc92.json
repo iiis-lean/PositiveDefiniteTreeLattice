@@ -1,18 +1,13 @@
 {
-  "change_summaries": {},
   "committed_at": "2026-07-31T11:35:22Z",
   "created_at": "2026-07-31T06:06:24Z",
-  "discard_reason": null,
   "discarded_at": null,
   "discarded_by": null,
-  "discarded_created_decl_names": [],
-  "discarded_restored_decl_revisions": {},
-  "discarded_revision_refs": [],
   "execution_completed_at": "2026-07-31T07:16:13Z",
   "execution_reason": "The accepted strong-induction route requires two untracked, reusable bridge theorems before the public theorem can be formalized without embedding major new mathematics as proof-local code. The present dependency closure provides the individual ingredients but no API that composes them at the required child-component instances and rational casts.",
   "execution_result_kind": "blocked",
   "node_path": "Main.RootedEstimates",
-  "objective": "Create and prove the exact qualified public b_0010 rooted integer estimate by Fintype.card induction over proved rooted child components, consuming the now-complete decomposition, capacity, distance, and arithmetic foundation package.",
+  "objective": "The exact qualified public b_0010 `PositiveDefiniteTreeLattice.rooted_integer_estimate` has a compiler-accepted source-faithful rational inequality and accepted strong-induction Proof NL plan over proved rooted child components and the complete decomposition, capacity, distance, and arithmetic foundation package. Its remaining proof gaps are the bounded child-component induction/capacity-identification bridge and the rational cast-and-sum aggregation bridge.",
   "plan_closeout_acknowledged_at": "2026-07-31T11:35:22Z",
   "plan_closeout_acknowledged_by": "a_c126bbd9cf3144258d31b99169f687bb",
   "result_kind": "blocked",
@@ -29,5 +24,6 @@
   "started_at": "2026-07-31T06:07:36Z",
   "status": "committed",
   "strategy_id": "strategy_6bfc666c638344a19f7d1dee5c0a60d4",
-  "summary": "The strategy made statement and proof-plan progress: the exact public `PositiveDefiniteTreeLattice.rooted_integer_estimate` identity and source-faithful rational inequality are compiler-accepted, and the strong-induction Proof NL plan is accepted. The theorem remains proof_planned and unsatisfied because Proof Formal exposed two bounded repository-local composition gaps: a child-component induction-instantiation/capacity-identification theorem, and a rational cast-and-sum aggregation theorem matching the proved integral rooted-child pairing decomposition to the public rational goal. All underlying provider APIs, local decomposition/arithmetic lemmas, and Mathlib cast/sum facts were checked; none currently supplies these composed shapes. Both are predictable tracked helpers within Main.RootedEstimates and the existing strategy, not external prerequisites or scope overflow. The next action after closeout should be one small helper round proving these two bridges; retry the public parent only after their closure is graph_proved. No cleanup or state-only work beyond the retained public proof_planned parent remains."
+  "summary": "The strategy made statement and proof-plan progress: the exact public `PositiveDefiniteTreeLattice.rooted_integer_estimate` identity and source-faithful rational inequality are compiler-accepted, and the strong-induction Proof NL plan is accepted. The theorem remains proof_planned and unsatisfied because Proof Formal exposed two bounded repository-local composition gaps: a child-component induction-instantiation/capacity-identification theorem, and a rational cast-and-sum aggregation theorem matching the proved integral rooted-child pairing decomposition to the public rational goal. All underlying provider APIs, local decomposition/arithmetic lemmas, and Mathlib cast/sum facts were checked; none currently supplies these composed shapes. Both are predictable tracked helpers within Main.RootedEstimates and the existing strategy, not external prerequisites or scope overflow. No cleanup or state-only work beyond the retained public proof_planned parent remains.",
+  "execution_constraints": "After closeout, run one small helper round proving the child-component induction/capacity-identification bridge and the rational cast-and-sum aggregation bridge; retry the public parent only after both helpers' closure is graph_proved."
 }

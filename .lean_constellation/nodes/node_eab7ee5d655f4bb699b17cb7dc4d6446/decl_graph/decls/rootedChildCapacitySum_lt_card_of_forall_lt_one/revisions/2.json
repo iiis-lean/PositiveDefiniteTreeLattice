@@ -1,21 +1,13 @@
 {
   "change": {
-    "anticipated_proof_dep_names": [
-      "rootedChildCapacitySum",
-      "rootedChildCapacitySummand"
-    ],
-    "anticipated_statement_dep_names": [
-      "rootedChildCapacitySum",
-      "rootedChildCapacitySummand",
-      "rootedChildren"
-    ],
     "base_revision": 1,
     "kind": "update",
-    "objective": "Recapture the private theorem under the refreshed contract and SourceIndex b_0009 / solution.tex lines 74–80; do not retry revision 1 unchanged. For finite/decidable rooted tree data G, hG, integer weight w, root ρ, and S := rootedChildren G hG ρ ρ, assume S.Nonempty and assume directly that every attached child `c : {c : V // c ∈ S}` satisfies `rootedChildCapacitySummand G hG w ρ c < 1`. Conclude exactly `rootedChildCapacitySum G hG w ρ < (S.card : ℚ)`. Prove by unfolding only rootedChildCapacitySum@2, applying strict comparison to the Finset.univ sum of the same named function, and identifying the attached subtype cardinality with S.card. Preserve the source strict inequality, rational cast, child set, and absence of admissibility assumptions. Do not unfold rootedChildCapacitySummand, reconstruct component instances, use rootedChildCapacitySum_attach, add conversion helpers, or raise heartbeat limits. This proved theorem is the immediate aggregate dependency for rootedCapacity_lt_one_of_card_le.",
+    "objective": "Revision 2 recaptures the private b_0009 strict aggregate theorem: for finite/decidable rooted-tree data G, hG, w, ρ with S := rootedChildren G hG ρ ρ, if S.Nonempty and every attached child c satisfies rootedChildCapacitySummand G hG w ρ c < 1, then rootedChildCapacitySum G hG w ρ < (S.card : ℚ). It preserves the source strict inequality, rational cast, attached-child set, and absence of admissibility assumptions, and serves as the immediate aggregate dependency for rootedCapacity_lt_one_of_card_le.",
     "require_target_state_satisfied": true,
-    "reset_to_state": "planned",
+    "start_stage": "statement_nl",
     "summary": "Recaptured and proved the private b_0009 strict aggregate bound. The accepted statement now assumes `< 1` directly for every attached-child rootedChildCapacitySummand and concludes rootedChildCapacitySum is strictly below the rational root-child cardinality. All four stages passed, the theorem reached proved, and graph_proved satisfaction passed. This closes the prior dependent-instance heartbeat blocker without changing the source inequality or adding assumptions.",
-    "target_state": "proved"
+    "target_state": "proved",
+    "execution_constraints": "Do not retry revision 1 unchanged. Unfold only rootedChildCapacitySum@2 and apply strict comparison to the Finset.univ sum of the same named summand, identifying the attached-subtype cardinality with S.card. Keep rootedChildCapacitySummand opaque; do not reconstruct component instances, use rootedChildCapacitySum_attach, add conversion helpers, or raise heartbeat limits."
   },
   "lean_decl_name": "rootedChildCapacitySum_lt_card_of_forall_lt_one",
   "proof": {
@@ -88,6 +80,11 @@
           "schema_version": 2,
           "summary": "Diagnostics returned 0 items"
         },
+        "fingerprint": {
+          "environment_sha256": null,
+          "source_sha256": "4a4dbd4529620b3cb434aa525f32855d1f85e0e7fc25700b20eddb1c03b01f6a",
+          "upstream_revision": null
+        },
         "message": "Lean check passed.",
         "policy": "proof_formal",
         "scan": {
@@ -105,7 +102,15 @@
           "summary": "sorry=0, admit=0, axiom=0, opaque=0, unsafe=0",
           "unsafe_count": 0
         },
-        "status": "passed"
+        "schema_version": 1,
+        "status": "passed",
+        "subject": {
+          "declaration_name": null,
+          "module": "PositiveDefiniteTreeLattice.Main.RootedCapacity.Theorems.rootedChildCapacitySum_lt_card_of_forall_lt_one",
+          "repo_file_path": "PositiveDefiniteTreeLattice/Main/RootedCapacity/Theorems/rootedChildCapacitySum_lt_card_of_forall_lt_one.lean",
+          "repo_kind": "native",
+          "stage": "proof"
+        }
       },
       "code": "-- lean-constellation: managed-imports-begin\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Prelude\nimport Mathlib.Algebra.Order.BigOperators.Group.Finset\nimport Mathlib.Data.Finset.Card\nimport Mathlib.Data.Finset.Empty\nimport Mathlib.Data.Fintype.Card\nimport Mathlib.Data.Fintype.Defs\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildCapacitySum\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildCapacitySummand\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildren\n-- lean-constellation: managed-imports-end\n\n-- lean-constellation: declaration-source-begin\n\n/--\n# lean-constellation target: `rootedChildCapacitySum_lt_card_of_forall_lt_one`\n\nLet `V` be a finite decidable type, let `G : SimpleGraph V` have decidable adjacency, let `hG :\nG.IsTree`, let `w : V → ℤ`, and let `ρ : V`.  Put `S := rootedChildren G hG ρ ρ`.  If `S.Nonempty`\nand every attached child `c : {c : V // c ∈ S}` satisfies\n\n`rootedChildCapacitySummand G hG w ρ c < 1`,\n\nthen\n\n`rootedChildCapacitySum G hG w ρ < (S.card : ℚ)`.\n\nThis is the strict rational bound for the sum of the capacities of the root's child components.  It\nretains the attached child subtype and the cardinality of exactly `S`, and assumes neither\nadmissibility nor positivity.\n\n## Sources\n\n- Source `solution.tex`, lines 74–80\n\n## Statement dependencies\n\n- `Finset.card` from `Mathlib.Data.Finset.Card`\n- `Finset.Nonempty` from `Mathlib.Data.Finset.Empty`\n- `Main.RootedCapacity::rootedChildCapacitySum` → `rootedChildCapacitySum` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildCapacitySum`\n- `Main.RootedCapacity::rootedChildCapacitySummand` → `rootedChildCapacitySummand` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildCapacitySummand`\n- `Main.RootedCapacity::rootedChildren` → `rootedChildren` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildren`\n\n## Proof outline\n\nLet S := rootedChildren G hG ρ ρ and let I := {c : V // c ∈ S}. Do not unfold the attached-child\nsummand. Unfold only rootedChildCapacitySum, so the left-hand side is Finset.univ.sum of the same\nfunction c ↦ rootedChildCapacitySummand G hG w ρ c on I.\n\nUse hS to choose an element of S and hence prove that (Finset.univ : Finset I) is nonempty. Apply\nFinset.sum_lt_sum_of_nonempty to this univ finset, comparing the summand function with the constant\nfunction c ↦ (1 : ℚ). Its pointwise strict hypothesis is exactly hcapacity c.\n\nThe resulting right-hand side is the sum of 1 over all attached children. Simplify it to\n(Fintype.card I : ℚ), then use Fintype.card_coe S to identify Fintype.card I with S.card. This\nyields exactly rootedChildCapacitySum G hG w ρ < (S.card : ℚ). No admissibility or positivity fact\nis used; no component instance, raw-child conversion, or aggregate-attachment theorem is introduced.\n\n## Proof sources\n\n- Source `solution.tex`, lines 74–80\n\n## Proof dependencies\n\n- `Finset.sum_lt_sum_of_nonempty` from `Mathlib.Algebra.Order.BigOperators.Group.Finset`\n- `Fintype.card_coe` from `Mathlib.Data.Fintype.Card`\n- `Finset.mem_univ` from `Mathlib.Data.Fintype.Defs`\n- `Main.RootedCapacity::rootedChildCapacitySum` → `rootedChildCapacitySum` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildCapacitySum`\n- `Main.RootedCapacity::rootedChildCapacitySummand` → `rootedChildCapacitySummand` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildCapacitySummand`\n- `Main.RootedCapacity::rootedChildren` → `rootedChildren` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildren`\n-/\ntheorem rootedChildCapacitySum_lt_card_of_forall_lt_one {V : Type*} [Fintype V] [DecidableEq V]\n    (G : SimpleGraph V) [DecidableRel G.Adj] (hG : G.IsTree) (w : V → ℤ) (ρ : V)\n    (hS : (rootedChildren G hG ρ ρ).Nonempty)\n    (hcapacity : ∀ c : {c : V // c ∈ rootedChildren G hG ρ ρ},\n      rootedChildCapacitySummand G hG w ρ c < 1) :\n    rootedChildCapacitySum G hG w ρ < ((rootedChildren G hG ρ ρ).card : ℚ) := by\n  classical\n  have huniv : (Finset.univ : Finset {c : V // c ∈ rootedChildren G hG ρ ρ}).Nonempty := by\n    rcases hS with ⟨c, hc⟩\n    exact ⟨⟨c, hc⟩, Finset.mem_univ _⟩\n  have hsum :\n      (∑ c : {c : V // c ∈ rootedChildren G hG ρ ρ},\n        rootedChildCapacitySummand G hG w ρ c) <\n      ∑ _ : {c : V // c ∈ rootedChildren G hG ρ ρ}, (1 : ℚ) :=\n    Finset.sum_lt_sum_of_nonempty huniv (by\n      intro c hc\n      exact hcapacity c)\n  unfold rootedChildCapacitySum\n  simpa [Fintype.card_coe] using hsum\n"
     },
@@ -197,6 +202,11 @@
           "schema_version": 2,
           "summary": "Diagnostics returned 1 items"
         },
+        "fingerprint": {
+          "environment_sha256": null,
+          "source_sha256": "99f58fca41576afabf36785e8dd51a08f2d9cc9d097062f6cc71120e38547578",
+          "upstream_revision": null
+        },
         "message": "Lean check passed.",
         "policy": "statement_formal",
         "scan": {
@@ -221,7 +231,15 @@
           "summary": "sorry=1, admit=0, axiom=0, opaque=0, unsafe=0",
           "unsafe_count": 0
         },
-        "status": "passed"
+        "schema_version": 1,
+        "status": "passed",
+        "subject": {
+          "declaration_name": null,
+          "module": "PositiveDefiniteTreeLattice.Main.RootedCapacity.Theorems.rootedChildCapacitySum_lt_card_of_forall_lt_one",
+          "repo_file_path": "PositiveDefiniteTreeLattice/Main/RootedCapacity/Theorems/rootedChildCapacitySum_lt_card_of_forall_lt_one.lean",
+          "repo_kind": "native",
+          "stage": "statement"
+        }
       },
       "code": "-- lean-constellation: managed-imports-begin\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Prelude\nimport Mathlib.Data.Finset.Card\nimport Mathlib.Data.Finset.Empty\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildCapacitySum\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildCapacitySummand\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildren\n-- lean-constellation: managed-imports-end\n\n-- lean-constellation: declaration-source-begin\n\n/--\n# lean-constellation target: `rootedChildCapacitySum_lt_card_of_forall_lt_one`\n\nLet `V` be a finite decidable type, let `G : SimpleGraph V` have decidable adjacency, let `hG :\nG.IsTree`, let `w : V → ℤ`, and let `ρ : V`.  Put `S := rootedChildren G hG ρ ρ`.  If `S.Nonempty`\nand every attached child `c : {c : V // c ∈ S}` satisfies\n\n`rootedChildCapacitySummand G hG w ρ c < 1`,\n\nthen\n\n`rootedChildCapacitySum G hG w ρ < (S.card : ℚ)`.\n\nThis is the strict rational bound for the sum of the capacities of the root's child components.  It\nretains the attached child subtype and the cardinality of exactly `S`, and assumes neither\nadmissibility nor positivity.\n\n## Sources\n\n- Source `solution.tex`, lines 74–80\n\n## Statement dependencies\n\n- `Finset.card` from `Mathlib.Data.Finset.Card`\n- `Finset.Nonempty` from `Mathlib.Data.Finset.Empty`\n- `Main.RootedCapacity::rootedChildCapacitySum` → `rootedChildCapacitySum` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildCapacitySum`\n- `Main.RootedCapacity::rootedChildCapacitySummand` → `rootedChildCapacitySummand` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildCapacitySummand`\n- `Main.RootedCapacity::rootedChildren` → `rootedChildren` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildren`\n-/\ntheorem rootedChildCapacitySum_lt_card_of_forall_lt_one {V : Type*} [Fintype V] [DecidableEq V]\n    (G : SimpleGraph V) [DecidableRel G.Adj] (hG : G.IsTree) (w : V → ℤ) (ρ : V)\n    (hS : (rootedChildren G hG ρ ρ).Nonempty)\n    (hcapacity : ∀ c : {c : V // c ∈ rootedChildren G hG ρ ρ},\n      rootedChildCapacitySummand G hG w ρ c < 1) :\n    rootedChildCapacitySum G hG w ρ < ((rootedChildren G hG ρ ρ).card : ℚ) := by\n  sorry\n"
     },

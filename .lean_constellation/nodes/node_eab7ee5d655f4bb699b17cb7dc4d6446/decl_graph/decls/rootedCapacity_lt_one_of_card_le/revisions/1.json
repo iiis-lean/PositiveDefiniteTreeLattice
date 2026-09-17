@@ -1,29 +1,12 @@
 {
   "change": {
-    "anticipated_proof_dep_names": [
-      "IsAdmissibleRootedTree",
-      "IsAdmissibleRootedTree_rootedChildComponent",
-      "rootedCapacity",
-      "rootedCapacity_pos",
-      "rootedCapacity_recursion",
-      "rootedChildCapacitySum",
-      "rootedChildComponent",
-      "rootedChildComponent_card_lt",
-      "rootedChildCount",
-      "rootedChildRoot",
-      "rootedChildren"
-    ],
-    "anticipated_statement_dep_names": [
-      "IsAdmissibleRootedTree",
-      "rootedCapacity"
-    ],
     "base_revision": null,
     "kind": "create",
-    "objective": "SourceIndex b_0009 (solution.tex lines 74–81) proves the upper capacity bound by induction on tree size. Create a private size-indexed theorem that avoids the blocked full-datum strong-induction normalization: for `n : ℕ`, universally quantify the same finite/decidable vertex type V, graph G, integer weight w, root ρ, and `hAdm : IsAdmissibleRootedTree G w ρ`, assume `Fintype.card V ≤ n`, and conclude only `rootedCapacity G w ρ < 1`. Prove it by ordinary Nat induction on n, not by invoking capacity_pos_lt_one. In the zero case derive impossibility from the inhabited root. In the successor case, for each root child apply the induction hypothesis to its rootedChildComponent using rootedChildComponent_card_lt together with the ambient card bound and IsAdmissibleRootedTree_rootedChildComponent. Bound every child capacity by one, hence rootedChildCapacitySum by rootedChildCount, combine with hAdm's root-weight lower bound, and rewrite with rootedCapacity_recursion; use rootedCapacity_pos only as needed for denominator/reciprocal order facts. Keep the exact existing component, root, weight, capacity, and rational semantics, add no stronger admissibility hypothesis, do not depend on the public capacity_pos_lt_one theorem, and do not raise heartbeat limits. This theorem is the direct proof dependency for the preserved public interface.",
+    "objective": "Revision 1 states the private size-indexed upper bound from SourceIndex b_0009 / solution.tex lines 74–81: for every n and finite decidable admissible rooted datum with Fintype.card V ≤ n, rootedCapacity G w ρ < 1. The result uses ordinary natural-number size induction, strict child-capacity bounds and the rootedChildCapacitySum aggregate against the root-weight lower bound, and the existing rootedCapacity_recursion and rootedCapacity_pos/order facts, while preserving all component, root, weight, capacity, and rational semantics. It is the direct upper-bound dependency for the public interface and does not rely on capacity_pos_lt_one or add admissibility assumptions.",
     "require_target_state_satisfied": true,
-    "reset_to_state": null,
     "summary": "The private Nat-indexed upper-bound theorem reached proof_planned with a valid formal statement and accepted proof route, but no Proof Formal artifact was accepted. Blocker classification: Lean-specific helper/representation interface. Ordinary Nat induction avoids the earlier polymorphic strong-induction predicate, but Lean still exhausts the fixed heartbeat budget when specializing the induction hypothesis to dependent rootedChildComponent data and normalizing those exact capacity summands into rootedChildCapacitySum. All mathematical dependencies remain proved and matched; raising heartbeats is prohibited. Retry conditions: first prove a tracked instance-stable child-capacity sum interface that accepts per-child upper bounds in the exact rootedChildCapacitySum convention and returns the aggregate bound needed against rootedChildCount; then retry this theorem using that interface so its induction step does not unfold or normalize the dependent sum. Preserve its statement and avoid capacity_pos_lt_one to prevent a cycle.",
-    "target_state": "proved"
+    "target_state": "proved",
+    "execution_constraints": "Use ordinary Nat induction on n. In the zero case derive the contradiction from the inhabited root; in the successor case use rootedChildComponent_card_lt and IsAdmissibleRootedTree_rootedChildComponent for each child, bound the exact child capacities and aggregate, combine with the hAdm root-weight bound, and rewrite with rootedCapacity_recursion before the reciprocal order step. Keep the exact dependent component and instance convention, do not invoke capacity_pos_lt_one, add helpers or stronger hypotheses, or raise heartbeat limits."
   },
   "lean_decl_name": "rootedCapacity_lt_one_of_card_le",
   "proof": {
@@ -216,6 +199,11 @@
           "schema_version": 2,
           "summary": "Diagnostics returned 1 items"
         },
+        "fingerprint": {
+          "environment_sha256": null,
+          "source_sha256": "725f3bd7ec1b90e438de692e21f58ee9f412b4d9e5db5b62595735f8c9f84665",
+          "upstream_revision": null
+        },
         "message": "Lean check passed.",
         "policy": "statement_formal",
         "scan": {
@@ -240,7 +228,15 @@
           "summary": "sorry=1, admit=0, axiom=0, opaque=0, unsafe=0",
           "unsafe_count": 0
         },
-        "status": "passed"
+        "schema_version": 1,
+        "status": "passed",
+        "subject": {
+          "declaration_name": null,
+          "module": "PositiveDefiniteTreeLattice.Main.RootedCapacity.Theorems.rootedCapacity_lt_one_of_card_le",
+          "repo_file_path": "PositiveDefiniteTreeLattice/Main/RootedCapacity/Theorems/rootedCapacity_lt_one_of_card_le.lean",
+          "repo_kind": "native",
+          "stage": "statement"
+        }
       },
       "code": "-- lean-constellation: managed-imports-begin\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Prelude\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.IsAdmissibleRootedTree\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedCapacity\n-- lean-constellation: managed-imports-end\n\n-- lean-constellation: declaration-source-begin\n\n/--\n# lean-constellation target: `rootedCapacity_lt_one_of_card_le`\n\nFor every natural number `n`, every finite decidable vertex type, graph `G` with decidable\nadjacency, integer weight `w`, root `ρ`, and admissibility witness `hAdm : IsAdmissibleRootedTree G\nw ρ`, if\n```\nFintype.card V ≤ n,\n```\nthen the existing rational capacity satisfies\n```\nrootedCapacity G w ρ < 1.\n```\n\nThe theorem is private and is indexed by the explicit natural upper bound `n`, with all rooted-tree\ndata universally quantified beneath that index. It preserves the existing component, root, weight,\ncapacity, and rational total-inverse semantics, adds no stronger admissibility or denominator\nhypothesis, and does not invoke the public theorem `capacity_pos_lt_one`. It is oriented to provide\nprecisely the upper half of that public interface after ordinary induction on `n`.\n\n## Sources\n\n- Source `solution.tex`, lines 74–81\n\n## Statement dependencies\n\n- `Main.RootedCapacity::IsAdmissibleRootedTree` → `IsAdmissibleRootedTree` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.IsAdmissibleRootedTree`\n- `Main.RootedCapacity::rootedCapacity` → `rootedCapacity` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedCapacity`\n-/\n\ntheorem rootedCapacity_lt_one_of_card_le (n : ℕ) {V : Type*} [Fintype V] [DecidableEq V]\n    (G : SimpleGraph V) [DecidableRel G.Adj] (w : V → ℤ) (ρ : V)\n    (hAdm : IsAdmissibleRootedTree G w ρ) (hcard : Fintype.card V ≤ n) :\n    rootedCapacity G w ρ < 1 := by\n  sorry\n"
     },

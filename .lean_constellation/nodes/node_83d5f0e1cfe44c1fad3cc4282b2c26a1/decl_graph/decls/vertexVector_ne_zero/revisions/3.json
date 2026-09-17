@@ -1,18 +1,13 @@
 {
   "change": {
-    "anticipated_proof_dep_names": [
-      "vertexVector"
-    ],
-    "anticipated_statement_dep_names": [
-      "vertexVector"
-    ],
     "base_revision": 2,
     "kind": "update",
-    "objective": "Retain the accepted namespaced statement and proof plan unchanged and rerun only Proof Formal to repair the prior runtime capture-integrity failure. The consumer goal remains exactly the minimal-context conclusion vertexVector v ≠ (0 : V → ℤ); committed namespaced providers and accepted proof dependencies are already closed. Recapture the existing proof against an unchanged declaration-owned file, preserve public visibility and all source/contract semantics, introduce no alias or helper, and restore proved satisfaction for stable vertex-vector positivity support.",
+    "objective": "Revision 3 records the proved public namespaced nonzeroness theorem `PositiveDefiniteTreeLattice.vertexVector_ne_zero`: its accepted statement and proof plan are unchanged, the minimal-context conclusion `vertexVector v ≠ (0 : V → ℤ)` and public visibility are preserved, committed namespaced providers and proof dependencies are closed, and graph-proved satisfaction for stable vertex-vector positivity support is restored without an alias or helper.",
     "require_target_state_satisfied": true,
-    "reset_to_state": "proof_planned",
+    "start_stage": "proof_formal",
     "summary": "Successfully reran only Proof Formal for the unchanged namespaced nonzeroness theorem. PositiveDefiniteTreeLattice.vertexVector_ne_zero reached proved, its existing proof passed against declared PositiveDefiniteTreeLattice.vertexVector, the minimal DecidableEq context and public visibility were preserved, and graph_proved satisfaction passed. The prior declaration-file capture-integrity failure is resolved.",
-    "target_state": "proved"
+    "target_state": "proved",
+    "execution_constraints": "Rerun only Proof Formal against an unchanged declaration-owned file to repair the prior runtime capture-integrity failure. Preserve the accepted namespaced statement, proof plan, public visibility, source/contract semantics, committed providers, minimal context, and proof dependencies; introduce no alias or helper."
   },
   "lean_decl_name": "PositiveDefiniteTreeLattice.vertexVector_ne_zero",
   "proof": {
@@ -41,6 +36,11 @@
           "schema_version": 2,
           "summary": "Diagnostics returned 0 items"
         },
+        "fingerprint": {
+          "environment_sha256": null,
+          "source_sha256": "d724b95d1be3e4f74516364d415180f7ecf398fb76e1ad6e50e3b36514d4d782",
+          "upstream_revision": null
+        },
         "message": "Lean check passed.",
         "policy": "proof_formal",
         "scan": {
@@ -58,7 +58,15 @@
           "summary": "sorry=0, admit=0, axiom=0, opaque=0, unsafe=0",
           "unsafe_count": 0
         },
-        "status": "passed"
+        "schema_version": 1,
+        "status": "passed",
+        "subject": {
+          "declaration_name": null,
+          "module": "PositiveDefiniteTreeLattice.Main.LatticeFoundations.Theorems.vertexVector_ne_zero",
+          "repo_file_path": "PositiveDefiniteTreeLattice/Main/LatticeFoundations/Theorems/vertexVector_ne_zero.lean",
+          "repo_kind": "native",
+          "stage": "proof"
+        }
       },
       "code": "-- lean-constellation: managed-imports-begin\nimport PositiveDefiniteTreeLattice.Main.LatticeFoundations.Prelude\nimport PositiveDefiniteTreeLattice.Main.LatticeFoundations.Defs.vertexVector\n-- lean-constellation: managed-imports-end\n\n-- lean-constellation: declaration-source-begin\n\n/--\n# lean-constellation target: `vertexVector_ne_zero`\n\nFor a type `V` with decidable equality and a vertex `v : V`, the unit coordinate function is\nnonzero:\n\n`vertexVector v ≠ (0 : V → ℤ)`.\n\n## Sources\n\n- Source `formal_target.lean`, lines 13–15\n\n## Statement dependencies\n\n- `Main.LatticeFoundations::vertexVector` → `PositiveDefiniteTreeLattice.vertexVector` from\n  `PositiveDefiniteTreeLattice.Main.LatticeFoundations.Defs.vertexVector`\n\n## Proof outline\n\nAssume `h : PositiveDefiniteTreeLattice.vertexVector v = (0 : V → ℤ)`.  Apply congruence of\nfunctions at `v`.  Unfold `PositiveDefiniteTreeLattice.vertexVector`; its value at `v` is `1`,\nwhereas the zero function has value `0`.  Simplification therefore gives the contradiction `(1 : ℤ)\n= 0`.  This is a lightweight coordinate evaluation and uses no graph or finiteness data and no\nauxiliary declaration.\n\n## Proof dependencies\n\n- `Main.LatticeFoundations::vertexVector` → `PositiveDefiniteTreeLattice.vertexVector` from\n  `PositiveDefiniteTreeLattice.Main.LatticeFoundations.Defs.vertexVector`\n-/\ntheorem PositiveDefiniteTreeLattice.vertexVector_ne_zero {V : Type*} [DecidableEq V] (v : V) :\n    PositiveDefiniteTreeLattice.vertexVector v ≠ (0 : V → ℤ) := by\n  intro h\n  have hv := congrFun h v\n  simp [PositiveDefiniteTreeLattice.vertexVector] at hv\n"
     },
@@ -102,6 +110,11 @@
           "schema_version": 2,
           "summary": "Diagnostics returned 1 items"
         },
+        "fingerprint": {
+          "environment_sha256": null,
+          "source_sha256": "e6483662b2e885972b7dac513609ce764f4812675ffbdfeae29e85b3686dbad1",
+          "upstream_revision": null
+        },
         "message": "Lean check passed.",
         "policy": "statement_formal",
         "scan": {
@@ -126,7 +139,15 @@
           "summary": "sorry=1, admit=0, axiom=0, opaque=0, unsafe=0",
           "unsafe_count": 0
         },
-        "status": "passed"
+        "schema_version": 1,
+        "status": "passed",
+        "subject": {
+          "declaration_name": null,
+          "module": "PositiveDefiniteTreeLattice.Main.LatticeFoundations.Theorems.vertexVector_ne_zero",
+          "repo_file_path": "PositiveDefiniteTreeLattice/Main/LatticeFoundations/Theorems/vertexVector_ne_zero.lean",
+          "repo_kind": "native",
+          "stage": "statement"
+        }
       },
       "code": "-- lean-constellation: managed-imports-begin\nimport PositiveDefiniteTreeLattice.Main.LatticeFoundations.Prelude\nimport PositiveDefiniteTreeLattice.Main.LatticeFoundations.Defs.vertexVector\n-- lean-constellation: managed-imports-end\n\n-- lean-constellation: declaration-source-begin\n\n/--\n# lean-constellation target: `vertexVector_ne_zero`\n\nFor a type `V` with decidable equality and a vertex `v : V`, the unit coordinate function is\nnonzero:\n\n`vertexVector v ≠ (0 : V → ℤ)`.\n\n## Sources\n\n- Source `formal_target.lean`, lines 13–15\n\n## Statement dependencies\n\n- `Main.LatticeFoundations::vertexVector` → `PositiveDefiniteTreeLattice.vertexVector` from\n  `PositiveDefiniteTreeLattice.Main.LatticeFoundations.Defs.vertexVector`\n-/\ntheorem PositiveDefiniteTreeLattice.vertexVector_ne_zero {V : Type*} [DecidableEq V] (v : V) :\n    PositiveDefiniteTreeLattice.vertexVector v ≠ (0 : V → ℤ) := by\n  sorry\n"
     },

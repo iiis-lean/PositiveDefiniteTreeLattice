@@ -1,4 +1,4 @@
-[← Public API](../PUBLIC_API.md) · [Public boundaries](../PUBLIC_BOUNDARIES.md)
+[← Public API](../PUBLIC_API.md) · [Public boundaries](../PUBLIC_BOUNDARIES.md) · [Complete graph](../DECLARATION_GRAPH.md)
 
 # `rootedChildren`
 
@@ -10,9 +10,13 @@ The finite set of children of a vertex in a finite tree rooted at a chosen verte
 - State: `declared`
 - Revision status: `committed`
 - Repository completion: `graph_proved`
-- Formal code: final statement projection
+- Compatibility `formal_code`: final statement projection
 
-## Lean code
+## Statement NL
+
+For a finite simple graph `G` that is a tree, a chosen root `ρ`, and a vertex `y`, define `rootedChildren G ρ y` to be the finite set of vertices `z` adjacent to `y` for which the unique simple path in `G` from `ρ` to `z` reaches `y` immediately before `z`.  Thus the edges of `G` are oriented away from `ρ`, and this set is exactly the children of `y` in that rooted orientation.
+
+## Statement Formal
 
 ```lean
 -- lean-constellation: managed-imports-begin
@@ -46,6 +50,14 @@ noncomputable def rootedChildren {V : Type*} [Fintype V] [DecidableEq V] (G : Si
       ∃ h : G.Adj y z, ∃ q : G.Walk ρ y, q.IsPath ∧
         (hG.existsUnique_path ρ z).choose = q.concat h
 ```
+
+## Proof NL
+
+Not recorded.
+
+## Proof Formal
+
+Not recorded.
 
 ## Statement dependencies
 

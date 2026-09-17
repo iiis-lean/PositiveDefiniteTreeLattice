@@ -1,18 +1,13 @@
 {
-  "change_summaries": {},
   "committed_at": "2026-07-30T15:15:32Z",
   "created_at": "2026-07-30T15:04:23Z",
-  "discard_reason": null,
   "discarded_at": null,
   "discarded_by": null,
-  "discarded_created_decl_names": [],
-  "discarded_restored_decl_revisions": {},
-  "discarded_revision_refs": [],
   "execution_completed_at": "2026-07-30T15:13:47Z",
   "execution_reason": "The required exact route reaches the distinct-child entry after Matrix.reindex_apply, forward-embedding equalities, Matrix.blockDiagonal'_apply', and dif_neg for the distinct child labels. The resulting hEntry and goal are both normalized to D⁻¹ (ι c hc x) (ι d hd y) = 0, but Lean deterministically times out at whnf (200000 heartbeats) on the final rw/exact conversion (line 312). This is the statement's dependent ι representation conversion, not a missing mathematical dependency. The assignment expressly forbids another helper and requires returning this exact scope/representation mismatch if it remains.",
   "execution_result_kind": "blocked",
   "node_path": "Main.RootedCapacity",
-  "objective": "Retry only Proof Formal for rootedNonroot_inverse_childBlocks now that both the exact child Gram block decomposition and the repaired, proved block-inverse identity are available. Preserve the accepted inverse-entry statement and remain within the existing graph.",
+  "objective": "Round 41 concerns the distinct-child inverse entry of rootedNonroot_inverse_childBlocks after the exact child Gram block decomposition and repaired block-inverse identity; all substantive block mathematics is proved, while the accepted inverse-entry statement remains blocked by dependent-index normalization.",
   "plan_closeout_acknowledged_at": "2026-07-30T15:15:32Z",
   "plan_closeout_acknowledged_by": "a_a93b40977f574bad89528358fa89e022",
   "result_kind": "blocked",
@@ -29,5 +24,6 @@
   "started_at": "2026-07-30T15:05:42Z",
   "status": "committed",
   "strategy_id": "strategy_1fbcdfb31a2e4cada1ff5b7b941de18c",
-  "summary": "Round 41 reached the final distinct-child inverse entry through all proved mathematical dependencies but remained proof_planned because Lean times out converting two definitionally intended forms of the statement's dependent ι indices. The strategy no longer responsibly supports another local retry: the graph has grown to 29 declarations, all substantive block mathematics is proved, the exact same normalized equality is present on both sides, and the round explicitly prohibited another conversion helper. Finishing now requires a Coordinator-approved cleanup/redesign of the private inverse-entry representation—such as replacing the dependent ι statement with a stable equivalence-indexed form and updating downstream consumers—or a broader node split/representation convention. Until that decision, rootedNonroot_inverse_quadratic, capacity recursion/strict upper bound, and the three public interfaces cannot proceed. Next action should be terminal Content blocked after strategy closeout, not preparation, resource recon, or another round."
+  "summary": "Round 41 reached the final distinct-child inverse entry through all proved mathematical dependencies but remained proof_planned because Lean times out converting two definitionally intended forms of the statement's dependent ι indices. The graph has 29 declarations, all substantive block mathematics is proved, the exact same normalized equality is present on both sides, and another conversion helper is excluded. Finishing requires a Coordinator-approved cleanup or redesign of the private inverse-entry representation, such as replacing the dependent ι statement with a stable equivalence-indexed form and updating downstream consumers, or a broader node split/representation convention. Until that decision, rootedNonroot_inverse_quadratic, capacity recursion/strict upper bound, and the three public interfaces cannot proceed.",
+  "execution_constraints": "After strategy closeout, request a Coordinator-approved cleanup or redesign of the private inverse-entry representation; a stable equivalence-indexed form or a broader node split are the bounded options. Mark terminal Content blocked until that decision, and do not run preparation, resource recon, or another round."
 }

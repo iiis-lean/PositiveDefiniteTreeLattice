@@ -1,18 +1,13 @@
 {
-  "change_summaries": {},
   "committed_at": "2026-07-30T17:41:14Z",
   "created_at": "2026-07-30T17:27:49Z",
-  "discard_reason": null,
   "discarded_at": null,
   "discarded_by": null,
-  "discarded_created_decl_names": [],
-  "discarded_restored_decl_revisions": {},
-  "discarded_revision_refs": [],
   "execution_completed_at": "2026-07-30T17:39:30Z",
   "execution_reason": null,
   "execution_result_kind": "success",
   "node_path": "Main.RootedCapacity",
-  "objective": "Prove the exact private root-versus-nonroot `Matrix.fromBlocks` decomposition of rootedGram needed by the accepted Schur-complement recursion proof.",
+  "objective": "Round 49 records the proved exact private root-versus-nonroot Matrix.fromBlocks decomposition of rootedGram required by the accepted Schur-complement recursion proof.",
   "plan_closeout_acknowledged_at": "2026-07-30T17:41:14Z",
   "plan_closeout_acknowledged_by": "a_a93b40977f574bad89528358fa89e022",
   "result_kind": "success",
@@ -29,5 +24,6 @@
   "started_at": "2026-07-30T17:29:03Z",
   "status": "committed",
   "strategy_id": "strategy_fc60f40a331d4f63bd19e22f0eec7473",
-  "summary": "Round 49 completed the only known structural prerequisite for the public capacity recursion. rootedGram_reindex_rootNonroot_blocks@1 reached proved and is graph_proved-satisfied, bringing the graph to 32 declarations within the authorized scale. rootedCapacity_recursion@1 remains proof_planned with its statement and Proof NL unchanged; its known dependency closure is now complete through this block identity, rootedNonroot_inverse_quadratic@4, and the recorded Schur-complement APIs. The strategy remains viable. Next action after closeout is a Proof-Formal-only parent retry adding this helper as an explicit proof dependency; no new helper or preparation is currently justified."
+  "summary": "Round 49 completed the only known structural prerequisite for the public capacity recursion. rootedGram_reindex_rootNonroot_blocks@1 reached proved and is graph_proved-satisfied, bringing the graph to 32 declarations within the authorized scale. rootedCapacity_recursion@1 remains proof_planned with its statement and Proof NL unchanged; its known dependency closure is complete through this block identity, rootedNonroot_inverse_quadratic@4, and the recorded Schur-complement APIs. The strategy remains viable.",
+  "execution_constraints": "Retry rootedCapacity_recursion in Proof Formal only, adding rootedGram_reindex_rootNonroot_blocks@1 as an explicit proof dependency; do not create a new helper or perform preparation."
 }

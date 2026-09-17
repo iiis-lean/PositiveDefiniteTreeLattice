@@ -1,18 +1,13 @@
 {
-  "change_summaries": {},
   "committed_at": "2026-08-03T13:26:33Z",
   "created_at": "2026-08-03T13:10:59Z",
-  "discard_reason": null,
   "discarded_at": null,
   "discarded_by": null,
-  "discarded_created_decl_names": [],
-  "discarded_restored_decl_revisions": {},
-  "discarded_revision_refs": [],
   "execution_completed_at": "2026-08-03T13:25:11Z",
   "execution_reason": null,
   "execution_result_kind": "success",
   "node_path": "Main.RootedCapacity",
-  "objective": "Isolate and prove the exact child-component root-row/root-column support evaluation that caused round 79's fixed-heartbeat timeout, so the existing Sigma quadratic theorem can collapse off-root terms by one direct rewrite.",
+  "objective": "Round 80 records the proved child-component root-row/root-column support evaluation that packages the source line 63 support fact in exact child-component coordinates and enables direct off-root collapse in the Sigma quadratic theorem.",
   "plan_closeout_acknowledged_at": "2026-08-03T13:26:33Z",
   "plan_closeout_acknowledged_by": "a_a93b40977f574bad89528358fa89e022",
   "result_kind": "success",
@@ -29,5 +24,6 @@
   "started_at": "2026-08-03T13:14:36Z",
   "status": "committed",
   "strategy_id": "strategy_409097c1a1e547a681e983998de55d40",
-  "summary": "Round 80 completed successfully and made the planned bottom-up repair. rootedGram_root_rootedChildComponent_support reached proved state with proof-policy satisfaction, packaging the source line 63 support fact in exact child-component coordinates. The pointwise-admissible inverse provider and instance transport were already proved/checked, so the known dependency closure for the pre-collapsed Sigma quadratic is now complete. The next action is a focused Proof NL/Proof Formal retry of rootedNonroot_inverse_sigma_quadratic_collapsed_of_child_admissible using this support theorem before any parent retry. The strategy remains viable and the active graph is at the contract's upper expected scale, so no further declaration creation is planned."
+  "summary": "Round 80 completed successfully and made the planned bottom-up repair. rootedGram_root_rootedChildComponent_support reached proved state with proof-policy satisfaction, packaging the source line 63 support fact in exact child-component coordinates. The pointwise-admissible inverse provider and instance transport were already proved or checked, so the known dependency closure for the pre-collapsed Sigma quadratic is complete. The strategy remains viable and the active graph is at the contract's upper expected scale; no further declaration creation is planned.",
+  "execution_constraints": "Retry rootedNonroot_inverse_sigma_quadratic_collapsed_of_child_admissible through Proof NL and Proof Formal using this support theorem before any parent retry; do not create another declaration."
 }

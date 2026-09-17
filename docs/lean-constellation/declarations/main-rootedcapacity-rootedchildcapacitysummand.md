@@ -1,4 +1,4 @@
-[← Public API](../PUBLIC_API.md) · [Public boundaries](../PUBLIC_BOUNDARIES.md)
+[← Public API](../PUBLIC_API.md) · [Public boundaries](../PUBLIC_BOUNDARIES.md) · [Complete graph](../DECLARATION_GRAPH.md)
 
 # `rootedChildCapacitySummand`
 
@@ -10,9 +10,17 @@ The rational capacity of one attached root-child component with canonical local 
 - State: `declared`
 - Revision status: `committed`
 - Repository completion: `graph_proved`
-- Formal code: final statement projection
+- Compatibility `formal_code`: final statement projection
 
-## Lean code
+## Statement NL
+
+Let `V` be a finite decidable type, let `G : SimpleGraph V` have decidable adjacency, let `hG : G.IsTree`, let `w : V → ℤ`, let `ρ : V`, and let `c : {c : V // c ∈ rootedChildren G hG ρ ρ}` be an attached child of the root.  Put `C := rootedChildComponent G ρ c.1`.  Define `rootedChildCapacitySummand G hG w ρ c : ℚ` to be the rooted capacity of the child-side rooted weighted graph
+
+`rootedCapacity C.toSimpleGraph (fun x : C => w (x : V)) (rootedChildRoot G ρ c.1)`.
+
+The definition fixes internally one canonical finite-type and decidable-adjacency instance convention for this component graph, so the displayed rational quantity is stable under later finite-sum use.  It uses exactly the deleted-edge connected component rooted at the child, its induced simple graph, the restriction of the original integer weight, and that child as its root.  It assumes neither admissibility nor positivity.
+
+## Statement Formal
 
 ```lean
 -- lean-constellation: managed-imports-begin
@@ -75,6 +83,14 @@ noncomputable def rootedChildCapacitySummand {V : Type*} [Fintype V] [DecidableE
     infer_instance
   rootedCapacity C.toSimpleGraph (fun x : C => w (x : V)) (rootedChildRoot G ρ c.1)
 ```
+
+## Proof NL
+
+Not recorded.
+
+## Proof Formal
+
+Not recorded.
 
 ## Statement dependencies
 

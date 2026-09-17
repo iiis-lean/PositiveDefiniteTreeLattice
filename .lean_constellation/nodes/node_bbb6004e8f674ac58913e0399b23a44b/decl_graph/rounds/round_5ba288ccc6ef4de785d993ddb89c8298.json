@@ -1,18 +1,13 @@
 {
-  "change_summaries": {},
   "committed_at": "2026-07-31T04:50:51Z",
   "created_at": "2026-07-31T04:37:59Z",
-  "discard_reason": null,
   "discarded_at": null,
   "discarded_by": null,
-  "discarded_created_decl_names": [],
-  "discarded_restored_decl_revisions": {},
-  "discarded_revision_refs": [],
   "execution_completed_at": "2026-07-31T04:49:33Z",
   "execution_reason": null,
   "execution_result_kind": "success",
   "node_path": "Main.RootedEstimates",
-  "objective": "Prove one generic finite-sum transport theorem identifying a connected component's local neighborFinset sum with the corresponding filtered ambient neighborFinset sum under subtype coercion.",
+  "objective": "Round 5B records one proved generic finite-sum transport theorem identifying a connected component's local neighborFinset sum with the corresponding filtered ambient neighborFinset sum under subtype coercion.",
   "plan_closeout_acknowledged_at": "2026-07-31T04:50:51Z",
   "plan_closeout_acknowledged_by": "a_c126bbd9cf3144258d31b99169f687bb",
   "result_kind": "success",
@@ -29,5 +24,6 @@
   "started_at": "2026-07-31T04:38:59Z",
   "status": "committed",
   "strategy_id": "strategy_6bfc666c638344a19f7d1dee5c0a60d4",
-  "summary": "The strategy made the planned bottom-up progress: sumComponentNeighborEqSumAmbientFiltered reached proved and graph_proved satisfaction with no blocker or state-only residue. The exact finite-sum transport prerequisite recorded by round 4 is now available. The next step is a proof-formal-only update of sumNeighborContributionRootedChildComponent using this theorem; treePairingRootedChildDecomposition must not be retried until that ordered-neighbor helper is proved. No cleanup target or graph-hygiene issue was introduced."
+  "summary": "The strategy made the planned bottom-up progress: sumComponentNeighborEqSumAmbientFiltered reached proved and graph_proved satisfaction with no blocker or state-only residue. The exact finite-sum transport prerequisite recorded by round 4 is now available. No cleanup target or graph-hygiene issue was introduced.",
+  "execution_constraints": "Update sumNeighborContributionRootedChildComponent with Proof Formal only using this theorem; do not retry treePairingRootedChildDecomposition until that ordered-neighbor helper is proved."
 }

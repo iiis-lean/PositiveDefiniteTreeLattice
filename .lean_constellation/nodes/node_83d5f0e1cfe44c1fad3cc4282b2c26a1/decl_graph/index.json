@@ -1,9 +1,7 @@
 {
   "decl_names": [
-    "Irreducible",
     "IrreducibleAnchor",
     "irreducibleOfPairingSelfEqOneAnchor",
-    "irreducible_of_pairing_self_eq_one",
     "treePairing",
     "treePairingAnchor",
     "treePairing_add_left",
@@ -39,13 +37,11 @@
     "round_dece65b44d1b422291d45d6baabac1b9",
     "round_e55afd94193148f7921595294e8e836c"
   ],
-  "schema_version": 1,
+  "schema_version": 2,
   "strategy_ids": [
     "strategy_2638883d005249d6a0ca57c50614cfed",
     "strategy_33c8b4d4859348d8af576dc8155aa14f",
     "strategy_a30e26b4dc0b4b3da567957fbd36ca03",
     "strategy_b465944382e94e30b7f4100d58702464"
-  ],
-  "summary": "DeclGraph index rebuilt for Main.LatticeFoundations: 14 decls, 20 rounds, 4 strategies.",
-  "updated_at": "2026-08-07T12:08:06Z"
+  ]
 }

@@ -1,14 +1,12 @@
 {
   "change": {
-    "anticipated_proof_dep_names": [],
-    "anticipated_statement_dep_names": [],
     "base_revision": null,
     "kind": "create",
-    "objective": "Define the orientation away from a chosen root using finite-tree unique paths, faithfully formalizing solution.tex lines 33–34 and SourceIndex b_0008. Consume SimpleGraph.IsTree.existsUnique_path and no current-node declaration. Expose the stable child set needed by rootedChildCount, rooted components, admissibility, and the induction structures serving capacity_pos_lt_one and rooted_integer_estimate.",
+    "objective": "Revision 1 records the public rooted-child orientation from SourceIndex b_0008 / solution.tex lines 33–34: for a finite tree and chosen root, rootedChildren G ρ y is the finite set of adjacent vertices z whose unique root-to-z path reaches y immediately before z. This stable child set supports rootedChildCount, rooted components, admissibility, and the capacity_pos_lt_one and rooted_integer_estimate induction structures.",
     "require_target_state_satisfied": true,
-    "reset_to_state": null,
     "summary": "Intended public rooted-child definition from SourceIndex b_0008 / solution.tex lines 33–34. Statement NL was accepted and the revision reached specified, but Statement Formal could not start durably; no formal statement or proof artifacts exist and target declared was not reached. Blocker classification: visible-provider/interface import conflict. Building the managed RootedCapacity.Prelude imports Main.LatticeFoundations.Interfaces, which transitively imports PositiveDefiniteTreeLattice.Main.LatticeFoundations.Defs.Irreducible and collides with Mathlib.Algebra.Group.Irreducible.Defs because both expose the global Lean name `Irreducible`. The declaration-owned worker cannot modify the generated Prelude or provider declaration. Retry only after the provider/interface boundary compiles alongside the required Mathlib imports; the mathematical goal and SimpleGraph.IsTree.existsUnique_path route remain valid.",
-    "target_state": "declared"
+    "target_state": "declared",
+    "execution_constraints": "Use SimpleGraph.IsTree.existsUnique_path to define the rooted orientation and keep this definition independent of any current-node declaration. Preserve the child-set meaning and consumer roles; do not add hypotheses or modify provider/Prelude boundaries."
   },
   "lean_decl_name": null,
   "proof": null,

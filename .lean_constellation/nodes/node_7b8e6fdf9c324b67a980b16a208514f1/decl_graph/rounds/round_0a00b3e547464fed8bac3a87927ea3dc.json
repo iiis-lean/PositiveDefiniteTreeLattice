@@ -1,13 +1,8 @@
 {
-  "change_summaries": {},
   "committed_at": "2026-08-02T12:18:49Z",
   "created_at": "2026-08-02T11:50:41Z",
-  "discard_reason": null,
   "discarded_at": null,
   "discarded_by": null,
-  "discarded_created_decl_names": [],
-  "discarded_restored_decl_revisions": {},
-  "discarded_revision_refs": [],
   "execution_completed_at": "2026-08-02T12:17:28Z",
   "execution_reason": null,
   "execution_result_kind": "success",
@@ -34,5 +29,5 @@
   "started_at": "2026-08-02T11:52:02Z",
   "status": "committed",
   "strategy_id": "strategy_c8ba6f0b78e349faafd071c8dae0b3af",
-  "summary": "Round 1 successfully advanced the bottom-up strategy. Both independent foundations—weight_pos_of_positive and irreducible_vertex_of_weight_eq_one—reached proved state with passing formal statements and proofs and satisfy the graph_proved policy. No state-only work, blockers, superseded artifacts, or cleanup targets remain. The next step is another small round for the unique-underweighted branch, beginning the admissible rooted-component and central inequality layer before attempting the protected parent theorem."
+  "summary": "Round 1 successfully advanced the bottom-up strategy. Both independent foundations—weight_pos_of_positive and irreducible_vertex_of_weight_eq_one—reached proved state with passing formal statements and proofs and satisfy the graph_proved policy. No state-only work, blockers, superseded artifacts, or cleanup targets remain. The unique-underweighted branch, including the admissible rooted-component and central inequality layer, remained outside this round; the protected parent theorem remained deferred."
 }

@@ -1,18 +1,13 @@
 {
-  "change_summaries": {},
   "committed_at": "2026-08-02T14:21:53Z",
   "created_at": "2026-08-02T13:56:37Z",
-  "discard_reason": null,
   "discarded_at": null,
   "discarded_by": null,
-  "discarded_created_decl_names": [],
-  "discarded_restored_decl_revisions": {},
-  "discarded_revision_refs": [],
   "execution_completed_at": "2026-08-02T14:20:43Z",
   "execution_reason": null,
   "execution_result_kind": "success",
   "node_path": "Main.RootedCapacity",
-  "objective": "Create and graph-prove the contract-v3 private predecessor/neighborFinset partition helper for every nonroot vertex, using the retained rooted orientation and component/path transports.",
+  "objective": "`rootedNeighborFinset_eq_insert_predecessor@rev:1` is the contract-v3 private predecessor/neighborFinset partition helper for every nonroot vertex, using the retained rooted orientation and component/path transports.",
   "plan_closeout_acknowledged_at": "2026-08-02T14:21:53Z",
   "plan_closeout_acknowledged_by": "a_a93b40977f574bad89528358fa89e022",
   "result_kind": "success",
@@ -29,5 +24,6 @@
   "started_at": "2026-08-02T13:57:54Z",
   "status": "committed",
   "strategy_id": "strategy_7cd022e702a846d785b5387334cfe431",
-  "summary": "Round 71 completed the bottom-up helper stage of the contract-v3 strategy. rootedNeighborFinset_eq_insert_predecessor@1 reached proved and graph_proved satisfaction with no blocker, state-only intermediate, or scope expansion. The preserved v1/v2 graph is unchanged. Known dependency closure is now ready for a single public theorem round deriving rootedChildCount + 1 = degree by taking cardinalities; no Mathlib or resource preparation is justified."
+  "summary": "Round 71 completed the bottom-up helper stage of the contract-v3 strategy. `rootedNeighborFinset_eq_insert_predecessor@1` reached proved and graph_proved satisfaction with no blocker, state-only intermediate, or scope expansion. The preserved v1/v2 graph is unchanged. The known dependency closure supports the public identity `rootedChildCount + 1 = degree` by taking cardinalities; no Mathlib or resource preparation is justified.",
+  "execution_constraints": "Derive and bind the public `rootedChildCount + 1 = degree` theorem by taking cardinalities of the committed partition; do not add Mathlib or resource preparation without a concrete gap."
 }

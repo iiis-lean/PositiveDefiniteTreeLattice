@@ -1,18 +1,13 @@
 {
-  "change_summaries": {},
   "committed_at": "2026-08-03T16:43:55Z",
   "created_at": "2026-08-03T16:38:14Z",
-  "discard_reason": null,
   "discarded_at": null,
   "discarded_by": null,
-  "discarded_created_decl_names": [],
-  "discarded_restored_decl_revisions": {},
-  "discarded_revision_refs": [],
   "execution_completed_at": "2026-08-03T16:42:08Z",
   "execution_reason": "The accepted Proof NL for revision 3 requires the prohibited separate composition of `rootedNonrootGram_reindex_childBlocks` and `rootedChildGram_blockDiagonal_inv_of_child_admissible`; its dependent `B` families do not unify in the attempted inverse-reindex equality. The active node contract and round objective instead require the combined provider theorem, which cannot be substituted without revising the frozen accepted Proof NL and its typed proof dependencies.",
   "execution_result_kind": "blocked",
   "node_path": "Main.IrreducibleVertex",
-  "objective": "Complete only Proof Formal for the retained central capacity-gap lemma using the combined reindex-plus-inverse provider theorem.",
+  "objective": "The round's mathematical target was the retained central capacity-gap lemma using the combined reindex-plus-inverse provider theorem.",
   "plan_closeout_acknowledged_at": "2026-08-03T16:43:55Z",
   "plan_closeout_acknowledged_by": "a_a235941c8c524917a1ed4a78f90c75ba",
   "result_kind": "blocked",
@@ -29,5 +24,5 @@
   "started_at": "2026-08-03T16:39:37Z",
   "status": "committed",
   "strategy_id": "strategy_26de090149ae44d9ac6286dfa80159a0",
-  "summary": "No target-state progress occurred: rootedChildCapacitySum_lt_weight_of_unique_underweight remains proof_planned and is not graph-proved-policy satisfied. The combined provider theorem closes the mathematical and Lean interface gap, but the retained Proof NL is stale relative to contract v2 and cannot be altered during Proof Formal. The strategy remains viable after a bounded current-node repair. The next step is another declaration round resetting the same lemma to declared, revising Proof NL to use rootedNonrootGram_reindex_childBlocks_inv_of_child_admissible, and then proving it; no preparation, Coordinator escalation, or new tracked helper is needed."
+  "summary": "No target-state progress occurred: rootedChildCapacitySum_lt_weight_of_unique_underweight remains proof_planned and is not graph-proved-policy satisfied. The combined provider theorem closes the mathematical and Lean interface gap, but the retained Proof NL is stale relative to contract v2 and cannot be altered during Proof Formal. The strategy remains viable after a bounded current-node repair; the outstanding issue is confined to the stale Proof NL relative to contract v2."
 }

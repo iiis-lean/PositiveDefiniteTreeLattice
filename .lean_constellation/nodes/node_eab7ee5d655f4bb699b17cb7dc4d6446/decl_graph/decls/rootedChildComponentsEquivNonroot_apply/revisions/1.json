@@ -1,19 +1,12 @@
 {
   "change": {
-    "anticipated_proof_dep_names": [],
-    "anticipated_statement_dep_names": [
-      "rootedChildComponent",
-      "rootedChildComponent_parent_not_mem",
-      "rootedChildComponentsEquivNonroot",
-      "rootedChildren"
-    ],
     "base_revision": null,
     "kind": "create",
-    "objective": "Provide the small private Lean evaluation bridge required by the source-faithful block decomposition for solution.tex lines 57–62. For finite decidable V, G with decidable adjacency, hG : G.IsTree, root ρ, a root-child index `c : {c : V // c ∈ rootedChildren G hG ρ ρ}`, and `x : rootedChildComponent G ρ c.1`, prove an equality in `{v : V // v ≠ ρ}` between `rootedChildComponentsEquivNonroot G hG ρ ⟨c, x⟩` and the canonical embedding `⟨(x : V), rootedChildComponent_parent_not_mem G ρ c.1 hG hcAdj x⟩`, where `hcAdj : G.Adj ρ c.1` is extracted from c.property by unfolding rootedChildren. The equality must retain the full subtype target, not merely equality after coercion, so Matrix.reindex_apply can rewrite indices directly; proof irrelevance/Subtype.ext may discharge differing nonroot proof terms. Prove this by exposing only the equivalence’s forward map and avoid reducing or simplifying its inverse partition choice. Do not add a reverse-evaluation theorem, alter the equivalence definition, or make this helper public. It consumes rootedChildComponentsEquivNonroot, rootedChildComponent_parent_not_mem, rootedChildren, and rootedChildComponent, and directly unblocks rootedNonrootGram_reindex_childBlocks.",
+    "objective": "Revision 1 establishes the full-subtype forward-evaluation bridge for SourceIndex b_0009 / solution.tex lines 57–62: for a root-child index `c` and component vertex `x`, `rootedChildComponentsEquivNonroot G hG ρ ⟨c,x⟩` equals the canonical nonroot embedding of `(x : V)` whose proof uses `rootedChildComponent_parent_not_mem`. The equality retains the subtype proof, exposes the exact index form required by `Matrix.reindex_apply`, and supplies the normalization prerequisite for `rootedNonrootGram_reindex_childBlocks` without changing the equivalence or adding a reverse-evaluation result.",
     "require_target_state_satisfied": true,
-    "reset_to_state": null,
     "summary": "Created and proved the private theorem rootedChildComponentsEquivNonroot_apply. It gives the full equality in the nonroot subtype between the equivalence’s forward image of a sigma child/component vertex and the canonical ambient embedding, so downstream reindex proofs can rewrite indices without unfolding the noncomputable partition inverse. The declaration reached proved state and satisfies graph_proved. It consumes only the existing equivalence, rooted child/component definitions, and parent exclusion; it directly discharges the precise normalization prerequisite recorded on rootedNonrootGram_reindex_childBlocks. No blocker, statement drift, visibility change, superseded artifact, or cleanup target remains.",
-    "target_state": "proved"
+    "target_state": "proved",
+    "execution_constraints": "Extract `hcAdj : G.Adj ρ c.1` from `c.property` by unfolding `rootedChildren`. Expose only the equivalence's forward map, retain the full subtype-valued equality, and close it with `Subtype.ext` and proof irrelevance. Do not reduce the inverse partition choice, add a reverse-evaluation theorem, alter the equivalence, or change its visibility."
   },
   "lean_decl_name": "rootedChildComponentsEquivNonroot_apply",
   "proof": {
@@ -72,6 +65,11 @@
           "schema_version": 2,
           "summary": "Diagnostics returned 0 items"
         },
+        "fingerprint": {
+          "environment_sha256": null,
+          "source_sha256": "40d2d190deae8dfb94041aa35068982819b1da39069f7acaaedb50faedaa02f4",
+          "upstream_revision": null
+        },
         "message": "Lean check passed.",
         "policy": "proof_formal",
         "scan": {
@@ -89,7 +87,15 @@
           "summary": "sorry=0, admit=0, axiom=0, opaque=0, unsafe=0",
           "unsafe_count": 0
         },
-        "status": "passed"
+        "schema_version": 1,
+        "status": "passed",
+        "subject": {
+          "declaration_name": null,
+          "module": "PositiveDefiniteTreeLattice.Main.RootedCapacity.Theorems.rootedChildComponentsEquivNonroot_apply",
+          "repo_file_path": "PositiveDefiniteTreeLattice/Main/RootedCapacity/Theorems/rootedChildComponentsEquivNonroot_apply.lean",
+          "repo_kind": "native",
+          "stage": "proof"
+        }
       },
       "code": "-- lean-constellation: managed-imports-begin\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Prelude\nimport Mathlib.Combinatorics.SimpleGraph.Acyclic\nimport Mathlib.Data.Finset.Filter\nimport Mathlib.Data.Fintype.Defs\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildComponent\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildComponentsEquivNonroot\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildren\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Theorems.rootedChildComponent_parent_not_mem\n-- lean-constellation: managed-imports-end\n\n-- lean-constellation: declaration-source-begin\n\n/--\n# lean-constellation target: `rootedChildComponentsEquivNonroot_apply`\n\nLet V be a finite type with decidable equality, let G be a simple graph on V with decidable\nadjacency, let hG : G.IsTree, let ρ : V, let\n\nc : {c : V // c ∈ rootedChildren G hG ρ ρ},\n\nand let x : rootedChildComponent G ρ c.1. Let hcAdj : G.Adj ρ c.1 be the adjacency fact extracted\nfrom c.property by unfolding rootedChildren. Then the forward map of\nrootedChildComponentsEquivNonroot has the following equality in the full nonroot subtype:\n\nrootedChildComponentsEquivNonroot G hG ρ ⟨c, x⟩\n= ⟨(x : V), rootedChildComponent_parent_not_mem G ρ c.1 hG hcAdj x⟩\n  : {v : V // v ≠ ρ}.\n\nThe equality retains the nonroot proofs as part of its target; it evaluates only the equivalence’s\nforward inclusion and does not unfold or simplify its partition-chosen inverse.\n\n## Sources\n\n- Source `solution.tex`, lines 57–62\n\n## Statement dependencies\n\n- `SimpleGraph.IsTree` from `Mathlib.Combinatorics.SimpleGraph.Acyclic`\n- `Finset.mem_filter` from `Mathlib.Data.Finset.Filter`\n- `Finset.mem_univ` from `Mathlib.Data.Fintype.Defs`\n- `Main.RootedCapacity::rootedChildComponent` → `rootedChildComponent` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildComponent`\n- `Main.RootedCapacity::rootedChildComponent_parent_not_mem` → `rootedChildComponent_parent_not_mem`\n  from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Theorems.rootedChildComponent_parent_not_mem`\n- `Main.RootedCapacity::rootedChildComponentsEquivNonroot` → `rootedChildComponentsEquivNonroot`\n  from `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildComponentsEquivNonroot`\n- `Main.RootedCapacity::rootedChildren` → `rootedChildren` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildren`\n\n## Proof outline\n\nWork classically and unfold the statement's local `hcAdj` proof, retaining its full subtype-valued\nequality target. Expose `rootedChildComponentsEquivNonroot G hG ρ` only far enough to project its\nforward map `toFun`; do not unfold or simplify its `invFun` field, so the partition-selected inverse\nis never reduced.\n\nAt the sigma input `⟨c,x⟩`, the exposed forward map is definitionally the subtype\n`⟨(x : V), rootedChildComponent_parent_not_mem G ρ c.1 hG hAdj x⟩`,\nwhere `hAdj` is obtained from `c.property` by the same `rootedChildren` filter simplification as the\nstatement's `hcAdj`. The underlying vertex on this subtype is definitionally `(x : V)`.\n\nApply `Subtype.ext` to the desired equality. The coerced-vertex goal is reflexive, so close it by\n`rfl`; proof irrelevance discharges the potentially different proofs of `(x : V) ≠ ρ`. This proves\nequality in the complete nonroot subtype, precisely the form needed to rewrite reindex indices, and\nuses neither the inverse partition choice nor any reverse-evaluation statement.\n\n## Proof sources\n\n- Source `solution.tex`, lines 57–62\n\n## Proof dependencies\n\n- `Main.RootedCapacity::rootedChildComponent` → `rootedChildComponent` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildComponent`\n- `Main.RootedCapacity::rootedChildComponent_parent_not_mem` → `rootedChildComponent_parent_not_mem`\n  from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Theorems.rootedChildComponent_parent_not_mem`\n- `Main.RootedCapacity::rootedChildComponentsEquivNonroot` → `rootedChildComponentsEquivNonroot`\n  from `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildComponentsEquivNonroot`\n- `Main.RootedCapacity::rootedChildren` → `rootedChildren` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildren`\n-/\ntheorem rootedChildComponentsEquivNonroot_apply {V : Type*} [Fintype V] [DecidableEq V]\n    (G : SimpleGraph V) [DecidableRel G.Adj] (hG : G.IsTree) (ρ : V)\n    (c : {c : V // c ∈ rootedChildren G hG ρ ρ}) (x : rootedChildComponent G ρ c.1) :\n    let hcAdj : G.Adj ρ c.1 := by\n      have hc := c.property\n      simp only [rootedChildren, Finset.mem_filter, Finset.mem_univ, true_and] at hc\n      exact hc.1\n    rootedChildComponentsEquivNonroot G hG ρ ⟨c, x⟩ =\n      ⟨(x : V), rootedChildComponent_parent_not_mem G ρ c.1 hG hcAdj x⟩ := by\n  classical\n  dsimp\n  apply Subtype.ext\n  rfl\n"
     },
@@ -107,7 +113,7 @@
           "start_locator": null
         }
       ],
-      "text": "Work classically and unfold the statement's local `hcAdj` proof, retaining its full subtype-valued equality target. Expose `rootedChildComponentsEquivNonroot G hG ρ` only far enough to project its forward map `toFun`; do not unfold or simplify its `invFun` field, so the partition-selected inverse is never reduced.\n\nAt the sigma input `⟨c,x⟩`, the exposed forward map is definitionally the subtype\n`⟨(x : V), rootedChildComponent_parent_not_mem G ρ c.1 hG hAdj x⟩`,\nwhere `hAdj` is obtained from `c.property` by the same `rootedChildren` filter simplification as the statement's `hcAdj`. The underlying vertex on this subtype is definitionally `(x : V)`.\n\nApply `Subtype.ext` to the desired equality. The coerced-vertex goal is reflexive, so close it by `rfl`; proof irrelevance discharges the potentially different proofs of `(x : V) ≠ ρ`. This proves equality in the complete nonroot subtype, precisely the form needed to rewrite reindex indices, and uses neither the inverse partition choice nor any reverse-evaluation statement."
+      "text": "With `hcAdj` obtained from `c.property` by the `rootedChildren` filter, the forward projection of `rootedChildComponentsEquivNonroot G hG ρ` at the sigma input `⟨c,x⟩` is definitionally the subtype\n`⟨(x : V), rootedChildComponent_parent_not_mem G ρ c.1 hG hAdj x⟩`,\nwhere `hAdj` is the corresponding adjacency proof. Its underlying vertex is `(x : V)`, so `Subtype.ext` reduces the desired full-subtype equality to reflexivity of the underlying vertices; proof irrelevance identifies any differing proofs of `(x : V) ≠ ρ`. This is the complete nonroot-subtype equality required for reindexing and depends only on the forward map, not on the inverse partition choice or any reverse-evaluation statement."
     }
   },
   "revision": 1,
@@ -199,6 +205,11 @@
           "schema_version": 2,
           "summary": "Diagnostics returned 1 items"
         },
+        "fingerprint": {
+          "environment_sha256": null,
+          "source_sha256": "c5c4fb170d6ad458a91de6269815e6ba585ebbeee8f61e367924110d8fabdb35",
+          "upstream_revision": null
+        },
         "message": "Lean check passed.",
         "policy": "statement_formal",
         "scan": {
@@ -223,7 +234,15 @@
           "summary": "sorry=1, admit=0, axiom=0, opaque=0, unsafe=0",
           "unsafe_count": 0
         },
-        "status": "passed"
+        "schema_version": 1,
+        "status": "passed",
+        "subject": {
+          "declaration_name": null,
+          "module": "PositiveDefiniteTreeLattice.Main.RootedCapacity.Theorems.rootedChildComponentsEquivNonroot_apply",
+          "repo_file_path": "PositiveDefiniteTreeLattice/Main/RootedCapacity/Theorems/rootedChildComponentsEquivNonroot_apply.lean",
+          "repo_kind": "native",
+          "stage": "statement"
+        }
       },
       "code": "-- lean-constellation: managed-imports-begin\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Prelude\nimport Mathlib.Combinatorics.SimpleGraph.Acyclic\nimport Mathlib.Data.Finset.Filter\nimport Mathlib.Data.Fintype.Defs\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildComponent\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildComponentsEquivNonroot\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildren\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Theorems.rootedChildComponent_parent_not_mem\n-- lean-constellation: managed-imports-end\n\n-- lean-constellation: declaration-source-begin\n\n/--\n# lean-constellation target: `rootedChildComponentsEquivNonroot_apply`\n\nLet V be a finite type with decidable equality, let G be a simple graph on V with decidable\nadjacency, let hG : G.IsTree, let ρ : V, let\n\nc : {c : V // c ∈ rootedChildren G hG ρ ρ},\n\nand let x : rootedChildComponent G ρ c.1. Let hcAdj : G.Adj ρ c.1 be the adjacency fact extracted\nfrom c.property by unfolding rootedChildren. Then the forward map of\nrootedChildComponentsEquivNonroot has the following equality in the full nonroot subtype:\n\nrootedChildComponentsEquivNonroot G hG ρ ⟨c, x⟩\n= ⟨(x : V), rootedChildComponent_parent_not_mem G ρ c.1 hG hcAdj x⟩\n  : {v : V // v ≠ ρ}.\n\nThe equality retains the nonroot proofs as part of its target; it evaluates only the equivalence’s\nforward inclusion and does not unfold or simplify its partition-chosen inverse.\n\n## Sources\n\n- Source `solution.tex`, lines 57–62\n\n## Statement dependencies\n\n- `SimpleGraph.IsTree` from `Mathlib.Combinatorics.SimpleGraph.Acyclic`\n- `Finset.mem_filter` from `Mathlib.Data.Finset.Filter`\n- `Finset.mem_univ` from `Mathlib.Data.Fintype.Defs`\n- `Main.RootedCapacity::rootedChildComponent` → `rootedChildComponent` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildComponent`\n- `Main.RootedCapacity::rootedChildComponent_parent_not_mem` → `rootedChildComponent_parent_not_mem`\n  from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Theorems.rootedChildComponent_parent_not_mem`\n- `Main.RootedCapacity::rootedChildComponentsEquivNonroot` → `rootedChildComponentsEquivNonroot`\n  from `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildComponentsEquivNonroot`\n- `Main.RootedCapacity::rootedChildren` → `rootedChildren` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildren`\n-/\n\ntheorem rootedChildComponentsEquivNonroot_apply {V : Type*} [Fintype V] [DecidableEq V]\n    (G : SimpleGraph V) [DecidableRel G.Adj] (hG : G.IsTree) (ρ : V)\n    (c : {c : V // c ∈ rootedChildren G hG ρ ρ}) (x : rootedChildComponent G ρ c.1) :\n    let hcAdj : G.Adj ρ c.1 := by\n      have hc := c.property\n      simp only [rootedChildren, Finset.mem_filter, Finset.mem_univ, true_and] at hc\n      exact hc.1\n    rootedChildComponentsEquivNonroot G hG ρ ⟨c, x⟩ =\n      ⟨(x : V), rootedChildComponent_parent_not_mem G ρ c.1 hG hcAdj x⟩ := by\n  sorry\n"
     },

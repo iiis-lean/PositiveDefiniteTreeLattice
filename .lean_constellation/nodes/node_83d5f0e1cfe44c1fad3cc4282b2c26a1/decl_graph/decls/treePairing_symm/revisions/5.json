@@ -1,18 +1,13 @@
 {
   "change": {
-    "anticipated_proof_dep_names": [
-      "treePairingAnchor"
-    ],
-    "anticipated_statement_dep_names": [
-      "treePairingAnchor"
-    ],
     "base_revision": 4,
     "kind": "update",
-    "objective": "Rewire this unchanged public theorem from historical foundation Decl anchors to the committed fresh anchors treePairingAnchor. Preserve its compiler-confirmed Lean name PositiveDefiniteTreeLattice.treePairing_symm, exact consumer goal treePairing G weight x y = treePairing G weight y x, all binders and assumptions, accepted proof plan/proof, and public visibility. Rerun Statement Formal through Proof Formal so captured dependencies use the fresh records; introduce no alias or semantic change and restore graph_proved satisfaction for treePairing_add_self.",
+    "objective": "Revision 5 targets the public namespaced symmetry theorem `PositiveDefiniteTreeLattice.treePairing_symm` with fresh `treePairingAnchor` dependencies. Its exact consumer goal `treePairing G weight x y = treePairing G weight y x`, all binders and assumptions, accepted proof plan and proof, and public visibility are preserved without an alias or semantic change; it supplies the dependency needed to restore graph-proved satisfaction for `treePairing_add_self`.",
     "require_target_state_satisfied": true,
-    "reset_to_state": "specified",
-    "summary": "Runtime failure at Proof Formal after successful statement/dependency rewiring and Proof NL. The consumer goal remains exactly treePairing G weight x y = treePairing G weight y x on the same finite weighted SimpleGraph, with compiler-confirmed PositiveDefiniteTreeLattice.treePairing_symm. Dependencies were checked against committed treePairingAnchor and accepted finite-graph support; no hypothesis, object, index, conclusion, representation, visibility, source, or helper mismatch exists. A formal proof artifact passed, but the declaration-owned Lean file changed after latest capture, leaving the revision proof_planned. Retry only Proof Formal from revision 5 against an unchanged file; this theorem must be proved before treePairing_add_self is rewired.",
-    "target_state": "proved"
+    "start_stage": "statement_formal",
+    "summary": "Runtime failure at Proof Formal after successful statement/dependency rewiring and Proof NL. The consumer goal remains exactly treePairing G weight x y = treePairing G weight y x on the same finite weighted SimpleGraph, with compiler-confirmed PositiveDefiniteTreeLattice.treePairing_symm. Dependencies were checked against committed treePairingAnchor and accepted finite-graph support; no hypothesis, object, index, conclusion, representation, visibility, source, or helper mismatch exists. A formal proof artifact passed, but the declaration-owned Lean file changed after latest capture, leaving the revision proof_planned.",
+    "target_state": "proved",
+    "execution_constraints": "Rewire Statement Formal through Proof Formal so captured dependencies use the committed fresh treePairingAnchor and accepted finite-graph support; preserve the exact binders, assumptions, proof plan/proof, public visibility, and source/contract semantics; introduce no alias or semantic change. After the capture-integrity failure, retry only Proof Formal from revision 5 against an unchanged file, and prove this theorem before rewiring treePairing_add_self."
   },
   "lean_decl_name": "PositiveDefiniteTreeLattice.treePairing_symm",
   "proof": {
@@ -97,6 +92,11 @@
           "schema_version": 2,
           "summary": "Diagnostics returned 0 items"
         },
+        "fingerprint": {
+          "environment_sha256": null,
+          "source_sha256": "596079f0330f2a3739a0491d92f22143b69236ff0c5e830083dfb65be3fb2164",
+          "upstream_revision": null
+        },
         "message": "Lean check passed.",
         "policy": "proof_formal",
         "scan": {
@@ -114,7 +114,15 @@
           "summary": "sorry=0, admit=0, axiom=0, opaque=0, unsafe=0",
           "unsafe_count": 0
         },
-        "status": "passed"
+        "schema_version": 1,
+        "status": "passed",
+        "subject": {
+          "declaration_name": null,
+          "module": "PositiveDefiniteTreeLattice.Main.LatticeFoundations.Theorems.treePairing_symm",
+          "repo_file_path": "PositiveDefiniteTreeLattice/Main/LatticeFoundations/Theorems/treePairing_symm.lean",
+          "repo_kind": "native",
+          "stage": "proof"
+        }
       },
       "code": "-- lean-constellation: managed-imports-begin\nimport PositiveDefiniteTreeLattice.Main.LatticeFoundations.Prelude\nimport Mathlib.Algebra.BigOperators.Group.Finset.Basic\nimport Mathlib.Algebra.BigOperators.Group.Finset.Defs\nimport Mathlib.Algebra.BigOperators.Group.Finset.Sigma\nimport Mathlib.Algebra.BigOperators.Ring.Finset\nimport Mathlib.Combinatorics.SimpleGraph.Basic\nimport Mathlib.Combinatorics.SimpleGraph.Finite\nimport PositiveDefiniteTreeLattice.Main.LatticeFoundations.Defs.treePairingAnchor\n-- lean-constellation: managed-imports-end\n\n-- lean-constellation: declaration-source-begin\n\n/--\n# lean-constellation target: `treePairing_symm`\n\nFor a finite type `V` with decidable equality, a simple graph `G : SimpleGraph V` with decidable\nadjacency, an integer-valued weight function `weight : V → ℤ`, and functions `x y : V → ℤ`, the\npairing is symmetric:\n\n`treePairing G weight x y = treePairing G weight y x`.\n\n## Statement dependencies\n\n- `Main.LatticeFoundations::treePairingAnchor` → `PositiveDefiniteTreeLattice.treePairing` from\n  `PositiveDefiniteTreeLattice.Main.LatticeFoundations.Defs.treePairingAnchor`\n\n## Proof outline\n\nUnfold `PositiveDefiniteTreeLattice.treePairing` and separate it into its weighted diagonal\ncontribution and its adjacency contribution.  The diagonal sums agree after commuting integer\nmultiplication.  For the adjacency term, rewrite each `G.neighborFinset u` using\n`SimpleGraph.neighborFinset_eq_filter`; use `SimpleGraph.adj_comm` to identify the filtered\nordered-pair condition with its swapped version, and apply `Finset.sum_comm` to exchange the two\nfinite indices.  The swapped double sum is the adjacency contribution of `treePairing G weight y x`;\nnormalize the signs and products with `ring` to conclude.\n\n## Proof dependencies\n\n- `Finset.sum_filter` from `Mathlib.Algebra.BigOperators.Group.Finset.Basic`\n- `Finset.sum_sub_distrib` from `Mathlib.Algebra.BigOperators.Group.Finset.Defs`\n- `Finset.sum_comm` from `Mathlib.Algebra.BigOperators.Group.Finset.Sigma`\n- `Finset.mul_sum` from `Mathlib.Algebra.BigOperators.Ring.Finset`\n- `SimpleGraph.adj_comm` from `Mathlib.Combinatorics.SimpleGraph.Basic`\n- `SimpleGraph.neighborFinset_eq_filter` from `Mathlib.Combinatorics.SimpleGraph.Finite`\n- `Main.LatticeFoundations::treePairingAnchor` → `PositiveDefiniteTreeLattice.treePairing` from\n  `PositiveDefiniteTreeLattice.Main.LatticeFoundations.Defs.treePairingAnchor`\n-/\ntheorem PositiveDefiniteTreeLattice.treePairing_symm {V : Type*} [Fintype V] [DecidableEq V]\n    (G : SimpleGraph V) [DecidableRel G.Adj] (weight : V → ℤ) (x y : V → ℤ) :\n    PositiveDefiniteTreeLattice.treePairing G weight x y =\n      PositiveDefiniteTreeLattice.treePairing G weight y x := by\n  unfold PositiveDefiniteTreeLattice.treePairing\n  have hEdge : (∑ u, x u * ∑ v ∈ G.neighborFinset u, y v) =\n      ∑ u, y u * ∑ v ∈ G.neighborFinset u, x v := by\n    simp_rw [SimpleGraph.neighborFinset_eq_filter]\n    simp only [Finset.sum_filter]\n    simp_rw [Finset.mul_sum]\n    rw [Finset.sum_comm]\n    apply Finset.sum_congr rfl\n    intro v _\n    apply Finset.sum_congr rfl\n    intro u _\n    by_cases h : G.Adj u v\n    · have h' : G.Adj v u := (G.adj_comm u v).mp h\n      simp [h, h']\n      ring\n    · have h' : ¬ G.Adj v u := by\n        intro h'\n        exact h ((G.adj_comm v u).mp h')\n      simp [h, h']\n  have hDiag : (∑ u, x u * (weight u * y u)) =\n      ∑ u, y u * (weight u * x u) := by\n    apply Finset.sum_congr rfl\n    intro u _\n    ring\n  simp_rw [mul_sub]\n  rw [Finset.sum_sub_distrib, Finset.sum_sub_distrib, hEdge, hDiag]\n"
     },
@@ -158,6 +166,11 @@
           "schema_version": 2,
           "summary": "Diagnostics returned 1 items"
         },
+        "fingerprint": {
+          "environment_sha256": null,
+          "source_sha256": "aa22e52d24ea0ea062031dc74c0abf4498e8daff1a5bab2552bf663e9ec1a29c",
+          "upstream_revision": null
+        },
         "message": "Lean check passed.",
         "policy": "statement_formal",
         "scan": {
@@ -182,7 +195,15 @@
           "summary": "sorry=1, admit=0, axiom=0, opaque=0, unsafe=0",
           "unsafe_count": 0
         },
-        "status": "passed"
+        "schema_version": 1,
+        "status": "passed",
+        "subject": {
+          "declaration_name": null,
+          "module": "PositiveDefiniteTreeLattice.Main.LatticeFoundations.Theorems.treePairing_symm",
+          "repo_file_path": "PositiveDefiniteTreeLattice/Main/LatticeFoundations/Theorems/treePairing_symm.lean",
+          "repo_kind": "native",
+          "stage": "statement"
+        }
       },
       "code": "-- lean-constellation: managed-imports-begin\nimport PositiveDefiniteTreeLattice.Main.LatticeFoundations.Prelude\nimport PositiveDefiniteTreeLattice.Main.LatticeFoundations.Defs.treePairingAnchor\n-- lean-constellation: managed-imports-end\n\n-- lean-constellation: declaration-source-begin\n\n/--\n# lean-constellation target: `treePairing_symm`\n\nFor a finite type `V` with decidable equality, a simple graph `G : SimpleGraph V` with decidable\nadjacency, an integer-valued weight function `weight : V → ℤ`, and functions `x y : V → ℤ`, the\npairing is symmetric:\n\n`treePairing G weight x y = treePairing G weight y x`.\n\n## Statement dependencies\n\n- `Main.LatticeFoundations::treePairingAnchor` → `PositiveDefiniteTreeLattice.treePairing` from\n  `PositiveDefiniteTreeLattice.Main.LatticeFoundations.Defs.treePairingAnchor`\n-/\ntheorem PositiveDefiniteTreeLattice.treePairing_symm {V : Type*} [Fintype V] [DecidableEq V]\n    (G : SimpleGraph V) [DecidableRel G.Adj] (weight : V → ℤ) (x y : V → ℤ) :\n    PositiveDefiniteTreeLattice.treePairing G weight x y =\n      PositiveDefiniteTreeLattice.treePairing G weight y x := by\n  sorry\n"
     },

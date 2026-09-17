@@ -1,18 +1,13 @@
 {
-  "change_summaries": {},
   "committed_at": "2026-08-03T11:03:59Z",
   "created_at": "2026-08-03T10:44:45Z",
-  "discard_reason": null,
   "discarded_at": null,
   "discarded_by": null,
-  "discarded_created_decl_names": [],
-  "discarded_restored_decl_revisions": {},
-  "discarded_revision_refs": [],
   "execution_completed_at": "2026-08-03T11:02:49Z",
   "execution_reason": null,
   "execution_result_kind": "success",
   "node_path": "Main.RootedCapacity",
-  "objective": "Create and graph-prove the private dependent child-Gram block inverse identity under pointwise admissibility of every attached child component.",
+  "objective": "rootedChildGram_blockDiagonal_inv_of_child_admissible@rev:1 is the private dependent child-Gram block inverse identity under pointwise admissibility of every attached child component.",
   "plan_closeout_acknowledged_at": "2026-08-03T11:03:59Z",
   "plan_closeout_acknowledged_by": "a_a93b40977f574bad89528358fa89e022",
   "result_kind": "success",
@@ -29,5 +24,6 @@
   "started_at": "2026-08-03T10:45:59Z",
   "status": "committed",
   "strategy_id": "strategy_409097c1a1e547a681e983998de55d40",
-  "summary": "Round 73 completed the first bottom-up contract-v4 generalization. rootedChildGram_blockDiagonal_inv_of_child_admissible@1 is proved and proof-policy satisfied with no blocker or state-only work. The strategy remains valid and in scope. The next dependency-ordered round should create the canonical nonroot inverse child-block transport under the same pointwise premise, consuming the assumption-free Gram reindex theorem and this new block inverse theorem; no Mathlib/resource preparation is needed."
+  "summary": "Round 73 completed the first bottom-up contract-v4 generalization. rootedChildGram_blockDiagonal_inv_of_child_admissible@1 is proved and proof-policy satisfied with no blocker or state-only work. The strategy remains valid and in scope. No Mathlib/resource preparation is needed.",
+  "execution_constraints": "Create the canonical nonroot inverse child-block transport under the same pointwise premise, consuming the assumption-free Gram reindex theorem and this block inverse theorem; do not run Mathlib/resource preparation without a concrete gap."
 }

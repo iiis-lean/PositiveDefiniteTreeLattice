@@ -1,4 +1,4 @@
-[← Public API](../PUBLIC_API.md) · [Public boundaries](../PUBLIC_BOUNDARIES.md)
+[← Public API](../PUBLIC_API.md) · [Public boundaries](../PUBLIC_BOUNDARIES.md) · [Complete graph](../DECLARATION_GRAPH.md)
 
 # `rootedChildGram_blockDiagonal_inv_of_child_admissible`
 
@@ -10,9 +10,134 @@ The dependent block diagonal of attached child Gram matrices inverts blockwise u
 - State: `proved`
 - Revision status: `committed`
 - Repository completion: `graph_proved`
-- Formal code: final proof projection
+- Compatibility `formal_code`: final proof projection
 
-## Lean code
+## Statement NL
+
+Let `V` be a finite type with decidable equality, let `G` be a simple graph on `V` with decidable adjacency, let `hG : G.IsTree`, let `w : V → ℤ`, and let `ρ : V`. Index the attached root children by
+
+`I := {c : V // c ∈ rootedChildren G hG ρ ρ}`.
+
+For each `c : I`, use the canonical `Fintype.ofFinite` instances and the deleted-edge `DecidableRel` convention to form the child-side component `rootedChildComponent G ρ c.1`, its canonical root `rootedChildRoot G ρ c.1`, and the exact dependent rational Gram family
+
+`B c := rootedGram (rootedChildComponent G ρ c.1).toSimpleGraph (fun x : rootedChildComponent G ρ c.1 => w (x : V))`.
+
+Assume pointwise child admissibility, with these same local instances:
+
+`∀ c : I, IsAdmissibleRootedTree (rootedChildComponent G ρ c.1).toSimpleGraph (fun x => w (x : V)) (rootedChildRoot G ρ c.1)`.
+
+Then the total rational inverse of the dependent block-diagonal child Gram matrix is the dependent block diagonal of the total inverses of its exact child blocks:
+
+`(Matrix.blockDiagonal' B)⁻¹ = Matrix.blockDiagonal' (fun c => (B c)⁻¹)`.
+
+This preserves the dependent Sigma index and exact child-Gram representation while replacing ambient admissibility by precisely the pointwise attached-child hypotheses.
+
+## Statement Formal
+
+```lean
+-- lean-constellation: managed-imports-begin
+import PositiveDefiniteTreeLattice.Main.RootedCapacity.Prelude
+import Mathlib.Combinatorics.SimpleGraph.Acyclic
+import Mathlib.Combinatorics.SimpleGraph.Connectivity.Connected
+import Mathlib.Combinatorics.SimpleGraph.DeleteEdges
+import Mathlib.Data.Fintype.EquivFin
+import Mathlib.Data.Matrix.Block
+import Mathlib.LinearAlgebra.Matrix.NonsingularInverse
+import PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.IsAdmissibleRootedTree
+import PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildComponent
+import PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildRoot
+import PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildren
+import PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedGram
+-- lean-constellation: managed-imports-end
+
+-- lean-constellation: declaration-source-begin
+
+/--
+# lean-constellation target: `rootedChildGram_blockDiagonal_inv_of_child_admissible`
+
+Let `V` be a finite type with decidable equality, let `G` be a simple graph on `V` with decidable
+adjacency, let `hG : G.IsTree`, let `w : V → ℤ`, and let `ρ : V`. Index the attached root children
+by
+
+`I := {c : V // c ∈ rootedChildren G hG ρ ρ}`.
+
+For each `c : I`, use the canonical `Fintype.ofFinite` instances and the deleted-edge `DecidableRel`
+convention to form the child-side component `rootedChildComponent G ρ c.1`, its canonical root
+`rootedChildRoot G ρ c.1`, and the exact dependent rational Gram family
+
+`B c := rootedGram (rootedChildComponent G ρ c.1).toSimpleGraph (fun x : rootedChildComponent G ρ
+c.1 => w (x : V))`.
+
+Assume pointwise child admissibility, with these same local instances:
+
+`∀ c : I, IsAdmissibleRootedTree (rootedChildComponent G ρ c.1).toSimpleGraph (fun x => w (x : V))
+(rootedChildRoot G ρ c.1)`.
+
+Then the total rational inverse of the dependent block-diagonal child Gram matrix is the dependent
+block diagonal of the total inverses of its exact child blocks:
+
+`(Matrix.blockDiagonal' B)⁻¹ = Matrix.blockDiagonal' (fun c => (B c)⁻¹)`.
+
+This preserves the dependent Sigma index and exact child-Gram representation while replacing ambient
+admissibility by precisely the pointwise attached-child hypotheses.
+
+## Sources
+
+- Source `solution.tex`, lines 57–68
+
+## Statement dependencies
+
+- `SimpleGraph.IsTree` from `Mathlib.Combinatorics.SimpleGraph.Acyclic`
+- `SimpleGraph.ConnectedComponent.toSimpleGraph` from
+  `Mathlib.Combinatorics.SimpleGraph.Connectivity.Connected`
+- `SimpleGraph.deleteEdges` from `Mathlib.Combinatorics.SimpleGraph.DeleteEdges`
+- `Fintype.ofFinite` from `Mathlib.Data.Fintype.EquivFin`
+- `Matrix.blockDiagonal'` from `Mathlib.Data.Matrix.Block`
+- `Matrix.inv` from `Mathlib.LinearAlgebra.Matrix.NonsingularInverse`
+- `Main.RootedCapacity::IsAdmissibleRootedTree` → `IsAdmissibleRootedTree` from
+  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.IsAdmissibleRootedTree`
+- `Main.RootedCapacity::rootedChildComponent` → `rootedChildComponent` from
+  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildComponent`
+- `Main.RootedCapacity::rootedChildRoot` → `rootedChildRoot` from
+  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildRoot`
+- `Main.RootedCapacity::rootedChildren` → `rootedChildren` from
+  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildren`
+- `Main.RootedCapacity::rootedGram` → `rootedGram` from
+  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedGram`
+-/
+theorem rootedChildGram_blockDiagonal_inv_of_child_admissible {V : Type*} [Fintype V]
+    [DecidableEq V] (G : SimpleGraph V) [DecidableRel G.Adj] (hG : G.IsTree) (w : V → ℤ)
+    (ρ : V) :
+    let I := {c : V // c ∈ rootedChildren G hG ρ ρ}
+    letI : Fintype I := Fintype.ofFinite I
+    letI : ∀ c : I, Fintype (rootedChildComponent G ρ c.1) :=
+      fun c => Fintype.ofFinite _
+    letI : ∀ c : I, DecidableEq (rootedChildComponent G ρ c.1) :=
+      fun c => Classical.decEq _
+    letI : ∀ c : I, DecidableRel (G.deleteEdges {s(ρ, c.1)}).Adj :=
+      fun c => Classical.decRel _
+    letI : ∀ c : I, DecidableRel (rootedChildComponent G ρ c.1).toSimpleGraph.Adj :=
+      fun c => Classical.decRel _
+    let B : ∀ c : I,
+        Matrix (rootedChildComponent G ρ c.1) (rootedChildComponent G ρ c.1) ℚ := fun c =>
+      rootedGram (rootedChildComponent G ρ c.1).toSimpleGraph (fun x => w (x : V))
+    (∀ c : I, IsAdmissibleRootedTree (rootedChildComponent G ρ c.1).toSimpleGraph
+      (fun x => w (x : V)) (rootedChildRoot G ρ c.1)) →
+      (Matrix.blockDiagonal' B)⁻¹ = Matrix.blockDiagonal' (fun c => (B c)⁻¹) := by
+  sorry
+```
+
+## Proof NL
+
+With the statement's let-bound attached-child subtype `I`, shared `Fintype.ofFinite` and deleted-edge `DecidableRel` instances, dependent Gram family `B`, and Sigma Fintype, the common local convention makes the family `B`, its inverse family, and block multiplication definitionally aligned.
+
+For each `c : I`, specialize the pointwise admissibility premise `hChild c` and inspect its `IsAdmissibleRootedTree` fields. Under the retained instances its positive-definiteness component is exactly `(B c).PosDef`; no ambient admissibility theorem is involved. Therefore `Matrix.PosDef.isUnit` and `Matrix.isUnit_iff_isUnit_det` give `hdet c : IsUnit (B c).det`.
+
+Set `A := Matrix.blockDiagonal' B` and `E := Matrix.blockDiagonal' (fun c => (B c)⁻¹)`. The block-diagonal multiplication identity identifies `E * A` with the block diagonal of `(B c)⁻¹ * B c`, and `Matrix.nonsing_inv_mul (hdet c)` makes each block `1`. Extensionality with `Matrix.blockDiagonal'_apply'` shows that the resulting block diagonal of identity matrices is the identity on the same dependent Sigma index: equal labels use the canonical dependent cast and identity entry, while unequal labels give zero.
+
+Hence `E * A = 1`, and `Matrix.inv_eq_left_inv` yields `A⁻¹ = E`; expanding the local aliases gives exactly `(Matrix.blockDiagonal' B)⁻¹ = Matrix.blockDiagonal' (fun c => (B c)⁻¹)`. The argument uses precisely pointwise child admissibility and preserves the declared child indices, matrices, total inverse, and instance convention.
+
+## Proof Formal
 
 ```lean
 -- lean-constellation: managed-imports-begin

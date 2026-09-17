@@ -1,18 +1,13 @@
 {
-  "change_summaries": {},
   "committed_at": "2026-08-02T14:57:15Z",
   "created_at": "2026-08-02T14:45:58Z",
-  "discard_reason": null,
   "discarded_at": null,
   "discarded_by": null,
-  "discarded_created_decl_names": [],
-  "discarded_restored_decl_revisions": {},
-  "discarded_revision_refs": [],
   "execution_completed_at": "2026-08-02T14:56:07Z",
   "execution_reason": null,
   "execution_result_kind": "success",
   "node_path": "Main.IrreducibleVertex",
-  "objective": "Resume rootedChildComponent_childCount_add_one_eq_degree from its accepted proof plan and complete Proof Formal using the newly supplied generic nonroot child-count/degree provider theorem.",
+  "objective": "The accepted proof plan for rootedChildComponent_childCount_add_one_eq_degree uses the newly supplied generic nonroot child-count/degree provider theorem and targets the proved degree equality.",
   "plan_closeout_acknowledged_at": "2026-08-02T14:57:15Z",
   "plan_closeout_acknowledged_by": "a_a235941c8c524917a1ed4a78f90c75ba",
   "result_kind": "success",
@@ -29,5 +24,5 @@
   "started_at": "2026-08-02T14:47:10Z",
   "status": "committed",
   "strategy_id": "strategy_b4700cd2358b41f2a38edf0cd0224c18",
-  "summary": "Round 6 successfully reopened the bottom-up strategy and resolved the external provider blocker. rootedChildComponent_childCount_add_one_eq_degree reached proved state and satisfies graph_proved, with earlier statement and Proof NL artifacts intentionally retained. No state-only work, blocker, superseded artifact, or cleanup target remains. The exact retry condition for rootedChildComponent_isAdmissible_of_unique_underweight is now met, so the next step is a separate update from its committed declared statement through Proof NL and Proof Formal."
+  "summary": "Round 6 successfully reopened the bottom-up strategy and resolved the external provider blocker. rootedChildComponent_childCount_add_one_eq_degree reached proved state and satisfies graph_proved, with earlier statement and Proof NL artifacts intentionally retained. No state-only work, blocker, superseded artifact, or cleanup target remains. The previously documented retry condition for rootedChildComponent_isAdmissible_of_unique_underweight is satisfied."
 }

@@ -1,18 +1,13 @@
 {
-  "change_summaries": {},
   "committed_at": "2026-07-30T11:23:43Z",
   "created_at": "2026-07-30T11:19:10Z",
-  "discard_reason": null,
   "discarded_at": null,
   "discarded_by": null,
-  "discarded_created_decl_names": [],
-  "discarded_restored_decl_revisions": {},
-  "discarded_revision_refs": [],
   "execution_completed_at": "2026-07-30T11:22:09Z",
   "execution_reason": "The existing bridge is mathematically exact but syntactically too opaque for the normalized target. A same-semantic, private elaborated-entry lemma is required for direct rewriting; it avoids reintroducing the dependent-coercion heartbeat path and preserves all accepted statements.",
   "execution_result_kind": "blocked",
   "node_path": "Main.RootedCapacity",
-  "objective": "Retry only Proof Formal for rootedNonrootGram_reindex_childBlocks using the proved exact reindexed-entry bridge, preserving its statement and branch proof plan.",
+  "objective": "Round 33 concerns the private no-let elaborated wrapper around the proved exact reindexed-entry theorem, providing the normalized syntactic surface required by rootedNonrootGram_reindex_childBlocks while preserving its accepted statement and branch proof plan.",
   "plan_closeout_acknowledged_at": "2026-07-30T11:23:43Z",
   "plan_closeout_acknowledged_by": "a_a93b40977f574bad89528358fa89e022",
   "result_kind": "blocked",
@@ -29,5 +24,6 @@
   "started_at": "2026-07-30T11:20:39Z",
   "status": "committed",
   "strategy_id": "strategy_1fbcdfb31a2e4cada1ff5b7b941de18c",
-  "summary": "Round 33 is closed blocked at Proof Formal. rootedNonrootGram_reindex_childBlocks rev4 remains proof_planned and not proof-policy satisfied. The remaining item is one private no-let elaborated wrapper around the already-proved entry theorem; it has identical mathematics but a syntactic surface matching the normalized block goal. This is a narrow Lean-specific helper within current scope and declaration scale, not another source decomposition. Plan and prove that wrapper next, then retry the block theorem. No preparation, resource request, Coordinator escalation, superseded branch, or graph cleanup is needed; the strategy remains viable."
+  "summary": "Round 33 is closed blocked at Proof Formal. rootedNonrootGram_reindex_childBlocks rev4 remains proof_planned and not proof-policy satisfied. The remaining item is one private no-let elaborated wrapper around the already-proved entry theorem; it has identical mathematics but a syntactic surface matching the normalized block goal. This is a narrow Lean-specific helper within current scope and declaration scale, and the strategy remains viable.",
+  "execution_constraints": "Plan and prove the no-let wrapper, then retry rootedNonrootGram_reindex_childBlocks. Do not request preparation or resources, escalate to the Coordinator, create a superseded branch, or perform graph cleanup; defer rootedNonroot_inverse_childBlocks and rootedNonroot_inverse_quadratic until the block theorem is proved."
 }

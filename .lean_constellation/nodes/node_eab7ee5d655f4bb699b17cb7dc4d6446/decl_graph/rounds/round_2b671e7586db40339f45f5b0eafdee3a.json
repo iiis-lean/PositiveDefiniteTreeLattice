@@ -1,18 +1,13 @@
 {
-  "change_summaries": {},
   "committed_at": "2026-08-03T12:19:58Z",
   "created_at": "2026-08-03T12:05:36Z",
-  "discard_reason": null,
   "discarded_at": null,
   "discarded_by": null,
-  "discarded_created_decl_names": [],
-  "discarded_restored_decl_revisions": {},
-  "discarded_revision_refs": [],
   "execution_completed_at": "2026-08-03T12:18:10Z",
   "execution_reason": "The current helper cannot responsibly claim the required direct provider application: its statement-level deleted-edge infer_instance DecidableRel binder is not definitionally identical to the inverse provider’s dependent Classical.decRel/DecidableEq binders, and rootedChildCapacitySummand independently fixes the infer_instance convention.",
   "execution_result_kind": "blocked",
   "node_path": "Main.RootedCapacity",
-  "objective": "Recapture rootedNonroot_inverse_quadratic_sigma_of_child_admissible from Statement NL through Proof Formal with the missing canonical dependent child-component Fintype and deleted-edge DecidableRel binders.",
+  "objective": "Round 77 concerns recapturing rootedNonroot_inverse_quadratic_sigma_of_child_admissible with canonical dependent child-component Fintype and deleted-edge DecidableRel binders aligned to the inverse provider.",
   "plan_closeout_acknowledged_at": "2026-08-03T12:19:58Z",
   "plan_closeout_acknowledged_by": "a_a93b40977f574bad89528358fa89e022",
   "result_kind": "blocked",
@@ -29,5 +24,6 @@
   "started_at": "2026-08-03T12:07:22Z",
   "status": "committed",
   "strategy_id": "strategy_409097c1a1e547a681e983998de55d40",
-  "summary": "Round 77 made statement-level progress to declared but blocked at Proof NL. The attempted canonical binders did not actually align the inverse provider's `Classical.decRel`/DecidableEq instances with rootedChildCapacitySummand's `infer_instance` convention, so neither the helper nor public parent is graph_proved-satisfied. Because the same instance mismatch has now survived two representation attempts, the next step should be a focused Mathlib/Lean elaboration recon that produces a compiler-checked alignment route or the smallest permitted representation revision. No parent retry or additional speculative helper is justified before that preparation."
+  "summary": "Round 77 made statement-level progress to declared but remained blocked at Proof NL. The attempted canonical binders did not align the inverse provider's Classical.decRel/DecidableEq instances with rootedChildCapacitySummand's infer_instance convention, so neither the helper nor the public parent became graph_proved-satisfied. The same instance mismatch survived two representation attempts, leaving a focused elaboration/revision need; no parent or additional speculative-helper progress occurred.",
+  "execution_constraints": "Run focused Mathlib/Lean elaboration recon to obtain a compiler-checked alignment route or the smallest permitted representation revision before retrying this helper; do not retry the parent or add a speculative helper before that preparation."
 }

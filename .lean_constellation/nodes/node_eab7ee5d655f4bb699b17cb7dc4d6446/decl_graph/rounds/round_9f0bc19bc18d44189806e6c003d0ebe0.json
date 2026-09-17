@@ -1,18 +1,13 @@
 {
-  "change_summaries": {},
   "committed_at": "2026-07-30T02:36:09Z",
   "created_at": "2026-07-30T02:21:47Z",
-  "discard_reason": null,
   "discarded_at": null,
   "discarded_by": null,
-  "discarded_created_decl_names": [],
-  "discarded_restored_decl_revisions": {},
-  "discarded_revision_refs": [],
   "execution_completed_at": "2026-07-30T02:34:15Z",
   "execution_reason": "The exact count equality requires a missing, independently reusable rooted-child membership transport across the deleted-edge component. It cannot responsibly be buried as a local Finset-cardinality subargument in this theorem.",
   "execution_result_kind": "blocked",
   "node_path": "Main.RootedCapacity",
-  "objective": "Prove the b_0009 orientation bridge for child subtrees: if c is a rooted child of parent in the ambient tree, then every vertex of the child component has the same rooted child count when computed inside the component rooted at rootedChildRoot as in the ambient tree rooted at ρ. This is the remaining combinatorial prerequisite for admissibility inheritance.",
+  "objective": "The b_0009 orientation bridge establishes that if c is a rooted child of parent in the ambient tree, every vertex of rootedChildComponent G parent c has the same rooted child count inside the component rooted at rootedChildRoot as in the ambient tree rooted at ρ. This is the remaining combinatorial prerequisite for admissibility inheritance.",
   "plan_closeout_acknowledged_at": "2026-07-30T02:36:09Z",
   "plan_closeout_acknowledged_by": "a_a93b40977f574bad89528358fa89e022",
   "result_kind": "blocked",
@@ -29,5 +24,6 @@
   "started_at": "2026-07-30T02:23:11Z",
   "status": "committed",
   "strategy_id": "strategy_b9f2bb44ae0a40ba9081239e5f026481",
-  "summary": "The round made statement-layer progress but is closed blocked at Proof NL: rootedChildCount_rootedChildComponent has a valid declared public statement, not a proved or graph-proved result. The concrete missing item is a source-visible, predictable rooted-child membership transport theorem across rootedChildComponent, not a provider/resource/runtime blocker. The consumer equality and its hypotheses remain valid. Retry conditions are complete: prove membership equivalence between component rootedChildren (rooted at rootedChildRoot) and ambient rootedChildren under hc : c ∈ rootedChildren G hG ρ parent, with correct subtype coercions; then update the count theorem from declared to proved using that helper. The open strategy still explains this decomposition, graph hygiene is clean, and the next action should be a dedicated helper round rather than a parent retry or terminal Content blocker."
+  "summary": "The round made statement-layer progress but is closed blocked at Proof NL: rootedChildCount_rootedChildComponent has a valid declared public statement, not a proved or graph-proved result. The concrete missing item is a source-visible, predictable rooted-child membership transport theorem across rootedChildComponent, not a provider, resource, or runtime blocker. The consumer equality and its hypotheses remain valid. The open strategy still explains this decomposition and graph hygiene is clean.",
+  "execution_constraints": "Prove membership equivalence between component rootedChildren rooted at rootedChildRoot and ambient rootedChildren under hc : c ∈ rootedChildren G hG ρ parent, with correct subtype coercions. Then update rootedChildCount_rootedChildComponent from declared to proved using that helper; use a dedicated helper round rather than retrying the parent or marking terminal Content blocked."
 }

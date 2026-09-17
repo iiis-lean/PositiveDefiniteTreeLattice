@@ -1,18 +1,13 @@
 {
-  "change_summaries": {},
   "committed_at": "2026-08-03T11:50:25Z",
   "created_at": "2026-08-03T11:24:05Z",
-  "discard_reason": null,
   "discarded_at": null,
   "discarded_by": null,
-  "discarded_created_decl_names": [],
-  "discarded_restored_decl_revisions": {},
-  "discarded_revision_refs": [],
   "execution_completed_at": "2026-08-03T11:48:14Z",
   "execution_reason": "The final public quadratic identity needs a reusable canonical Sigma root-row quadratic transport helper; completing it locally currently hits a deterministic elaboration boundary caused by independently let-bound child-component Fintype/Decidable instances.",
   "execution_result_kind": "blocked",
   "node_path": "Main.RootedCapacity",
-  "objective": "Create and graph-prove the final contract-v4 public theorem PositiveDefiniteTreeLattice.rootedNonroot_inverse_quadratic_of_child_admissible, preserving the existing canonical rational nonroot inverse quadratic and rootedChildCapacitySum while assuming only pointwise attached-child admissibility.",
+  "objective": "Round 75 concerns the final contract-v4 public theorem PositiveDefiniteTreeLattice.rootedNonroot_inverse_quadratic_of_child_admissible: it preserves the canonical rational nonroot inverse quadratic and rootedChildCapacitySum under pointwise attached-child admissibility, with a canonical Sigma root-row quadratic transport helper as its remaining implementation dependency.",
   "plan_closeout_acknowledged_at": "2026-08-03T11:50:25Z",
   "plan_closeout_acknowledged_by": "a_a93b40977f574bad89528358fa89e022",
   "result_kind": "blocked",
@@ -29,5 +24,6 @@
   "started_at": "2026-08-03T11:25:20Z",
   "status": "committed",
   "strategy_id": "strategy_409097c1a1e547a681e983998de55d40",
-  "summary": "Round 75 made statement-level progress but is blocked at Proof Formal. The public contract-v4 declaration now has its exact qualified formal statement and accepted proof plan at proof_planned state, but it is not graph_proved-satisfied. The sole missing item is a current-node Lean-specific canonical Sigma root-row quadratic transport helper that stabilizes the attached-child Fintype/DecidableRel instance convention between rootedNonroot_inverse_childBlocks_of_child_admissible and rootedChildCapacitySum. This is a predictable tracked helper within the strategy and contract scale, not a dependency or preparation gap. The next step is one private helper round; only after it is proved should the parent receive a Proof-Formal-only retry."
+  "summary": "Round 75 made statement-level progress but is blocked at Proof Formal. The public contract-v4 declaration has its exact qualified formal statement and accepted proof plan at proof_planned state, but it is not graph_proved-satisfied. The sole missing item is a current-node Lean-specific canonical Sigma root-row quadratic transport helper that stabilizes the attached-child Fintype/DecidableRel instance convention between rootedNonroot_inverse_childBlocks_of_child_admissible and rootedChildCapacitySum. This is a predictable tracked helper within the strategy and contract scale, not a dependency or preparation gap.",
+  "execution_constraints": "Create and prove one private canonical Sigma root-row quadratic transport helper; only after it is proved, retry the parent in Proof Formal."
 }

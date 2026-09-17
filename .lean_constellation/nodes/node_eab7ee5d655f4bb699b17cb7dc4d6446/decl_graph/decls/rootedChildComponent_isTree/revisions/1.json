@@ -1,16 +1,12 @@
 {
   "change": {
-    "anticipated_proof_dep_names": [],
-    "anticipated_statement_dep_names": [
-      "rootedChildComponent"
-    ],
     "base_revision": null,
     "kind": "create",
-    "objective": "Formalize the structural inheritance implicit in SourceIndex b_0009 / solution.tex lines 48–61: for any SimpleGraph G with hG : G.IsTree and vertices parent c, the graph (rootedChildComponent G parent c).toSimpleGraph is a tree. Consume the committed public rootedChildComponent definition. Prove bottom-up using hG.isAcyclic, the subgraph relation G.deleteEdges {s(parent,c)} ≤ G with SimpleGraph.IsAcyclic.anti, and SimpleGraph.IsAcyclic.isTree_connectedComponent. Do not add an adjacency, rooted-child, weight, admissibility, or positive-definiteness hypothesis because the tree conclusion holds for every deleted-edge connected component. This public bridge must serve later child-subtree admissibility, rootedGram restriction, and the b_0009 capacity recursion.",
+    "objective": "Revision 1 establishes the public structural inheritance theorem from SourceIndex b_0009 / solution.tex lines 48–61: for any simple graph `G` with `hG : G.IsTree` and vertices `parent c`, the induced graph `(rootedChildComponent G parent c).toSimpleGraph` is a tree. The conclusion applies to every deleted-edge connected component and therefore assumes no adjacency, rooted-child, weight, admissibility, or positive-definiteness condition; it supplies the structural bridge for child-subtree admissibility, rootedGram restriction, and the b_0009 capacity recursion.",
     "require_target_state_satisfied": true,
-    "reset_to_state": null,
     "summary": "Created public theorem rootedChildComponent_isTree and reached proved state. Its formal statement and proof passed, establishing without extra adjacency or weight hypotheses that the induced graph on any deleted-edge connected component of a tree is a tree. The theorem is proof-policy satisfied and supplies the structural prerequisite for child-subtree admissibility and later b_0009 Gram/capacity bridges.",
-    "target_state": "proved"
+    "target_state": "proved",
+    "execution_constraints": "Consume the committed `rootedChildComponent` definition. Derive acyclicity of `G.deleteEdges {s(parent,c)}` from `hG.isAcyclic` via `SimpleGraph.IsAcyclic.anti` and `SimpleGraph.deleteEdges_adj`, then apply `SimpleGraph.IsAcyclic.isTree_connectedComponent` to the selected component. Keep all adjacency, rooted-child, weight, admissibility, and positive-definiteness hypotheses absent."
   },
   "lean_decl_name": "rootedChildComponent_isTree",
   "proof": {
@@ -79,6 +75,11 @@
           "schema_version": 2,
           "summary": "Diagnostics returned 0 items"
         },
+        "fingerprint": {
+          "environment_sha256": null,
+          "source_sha256": "e6a9f8f9553e405be5f1e4d3ed5cf0614f8577e58eb037d17671b6bb990361bf",
+          "upstream_revision": null
+        },
         "message": "Lean check passed.",
         "policy": "proof_formal",
         "scan": {
@@ -96,7 +97,15 @@
           "summary": "sorry=0, admit=0, axiom=0, opaque=0, unsafe=0",
           "unsafe_count": 0
         },
-        "status": "passed"
+        "schema_version": 1,
+        "status": "passed",
+        "subject": {
+          "declaration_name": null,
+          "module": "PositiveDefiniteTreeLattice.Main.RootedCapacity.Theorems.rootedChildComponent_isTree",
+          "repo_file_path": "PositiveDefiniteTreeLattice/Main/RootedCapacity/Theorems/rootedChildComponent_isTree.lean",
+          "repo_kind": "native",
+          "stage": "proof"
+        }
       },
       "code": "-- lean-constellation: managed-imports-begin\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Prelude\nimport Mathlib.Combinatorics.SimpleGraph.Acyclic\nimport Mathlib.Combinatorics.SimpleGraph.Connectivity.Connected\nimport Mathlib.Combinatorics.SimpleGraph.DeleteEdges\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildComponent\n-- lean-constellation: managed-imports-end\n\n-- lean-constellation: declaration-source-begin\n\n/--\n# lean-constellation target: `rootedChildComponent_isTree`\n\nFor any vertex type `V`, simple graph `G : SimpleGraph V`, vertices `parent c : V`, and hypothesis\n`hG : G.IsTree`, the induced graph on the deleted-edge component is a tree: `(rootedChildComponent G\nparent c).toSimpleGraph.IsTree`.  The statement imposes no adjacency or rooted-child condition on\n`parent` and `c`, and no weight, admissibility, positive-definiteness, or scalar hypothesis.\n\n## Sources\n\n- Source `solution.tex`, lines 48–61\n\n## Statement dependencies\n\n- `SimpleGraph.IsTree` from `Mathlib.Combinatorics.SimpleGraph.Acyclic`\n- `SimpleGraph.ConnectedComponent.toSimpleGraph` from\n  `Mathlib.Combinatorics.SimpleGraph.Connectivity.Connected`\n- `Main.RootedCapacity::rootedChildComponent` → `rootedChildComponent` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildComponent`\n\n## Proof outline\n\nUnfold the committed definition `rootedChildComponent`; its component is definitionally\n`(G.deleteEdges {s(parent, c)}).connectedComponentMk c`.\n\nLet `Gcut := G.deleteEdges {s(parent, c)}`. First prove `Gcut.IsAcyclic` bottom-up from\n`hG.isAcyclic`: apply `SimpleGraph.IsAcyclic.anti` to the subgraph relation `Gcut ≤ G`. For an\nadjacency of `Gcut`, unfold/rewrite `SimpleGraph.deleteEdges_adj` and retain the original-`G`\nadjacency component, so this local relation needs no hypothesis on `parent`, `c`, or their\nadjacency.\n\nFinally apply `SimpleGraph.IsAcyclic.isTree_connectedComponent` to that acyclicity proof and the\ncomponent `Gcut.connectedComponentMk c`. After unfolding `rootedChildComponent`, this is exactly the\nrequested induced graph. The route deliberately introduces no rooted-child, weight, admissibility,\nor positive-definiteness assumptions: every connected component of an edge-deleted tree is a tree.\n\n## Proof dependencies\n\n- `SimpleGraph.IsAcyclic.anti` from `Mathlib.Combinatorics.SimpleGraph.Acyclic`\n- `SimpleGraph.IsAcyclic.isTree_connectedComponent` from `Mathlib.Combinatorics.SimpleGraph.Acyclic`\n- `SimpleGraph.connectedComponentMk` from `Mathlib.Combinatorics.SimpleGraph.Connectivity.Connected`\n- `SimpleGraph.deleteEdges` from `Mathlib.Combinatorics.SimpleGraph.DeleteEdges`\n- `SimpleGraph.deleteEdges_adj` from `Mathlib.Combinatorics.SimpleGraph.DeleteEdges`\n- `Main.RootedCapacity::rootedChildComponent` → `rootedChildComponent` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildComponent`\n-/\ntheorem rootedChildComponent_isTree {V : Type*} (G : SimpleGraph V) (parent c : V)\n    (hG : G.IsTree) : (rootedChildComponent G parent c).toSimpleGraph.IsTree := by\n  unfold rootedChildComponent\n  apply SimpleGraph.IsAcyclic.isTree_connectedComponent\n  apply SimpleGraph.IsAcyclic.anti ?_ hG.isAcyclic\n  intro v w hvw\n  exact (G.deleteEdges_adj.mp hvw).1\n"
     },
@@ -156,6 +165,11 @@
           "schema_version": 2,
           "summary": "Diagnostics returned 1 items"
         },
+        "fingerprint": {
+          "environment_sha256": null,
+          "source_sha256": "4d1c9d402fab306bfb11c23e6d67d38a879590c87b58b3519d1e87baf3613bae",
+          "upstream_revision": null
+        },
         "message": "Lean check passed.",
         "policy": "statement_formal",
         "scan": {
@@ -180,7 +194,15 @@
           "summary": "sorry=1, admit=0, axiom=0, opaque=0, unsafe=0",
           "unsafe_count": 0
         },
-        "status": "passed"
+        "schema_version": 1,
+        "status": "passed",
+        "subject": {
+          "declaration_name": null,
+          "module": "PositiveDefiniteTreeLattice.Main.RootedCapacity.Theorems.rootedChildComponent_isTree",
+          "repo_file_path": "PositiveDefiniteTreeLattice/Main/RootedCapacity/Theorems/rootedChildComponent_isTree.lean",
+          "repo_kind": "native",
+          "stage": "statement"
+        }
       },
       "code": "-- lean-constellation: managed-imports-begin\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Prelude\nimport Mathlib.Combinatorics.SimpleGraph.Acyclic\nimport Mathlib.Combinatorics.SimpleGraph.Connectivity.Connected\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildComponent\n-- lean-constellation: managed-imports-end\n\n-- lean-constellation: declaration-source-begin\n\n/--\n# lean-constellation target: `rootedChildComponent_isTree`\n\nFor any vertex type `V`, simple graph `G : SimpleGraph V`, vertices `parent c : V`, and hypothesis\n`hG : G.IsTree`, the induced graph on the deleted-edge component is a tree: `(rootedChildComponent G\nparent c).toSimpleGraph.IsTree`.  The statement imposes no adjacency or rooted-child condition on\n`parent` and `c`, and no weight, admissibility, positive-definiteness, or scalar hypothesis.\n\n## Sources\n\n- Source `solution.tex`, lines 48–61\n\n## Statement dependencies\n\n- `SimpleGraph.IsTree` from `Mathlib.Combinatorics.SimpleGraph.Acyclic`\n- `SimpleGraph.ConnectedComponent.toSimpleGraph` from\n  `Mathlib.Combinatorics.SimpleGraph.Connectivity.Connected`\n- `Main.RootedCapacity::rootedChildComponent` → `rootedChildComponent` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildComponent`\n-/\ntheorem rootedChildComponent_isTree {V : Type*} (G : SimpleGraph V) (parent c : V)\n    (hG : G.IsTree) : (rootedChildComponent G parent c).toSimpleGraph.IsTree := by\n  sorry\n"
     },

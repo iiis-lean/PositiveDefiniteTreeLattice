@@ -485,5 +485,6 @@
   "success_criteria": "The interrupted open revision is reconciled with `pairing_decomposition_at_unique_underweight` proved and proof-policy satisfied; normalized positivity and the downstream contradiction are proved; the exact protected `PositiveDefiniteTreeLattice.exists_irreducible_vertex` is public, proved, and interface-bound; public Statement closure is complete and the graph_proved completion gate passes.",
   "summary": "Accepted ready at graph_proved depth. All 11 active declarations are proved and proof-policy satisfied. PositiveDefiniteTreeLattice.exists_irreducible_vertex@2 is public, fresh, compiler-proved, and exactly preserves the immutable target’s finite decidable graph, integer weight, tree, integral positive-definiteness, unique underweighted vertex, and irreducible vertex-vector conclusion; it is bound to the protected contract interface. Public Statement closure and all 9 completion checks passed with no remaining repository gap.",
   "task_completion_mode": "graph_proved",
-  "version": 3
+  "version": 3,
+  "execution_constraints": "Before Proof Formal, verify `rootedGram_reindex_rootNonroot_blocks@1` and `rootedChildComponentsEquivNonroot_apply@1` for orientation, Sigma indices, readiness, freshness, and compatibility with the combined inverse–reindex/root-support APIs; process the central gap from its declared state and complete downstream declarations only after the strict gap is proved. If recon finds an incompatible signature, report the exact mismatch and stop before Proof Formal."
 }

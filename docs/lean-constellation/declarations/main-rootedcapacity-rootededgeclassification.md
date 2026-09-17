@@ -1,4 +1,4 @@
-[← Public API](../PUBLIC_API.md) · [Public boundaries](../PUBLIC_BOUNDARIES.md)
+[← Public API](../PUBLIC_API.md) · [Public boundaries](../PUBLIC_BOUNDARIES.md) · [Complete graph](../DECLARATION_GRAPH.md)
 
 # `rootedEdgeClassification`
 
@@ -10,9 +10,82 @@ Every edge of a finite rooted tree is a root-child edge or an edge internal to o
 - State: `proved`
 - Revision status: `committed`
 - Repository completion: `graph_proved`
-- Formal code: final proof projection
+- Compatibility `formal_code`: final proof projection
 
-## Lean code
+## Statement NL
+
+Let `V` be a finite type with decidable equality, let `G : SimpleGraph V` have decidable adjacency, let `hG : G.IsTree`, and fix a root `ρ` and ordered vertices `u v : V`. Then `G.Adj u v` holds if and only if either:
+
+1. `u = ρ` and `v ∈ rootedChildren G hG ρ ρ`, or `v = ρ` and `u ∈ rootedChildren G hG ρ ρ`; or
+2. there exists a unique `c ∈ rootedChildren G hG ρ ρ` for which there are vertices `u_c v_c : rootedChildComponent G ρ c` satisfying `(u_c : V) = u` and `(v_c : V) = v`, and `u_c` and `v_c` are adjacent in the `toSimpleGraph` of that child component.
+
+The unique component case retains both subtype witnesses, their ambient coercion equalities, and local component adjacency, so an ambient ordered neighbor-edge can be reindexed directly as a local ordered edge. The theorem is in namespace `PositiveDefiniteTreeLattice`, with full name `PositiveDefiniteTreeLattice.rootedEdgeClassification`.
+
+## Statement Formal
+
+```lean
+-- lean-constellation: managed-imports-begin
+import PositiveDefiniteTreeLattice.Main.RootedCapacity.Prelude
+import Mathlib.Combinatorics.SimpleGraph.Connectivity.Connected
+import PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildComponent
+import PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildren
+-- lean-constellation: managed-imports-end
+
+-- lean-constellation: declaration-source-begin
+
+/--
+# lean-constellation target: `rootedEdgeClassification`
+
+Let `V` be a finite type with decidable equality, let `G : SimpleGraph V` have decidable adjacency,
+let `hG : G.IsTree`, and fix a root `ρ` and ordered vertices `u v : V`. Then `G.Adj u v` holds if
+and only if either:
+
+1. `u = ρ` and `v ∈ rootedChildren G hG ρ ρ`, or `v = ρ` and `u ∈ rootedChildren G hG ρ ρ`; or
+2. there exists a unique `c ∈ rootedChildren G hG ρ ρ` for which there are vertices `u_c v_c :
+rootedChildComponent G ρ c` satisfying `(u_c : V) = u` and `(v_c : V) = v`, and `u_c` and `v_c` are
+adjacent in the `toSimpleGraph` of that child component.
+
+The unique component case retains both subtype witnesses, their ambient coercion equalities, and
+local component adjacency, so an ambient ordered neighbor-edge can be reindexed directly as a local
+ordered edge. The theorem is in namespace `PositiveDefiniteTreeLattice`, with full name
+`PositiveDefiniteTreeLattice.rootedEdgeClassification`.
+
+## Statement dependencies
+
+- `SimpleGraph.ConnectedComponent.toSimpleGraph` from
+  `Mathlib.Combinatorics.SimpleGraph.Connectivity.Connected`
+- `Main.RootedCapacity::rootedChildComponent` → `rootedChildComponent` from
+  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildComponent`
+- `Main.RootedCapacity::rootedChildren` → `rootedChildren` from
+  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildren`
+-/
+theorem PositiveDefiniteTreeLattice.rootedEdgeClassification {V : Type*} [Fintype V] [DecidableEq V]
+    (G : SimpleGraph V) [DecidableRel G.Adj] (hG : G.IsTree) (ρ u v : V) :
+    G.Adj u v ↔
+      (u = ρ ∧ v ∈ rootedChildren G hG ρ ρ) ∨
+        (v = ρ ∧ u ∈ rootedChildren G hG ρ ρ) ∨
+          ∃! c : V, c ∈ rootedChildren G hG ρ ρ ∧
+            ∃ uC vC : rootedChildComponent G ρ c,
+              (uC : V) = u ∧ (vC : V) = v ∧
+                (rootedChildComponent G ρ c).toSimpleGraph.Adj uC vC := by
+  sorry
+```
+
+## Proof NL
+
+Work classically and prove the displayed equivalence.
+
+For the forward implication, first split on u = ρ. In that branch substitute u and then split on v = ρ. If also v = ρ, substitute v and close the impossible hypothesis G.Adj ρ ρ by SimpleGraph.irrefl; this simultaneous-root branch produces no classification witness. Only in the remaining u = ρ, v ≠ ρ subcase, unfold rootedChildren and apply Finset.mem_filter. Supply the ambient root edge, the empty walk from ρ to itself, and identify the chosen unique path to v with the one-edge walk by (hG.existsUnique_path ρ v).unique and SimpleGraph.Walk.IsPath.of_adj. This gives the first root-child alternative.
+
+In the complementary u ≠ ρ branch, split on v = ρ. Only in this root-incident subcase, unfold rootedChildren and apply Finset.mem_filter, using the symmetric ambient edge, the empty walk, and the same unique-path argument; this gives the second root-child alternative. In the remaining u ≠ ρ, v ≠ ρ subcase, apply rootedChildComponent_partition G hG ρ u to obtain its unique child c, its child-membership proof, and u ∈ rootedChildComponent G ρ c. Let uC be the resulting subtype vertex. Apply rootedChildComponent_adj_mem G hG ρ ρ c to uC, the original adjacency, and v ≠ ρ, producing v ∈ rootedChildComponent G ρ c, hence a subtype vertex vC.
+
+For the required local edge witness, show the ambient edge s(u,v) is not the deleted edge s(ρ,c). By Sym2.eq_iff, equality would either force u = ρ or force v = ρ, contradicting the two nonroot branches. Thus SimpleGraph.deleteEdges_adj turns the ambient adjacency into adjacency of G.deleteEdges {s(ρ,c)}. After unfolding rootedChildComponent and ConnectedComponent.toSimpleGraph, this is exactly the induced local adjacency of uC and vC. Package the child membership, subtype coercion equalities, and this edge proof as the ∃! witness. For uniqueness, if another child d has the packaged witnesses, use the ambient coercion equality of its uD to turn uD.property into u ∈ rootedChildComponent G ρ d; then the uniqueness field of rootedChildComponent_partition G hG ρ u gives d = c.
+
+For the reverse implication, unfold each root-child membership through rootedChildren and Finset.mem_filter to recover the root-to-opposite-endpoint adjacency (symmetrizing for the second orientation). In the component alternative, extract the unique witness and its local edge, rewrite using the two subtype-coercion equalities, unfold ConnectedComponent.toSimpleGraph to obtain deleted-graph adjacency, and take the first conjunct of SimpleGraph.deleteEdges_adj to recover G.Adj u v.
+
+This proof route uses only generic rooted-tree and deleted-edge component data; it introduces no weights, capacity facts, pairing, estimates, or TreePathSeparation results.
+
+## Proof Formal
 
 ```lean
 -- lean-constellation: managed-imports-begin

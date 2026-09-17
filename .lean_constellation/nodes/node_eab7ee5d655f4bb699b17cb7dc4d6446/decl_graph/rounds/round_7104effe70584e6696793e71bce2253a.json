@@ -1,18 +1,13 @@
 {
-  "change_summaries": {},
   "committed_at": "2026-08-03T13:36:54Z",
   "created_at": "2026-08-03T13:27:00Z",
-  "discard_reason": null,
   "discarded_at": null,
   "discarded_by": null,
-  "discarded_created_decl_names": [],
-  "discarded_restored_decl_revisions": {},
-  "discarded_revision_refs": [],
   "execution_completed_at": "2026-08-03T13:34:47Z",
   "execution_reason": "The revision-2 support theorem is imported and its pointwise coefficient rewrites typecheck. The required provider premise also typechecks exactly via `convert hChild c using 1 <;> apply Subsingleton.elim`. However, under the fixed 200000-heartbeat limit, both permitted focused routes still fail: (1) Finset.sum_eq_single's off-root obligation forces normalization of the unreduced dependent inverse term; (2) rewriting the root-row support into an ite and using Fintype.sum_ite_eq times out while elaborating the dependent Sigma expression, before inverse normalization. The round forbids global fourfold normalization, new helpers, statement changes, and heartbeat increases. Planner action is required for rootedNonroot_inverse_sigma_quadratic_collapsed_of_child_admissible: provide a compiler-checked low-heartbeat finite-sum elimination theorem/term whose signature is usable before the inverse term is elaborated, or permit a smaller tracked summation-collapse interface. The current file has been restored to the accepted statement placeholder; no proof capture was made.",
   "execution_result_kind": "blocked",
   "node_path": "Main.RootedCapacity",
-  "objective": "Retry the existing pre-collapsed canonical Sigma inverse quadratic from Proof NL through Proof Formal, replacing the timed-out ambient membership branch with the proved exact child-component root support theorem.",
+  "objective": "Round 81 concerns the pre-collapsed canonical Sigma inverse quadratic whose off-support finite-sum obligations are reduced by generic left- and right-weighted support-collapse laws while the dependent inverse expression remains opaque.",
   "plan_closeout_acknowledged_at": "2026-08-03T13:36:54Z",
   "plan_closeout_acknowledged_by": "a_a93b40977f574bad89528358fa89e022",
   "result_kind": "blocked",
@@ -29,5 +24,6 @@
   "started_at": "2026-08-03T13:28:19Z",
   "status": "committed",
   "strategy_id": "strategy_409097c1a1e547a681e983998de55d40",
-  "summary": "Round 81 did not reach proved state. It confirmed that the mathematical providers, pointwise component support, and all Fintype/Decidable witness transports typecheck; the sole remaining issue is Lean's elaboration of the dependent inverse expression inside finite-sum off-support obligations. Neither rootedNonroot_inverse_quadratic_sigma_of_child_admissible nor the public theorem is ready to retry. The next bounded action is a representation repair of the existing unreleased private support theorem, strengthening it with generic left/right weighted-sum collapse laws so the inverse term is passed as an opaque function. This reuses the current active declaration slot and avoids graph growth beyond the contract scale. After that provider is proved, retry the pre-collapsed theorem."
+  "summary": "Round 81 did not reach proved state. The mathematical providers, pointwise component support, and all Fintype/Decidable witness transports typecheck; the sole remaining issue is Lean's elaboration of the dependent inverse expression inside finite-sum off-support obligations. Neither rootedNonroot_inverse_quadratic_sigma_of_child_admissible nor the public theorem has reached proved state. The bounded representation dependency is the existing unreleased private support theorem, whose strengthening reuses the current active declaration slot and avoids graph growth beyond the contract scale.",
+  "execution_constraints": "Strengthen the existing unreleased private support theorem with generic left/right weighted-sum collapse laws so the inverse term is passed as an opaque function. After that provider is proved, retry the pre-collapsed theorem."
 }

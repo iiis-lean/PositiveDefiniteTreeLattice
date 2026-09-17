@@ -1,4 +1,4 @@
-[← Public API](../PUBLIC_API.md) · [Public boundaries](../PUBLIC_BOUNDARIES.md)
+[← Public API](../PUBLIC_API.md) · [Public boundaries](../PUBLIC_BOUNDARIES.md) · [Complete graph](../DECLARATION_GRAPH.md)
 
 # `IsAdmissibleRootedTree`
 
@@ -10,9 +10,13 @@ Admissibility of a finite rooted integer-weighted tree.
 - State: `declared`
 - Revision status: `committed`
 - Repository completion: `graph_proved`
-- Formal code: final statement projection
+- Compatibility `formal_code`: final statement projection
 
-## Lean code
+## Statement NL
+
+For a finite vertex type `V`, a simple graph `G : SimpleGraph V`, an integer weight function `w : V → ℤ`, and a root `ρ : V`, define `IsAdmissibleRootedTree G w ρ` to hold exactly when: `G` is a tree (and hence, on the finite vertex type, a finite tree); the rational matrix `rootedGram G w` is `Matrix.PosDef`; for every vertex `y`, `2 ≤ w y`; and for every vertex `y`, `(rootedChildCount G ρ y : ℤ) + 1 ≤ w y`.  This packages the source admissibility condition for the rooted weighted tree, without any additional connectivity, weight, or scalar assumptions.
+
+## Statement Formal
 
 ```lean
 -- lean-constellation: managed-imports-begin
@@ -55,6 +59,14 @@ def IsAdmissibleRootedTree {V : Type*} [Fintype V] [DecidableEq V]
       (∀ y, (2 : ℤ) ≤ w y) ∧
         ∀ y, (rootedChildCount G hG ρ y : ℤ) + 1 ≤ w y
 ```
+
+## Proof NL
+
+Not recorded.
+
+## Proof Formal
+
+Not recorded.
 
 ## Statement dependencies
 

@@ -1,4 +1,4 @@
-[← Public API](../PUBLIC_API.md) · [Public boundaries](../PUBLIC_BOUNDARIES.md)
+[← Public API](../PUBLIC_API.md) · [Public boundaries](../PUBLIC_BOUNDARIES.md) · [Complete graph](../DECLARATION_GRAPH.md)
 
 # `rootedGram_rootedChildComponent`
 
@@ -10,9 +10,77 @@ The child component Gram matrix is the corresponding principal submatrix of the 
 - State: `proved`
 - Revision status: `committed`
 - Repository completion: `graph_proved`
-- Formal code: final proof projection
+- Compatibility `formal_code`: final proof projection
 
-## Lean code
+## Statement NL
+
+For a finite vertex type `V` with decidable equality, a simple graph `G : SimpleGraph V`, an integer weight function `w : V → ℤ`, vertices `parent c : V`, a tree hypothesis `hG : G.IsTree`, and an adjacency hypothesis `hpc : G.Adj parent c`, let `C := rootedChildComponent G parent c`.  Then the rational rooted Gram matrix of the induced child-component graph with restricted weight agrees entrywise with the ambient rooted Gram matrix along the subtype inclusion: for all `x y : C`, `rootedGram C.toSimpleGraph (fun z : C => w (z : V)) x y = rootedGram G w (x : V) (y : V)`.  Equivalently, it is the principal submatrix of `rootedGram G w` reindexed by `C → V`.  No positive-definiteness, admissibility, or root-orientation hypothesis is assumed.
+
+## Statement Formal
+
+```lean
+-- lean-constellation: managed-imports-begin
+import PositiveDefiniteTreeLattice.Main.RootedCapacity.Prelude
+import Mathlib.Combinatorics.SimpleGraph.Acyclic
+import Mathlib.Combinatorics.SimpleGraph.Connectivity.Connected
+import PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildComponent
+import PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedGram
+-- lean-constellation: managed-imports-end
+
+-- lean-constellation: declaration-source-begin
+
+/--
+# lean-constellation target: `rootedGram_rootedChildComponent`
+
+For a finite vertex type `V` with decidable equality, a simple graph `G : SimpleGraph V`, an integer
+weight function `w : V → ℤ`, vertices `parent c : V`, a tree hypothesis `hG : G.IsTree`, and an
+adjacency hypothesis `hpc : G.Adj parent c`, let `C := rootedChildComponent G parent c`.  Then the
+rational rooted Gram matrix of the induced child-component graph with restricted weight agrees
+entrywise with the ambient rooted Gram matrix along the subtype inclusion: for all `x y : C`,
+`rootedGram C.toSimpleGraph (fun z : C => w (z : V)) x y = rootedGram G w (x : V) (y : V)`.
+Equivalently, it is the principal submatrix of `rootedGram G w` reindexed by `C → V`.  No
+positive-definiteness, admissibility, or root-orientation hypothesis is assumed.
+
+## Sources
+
+- Source `solution.tex`, lines 57–62
+
+## Statement dependencies
+
+- `SimpleGraph.IsTree` from `Mathlib.Combinatorics.SimpleGraph.Acyclic`
+- `SimpleGraph.ConnectedComponent.toSimpleGraph` from
+  `Mathlib.Combinatorics.SimpleGraph.Connectivity.Connected`
+- `Main.RootedCapacity::rootedChildComponent` → `rootedChildComponent` from
+  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildComponent`
+- `Main.RootedCapacity::rootedGram` → `rootedGram` from
+  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedGram`
+-/
+theorem rootedGram_rootedChildComponent {V : Type*} [Fintype V] [DecidableEq V]
+    (G : SimpleGraph V) [DecidableRel G.Adj] (w : V → ℤ) (parent c : V)
+    (hG : G.IsTree) (hpc : G.Adj parent c) :
+    let C := rootedChildComponent G parent c
+    letI : Fintype C := Fintype.ofFinite C
+    letI : DecidableRel C.toSimpleGraph.Adj := by
+      intro x y
+      change Decidable ((G.deleteEdges {s(parent, c)}).Adj (x : V) (y : V))
+      infer_instance
+    ∀ x y : C,
+      rootedGram C.toSimpleGraph (fun z : C => w (z : V)) x y =
+        rootedGram G w (x : V) (y : V) := by
+  sorry
+```
+
+## Proof NL
+
+Introduce the component abbreviation and its finite/decidable instances from the formal statement, then fix `x y : C`. First obtain the component-tree hypothesis `hC : C.toSimpleGraph.IsTree` from the accepted public bridge `rootedChildComponent_isTree G parent c hG`.
+
+Prove the key adjacency equivalence
+`C.toSimpleGraph.Adj x y ↔ G.Adj (x : V) (y : V)`.
+The forward implication is immediate by unfolding the induced component graph and applying the forward direction of `SimpleGraph.deleteEdges_adj`. For the reverse implication, `SimpleGraph.deleteEdges_adj` reduces the goal to showing that the deleted unordered edge is not `s((x : V), (y : V))`. If equality with `s(parent, c)` held, apply `Sym2.mk_eq_mk_iff`: either `x = parent` or `y = parent` (up to swapping). Each case contradicts the accepted public bridge `rootedChildComponent_parent_not_mem G parent c hG hpc`. Hence the ambient adjacency survives inside the component.
+
+Finally unfold `rootedGram` on both sides. Rewrite the component pairing with the accepted private basis-entry theorem `treePairing_vertexVector_vertexVector` using `hC`, and rewrite the ambient pairing with the same theorem using `hG`. The diagonal branches agree by the restricted weight definition; the off-diagonal branches agree by the adjacency equivalence just proved. Simplification of the integer-to-rational casts completes the required entrywise equality.
+
+## Proof Formal
 
 ```lean
 -- lean-constellation: managed-imports-begin

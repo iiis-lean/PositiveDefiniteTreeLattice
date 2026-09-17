@@ -1,18 +1,13 @@
 {
-  "change_summaries": {},
   "committed_at": "2026-07-31T03:18:16Z",
   "created_at": "2026-07-31T02:27:32Z",
-  "discard_reason": null,
   "discarded_at": null,
   "discarded_by": null,
-  "discarded_created_decl_names": [],
-  "discarded_restored_decl_revisions": {},
-  "discarded_revision_refs": [],
   "execution_completed_at": "2026-07-31T03:16:41Z",
   "execution_reason": "The accepted structural proof route requires reusable finite reindexing infrastructure not exposed by the current dependency boundary. I completed and captured the other two assigned proofs, but cannot replace the remaining `sorry` with a strict proof without introducing substantial helper theorems that should be planned and tracked rather than silently added locally.",
   "execution_result_kind": "blocked",
   "node_path": "Main.RootedEstimates",
-  "objective": "Advance the three retained b_0010 prerequisites from declared to proved without changing their accepted formal statements: use the new public rootedEdgeClassification for the child-pairing decomposition and complete the already-planned capacity and rational-distance proofs.",
+  "objective": "Round 09 records three retained b_0010 prerequisites without changing their accepted formal statements: rootedCapacityInvEqSub and rationalUnitIntervalIntegerDistance are proved, while treePairingRootedChildDecomposition retains its accepted proof plan using the public rootedEdgeClassification; the remaining dependency is finite-reindexing infrastructure.",
   "plan_closeout_acknowledged_at": "2026-07-31T03:18:16Z",
   "plan_closeout_acknowledged_by": "a_c126bbd9cf3144258d31b99169f687bb",
   "result_kind": "blocked",
@@ -39,5 +34,6 @@
   "started_at": "2026-07-31T02:28:46Z",
   "status": "committed",
   "strategy_id": "strategy_6bfc666c638344a19f7d1dee5c0a60d4",
-  "summary": "The recovery strategy made material progress. rootedCapacityInvEqSub@2 and rationalUnitIntervalIntegerDistance@2 completed Proof NL/Formal and passed, so they are ready to commit as proved and graph_proved-satisfied. treePairingRootedChildDecomposition@2 preserved its accepted statement and now has an accepted proof plan using rootedEdgeClassification, but Proof Formal is absent; it remains proof_planned and unsatisfied. The prior provider-classification blocker is resolved. The remaining retry condition is predictable finite reindexing infrastructure: a tracked theorem or small theorem package must reindex the global adjacency/edge contribution sum into root-child and unique rootedChildComponent internal sums and reconcile local subtype endpoints/orientation with ambient contributions. This is an implementation helper package inside the current route, but substantial enough to track. The next action should be focused Mathlib preparation recon for exact Finset/Equiv sum-bijection support before planning those helpers; do not retry the parent yet."
+  "summary": "The recovery strategy made material progress. rootedCapacityInvEqSub@2 and rationalUnitIntervalIntegerDistance@2 completed Proof NL/Formal and passed, so they are ready to commit as proved and graph_proved-satisfied. treePairingRootedChildDecomposition@2 preserved its accepted statement and now has an accepted proof plan using rootedEdgeClassification, but Proof Formal is absent; it remains proof_planned and unsatisfied. The prior provider-classification blocker is resolved. The remaining blocker is predictable finite reindexing infrastructure: a tracked theorem or small theorem package must reindex the global adjacency/edge contribution sum into root-child and unique rootedChildComponent internal sums and reconcile local subtype endpoints/orientation with ambient contributions. This is an implementation helper package inside the current route and substantial enough to track.",
+  "execution_constraints": "Use the new public rootedEdgeClassification for the child-pairing decomposition and complete the capacity and rational-distance proofs without changing their accepted statements. Run focused Mathlib preparation recon for exact Finset/Equiv sum-bijection support before planning the finite-reindexing helpers; do not retry the parent until that infrastructure is ready."
 }

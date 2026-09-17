@@ -1,18 +1,13 @@
 {
-  "change_summaries": {},
   "committed_at": "2026-08-03T14:38:14Z",
   "created_at": "2026-08-03T14:19:40Z",
-  "discard_reason": null,
   "discarded_at": null,
   "discarded_by": null,
-  "discarded_created_decl_names": [],
-  "discarded_restored_decl_revisions": {},
-  "discarded_revision_refs": [],
   "execution_completed_at": "2026-08-03T14:35:26Z",
   "execution_reason": "The revision-3 statement successfully removes the named M let and preserves the intended explicit reindexed inverse terms. Its accepted Proof NL requires a low-transparency opening that retains named R, I, C, S, e, D, and B lets without using rename_i. In this worker environment, `intros` leaves the dependent lets as generated local names, while `rename_i` is expressly forbidden and attempts to use it rename ambient Fintype/DecidableEq variables rather than the dependent lets. Reducing the lets with dsimp loses the shared-instance representation needed to apply rootedNonrootGram_reindex_childBlocks and rootedChildGram_blockDiagonal_inv_of_child_admissible at the exact statement terms. Thus there is no permitted way to begin hBlock while preserving the frozen representation; the previous round's M opacity is resolved but its replacement opening is not supplied. Planner action is required: provide a compiler-verified tactic/term that introduces or pattern-matches these specific outer lets under their shared local instances without rename_i, or adjust the formal representation to name them in a theorem binder form. No source edit or capture was made.",
   "execution_result_kind": "blocked",
   "node_path": "Main.RootedCapacity",
-  "objective": "Recapture and prove the strengthened per-child inverse provider with explicit reindexed inverse expressions, eliminating the opaque dependent M let while preserving all three clauses.",
+  "objective": "rootedNonroot_inverse_childBlocks_of_child_admissible@rev:3 is the explicit-reindexed strengthened per-child-admissible inverse provider, preserving its same/cross clauses and new diagonal clause.",
   "plan_closeout_acknowledged_at": "2026-08-03T14:38:14Z",
   "plan_closeout_acknowledged_by": "a_a93b40977f574bad89528358fa89e022",
   "result_kind": "blocked",
@@ -29,5 +24,6 @@
   "started_at": "2026-08-03T14:21:11Z",
   "status": "committed",
   "strategy_id": "strategy_409097c1a1e547a681e983998de55d40",
-  "summary": "The round made statement-level progress but did not prove its sole target. `rootedNonroot_inverse_childBlocks_of_child_admissible@3` reached proof_planned with an accepted explicit-expression statement and proof plan; it is not graph-proved. Known provider closure remains complete: `rootedNonrootGram_reindex_childBlocks` and `rootedChildGram_blockDiagonal_inv_of_child_admissible` are proved and semantically sufficient. The remaining issue is a Lean-specific dependent-let opening/instance-representation mismatch, not Source, Mathlib, or visible-dependency work. Before retrying downstream `rootedNonroot_inverse_sigma_quadratic_collapsed_of_child_admissible`, this provider must be proved with either an exact low-transparency opening or a same-semantic explicit-binder recapture. Given repeated representation-only retries and current active-declaration scale at the contract ceiling, strategy viability must be reassessed before any further mutation."
+  "summary": "The round made statement-level progress but did not prove its sole target. rootedNonroot_inverse_childBlocks_of_child_admissible@3 reached proof_planned with an accepted explicit-expression statement and proof plan; it is not graph-proved. Known provider closure remains complete: rootedNonrootGram_reindex_childBlocks and rootedChildGram_blockDiagonal_inv_of_child_admissible are proved and semantically sufficient. The remaining issue is a Lean-specific dependent-let opening/instance-representation mismatch, not Source, Mathlib, or visible-dependency work. No new mathematics or provider dependency is missing. Given repeated representation-only retries and current active-declaration scale at the contract ceiling, strategy viability is unresolved.",
+  "execution_constraints": "Before retrying downstream rootedNonroot_inverse_sigma_quadratic_collapsed_of_child_admissible, prove this provider with either exact low-transparency opening or same-semantic explicit-binder recapture; reassess strategy viability at the contract ceiling before further mutation."
 }

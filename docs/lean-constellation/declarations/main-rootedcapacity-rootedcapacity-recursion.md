@@ -1,4 +1,4 @@
-[← Public API](../PUBLIC_API.md) · [Public boundaries](../PUBLIC_BOUNDARIES.md)
+[← Public API](../PUBLIC_API.md) · [Public boundaries](../PUBLIC_BOUNDARIES.md) · [Complete graph](../DECLARATION_GRAPH.md)
 
 # `rootedCapacity_recursion`
 
@@ -10,9 +10,106 @@ The rooted capacity is the reciprocal of the root weight minus the sum of child-
 - State: `proved`
 - Revision status: `committed`
 - Repository completion: `graph_proved`
-- Formal code: final proof projection
+- Compatibility `formal_code`: final proof projection
 
-## Lean code
+## Statement NL
+
+For every finite decidable vertex type `V`, simple graph `G` with decidable adjacency, tree witness `hG : G.IsTree`, integer weight `w : V → ℤ`, root `ρ : V`, and admissibility witness `hAdm : IsAdmissibleRootedTree G w ρ`, the existing rational rooted capacity satisfies
+```
+rootedCapacity G w ρ =
+  1 / ((w ρ : ℚ) - rootedChildCapacitySum G hG w ρ).
+```
+
+This is the reciprocal Schur-complement recursion with the original rational total-inverse meaning of `rootedCapacity` and the existing raw-root-child sum `rootedChildCapacitySum`.  In particular, it introduces no nonzero-denominator hypothesis: the denominator is supplied by the positive-definite rooted Gram situation already contained in `hAdm`.  The equality is oriented from capacity to the exact scalar expression needed by the subsequent strict capacity bound.
+
+## Statement Formal
+
+```lean
+-- lean-constellation: managed-imports-begin
+import PositiveDefiniteTreeLattice.Main.RootedCapacity.Prelude
+import Mathlib.Combinatorics.SimpleGraph.Acyclic
+import PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.IsAdmissibleRootedTree
+import PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedCapacity
+import PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildCapacitySum
+-- lean-constellation: managed-imports-end
+
+-- lean-constellation: declaration-source-begin
+
+/--
+# lean-constellation target: `rootedCapacity_recursion`
+
+For every finite decidable vertex type `V`, simple graph `G` with decidable adjacency, tree witness
+`hG : G.IsTree`, integer weight `w : V → ℤ`, root `ρ : V`, and admissibility witness `hAdm :
+IsAdmissibleRootedTree G w ρ`, the existing rational rooted capacity satisfies
+```
+rootedCapacity G w ρ =
+  1 / ((w ρ : ℚ) - rootedChildCapacitySum G hG w ρ).
+```
+
+This is the reciprocal Schur-complement recursion with the original rational total-inverse meaning
+of `rootedCapacity` and the existing raw-root-child sum `rootedChildCapacitySum`.  In particular, it
+introduces no nonzero-denominator hypothesis: the denominator is supplied by the positive-definite
+rooted Gram situation already contained in `hAdm`.  The equality is oriented from capacity to the
+exact scalar expression needed by the subsequent strict capacity bound.
+
+## Sources
+
+- Source `solution.tex`, lines 57–72
+
+## Statement dependencies
+
+- `SimpleGraph.IsTree` from `Mathlib.Combinatorics.SimpleGraph.Acyclic`
+- `Main.RootedCapacity::IsAdmissibleRootedTree` → `IsAdmissibleRootedTree` from
+  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.IsAdmissibleRootedTree`
+- `Main.RootedCapacity::rootedCapacity` → `rootedCapacity` from
+  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedCapacity`
+- `Main.RootedCapacity::rootedChildCapacitySum` → `rootedChildCapacitySum` from
+  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildCapacitySum`
+-/
+
+theorem rootedCapacity_recursion {V : Type*} [Fintype V] [DecidableEq V]
+    (G : SimpleGraph V) [DecidableRel G.Adj] (hG : G.IsTree) (w : V → ℤ) (ρ : V)
+    (hAdm : IsAdmissibleRootedTree G w ρ) :
+    rootedCapacity G w ρ = 1 / ((w ρ : ℚ) - rootedChildCapacitySum G hG w ρ) := by
+  sorry
+```
+
+## Proof NL
+
+Work classically. Destructure `hAdm` and use proof irrelevance to identify its stored tree
+witness with the explicit `hG`; retain the resulting positive-definiteness proof
+`hPos : Matrix.PosDef (rootedGram G w)`.
+
+Let `R := {v : V // v ≠ ρ}` and use the root/nonroot equivalence
+`e := Equiv.sumCompl (fun v : V => v = ρ)`. Reindex `rootedGram G w` along the corresponding
+equivalence from `V` to the sum of the root singleton and `R`. By matrix extensionality and the
+basis-entry formula, identify this reindexed matrix with
+`Matrix.fromBlocks A B C D`, where `A` is the singleton root block with entry `(w ρ : ℚ)`,
+`D = (rootedGram G w).submatrix Subtype.val Subtype.val`, and `B,C` are the exact root
+row/column blocks. Keep this as a matrix equality; do not change the capacity or child-component
+definitions.
+
+Use `hPos.submatrix` on the nonroot inclusion to obtain `D.PosDef`, hence `D.isUnit`.
+Transport `hPos.isUnit` across the reindex/block equality to get the full block matrix unit.
+Install the resulting invertibility instances for `D` and `Matrix.fromBlocks A B C D`, and then
+use `Matrix.invertibleOfFromBlocks₂₂Invertible A B C D` for the Schur complement
+`S := A - B * ⅟D * C`. Thus no separate nonzero-denominator hypothesis is introduced.
+
+Apply `Matrix.invOf_fromBlocks₂₂_eq A B C D`; its upper-left block is `⅟S`. Rewrite each
+`invOf` to the rational total inverse using `Matrix.invOf_eq_nonsing_inv`, and use
+`Matrix.inv_reindex` to transport the full inverse back to `(rootedGram G w)⁻¹`. Evaluate the
+root singleton diagonal. Unfold only `rootedCapacity` at this final point and use
+`Matrix.inv_subsingleton` plus singleton-block simplification to reduce that entry to the scalar
+inverse of
+`(w ρ : ℚ) - (B * D⁻¹ * C)` at the unique root index.
+
+Finally expand the matrix product entry into its finite double sum. The root-row factor, inverse
+entry, and root-column factor are exactly the formal left side of
+`rootedNonroot_inverse_quadratic G hG w ρ hAdm`; rewrite it to
+`rootedChildCapacitySum G hG w ρ`. Simplify the singleton scalar inverse to
+`1 / ((w ρ : ℚ) - rootedChildCapacitySum G hG w ρ)`, preserving the stated orientation.
+
+## Proof Formal
 
 ```lean
 -- lean-constellation: managed-imports-begin

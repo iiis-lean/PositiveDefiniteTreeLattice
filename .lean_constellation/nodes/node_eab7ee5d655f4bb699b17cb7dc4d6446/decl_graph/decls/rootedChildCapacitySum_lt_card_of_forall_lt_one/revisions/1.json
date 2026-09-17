@@ -1,26 +1,12 @@
 {
   "change": {
-    "anticipated_proof_dep_names": [
-      "rootedCapacity",
-      "rootedChildCapacitySum",
-      "rootedChildComponent",
-      "rootedChildRoot",
-      "rootedChildren"
-    ],
-    "anticipated_statement_dep_names": [
-      "rootedCapacity",
-      "rootedChildCapacitySum",
-      "rootedChildComponent",
-      "rootedChildRoot",
-      "rootedChildren"
-    ],
     "base_revision": null,
     "kind": "create",
-    "objective": "SourceIndex b_0009 (solution.tex lines 74–80) bounds the sum of child capacities by the number of children. For finite/decidable rooted tree data G, hG, integer weight w, and root ρ, let S := rootedChildren G hG ρ ρ. Assuming S.Nonempty and, for every c ∈ S, the exact dependent summand used by rootedChildCapacitySum—on C := rootedChildComponent G ρ c, with Fintype.ofFinite C, the same decidable adjacency convention, restricted weight, and rootedChildRoot—satisfies rootedCapacity < 1, conclude rootedChildCapacitySum G hG w ρ < (S.card : ℚ). Prove by unfolding rootedChildCapacitySum once and applying the strict finite-sum comparison with the hypothesis in its identical instance convention. This private bridge consumes rootedChildCapacitySum and its component/root/capacity definitions, and directly feeds rootedCapacity_lt_one_of_card_le; preserve rational semantics, introduce no admissibility assumption, do not depend on the upper-bound theorems, and do not raise heartbeat limits.",
+    "objective": "Revision 1 states the private aggregate inequality from SourceIndex b_0009 / solution.tex lines 74–80: for finite decidable rooted-tree data with nonempty S := rootedChildren G hG ρ ρ, if every exact dependent child-capacity summand used by rootedChildCapacitySum is below one, then rootedChildCapacitySum G hG w ρ < (S.card : ℚ). It preserves the component, root, restricted-weight, canonical-instance, and rational sum semantics and supplies the size-indexed capacity induction without admissibility or global upper-bound dependencies.",
     "require_target_state_satisfied": true,
-    "reset_to_state": null,
     "summary": "Created the private b_0009 aggregate-bound theorem and advanced it through accepted Statement NL, compiler-passed Statement Formal, and accepted Proof NL to proof_planned; no Proof Formal artifact was accepted. Blocker classification: Lean-specific dependent representation/definitional-equality failure. The consumer-side goal is the exact inequality `rootedChildCapacitySum G hG w ρ < ((rootedChildren G hG ρ ρ).card : ℚ)` from nonempty root children and strict `< 1` bounds for the exact child-component capacity summands. The proof checked the existing declarations rootedChildCapacitySum, rootedChildren, rootedChildComponent, rootedChildRoot, and rootedCapacity and attempted the single permitted unfolding plus strict Finset sum comparison. Lean exhausted the fixed 200000-heartbeat budget while checking definitional equality between the theorem's dependent summand and the unfolded rootedChildCapacitySum summand, despite matching mathematical data and intended instance convention. The contract forbids raising heartbeats. Parent retry conditions: a Coordinator-authorized representation change must make the child-capacity summand/aggregate definition syntactically instance-stable (for example a named attached-child summand with a computation theorem), or provide an equivalent approved route that avoids this conversion; only then retry this theorem, rootedCapacity_lt_one_of_card_le, and capacity_pos_lt_one. Adding another proof-term conversion wrapper is not justified.",
-    "target_state": "proved"
+    "target_state": "proved",
+    "execution_constraints": "Unfold rootedChildCapacitySum exactly once under the statement’s exact canonical child-component Fintype/DecidableRel convention. Apply Finset.sum_lt_sum_of_nonempty to the pointwise strict bounds and simplify the constant-one sum to (S.card : ℚ). Keep the dependent summand and instance convention unchanged; do not add admissibility or global upper-bound dependencies, introduce a conversion wrapper, or raise heartbeat limits."
   },
   "lean_decl_name": "rootedChildCapacitySum_lt_card_of_forall_lt_one",
   "proof": {
@@ -185,6 +171,11 @@
           "schema_version": 2,
           "summary": "Diagnostics returned 1 items"
         },
+        "fingerprint": {
+          "environment_sha256": null,
+          "source_sha256": "d70986558373356ec887404cdaeaed1bfa045b3d9e21f14a4dc09bd7dc8841a0",
+          "upstream_revision": null
+        },
         "message": "Lean check passed.",
         "policy": "statement_formal",
         "scan": {
@@ -209,7 +200,15 @@
           "summary": "sorry=1, admit=0, axiom=0, opaque=0, unsafe=0",
           "unsafe_count": 0
         },
-        "status": "passed"
+        "schema_version": 1,
+        "status": "passed",
+        "subject": {
+          "declaration_name": null,
+          "module": "PositiveDefiniteTreeLattice.Main.RootedCapacity.Theorems.rootedChildCapacitySum_lt_card_of_forall_lt_one",
+          "repo_file_path": "PositiveDefiniteTreeLattice/Main/RootedCapacity/Theorems/rootedChildCapacitySum_lt_card_of_forall_lt_one.lean",
+          "repo_kind": "native",
+          "stage": "statement"
+        }
       },
       "code": "-- lean-constellation: managed-imports-begin\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Prelude\nimport Mathlib.Combinatorics.SimpleGraph.Acyclic\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedCapacity\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildCapacitySum\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildComponent\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildRoot\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildren\n-- lean-constellation: managed-imports-end\n\n-- lean-constellation: declaration-source-begin\n\n/--\n# lean-constellation target: `rootedChildCapacitySum_lt_card_of_forall_lt_one`\n\nFor finite decidable rooted tree data `G` with tree witness `hG`, integer weight `w`, and root `ρ`,\nlet\n`S := rootedChildren G hG ρ ρ`.\nAssume `S.Nonempty` and assume that for every `c ∈ S`, the exact child-component capacity summand\nused by `rootedChildCapacitySum G hG w ρ` is strictly less than one: namely the existing\n`rootedCapacity` of `rootedChildComponent G ρ c`, formed with its `Fintype.ofFinite` instance, the\nsame decidable-adjacency convention, the restricted weight, and root `rootedChildRoot G ρ c`.\n\nThen\n```\nrootedChildCapacitySum G hG w ρ < (S.card : ℚ).\n```\n\nThis private bridge preserves the exact dependent child summands and rational semantics of\n`rootedChildCapacitySum`. It assumes neither admissibility nor any global upper-bound theorem and is\noriented for the size-indexed capacity induction.\n\n## Sources\n\n- Source `solution.tex`, lines 74–80\n\n## Statement dependencies\n\n- `SimpleGraph.IsTree` from `Mathlib.Combinatorics.SimpleGraph.Acyclic`\n- `Main.RootedCapacity::rootedCapacity` → `rootedCapacity` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedCapacity`\n- `Main.RootedCapacity::rootedChildCapacitySum` → `rootedChildCapacitySum` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildCapacitySum`\n- `Main.RootedCapacity::rootedChildComponent` → `rootedChildComponent` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildComponent`\n- `Main.RootedCapacity::rootedChildRoot` → `rootedChildRoot` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildRoot`\n- `Main.RootedCapacity::rootedChildren` → `rootedChildren` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildren`\n-/\ntheorem rootedChildCapacitySum_lt_card_of_forall_lt_one {V : Type*} [Fintype V]\n    [DecidableEq V] (G : SimpleGraph V) [DecidableRel G.Adj] (hG : G.IsTree)\n    (w : V → ℤ) (ρ : V) (hS : (rootedChildren G hG ρ ρ).Nonempty)\n    (hcapacity : ∀ c ∈ rootedChildren G hG ρ ρ,\n      let C := rootedChildComponent G ρ c\n      letI : Fintype C := Fintype.ofFinite C\n      letI : DecidableRel C.toSimpleGraph.Adj := by\n        intro x y\n        change Decidable ((G.deleteEdges {s(ρ, c)}).Adj (x : V) (y : V))\n        infer_instance\n      rootedCapacity C.toSimpleGraph (fun x : C => w (x : V))\n        (rootedChildRoot G ρ c) < 1) :\n    rootedChildCapacitySum G hG w ρ < ((rootedChildren G hG ρ ρ).card : ℚ) := by\n  sorry\n"
     },

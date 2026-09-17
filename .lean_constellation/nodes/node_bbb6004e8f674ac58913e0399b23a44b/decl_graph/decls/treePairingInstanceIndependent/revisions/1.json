@@ -1,14 +1,12 @@
 {
   "change": {
-    "anticipated_proof_dep_names": [],
-    "anticipated_statement_dep_names": [],
     "base_revision": null,
     "kind": "create",
-    "objective": "Create the bounded Lean-specific transport theorem required by rootedEstimateInductionAggregation while preserving SourceIndex b_0010 / solution.tex lines 102–127. For one type V, graph G, weight, and integral vectors x,y, quantify two explicit `Fintype V`, `DecidableEq V`, and `DecidableRel G.Adj` instance stacks and prove that the two fully explicit applications of `PositiveDefiniteTreeLattice.treePairing G weight x y` are equal. The theorem must compare only instance choices; it must not change the graph, endpoints, functions, or pairing definition and must be usable for `C := rootedChildComponent G rho c`. Prove by unfolding the public treePairing definition, showing the two Finset.univ sums are extensionally the same, and showing each neighborFinset is extensionally determined by G.Adj despite different decidability instances; avoid direct typeclass unification and do not change heartbeat limits. This is an agent-derived private implementation bridge whose immediate consumer is rootedEstimateInductionAggregation; no current-node declaration is a mathematical premise.",
+    "objective": "Revision 1 records the bounded private Lean-specific transport theorem required by `rootedEstimateInductionAggregation` and SourceIndex b_0010 / solution.tex lines 102–127. For one type `V`, graph `G`, weight, and vectors `x,y`, two explicit `Fintype V`, `DecidableEq V`, and `DecidableRel G.Adj` stacks give equal fully explicit applications of `PositiveDefiniteTreeLattice.treePairing G weight x y`. The equality compares only instance choices, preserves graph, endpoints, functions, and pairing definition, and applies to `C := rootedChildComponent G rho c`; it is an implementation bridge rather than a current-node mathematical premise.",
     "require_target_state_satisfied": true,
-    "reset_to_state": null,
-    "summary": "Created the private Lean-specific transport theorem treePairingInstanceIndependent and advanced revision 1 through all four stages to proved. Its accepted formal statement compares fully explicit treePairing applications for the same type, graph, weight, and vectors under two Fintype/DecidableEq/DecidableRel instance stacks; its formal proof passed by extensionality of Finset.univ and neighborFinset membership. The declaration is proof-policy satisfied and supplies the exact instance-transport equality required before retrying rootedEstimateInductionAggregation; no source-level objects or hypotheses were changed.",
-    "target_state": "proved"
+    "summary": "Created the private Lean-specific transport theorem treePairingInstanceIndependent and advanced revision 1 through all four stages to proved. Its accepted formal statement compares fully explicit treePairing applications for the same type, graph, weight, and vectors under two Fintype/DecidableEq/DecidableRel instance stacks; its formal proof passed by extensionality of Finset.univ and neighborFinset membership. The declaration is proof-policy satisfied and supplies the exact instance-transport equality required by rootedEstimateInductionAggregation; no source-level objects or hypotheses were changed.",
+    "target_state": "proved",
+    "execution_constraints": "Quantify the two explicit instance stacks; unfold the public treePairing definition, prove Finset.univ equality and neighborFinset equality by extensionality and G.Adj membership, and avoid direct typeclass unification or heartbeat changes. Keep this private bridge available to rootedEstimateInductionAggregation without changing graph, endpoints, functions, pairing definition, source objects, or hypotheses."
   },
   "lean_decl_name": "treePairingInstanceIndependent",
   "proof": {
@@ -61,6 +59,11 @@
           "schema_version": 2,
           "summary": "Diagnostics returned 0 items"
         },
+        "fingerprint": {
+          "environment_sha256": null,
+          "source_sha256": "383291ec732306c5bab25618bb6d928a45e1f50f4e42dc1545dfd314ba206933",
+          "upstream_revision": null
+        },
         "message": "Lean check passed.",
         "policy": "proof_formal",
         "scan": {
@@ -78,7 +81,15 @@
           "summary": "sorry=0, admit=0, axiom=0, opaque=0, unsafe=0",
           "unsafe_count": 0
         },
-        "status": "passed"
+        "schema_version": 1,
+        "status": "passed",
+        "subject": {
+          "declaration_name": null,
+          "module": "PositiveDefiniteTreeLattice.Main.RootedEstimates.Theorems.treePairingInstanceIndependent",
+          "repo_file_path": "PositiveDefiniteTreeLattice/Main/RootedEstimates/Theorems/treePairingInstanceIndependent.lean",
+          "repo_kind": "native",
+          "stage": "proof"
+        }
       },
       "code": "-- lean-constellation: managed-imports-begin\nimport PositiveDefiniteTreeLattice.Main.RootedEstimates.Prelude\nimport Mathlib.Algebra.BigOperators.Group.Finset.Basic\nimport Mathlib.Combinatorics.SimpleGraph.Finite\nimport Mathlib.Data.Finset.Defs\n-- lean-constellation: managed-imports-end\n\n-- lean-constellation: declaration-source-begin\n\n/--\n# lean-constellation target: `treePairingInstanceIndependent`\n\nLet `V` be one fixed type, let `G` be a simple graph on `V`, let `weight : V → ℤ`, and let `x y : V\n→ ℤ`.  Let `(f₁, e₁, d₁)` and `(f₂, e₂, d₂)` be two explicit instance stacks consisting respectively\nof a `Fintype V`, a `DecidableEq V`, and a `DecidableRel G.Adj`.\n\nEvaluate `PositiveDefiniteTreeLattice.treePairing G weight x y` once with all three explicit\ninstances from the first stack and once with all three explicit instances from the second stack.\nThese two values are equal.\n\nThe equality changes only the finite/enumeration and adjacency-decision choices.  The type, graph,\nendpoints, weight, vectors, and tree-pairing definition are identical on both sides, so the theorem\napplies in particular when `V` is a rooted child-component subtype.\n\n## Statement dependencies\n\n- `Main.LatticeFoundations::treePairingAnchor` → `PositiveDefiniteTreeLattice.treePairing` from\n  `PositiveDefiniteTreeLattice.Main.LatticeFoundations.Defs.treePairingAnchor`\n\n## Proof outline\n\nIntroduce the two explicit instance stacks exactly as bound in the formal statement and unfold the\nnested `letI` bindings, keeping the graph `G`, `weight`, `x`, and `y` fixed.  Unfold\n`PositiveDefiniteTreeLattice.treePairing` on both sides; no graph-theoretic hypothesis or\nsource-derived lemma is needed.\n\nProve that the two explicit `Finset.univ : Finset V` values are equal using `Finset.ext`: membership\nin either is `True`, independently of the supplied `Fintype V`.  For every fixed ambient vertex `u`,\nprove that its two explicit `G.neighborFinset u` values are equal, again by `Finset.ext`; after\nrewriting membership by `SimpleGraph.mem_neighborFinset`, both sides are the same proposition `G.Adj\nu v`, independently of the supplied `DecidableEq V` and `DecidableRel G.Adj`.\n\nRewrite the outer sum with the `univ` equality.  Apply `Finset.sum_congr` and, at each fixed `u`,\nrewrite its neighbor sum with the corresponding neighbor-finset equality.  The remaining summands\nare definitionally the identical integer expression `x u * (weight u * y u - ∑ v, y v)`, so\nreflexivity closes them.  This compares only the two instance choices and therefore applies\nunchanged when `V` is a rooted child-component subtype.  It is a Lean-specific transport bridge, not\na mathematical premise from the source.\n\n## Proof dependencies\n\n- `Finset.sum_congr` from `Mathlib.Algebra.BigOperators.Group.Finset.Basic`\n- `SimpleGraph.mem_neighborFinset` from `Mathlib.Combinatorics.SimpleGraph.Finite`\n- `Finset.ext` from `Mathlib.Data.Finset.Defs`\n- `Main.LatticeFoundations::treePairingAnchor` → `PositiveDefiniteTreeLattice.treePairing` from\n  `PositiveDefiniteTreeLattice.Main.LatticeFoundations.Defs.treePairingAnchor`\n-/\ntheorem treePairingInstanceIndependent {V : Type*} (G : SimpleGraph V) (weight x y : V → ℤ)\n    (fintype₁ fintype₂ : Fintype V) (decEq₁ decEq₂ : DecidableEq V)\n    (decAdj₁ decAdj₂ : DecidableRel G.Adj) :\n    letI : Fintype V := fintype₁\n    letI : DecidableEq V := decEq₁\n    letI : DecidableRel G.Adj := decAdj₁\n    let leftPairing := PositiveDefiniteTreeLattice.treePairing G weight x y\n    letI : Fintype V := fintype₂\n    letI : DecidableEq V := decEq₂\n    letI : DecidableRel G.Adj := decAdj₂\n    leftPairing = PositiveDefiniteTreeLattice.treePairing G weight x y := by\n  classical\n  dsimp only\n  unfold PositiveDefiniteTreeLattice.treePairing\n  apply Finset.sum_congr\n  · ext u\n    simp\n  · intro u hu\n    congr 1\n    congr 1\n    apply Finset.sum_congr\n    · ext v\n      simp [SimpleGraph.mem_neighborFinset]\n    · intro v hv\n      rfl\n"
     },
@@ -122,6 +133,11 @@
           "schema_version": 2,
           "summary": "Diagnostics returned 1 items"
         },
+        "fingerprint": {
+          "environment_sha256": null,
+          "source_sha256": "a6b21218a14ff7da21d61adbd282bda4a1fd7c116f077da83fe21b07bc36fac7",
+          "upstream_revision": null
+        },
         "message": "Lean check passed.",
         "policy": "statement_formal",
         "scan": {
@@ -146,7 +162,15 @@
           "summary": "sorry=1, admit=0, axiom=0, opaque=0, unsafe=0",
           "unsafe_count": 0
         },
-        "status": "passed"
+        "schema_version": 1,
+        "status": "passed",
+        "subject": {
+          "declaration_name": null,
+          "module": "PositiveDefiniteTreeLattice.Main.RootedEstimates.Theorems.treePairingInstanceIndependent",
+          "repo_file_path": "PositiveDefiniteTreeLattice/Main/RootedEstimates/Theorems/treePairingInstanceIndependent.lean",
+          "repo_kind": "native",
+          "stage": "statement"
+        }
       },
       "code": "-- lean-constellation: managed-imports-begin\nimport PositiveDefiniteTreeLattice.Main.RootedEstimates.Prelude\n-- lean-constellation: managed-imports-end\n\n-- lean-constellation: declaration-source-begin\n\n/--\n# lean-constellation target: `treePairingInstanceIndependent`\n\nLet `V` be one fixed type, let `G` be a simple graph on `V`, let `weight : V → ℤ`, and let `x y : V\n→ ℤ`.  Let `(f₁, e₁, d₁)` and `(f₂, e₂, d₂)` be two explicit instance stacks consisting respectively\nof a `Fintype V`, a `DecidableEq V`, and a `DecidableRel G.Adj`.\n\nEvaluate `PositiveDefiniteTreeLattice.treePairing G weight x y` once with all three explicit\ninstances from the first stack and once with all three explicit instances from the second stack.\nThese two values are equal.\n\nThe equality changes only the finite/enumeration and adjacency-decision choices.  The type, graph,\nendpoints, weight, vectors, and tree-pairing definition are identical on both sides, so the theorem\napplies in particular when `V` is a rooted child-component subtype.\n\n## Statement dependencies\n\n- `Main.LatticeFoundations::treePairingAnchor` → `PositiveDefiniteTreeLattice.treePairing` from\n  `PositiveDefiniteTreeLattice.Main.LatticeFoundations.Defs.treePairingAnchor`\n-/\ntheorem treePairingInstanceIndependent {V : Type*} (G : SimpleGraph V) (weight x y : V → ℤ)\n    (fintype₁ fintype₂ : Fintype V) (decEq₁ decEq₂ : DecidableEq V)\n    (decAdj₁ decAdj₂ : DecidableRel G.Adj) :\n    letI : Fintype V := fintype₁\n    letI : DecidableEq V := decEq₁\n    letI : DecidableRel G.Adj := decAdj₁\n    let leftPairing := PositiveDefiniteTreeLattice.treePairing G weight x y\n    letI : Fintype V := fintype₂\n    letI : DecidableEq V := decEq₂\n    letI : DecidableRel G.Adj := decAdj₂\n    leftPairing = PositiveDefiniteTreeLattice.treePairing G weight x y := by\n  sorry\n"
     },

@@ -1,18 +1,13 @@
 {
-  "change_summaries": {},
   "committed_at": "2026-07-30T05:36:30Z",
   "created_at": "2026-07-30T05:28:36Z",
-  "discard_reason": null,
   "discarded_at": null,
   "discarded_by": null,
-  "discarded_created_decl_names": [],
-  "discarded_restored_decl_revisions": {},
-  "discarded_revision_refs": [],
   "execution_completed_at": "2026-07-30T05:33:26Z",
   "execution_reason": "The reviewed Proof NL route cannot be completed from the currently exposed provider boundary without reimplementing the generic cut argument that this round is required to reuse.",
   "execution_result_kind": "blocked",
   "node_path": "Main.RootedCapacity",
-  "objective": "Resume the accepted proof plan for rootedChildren_rootedChildComponent from proof_planned to proved now that rootedChildComponent_path_decomposition@2 and the generic cut-support provider API are available. Preserve the exact Finset.map statement and all subtype/root indices.",
+  "objective": "Round 16 concerns the accepted b_0009 Finset.map statement for rootedChildren_rootedChildComponent, with the proved path decomposition and generic cut-support provider supplying the reverse inclusion while all subtype and root indices remain fixed.",
   "plan_closeout_acknowledged_at": "2026-07-30T05:36:30Z",
   "plan_closeout_acknowledged_by": "a_a93b40977f574bad89528358fa89e022",
   "result_kind": "blocked",
@@ -29,5 +24,6 @@
   "started_at": "2026-07-30T05:30:00Z",
   "status": "committed",
   "strategy_id": "strategy_a6a7ac0a78e3413a807b0948a745c870",
-  "summary": "The round retained the valid statement and accepted proof plan but made no proved-state progress: rootedChildren_rootedChildComponent@2 remains proof_planned and unsatisfied because Proof Formal cannot obtain the reverse Finset inclusion from the current provider boundary without duplicating excluded generic cut reasoning. The known dependency closure is otherwise complete: path decomposition@2 is proved, and the component, root, parent-exclusion, induced-graph, and Finset infrastructure all match. The exact missing reusable fact is cut-side adjacency closure/orientation for a vertex adjacent to one already in the child side, sufficient to show an ambient rooted child remains in the child component. This may already exist in Mathlib; because Mathlib preparation has not run in this task, the next action should be one focused Mathlib recon rather than another parent retry or immediate terminal blocker. No superseded declaration or graph-hygiene issue was introduced."
+  "summary": "The round retained the valid statement and accepted proof plan but made no proved-state progress: rootedChildren_rootedChildComponent@2 remains proof_planned and unsatisfied because Proof Formal cannot obtain the reverse Finset inclusion from the current provider boundary without duplicating excluded generic cut reasoning. The known dependency closure is otherwise complete: path decomposition@2 is proved, and the component, root, parent-exclusion, induced-graph, and Finset infrastructure all match. The exact missing reusable fact is cut-side adjacency closure/orientation for a vertex adjacent to one already in the child side, sufficient to show an ambient rooted child remains in the child component. No superseded declaration or graph-hygiene issue was introduced.",
+  "execution_constraints": "Run one focused Mathlib recon for the cut-side adjacency closure/orientation fact before retrying the parent; do not start another parent retry or mark a terminal blocker before that recon."
 }

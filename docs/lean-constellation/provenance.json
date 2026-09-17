@@ -1,10 +1,12 @@
 {
+  "adapter_upstream": null,
   "build_command": "lake build",
-  "generated_at": "2026-08-07T12:15:30Z",
+  "generated_at": null,
   "lean_toolchain": "leanprover/lean4:v4.32.0",
   "release_id": "release_b3481b2825744323892bbbf9e425a779",
+  "repo_format": "native",
   "repo_key": "PositiveDefiniteTreeLattice",
-  "schema_version": 1,
+  "schema_version": 2,
   "semantic_manifest_digest": "a71d5e2a56c87018b0f2dec53a62946ee9245bd03111d7edbe687fb7c74aefd9",
   "source_files": {
     "README.md": "d607dbdac0630664d9eb947ed551ffbff07dadda52b2c58795710beb660ccf70",

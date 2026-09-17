@@ -1,18 +1,13 @@
 {
-  "change_summaries": {},
   "committed_at": "2026-07-30T21:56:35Z",
   "created_at": "2026-07-30T21:49:01Z",
-  "discard_reason": null,
   "discarded_at": null,
   "discarded_by": null,
-  "discarded_created_decl_names": [],
-  "discarded_restored_decl_revisions": {},
-  "discarded_revision_refs": [],
   "execution_completed_at": "2026-07-30T21:54:04Z",
   "execution_reason": null,
   "execution_result_kind": "success",
   "node_path": "Main.RootedCapacity",
-  "objective": "Complete the exact qualified public b_0009 interface capacity_pos_lt_one by combining the proved positivity theorem with the now-proved Nat-indexed upper bound.",
+  "objective": "Round 67 records the proved qualified public b_0009 capacity_pos_lt_one interface, obtained by combining the proved positivity theorem with the Nat-indexed upper bound.",
   "plan_closeout_acknowledged_at": "2026-07-30T21:56:35Z",
   "plan_closeout_acknowledged_by": "a_a93b40977f574bad89528358fa89e022",
   "result_kind": "success",
@@ -29,5 +24,6 @@
   "started_at": "2026-07-30T21:50:13Z",
   "status": "committed",
   "strategy_id": "strategy_20e3f41e54944d3babe462d36b22b383",
-  "summary": "The strategy reached its mathematical target: the required qualified public capacity_pos_lt_one interface is proved and proof-policy satisfied under graph_proved completion, consuming the completed positivity and Nat-indexed upper-bound layers. No declaration remains intentionally state-only for the contract output. After commit, the next step is final public-boundary/interface binding, completion-gate, and graph-hygiene review; only a cleanup round is warranted if obsolete private artifacts remain referenced or safely deletable."
+  "summary": "The strategy reached its mathematical target: the required qualified public capacity_pos_lt_one interface is proved and proof-policy satisfied under graph_proved completion, consuming the completed positivity and Nat-indexed upper-bound layers. No declaration remains intentionally state-only for the contract output.",
+  "execution_constraints": "Perform final public-boundary/interface binding, completion-gate, and graph-hygiene review; create a cleanup round only if obsolete private artifacts remain referenced or are safely deletable."
 }

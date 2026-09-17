@@ -1,19 +1,12 @@
 {
   "change": {
-    "anticipated_proof_dep_names": [
-      "treePairing_vertexVector_vertexVector"
-    ],
-    "anticipated_statement_dep_names": [
-      "rootedChildren",
-      "rootedGram"
-    ],
     "base_revision": null,
     "kind": "create",
-    "objective": "Formalize the vector c description in SourceIndex b_0009 / solution.tex line 63. For finite decidable V, G with decidable adjacency, hG : G.IsTree, integer weight w, root ρ, and x : V with x ≠ ρ, prove rootedGram G w ρ x equals -1 in ℚ when x ∈ rootedChildren G hG ρ ρ and equals 0 otherwise (an `if` statement or equivalent two-case conjunction is acceptable, but must preserve both directions). Show that for a root vertex, adjacency ρ-x is equivalent to rooted-child membership by uniqueness of the root-to-x path, then apply treePairing_vertexVector_vertexVector. Do not add admissibility or weight assumptions and keep the helper private. This exact root-row evaluation is the final predictable prerequisite for the nonroot inverse quadratic identity equaling rootedChildCapacitySum.",
+    "objective": "Revision 1 establishes the private root-row evaluation from SourceIndex b_0009 / solution.tex line 63. For finite decidable V, a tree G with decidable adjacency, integer weight w, root ρ, and nonroot x, it gives rootedGram G w ρ x = -1 in ℚ exactly when x ∈ rootedChildren G hG ρ ρ and 0 otherwise. The helper supplies the vector-c entry used by the nonroot inverse-quadratic identity and assumes no admissibility or additional weight condition.",
     "require_target_state_satisfied": true,
-    "reset_to_state": null,
     "summary": "The private root-row theorem reached proved state with all stages accepted. For each nonroot vertex it identifies rootedGram at the root as -1 exactly on rootedChildren of the root and 0 otherwise, matching the source vector c without admissibility assumptions. It is graph-proved and remains proof-only/private. This completes the entrywise data needed for the nonroot inverse quadratic sum.",
-    "target_state": "proved"
+    "target_state": "proved",
+    "execution_constraints": "Establish rooted-child membership iff G.Adj ρ x by unfolding rootedChildren and using the unique root-to-x path, including the one-edge path in the reverse direction. Then unfold rootedGram, apply treePairing_vertexVector_vertexVector, use hx to remove the diagonal case, and split on child membership to obtain the two branches. Keep this helper private and do not add admissibility or weight assumptions."
   },
   "lean_decl_name": "rootedGram_root_nonroot",
   "proof": {
@@ -78,6 +71,11 @@
           "schema_version": 2,
           "summary": "Diagnostics returned 0 items"
         },
+        "fingerprint": {
+          "environment_sha256": null,
+          "source_sha256": "f7436d46d020d96603fb9a4d6309a7f1f4957d6071843cd9e1c33f26958bd5f0",
+          "upstream_revision": null
+        },
         "message": "Lean check passed.",
         "policy": "proof_formal",
         "scan": {
@@ -95,7 +93,15 @@
           "summary": "sorry=0, admit=0, axiom=0, opaque=0, unsafe=0",
           "unsafe_count": 0
         },
-        "status": "passed"
+        "schema_version": 1,
+        "status": "passed",
+        "subject": {
+          "declaration_name": null,
+          "module": "PositiveDefiniteTreeLattice.Main.RootedCapacity.Theorems.rootedGram_root_nonroot",
+          "repo_file_path": "PositiveDefiniteTreeLattice/Main/RootedCapacity/Theorems/rootedGram_root_nonroot.lean",
+          "repo_kind": "native",
+          "stage": "proof"
+        }
       },
       "code": "-- lean-constellation: managed-imports-begin\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Prelude\nimport Mathlib.Combinatorics.SimpleGraph.Acyclic\nimport Mathlib.Combinatorics.SimpleGraph.Paths\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildren\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedGram\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Theorems.treePairing_vertexVector_vertexVector\n-- lean-constellation: managed-imports-end\n\n-- lean-constellation: declaration-source-begin\n\n/--\n# lean-constellation target: `rootedGram_root_nonroot`\n\nLet V be a finite type with decidable equality, let G be a simple graph on V with decidable\nadjacency, let hG : G.IsTree, let w : V → ℤ, let ρ : V, and let x : V with x ≠ ρ. Then the ambient\nrational rooted Gram entry in the root row is\n\nrootedGram G w ρ x = if x ∈ rootedChildren G hG ρ ρ then (-1 : ℚ) else 0.\n\nEquivalently, it is −1 exactly when x is a rooted child of ρ and is 0 for every nonroot vertex that\nis not a rooted child. No admissibility or additional weight hypothesis is assumed.\n\n## Sources\n\n- Source `solution.tex`, lines 57–63\n\n## Statement dependencies\n\n- `SimpleGraph.IsTree` from `Mathlib.Combinatorics.SimpleGraph.Acyclic`\n- `Main.RootedCapacity::rootedChildren` → `rootedChildren` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildren`\n- `Main.RootedCapacity::rootedGram` → `rootedGram` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedGram`\n\n## Proof outline\n\nEstablish the key equivalence `x ∈ rootedChildren G hG ρ ρ ↔ G.Adj ρ x`.  In the forward direction,\nunfold the `Finset.filter` definition of `rootedChildren` and take its adjacency witness.  In the\nreverse direction, given `hρx : G.Adj ρ x`, use the empty root-prefix walk and the one-edge walk\n`hρx.toWalk`.  `SimpleGraph.Walk.IsPath.of_adj hρx` makes this a simple path, and uniqueness from\n`hG.existsUnique_path ρ x` identifies it with the canonical root-to-`x` path.  This exactly fills\nthe rootedChildren predicate, so no extra orientation assumption is needed.\n\nUnfold only `rootedGram` and apply the proved private basis-entry theorem\n`treePairing_vertexVector_vertexVector G hG`.  The hypothesis `hx : x ≠ ρ` removes the diagonal\nbranch.  Split on `x ∈ rootedChildren G hG ρ ρ`: in the true case use the equivalence to rewrite the\nadjacency branch to `-1 : ℚ`; in the false case use its contrapositive to rewrite the adjacency\nbranch to `0`.  Reassemble the two cases as the accepted `if` expression.  The argument assumes\nneither admissibility nor a weight inequality and leaves this as a private root-row helper.\n\n## Proof sources\n\n- Source `solution.tex`, lines 57–63\n\n## Proof dependencies\n\n- `SimpleGraph.IsTree.existsUnique_path` from `Mathlib.Combinatorics.SimpleGraph.Acyclic`\n- `SimpleGraph.Walk.IsPath.of_adj` from `Mathlib.Combinatorics.SimpleGraph.Paths`\n- `Main.RootedCapacity::rootedChildren` → `rootedChildren` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildren`\n- `Main.RootedCapacity::rootedGram` → `rootedGram` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedGram`\n- `Main.RootedCapacity::treePairing_vertexVector_vertexVector` →\n  `treePairing_vertexVector_vertexVector` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Theorems.treePairing_vertexVector_vertexVector`\n-/\ntheorem rootedGram_root_nonroot {V : Type*} [Fintype V] [DecidableEq V]\n    (G : SimpleGraph V) [DecidableRel G.Adj] (hG : G.IsTree) (w : V → ℤ) (ρ x : V)\n    (hx : x ≠ ρ) :\n    rootedGram G w ρ x = if x ∈ rootedChildren G hG ρ ρ then (-1 : ℚ) else 0 := by\n  classical\n  have hchild : x ∈ rootedChildren G hG ρ ρ ↔ G.Adj ρ x := by\n    constructor\n    · intro h\n      simp only [rootedChildren, Finset.mem_filter, Finset.mem_univ, true_and] at h\n      exact h.1\n    · intro hρx\n      simp only [rootedChildren, Finset.mem_filter, Finset.mem_univ, true_and]\n      refine ⟨hρx, .nil, SimpleGraph.Walk.IsPath.nil, ?_⟩\n      have hsingle : (hG.existsUnique_path ρ x).choose =\n          SimpleGraph.Walk.cons hρx .nil := by\n        apply (hG.existsUnique_path ρ x).unique\n        · exact (hG.existsUnique_path ρ x).choose_spec.1\n        · exact SimpleGraph.Walk.IsPath.of_adj hρx\n      simpa [SimpleGraph.Walk.concat] using hsingle\n  unfold rootedGram\n  rw [treePairing_vertexVector_vertexVector G hG]\n  simp [hx.symm, hchild]\n"
     },
@@ -169,6 +175,11 @@
           "schema_version": 2,
           "summary": "Diagnostics returned 1 items"
         },
+        "fingerprint": {
+          "environment_sha256": null,
+          "source_sha256": "c67b7c01167d00040fbc8e35daeffdb978c0aa41e313df824033362c03280d8d",
+          "upstream_revision": null
+        },
         "message": "Lean check passed.",
         "policy": "statement_formal",
         "scan": {
@@ -193,7 +204,15 @@
           "summary": "sorry=1, admit=0, axiom=0, opaque=0, unsafe=0",
           "unsafe_count": 0
         },
-        "status": "passed"
+        "schema_version": 1,
+        "status": "passed",
+        "subject": {
+          "declaration_name": null,
+          "module": "PositiveDefiniteTreeLattice.Main.RootedCapacity.Theorems.rootedGram_root_nonroot",
+          "repo_file_path": "PositiveDefiniteTreeLattice/Main/RootedCapacity/Theorems/rootedGram_root_nonroot.lean",
+          "repo_kind": "native",
+          "stage": "statement"
+        }
       },
       "code": "-- lean-constellation: managed-imports-begin\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Prelude\nimport Mathlib.Combinatorics.SimpleGraph.Acyclic\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildren\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedGram\n-- lean-constellation: managed-imports-end\n\n-- lean-constellation: declaration-source-begin\n\n/--\n# lean-constellation target: `rootedGram_root_nonroot`\n\nLet V be a finite type with decidable equality, let G be a simple graph on V with decidable\nadjacency, let hG : G.IsTree, let w : V → ℤ, let ρ : V, and let x : V with x ≠ ρ. Then the ambient\nrational rooted Gram entry in the root row is\n\nrootedGram G w ρ x = if x ∈ rootedChildren G hG ρ ρ then (-1 : ℚ) else 0.\n\nEquivalently, it is −1 exactly when x is a rooted child of ρ and is 0 for every nonroot vertex that\nis not a rooted child. No admissibility or additional weight hypothesis is assumed.\n\n## Sources\n\n- Source `solution.tex`, lines 57–63\n\n## Statement dependencies\n\n- `SimpleGraph.IsTree` from `Mathlib.Combinatorics.SimpleGraph.Acyclic`\n- `Main.RootedCapacity::rootedChildren` → `rootedChildren` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildren`\n- `Main.RootedCapacity::rootedGram` → `rootedGram` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedGram`\n-/\ntheorem rootedGram_root_nonroot {V : Type*} [Fintype V] [DecidableEq V]\n    (G : SimpleGraph V) [DecidableRel G.Adj] (hG : G.IsTree) (w : V → ℤ) (ρ x : V)\n    (hx : x ≠ ρ) :\n    rootedGram G w ρ x = if x ∈ rootedChildren G hG ρ ρ then (-1 : ℚ) else 0 := by\n  sorry\n"
     },

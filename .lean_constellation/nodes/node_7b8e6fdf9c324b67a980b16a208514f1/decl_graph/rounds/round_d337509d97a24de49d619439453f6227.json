@@ -1,13 +1,8 @@
 {
-  "change_summaries": {},
   "committed_at": "2026-08-06T12:28:34Z",
   "created_at": "2026-08-06T12:11:25Z",
-  "discard_reason": null,
   "discarded_at": null,
   "discarded_by": null,
-  "discarded_created_decl_names": [],
-  "discarded_restored_decl_revisions": {},
-  "discarded_revision_refs": [],
   "execution_completed_at": "2026-08-06T12:23:21Z",
   "execution_reason": "The required composition of the two designated public providers is not type-checkable under the normal heartbeat limit: their `IsAdmissibleRootedTree` premises are indexed by incompatible component instances. Completing the scalar normalization would require an upstream instance-transport interface (or changing the inverse provider’s premise), which is outside Proof Formal authority.",
   "execution_result_kind": "blocked",

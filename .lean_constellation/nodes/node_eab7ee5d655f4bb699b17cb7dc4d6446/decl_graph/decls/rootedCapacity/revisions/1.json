@@ -1,16 +1,12 @@
 {
   "change": {
-    "anticipated_proof_dep_names": [],
-    "anticipated_statement_dep_names": [
-      "rootedGram"
-    ],
     "base_revision": null,
     "kind": "create",
-    "objective": "Define γ(C) as (rootedGram⁻¹) ρ ρ exactly as in SourceIndex b_0008 and solution.tex lines 39–45, retaining its rational value and not baking admissibility into the definition. Consume rootedGram rev2 at declared state; expose the public capacity object required by capacity_pos_lt_one, the Schur-complement recursion, rooted_integer_estimate, and root_coefficient_lt_norm.",
+    "objective": "Revision 1 defines the public rational rootedCapacity object as the (ρ, ρ) entry of (rootedGram G w)⁻¹, exactly matching SourceIndex b_0008 / solution.tex lines 39–45 and retaining no admissibility condition in the definition. It supplies the capacity object used by capacity recursion, bounds, the rooted estimate, and the root-coefficient interface.",
     "require_target_state_satisfied": true,
-    "reset_to_state": null,
     "summary": "Creation succeeded. Captured and compiler-checked public definition `rootedCapacity` as the root diagonal entry of the inverse rational rootedGram, faithful to b_0008 / solution.tex lines 39–45. Rev1 reached declared and declared-level proof-policy satisfaction; it is ready for capacity recursion/bounds and the rooted estimate/root coefficient interfaces.",
-    "target_state": "declared"
+    "target_state": "declared",
+    "execution_constraints": "Consume rootedGram rev2 at declared state; preserve the exact inverse-Gram diagonal and rational semantics, do not bake admissibility into the definition, and keep the object available to the listed public consumers."
   },
   "lean_decl_name": "rootedCapacity",
   "proof": null,
@@ -42,6 +38,11 @@
           "schema_version": 2,
           "summary": "Diagnostics returned 0 items"
         },
+        "fingerprint": {
+          "environment_sha256": null,
+          "source_sha256": "df4e8c40de0c9c89f5b9089bf92064ce4b2a92ba751fb16def1923a457538b10",
+          "upstream_revision": null
+        },
         "message": "Lean check passed.",
         "policy": "statement_formal",
         "scan": {
@@ -59,7 +60,15 @@
           "summary": "sorry=0, admit=0, axiom=0, opaque=0, unsafe=0",
           "unsafe_count": 0
         },
-        "status": "passed"
+        "schema_version": 1,
+        "status": "passed",
+        "subject": {
+          "declaration_name": null,
+          "module": "PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedCapacity",
+          "repo_file_path": "PositiveDefiniteTreeLattice/Main/RootedCapacity/Defs/rootedCapacity.lean",
+          "repo_kind": "native",
+          "stage": "statement"
+        }
       },
       "code": "-- lean-constellation: managed-imports-begin\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Prelude\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedGram\n-- lean-constellation: managed-imports-end\n\n-- lean-constellation: declaration-source-begin\n\n/--\n# lean-constellation target: `rootedCapacity`\n\nFor a finite integer-weighted simple graph `G` with weight function `w` and a chosen root vertex\n`ρ`, define `rootedCapacity G w ρ : ℚ` to be the `(ρ, ρ)` entry of the inverse rational Gram matrix:\n`(rootedGram G w)⁻¹ ρ ρ`.  This is the capacity `γ(C)` of the rooted weighted tree, retained as a\nrational quantity.  The definition imposes no positive-definiteness or admissibility hypothesis;\nwhen `rootedGram G w` is positive definite, its inverse exists as in the source.\n\n## Sources\n\n- Source `solution.tex`, lines 39–45\n\n## Statement dependencies\n\n- `Main.RootedCapacity::rootedGram` → `rootedGram` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedGram`\n-/\nnoncomputable def rootedCapacity {V : Type*} [Fintype V] [DecidableEq V] (G : SimpleGraph V)\n    [DecidableRel G.Adj] (w : V → ℤ) (ρ : V) : ℚ :=\n  (rootedGram G w)⁻¹ ρ ρ\n"
     },

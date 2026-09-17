@@ -1,15 +1,9 @@
 {
   "change": {
-    "anticipated_proof_dep_names": [
-      "rootedChildCapacitySum_lt_weight_of_unique_underweight",
-      "rootedChildComponent_isAdmissible_of_unique_underweight"
-    ],
-    "anticipated_statement_dep_names": [],
     "base_revision": null,
     "kind": "create",
     "objective": "Package the normalized branch of solution.tex:215–241 as the reusable lower lemma for the irreducibility contradiction. Under the exact finite integer-weighted tree, positive-definite pairing, unique-underweighted vertex v, and non-weight-one branch used by the source route, take a nonzero integer vector z whose coefficient z v is nonnegative and prove the strict conclusion 0 < treePairing G weight z z + treePairing G weight (vertexVector v) z (equivalently the source quantity z² + v·z, with orientation adjusted only by the accepted symmetry API). Decompose z across v and the rooted child-component partition without exposing a new representation in the Statement. For positive root coefficient, apply rooted_integer_estimate componentwise and the proved rootedChildCapacitySum_lt_weight_of_unique_underweight gap; for zero root coefficient, use root_coefficient_lt_norm and finite-sum strict positivity, with rootedChildComponent_isAdmissible_of_unique_underweight supplying each exact component premise. Preserve the integral model, canonical rooted components and roots, capacity representation, and strict inequality. This private source-derived lemma serves the next round's z versus -v-z normalization and ultimately the exact protected exists_irreducible_vertex interface; do not introduce casts, new component wrappers, matrix infrastructure, ambient rooted admissibility, extra assumptions beyond those available to that parent, or altered indices.",
     "require_target_state_satisfied": true,
-    "reset_to_state": null,
     "summary": "Revision 1 successfully fixed and compiler-accepted the source-derived Statement for the normalized positivity claim from solution.tex:215–241, so the declaration reached declared state. Proof NL then blocked on a predictable tracked helper: for an ambient integer vector z and the unique root v, the proof must restrict z to each canonical rootedChildComponent indexed by rootedChildren G hG v v, reconstruct z from its root coefficient plus those component vectors, and expand treePairing so cross-component terms vanish and each root interaction is the negative component-root coefficient. The visible rootedChildComponent_partition classifies vertices, while rootedChildComponent_isAdmissible_of_unique_underweight, rooted_integer_estimate, root_coefficient_lt_norm, and rootedChildCapacitySum_lt_weight_of_unique_underweight supply the later estimates; none supplies this ambient-to-component pairing/reconstruction identity. Leaving that nontrivial support/classification calculation unnamed is inappropriate. This is a source-visible local decomposition at solution.tex:220–226, specialized to the final assembly rather than new generic rooted-capacity architecture. Retry the parent from declared only after a proved private specialized decomposition helper is committed with the exact canonical child indices and coercions. The current declared Statement remains useful and is not superseded.",
     "target_state": "proved"
   },
@@ -324,6 +318,11 @@
           "schema_version": 2,
           "summary": "Diagnostics returned 1 items"
         },
+        "fingerprint": {
+          "environment_sha256": null,
+          "source_sha256": "239465092fe15098d9f512368807279b51c189b11e4e925a58961020ac051c88",
+          "upstream_revision": null
+        },
         "message": "Lean check passed.",
         "policy": "statement_formal",
         "scan": {
@@ -348,7 +347,15 @@
           "summary": "sorry=1, admit=0, axiom=0, opaque=0, unsafe=0",
           "unsafe_count": 0
         },
-        "status": "passed"
+        "schema_version": 1,
+        "status": "passed",
+        "subject": {
+          "declaration_name": null,
+          "module": "PositiveDefiniteTreeLattice.Main.IrreducibleVertex.Lemmas.normalized_pairing_positive_of_unique_underweight",
+          "repo_file_path": "PositiveDefiniteTreeLattice/Main/IrreducibleVertex/Lemmas/normalized_pairing_positive_of_unique_underweight.lean",
+          "repo_kind": "native",
+          "stage": "statement"
+        }
       },
       "code": "-- lean-constellation: managed-imports-begin\nimport PositiveDefiniteTreeLattice.Main.IrreducibleVertex.Prelude\nimport Mathlib.Combinatorics.SimpleGraph.Acyclic\nimport Mathlib.Combinatorics.SimpleGraph.Finite\n-- lean-constellation: managed-imports-end\n\n-- lean-constellation: declaration-source-begin\n\n/--\n# lean-constellation target: `normalized_pairing_positive_of_unique_underweight`\n\nLet `V` be a finite type with decidable equality, let `G : SimpleGraph V` have decidable adjacency,\nlet `weight : V → ℤ`, let `v : V`, and let `z : V → ℤ`. Suppose `h_tree : G.IsTree`, `h_positive : ∀\nx : V → ℤ, x ≠ 0 → 0 < treePairing G weight x x`, `h_unique_underweight : ∃! u : V, weight u <\n(G.degree u : ℤ)`, `hv : weight v < (G.degree v : ℤ)`, `h_two : ∀ x : V, 2 ≤ weight x`, `hz_nonzero\n: z ≠ 0`, and `hzv_nonneg : 0 ≤ z v`. Then the shifted self-pairing is strictly positive:\n\n`0 < treePairing G weight z z + treePairing G weight (vertexVector v) z`.\n\n## Sources\n\n- Source `solution.tex`, lines 215–241\n\n## Statement dependencies\n\n- `SimpleGraph.IsTree` from `Mathlib.Combinatorics.SimpleGraph.Acyclic`\n- `SimpleGraph.degree` from `Mathlib.Combinatorics.SimpleGraph.Finite`\n- `Main.LatticeFoundations::treePairingAnchor` → `PositiveDefiniteTreeLattice.treePairing` from\n  `PositiveDefiniteTreeLattice.Main.LatticeFoundations.Defs.treePairingAnchor`\n- `Main.LatticeFoundations::vertexVectorAnchor` → `PositiveDefiniteTreeLattice.vertexVector` from\n  `PositiveDefiniteTreeLattice.Main.LatticeFoundations.Defs.vertexVectorAnchor`\n-/\ntheorem PositiveDefiniteTreeLattice.normalized_pairing_positive_of_unique_underweight\n    {V : Type*} [Fintype V] [DecidableEq V] (G : SimpleGraph V) [DecidableRel G.Adj]\n    (weight : V → ℤ) (v : V) (z : V → ℤ) (h_tree : G.IsTree)\n    (h_positive : ∀ x : V → ℤ, x ≠ 0 → 0 < treePairing G weight x x)\n    (h_unique_underweight : ∃! u : V, weight u < (G.degree u : ℤ))\n    (hv : weight v < (G.degree v : ℤ)) (h_two : ∀ x : V, 2 ≤ weight x)\n    (hz_nonzero : z ≠ 0) (hzv_nonneg : 0 ≤ z v) :\n    0 < treePairing G weight z z + treePairing G weight (vertexVector v) z := by\n  sorry\n"
     },

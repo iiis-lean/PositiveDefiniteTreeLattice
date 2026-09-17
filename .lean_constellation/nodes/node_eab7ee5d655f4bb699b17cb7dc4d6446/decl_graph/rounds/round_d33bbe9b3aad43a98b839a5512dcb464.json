@@ -1,18 +1,13 @@
 {
-  "change_summaries": {},
   "committed_at": "2026-07-30T00:42:45Z",
   "created_at": "2026-07-30T00:26:00Z",
-  "discard_reason": null,
   "discarded_at": null,
   "discarded_by": null,
-  "discarded_created_decl_names": [],
-  "discarded_restored_decl_revisions": {},
-  "discarded_revision_refs": [],
   "execution_completed_at": "2026-07-30T00:41:11Z",
   "execution_reason": null,
   "execution_result_kind": "success",
   "node_path": "Main.RootedCapacity",
-  "objective": "Advance the three existing b_0008 foundation revisions from specified state after the provider repair: formalize rootedChildren using the verified tree-path API; formalize rootedGram with qualified PositiveDefiniteTreeLattice.treePairing and vertexVector; and formalize then prove treePairing_vertexVector_vertexVector using the qualified self-pairing theorem plus an explicit finite-neighbor-sum calculation for distinct vertices. Preserve the accepted Statement NL meanings and provide the declared/proved providers for later admissibility, capacity, and component rounds.",
+  "objective": "rootedChildren@rev:2, rootedGram@rev:2, and treePairing_vertexVector_vertexVector@rev:2 provide the b_0008 foundation from solution.tex lines 33–45: rooted child orientation, rational Gram/capacity inputs, and the finite-neighbor-sum basis-entry bridge. rootedChildren and rootedGram are declared, while the basis-entry bridge is proved, supplying later admissibility, capacity, and component rounds.",
   "plan_closeout_acknowledged_at": "2026-07-30T00:42:45Z",
   "plan_closeout_acknowledged_by": "a_a93b40977f574bad89528358fa89e022",
   "result_kind": "success",
@@ -39,5 +34,6 @@
   "started_at": "2026-07-30T00:27:03Z",
   "status": "committed",
   "strategy_id": "strategy_b9f2bb44ae0a40ba9081239e5f026481",
-  "summary": "Round 3 successfully repaired and completed the initial b_0008 provider layer after the LatticeFoundations boundary fix. rootedChildren rev2 and rootedGram rev2 reached declared with passed formal statements and declared-level proof-policy satisfaction; treePairing_vertexVector_vertexVector rev2 reached proved with accepted proof plan/formal proof and proved-level satisfaction. The prior Prelude/provider blocker is resolved, no declaration remains below this round's target, and no state-only intermediate closure remains. The open bottom-up strategy still explains the route. The next dependency-ordered round should create the public rootedChildCount definition from rootedChildren and the public rootedCapacity definition from rootedGram; IsAdmissibleRootedTree must wait for rootedChildCount to be committed. No Mathlib or resource preparation is currently required."
+  "summary": "Round 3 successfully repaired and completed the initial b_0008 provider layer after the LatticeFoundations boundary fix. rootedChildren rev2 and rootedGram rev2 reached declared with passed formal statements and declared-level proof-policy satisfaction; treePairing_vertexVector_vertexVector rev2 reached proved with accepted proof plan/formal proof and proved-level satisfaction. The prior Prelude/provider blocker is resolved, no declaration remains below this round's target, and no state-only intermediate closure remains. No Mathlib or resource preparation is currently required.",
+  "execution_constraints": "Create the public rootedChildCount and rootedCapacity definitions from these providers; defer IsAdmissibleRootedTree until rootedChildCount is committed, and do not run Mathlib/resource preparation without a concrete gap."
 }

@@ -1,14 +1,12 @@
 {
   "change": {
-    "anticipated_proof_dep_names": [],
-    "anticipated_statement_dep_names": [],
     "base_revision": null,
     "kind": "create",
-    "objective": "Create the ordered-neighbor decomposition lemma required by treePairingRootedChildDecomposition@2 and SourceIndex b_0010 lines 102–110. For c ∈ rootedChildren G hG rho rho and uC : rootedChildComponent G rho c, rewrite an ambient G.neighborFinset contribution sum at uC as the possible rho boundary contribution (present exactly at the child root) plus the sum over neighbors in the component graph. Keep the ordered/double-counted representation used by treePairing; do not convert to Sym2/edgeFinset. Consume proved rootedEdgeClassification, SimpleGraph.neighborFinset_eq_filter, and ConnectedComponent.toSimpleGraph_adj, with the same subtype-to-ambient endpoint representation as the parent.",
+    "objective": "Revision 1 records the planned ordered-neighbor decomposition for `treePairingRootedChildDecomposition@2` and SourceIndex b_0010 lines 102–110: for `c ∈ rootedChildren G hG rho rho` and `uC : rootedChildComponent G rho c`, an ambient `G.neighborFinset` contribution at `uC` equals the possible `rho` boundary contribution exactly at the child root plus the component-graph neighbor sum. It retains treePairing's ordered/double-counted representation, the subtype-to-ambient endpoint representation, and the rootedEdgeClassification/neighborFinset/toSimpleGraph facts without converting to Sym2 or edgeFinset.",
     "require_target_state_satisfied": true,
-    "reset_to_state": null,
-    "summary": "Created and compiler-accepted the ordered ambient-neighbor boundary decomposition statement and an NL proof plan, but Proof Formal remains absent. The consumer goal splits the ambient G.neighborFinset contribution at uC : rootedChildComponent G rho c into the possible rho boundary contribution (exactly at the child root) and the local C.toSimpleGraph neighbor contribution, preserving ordered/double-counted treePairing semantics. rootedEdgeClassification, neighborFinset_eq_filter, and ConnectedComponent.toSimpleGraph_adj supply the mathematical predicates, but a predictable tracked finite-sum transport theorem is still missing: it must biject/reindex the local subtype neighbor finset to the ambient neighbor finset filtered by membership in the component and show summand equality after coercion. Retry this declaration only after that transport theorem is proved; then retry treePairingRootedChildDecomposition.",
-    "target_state": "proved"
+    "summary": "Created and compiler-accepted the ordered ambient-neighbor boundary decomposition statement and an NL proof plan, but Proof Formal remains absent. The consumer goal splits the ambient G.neighborFinset contribution at uC : rootedChildComponent G rho c into the possible rho boundary contribution (exactly at the child root) and the local C.toSimpleGraph neighbor contribution, preserving ordered/double-counted treePairing semantics. rootedEdgeClassification, neighborFinset_eq_filter, and ConnectedComponent.toSimpleGraph_adj supply the mathematical predicates, but a predictable tracked finite-sum transport theorem is still missing: it must biject/reindex the local subtype neighbor finset to the ambient neighbor finset filtered by membership in the component and show summand equality after coercion.",
+    "target_state": "proved",
+    "execution_constraints": "Use rootedEdgeClassification, SimpleGraph.neighborFinset_eq_filter, and ConnectedComponent.toSimpleGraph_adj with the same subtype-to-ambient endpoint representation; prove the finite-sum transport theorem first, then retry this declaration and only afterward retry treePairingRootedChildDecomposition."
   },
   "lean_decl_name": "sumNeighborContributionRootedChildComponent",
   "proof": {
@@ -163,6 +161,11 @@
           "schema_version": 2,
           "summary": "Diagnostics returned 1 items"
         },
+        "fingerprint": {
+          "environment_sha256": null,
+          "source_sha256": "0c0c74df2b1621e1232ab0d082f1dbb7953c1eb649c32d3968ce1738e1541f83",
+          "upstream_revision": null
+        },
         "message": "Lean check passed.",
         "policy": "statement_formal",
         "scan": {
@@ -187,7 +190,15 @@
           "summary": "sorry=1, admit=0, axiom=0, opaque=0, unsafe=0",
           "unsafe_count": 0
         },
-        "status": "passed"
+        "schema_version": 1,
+        "status": "passed",
+        "subject": {
+          "declaration_name": null,
+          "module": "PositiveDefiniteTreeLattice.Main.RootedEstimates.Theorems.sumNeighborContributionRootedChildComponent",
+          "repo_file_path": "PositiveDefiniteTreeLattice/Main/RootedEstimates/Theorems/sumNeighborContributionRootedChildComponent.lean",
+          "repo_kind": "native",
+          "stage": "statement"
+        }
       },
       "code": "-- lean-constellation: managed-imports-begin\nimport PositiveDefiniteTreeLattice.Main.RootedEstimates.Prelude\nimport Mathlib.Combinatorics.SimpleGraph.Connectivity.Connected\nimport Mathlib.Combinatorics.SimpleGraph.Finite\n-- lean-constellation: managed-imports-end\n\n-- lean-constellation: declaration-source-begin\n\n/--\n# lean-constellation target: `sumNeighborContributionRootedChildComponent`\n\nLet `G` be a finite tree with root `rho`, let `c` belong to `rootedChildren G hG rho rho`, and let\n`uC : rootedChildComponent G rho c`.  For every commutative additive target `A` and every ambient\nordered-neighbor contribution `Phi : V → V → A`, the ambient neighbor sum at the ambient vertex\nrepresented by `uC` is\n\n`∑ v ∈ G.neighborFinset (↑uC), Phi (↑uC) v = (if (↑uC : V) = c then Phi (↑uC) rho else 0) + ∑ vC ∈\n(rootedChildComponent G rho c).toSimpleGraph.neighborFinset uC, Phi (↑uC) (↑vC)`.\n\nThus the only ambient neighbor of a component vertex that is not a component-graph neighbor is the\nboundary root `rho`, and it occurs exactly when that vertex is the child root `c`.  Both sums retain\nthe ordered endpoint representation: subtype vertices on the right are coerced to their ambient\nendpoints before applying `Phi`.\n\n## Sources\n\n- Source `solution.tex`, lines 102–110\n\n## Statement dependencies\n\n- `SimpleGraph.ConnectedComponent.toSimpleGraph` from\n  `Mathlib.Combinatorics.SimpleGraph.Connectivity.Connected`\n- `SimpleGraph.neighborFinset` from `Mathlib.Combinatorics.SimpleGraph.Finite`\n- `Main.RootedCapacity::rootedChildComponent` → `rootedChildComponent` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildComponent`\n- `Main.RootedCapacity::rootedChildren` → `rootedChildren` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildren`\n-/\ntheorem sumNeighborContributionRootedChildComponent {V A : Type*} [Fintype V] [DecidableEq V]\n    [AddCommMonoid A] (G : SimpleGraph V) [DecidableRel G.Adj] (hG : G.IsTree) (rho c : V)\n    (hc : c ∈ rootedChildren G hG rho rho) (uC : rootedChildComponent G rho c)\n    (Phi : V → V → A) :\n    let C := rootedChildComponent G rho c\n    letI : Fintype C := Fintype.ofFinite C\n    letI : DecidableEq C := Classical.decEq C\n    letI : DecidableRel C.toSimpleGraph.Adj := by\n      intro u v\n      change Decidable ((G.deleteEdges {s(rho, c)}).Adj (u : V) (v : V))\n      infer_instance\n    ∑ v ∈ G.neighborFinset (uC : V), Phi (uC : V) v =\n      (if (uC : V) = c then Phi (uC : V) rho else 0) +\n        ∑ vC ∈ C.toSimpleGraph.neighborFinset uC, Phi (uC : V) (vC : V) := by\n  sorry\n"
     },

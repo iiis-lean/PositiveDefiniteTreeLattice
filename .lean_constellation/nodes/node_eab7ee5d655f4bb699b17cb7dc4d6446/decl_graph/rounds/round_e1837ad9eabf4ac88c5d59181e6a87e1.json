@@ -1,18 +1,13 @@
 {
-  "change_summaries": {},
   "committed_at": "2026-07-30T10:12:14Z",
   "created_at": "2026-07-30T10:06:52Z",
-  "discard_reason": null,
   "discarded_at": null,
   "discarded_by": null,
-  "discarded_created_decl_names": [],
-  "discarded_restored_decl_revisions": {},
-  "discarded_revision_refs": [],
   "execution_completed_at": "2026-07-30T10:10:36Z",
   "execution_reason": "The child-component equivalence now resolves the former representation gap, but the next indispensable step is a substantial reusable matrix-structure theorem: `(Matrix.reindex e.symm e.symm D) = Matrix.blockDiagonal' B`. It is needed not only by this inverse-entry result but directly by the subsequent root/rest Schur-complement decomposition. Its proof requires the same equal-label dependent transport/cast normalization that cannot be hidden as a small local step under the proof-formal workflow. Recommended planning change: introduce this private RootedCapacity block-identification theorem before rootedNonroot_inverse_childBlocks, with exact e, D, and B, proved from rootedGram_rootedChildComponent and rootedGram_cross_rootedChildComponents; then this theorem can prove the block inverse using Matrix.blockDiagonal'_mul and Matrix.inv_reindex.",
   "execution_result_kind": "blocked",
   "node_path": "Main.RootedCapacity",
-  "objective": "Retry only Proof Formal for rootedNonroot_inverse_childBlocks, consuming the newly declared child-component/nonroot equivalence while preserving both accepted inverse-entry clauses and their exact dependent embeddings.",
+  "objective": "Round 27 concerns the private inverse-entry theorem that consumes the child-component/nonroot equivalence and preserves both exact dependent inverse-entry clauses for same and distinct components.",
   "plan_closeout_acknowledged_at": "2026-07-30T10:12:14Z",
   "plan_closeout_acknowledged_by": "a_a93b40977f574bad89528358fa89e022",
   "result_kind": "blocked",
@@ -29,5 +24,6 @@
   "started_at": "2026-07-30T10:08:42Z",
   "status": "committed",
   "strategy_id": "strategy_1fbcdfb31a2e4cada1ff5b7b941de18c",
-  "summary": "Round 27 is closed blocked at Proof Formal. It verified that the new partition equivalence removes the former representation blocker, but rootedNonroot_inverse_childBlocks rev2 remains proof_planned and not proof-policy satisfied. The remaining prerequisite is one private source-faithful matrix-structure theorem identifying the reindexed nonroot Gram block with the dependent block diagonal of child Gram matrices. This helper is directly visible in solution.tex lines 57–68 (`Q₀ = ⊕ᵢ Q_{Cᵢ}`), is reusable by both the inverse-entry theorem and the later root/rest Schur decomposition, and remains inside the current node boundary and expected scale. Plan and prove it next; retry the inverse theorem only afterward. Resource or dependency preparation is not needed, and graph hygiene remains clean."
+  "summary": "Round 27 is closed blocked at Proof Formal. The new partition equivalence removes the former representation blocker, but rootedNonroot_inverse_childBlocks rev2 remains proof_planned and not proof-policy satisfied. The remaining prerequisite is one private source-faithful matrix-structure theorem identifying the reindexed nonroot Gram block with the dependent block diagonal of child Gram matrices. This helper is directly visible in solution.tex lines 57–68, reusable by both the inverse-entry theorem and later root/rest Schur decomposition, and remains inside the current node boundary and expected scale. Resource or dependency preparation is not needed, and graph hygiene remains clean.",
+  "execution_constraints": "Plan and prove the private matrix-structure theorem identifying the reindexed nonroot Gram block with the dependent child Gram block diagonal; retry rootedNonroot_inverse_childBlocks only afterward. Do not perform resource or dependency preparation."
 }

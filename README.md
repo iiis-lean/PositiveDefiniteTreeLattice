@@ -11,6 +11,7 @@ A Lean 4 formalization of First Proof Second Batch Problem 6: an irreducible ver
 | --- | --- |
 | Completion | `graph_proved` |
 | Proof availability | `proved` |
+| Repository format | `native` |
 
 ## Build
 

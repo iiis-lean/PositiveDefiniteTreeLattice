@@ -1,16 +1,10 @@
 {
   "change": {
-    "anticipated_proof_dep_names": [
-      "rootedGram_posDef_of_integer_positive",
-      "weight_ge_degree_of_ne_unique_underweight"
-    ],
-    "anticipated_statement_dep_names": [],
     "base_revision": null,
     "kind": "create",
     "objective": "Formalize exactly the component claim in solution.tex:194-204. For a finite tree G with supplied integer weight, h_positive, a unique underweighted witness v satisfying weight v < (G.degree v : ℤ), a source-branch hypothesis ∀ x, 2 ≤ weight x, and a root child c of v, conclude IsAdmissibleRootedTree for rootedChildComponent G v c rooted at rootedChildRoot G v c with the restricted weight. Prove its tree, rational rootedGram PosDef, weight-at-least-two, and child-count-plus-one bounds using the accepted Main.RootedCapacity component/tree/Gram/child-count APIs, the committed rootedGram_posDef_of_integer_positive bridge, and weight_ge_degree_of_ne_unique_underweight. Keep the exact ambient graph, degree coercions, and unique-underweight meaning; this private theorem supplies admissibility to rooted capacity and estimate APIs in the protected final proof.",
     "require_target_state_satisfied": true,
-    "reset_to_state": null,
-    "summary": "Created and compiler-accepted the formal statement PositiveDefiniteTreeLattice.rootedChildComponent_isAdmissible_of_unique_underweight, reaching declared state, but Proof NL blocked before a proof plan. The blocker is a predictable tracked helper from solution.tex:199-203, not statement drift: the final IsAdmissibleRootedTree field requires, for x in rootedChildComponent G v c rooted at rootedChildRoot G v c, an inequality of the form rootedChildCount(component, root, x) + 1 ≤ G.degree x (with the necessary Nat/ℤ coercion when composed with weight bounds). Checked provider facts include rootedChildComponent_isTree, rootedGram_rootedChildComponent, and rootedChildCount_rootedChildComponent; the committed rootedGram_posDef_of_integer_positive handles PosDef, the branch assumption handles weight ≥ 2, and weight_ge_degree_of_ne_unique_underweight gives (G.degree x : ℤ) ≤ weight x. None supplies the missing local-count-to-ambient-degree bridge. Retry this parent only after a tracked specialized component-degree bound is proved and added as a proof dependency; then retain the accepted statement and resume from declared state. No superseded artifact exists.",
+    "summary": "Created and compiler-accepted the formal statement PositiveDefiniteTreeLattice.rootedChildComponent_isAdmissible_of_unique_underweight, reaching declared state, but Proof NL blocked before a proof plan. The blocker is a predictable tracked helper from solution.tex:199–203, not statement drift: the final IsAdmissibleRootedTree field requires, for x in rootedChildComponent G v c rooted at rootedChildRoot G v c, an inequality of the form rootedChildCount(component, root, x) + 1 ≤ G.degree x (with the necessary Nat/ℤ coercion when composed with weight bounds). Checked provider facts include rootedChildComponent_isTree, rootedGram_rootedChildComponent, and rootedChildCount_rootedChildComponent; the committed rootedGram_posDef_of_integer_positive handles PosDef, the branch assumption handles weight ≥ 2, and weight_ge_degree_of_ne_unique_underweight gives (G.degree x : ℤ) ≤ weight x. None supplies the missing local-count-to-ambient-degree bridge. A tracked specialized component-degree bound is the unresolved proof dependency for this parent; no superseded artifact exists.",
     "target_state": "proved"
   },
   "lean_decl_name": "PositiveDefiniteTreeLattice.rootedChildComponent_isAdmissible_of_unique_underweight",
@@ -96,6 +90,11 @@
           "schema_version": 2,
           "summary": "Diagnostics returned 1 items"
         },
+        "fingerprint": {
+          "environment_sha256": null,
+          "source_sha256": "409a229e1a1d7856197ebda6e47ea336994bd6bc5d1baf4d7657378023cd2ba8",
+          "upstream_revision": null
+        },
         "message": "Lean check passed.",
         "policy": "statement_formal",
         "scan": {
@@ -120,7 +119,15 @@
           "summary": "sorry=1, admit=0, axiom=0, opaque=0, unsafe=0",
           "unsafe_count": 0
         },
-        "status": "passed"
+        "schema_version": 1,
+        "status": "passed",
+        "subject": {
+          "declaration_name": null,
+          "module": "PositiveDefiniteTreeLattice.Main.IrreducibleVertex.Lemmas.rootedChildComponent_isAdmissible_of_unique_underweight",
+          "repo_file_path": "PositiveDefiniteTreeLattice/Main/IrreducibleVertex/Lemmas/rootedChildComponent_isAdmissible_of_unique_underweight.lean",
+          "repo_kind": "native",
+          "stage": "statement"
+        }
       },
       "code": "-- lean-constellation: managed-imports-begin\nimport PositiveDefiniteTreeLattice.Main.IrreducibleVertex.Prelude\nimport Mathlib.Combinatorics.SimpleGraph.Acyclic\nimport Mathlib.Combinatorics.SimpleGraph.Finite\n-- lean-constellation: managed-imports-end\n\n-- lean-constellation: declaration-source-begin\n\nnoncomputable local instance rootedChildComponentFintype {V : Type*} [Fintype V]\n    (G : SimpleGraph V) (v c : V) : Fintype (rootedChildComponent G v c) :=\n  Fintype.ofFinite _\n\nnoncomputable local instance rootedChildComponentDecidableAdj {V : Type*} (G : SimpleGraph V)\n    (v c : V) : DecidableRel (rootedChildComponent G v c).toSimpleGraph.Adj :=\n  Classical.decRel _\n\n/--\n# lean-constellation target: `rootedChildComponent_isAdmissible_of_unique_underweight`\n\nLet `V` be a finite type with decidable equality, let `G : SimpleGraph V` have decidable adjacency,\nlet `weight : V → ℤ`, and let `v c : V`. Suppose `h_tree : G.IsTree`, `h_positive : ∀ x : V → ℤ, x ≠\n0 → 0 < treePairing G weight x x`, `h_unique_underweight : ∃! u : V, weight u < (G.degree u : ℤ)`,\n`hv : weight v < (G.degree v : ℤ)`, `h_two : ∀ x : V, 2 ≤ weight x`, and `hvc : G.Adj v c`. Then\n`IsAdmissibleRootedTree (rootedChildComponent G v c).toSimpleGraph (fun z => weight (z : V))\n(rootedChildRoot G v c)`.\n\n## Sources\n\n- Source `solution.tex`, lines 194–204\n\n## Statement dependencies\n\n- `SimpleGraph.IsTree` from `Mathlib.Combinatorics.SimpleGraph.Acyclic`\n- `SimpleGraph.degree` from `Mathlib.Combinatorics.SimpleGraph.Finite`\n- `Main.LatticeFoundations::treePairingAnchor` → `PositiveDefiniteTreeLattice.treePairing` from\n  `PositiveDefiniteTreeLattice.Main.LatticeFoundations.Defs.treePairingAnchor`\n- `Main.RootedCapacity::IsAdmissibleRootedTree` → `IsAdmissibleRootedTree` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.IsAdmissibleRootedTree`\n- `Main.RootedCapacity::rootedChildComponent` → `rootedChildComponent` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildComponent`\n- `Main.RootedCapacity::rootedChildRoot` → `rootedChildRoot` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildRoot`\n-/\ntheorem PositiveDefiniteTreeLattice.rootedChildComponent_isAdmissible_of_unique_underweight\n    {V : Type*} [Fintype V] [DecidableEq V] (G : SimpleGraph V) [DecidableRel G.Adj]\n    (weight : V → ℤ) (v c : V) (h_tree : G.IsTree)\n    (h_positive : ∀ x : V → ℤ, x ≠ 0 → 0 < PositiveDefiniteTreeLattice.treePairing G weight x x)\n    (h_unique_underweight : ∃! u : V, weight u < (G.degree u : ℤ))\n    (hv : weight v < (G.degree v : ℤ)) (h_two : ∀ x : V, 2 ≤ weight x) (hvc : G.Adj v c) :\n    IsAdmissibleRootedTree (rootedChildComponent G v c).toSimpleGraph (fun z => weight (z : V))\n      (rootedChildRoot G v c) := by\n  sorry\n"
     },

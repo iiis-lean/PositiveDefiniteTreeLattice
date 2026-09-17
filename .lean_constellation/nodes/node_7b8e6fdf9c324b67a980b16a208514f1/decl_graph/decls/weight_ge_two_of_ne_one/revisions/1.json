@@ -1,14 +1,9 @@
 {
   "change": {
-    "anticipated_proof_dep_names": [
-      "weight_pos_of_positive"
-    ],
-    "anticipated_statement_dep_names": [],
     "base_revision": null,
     "kind": "create",
     "objective": "Formalize the branch reduction at solution.tex:188-192 for the exact integral function model: assuming h_positive and weight v ≠ 1, conclude 2 ≤ weight v. Consume the committed proved helper weight_pos_of_positive and ordinary integer discreteness; this proof-only lemma supplies the all-weights-at-least-two branch used by the eventual exact PositiveDefiniteTreeLattice.exists_irreducible_vertex proof.",
     "require_target_state_satisfied": true,
-    "reset_to_state": null,
     "summary": "Created the private lemma PositiveDefiniteTreeLattice.weight_ge_two_of_ne_one and completed all stages through proved. Its checked proof consumes the committed weight_pos_of_positive foundation to obtain the integer lower bound two when the weight-one case is excluded. Revision 1 reached proved and is proof-policy satisfied, with no blocker or repair outstanding.",
     "target_state": "proved"
   },
@@ -39,6 +34,11 @@
           "schema_version": 2,
           "summary": "Diagnostics returned 0 items"
         },
+        "fingerprint": {
+          "environment_sha256": null,
+          "source_sha256": "e5653ec68e10fabf9f7912465dad860eae81b7d268eea3b3193c6615120b4d4c",
+          "upstream_revision": null
+        },
         "message": "Lean check passed.",
         "policy": "proof_formal",
         "scan": {
@@ -56,7 +56,15 @@
           "summary": "sorry=0, admit=0, axiom=0, opaque=0, unsafe=0",
           "unsafe_count": 0
         },
-        "status": "passed"
+        "schema_version": 1,
+        "status": "passed",
+        "subject": {
+          "declaration_name": null,
+          "module": "PositiveDefiniteTreeLattice.Main.IrreducibleVertex.Lemmas.weight_ge_two_of_ne_one",
+          "repo_file_path": "PositiveDefiniteTreeLattice/Main/IrreducibleVertex/Lemmas/weight_ge_two_of_ne_one.lean",
+          "repo_kind": "native",
+          "stage": "proof"
+        }
       },
       "code": "-- lean-constellation: managed-imports-begin\nimport PositiveDefiniteTreeLattice.Main.IrreducibleVertex.Prelude\nimport PositiveDefiniteTreeLattice.Main.IrreducibleVertex.Lemmas.weight_pos_of_positive\n-- lean-constellation: managed-imports-end\n\n-- lean-constellation: declaration-source-begin\n\n/--\n# lean-constellation target: `weight_ge_two_of_ne_one`\n\nLet `V` be a finite type with decidable equality, let `G : SimpleGraph V` have decidable adjacency,\nlet `weight : V → ℤ`, and let `v : V`. If `h_positive` states that every nonzero integer-valued\nvertex function has strictly positive `treePairing G weight` self-pairing, and `weight v ≠ 1`, then\n`2 ≤ weight v`.\n\n## Sources\n\n- Source `solution.tex`, lines 189–192\n\n## Statement dependencies\n\n- `Main.LatticeFoundations::treePairingAnchor` → `PositiveDefiniteTreeLattice.treePairing` from\n  `PositiveDefiniteTreeLattice.Main.LatticeFoundations.Defs.treePairingAnchor`\n\n## Proof outline\n\nUse the committed helper `weight_pos_of_positive G weight v h_positive` to obtain `0 < weight v`.\n\nFor an integer, strict positivity together with `weight v ≠ 1` rules out every value below two:\nassuming the target inequality fails, ordinary integer discreteness gives `weight v ≤ 1`, and\npositivity then forces `weight v = 1`, a contradiction.  This final linear integer step is\nlightweight and can be discharged directly by `omega`, yielding `2 ≤ weight v`.\n\n## Proof sources\n\n- Source `solution.tex`, lines 188–192\n\n## Proof dependencies\n\n- `Main.IrreducibleVertex::weight_pos_of_positive` →\n  `PositiveDefiniteTreeLattice.weight_pos_of_positive` from\n  `PositiveDefiniteTreeLattice.Main.IrreducibleVertex.Lemmas.weight_pos_of_positive`\n-/\ntheorem PositiveDefiniteTreeLattice.weight_ge_two_of_ne_one {V : Type*} [Fintype V] [DecidableEq V]\n    (G : SimpleGraph V) [DecidableRel G.Adj] (weight : V → ℤ) (v : V)\n    (h_positive : ∀ y : V → ℤ, y ≠ 0 → 0 < PositiveDefiniteTreeLattice.treePairing G weight y y)\n    (h_weight_ne_one : weight v ≠ 1) :\n    2 ≤ weight v := by\n  have h_weight_pos := PositiveDefiniteTreeLattice.weight_pos_of_positive G weight v h_positive\n  omega\n"
     },
@@ -112,6 +120,11 @@
           "schema_version": 2,
           "summary": "Diagnostics returned 1 items"
         },
+        "fingerprint": {
+          "environment_sha256": null,
+          "source_sha256": "9ffede2d740efaa4ad3fa0a7610039a1db8ca30006a0ff267ab49b31a56932a9",
+          "upstream_revision": null
+        },
         "message": "Lean check passed.",
         "policy": "statement_formal",
         "scan": {
@@ -136,7 +149,15 @@
           "summary": "sorry=1, admit=0, axiom=0, opaque=0, unsafe=0",
           "unsafe_count": 0
         },
-        "status": "passed"
+        "schema_version": 1,
+        "status": "passed",
+        "subject": {
+          "declaration_name": null,
+          "module": "PositiveDefiniteTreeLattice.Main.IrreducibleVertex.Lemmas.weight_ge_two_of_ne_one",
+          "repo_file_path": "PositiveDefiniteTreeLattice/Main/IrreducibleVertex/Lemmas/weight_ge_two_of_ne_one.lean",
+          "repo_kind": "native",
+          "stage": "statement"
+        }
       },
       "code": "-- lean-constellation: managed-imports-begin\nimport PositiveDefiniteTreeLattice.Main.IrreducibleVertex.Prelude\n-- lean-constellation: managed-imports-end\n\n-- lean-constellation: declaration-source-begin\n\n/--\n# lean-constellation target: `weight_ge_two_of_ne_one`\n\nLet `V` be a finite type with decidable equality, let `G : SimpleGraph V` have decidable adjacency,\nlet `weight : V → ℤ`, and let `v : V`. If `h_positive` states that every nonzero integer-valued\nvertex function has strictly positive `treePairing G weight` self-pairing, and `weight v ≠ 1`, then\n`2 ≤ weight v`.\n\n## Sources\n\n- Source `solution.tex`, lines 189–192\n\n## Statement dependencies\n\n- `Main.LatticeFoundations::treePairingAnchor` → `PositiveDefiniteTreeLattice.treePairing` from\n  `PositiveDefiniteTreeLattice.Main.LatticeFoundations.Defs.treePairingAnchor`\n-/\ntheorem PositiveDefiniteTreeLattice.weight_ge_two_of_ne_one {V : Type*} [Fintype V] [DecidableEq V]\n    (G : SimpleGraph V) [DecidableRel G.Adj] (weight : V → ℤ) (v : V)\n    (h_positive : ∀ y : V → ℤ, y ≠ 0 → 0 < PositiveDefiniteTreeLattice.treePairing G weight y y)\n    (h_weight_ne_one : weight v ≠ 1) :\n    2 ≤ weight v := by\n  sorry\n"
     },

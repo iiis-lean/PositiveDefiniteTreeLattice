@@ -5,14 +5,12 @@
     "blockDiagonal_quadratic_eq_sum_blocks",
     "capacity_pos_lt_one",
     "isAdmissibleRootedTree_instance_irrel",
-    "rootNonrootContraction_eq_childCapacitySum",
     "rootedCapacity",
     "rootedCapacity_instance_irrel",
     "rootedCapacity_lt_one_of_card_le",
     "rootedCapacity_pos",
     "rootedCapacity_recursion",
     "rootedChildCapacitySum",
-    "rootedChildCapacitySum_attach",
     "rootedChildCapacitySum_lt_card_of_forall_lt_one",
     "rootedChildCapacitySummand",
     "rootedChildComponent",
@@ -38,7 +36,6 @@
     "rootedGram_cross_rootedChildComponents",
     "rootedGram_reindex_rootNonroot_blocks",
     "rootedGram_rootNonroot_blocks_invertible",
-    "rootedGram_rootNonroot_contraction_eq_childCapacitySum_of_child_admissible",
     "rootedGram_root_nonroot",
     "rootedGram_root_nonroot_linear_eq_sum_childRoots",
     "rootedGram_root_rootedChildComponent_support",
@@ -50,11 +47,7 @@
     "rootedNonrootGram_reindex_entry_explicit",
     "rootedNonrootGram_submatrix_entry",
     "rootedNonroot_inverse_childBlocks",
-    "rootedNonroot_inverse_childBlocks_of_child_admissible",
     "rootedNonroot_inverse_quadratic",
-    "rootedNonroot_inverse_quadratic_of_child_admissible",
-    "rootedNonroot_inverse_quadratic_sigma_of_child_admissible",
-    "rootedNonroot_inverse_sigma_quadratic_collapsed_of_child_admissible",
     "rootedNonroot_quadratic_eq_sum_childQuadratics",
     "treePairing_vertexVector_vertexVector"
   ],
@@ -157,7 +150,7 @@
     "round_fb721347c441461e936f35a0d9726dd8",
     "round_fe9669ef178c4ee7ad545d1edae5da85"
   ],
-  "schema_version": 1,
+  "schema_version": 2,
   "strategy_ids": [
     "strategy_037efd699857450383cd71726d63d596",
     "strategy_0eaf76953f3b42128ba5881da4e26d4f",
@@ -177,7 +170,5 @@
     "strategy_b9f2bb44ae0a40ba9081239e5f026481",
     "strategy_db91ac3c804a44819257359e34789bf5",
     "strategy_fc60f40a331d4f63bd19e22f0eec7473"
-  ],
-  "summary": "DeclGraph index rebuilt for Main.RootedCapacity: 57 decls, 95 rounds, 18 strategies.",
-  "updated_at": "2026-08-07T12:08:06Z"
+  ]
 }

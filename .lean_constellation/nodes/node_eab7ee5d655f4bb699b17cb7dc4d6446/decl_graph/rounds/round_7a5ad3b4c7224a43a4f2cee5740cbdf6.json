@@ -1,18 +1,13 @@
 {
-  "change_summaries": {},
   "committed_at": "2026-08-03T12:05:07Z",
   "created_at": "2026-08-03T11:51:01Z",
-  "discard_reason": null,
   "discarded_at": null,
   "discarded_by": null,
-  "discarded_created_decl_names": [],
-  "discarded_restored_decl_revisions": {},
-  "discarded_revision_refs": [],
   "execution_completed_at": "2026-08-03T12:03:17Z",
   "execution_reason": "The accepted frozen formal statement is missing two required canonical local instance binders, so this proof cannot call the designated inverse provider and summand under one shared convention without violating the declaration objective.",
   "execution_result_kind": "blocked",
   "node_path": "Main.RootedCapacity",
-  "objective": "Create and graph-prove the private canonical Sigma root-row quadratic transport helper required by the accepted public contract-v4 proof plan, using one retained child-component instance convention.",
+  "objective": "`rootedNonroot_inverse_quadratic_sigma_of_child_admissible@rev:1` is the private canonical Sigma root-row quadratic transport helper for the accepted public contract-v4 proof plan, using one retained child-component instance convention.",
   "plan_closeout_acknowledged_at": "2026-08-03T12:05:07Z",
   "plan_closeout_acknowledged_by": "a_a93b40977f574bad89528358fa89e022",
   "result_kind": "blocked",
@@ -29,5 +24,6 @@
   "started_at": "2026-08-03T11:52:25Z",
   "status": "committed",
   "strategy_id": "strategy_409097c1a1e547a681e983998de55d40",
-  "summary": "Round 76 reached proof_planned but blocked at Proof Formal on a private statement-representation defect, not a mathematical or dependency gap. The helper's accepted semantic target is still the correct contract-v4 bridge, but its formal statement lacks the child-component Fintype and deleted-edge DecidableRel binders required to use the proved inverse provider and canonical summand under one convention. No declaration became graph_proved-satisfied in this round. The next action is a full planned-to-proved recapture of this same private helper with the two binders added; the public parent must not be retried until that revision is proved."
+  "summary": "Round 76 reached `proof_planned` but blocked at Proof Formal on a private statement-representation defect, not a mathematical or dependency gap. The helper's accepted semantic target is still the correct contract-v4 bridge, but its formal statement lacks the child-component `Fintype` and deleted-edge `DecidableRel` binders required to use the proved inverse provider and canonical summand under one convention. No declaration became graph_proved-satisfied in this round.",
+  "execution_constraints": "Recapture this private helper from planned to proved with the two child-component `Fintype` and deleted-edge `DecidableRel` binders added; do not retry the public parent until that revision is proved."
 }

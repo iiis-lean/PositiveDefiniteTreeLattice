@@ -1,18 +1,13 @@
 {
-  "change_summaries": {},
   "committed_at": "2026-07-30T20:53:12Z",
   "created_at": "2026-07-30T20:41:21Z",
-  "discard_reason": null,
   "discarded_at": null,
   "discarded_by": null,
-  "discarded_created_decl_names": [],
-  "discarded_restored_decl_revisions": {},
-  "discarded_revision_refs": [],
   "execution_completed_at": "2026-07-30T20:51:28Z",
   "execution_reason": null,
   "execution_result_kind": "success",
   "node_path": "Main.RootedCapacity",
-  "objective": "Refresh Proof Formal for the unchanged public rootedCapacity_recursion equation using the migrated inverse quadratic and recaptured child-capacity aggregate.",
+  "objective": "rootedCapacity_recursion@rev:5 preserves the exact public capacity-recursion equation over the migrated inverse quadratic and recaptured child-capacity aggregate.",
   "plan_closeout_acknowledged_at": "2026-07-30T20:53:12Z",
   "plan_closeout_acknowledged_by": "a_a93b40977f574bad89528358fa89e022",
   "result_kind": "success",
@@ -29,5 +24,6 @@
   "started_at": "2026-07-30T20:42:43Z",
   "status": "committed",
   "strategy_id": "strategy_20e3f41e54944d3babe462d36b22b383",
-  "summary": "Round 63 completed successfully. rootedCapacity_recursion@5 is public, proved, and proof-policy satisfied with its exact source equality unchanged over the new aggregate. The recapture now has a fully migrated Schur-complement consumer. The next bottom-up step is the contract-required revision and proof of rootedChildCapacitySum_lt_card_of_forall_lt_one using attached children and rootedChildCapacitySummand directly; then the Nat-indexed upper bound and public interface can be retried. No preparation or blocker remains."
+  "summary": "Round 63 completed successfully. rootedCapacity_recursion@5 is public, proved, and proof-policy satisfied with its exact source equality unchanged over the new aggregate. The recapture now has a fully migrated Schur-complement consumer. No preparation or blocker remains.",
+  "execution_constraints": "Use the recaptured aggregate and migrated inverse quadratic in the accepted recursion, then continue with the contract-required child-capacity-sum bound, Nat-indexed upper bound, and public interface in dependency order."
 }

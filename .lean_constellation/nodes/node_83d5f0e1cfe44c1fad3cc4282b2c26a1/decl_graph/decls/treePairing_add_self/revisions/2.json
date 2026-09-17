@@ -1,20 +1,13 @@
 {
   "change": {
-    "anticipated_proof_dep_names": [
-      "treePairing_add_left",
-      "treePairing_add_right",
-      "treePairing_symm"
-    ],
-    "anticipated_statement_dep_names": [
-      "treePairing"
-    ],
     "base_revision": 1,
     "kind": "update",
-    "objective": "Recapture the unchanged public theorem as compiler-confirmed PositiveDefiniteTreeLattice.treePairing_add_self. Preserve exactly the source-shaped integer identity from solution.tex lines 25–28: treePairing G weight (a + b) (a + b) = treePairing G weight a a + treePairing G weight b b + 2 * treePairing G weight a b, including binder objects, equality direction, term order, and cross-term orientation. Its Statement consumes declared namespaced treePairing; its accepted proof consumes proved namespaced treePairing_add_left, treePairing_add_right, and treePairing_symm plus ring normalization. Preserve proof, public visibility, and semantics, introduce no global alias, and restore the proved parent required by irreducible_of_pairing_self_eq_one.",
+    "objective": "Revision 2 records the proved public `PositiveDefiniteTreeLattice.treePairing_add_self` theorem with the exact source-shaped integer identity from solution.tex lines 25–28: `treePairing G weight (a + b) (a + b) = treePairing G weight a a + treePairing G weight b b + 2 * treePairing G weight a b`, including binder objects, equality direction, term order, and cross-term orientation. Its Statement consumes declared namespaced `treePairing`; its proof consumes proved namespaced `treePairing_add_left`, `treePairing_add_right`, and `treePairing_symm` with ring normalization. Proof, public visibility, and semantics are preserved without a global alias, restoring the proved parent required by `irreducible_of_pairing_self_eq_one`.",
     "require_target_state_satisfied": true,
-    "reset_to_state": "specified",
+    "start_stage": "statement_formal",
     "summary": "Successfully recaptured the unchanged self-pairing expansion as compiler-confirmed PositiveDefiniteTreeLattice.treePairing_add_self. Statement Formal, Proof NL, and Proof Formal passed; the theorem reached proved and required graph_proved satisfaction passed against declared namespaced treePairing and proved namespaced additivity/symmetry laws. The exact integer identity, equality direction, term order, cross-term orientation, proof dependencies, proof, public visibility, and solution.tex lines 25–28 semantics were preserved. No blocker or cleanup target remains, and the final norm-one theorem may now consume this proved parent.",
-    "target_state": "proved"
+    "target_state": "proved",
+    "execution_constraints": "Recapture the unchanged theorem against the declaration-owned file; preserve solution.tex lines 25–28, binder objects, equality direction, term order, cross-term orientation, proof dependencies, proof, public visibility, and semantics, and introduce no global alias."
   },
   "lean_decl_name": "PositiveDefiniteTreeLattice.treePairing_add_self",
   "proof": {
@@ -63,6 +56,11 @@
           "schema_version": 2,
           "summary": "Diagnostics returned 0 items"
         },
+        "fingerprint": {
+          "environment_sha256": null,
+          "source_sha256": "b97536314b3ddcfe94c5a652169cca2a8cd8c29bfa090a41f8661d041ca2a890",
+          "upstream_revision": null
+        },
         "message": "Lean check passed.",
         "policy": "proof_formal",
         "scan": {
@@ -80,7 +78,15 @@
           "summary": "sorry=0, admit=0, axiom=0, opaque=0, unsafe=0",
           "unsafe_count": 0
         },
-        "status": "passed"
+        "schema_version": 1,
+        "status": "passed",
+        "subject": {
+          "declaration_name": null,
+          "module": "PositiveDefiniteTreeLattice.Main.LatticeFoundations.Theorems.treePairing_add_self",
+          "repo_file_path": "PositiveDefiniteTreeLattice/Main/LatticeFoundations/Theorems/treePairing_add_self.lean",
+          "repo_kind": "native",
+          "stage": "proof"
+        }
       },
       "code": "-- lean-constellation: managed-imports-begin\nimport PositiveDefiniteTreeLattice.Main.LatticeFoundations.Prelude\nimport PositiveDefiniteTreeLattice.Main.LatticeFoundations.Defs.treePairing\nimport PositiveDefiniteTreeLattice.Main.LatticeFoundations.Theorems.treePairing_add_left\nimport PositiveDefiniteTreeLattice.Main.LatticeFoundations.Theorems.treePairing_add_right\nimport PositiveDefiniteTreeLattice.Main.LatticeFoundations.Theorems.treePairing_symm\n-- lean-constellation: managed-imports-end\n\n-- lean-constellation: declaration-source-begin\n\n/--\n# lean-constellation target: `treePairing_add_self`\n\nFor a finite type `V` with decidable equality, a simple graph `G : SimpleGraph V` with decidable\nadjacency, an integer-valued weight function `weight : V → ℤ`, and functions `a b : V → ℤ`, the\nself-pairing of their pointwise sum satisfies\n\n`treePairing G weight (a + b) (a + b) = treePairing G weight a a + treePairing G weight b b + 2 *\ntreePairing G weight a b`.\n\nThe cross term is oriented as `treePairing G weight a b`.\n\n## Sources\n\n- Source `solution.tex`, lines 25–28\n\n## Statement dependencies\n\n- `Main.LatticeFoundations::treePairing` → `PositiveDefiniteTreeLattice.treePairing` from\n  `PositiveDefiniteTreeLattice.Main.LatticeFoundations.Defs.treePairing`\n\n## Proof outline\n\nApply `PositiveDefiniteTreeLattice.treePairing_add_left` to the left-hand side with left inputs `a`,\n`b` and right input `a + b`.  This gives\n`treePairing G weight (a + b) (a + b) =\n  treePairing G weight a (a + b) + treePairing G weight b (a + b)`.\n\nApply `PositiveDefiniteTreeLattice.treePairing_add_right` separately to the two summands, obtaining\n`(treePairing G weight a a + treePairing G weight a b) +\n  (treePairing G weight b a + treePairing G weight b b)`.\nUse `PositiveDefiniteTreeLattice.treePairing_symm` only to rewrite the reversed cross term\n`treePairing G weight b a` as `treePairing G weight a b`.  Commutative-ring normalization over `ℤ`\nthen reorders and combines the two equal cross terms into the exact required expression\n`treePairing G weight a a + treePairing G weight b b +\n  2 * treePairing G weight a b`.\n\nThis is the source's norm-one square expansion in solution.tex lines 25–28.  It uses the three\nproved lower pairing laws and a lightweight local `ring` step, with no extra hypotheses or helper\ndeclarations.\n\n## Proof sources\n\n- Source `solution.tex`, lines 25–28\n\n## Proof dependencies\n\n- `Main.LatticeFoundations::treePairing_add_left` →\n  `PositiveDefiniteTreeLattice.treePairing_add_left` from\n  `PositiveDefiniteTreeLattice.Main.LatticeFoundations.Theorems.treePairing_add_left`\n- `Main.LatticeFoundations::treePairing_add_right` →\n  `PositiveDefiniteTreeLattice.treePairing_add_right` from\n  `PositiveDefiniteTreeLattice.Main.LatticeFoundations.Theorems.treePairing_add_right`\n- `Main.LatticeFoundations::treePairing_symm` → `PositiveDefiniteTreeLattice.treePairing_symm` from\n  `PositiveDefiniteTreeLattice.Main.LatticeFoundations.Theorems.treePairing_symm`\n-/\ntheorem PositiveDefiniteTreeLattice.treePairing_add_self {V : Type*} [Fintype V]\n    [DecidableEq V] (G : SimpleGraph V)\n    [DecidableRel G.Adj] (weight a b : V → ℤ) :\n    PositiveDefiniteTreeLattice.treePairing G weight (a + b) (a + b) =\n      PositiveDefiniteTreeLattice.treePairing G weight a a +\n        PositiveDefiniteTreeLattice.treePairing G weight b b +\n          2 * PositiveDefiniteTreeLattice.treePairing G weight a b := by\n  rw [PositiveDefiniteTreeLattice.treePairing_add_left,\n    PositiveDefiniteTreeLattice.treePairing_add_right,\n    PositiveDefiniteTreeLattice.treePairing_add_right]\n  rw [PositiveDefiniteTreeLattice.treePairing_symm G weight b a]\n  ring\n"
     },
@@ -136,6 +142,11 @@
           "schema_version": 2,
           "summary": "Diagnostics returned 1 items"
         },
+        "fingerprint": {
+          "environment_sha256": null,
+          "source_sha256": "d834daf70376c09e471a723579fab2329a5e33fb722e6e2a7ce913035d33739e",
+          "upstream_revision": null
+        },
         "message": "Lean check passed.",
         "policy": "statement_formal",
         "scan": {
@@ -160,7 +171,15 @@
           "summary": "sorry=1, admit=0, axiom=0, opaque=0, unsafe=0",
           "unsafe_count": 0
         },
-        "status": "passed"
+        "schema_version": 1,
+        "status": "passed",
+        "subject": {
+          "declaration_name": null,
+          "module": "PositiveDefiniteTreeLattice.Main.LatticeFoundations.Theorems.treePairing_add_self",
+          "repo_file_path": "PositiveDefiniteTreeLattice/Main/LatticeFoundations/Theorems/treePairing_add_self.lean",
+          "repo_kind": "native",
+          "stage": "statement"
+        }
       },
       "code": "-- lean-constellation: managed-imports-begin\nimport PositiveDefiniteTreeLattice.Main.LatticeFoundations.Prelude\nimport PositiveDefiniteTreeLattice.Main.LatticeFoundations.Defs.treePairing\n-- lean-constellation: managed-imports-end\n\n-- lean-constellation: declaration-source-begin\n\n/--\n# lean-constellation target: `treePairing_add_self`\n\nFor a finite type `V` with decidable equality, a simple graph `G : SimpleGraph V` with decidable\nadjacency, an integer-valued weight function `weight : V → ℤ`, and functions `a b : V → ℤ`, the\nself-pairing of their pointwise sum satisfies\n\n`treePairing G weight (a + b) (a + b) = treePairing G weight a a + treePairing G weight b b + 2 *\ntreePairing G weight a b`.\n\nThe cross term is oriented as `treePairing G weight a b`.\n\n## Sources\n\n- Source `solution.tex`, lines 25–28\n\n## Statement dependencies\n\n- `Main.LatticeFoundations::treePairing` → `PositiveDefiniteTreeLattice.treePairing` from\n  `PositiveDefiniteTreeLattice.Main.LatticeFoundations.Defs.treePairing`\n-/\ntheorem PositiveDefiniteTreeLattice.treePairing_add_self {V : Type*} [Fintype V]\n    [DecidableEq V] (G : SimpleGraph V)\n    [DecidableRel G.Adj] (weight a b : V → ℤ) :\n    PositiveDefiniteTreeLattice.treePairing G weight (a + b) (a + b) =\n      PositiveDefiniteTreeLattice.treePairing G weight a a +\n        PositiveDefiniteTreeLattice.treePairing G weight b b +\n          2 * PositiveDefiniteTreeLattice.treePairing G weight a b := by\n  sorry\n"
     },

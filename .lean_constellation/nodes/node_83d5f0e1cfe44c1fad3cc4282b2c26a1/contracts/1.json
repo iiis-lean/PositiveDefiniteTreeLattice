@@ -6,8 +6,6 @@
   "contract_kind": "content",
   "created_at": "2026-07-29T14:27:26Z",
   "decl_graph_head": {
-    "Irreducible": 2,
-    "irreducible_of_pairing_self_eq_one": 1,
     "treePairing": 2,
     "treePairing_add_left": 2,
     "treePairing_add_right": 2,
@@ -142,7 +140,7 @@
       "reason": null
     }
   ],
-  "objective": "Produce a graph-proved foundational declaration package: compiler-accepted public definitions matching formal_target.lean exactly, plus proved pairing/vertex-vector facts and the norm-one-implies-irreducible theorem needed by later nodes.",
+  "objective": "The contract's graph-proved foundational declaration package comprises compiler-accepted public definitions matching formal_target.lean exactly, proved pairing and vertex-vector facts, and the norm-one-implies-irreducible theorem needed by later nodes.",
   "owned_refs": [
     {
       "added_by": "coordinator",
@@ -173,7 +171,8 @@
   ],
   "status": "committed",
   "success_criteria": "All owned definitions are declared with source-faithful signatures; every theorem-like declaration is proved without admissions; the stable definitions and norm-one theorem required by downstream nodes are public.",
-  "summary": "Accepted ready outcome for contract v1. Established a graph-proved foundational boundary with 10 source-faithful declarations; all theorem-like declarations are proved, the exact treePairing, vertexVector, and Irreducible definitions plus the norm-one irreducibility theorem are public and interface-bound, and public Statement closure is complete. Downstream applicability will be checked against each consumer as those contracts are activated.",
+  "summary": "Accepted ready outcome for contract v1. Established a graph-proved foundational boundary with 10 source-faithful declarations; all theorem-like declarations are proved, the exact treePairing, vertexVector, and Irreducible definitions plus the norm-one irreducibility theorem are public and interface-bound, and public Statement closure is complete.",
   "task_completion_mode": "graph_proved",
-  "version": 1
+  "version": 1,
+  "execution_constraints": "Check downstream applicability against each consumer as those contracts are activated."
 }

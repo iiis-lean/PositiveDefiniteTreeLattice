@@ -1,18 +1,13 @@
 {
-  "change_summaries": {},
   "committed_at": "2026-07-30T03:11:40Z",
   "created_at": "2026-07-30T02:54:39Z",
-  "discard_reason": null,
   "discarded_at": null,
   "discarded_by": null,
-  "discarded_created_decl_names": [],
-  "discarded_restored_decl_revisions": {},
-  "discarded_revision_refs": [],
   "execution_completed_at": "2026-07-30T03:09:42Z",
   "execution_reason": "The retry cannot establish that the displayed appended walk is simple without circularly assuming the support separation needed to construct its competing paths. The reviewer correctly requires a first-intersection argument or a proved reusable separation helper; that is an independently meaningful structural lemma outside this Proof NL worker’s authority.",
   "execution_result_kind": "blocked",
   "node_path": "Main.RootedCapacity",
-  "objective": "Prove the reusable b_0009 ambient-path factorization exposed by the transport proof: if c is a rooted child of parent, then for every x in rootedChildComponent G parent c, the unique ambient path from ρ to x factors through c as the root-to-c path followed by the c-to-x path. This is the final known prerequisite before retrying rootedChildren transport.",
+  "objective": "Round 49 concerns the reusable b_0009 ambient-path factorization: for a rooted child c of parent, the unique ambient path from ρ to each x in rootedChildComponent G parent c factors through c and the c-to-x path. This is the final known prerequisite before the rootedChildren transport.",
   "plan_closeout_acknowledged_at": "2026-07-30T03:11:40Z",
   "plan_closeout_acknowledged_by": "a_a93b40977f574bad89528358fa89e022",
   "result_kind": "blocked",
@@ -29,5 +24,6 @@
   "started_at": "2026-07-30T02:56:02Z",
   "status": "committed",
   "strategy_id": "strategy_b9f2bb44ae0a40ba9081239e5f026481",
-  "summary": "The round made statement-layer progress only: rootedChildComponent_path_decomposition is declared but not proof-policy satisfied, blocking at Proof NL on a circular simplicity argument. The complete retry chain is now explicit: first prove a noncircular first-intersection/support-separation theorem for the root-to-c and c-to-x paths; then prove path decomposition; then resume rootedChildren_rootedChildComponent from proof_planned; then prove rootedChildCount_rootedChildComponent; only afterward can child admissibility and b_0009 capacity work begin. This is the third nested structural prerequisite discovered after the count theorem, while the node already has 14 important declarations and none of its three required interfaces. Continuing locally would exceed the contract's expected 10–18 scale before Schur recursion, strict bounds, b_0010, or b_0011 are addressed. The independently meaningful rooted-component path/orientation package therefore needs a Coordinator scope/split decision rather than another automatic helper round. Graph hygiene is otherwise clean; no superseded artifacts are identified."
+  "summary": "The round made statement-layer progress only: rootedChildComponent_path_decomposition is declared but not proof-policy satisfied, blocked at Proof NL on a circular simplicity argument. This is the third nested structural prerequisite discovered after the count theorem; the node already has 14 important declarations and none of its three required interfaces. Continuing locally would exceed the contract's expected 10–18 scale before Schur recursion, strict bounds, b_0010, or b_0011 are addressed. The independently meaningful rooted-component path/orientation package therefore needs a Coordinator scope/split decision. Graph hygiene is otherwise clean and no superseded artifacts are identified.",
+  "execution_constraints": "Obtain a Coordinator scope/split decision before continuing local helper expansion. If authorized, prove a noncircular first-intersection/support-separation theorem for the root-to-c and c-to-x paths, then prove path decomposition, resume rootedChildren_rootedChildComponent from proof_planned, and prove rootedChildCount_rootedChildComponent; defer child admissibility and b_0009 capacity work until those steps complete."
 }

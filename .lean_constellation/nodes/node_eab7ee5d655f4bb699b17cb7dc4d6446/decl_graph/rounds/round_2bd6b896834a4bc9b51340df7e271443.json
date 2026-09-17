@@ -1,18 +1,13 @@
 {
-  "change_summaries": {},
   "committed_at": "2026-07-29T18:33:35Z",
   "created_at": "2026-07-29T17:23:44Z",
-  "discard_reason": null,
   "discarded_at": null,
   "discarded_by": null,
-  "discarded_created_decl_names": [],
-  "discarded_restored_decl_revisions": {},
-  "discarded_revision_refs": [],
   "execution_completed_at": "2026-07-29T17:33:57Z",
   "execution_reason": "The managed import block requires RootedCapacity.Prelude, but that Prelude is currently unbuildable due to the external provider/interface name conflict. This worker cannot alter generated Prelude imports or the provider declaration outside the assigned declaration-owned files, so durable statement capture and consistency checks cannot be completed.",
   "execution_result_kind": "blocked",
   "node_path": "Main.RootedCapacity",
-  "objective": "Establish the dependency-independent provider layer for SourceIndex b_0008 and solution.tex lines 33–45: define rooted child orientation and the exact rational Gram matrix, and prove the local basis-vector pairing evaluation implicit in the block matrix at lines 57–64. These providers consume only the verified Main.LatticeFoundations and Mathlib APIs and will support later dependency-ordered rounds for child count, admissibility, capacity, recursion, and the three required public interfaces.",
+  "objective": "Round 2 records the dependency-independent b_0008 provider layer for SourceIndex b_0008 / solution.tex lines 33–45: rooted child orientation, the exact rational Gram matrix, and the local basis-vector pairing evaluation. These providers consume only the verified Main.LatticeFoundations and Mathlib APIs and supply structural inputs for child count, admissibility, capacity, recursion, and the three required public interfaces.",
   "plan_closeout_acknowledged_at": "2026-07-29T18:33:35Z",
   "plan_closeout_acknowledged_by": "a_a93b40977f574bad89528358fa89e022",
   "result_kind": "blocked",
@@ -39,5 +34,6 @@
   "started_at": "2026-07-29T17:24:53Z",
   "status": "committed",
   "strategy_id": "strategy_0eaf76953f3b42128ba5881da4e26d4f",
-  "summary": "Round 2 was blocked at Statement Formal by an external visible-provider/interface import conflict, after all three changes reached specified via accepted Statement NL. No declaration reached its declared/proved target and none became proof-policy satisfied. The mathematical bottom-up strategy remains sound, but RootedCapacity.Prelude cannot compile: importing PositiveDefiniteTreeLattice.Main.LatticeFoundations.Interfaces transitively loads Main.LatticeFoundations.Defs.Irreducible, whose global Lean declaration `Irreducible` conflicts with `Irreducible` already loaded from Mathlib.Algebra.Group.Irreducible.Defs by this node's required Mathlib imports. Checked affected revisions rootedChildren rev1, rootedGram rev1, and treePairing_vertexVector_vertexVector rev1: each has Statement NL present, formal Statement absent, and no proof artifacts; no declaration-specific semantic mismatch or missing local helper was reached. Retry conditions for every change are that the provider/interface naming boundary be repaired so Main.LatticeFoundations.Interfaces and the current Mathlib Prelude compile together. That repair lies outside Main.RootedCapacity and outside declaration-owned worker files; the next action after closeout should be a precise Content blocker requesting Coordinator/provider repair, not another declaration round, Mathlib recon, or resource recon."
+  "summary": "Round 2 was blocked at Statement Formal by an external visible-provider/interface import conflict after all three changes reached specified through accepted Statement NL. No declaration reached its declared or proved target and none became proof-policy satisfied. The mathematical bottom-up strategy remained sound, but RootedCapacity.Prelude could not compile: importing PositiveDefiniteTreeLattice.Main.LatticeFoundations.Interfaces transitively loads Main.LatticeFoundations.Defs.Irreducible, whose global Lean declaration Irreducible conflicts with Irreducible already loaded from Mathlib.Algebra.Group.Irreducible.Defs by this node's required Mathlib imports. The affected revisions rootedChildren rev1, rootedGram rev1, and treePairing_vertexVector_vertexVector rev1 each had Statement NL present, formal Statement absent, and no proof artifacts. No declaration-specific semantic mismatch or missing local helper was reached; this was an external provider/interface boundary failure outside Main.RootedCapacity and declaration-owned worker files.",
+  "execution_constraints": "Request a precise Content blocker for Coordinator/provider repair of the Main.LatticeFoundations.Interfaces naming boundary so it compiles with the current Mathlib Prelude; keep that repair outside Main.RootedCapacity and declaration-owned worker files. Do not start another declaration round, Mathlib recon, or resource recon before that repair."
 }

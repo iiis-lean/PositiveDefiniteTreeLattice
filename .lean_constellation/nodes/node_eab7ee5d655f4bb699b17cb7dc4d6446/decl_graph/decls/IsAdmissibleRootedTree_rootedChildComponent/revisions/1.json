@@ -1,23 +1,12 @@
 {
   "change": {
-    "anticipated_proof_dep_names": [
-      "rootedChildCount_rootedChildComponent",
-      "rootedGram_rootedChildComponent"
-    ],
-    "anticipated_statement_dep_names": [
-      "IsAdmissibleRootedTree",
-      "rootedChildComponent",
-      "rootedChildComponent_isTree",
-      "rootedChildRoot",
-      "rootedChildren"
-    ],
     "base_revision": null,
     "kind": "create",
-    "objective": "Formalize the subtree inheritance implicit in solution.tex lines 33–37 and 47–61. For finite decidable V, G with decidable adjacency, integer weight w, ambient root ρ, an explicit hG : G.IsTree, parent and child c with hc : c ∈ rootedChildren G hG ρ parent, and hAdm : IsAdmissibleRootedTree G w ρ, prove IsAdmissibleRootedTree for C := rootedChildComponent G parent c, its induced graph C.toSimpleGraph, restricted weight (fun x : C => w (x : V)), and root rootedChildRoot G parent c, using the canonical proof rootedChildComponent_isTree G parent c hG. Preserve the existing exact integer weight and rational rootedGram semantics. Prove positive definiteness by identifying the child Gram through rootedGram_rootedChildComponent and applying Matrix.PosDef.submatrix to the ambient Gram; inherit w ≥ 2 pointwise; and transport w ≥ rootedChildCount + 1 using rootedChildCount_rootedChildComponent. Do not add hypotheses beyond those needed to name the ambient orientation, and do not replace the deleted-edge component or root index. This stable public theorem supplies admissible child subtrees to capacity recursion, capacity_pos_lt_one, and the later rooted induction.",
+    "objective": "Revision 1 establishes the public subtree-inheritance theorem from solution.tex lines 33–37 and 47–61: under the explicit ambient orientation hG, hc, and hAdm, the deleted-edge component C with its induced graph, restricted integer weight, and canonical rootedChildRoot is an IsAdmissibleRootedTree. It preserves exact rootedGram, weight, component, and root semantics and supplies admissible child subtrees to capacity recursion, capacity_pos_lt_one, and the later rooted induction.",
     "require_target_state_satisfied": true,
-    "reset_to_state": null,
     "summary": "The new public child-component admissibility theorem reached proved state with all four declaration stages accepted. It preserves the deleted-edge component, restricted integer weight, canonical child root, and ambient orientation hypotheses. The proof combines the component tree theorem, principal-submatrix Gram identity and positive-definiteness inheritance, pointwise weight lower bound, and the proved child-count transport. It is graph-proved and supplies the admissible-subtree input for capacity recursion and rooted induction.",
-    "target_state": "proved"
+    "target_state": "proved",
+    "execution_constraints": "Use rootedChildComponent_isTree, rootedGram_rootedChildComponent with Matrix.PosDef.submatrix, the ambient weight lower bound, and rootedChildCount_rootedChildComponent to construct the result. Do not add hypotheses beyond hG, hc, and hAdm, replace the deleted-edge component or root index, or introduce unrelated dependencies."
   },
   "lean_decl_name": "IsAdmissibleRootedTree_rootedChildComponent",
   "proof": {
@@ -102,6 +91,11 @@
           "schema_version": 2,
           "summary": "Command completed successfully"
         },
+        "fingerprint": {
+          "environment_sha256": null,
+          "source_sha256": "1968d1ed2dbf8ec14b3a9fbe063a527e7eb3396ca866ceb7fcb24b7d01f485e8",
+          "upstream_revision": null
+        },
         "message": "Lean check passed.",
         "policy": "proof_formal",
         "scan": {
@@ -119,7 +113,15 @@
           "summary": "sorry=0, admit=0, axiom=0, opaque=0, unsafe=0",
           "unsafe_count": 0
         },
-        "status": "passed"
+        "schema_version": 1,
+        "status": "passed",
+        "subject": {
+          "declaration_name": null,
+          "module": "PositiveDefiniteTreeLattice.Main.RootedCapacity.Theorems.IsAdmissibleRootedTree_rootedChildComponent",
+          "repo_file_path": "PositiveDefiniteTreeLattice/Main/RootedCapacity/Theorems/IsAdmissibleRootedTree_rootedChildComponent.lean",
+          "repo_kind": "native",
+          "stage": "proof"
+        }
       },
       "code": "-- lean-constellation: managed-imports-begin\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Prelude\nimport Mathlib.Combinatorics.SimpleGraph.Acyclic\nimport Mathlib.Combinatorics.SimpleGraph.Connectivity.Connected\nimport Mathlib.Combinatorics.SimpleGraph.DeleteEdges\nimport Mathlib.LinearAlgebra.Matrix.Defs\nimport Mathlib.LinearAlgebra.Matrix.PosDef\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.IsAdmissibleRootedTree\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildComponent\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildRoot\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildren\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Theorems.rootedChildComponent_isTree\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Theorems.rootedChildCount_rootedChildComponent\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Theorems.rootedGram_rootedChildComponent\n-- lean-constellation: managed-imports-end\n\n-- lean-constellation: declaration-source-begin\n\n/--\n# lean-constellation target: `IsAdmissibleRootedTree_rootedChildComponent`\n\nLet V be a finite type with decidable equality, let G be a simple graph on V with decidable\nadjacency, let w : V → ℤ, and let ρ, parent, c : V. Suppose hG : G.IsTree, hc : c ∈ rootedChildren G\nhG ρ parent, and hAdm : IsAdmissibleRootedTree G w ρ. Then the child-side component C :=\nrootedChildComponent G parent c is admissible when regarded as the rooted weighted tree with graph\nC.toSimpleGraph, restricted weight x ↦ w (x : V), and root rootedChildRoot G parent c:\n\nIsAdmissibleRootedTree C.toSimpleGraph (fun x : C => w (x : V)) (rootedChildRoot G parent c).\n\nThus positive definiteness and both integer weight bounds of the ambient admissible rooted tree are\ninherited by every rooted child component, without changing the deleted-edge component or its\nchild-root index.\n\n## Sources\n\n- Source `solution.tex`, lines 33–37\n- Source `solution.tex`, lines 47–61\n\n## Statement dependencies\n\n- `SimpleGraph.IsTree` from `Mathlib.Combinatorics.SimpleGraph.Acyclic`\n- `SimpleGraph.ConnectedComponent.toSimpleGraph` from\n  `Mathlib.Combinatorics.SimpleGraph.Connectivity.Connected`\n- `SimpleGraph.deleteEdges` from `Mathlib.Combinatorics.SimpleGraph.DeleteEdges`\n- `Main.RootedCapacity::IsAdmissibleRootedTree` → `IsAdmissibleRootedTree` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.IsAdmissibleRootedTree`\n- `Main.RootedCapacity::rootedChildComponent` → `rootedChildComponent` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildComponent`\n- `Main.RootedCapacity::rootedChildRoot` → `rootedChildRoot` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildRoot`\n- `Main.RootedCapacity::rootedChildren` → `rootedChildren` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildren`\n\n## Proof outline\n\nAfter introducing the `let`-bound component `C`, its finite and deleted-edge adjacency instances,\nunfold `IsAdmissibleRootedTree` and destruct `hAdm` into the ambient tree witness,\npositive-definiteness of `rootedGram G w`, the pointwise bound `2 ≤ w y`, and the ambient\nrooted-child-count bound.  Use proof irrelevance if necessary to identify the tree witness carried\nby `hAdm` with the explicit `hG` that indexes `hc` and the child-count transport.\n\nConstruct the child admissibility witness with the canonical theorem `rootedChildComponent_isTree G\nparent c hG`.  Extract `hpc : G.Adj parent c` from the rooted-child membership `hc` by unfolding its\n`Finset.filter` predicate (while retaining `hc` for the orientation transport).  Let `e : C → V` be\nthe subtype coercion and prove it injective with `Subtype.ext`.  Apply `Matrix.PosDef.submatrix` to\nthe ambient positive-definiteness proof along `e`.  Establish, by `Matrix.ext` and\n`rootedGram_rootedChildComponent G w parent c hG hpc`, that this principal submatrix is exactly\n`rootedGram C.toSimpleGraph (fun x : C => w (x : V))`; rewrite by this equality to obtain the\nrequired child positive-definiteness.  This keeps the exact rational rootedGram and restricted\ninteger-valued weight.\n\nFor the pointwise lower bound, specialize the ambient `2 ≤ w y` bound at the coerced vertex `(x :\nV)`.  For the child-count bound, specialize the ambient count bound at `(x : V)`, rewrite its left\nside using the proved theorem `rootedChildCount_rootedChildComponent G hG ρ parent c hc x`, and\nconclude.  Thus no admissibility, weight, positivity, or orientation hypotheses beyond `hG`, `hc`,\nand `hAdm` are introduced, and the result remains the canonical deleted-edge component rooted at\n`rootedChildRoot G parent c`.\n\n## Proof sources\n\n- Source `solution.tex`, lines 33–37\n- Source `solution.tex`, lines 47–61\n\n## Proof dependencies\n\n- `Matrix.ext` from `Mathlib.LinearAlgebra.Matrix.Defs`\n- `Matrix.PosDef.submatrix` from `Mathlib.LinearAlgebra.Matrix.PosDef`\n- `Main.RootedCapacity::IsAdmissibleRootedTree` → `IsAdmissibleRootedTree` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.IsAdmissibleRootedTree`\n- `Main.RootedCapacity::rootedChildComponent_isTree` → `rootedChildComponent_isTree` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Theorems.rootedChildComponent_isTree`\n- `Main.RootedCapacity::rootedChildCount_rootedChildComponent` →\n  `rootedChildCount_rootedChildComponent` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Theorems.rootedChildCount_rootedChildComponent`\n- `Main.RootedCapacity::rootedChildren` → `rootedChildren` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildren`\n- `Main.RootedCapacity::rootedGram_rootedChildComponent` → `rootedGram_rootedChildComponent` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Theorems.rootedGram_rootedChildComponent`\n-/\ntheorem IsAdmissibleRootedTree_rootedChildComponent {V : Type*} [Fintype V] [DecidableEq V]\n    (G : SimpleGraph V) [DecidableRel G.Adj] (w : V → ℤ) (ρ parent c : V)\n    (hG : G.IsTree) (hc : c ∈ rootedChildren G hG ρ parent)\n    (hAdm : IsAdmissibleRootedTree G w ρ) :\n    let C := rootedChildComponent G parent c\n    letI : Fintype C := Fintype.ofFinite C\n    letI : DecidableRel C.toSimpleGraph.Adj := by\n      intro x y\n      change Decidable ((G.deleteEdges {s(parent, c)}).Adj (x : V) (y : V))\n      infer_instance\n    IsAdmissibleRootedTree C.toSimpleGraph (fun x : C => w (x : V))\n      (rootedChildRoot G parent c) := by\n  classical\n  dsimp only\n  letI : Fintype (rootedChildComponent G parent c) := Fintype.ofFinite _\n  letI : DecidableRel (rootedChildComponent G parent c).toSimpleGraph.Adj := by\n    intro x y\n    change Decidable ((G.deleteEdges {s(parent, c)}).Adj (x : V) (y : V))\n    infer_instance\n  obtain ⟨hG', hpos, hweight, hcount⟩ := hAdm\n  have hhG : hG' = hG := Subsingleton.elim _ _\n  subst hG'\n  have hc' := hc\n  simp only [rootedChildren, Finset.mem_filter, Finset.mem_univ, true_and] at hc'\n  obtain ⟨hpc, -, -, -⟩ := hc'\n  refine ⟨rootedChildComponent_isTree G parent c hG, ?_, ?_, ?_⟩\n  · let e : rootedChildComponent G parent c → V := fun x => (x : V)\n    have he : Function.Injective e := by\n      intro x y hxy\n      exact Subtype.ext hxy\n    have hGram :\n        rootedGram (rootedChildComponent G parent c).toSimpleGraph\n            (fun x : rootedChildComponent G parent c => w (x : V)) =\n          (rootedGram G w).submatrix e e := by\n      apply Matrix.ext\n      intro x y\n      simpa only [Matrix.submatrix_apply, e] using\n        (rootedGram_rootedChildComponent G w parent c hG hpc x y)\n    rw [hGram]\n    exact hpos.submatrix he\n  · intro x\n    exact hweight (x : V)\n  · intro x\n    rw [rootedChildCount_rootedChildComponent G hG ρ parent c hc x]\n    exact hcount (x : V)\n"
     },
@@ -240,6 +242,11 @@
           "schema_version": 2,
           "summary": "Diagnostics returned 1 items"
         },
+        "fingerprint": {
+          "environment_sha256": null,
+          "source_sha256": "5451cfbe1f597af3138c0f3c1fe3f4f023187c94527ce8a74f3e218c02e78b25",
+          "upstream_revision": null
+        },
         "message": "Lean check passed.",
         "policy": "statement_formal",
         "scan": {
@@ -264,7 +271,15 @@
           "summary": "sorry=1, admit=0, axiom=0, opaque=0, unsafe=0",
           "unsafe_count": 0
         },
-        "status": "passed"
+        "schema_version": 1,
+        "status": "passed",
+        "subject": {
+          "declaration_name": null,
+          "module": "PositiveDefiniteTreeLattice.Main.RootedCapacity.Theorems.IsAdmissibleRootedTree_rootedChildComponent",
+          "repo_file_path": "PositiveDefiniteTreeLattice/Main/RootedCapacity/Theorems/IsAdmissibleRootedTree_rootedChildComponent.lean",
+          "repo_kind": "native",
+          "stage": "statement"
+        }
       },
       "code": "-- lean-constellation: managed-imports-begin\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Prelude\nimport Mathlib.Combinatorics.SimpleGraph.Acyclic\nimport Mathlib.Combinatorics.SimpleGraph.Connectivity.Connected\nimport Mathlib.Combinatorics.SimpleGraph.DeleteEdges\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.IsAdmissibleRootedTree\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildComponent\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildRoot\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildren\n-- lean-constellation: managed-imports-end\n\n-- lean-constellation: declaration-source-begin\n\n/--\n# lean-constellation target: `IsAdmissibleRootedTree_rootedChildComponent`\n\nLet V be a finite type with decidable equality, let G be a simple graph on V with decidable\nadjacency, let w : V → ℤ, and let ρ, parent, c : V. Suppose hG : G.IsTree, hc : c ∈ rootedChildren G\nhG ρ parent, and hAdm : IsAdmissibleRootedTree G w ρ. Then the child-side component C :=\nrootedChildComponent G parent c is admissible when regarded as the rooted weighted tree with graph\nC.toSimpleGraph, restricted weight x ↦ w (x : V), and root rootedChildRoot G parent c:\n\nIsAdmissibleRootedTree C.toSimpleGraph (fun x : C => w (x : V)) (rootedChildRoot G parent c).\n\nThus positive definiteness and both integer weight bounds of the ambient admissible rooted tree are\ninherited by every rooted child component, without changing the deleted-edge component or its\nchild-root index.\n\n## Sources\n\n- Source `solution.tex`, lines 33–37\n- Source `solution.tex`, lines 47–61\n\n## Statement dependencies\n\n- `SimpleGraph.IsTree` from `Mathlib.Combinatorics.SimpleGraph.Acyclic`\n- `SimpleGraph.ConnectedComponent.toSimpleGraph` from\n  `Mathlib.Combinatorics.SimpleGraph.Connectivity.Connected`\n- `SimpleGraph.deleteEdges` from `Mathlib.Combinatorics.SimpleGraph.DeleteEdges`\n- `Main.RootedCapacity::IsAdmissibleRootedTree` → `IsAdmissibleRootedTree` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.IsAdmissibleRootedTree`\n- `Main.RootedCapacity::rootedChildComponent` → `rootedChildComponent` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildComponent`\n- `Main.RootedCapacity::rootedChildRoot` → `rootedChildRoot` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildRoot`\n- `Main.RootedCapacity::rootedChildren` → `rootedChildren` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildren`\n-/\ntheorem IsAdmissibleRootedTree_rootedChildComponent {V : Type*} [Fintype V] [DecidableEq V]\n    (G : SimpleGraph V) [DecidableRel G.Adj] (w : V → ℤ) (ρ parent c : V)\n    (hG : G.IsTree) (hc : c ∈ rootedChildren G hG ρ parent)\n    (hAdm : IsAdmissibleRootedTree G w ρ) :\n    let C := rootedChildComponent G parent c\n    letI : Fintype C := Fintype.ofFinite C\n    letI : DecidableRel C.toSimpleGraph.Adj := by\n      intro x y\n      change Decidable ((G.deleteEdges {s(parent, c)}).Adj (x : V) (y : V))\n      infer_instance\n    IsAdmissibleRootedTree C.toSimpleGraph (fun x : C => w (x : V))\n      (rootedChildRoot G parent c) := by\n  sorry\n"
     },

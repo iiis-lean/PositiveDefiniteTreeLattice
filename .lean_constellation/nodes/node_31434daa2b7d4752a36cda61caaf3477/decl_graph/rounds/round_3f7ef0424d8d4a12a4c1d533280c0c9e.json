@@ -1,13 +1,8 @@
 {
-  "change_summaries": {},
   "committed_at": "2026-07-30T04:46:22Z",
   "created_at": "2026-07-30T04:32:56Z",
-  "discard_reason": null,
   "discarded_at": null,
   "discarded_by": null,
-  "discarded_created_decl_names": [],
-  "discarded_restored_decl_revisions": {},
-  "discarded_revision_refs": [],
   "execution_completed_at": "2026-07-30T04:44:26Z",
   "execution_reason": null,
   "execution_result_kind": "success",
@@ -29,5 +24,5 @@
   "started_at": "2026-07-30T04:34:16Z",
   "status": "committed",
   "strategy_id": "strategy_f896ad8d3d5e41c193ec6ecf41edbffd",
-  "summary": "The oriented-cut phase is complete: `uniquePath_append_isPath_through_cut` revision 1 reached `proved` and is proof-policy satisfied, consuming the exact accepted support-separation hypotheses. No state-only work or blocker remains. The full lower dependency chain is now ready for the remaining public parent: `uniquePath` is declared, `eq_uniquePath_of_isPath` is proved, and the required append is proved simple. The next round should create and prove the exact qualified `PositiveDefiniteTreeLattice.uniquePath_eq_append_through_cut` theorem with identical consumer-side binders and the chosen root-to-x equals chosen root-to-c append chosen c-to-x conclusion."
+  "summary": "The oriented-cut phase is complete: `uniquePath_append_isPath_through_cut` revision 1 reached `proved` and is proof-policy satisfied, consuming the exact accepted support-separation hypotheses. No state-only work or blocker remains. The full lower dependency chain is now ready for the remaining public parent: `uniquePath` is declared, `eq_uniquePath_of_isPath` is proved, and the required append is proved simple."
 }

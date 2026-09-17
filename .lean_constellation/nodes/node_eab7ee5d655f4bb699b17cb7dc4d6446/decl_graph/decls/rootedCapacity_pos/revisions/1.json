@@ -1,17 +1,12 @@
 {
   "change": {
-    "anticipated_proof_dep_names": [],
-    "anticipated_statement_dep_names": [
-      "IsAdmissibleRootedTree",
-      "rootedCapacity"
-    ],
     "base_revision": null,
     "kind": "create",
-    "objective": "Formalize the strict positivity asserted in solution.tex lines 39–45 and 70–72. For finite decidable V, a graph G with decidable adjacency, integer weight w, root ρ, and hAdm : IsAdmissibleRootedTree G w ρ, prove 0 < rootedCapacity G w ρ over ℚ. Preserve rootedCapacity exactly as the ρ,ρ entry of (rootedGram G w)⁻¹ and preserve the existing admissibility predicate. Extract Matrix.PosDef (rootedGram G w) from hAdm, apply Matrix.PosDef.inv and Matrix.PosDef.diag_pos at ρ, and unfold only rootedCapacity. Do not add a separate tree proof or stronger weight hypotheses. This public lower-bound lemma supplies the positive half of the required PositiveDefiniteTreeLattice.capacity_pos_lt_one interface and is reusable in the later reciprocal/inequality steps.",
+    "objective": "Revision 1 establishes the public strict-positivity theorem from solution.tex lines 39–45 and 70–72: under IsAdmissibleRootedTree, the rational rootedCapacity G w ρ is positive. It preserves rootedCapacity as the ρ,ρ entry of (rootedGram G w)⁻¹, uses only the existing admissibility predicate, and supplies the positive half of the public capacity_pos_lt_one interface and later reciprocal inequalities.",
     "require_target_state_satisfied": true,
-    "reset_to_state": null,
     "summary": "The new public strict-positivity theorem reached proved state with all declaration stages accepted. It preserves rootedCapacity as the rational inverse-Gram diagonal and assumes only IsAdmissibleRootedTree. The proof extracts ambient positive definiteness and applies Matrix.PosDef.inv followed by diag_pos. It is graph-proved and supplies the positive half of the required capacity_pos_lt_one interface.",
-    "target_state": "proved"
+    "target_state": "proved",
+    "execution_constraints": "Extract Matrix.PosDef (rootedGram G w) from hAdm, apply Matrix.PosDef.inv and Matrix.PosDef.diag_pos at ρ, and unfold only rootedCapacity. Do not add a separate tree proof or stronger weight hypotheses."
   },
   "lean_decl_name": "rootedCapacity_pos",
   "proof": {
@@ -66,6 +61,11 @@
           "schema_version": 2,
           "summary": "Diagnostics returned 0 items"
         },
+        "fingerprint": {
+          "environment_sha256": null,
+          "source_sha256": "f6b7ef181634d0a09b2cb83705af1bf1774eab63d000680b435fe5a3d7bec55c",
+          "upstream_revision": null
+        },
         "message": "Lean check passed.",
         "policy": "proof_formal",
         "scan": {
@@ -83,7 +83,15 @@
           "summary": "sorry=0, admit=0, axiom=0, opaque=0, unsafe=0",
           "unsafe_count": 0
         },
-        "status": "passed"
+        "schema_version": 1,
+        "status": "passed",
+        "subject": {
+          "declaration_name": null,
+          "module": "PositiveDefiniteTreeLattice.Main.RootedCapacity.Theorems.rootedCapacity_pos",
+          "repo_file_path": "PositiveDefiniteTreeLattice/Main/RootedCapacity/Theorems/rootedCapacity_pos.lean",
+          "repo_kind": "native",
+          "stage": "proof"
+        }
       },
       "code": "-- lean-constellation: managed-imports-begin\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Prelude\nimport Mathlib.LinearAlgebra.Matrix.PosDef\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.IsAdmissibleRootedTree\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedCapacity\n-- lean-constellation: managed-imports-end\n\n-- lean-constellation: declaration-source-begin\n\n/--\n# lean-constellation target: `rootedCapacity_pos`\n\nLet V be a finite type with decidable equality, let G be a simple graph on V with decidable\nadjacency, let w : V → ℤ, and let ρ : V. If hAdm : IsAdmissibleRootedTree G w ρ, then the rational\nrooted capacity is strictly positive:\n\n0 < rootedCapacity G w ρ.\n\nHere rootedCapacity remains the ρ,ρ entry of the inverse rational rooted Gram matrix; no separate\ntree proof or weight assumption beyond admissibility is required.\n\n## Sources\n\n- Source `solution.tex`, lines 39–45\n- Source `solution.tex`, lines 70–72\n\n## Statement dependencies\n\n- `Main.RootedCapacity::IsAdmissibleRootedTree` → `IsAdmissibleRootedTree` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.IsAdmissibleRootedTree`\n- `Main.RootedCapacity::rootedCapacity` → `rootedCapacity` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedCapacity`\n\n## Proof outline\n\nUnfold `IsAdmissibleRootedTree` only far enough to destruct `hAdm`; retain its positive-definiteness\nfield `hPos : Matrix.PosDef (rootedGram G w)` and ignore the tree witness and integer weight bounds,\nwhich are not needed for this lower bound.  Apply the verified Mathlib theorem `Matrix.PosDef.inv`\nto obtain `hPos.inv : Matrix.PosDef ((rootedGram G w)⁻¹)`.  Then specialize `Matrix.PosDef.diag_pos`\nat the existing root index `ρ`, yielding `0 < (rootedGram G w)⁻¹ ρ ρ` over `ℚ`.\n\nFinally unfold only `rootedCapacity`, whose definition is exactly that inverse diagonal entry, and\nclose by the diagonal-positivity result.  No separate tree witness, new weight bound,\nSchur-complement hypothesis, or scalar extension is introduced; the proof uses exactly the\npositive-definite rational rootedGram already packaged by admissibility.\n\n## Proof sources\n\n- Source `solution.tex`, lines 39–45\n- Source `solution.tex`, lines 70–72\n\n## Proof dependencies\n\n- `Matrix.PosDef.diag_pos` from `Mathlib.LinearAlgebra.Matrix.PosDef`\n- `Matrix.PosDef.inv` from `Mathlib.LinearAlgebra.Matrix.PosDef`\n- `Main.RootedCapacity::IsAdmissibleRootedTree` → `IsAdmissibleRootedTree` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.IsAdmissibleRootedTree`\n- `Main.RootedCapacity::rootedCapacity` → `rootedCapacity` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedCapacity`\n-/\ntheorem rootedCapacity_pos {V : Type*} [Fintype V] [DecidableEq V]\n    (G : SimpleGraph V) [DecidableRel G.Adj] (w : V → ℤ) (ρ : V)\n    (hAdm : IsAdmissibleRootedTree G w ρ) : 0 < rootedCapacity G w ρ := by\n  obtain ⟨-, hpos, -, -⟩ := hAdm\n  unfold rootedCapacity\n  exact hpos.inv.diag_pos\n"
     },
@@ -160,6 +168,11 @@
           "schema_version": 2,
           "summary": "Diagnostics returned 1 items"
         },
+        "fingerprint": {
+          "environment_sha256": null,
+          "source_sha256": "c4d82cd9caebd1b194375b6ec93e6b803303dfce6352c4cc71a68ba0486e3492",
+          "upstream_revision": null
+        },
         "message": "Lean check passed.",
         "policy": "statement_formal",
         "scan": {
@@ -184,7 +197,15 @@
           "summary": "sorry=1, admit=0, axiom=0, opaque=0, unsafe=0",
           "unsafe_count": 0
         },
-        "status": "passed"
+        "schema_version": 1,
+        "status": "passed",
+        "subject": {
+          "declaration_name": null,
+          "module": "PositiveDefiniteTreeLattice.Main.RootedCapacity.Theorems.rootedCapacity_pos",
+          "repo_file_path": "PositiveDefiniteTreeLattice/Main/RootedCapacity/Theorems/rootedCapacity_pos.lean",
+          "repo_kind": "native",
+          "stage": "statement"
+        }
       },
       "code": "-- lean-constellation: managed-imports-begin\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Prelude\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.IsAdmissibleRootedTree\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedCapacity\n-- lean-constellation: managed-imports-end\n\n-- lean-constellation: declaration-source-begin\n\n/--\n# lean-constellation target: `rootedCapacity_pos`\n\nLet V be a finite type with decidable equality, let G be a simple graph on V with decidable\nadjacency, let w : V → ℤ, and let ρ : V. If hAdm : IsAdmissibleRootedTree G w ρ, then the rational\nrooted capacity is strictly positive:\n\n0 < rootedCapacity G w ρ.\n\nHere rootedCapacity remains the ρ,ρ entry of the inverse rational rooted Gram matrix; no separate\ntree proof or weight assumption beyond admissibility is required.\n\n## Sources\n\n- Source `solution.tex`, lines 39–45\n- Source `solution.tex`, lines 70–72\n\n## Statement dependencies\n\n- `Main.RootedCapacity::IsAdmissibleRootedTree` → `IsAdmissibleRootedTree` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.IsAdmissibleRootedTree`\n- `Main.RootedCapacity::rootedCapacity` → `rootedCapacity` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedCapacity`\n-/\ntheorem rootedCapacity_pos {V : Type*} [Fintype V] [DecidableEq V]\n    (G : SimpleGraph V) [DecidableRel G.Adj] (w : V → ℤ) (ρ : V)\n    (hAdm : IsAdmissibleRootedTree G w ρ) : 0 < rootedCapacity G w ρ := by\n  sorry\n"
     },

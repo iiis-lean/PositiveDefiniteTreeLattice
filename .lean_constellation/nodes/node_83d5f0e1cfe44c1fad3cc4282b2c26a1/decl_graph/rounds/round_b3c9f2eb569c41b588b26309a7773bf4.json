@@ -1,12 +1,11 @@
 {
-  "change_summaries": {},
   "committed_at": "2026-07-29T14:57:20Z",
   "created_at": "2026-07-29T14:48:42Z",
   "execution_completed_at": "2026-07-29T14:55:03Z",
   "execution_reason": "Round final audit failed: 2 target-state failures and 0 readiness failures.",
   "execution_result_kind": "failed",
   "node_path": "Main.LatticeFoundations",
-  "objective": "Advance only the two independent source foundations treePairing and vertexVector from their unexecuted planned revisions to graph-proved satisfaction. Defer Irreducible until treePairing is compiler-accepted, honoring the validator’s required bottom-up Statement dependency order.",
+  "objective": "Round b3 records the source-faithful public `treePairing` and `vertexVector` definition foundations at declared state; the accepted dependency order places `treePairing` before `Irreducible`.",
   "plan_closeout_acknowledged_at": "2026-07-29T14:57:20Z",
   "plan_closeout_acknowledged_by": "a_60a257a14c4c469b9e17805606fa5ea4",
   "result_kind": "failed",
@@ -28,5 +27,5 @@
   "started_at": "2026-07-29T14:49:34Z",
   "status": "committed",
   "strategy_id": "strategy_a30e26b4dc0b4b3da567957fbd36ca03",
-  "summary": "The strategy made substantive Statement-layer progress: treePairing and vertexVector both compiled source-faithfully and reached declared, with zero readiness failures. Neither reached the mistakenly requested static target proved because definitions have no Proof NL/Formal stages; those stages were correctly skipped. Thus the Flow result remains failed for two literal target-state mismatches, not for Lean errors, interface drift, missing dependencies, or scope issues. Under graph_proved, non-theorem satisfaction reduces to declared-level closure, so closeout should retain these accepted public foundations and current truth should be rechecked. No parent proof was attempted. Retry condition is not a helper: do not rerun either definition unless post-closeout declared satisfaction fails; instead continue bottom-up with Irreducible depending on accepted treePairing, then tracked algebra/vertex facts and the norm-one theorem."
+  "summary": "The strategy made substantive Statement-layer progress: treePairing and vertexVector both compiled source-faithfully and reached declared, with zero readiness failures. Neither reached the mistakenly requested static target proved because definitions have no Proof NL/Formal stages; those stages were correctly skipped. Thus the Flow result remains failed for two literal target-state mismatches, not for Lean errors, interface drift, missing dependencies, or scope issues. Under graph_proved, non-theorem satisfaction reduces to declared-level closure. No parent proof was attempted. The accepted public foundations remain available for the dependent Irreducible and later tracked algebra/vertex facts."
 }

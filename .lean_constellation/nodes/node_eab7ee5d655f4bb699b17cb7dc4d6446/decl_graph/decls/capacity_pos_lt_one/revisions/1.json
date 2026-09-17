@@ -1,29 +1,12 @@
 {
   "change": {
-    "anticipated_proof_dep_names": [
-      "IsAdmissibleRootedTree",
-      "IsAdmissibleRootedTree_rootedChildComponent",
-      "rootedCapacity",
-      "rootedCapacity_pos",
-      "rootedCapacity_recursion",
-      "rootedChildCapacitySum",
-      "rootedChildComponent",
-      "rootedChildComponent_card_lt",
-      "rootedChildCount",
-      "rootedChildRoot",
-      "rootedChildren"
-    ],
-    "anticipated_statement_dep_names": [
-      "IsAdmissibleRootedTree",
-      "rootedCapacity"
-    ],
     "base_revision": null,
     "kind": "create",
-    "objective": "Implement the required qualified interface `PositiveDefiniteTreeLattice.capacity_pos_lt_one` from SourceIndex b_0009, solution.tex lines 47–82. For the same finite/decidable vertex type, graph, integer weight, root, and `hAdm : IsAdmissibleRootedTree G w ρ` context used by rootedCapacity_pos and rootedCapacity_recursion, prove exactly that the rational capacity lies strictly between zero and one, preferably as `0 < rootedCapacity G w ρ ∧ rootedCapacity G w ρ < 1`. Place the declaration in namespace PositiveDefiniteTreeLattice so its compiler-confirmed full name matches the contract. The lower bound must reuse rootedCapacity_pos. Prove the upper bound by the source's induction on `Fintype.card V`: for each root child, use rootedChildComponent_card_lt for the decrease, IsAdmissibleRootedTree_rootedChildComponent for the induction hypothesis, and the existing child root/component/weight conventions; bound rootedChildCapacitySum strictly by the number of root children, combine with hAdm's root-weight lower bound, and rewrite with rootedCapacity_recursion to obtain the reciprocal bound. Preserve all existing objects, assumptions, rational total-inverse semantics, and conclusion direction; do not strengthen admissibility or introduce a replacement capacity.",
+    "objective": "Revision 1 states the qualified public theorem PositiveDefiniteTreeLattice.capacity_pos_lt_one from SourceIndex b_0009 / solution.tex lines 47–82: under the existing finite/decidable rooted-tree, integer-weight, root, and admissibility context, the rational capacity satisfies 0 < rootedCapacity G w ρ ∧ rootedCapacity G w ρ < 1. Its lower half is rootedCapacity_pos; its upper half is the strict child-subtree induction using rootedChildComponent_card_lt, child admissibility, rootedChildCapacitySum, the root weight bound, and rootedCapacity_recursion. Existing objects, rational total-inverse semantics, assumptions, and conclusion direction are unchanged.",
     "require_target_state_satisfied": true,
-    "reset_to_state": null,
-    "summary": "The required public statement was successfully captured with exact qualified Lean name `PositiveDefiniteTreeLattice.capacity_pos_lt_one`, reached proof_planned, and preserves the accepted strict positivity-and-upper-bound semantics. No Proof Formal artifact was accepted. Blocker classification: Lean-specific helper/representation complexity. The full-datum polymorphic strong-induction proof reaches the child-capacity summands but exhausts the fixed 200000-heartbeat budget while normalizing them against the induction predicate; raising heartbeats is prohibited. Checked lower facts rootedCapacity_recursion, rootedCapacity_pos, child admissibility, and rootedChildComponent_card_lt are all proved and semantically match. Retry condition: create and prove one private size-indexed upper-bound theorem that carries an explicit natural bound on `Fintype.card V` and returns `rootedCapacity G w ρ < 1`; then retry this public theorem by pairing that result with rootedCapacity_pos, without changing its statement or interface identity.",
-    "target_state": "proved"
+    "summary": "The required public statement was successfully captured with exact qualified Lean name PositiveDefiniteTreeLattice.capacity_pos_lt_one, reached proof_planned, and preserves the accepted strict positivity-and-upper-bound semantics. No Proof Formal artifact was accepted. Blocker classification: Lean-specific helper/representation complexity. The full-datum polymorphic strong-induction proof reaches the child-capacity summands but exhausts the fixed 200000-heartbeat budget while normalizing them against the induction predicate; raising heartbeats is prohibited. Checked lower facts rootedCapacity_recursion, rootedCapacity_pos, child admissibility, and rootedChildComponent_card_lt are all proved and semantically match.",
+    "target_state": "proved",
+    "execution_constraints": "Create and prove one private size-indexed upper-bound theorem carrying an explicit natural bound on Fintype.card V and returning rootedCapacity G w ρ < 1; then retry this public theorem by pairing that result with rootedCapacity_pos, without changing its statement or interface identity."
   },
   "lean_decl_name": "PositiveDefiniteTreeLattice.capacity_pos_lt_one",
   "proof": {
@@ -226,6 +209,11 @@
           "schema_version": 2,
           "summary": "Diagnostics returned 1 items"
         },
+        "fingerprint": {
+          "environment_sha256": null,
+          "source_sha256": "f6c87f062f9010d1994ccd8668759e6d805e9b0ca8cd214527fc4085a56e54d3",
+          "upstream_revision": null
+        },
         "message": "Lean check passed.",
         "policy": "statement_formal",
         "scan": {
@@ -250,7 +238,15 @@
           "summary": "sorry=1, admit=0, axiom=0, opaque=0, unsafe=0",
           "unsafe_count": 0
         },
-        "status": "passed"
+        "schema_version": 1,
+        "status": "passed",
+        "subject": {
+          "declaration_name": null,
+          "module": "PositiveDefiniteTreeLattice.Main.RootedCapacity.Theorems.capacity_pos_lt_one",
+          "repo_file_path": "PositiveDefiniteTreeLattice/Main/RootedCapacity/Theorems/capacity_pos_lt_one.lean",
+          "repo_kind": "native",
+          "stage": "statement"
+        }
       },
       "code": "-- lean-constellation: managed-imports-begin\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Prelude\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.IsAdmissibleRootedTree\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedCapacity\n-- lean-constellation: managed-imports-end\n\n-- lean-constellation: declaration-source-begin\n\n/--\n# lean-constellation target: `capacity_pos_lt_one`\n\nIn namespace `PositiveDefiniteTreeLattice`, declare the public theorem\n`PositiveDefiniteTreeLattice.capacity_pos_lt_one`.\n\nFor every finite decidable vertex type, graph `G` with decidable adjacency, integer weight `w`, root\n`ρ`, and admissibility witness `hAdm : IsAdmissibleRootedTree G w ρ`, the existing rational capacity\nsatisfies exactly\n```\n0 < rootedCapacity G w ρ ∧ rootedCapacity G w ρ < 1.\n```\n\nThis preserves the existing rational total-inverse definition of `rootedCapacity` and introduces no\nsupplementary tree, positivity, denominator, weight, or component assumptions. The conjunction has\nthe stated lower-then-upper order: its lower bound is the existing `rootedCapacity_pos`, while its\nupper bound is the source’s strict child-subtree induction together with the existing capacity\nrecursion.\n\n## Sources\n\n- Source `solution.tex`, lines 47–82\n\n## Statement dependencies\n\n- `Main.RootedCapacity::IsAdmissibleRootedTree` → `IsAdmissibleRootedTree` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.IsAdmissibleRootedTree`\n- `Main.RootedCapacity::rootedCapacity` → `rootedCapacity` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedCapacity`\n-/\n\ntheorem PositiveDefiniteTreeLattice.capacity_pos_lt_one {V : Type*} [Fintype V] [DecidableEq V]\n    (G : SimpleGraph V) [DecidableRel G.Adj] (w : V → ℤ) (ρ : V)\n    (hAdm : IsAdmissibleRootedTree G w ρ) :\n    0 < rootedCapacity G w ρ ∧ rootedCapacity G w ρ < 1 := by\n  sorry\n"
     },

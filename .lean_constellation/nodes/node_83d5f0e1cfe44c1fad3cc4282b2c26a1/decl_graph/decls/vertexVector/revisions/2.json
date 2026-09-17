@@ -1,14 +1,13 @@
 {
   "change": {
-    "anticipated_proof_dep_names": [],
-    "anticipated_statement_dep_names": [],
     "base_revision": 1,
     "kind": "update",
-    "objective": "Advance the unchanged rev:1 plan through formal capture using exactly formal_target.lean lines 13–15: u ↦ if u = v then (1 : ℤ) else 0. It has no current-node lower dependency and supplies the stable public coordinate function for later vertex-vector pairing facts and downstream consumers.",
+    "objective": "Revision 2 records the accepted public `vertexVector` definition from formal_target.lean lines 13–15: `u ↦ if u = v then (1 : ℤ) else 0`. It has no current-node lower dependency and supplies the stable public coordinate function for later vertex-vector pairing facts and downstream consumers.",
     "require_target_state_satisfied": true,
-    "reset_to_state": "planned",
-    "summary": "Intended to advance the exact public definition from formal_target.lean lines 13–15. Statement NL and Statement Formal completed; the compiler accepted Lean declaration vertexVector in PositiveDefiniteTreeLattice.Main.LatticeFoundations.Defs.vertexVector, and the revision reached declared with no statement or dependency-readiness mismatch. Proof stages were skipped because this is a definition. The round failed only its literal target_state=proved check: this non-theorem has no proof layer and remains statically declared, while graph-proved proof-policy satisfaction reduces to declared-level satisfaction. Consumer-side representation is preserved as the integer function u ↦ if u = v then 1 else 0, with no missing helper or provider. Do not redo the accepted Statement to seek a nonexistent proof state; after closeout, verify declared satisfaction and use it for tracked vertex-vector facts.",
-    "target_state": "proved"
+    "start_stage": "statement_nl",
+    "summary": "The exact public definition from formal_target.lean lines 13–15 was captured. Statement NL and Statement Formal completed; the compiler accepted Lean declaration vertexVector in PositiveDefiniteTreeLattice.Main.LatticeFoundations.Defs.vertexVector, and the revision reached declared with no statement or dependency-readiness mismatch. Proof stages were skipped because this is a definition. The round failed only its literal target_state=proved check: this non-theorem has no proof layer and remains statically declared, while graph-proved proof-policy satisfaction reduces to declared-level satisfaction. Consumer-side representation is preserved as the integer function u ↦ if u = v then 1 else 0, with no missing helper or provider.",
+    "target_state": "proved",
+    "execution_constraints": "Use the unchanged rev:1 plan and exact formal_target.lean lines 13–15 during formal capture. Do not redo the accepted Statement to seek a nonexistent proof state; after closeout, verify declared satisfaction and use this definition for tracked vertex-vector facts."
   },
   "lean_decl_name": "vertexVector",
   "proof": null,
@@ -29,6 +28,11 @@
           "schema_version": 2,
           "summary": "Command completed successfully"
         },
+        "fingerprint": {
+          "environment_sha256": null,
+          "source_sha256": "8e218f2d17a3317017e09ffb6940d3baa1d082d3eaeb72de6bf66097159080cc",
+          "upstream_revision": null
+        },
         "message": "Lean check passed.",
         "policy": "statement_formal",
         "scan": {
@@ -46,7 +50,15 @@
           "summary": "sorry=0, admit=0, axiom=0, opaque=0, unsafe=0",
           "unsafe_count": 0
         },
-        "status": "passed"
+        "schema_version": 1,
+        "status": "passed",
+        "subject": {
+          "declaration_name": null,
+          "module": "PositiveDefiniteTreeLattice.Main.LatticeFoundations.Defs.vertexVector",
+          "repo_file_path": "PositiveDefiniteTreeLattice/Main/LatticeFoundations/Defs/vertexVector.lean",
+          "repo_kind": "native",
+          "stage": "statement"
+        }
       },
       "code": "-- lean-constellation: managed-imports-begin\nimport PositiveDefiniteTreeLattice.Main.LatticeFoundations.Prelude\n-- lean-constellation: managed-imports-end\n\n-- lean-constellation: declaration-source-begin\n\n/--\n# lean-constellation target: `vertexVector`\n\nFor a type `V` with decidable equality and a vertex `v : V`, `vertexVector v : V → ℤ` is the\ncoordinate function sending a vertex `u` to `1` when `u = v` and to `0` otherwise.\n\n## Sources\n\n- Source `formal_target.lean`, lines 13–15\n-/\ndef vertexVector {V : Type*} [DecidableEq V] (v : V) : V → ℤ :=\n  fun u => if u = v then 1 else 0\n"
     },

@@ -1,4 +1,4 @@
-[← Public API](../PUBLIC_API.md) · [Public boundaries](../PUBLIC_BOUNDARIES.md)
+[← Public API](../PUBLIC_API.md) · [Public boundaries](../PUBLIC_BOUNDARIES.md) · [Complete graph](../DECLARATION_GRAPH.md)
 
 # `rootedGram`
 
@@ -10,9 +10,13 @@ The rational Gram matrix obtained by scalar-extending the repository tree pairin
 - State: `declared`
 - Revision status: `committed`
 - Repository completion: `graph_proved`
-- Formal code: final statement projection
+- Compatibility `formal_code`: final statement projection
 
-## Lean code
+## Statement NL
+
+For a finite integer-weighted simple graph `G` with weight function `w`, define `rootedGram G w` as the rational matrix indexed by the vertices of `G` whose `(u, v)` entry is the integer value `treePairing G w (vertexVector u) (vertexVector v)` coerced to `ℚ`.  It is therefore the exact rational scalar extension of the repository tree pairing in the vertex-vector basis.
+
+## Statement Formal
 
 ```lean
 -- lean-constellation: managed-imports-begin
@@ -47,6 +51,14 @@ def rootedGram {V : Type*} [Fintype V] [DecidableEq V] (G : SimpleGraph V)
       (PositiveDefiniteTreeLattice.vertexVector u)
       (PositiveDefiniteTreeLattice.vertexVector v) : ℚ)
 ```
+
+## Proof NL
+
+Not recorded.
+
+## Proof Formal
+
+Not recorded.
 
 ## Statement dependencies
 

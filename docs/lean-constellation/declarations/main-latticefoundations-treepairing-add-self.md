@@ -1,4 +1,4 @@
-[← Public API](../PUBLIC_API.md) · [Public boundaries](../PUBLIC_BOUNDARIES.md)
+[← Public API](../PUBLIC_API.md) · [Public boundaries](../PUBLIC_BOUNDARIES.md) · [Complete graph](../DECLARATION_GRAPH.md)
 
 # `treePairing_add_self`
 
@@ -10,9 +10,61 @@ Self-pairing of a sum expands with twice the cross-pairing.
 - State: `proved`
 - Revision status: `committed`
 - Repository completion: `graph_proved`
-- Formal code: final proof projection
+- Compatibility `formal_code`: final proof projection
 
-## Lean code
+## Statement NL
+
+For a finite type `V` with decidable equality, a simple graph `G : SimpleGraph V` with decidable adjacency, an integer-valued weight function `weight : V → ℤ`, and functions `a b : V → ℤ`, the self-pairing of their pointwise sum satisfies
+
+`treePairing G weight (a + b) (a + b) = treePairing G weight a a + treePairing G weight b b + 2 * treePairing G weight a b`.
+
+The cross term is oriented as `treePairing G weight a b`.
+
+## Statement Formal
+
+```lean
+-- lean-constellation: managed-imports-begin
+import PositiveDefiniteTreeLattice.Main.LatticeFoundations.Prelude
+import PositiveDefiniteTreeLattice.Main.LatticeFoundations.Defs.treePairingAnchor
+-- lean-constellation: managed-imports-end
+
+-- lean-constellation: declaration-source-begin
+
+/--
+# lean-constellation target: `treePairing_add_self`
+
+For a finite type `V` with decidable equality, a simple graph `G : SimpleGraph V` with decidable
+adjacency, an integer-valued weight function `weight : V → ℤ`, and functions `a b : V → ℤ`, the
+self-pairing of their pointwise sum satisfies
+
+`treePairing G weight (a + b) (a + b) = treePairing G weight a a + treePairing G weight b b + 2 *
+treePairing G weight a b`.
+
+The cross term is oriented as `treePairing G weight a b`.
+
+## Sources
+
+- Source `solution.tex`, lines 25–28
+
+## Statement dependencies
+
+- `Main.LatticeFoundations::treePairingAnchor` → `PositiveDefiniteTreeLattice.treePairing` from
+  `PositiveDefiniteTreeLattice.Main.LatticeFoundations.Defs.treePairingAnchor`
+-/
+theorem PositiveDefiniteTreeLattice.treePairing_add_self {V : Type*} [Fintype V] [DecidableEq V]
+    (G : SimpleGraph V) [DecidableRel G.Adj] (weight : V → ℤ) (a b : V → ℤ) :
+    PositiveDefiniteTreeLattice.treePairing G weight (a + b) (a + b) =
+      PositiveDefiniteTreeLattice.treePairing G weight a a +
+        PositiveDefiniteTreeLattice.treePairing G weight b b +
+          2 * PositiveDefiniteTreeLattice.treePairing G weight a b := by
+  sorry
+```
+
+## Proof NL
+
+Apply the proved fresh-anchor additivity laws to expand the left-hand side in the source-prescribed order.  First use `PositiveDefiniteTreeLattice.treePairing_add_left` with second argument `a + b` to obtain `treePairing G weight a (a + b) + treePairing G weight b (a + b)`.  Apply `PositiveDefiniteTreeLattice.treePairing_add_right` to each summand, giving `treePairing G weight a a + treePairing G weight a b + (treePairing G weight b a + treePairing G weight b b)`.  Rewrite `treePairing G weight b a` to `treePairing G weight a b` using the proved `PositiveDefiniteTreeLattice.treePairing_symm`.  Finally normalize the integer addition by `ring`; this yields exactly `treePairing G weight a a + treePairing G weight b b + 2 * treePairing G weight a b`, preserving the required equality direction, term order, and cross-term orientation.
+
+## Proof Formal
 
 ```lean
 -- lean-constellation: managed-imports-begin

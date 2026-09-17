@@ -1,14 +1,13 @@
 {
   "change": {
-    "anticipated_proof_dep_names": [],
-    "anticipated_statement_dep_names": [],
     "base_revision": 1,
     "kind": "update",
-    "objective": "Keep revision 1's accepted rational/integer statement unchanged and complete its ordered-arithmetic proof for b_0010 lines 129–148. It will combine with the proved unitIntervalCompensationNonneg and the finite-sum triangle inequality in the public rooted_integer_estimate.",
+    "objective": "Revision 2 records the proved accepted rational/integer endpoint-distance theorem for b_0010 lines 129–148, preserving revision 1's statement. It combines with proved unitIntervalCompensationNonneg and the finite-sum triangle inequality in the public rooted_integer_estimate.",
     "require_target_state_satisfied": true,
-    "reset_to_state": "declared",
+    "start_stage": "proof_nl",
     "summary": "Updated rationalUnitIntervalIntegerDistance from revision 1's declared statement without semantic change. Proof NL and Proof Formal completed and passed; the ordered-rational distance theorem is ready to commit as proved and graph_proved-satisfied. No blocker remains for this declaration.",
-    "target_state": "proved"
+    "target_state": "proved",
+    "execution_constraints": "Keep revision 1's accepted rational/integer statement unchanged and complete its ordered-arithmetic proof for b_0010 lines 129–148; use the result with unitIntervalCompensationNonneg and the finite-sum triangle inequality in rooted_integer_estimate."
   },
   "lean_decl_name": "rationalUnitIntervalIntegerDistance",
   "proof": {
@@ -43,6 +42,11 @@
           "schema_version": 2,
           "summary": "Diagnostics returned 0 items"
         },
+        "fingerprint": {
+          "environment_sha256": null,
+          "source_sha256": "ca5e1b42f418e7c2fbff11b27834c201051ad34416e4d647ddb9e9d7d1902cf7",
+          "upstream_revision": null
+        },
         "message": "Lean check passed.",
         "policy": "proof_formal",
         "scan": {
@@ -60,7 +64,15 @@
           "summary": "sorry=0, admit=0, axiom=0, opaque=0, unsafe=0",
           "unsafe_count": 0
         },
-        "status": "passed"
+        "schema_version": 1,
+        "status": "passed",
+        "subject": {
+          "declaration_name": null,
+          "module": "PositiveDefiniteTreeLattice.Main.RootedEstimates.Theorems.rationalUnitIntervalIntegerDistance",
+          "repo_file_path": "PositiveDefiniteTreeLattice/Main/RootedEstimates/Theorems/rationalUnitIntervalIntegerDistance.lean",
+          "repo_kind": "native",
+          "stage": "proof"
+        }
       },
       "code": "-- lean-constellation: managed-imports-begin\nimport PositiveDefiniteTreeLattice.Main.RootedEstimates.Prelude\nimport Mathlib.Algebra.Order.Group.Unbundled.Abs\n-- lean-constellation: managed-imports-end\n\n-- lean-constellation: declaration-source-begin\n\n/--\n# lean-constellation target: `rationalUnitIntervalIntegerDistance`\n\nLet `k` and `N` be integers and let `tau` be a rational number. Assume\n\n`(k : ℚ) < tau` and `tau < (k : ℚ) + 1`.\n\nThen the distance from `tau` to the arbitrary integer `N` bounds both endpoint distances below:\n\n`min (tau - (k : ℚ)) ((k : ℚ) + 1 - tau) ≤ |tau - (N : ℚ)|`.\n\n## Sources\n\n- Source `solution.tex`, lines 129–148\n\n## Proof outline\n\nPut `m := min (tau - (k : ℚ)) ((k : ℚ) + 1 - tau)`. The strict hypotheses place `tau` between the\nconsecutive integers `k` and `k + 1`. Integer discreteness, discharged by `omega` together with cast\nnormalization, gives the exhaustive split `N ≤ k` or `k + 1 ≤ N`.\n\nIf `N ≤ k`, then `tau - (N : ℚ) ≥ tau - (k : ℚ) > 0`. Rewrite the absolute value with\n`abs_of_nonneg`; the defining lower bound for `min` gives `m ≤ tau - (k : ℚ) ≤ |tau - (N : ℚ)|`. If\n`k + 1 ≤ N`, then `(N : ℚ) - tau ≥ (k : ℚ) + 1 - tau > 0`. Rewrite the absolute value with\n`abs_of_nonpos` and obtain `m ≤ (k : ℚ) + 1 - tau ≤ |tau - (N : ℚ)|`. The remaining cast and\nlinear-order rearrangements are lightweight ordered-field calculations. This is the\ndistance-to-integers endpoint argument in b_0010 lines 129–148.\n\n## Proof sources\n\n- Source `solution.tex`, lines 129–148\n\n## Proof dependencies\n\n- `abs_of_nonneg` from `Mathlib.Algebra.Order.Group.Unbundled.Abs`\n- `abs_of_nonpos` from `Mathlib.Algebra.Order.Group.Unbundled.Abs`\n-/\ntheorem rationalUnitIntervalIntegerDistance (k N : ℤ) (tau : ℚ)\n    (hk_lt_tau : (k : ℚ) < tau) (htau_lt_k_one : tau < (k : ℚ) + 1) :\n    min (tau - (k : ℚ)) ((k : ℚ) + 1 - tau) ≤ |tau - (N : ℚ)| := by\n  by_cases hNk : N ≤ k\n  · have hNkQ : (N : ℚ) ≤ (k : ℚ) := by\n      exact_mod_cast hNk\n    rw [abs_of_nonneg]\n    · exact le_trans (min_le_left _ _) (by linarith)\n    · linarith\n  · have hkN : k + 1 ≤ N := by omega\n    have hkNQ : (k : ℚ) + 1 ≤ (N : ℚ) := by\n      exact_mod_cast hkN\n    rw [abs_of_nonpos]\n    · exact le_trans (min_le_right _ _) (by linarith)\n    · linarith\n"
     },
@@ -105,6 +117,11 @@
           "schema_version": 2,
           "summary": "Diagnostics returned 1 items"
         },
+        "fingerprint": {
+          "environment_sha256": null,
+          "source_sha256": "d1a0aa5901d38c087810bf4cf7cc53978a97e986e21f9d12b63b9fae217a1efa",
+          "upstream_revision": null
+        },
         "message": "Lean check passed.",
         "policy": "statement_formal",
         "scan": {
@@ -129,7 +146,15 @@
           "summary": "sorry=1, admit=0, axiom=0, opaque=0, unsafe=0",
           "unsafe_count": 0
         },
-        "status": "passed"
+        "schema_version": 1,
+        "status": "passed",
+        "subject": {
+          "declaration_name": null,
+          "module": "PositiveDefiniteTreeLattice.Main.RootedEstimates.Theorems.rationalUnitIntervalIntegerDistance",
+          "repo_file_path": "PositiveDefiniteTreeLattice/Main/RootedEstimates/Theorems/rationalUnitIntervalIntegerDistance.lean",
+          "repo_kind": "native",
+          "stage": "statement"
+        }
       },
       "code": "-- lean-constellation: managed-imports-begin\nimport PositiveDefiniteTreeLattice.Main.RootedEstimates.Prelude\n-- lean-constellation: managed-imports-end\n\n-- lean-constellation: declaration-source-begin\n\n/--\n# lean-constellation target: `rationalUnitIntervalIntegerDistance`\n\nLet `k` and `N` be integers and let `tau` be a rational number. Assume\n\n`(k : ℚ) < tau` and `tau < (k : ℚ) + 1`.\n\nThen the distance from `tau` to the arbitrary integer `N` bounds both endpoint distances below:\n\n`min (tau - (k : ℚ)) ((k : ℚ) + 1 - tau) ≤ |tau - (N : ℚ)|`.\n\n## Sources\n\n- Source `solution.tex`, lines 129–148\n-/\ntheorem rationalUnitIntervalIntegerDistance (k N : ℤ) (tau : ℚ)\n    (hk_lt_tau : (k : ℚ) < tau) (htau_lt_k_one : tau < (k : ℚ) + 1) :\n    min (tau - (k : ℚ)) ((k : ℚ) + 1 - tau) ≤ |tau - (N : ℚ)| := by\n  sorry\n"
     },

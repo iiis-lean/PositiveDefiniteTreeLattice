@@ -1,14 +1,12 @@
 {
   "change": {
-    "anticipated_proof_dep_names": [],
-    "anticipated_statement_dep_names": [],
     "base_revision": null,
     "kind": "create",
-    "objective": "Define the finite rational matrix representing the exact Main.LatticeFoundations.treePairing after scalar extension, preserving the contract's integer-weighted tree semantics and solution.tex lines 39–45. Consume only the visible treePairing/vertexVector API, with no current-node declaration dependency. Serve the later public admissibility and rootedCapacity statements and the Schur-complement proof of capacity_pos_lt_one.",
+    "objective": "Revision 1 records the public rational rootedGram definition from SourceIndex b_0008 / solution.tex lines 39–45. It is the finite rational scalar extension of Main.LatticeFoundations.treePairing in the vertexVector basis, with no current-node declaration dependency, and supplies the later admissibility, rootedCapacity, and capacity_pos_lt_one mathematics.",
     "require_target_state_satisfied": true,
-    "reset_to_state": null,
-    "summary": "Intended public rational Gram definition preserving Main.LatticeFoundations.treePairing and SourceIndex b_0008 / solution.tex lines 39–45. Statement NL was accepted and the revision reached specified, but no formal statement was captured and target declared was not reached. Blocker classification: visible-provider/interface import conflict, not a source or matrix-design mismatch. RootedCapacity.Prelude imports Main.LatticeFoundations.Interfaces; its transitive Defs.Irreducible module declares global `Irreducible`, conflicting with Mathlib.Algebra.Group.Irreducible.Defs under the required Matrix.PosDef/Mathlib imports. Retry after that external provider naming/interface conflict is repaired; then the exact treePairing-to-ℚ matrix goal can proceed unchanged.",
-    "target_state": "declared"
+    "summary": "Intended public rational Gram definition preserving Main.LatticeFoundations.treePairing and SourceIndex b_0008 / solution.tex lines 39–45. Statement NL was accepted and the revision reached specified, but no formal statement was captured and target declared was not reached. Blocker classification: visible-provider/interface import conflict, not a source or matrix-design mismatch. RootedCapacity.Prelude imports Main.LatticeFoundations.Interfaces; its transitive Defs.Irreducible module declares global Irreducible, conflicting with Mathlib.Algebra.Group.Irreducible.Defs under the required Matrix.PosDef/Mathlib imports. No source or matrix-design mismatch was found, and the exact treePairing-to-ℚ matrix goal remains unchanged.",
+    "target_state": "declared",
+    "execution_constraints": "After the external provider/interface naming conflict is repaired, capture and validate the exact rational rootedGram declaration against the existing treePairing/vertexVector API; keep the current-node dependency absent and preserve the source semantics."
   },
   "lean_decl_name": null,
   "proof": null,

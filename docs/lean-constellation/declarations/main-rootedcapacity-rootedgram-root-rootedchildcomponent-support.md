@@ -1,4 +1,4 @@
-[← Public API](../PUBLIC_API.md) · [Public boundaries](../PUBLIC_BOUNDARIES.md)
+[← Public API](../PUBLIC_API.md) · [Public boundaries](../PUBLIC_BOUNDARIES.md) · [Complete graph](../DECLARATION_GRAPH.md)
 
 # `rootedGram_root_rootedChildComponent_support`
 
@@ -10,9 +10,131 @@ The rooted Gram root row and column on an attached child component are supported
 - State: `proved`
 - Revision status: `committed`
 - Repository completion: `graph_proved`
-- Formal code: final proof projection
+- Compatibility `formal_code`: final proof projection
 
-## Lean code
+## Statement NL
+
+Let `V` be a finite type with decidable equality, let `G` be a simple graph on `V` with decidable adjacency, let `hG : G.IsTree`, let `w : V → ℤ`, let `ρ : V`, let
+
+`c : {c : V // c ∈ rootedChildren G hG ρ ρ}`,
+
+and write `C := rootedChildComponent G ρ c.1` and `r_c := rootedChildRoot G ρ c.1`. The finite component type `C` uses the canonical `Fintype.ofFinite` convention.
+
+The theorem retains both pointwise support formulas, for every `x : C`:
+
+`rootedGram G w ρ (x : V) = if x = r_c then -1 else 0`,
+
+and
+
+`rootedGram G w (x : V) ρ = if x = r_c then -1 else 0`.
+
+It also supplies the following consequences for every opaque rational-valued function `f : C → ℚ`:
+
+`∑ x : C, rootedGram G w ρ (x : V) * f x = - f r_c`,
+
+and
+
+`∑ x : C, f x * rootedGram G w (x : V) ρ = - f r_c`.
+
+Thus both weighted finite sums collapse to the unique canonical child-root coordinate with the correct `-1` scalar. The statement contains no admissibility, inverse matrix, capacity, or Sigma-indexed expression.
+
+## Statement Formal
+
+```lean
+-- lean-constellation: managed-imports-begin
+import PositiveDefiniteTreeLattice.Main.RootedCapacity.Prelude
+import Mathlib.Algebra.BigOperators.Group.Finset.Defs
+import Mathlib.Combinatorics.SimpleGraph.Acyclic
+import Mathlib.Combinatorics.SimpleGraph.Connectivity.Connected
+import Mathlib.Data.Fintype.EquivFin
+import PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildComponent
+import PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildRoot
+import PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildren
+import PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedGram
+-- lean-constellation: managed-imports-end
+
+-- lean-constellation: declaration-source-begin
+
+/--
+# lean-constellation target: `rootedGram_root_rootedChildComponent_support`
+
+Let `V` be a finite type with decidable equality, let `G` be a simple graph on `V` with decidable
+adjacency, let `hG : G.IsTree`, let `w : V → ℤ`, let `ρ : V`, let
+
+`c : {c : V // c ∈ rootedChildren G hG ρ ρ}`,
+
+and write `C := rootedChildComponent G ρ c.1` and `r_c := rootedChildRoot G ρ c.1`. Use the
+canonical `Fintype.ofFinite` convention for the finite component type `C`.
+
+The theorem retains both pointwise support formulas, for every `x : C`:
+
+`rootedGram G w ρ (x : V) = if x = r_c then -1 else 0`,
+
+and
+
+`rootedGram G w (x : V) ρ = if x = r_c then -1 else 0`.
+
+It also supplies the following consequences for every opaque rational-valued function `f : C → ℚ`:
+
+`∑ x : C, rootedGram G w ρ (x : V) * f x = - f r_c`,
+
+and
+
+`∑ x : C, f x * rootedGram G w (x : V) ρ = - f r_c`.
+
+Thus both weighted finite sums collapse to the unique canonical child-root coordinate with the
+correct `-1` scalar. The statement contains no admissibility, inverse matrix, capacity, or
+Sigma-indexed expression.
+
+## Sources
+
+- Source `solution.tex`, line 63
+
+## Statement dependencies
+
+- `Finset.sum` from `Mathlib.Algebra.BigOperators.Group.Finset.Defs`
+- `SimpleGraph.IsTree` from `Mathlib.Combinatorics.SimpleGraph.Acyclic`
+- `SimpleGraph.ConnectedComponent.instFinite` from
+  `Mathlib.Combinatorics.SimpleGraph.Connectivity.Connected`
+- `Fintype.ofFinite` from `Mathlib.Data.Fintype.EquivFin`
+- `Main.RootedCapacity::rootedChildComponent` → `rootedChildComponent` from
+  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildComponent`
+- `Main.RootedCapacity::rootedChildRoot` → `rootedChildRoot` from
+  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildRoot`
+- `Main.RootedCapacity::rootedChildren` → `rootedChildren` from
+  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildren`
+- `Main.RootedCapacity::rootedGram` → `rootedGram` from
+  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedGram`
+-/
+theorem rootedGram_root_rootedChildComponent_support {V : Type*} [Fintype V] [DecidableEq V]
+    (G : SimpleGraph V) [DecidableRel G.Adj] (hG : G.IsTree) (w : V → ℤ) (ρ : V)
+    (c : {c : V // c ∈ rootedChildren G hG ρ ρ}) :
+    let C := rootedChildComponent G ρ c.1
+    letI : Fintype C := Fintype.ofFinite C
+    (∀ x : C,
+      (rootedGram G w ρ (x : V) =
+        if x = rootedChildRoot G ρ c.1 then (-1 : ℚ) else 0) ∧
+      (rootedGram G w (x : V) ρ =
+        if x = rootedChildRoot G ρ c.1 then (-1 : ℚ) else 0)) ∧
+    (∀ f : C → ℚ,
+      (∑ x : C, rootedGram G w ρ (x : V) * f x = -f (rootedChildRoot G ρ c.1)) ∧
+      (∑ x : C, f x * rootedGram G w (x : V) ρ = -f (rootedChildRoot G ρ c.1))) := by
+  sorry
+```
+
+## Proof NL
+
+Expand the declared component and canonical Fintype lets and work classically.  Extract hcAdj : G.Adj ρ c.1 from c.property.  For each x : C, obtain hxne : (x : V) ≠ ρ from rootedChildComponent_parent_not_mem G ρ c.1 hG hcAdj x.
+
+Establish the pointwise support equivalence
+  (x : V) ∈ rootedChildren G hG ρ ρ ↔ x = rootedChildRoot G ρ c.1
+using rootedChildComponent_partition G hG ρ (x : V) hxne.  Its uniqueness compares x.property with the canonical membership of x.val in the component rooted at itself, so the unique ambient child label is both c.1 and x.val; use Subtype.ext to obtain the equality to rootedChildRoot.  The converse follows after substitution from c.property.
+
+Use rootedGram_root_nonroot and this support equivalence for the row formula.  For the column formula, unfold rootedGram, apply treePairing_vertexVector_vertexVector to the two entries, and simplify with hxne and SimpleGraph.adj_comm to obtain equality with the row; reuse the row formula.  Package these two facts as the required pointwise conjunction for every x.
+
+For each arbitrary f : C → ℚ, rewrite every summand in the first finite sum by the row pointwise formula.  Apply Finset.sum_eq_single (rootedChildRoot G ρ c.1): at the selected coordinate the product simplifies to -f (rootedChildRoot G ρ c.1), and every other coordinate is zero because its if-test is false.  Repeat identically for the second finite sum, using the column pointwise formula and the selected-coordinate simplification f r * (-1) = -f r.  Keep f opaque throughout; do not introduce inverse, capacity, admissibility, or Sigma terms.
+
+## Proof Formal
 
 ```lean
 -- lean-constellation: managed-imports-begin

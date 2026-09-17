@@ -1,18 +1,13 @@
 {
-  "change_summaries": {},
   "committed_at": "2026-08-02T15:23:06Z",
   "created_at": "2026-08-02T14:57:42Z",
-  "discard_reason": null,
   "discarded_at": null,
   "discarded_by": null,
-  "discarded_created_decl_names": [],
-  "discarded_restored_decl_revisions": {},
-  "discarded_revision_refs": [],
   "execution_completed_at": "2026-08-02T15:20:44Z",
   "execution_reason": "The approved public theorem rootedGram_rootedChildComponent cannot be applied to the frozen statement's component graph because its conclusion uses a distinct canonical Fintype/DecidableRel instance. Lean reports the component rootedGram expressions are not definitionally equal. A locally compiled workaround requires treePairing_vertexVector_vertexVector, but add_proof_repo_dependency rejects that helper as non-public, so capturing it would violate the node visibility boundary.",
   "execution_result_kind": "blocked",
   "node_path": "Main.IrreducibleVertex",
-  "objective": "Complete rootedChildComponent_isAdmissible_of_unique_underweight from its accepted declared statement now that the specialized component degree equality is proved.",
+  "objective": "Round 7 addressed the component-admissibility parent using the proved specialized component degree equality.",
   "plan_closeout_acknowledged_at": "2026-08-02T15:23:06Z",
   "plan_closeout_acknowledged_by": "a_a235941c8c524917a1ed4a78f90c75ba",
   "result_kind": "blocked",
@@ -29,5 +24,5 @@
   "started_at": "2026-08-02T14:58:51Z",
   "status": "committed",
   "strategy_id": "strategy_b4700cd2358b41f2a38edf0cd0224c18",
-  "summary": "The strategy advanced the admissibility parent only from declared to proof_planned; no declaration reached proved or became proved-policy satisfied in this round. The remaining blocker is a provider-boundary/Lean-instance mismatch, not a predictable current-node helper: rootedGram_rootedChildComponent uses a distinct canonical component Fintype/DecidableRel instance, while the only verified local workaround depends on non-public treePairing_vertexVector_vertexVector. The parent should not be retried until RootedCapacity provides an instance-stable rooted-Gram transport or LatticeFoundations publicly exposes the pairing bridge. The next action should be a precise Content blocker for Coordinator/provider repair, since resource and Mathlib recon cannot change repository visibility."
+  "summary": "The strategy advanced the admissibility parent only from declared to proof_planned; no declaration reached proved or became proved-policy satisfied in this round. The remaining blocker is a provider-boundary/Lean-instance mismatch, not a predictable current-node helper: rootedGram_rootedChildComponent uses a distinct canonical component Fintype/DecidableRel instance, while the only verified local workaround depends on non-public treePairing_vertexVector_vertexVector. The required provider resolution is an instance-stable rooted-Gram transport from RootedCapacity or a publicly exposed pairing bridge from LatticeFoundations; resource and Mathlib recon cannot change repository visibility."
 }

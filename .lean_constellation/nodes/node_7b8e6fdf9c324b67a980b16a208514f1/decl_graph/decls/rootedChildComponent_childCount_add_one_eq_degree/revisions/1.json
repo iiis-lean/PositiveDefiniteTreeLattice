@@ -1,13 +1,10 @@
 {
   "change": {
-    "anticipated_proof_dep_names": [],
-    "anticipated_statement_dep_names": [],
     "base_revision": null,
     "kind": "create",
     "objective": "Formalize the exact equality d_T(x) = ch_C(x) + 1 from solution.tex:199-203 in the repository's component representation. For a finite tree G, root v, root child c, and vertex x of rootedChildComponent G v c rooted at rootedChildRoot G v c, prove that the component rootedChildCount at x plus one equals the ambient natural degree G.degree x (in the equivalent orientation convenient for Lean). Use the accepted Main.RootedCapacity rootedChildComponent, rootedChildRoot, rootedChildCount_rootedChildComponent, rootedChildren, and tree/component path APIs. Keep this theorem specialized to the deleted component used in the final assembly; it is the precise missing proof dependency needed to combine ambient degree ≤ weight with the last admissibility field of rootedChildComponent_isAdmissible_of_unique_underweight.",
     "require_target_state_satisfied": true,
-    "reset_to_state": null,
-    "summary": "Created PositiveDefiniteTreeLattice.rootedChildComponent_childCount_add_one_eq_degree; its statement and Proof NL plan were accepted, reaching proof_planned, but Proof Formal blocked. After rewriting with the checked provider theorem rootedChildCount_rootedChildComponent, the exact unresolved goal is the generic nonroot rooted-tree equality `rootedChildCount G h_tree v (x : V) + 1 = G.degree (x : V)`. The concrete missing core is a reusable predecessor/neighbor partition: for the unique predecessor p of nonroot x on the v-to-x path, `G.neighborFinset (x : V) = insert p (rootedChildren G h_tree v (x : V))`, together with p not among the rooted children so cardinalities give the equality. This is a visible/provider dependency and scope-boundary mismatch, not source or statement drift: it is substantial generic rooted-tree infrastructure excluded from Main.IrreducibleVertex's boundary. Retry this helper from proof_planned only after Main.RootedCapacity (or another Coordinator-selected provider node) exposes a compatible proved public parent/child degree theorem. Then retry rootedChildComponent_isAdmissible_of_unique_underweight from declared with this helper proved.",
+    "summary": "Created PositiveDefiniteTreeLattice.rootedChildComponent_childCount_add_one_eq_degree; its statement and Proof NL plan were accepted, reaching proof_planned, but Proof Formal blocked. After rewriting with the checked provider theorem rootedChildCount_rootedChildComponent, the exact unresolved goal is the generic nonroot rooted-tree equality `rootedChildCount G h_tree v (x : V) + 1 = G.degree (x : V)`. The concrete missing core is a reusable predecessor/neighbor partition: for the unique predecessor p of nonroot x on the v-to-x path, `G.neighborFinset (x : V) = insert p (rootedChildren G h_tree v (x : V))`, together with p not among the rooted children so cardinalities give the equality. This is a visible/provider dependency and scope-boundary mismatch, not source or statement drift: it is substantial generic rooted-tree infrastructure excluded from Main.IrreducibleVertex's boundary. Resolution requires Main.RootedCapacity or another provider to expose a compatible proved public parent/child degree theorem; the dependent admissibility parent remains downstream of this unresolved helper.",
     "target_state": "proved"
   },
   "lean_decl_name": "PositiveDefiniteTreeLattice.rootedChildComponent_childCount_add_one_eq_degree",
@@ -169,6 +166,11 @@
           "schema_version": 2,
           "summary": "Diagnostics returned 1 items"
         },
+        "fingerprint": {
+          "environment_sha256": null,
+          "source_sha256": "3cc529d55d915d70e8b3de8204a9affd8d956bdd66c1873a9caed474951a2c1d",
+          "upstream_revision": null
+        },
         "message": "Lean check passed.",
         "policy": "statement_formal",
         "scan": {
@@ -193,7 +195,15 @@
           "summary": "sorry=1, admit=0, axiom=0, opaque=0, unsafe=0",
           "unsafe_count": 0
         },
-        "status": "passed"
+        "schema_version": 1,
+        "status": "passed",
+        "subject": {
+          "declaration_name": null,
+          "module": "PositiveDefiniteTreeLattice.Main.IrreducibleVertex.Lemmas.rootedChildComponent_childCount_add_one_eq_degree",
+          "repo_file_path": "PositiveDefiniteTreeLattice/Main/IrreducibleVertex/Lemmas/rootedChildComponent_childCount_add_one_eq_degree.lean",
+          "repo_kind": "native",
+          "stage": "statement"
+        }
       },
       "code": "-- lean-constellation: managed-imports-begin\nimport PositiveDefiniteTreeLattice.Main.IrreducibleVertex.Prelude\nimport Mathlib.Combinatorics.SimpleGraph.Acyclic\nimport Mathlib.Combinatorics.SimpleGraph.Connectivity.Connected\nimport Mathlib.Combinatorics.SimpleGraph.Finite\n-- lean-constellation: managed-imports-end\n\n-- lean-constellation: declaration-source-begin\n\nnoncomputable local instance rootedChildComponentFintype {V : Type*} [Fintype V]\n    (G : SimpleGraph V) (v c : V) : Fintype (rootedChildComponent G v c) :=\n  Fintype.ofFinite _\n\nnoncomputable local instance rootedChildComponentDecidableAdj {V : Type*} (G : SimpleGraph V)\n    (v c : V) : DecidableRel (rootedChildComponent G v c).toSimpleGraph.Adj :=\n  Classical.decRel _\n\n/--\n# lean-constellation target: `rootedChildComponent_childCount_add_one_eq_degree`\n\nLet `V` be a finite type with decidable equality, let `G : SimpleGraph V` have decidable adjacency\nand satisfy `h_tree : G.IsTree`, and let `v c : V` with `hc : c ∈ rootedChildren G h_tree v v`. For\nevery `x : rootedChildComponent G v c`, `rootedChildCount (rootedChildComponent G v c).toSimpleGraph\n(rootedChildComponent_isTree G v c h_tree) (rootedChildRoot G v c) x + 1 = G.degree (x : V)` as\nnatural numbers.\n\n## Sources\n\n- Source `solution.tex`, lines 199–203\n\n## Statement dependencies\n\n- `SimpleGraph.IsTree` from `Mathlib.Combinatorics.SimpleGraph.Acyclic`\n- `SimpleGraph.ConnectedComponent.toSimpleGraph` from\n  `Mathlib.Combinatorics.SimpleGraph.Connectivity.Connected`\n- `SimpleGraph.degree` from `Mathlib.Combinatorics.SimpleGraph.Finite`\n- `Main.RootedCapacity::rootedChildComponent` → `rootedChildComponent` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildComponent`\n- `Main.RootedCapacity::rootedChildComponent_isTree` → `rootedChildComponent_isTree` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Theorems.rootedChildComponent_isTree`\n- `Main.RootedCapacity::rootedChildCount` → `rootedChildCount` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildCount`\n- `Main.RootedCapacity::rootedChildRoot` → `rootedChildRoot` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildRoot`\n- `Main.RootedCapacity::rootedChildren` → `rootedChildren` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildren`\n-/\ntheorem PositiveDefiniteTreeLattice.rootedChildComponent_childCount_add_one_eq_degree\n    {V : Type*} [Fintype V] [DecidableEq V] (G : SimpleGraph V) [DecidableRel G.Adj]\n    (h_tree : G.IsTree) (v c : V) (hc : c ∈ rootedChildren G h_tree v v)\n    (x : rootedChildComponent G v c) :\n    rootedChildCount (rootedChildComponent G v c).toSimpleGraph\n        (rootedChildComponent_isTree G v c h_tree) (rootedChildRoot G v c) x + 1 =\n      G.degree (x : V) := by\n  sorry\n"
     },

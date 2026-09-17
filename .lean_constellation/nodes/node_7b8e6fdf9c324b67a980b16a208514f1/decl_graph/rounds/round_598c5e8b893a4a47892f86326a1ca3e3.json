@@ -1,13 +1,8 @@
 {
-  "change_summaries": {},
   "committed_at": "2026-08-03T10:30:11Z",
   "created_at": "2026-08-02T15:51:40Z",
-  "discard_reason": null,
   "discarded_at": null,
   "discarded_by": null,
-  "discarded_created_decl_names": [],
-  "discarded_restored_decl_revisions": {},
-  "discarded_revision_refs": [],
   "execution_completed_at": "2026-08-02T16:10:22Z",
   "execution_reason": "The essential child-component block-decomposition identity has no visible, applicable tracked helper. The rejected Proof NL route cannot be repaired within this stage without inventing a nontrivial matrix/reindexing proof.",
   "execution_result_kind": "blocked",
@@ -29,5 +24,5 @@
   "started_at": "2026-08-02T15:52:41Z",
   "status": "committed",
   "strategy_id": "strategy_76ba618705c64b1f82fbf54196336e0c",
-  "summary": "The strategy made statement-layer progress: rootedChildCapacitySum_lt_weight_of_unique_underweight is now declared with the exact source inequality, but it did not reach proved or become proof-policy satisfied. All earlier eight declarations remain usable, including the proved child-component admissibility lemma. The blocker is a provider-owned generic rooted-capacity block identity, not Source-visible current-node helper work or Mathlib arithmetic. Parent retry conditions are: expose a public, applicable identity between the nonroot inverse quadratic term and rootedChildCapacitySum (or a direct Schur-gap theorem) without assuming the ambient underweighted root is admissible; then resume this declaration from declared. The next step is a precise Content blocker for Coordinator/provider repair."
+  "summary": "The strategy made statement-layer progress: rootedChildCapacitySum_lt_weight_of_unique_underweight is now declared with the exact source inequality, but it did not reach proved or become proof-policy satisfied. All earlier eight declarations remain usable, including the proved child-component admissibility lemma. The blocker is a provider-owned generic rooted-capacity block identity, not Source-visible current-node helper work or Mathlib arithmetic. Resolution requires a public, applicable identity between the nonroot inverse quadratic term and rootedChildCapacitySum (or a direct Schur-gap theorem) without assuming the ambient underweighted root is admissible."
 }

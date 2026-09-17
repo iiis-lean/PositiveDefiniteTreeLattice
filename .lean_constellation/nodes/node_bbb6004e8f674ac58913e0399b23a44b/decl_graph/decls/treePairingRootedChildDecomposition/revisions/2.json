@@ -1,14 +1,13 @@
 {
   "change": {
-    "anticipated_proof_dep_names": [],
-    "anticipated_statement_dep_names": [],
     "base_revision": 1,
     "kind": "update",
-    "objective": "Keep revision 1's accepted integral decomposition statement unchanged and complete its proof for b_0010 lines 102–110. Consume the newly proved public PositiveDefiniteTreeLattice.rootedEdgeClassification, whose root/child/internal-component alternatives exactly match rootedChildren G hG rho rho and rootedChildComponent G rho c, together with treePairingAnchor and the component partition API. This is the structural prerequisite for the public rooted_integer_estimate.",
+    "objective": "Revision 2 records the accepted integral decomposition target for b_0010 lines 102–110 with the newly proved public `PositiveDefiniteTreeLattice.rootedEdgeClassification`, whose root/child/internal-component alternatives match `rootedChildren G hG rho rho` and `rootedChildComponent G rho c`, together with `treePairingAnchor` and the component partition API. It is the structural prerequisite for public `rooted_integer_estimate`.",
     "require_target_state_satisfied": true,
-    "reset_to_state": "declared",
-    "summary": "Preserved the accepted integral decomposition statement and completed Proof NL, which now uses the proved rootedEdgeClassification. Proof Formal remains absent, so the revision is only proof_planned and not graph_proved-satisfied. The remaining blocker is a predictable tracked-helper/Lean-representation gap: the consumer goal is the b_0010 lines 102–110 equality between the global treePairing edge sum and the root-child plus nested rootedChildComponent sums. rootedEdgeClassification supplies the exhaustive/unique mathematical cases, but the current boundary exposes no reusable finite reindexing theorem that converts the global adjacency/edge finset into those cases and identifies each local subtype edge contribution with its ambient endpoints, including orientation/double-counting bookkeeping. Before retrying this parent proof, verify Mathlib finite-sum/equivalence support and then plan explicit tracked reindexing helper theorem(s); do not hide them locally.",
-    "target_state": "proved"
+    "start_stage": "proof_nl",
+    "summary": "Preserved the accepted integral decomposition statement and completed Proof NL, which now uses the proved rootedEdgeClassification. Proof Formal remains absent, so the revision is only proof_planned and not graph_proved-satisfied. The remaining blocker is a predictable tracked-helper/Lean-representation gap: the consumer goal is the b_0010 lines 102–110 equality between the global treePairing edge sum and the root-child plus nested rootedChildComponent sums. rootedEdgeClassification supplies the exhaustive/unique mathematical cases, but the current boundary exposes no reusable finite reindexing theorem that converts the global adjacency/edge finset into those cases and identifies each local subtype edge contribution with its ambient endpoints, including orientation/double-counting bookkeeping.",
+    "target_state": "proved",
+    "execution_constraints": "Verify Mathlib finite-sum/equivalence support, plan explicit tracked reindexing helper theorem(s), and do not hide them locally; retry this parent proof only after the helpers are available."
   },
   "lean_decl_name": "treePairingRootedChildDecomposition",
   "proof": {
@@ -151,6 +150,11 @@
           "schema_version": 2,
           "summary": "Diagnostics returned 1 items"
         },
+        "fingerprint": {
+          "environment_sha256": null,
+          "source_sha256": "c669ceff38d70e230bb423cf5c1bbdc778854949deb81a0cd40e5ac8c683b7ba",
+          "upstream_revision": null
+        },
         "message": "Lean check passed.",
         "policy": "statement_formal",
         "scan": {
@@ -175,7 +179,15 @@
           "summary": "sorry=1, admit=0, axiom=0, opaque=0, unsafe=0",
           "unsafe_count": 0
         },
-        "status": "passed"
+        "schema_version": 1,
+        "status": "passed",
+        "subject": {
+          "declaration_name": null,
+          "module": "PositiveDefiniteTreeLattice.Main.RootedEstimates.Theorems.treePairingRootedChildDecomposition",
+          "repo_file_path": "PositiveDefiniteTreeLattice/Main/RootedEstimates/Theorems/treePairingRootedChildDecomposition.lean",
+          "repo_kind": "native",
+          "stage": "statement"
+        }
       },
       "code": "-- lean-constellation: managed-imports-begin\nimport PositiveDefiniteTreeLattice.Main.RootedEstimates.Prelude\nimport Mathlib.Combinatorics.SimpleGraph.Acyclic\nimport Mathlib.Combinatorics.SimpleGraph.Connectivity.Connected\n-- lean-constellation: managed-imports-end\n\n-- lean-constellation: declaration-source-begin\n\n/--\n# lean-constellation target: `treePairingRootedChildDecomposition`\n\nLet `V` be a finite vertex type, let `G : SimpleGraph V` have decidable adjacency and a tree witness\n`hG : G.IsTree`, let `w : V → ℤ`, let `rho : V`, and let `x : V → ℤ`. For each `c ∈ rootedChildren G\nhG rho rho`, define\n\n`C_c := rootedChildComponent G rho c`,\n\nwhich is the connected-component subtype of `G.deleteEdges {s(rho, c)}` containing `c`. Let its\ninduced child graph be\n\n`G_c := C_c.toSimpleGraph`,\n\nand define the restrictions `w_c : C_c → ℤ` and `x_c : C_c → ℤ` by `w_c(u) := w (u : V)` and `x_c(u)\n:= x (u : V)`. Set\n\n`s_c := x_c (rootedChildRoot G rho c)`.\n\nWriting `a := x rho`, the integral pairing satisfies\n\n`treePairing G w x x = w rho * a^2 - 2 * a * ∑ c ∈ rootedChildren G hG rho rho, s_c + ∑ c ∈\nrootedChildren G hG rho rho, treePairing G_c w_c x_c x_c`.\n\nThus every child self-pairing is formed on the induced graph `C_c.toSimpleGraph` with the induced\ninteger weights and the coordinate restriction, while the root coefficient is exactly `x rho`.\n\n## Sources\n\n- Source `solution.tex`, lines 102–110\n\n## Statement dependencies\n\n- `SimpleGraph.IsTree` from `Mathlib.Combinatorics.SimpleGraph.Acyclic`\n- `SimpleGraph.ConnectedComponent.toSimpleGraph` from\n  `Mathlib.Combinatorics.SimpleGraph.Connectivity.Connected`\n- `Main.LatticeFoundations::treePairingAnchor` → `PositiveDefiniteTreeLattice.treePairing` from\n  `PositiveDefiniteTreeLattice.Main.LatticeFoundations.Defs.treePairingAnchor`\n- `Main.RootedCapacity::rootedChildComponent` → `rootedChildComponent` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildComponent`\n- `Main.RootedCapacity::rootedChildRoot` → `rootedChildRoot` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildRoot`\n- `Main.RootedCapacity::rootedChildren` → `rootedChildren` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildren`\n-/\ntheorem treePairingRootedChildDecomposition {V : Type*} [Fintype V] [DecidableEq V]\n    (G : SimpleGraph V) [DecidableRel G.Adj] (hG : G.IsTree) (w x : V → ℤ) (rho : V) :\n    PositiveDefiniteTreeLattice.treePairing G w x x =\n      w rho * (x rho) ^ 2 -\n        2 * x rho * (∑ c ∈ rootedChildren G hG rho rho,\n          x (rootedChildRoot G rho c)) +\n        ∑ c ∈ rootedChildren G hG rho rho,\n          let C := rootedChildComponent G rho c\n          letI : Fintype C := Fintype.ofFinite C\n          letI : DecidableEq C := Classical.decEq C\n          letI : DecidableRel C.toSimpleGraph.Adj := by\n            intro u v\n            change Decidable ((G.deleteEdges {s(rho, c)}).Adj (u : V) (v : V))\n            infer_instance\n          PositiveDefiniteTreeLattice.treePairing C.toSimpleGraph (fun u => w (u : V))\n            (fun u => x (u : V)) (fun u => x (u : V)) := by\n  sorry\n"
     },

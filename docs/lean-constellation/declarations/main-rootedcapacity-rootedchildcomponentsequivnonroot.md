@@ -1,4 +1,4 @@
-[← Public API](../PUBLIC_API.md) · [Public boundaries](../PUBLIC_BOUNDARIES.md)
+[← Public API](../PUBLIC_API.md) · [Public boundaries](../PUBLIC_BOUNDARIES.md) · [Complete graph](../DECLARATION_GRAPH.md)
 
 # `rootedChildComponentsEquivNonroot`
 
@@ -10,9 +10,24 @@ The dependent family of root-child components is equivalent to the subtype of no
 - State: `declared`
 - Revision status: `committed`
 - Repository completion: `graph_proved`
-- Formal code: final statement projection
+- Compatibility `formal_code`: final statement projection
 
-## Lean code
+## Statement NL
+
+For a finite type V with decidable equality, a simple graph G on V with decidable adjacency, a tree proof hG : G.IsTree, and a root ρ : V, define the noncomputable equivalence
+
+rootedChildComponentsEquivNonroot G hG ρ :
+  (Σ c : {c : V // c ∈ rootedChildren G hG ρ ρ},
+    rootedChildComponent G ρ c.1)
+  ≃ {v : V // v ≠ ρ}.
+
+Its forward map is the exact dependent inclusion
+
+⟨c, x⟩ ↦ ⟨(x : V), (x : V) ≠ ρ⟩,
+
+where the nonroot proof is obtained from rootedChildComponent_parent_not_mem. Its inverse sends a nonroot vertex v to the unique c ∈ rootedChildren G hG ρ ρ given by rootedChildComponent_partition, together with v's corresponding membership in rootedChildComponent G ρ c. The two inverse laws are proved by that uniqueness and subtype/dependent extensionality, so the standard apply_symm_apply and symm_apply_apply computations expose these exact maps for reindexing.
+
+## Statement Formal
 
 ```lean
 -- lean-constellation: managed-imports-begin
@@ -99,6 +114,14 @@ noncomputable def rootedChildComponentsEquivNonroot {V : Type*} [Fintype V] [Dec
     apply Subtype.ext
     rfl
 ```
+
+## Proof NL
+
+Not recorded.
+
+## Proof Formal
+
+Not recorded.
 
 ## Statement dependencies
 

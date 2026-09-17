@@ -1,19 +1,12 @@
 {
   "change": {
-    "anticipated_proof_dep_names": [
-      "rootedChildComponent_parent_not_mem"
-    ],
-    "anticipated_statement_dep_names": [
-      "rootedChildComponent",
-      "rootedChildren"
-    ],
     "base_revision": null,
     "kind": "create",
-    "objective": "Capture the unique-path decomposition implicit in SourceIndex b_0009 / solution.tex lines 48–61 and required by the accepted proof plan for rootedChildren_rootedChildComponent. For finite decidable V, graph G, hG : G.IsTree, ambient root ρ, parent c, hc : c ∈ rootedChildren G hG ρ parent, and x : rootedChildComponent G parent c, prove that the chosen unique ambient path from ρ to (x : V) factors through c: in the simplest compiler-supported form, (hG.existsUnique_path ρ (x : V)).choose equals the append of (hG.existsUnique_path ρ c).choose and (hG.existsUnique_path c (x : V)).choose. If Mathlib's dependent Walk.append notation requires an equivalent packaged equality or an existential decomposition whose two factors are exactly those unique paths, preserve that mathematical content and endpoints. Consume committed rootedChildren and rootedChildComponent; use hc for the oriented parent-c edge, cut-component connectivity to obtain a c-to-x path avoiding the deleted edge, and hG path uniqueness/acyclicity. rootedChildComponent_parent_not_mem may be used as a proof dependency. Do not add weights, admissibility, or matrix assumptions, and do not weaken the conclusion to mere reachability or support membership. This public structural theorem must directly discharge the missing ambient-path step in the proof-planned rootedChildren_rootedChildComponent revision.",
+    "objective": "Revision 1 states the public path-factorization theorem from SourceIndex b_0009 / solution.tex lines 48–61: for finite decidable tree data, hc : c ∈ rootedChildren G hG ρ parent, and x in rootedChildComponent G parent c, the chosen unique ambient path from ρ to (x : V) equals the append of the chosen paths from ρ to c and from c to (x : V). It preserves the exact endpoints, shared c, and walk equality, assumes no weight, admissibility, or matrix condition, and supplies the path-transport dependency for rootedChildren_rootedChildComponent and rootedChildCount_rootedChildComponent.",
     "require_target_state_satisfied": true,
-    "reset_to_state": null,
     "summary": "The public theorem rootedChildComponent_path_decomposition reached declared state with a passing formal statement, but blocked at Proof NL; no proof plan was accepted. The preserved consumer goal is the exact walk equality (hG.existsUnique_path ρ (x : V)).choose = (hG.existsUnique_path ρ c).choose.append (hG.existsUnique_path c (x : V)).choose for hc : c ∈ rootedChildren G hG ρ parent and x : rootedChildComponent G parent c. The candidate route checked IsAcyclic.path_unique, IsTree.existsUnique_path, ConnectedComponent.reachable_of_mem_supp, Reachable.elim_path, Walk.append, support_append_eq_support_dropLast_append, rootedChildren, rootedChildComponent, and rootedChildComponent_parent_not_mem. The concrete mismatch is simplicity of the appended walk: parent exclusion alone does not prove that the root-to-c factor and c-to-x factor have no common support before c. The proposed competing-path construction circularly assumes precisely that support separation. Classify this as a predictable but independently meaningful rooted-path separation package. Retry requires a proved first-intersection/support-separation theorem—e.g. the two factor supports intersect only at c, with a nonc common vertex ruled out noncircularly by a first-intersection argument and path uniqueness—before this declared theorem can advance to proved. It then remains a prerequisite for rootedChildren_rootedChildComponent and rootedChildCount_rootedChildComponent. No statement/interface drift occurred.",
-    "target_state": "proved"
+    "target_state": "proved",
+    "execution_constraints": "Retain the exact endpoint/index objects and append equality. Obtain component reachability and a path avoiding the deleted edge, use hc to identify the root-to-c factor, establish factor-support separation with a noncircular first-intersection/path-uniqueness argument, prove the appended walk is a simple path, and use tree path uniqueness for the exact equality. Do not weaken the result to reachability, support membership, or cardinality, or add weight, admissibility, or matrix assumptions."
   },
   "lean_decl_name": "rootedChildComponent_path_decomposition",
   "proof": {
@@ -184,6 +177,11 @@
           "schema_version": 2,
           "summary": "Diagnostics returned 1 items"
         },
+        "fingerprint": {
+          "environment_sha256": null,
+          "source_sha256": "8cc90d6338926cadbbcb05c9fd1634504ec408fd06331e16091b0f4f420f0d86",
+          "upstream_revision": null
+        },
         "message": "Lean check passed.",
         "policy": "statement_formal",
         "scan": {
@@ -208,7 +206,15 @@
           "summary": "sorry=1, admit=0, axiom=0, opaque=0, unsafe=0",
           "unsafe_count": 0
         },
-        "status": "passed"
+        "schema_version": 1,
+        "status": "passed",
+        "subject": {
+          "declaration_name": null,
+          "module": "PositiveDefiniteTreeLattice.Main.RootedCapacity.Theorems.rootedChildComponent_path_decomposition",
+          "repo_file_path": "PositiveDefiniteTreeLattice/Main/RootedCapacity/Theorems/rootedChildComponent_path_decomposition.lean",
+          "repo_kind": "native",
+          "stage": "statement"
+        }
       },
       "code": "-- lean-constellation: managed-imports-begin\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Prelude\nimport Mathlib.Combinatorics.SimpleGraph.Acyclic\nimport Mathlib.Combinatorics.SimpleGraph.Walk.Operations\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildComponent\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildren\n-- lean-constellation: managed-imports-end\n\n-- lean-constellation: declaration-source-begin\n\n/--\n# lean-constellation target: `rootedChildComponent_path_decomposition`\n\nFor a finite vertex type `V` with decidable equality, a simple graph `G : SimpleGraph V`, a tree\nproof `hG : G.IsTree`, an ambient root `ρ : V`, vertices `parent c : V`, a hypothesis `hc : c ∈\nrootedChildren G hG ρ parent`, and `x : rootedChildComponent G parent c`, the chosen unique ambient\npath from `ρ` to `(x : V)` factors through `c`.  More precisely, the unique path\n`(hG.existsUnique_path ρ (x : V)).choose` is the concatenation of `(hG.existsUnique_path ρ\nc).choose` with `(hG.existsUnique_path c (x : V)).choose`, with the shared endpoint `c` and\nendpoints `ρ` and `(x : V)` preserved.  This is a path-decomposition equality, not merely a\nreachability or support-membership assertion; it assumes no weight, admissibility, or matrix\ncondition.\n\n## Sources\n\n- Source `solution.tex`, lines 48–61\n\n## Statement dependencies\n\n- `SimpleGraph.IsTree` from `Mathlib.Combinatorics.SimpleGraph.Acyclic`\n- `SimpleGraph.IsTree.existsUnique_path` from `Mathlib.Combinatorics.SimpleGraph.Acyclic`\n- `SimpleGraph.Walk.append` from `Mathlib.Combinatorics.SimpleGraph.Walk.Operations`\n- `Main.RootedCapacity::rootedChildComponent` → `rootedChildComponent` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildComponent`\n- `Main.RootedCapacity::rootedChildren` → `rootedChildren` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildren`\n-/\ntheorem rootedChildComponent_path_decomposition {V : Type*} [Fintype V] [DecidableEq V]\n    (G : SimpleGraph V) [DecidableRel G.Adj] (hG : G.IsTree) (ρ parent c : V)\n    (hc : c ∈ rootedChildren G hG ρ parent) (x : rootedChildComponent G parent c) :\n    (hG.existsUnique_path ρ (x : V)).choose =\n      (hG.existsUnique_path ρ c).choose.append\n        (hG.existsUnique_path c (x : V)).choose := by\n  sorry\n"
     },

@@ -1,18 +1,13 @@
 {
-  "change_summaries": {},
   "committed_at": "2026-07-31T05:08:29Z",
   "created_at": "2026-07-31T04:51:16Z",
-  "discard_reason": null,
   "discarded_at": null,
   "discarded_by": null,
-  "discarded_created_decl_names": [],
-  "discarded_restored_decl_revisions": {},
-  "discarded_revision_refs": [],
   "execution_completed_at": "2026-07-31T05:07:04Z",
   "execution_reason": null,
   "execution_result_kind": "success",
   "node_path": "Main.RootedEstimates",
-  "objective": "Complete Proof Formal for the retained ordered-neighbor decomposition using the newly proved subtype-to-ambient neighbor-sum transport theorem, without changing its accepted statement or proof plan.",
+  "objective": "Round 0B records the proved retained ordered-neighbor decomposition using the subtype-to-ambient neighbor-sum transport theorem, with its accepted statement and Proof NL plan unchanged.",
   "plan_closeout_acknowledged_at": "2026-07-31T05:08:29Z",
   "plan_closeout_acknowledged_by": "a_c126bbd9cf3144258d31b99169f687bb",
   "result_kind": "success",
@@ -29,5 +24,6 @@
   "started_at": "2026-07-31T04:52:31Z",
   "status": "committed",
   "strategy_id": "strategy_6bfc666c638344a19f7d1dee5c0a60d4",
-  "summary": "The strategy advanced successfully: sumNeighborContributionRootedChildComponent@2 reached proved and graph_proved satisfaction, with the new transport theorem recorded in its proof closure. No blocker or cleanup target remains for this helper. Before retrying treePairingRootedChildDecomposition, the next planning step must verify and, if necessary, advance all other intended local proof dependencies whose formal proofs were captured in earlier blocked rounds but whose committed static states remain proof_planned."
+  "summary": "The strategy advanced successfully: sumNeighborContributionRootedChildComponent@2 reached proved and graph_proved satisfaction, with the new transport theorem recorded in its proof closure. No blocker or cleanup target remains for this helper; the recorded local dependency closure still includes earlier proof-planned captures requiring state verification.",
+  "execution_constraints": "Before retrying treePairingRootedChildDecomposition, verify and, if necessary, advance all intended local proof dependencies whose formal proofs were captured in earlier blocked rounds but whose committed static states remain proof_planned."
 }

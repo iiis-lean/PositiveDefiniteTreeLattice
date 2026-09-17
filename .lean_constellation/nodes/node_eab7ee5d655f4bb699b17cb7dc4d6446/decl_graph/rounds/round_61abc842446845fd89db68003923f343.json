@@ -1,18 +1,13 @@
 {
-  "change_summaries": {},
   "committed_at": "2026-08-03T16:25:25Z",
   "created_at": "2026-08-03T15:50:29Z",
-  "discard_reason": null,
   "discarded_at": null,
   "discarded_by": null,
-  "discarded_created_decl_names": [],
-  "discarded_restored_decl_revisions": {},
-  "discarded_revision_refs": [],
   "execution_completed_at": "2026-08-03T16:24:03Z",
   "execution_reason": null,
   "execution_result_kind": "success",
   "node_path": "Main.RootedCapacity",
-  "objective": "Create and prove the public contract-v5 combined inverse-reindex theorem with exactly the shared child-block family convention of the two retained providers.",
+  "objective": "The public contract-v5 combined inverse-reindex theorem uses exactly the shared child-block family convention of the two retained providers.",
   "plan_closeout_acknowledged_at": "2026-08-03T16:25:25Z",
   "plan_closeout_acknowledged_by": "a_a93b40977f574bad89528358fa89e022",
   "result_kind": "success",
@@ -29,5 +24,6 @@
   "started_at": "2026-08-03T15:52:38Z",
   "status": "committed",
   "strategy_id": "strategy_a6d68492c46d48a79753c88a80af6360",
-  "summary": "The single-round v5 strategy succeeded completely. `rootedNonrootGram_reindex_childBlocks_inv_of_child_admissible@1` is public, proved, and graph_proved-satisfied; both retained provider dependencies were already proved and their exact family convention closed without compatibility work. No declaration remains unfinished and no state-only intermediate or cleanup branch was introduced. The next step is non-round closeout: verify public Statement closure, bind the new interface, run the completion diagnostic, and submit ready if it passes."
+  "summary": "The single-round v5 strategy succeeded completely. `rootedNonrootGram_reindex_childBlocks_inv_of_child_admissible@1` is public, proved, and graph_proved-satisfied; both retained provider dependencies were already proved and their exact family convention closed without compatibility work. No declaration remains unfinished and no state-only intermediate or cleanup branch was introduced.",
+  "execution_constraints": "Verify public Statement closure, bind the new interface, run the completion diagnostic, and submit ready if the deterministic checks pass; preserve the exact shared child-block family convention."
 }

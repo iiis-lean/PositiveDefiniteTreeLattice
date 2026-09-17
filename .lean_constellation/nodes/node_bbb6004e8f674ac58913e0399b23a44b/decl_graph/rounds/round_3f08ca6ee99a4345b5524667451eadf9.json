@@ -1,18 +1,13 @@
 {
-  "change_summaries": {},
   "committed_at": "2026-08-01T12:06:25Z",
   "created_at": "2026-08-01T11:46:07Z",
-  "discard_reason": null,
   "discarded_at": null,
   "discarded_by": null,
-  "discarded_created_decl_names": [],
-  "discarded_restored_decl_revisions": {},
-  "discarded_revision_refs": [],
   "execution_completed_at": "2026-08-01T12:03:58Z",
   "execution_reason": null,
   "execution_result_kind": "success",
   "node_path": "Main.RootedEstimates",
-  "objective": "Prove one private treePairing instance-independence theorem so identical graph, weight, and vectors can be transported across the child-component finite/decidable instance stacks used by the two proved b_0010 APIs.",
+  "objective": "Round 14 records one proved private `treePairing` instance-independence theorem transporting identical graph, weight, and vector values across the child-component finite/decidable instance stacks used by the two proved b_0010 APIs.",
   "plan_closeout_acknowledged_at": "2026-08-01T12:06:25Z",
   "plan_closeout_acknowledged_by": "a_c126bbd9cf3144258d31b99169f687bb",
   "result_kind": "success",
@@ -29,5 +24,6 @@
   "started_at": "2026-08-01T11:47:38Z",
   "status": "committed",
   "strategy_id": "strategy_6bfc666c638344a19f7d1dee5c0a60d4",
-  "summary": "Round 14 made the intended bottom-up progress. treePairingInstanceIndependent@1 reached proved and is proof-policy satisfied, closing the sole Lean-specific instance-stack mismatch recorded for rootedEstimateInductionAggregation. The current strategy remains viable: the next action should be a proof-formal-only retry of rootedEstimateInductionAggregation using rootedChildInductionAbsBound, treePairingRootedChildDecomposition, rootedCapacityInvEqSub, and the new transport theorem. No state-only work or blocker remains in this round."
+  "summary": "Round 14 made the intended bottom-up progress. treePairingInstanceIndependent@1 reached proved and is proof-policy satisfied, closing the sole Lean-specific instance-stack mismatch recorded for rootedEstimateInductionAggregation. The current strategy remains viable, and no state-only work or blocker remains in this round.",
+  "execution_constraints": "Retry rootedEstimateInductionAggregation with Proof Formal only, using rootedChildInductionAbsBound, treePairingRootedChildDecomposition, rootedCapacityInvEqSub, and treePairingInstanceIndependent; preserve the accepted statement and proof plan and do not add state-only work."
 }

@@ -1,13 +1,8 @@
 {
-  "change_summaries": {},
   "committed_at": "2026-08-02T12:33:58Z",
   "created_at": "2026-08-02T12:19:57Z",
-  "discard_reason": null,
   "discarded_at": null,
   "discarded_by": null,
-  "discarded_created_decl_names": [],
-  "discarded_restored_decl_revisions": {},
-  "discarded_revision_refs": [],
   "execution_completed_at": "2026-08-02T12:32:55Z",
   "execution_reason": null,
   "execution_result_kind": "success",
@@ -34,5 +29,5 @@
   "started_at": "2026-08-02T12:21:19Z",
   "status": "committed",
   "strategy_id": "strategy_c8ba6f0b78e349faafd071c8dae0b3af",
-  "summary": "Round 2 successfully advanced the bottom-up strategy. weight_ge_two_of_ne_one and weight_ge_degree_of_ne_unique_underweight both reached proved state with passing formal statements and proofs and satisfy graph_proved. No state-only intermediates, blockers, superseded artifacts, or cleanup targets remain. The known closure is now sufficient to plan the rooted-child-component admissibility lemma next; the central inequality and protected parent theorem remain intentionally deferred."
+  "summary": "Round 2 successfully advanced the bottom-up strategy. weight_ge_two_of_ne_one and weight_ge_degree_of_ne_unique_underweight both reached proved state with passing formal statements and proofs and satisfy graph_proved. No state-only intermediates, blockers, superseded artifacts, or cleanup targets remain. The known closure included the prerequisites for the rooted-child-component admissibility lemma; the central inequality and protected parent theorem remained intentionally deferred."
 }

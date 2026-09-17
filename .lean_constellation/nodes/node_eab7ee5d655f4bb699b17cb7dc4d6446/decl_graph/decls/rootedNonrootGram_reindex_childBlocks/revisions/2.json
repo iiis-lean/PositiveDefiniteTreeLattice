@@ -1,22 +1,13 @@
 {
   "change": {
-    "anticipated_proof_dep_names": [
-      "rootedGram_cross_rootedChildComponents",
-      "rootedGram_rootedChildComponent"
-    ],
-    "anticipated_statement_dep_names": [
-      "rootedChildComponent",
-      "rootedChildComponentsEquivNonroot",
-      "rootedChildren",
-      "rootedGram"
-    ],
     "base_revision": 1,
     "kind": "update",
-    "objective": "Resume the accepted SourceIndex b_0009 / solution.tex lines 57–68 theorem from Statement Formal through proof, without changing its Statement NL semantics. The exact Mathlib dependency `Matrix.blockDiagonal'` from `Mathlib.Data.Matrix.Block` is now compiler-verified, recorded in MathlibIndex, added to the current node hints, and passes node Mathlib validation. Capture the formal equality for the exact objects R, S, e, D, and dependent child Gram family B specified in revision 1: `Matrix.reindex e.symm e.symm D = Matrix.blockDiagonal' B` (up to definitionally identical let expansion). Prove it entrywise with Matrix.reindex_apply and Matrix.blockDiagonal'_apply': use rootedGram_rootedChildComponent after equal-label dependent cast normalization, and rootedGram_cross_rootedChildComponents for unequal labels. Preserve the absence of admissibility/invertibility assumptions and keep the theorem private. This proved theorem must directly feed rootedNonroot_inverse_childBlocks and later Schur-complement work.",
+    "objective": "Revision 2 records the accepted Q₀ = ⨁ᵢ Q_{Cᵢ} theorem from SourceIndex b_0009 / solution.tex lines 57–68 after the exact Matrix.blockDiagonal' dependency became available. For the revision-1 R/S/e/D/B objects it asserts Matrix.reindex e.symm e.symm D = Matrix.blockDiagonal' B, with no admissibility or invertibility assumptions; the equal-child and unequal-child entry transports supply the block identity for inverse and Schur-complement consumers.",
     "require_target_state_satisfied": true,
-    "reset_to_state": "specified",
-    "summary": "The retry advanced rootedNonrootGram_reindex_childBlocks through Statement Formal and Proof NL to proof_planned, preserving the exact reindex/blockDiagonal statement and removing the earlier Mathlib resolver blocker. Proof Formal then hit a Lean-specific normalization blocker: unfolding the noncomputable rootedChildComponentsEquivNonroot exposes partition choice and dependent Sigma proof terms, exhausting compiler heartbeats before either the equal-child rootedGram_rootedChildComponent lemma or unequal-child rootedGram_cross_rootedChildComponents lemma can be applied. The unresolved local shape is evaluation of `rootedChildComponentsEquivNonroot G hG ρ ⟨c, x⟩` as the canonical nonroot embedding of x, up to Subtype.ext/proof irrelevance. Retry conditions: first create and prove a small private evaluation lemma for this forward map without unfolding the inverse choice; then resume this block theorem from proof_planned and rewrite Matrix.reindex_apply with that lemma. The accepted theorem statement, existing Gram lemmas, Matrix.blockDiagonal' hint, and strategy remain valid. rootedNonroot_inverse_childBlocks and rootedNonroot_inverse_quadratic continue to wait. No public API drift, provider gap, source gap, superseded artifact, or cleanup target was found.",
-    "target_state": "proved"
+    "start_stage": "statement_formal",
+    "summary": "The retry advanced rootedNonrootGram_reindex_childBlocks through Statement Formal and Proof NL to proof_planned, preserving the exact reindex/blockDiagonal statement and removing the earlier Mathlib resolver blocker. Proof Formal then hit a Lean-specific normalization blocker: unfolding the noncomputable rootedChildComponentsEquivNonroot exposes partition choice and dependent Sigma proof terms, exhausting compiler heartbeats before either the equal-child rootedGram_rootedChildComponent lemma or unequal-child rootedGram_cross_rootedChildComponents lemma can be applied. The unresolved local shape is evaluation of rootedChildComponentsEquivNonroot G hG ρ ⟨c, x⟩ as the canonical nonroot embedding of x, up to Subtype.ext/proof irrelevance. The remaining issue is a small tracked Lean-specific evaluation bridge for the forward map; the accepted theorem statement, existing Gram lemmas, Matrix.blockDiagonal' hint, and strategy remain valid. rootedNonroot_inverse_childBlocks and rootedNonroot_inverse_quadratic continue to wait. No public API drift, provider gap, source gap, superseded artifact, or cleanup target was found.",
+    "target_state": "proved",
+    "execution_constraints": "First create and prove the small private forward-evaluation lemma for rootedChildComponentsEquivNonroot without unfolding its inverse choice; then resume this block theorem from proof_planned and use the bridge before the equal/unequal Gram-entry lemmas. Preserve the accepted statement and keep the inverse parents waiting."
   },
   "lean_decl_name": "rootedNonrootGram_reindex_childBlocks",
   "proof": {
@@ -227,6 +218,11 @@
           "schema_version": 2,
           "summary": "Diagnostics returned 1 items"
         },
+        "fingerprint": {
+          "environment_sha256": null,
+          "source_sha256": "56360fc6ce8630e66f00bac1deb5e1f849c361a66aa1ea34362a5a6643c5b450",
+          "upstream_revision": null
+        },
         "message": "Lean check passed.",
         "policy": "statement_formal",
         "scan": {
@@ -251,7 +247,15 @@
           "summary": "sorry=1, admit=0, axiom=0, opaque=0, unsafe=0",
           "unsafe_count": 0
         },
-        "status": "passed"
+        "schema_version": 1,
+        "status": "passed",
+        "subject": {
+          "declaration_name": null,
+          "module": "PositiveDefiniteTreeLattice.Main.RootedCapacity.Theorems.rootedNonrootGram_reindex_childBlocks",
+          "repo_file_path": "PositiveDefiniteTreeLattice/Main/RootedCapacity/Theorems/rootedNonrootGram_reindex_childBlocks.lean",
+          "repo_kind": "native",
+          "stage": "statement"
+        }
       },
       "code": "-- lean-constellation: managed-imports-begin\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Prelude\nimport Mathlib.Combinatorics.SimpleGraph.Acyclic\nimport Mathlib.Combinatorics.SimpleGraph.Connectivity.Connected\nimport Mathlib.Combinatorics.SimpleGraph.DeleteEdges\nimport Mathlib.Data.Matrix.Block\nimport Mathlib.LinearAlgebra.Matrix.Defs\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildComponent\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildComponentsEquivNonroot\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildren\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedGram\n-- lean-constellation: managed-imports-end\n\n-- lean-constellation: declaration-source-begin\n\n/--\n# lean-constellation target: `rootedNonrootGram_reindex_childBlocks`\n\nLet V be a finite type with decidable equality, let G be a simple graph on V with decidable\nadjacency, let hG : G.IsTree, let w : V → ℤ, and let ρ : V. Put\n\nR := {v : V // v ≠ ρ},\nS := Σ c : {c : V // c ∈ rootedChildren G hG ρ ρ}, rootedChildComponent G ρ c.1,\ne : R ≃ S := (rootedChildComponentsEquivNonroot G hG ρ).symm,\nD : Matrix R R ℚ := (rootedGram G w).submatrix Subtype.val Subtype.val,\n\nand, for c in the root-child subtype, define the dependent child block\n\nB c := rootedGram (rootedChildComponent G ρ c.1).toSimpleGraph\n  (fun x : rootedChildComponent G ρ c.1 => w (x : V)),\n\nusing the canonical finite and decidable-adjacency instances of the component. Then reindexing D\nalong e from the nonroot index R to the sigma index S is the dependent block-diagonal matrix\ndetermined by B: at sigma indices ⟨c,x⟩ and ⟨d,y⟩ it is B c x y after the canonical dependent\ntransport when c = d, and it is 0 when c ≠ d.\n\nEquivalently, this is the exact identity Q₀ = ⨁ᵢ Q_{Cᵢ}, retaining the same e, D, and B objects and\norientation. It includes no admissibility, positivity, invertibility, or inverse conclusion.\n\n## Sources\n\n- Source `solution.tex`, lines 57–68\n\n## Statement dependencies\n\n- `SimpleGraph.IsTree` from `Mathlib.Combinatorics.SimpleGraph.Acyclic`\n- `SimpleGraph.ConnectedComponent.toSimpleGraph` from\n  `Mathlib.Combinatorics.SimpleGraph.Connectivity.Connected`\n- `SimpleGraph.deleteEdges` from `Mathlib.Combinatorics.SimpleGraph.DeleteEdges`\n- `Matrix.blockDiagonal'` from `Mathlib.Data.Matrix.Block`\n- `Matrix.reindex` from `Mathlib.LinearAlgebra.Matrix.Defs`\n- `Matrix.submatrix` from `Mathlib.LinearAlgebra.Matrix.Defs`\n- `Main.RootedCapacity::rootedChildComponent` → `rootedChildComponent` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildComponent`\n- `Main.RootedCapacity::rootedChildComponentsEquivNonroot` → `rootedChildComponentsEquivNonroot`\n  from `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildComponentsEquivNonroot`\n- `Main.RootedCapacity::rootedChildren` → `rootedChildren` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildren`\n- `Main.RootedCapacity::rootedGram` → `rootedGram` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedGram`\n-/\n\ntheorem rootedNonrootGram_reindex_childBlocks {V : Type*} [Fintype V] [DecidableEq V]\n    (G : SimpleGraph V) [DecidableRel G.Adj] (hG : G.IsTree) (w : V → ℤ) (ρ : V) :\n    let R := {v : V // v ≠ ρ}\n    let S := Σ c : {c : V // c ∈ rootedChildren G hG ρ ρ}, rootedChildComponent G ρ c.1\n    let e : R ≃ S := (rootedChildComponentsEquivNonroot G hG ρ).symm\n    let D : Matrix R R ℚ := (rootedGram G w).submatrix Subtype.val Subtype.val\n    let B : ∀ c : {c : V // c ∈ rootedChildren G hG ρ ρ},\n        Matrix (rootedChildComponent G ρ c.1) (rootedChildComponent G ρ c.1) ℚ := fun c =>\n      let C := rootedChildComponent G ρ c.1\n      letI : Fintype C := Fintype.ofFinite C\n      letI : DecidableRel C.toSimpleGraph.Adj := by\n        intro x y\n        change Decidable ((G.deleteEdges {s(ρ, c.1)}).Adj (x : V) (y : V))\n        infer_instance\n      rootedGram C.toSimpleGraph (fun x : C => w (x : V))\n    Matrix.reindex e e D = Matrix.blockDiagonal' B := by\n  sorry\n"
     },

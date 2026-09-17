@@ -1,14 +1,12 @@
 {
   "change": {
-    "anticipated_proof_dep_names": [],
-    "anticipated_statement_dep_names": [],
     "base_revision": null,
     "kind": "create",
-    "objective": "Formalize the rooted subtree C_i from SourceIndex b_0009 / solution.tex lines 48–50 as the connected component containing child c in G.deleteEdges {edge parent c}. Consume the compiler-verified SimpleGraph.deleteEdges and connectedComponentMk APIs, with no current-node dependency in the definition itself. The resulting ConnectedComponent must expose its finite subtype and toSimpleGraph so later public capacity_recursion can apply rootedGram/rootedCapacity to the induced child-rooted graph with restricted weight. Do not require admissibility or child membership inside the definition; later theorems will supply those hypotheses.",
+    "objective": "Revision 1 defines the public b_0009 rootedChildComponent as the connected component containing child c after deleting the undirected parent-child edge. It uses the verified SimpleGraph.deleteEdges and connectedComponentMk APIs without current-node dependencies, exposes the finite subtype and toSimpleGraph for induced child-rooted capacity/Gram constructions, and imposes no admissibility or child-membership hypothesis.",
     "require_target_state_satisfied": true,
-    "reset_to_state": null,
-    "summary": "Created the public definition rootedChildComponent and reached declared state with its formal statement passing. It implements the b_0009 child-side component as the connected component containing the child after deleting the parent-child edge, without imposing admissibility or child-membership hypotheses. As a definition it is proof-policy satisfied at declared level; later rounds must prove tree/admissibility inheritance and the rootedGram principal-block bridge before capacity recursion is attempted.",
-    "target_state": "declared"
+    "summary": "Created the public definition rootedChildComponent and reached declared state with its formal statement passing. It implements the b_0009 child-side component as the connected component containing the child after deleting the parent-child edge, without imposing admissibility or child-membership hypotheses. As a definition it is proof-policy satisfied at declared level; it is the component object used by later tree/admissibility inheritance and rootedGram principal-block bridges for capacity recursion.",
+    "target_state": "declared",
+    "execution_constraints": "Use the compiler-verified SimpleGraph.deleteEdges and connectedComponentMk APIs, keep the definition independent of current-node declarations, and expose its finite subtype and toSimpleGraph. Do not require admissibility or child membership inside the definition."
   },
   "lean_decl_name": "rootedChildComponent",
   "proof": null,
@@ -46,6 +44,11 @@
           "schema_version": 2,
           "summary": "Command completed successfully"
         },
+        "fingerprint": {
+          "environment_sha256": null,
+          "source_sha256": "6c5302ed13945c0647acbcf7ff6efc3293a5b0fd059ae816801ac36fbad05975",
+          "upstream_revision": null
+        },
         "message": "Lean check passed.",
         "policy": "statement_formal",
         "scan": {
@@ -63,7 +66,15 @@
           "summary": "sorry=0, admit=0, axiom=0, opaque=0, unsafe=0",
           "unsafe_count": 0
         },
-        "status": "passed"
+        "schema_version": 1,
+        "status": "passed",
+        "subject": {
+          "declaration_name": null,
+          "module": "PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildComponent",
+          "repo_file_path": "PositiveDefiniteTreeLattice/Main/RootedCapacity/Defs/rootedChildComponent.lean",
+          "repo_kind": "native",
+          "stage": "statement"
+        }
       },
       "code": "-- lean-constellation: managed-imports-begin\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Prelude\nimport Mathlib.Combinatorics.SimpleGraph.Connectivity.Connected\nimport Mathlib.Combinatorics.SimpleGraph.DeleteEdges\n-- lean-constellation: managed-imports-end\n\n-- lean-constellation: declaration-source-begin\n\n/--\n# lean-constellation target: `rootedChildComponent`\n\nFor a finite vertex type `V`, a simple graph `G : SimpleGraph V`, and vertices `parent c : V`,\ndefine `rootedChildComponent G parent c` to be the connected component containing `c` in the graph\nobtained from `G` by deleting the singleton set containing the undirected edge joining `parent` and\n`c`: `(G.deleteEdges {edge parent c}).connectedComponentMk c`.  No adjacency, child-membership,\ntree, or admissibility hypothesis is part of this definition.  On the finite vertex type, this\nconnected component has a finite subtype and its induced graph is available through\n`ConnectedComponent.toSimpleGraph`, so subsequent statements can use it as the child-rooted graph\nwith a restricted weight.\n\n## Sources\n\n- Source `solution.tex`, lines 48–50\n\n## Statement dependencies\n\n- `SimpleGraph.connectedComponentMk` from `Mathlib.Combinatorics.SimpleGraph.Connectivity.Connected`\n- `SimpleGraph.deleteEdges` from `Mathlib.Combinatorics.SimpleGraph.DeleteEdges`\n-/\ndef rootedChildComponent {V : Type*} (G : SimpleGraph V) (parent c : V) :\n    (G.deleteEdges {s(parent, c)}).ConnectedComponent :=\n  (G.deleteEdges {s(parent, c)}).connectedComponentMk c\n"
     },

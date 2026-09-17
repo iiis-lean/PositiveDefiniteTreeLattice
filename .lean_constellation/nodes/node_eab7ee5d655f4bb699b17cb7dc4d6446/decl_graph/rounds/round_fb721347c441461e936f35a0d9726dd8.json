@@ -1,18 +1,13 @@
 {
-  "change_summaries": {},
   "committed_at": "2026-07-30T17:14:30Z",
   "created_at": "2026-07-30T17:04:09Z",
-  "discard_reason": null,
   "discarded_at": null,
   "discarded_by": null,
-  "discarded_created_decl_names": [],
-  "discarded_restored_decl_revisions": {},
-  "discarded_revision_refs": [],
   "execution_completed_at": "2026-07-30T17:12:57Z",
   "execution_reason": null,
   "execution_result_kind": "success",
   "node_path": "Main.RootedCapacity",
-  "objective": "Recapture the inverse quadratic Proof NL to use rootedChildCapacitySum_attach directly, then accept the already compiler-valid canonical Sigma proof under the corrected plan.",
+  "objective": "Round 47 records the completed inverse-quadratic parent and contract-authorized private representation cleanup: rootedNonroot_inverse_quadratic@4 is proved and graph_proved-satisfied, with its prerequisite chain through canonical child blocks and attached-child capacity normalization closed.",
   "plan_closeout_acknowledged_at": "2026-07-30T17:14:30Z",
   "plan_closeout_acknowledged_by": "a_a93b40977f574bad89528358fa89e022",
   "result_kind": "success",
@@ -29,5 +24,6 @@
   "started_at": "2026-07-30T17:05:42Z",
   "status": "committed",
   "strategy_id": "strategy_fc60f40a331d4f63bd19e22f0eec7473",
-  "summary": "Round 47 completed the inverse-quadratic parent and the contract-authorized private representation cleanup. rootedNonroot_inverse_quadratic@4 reached proved and is graph_proved-satisfied; its prerequisite chain through canonical child blocks and attached-child capacity normalization is fully closed. No state-only work or retry condition remains in this layer. The strategy remains viable and now advances to the remaining source-visible b_0009 work: prove the rootedCapacity Schur-complement recursion from rootedNonroot_inverse_quadratic and the established Matrix block inverse/PosDef APIs, then derive strict `0 < capacity < 1`. The next action is one focused recursion theorem round; no dependency, Mathlib, or resource preparation is indicated."
+  "summary": "Round 47 completed the inverse-quadratic parent and the contract-authorized private representation cleanup. rootedNonroot_inverse_quadratic@4 reached proved and is graph_proved-satisfied; its prerequisite chain through canonical child blocks and attached-child capacity normalization is fully closed. No state-only work or retry condition remains in this layer. The strategy remains viable, and the remaining source-visible b_0009 work is the rootedCapacity Schur-complement recursion followed by the strict bound 0 < capacity < 1.",
+  "execution_constraints": "Run one focused recursion-theorem round deriving rootedCapacity's Schur-complement recursion from rootedNonroot_inverse_quadratic and the established Matrix block inverse/PosDef APIs; do not add dependency, Mathlib, or resource preparation."
 }

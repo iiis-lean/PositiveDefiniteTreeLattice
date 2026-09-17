@@ -1,4 +1,4 @@
-[← Public API](../PUBLIC_API.md) · [Public boundaries](../PUBLIC_BOUNDARIES.md)
+[← Public API](../PUBLIC_API.md) · [Public boundaries](../PUBLIC_BOUNDARIES.md) · [Complete graph](../DECLARATION_GRAPH.md)
 
 # `IrreducibleAnchor`
 
@@ -10,9 +10,17 @@ Fresh compatible declaration anchor for irreducibility by nonnegative-cross-pair
 - State: `declared`
 - Revision status: `committed`
 - Repository completion: `graph_proved`
-- Formal code: final statement projection
+- Compatibility `formal_code`: final statement projection
 
-## Lean code
+## Statement NL
+
+Define the public interface `PositiveDefiniteTreeLattice.Irreducible` as follows. For a type `V` with a finite enumeration and decidable equality, a simple graph `G : SimpleGraph V` with decidable adjacency, a weight function `weight : V → ℤ`, and `x : V → ℤ`, the proposition holds exactly when there do not exist functions `a b : V → ℤ` such that `a ≠ 0`, `b ≠ 0`, `x = a + b`, and
+
+`0 ≤ PositiveDefiniteTreeLattice.treePairing G weight a b`.
+
+This is the negated-existence decomposition predicate with the equality oriented exactly as `x = a + b`; it adds no positive-definiteness assumption or alias.
+
+## Statement Formal
 
 ```lean
 -- lean-constellation: managed-imports-begin
@@ -49,6 +57,14 @@ def PositiveDefiniteTreeLattice.Irreducible {V : Type*} [Fintype V] [DecidableEq
   ¬ ∃ a b : V → ℤ, a ≠ 0 ∧ b ≠ 0 ∧ x = a + b ∧
     0 ≤ PositiveDefiniteTreeLattice.treePairing G weight a b
 ```
+
+## Proof NL
+
+Not recorded.
+
+## Proof Formal
+
+Not recorded.
 
 ## Statement dependencies
 

@@ -1,13 +1,8 @@
 {
-  "change_summaries": {},
   "committed_at": "2026-07-30T06:14:59Z",
   "created_at": "2026-07-30T05:53:33Z",
-  "discard_reason": null,
   "discarded_at": null,
   "discarded_by": null,
-  "discarded_created_decl_names": [],
-  "discarded_restored_decl_revisions": {},
-  "discarded_revision_refs": [],
   "execution_completed_at": "2026-07-30T06:13:22Z",
   "execution_reason": null,
   "execution_result_kind": "success",
@@ -29,5 +24,5 @@
   "started_at": "2026-07-30T05:55:23Z",
   "status": "committed",
   "strategy_id": "strategy_b6dff31456594838ba7a5f6b6c3f59bd",
-  "summary": "The focused contract-version-2 strategy achieved its mathematical target in one round. Public `PositiveDefiniteTreeLattice.reachable_childSide_of_uniquePath_concat` revision 1 reached `proved`, is proof-policy satisfied, and matches the required qualified identity and root-oriented child-side reachability capability. All six prior declarations remain unchanged; their two released interfaces remain proved and bound. The graph now has seven active declarations, within the expected 7–10 scale, with no state-only work, superseded branch, blocker, or scope overflow. Next action is content closeout: inspect the accepted formal header and public Statement closure, bind the new interface, run the completion gate, close the achieved strategy, and submit ready if all checks pass."
+  "summary": "The focused contract-version-2 strategy achieved its mathematical target in one round. Public `PositiveDefiniteTreeLattice.reachable_childSide_of_uniquePath_concat` revision 1 reached `proved`, is proof-policy satisfied, and matches the required qualified identity and root-oriented child-side reachability capability. All six prior declarations remain unchanged; their two released interfaces remain proved and bound. The graph now has seven active declarations, within the expected 7–10 scale, with no state-only work, superseded branch, blocker, or scope overflow."
 }

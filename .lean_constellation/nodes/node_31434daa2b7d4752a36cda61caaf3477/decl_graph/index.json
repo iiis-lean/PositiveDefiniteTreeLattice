@@ -20,11 +20,9 @@
     "round_d704a71d18cc416f95fe9180b7e58d49",
     "round_f3a58b8ef4d7453b8f677ad7007038c1"
   ],
-  "schema_version": 1,
+  "schema_version": 2,
   "strategy_ids": [
     "strategy_b6dff31456594838ba7a5f6b6c3f59bd",
     "strategy_f896ad8d3d5e41c193ec6ecf41edbffd"
-  ],
-  "summary": "DeclGraph index rebuilt for Main.TreePathSeparation: 7 decls, 8 rounds, 2 strategies.",
-  "updated_at": "2026-08-07T12:08:06Z"
+  ]
 }

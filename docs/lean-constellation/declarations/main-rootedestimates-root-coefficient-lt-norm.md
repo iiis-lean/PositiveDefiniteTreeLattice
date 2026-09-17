@@ -1,4 +1,4 @@
-[← Public API](../PUBLIC_API.md) · [Public boundaries](../PUBLIC_BOUNDARIES.md)
+[← Public API](../PUBLIC_API.md) · [Public boundaries](../PUBLIC_BOUNDARIES.md) · [Complete graph](../DECLARATION_GRAPH.md)
 
 # `root_coefficient_lt_norm`
 
@@ -10,9 +10,70 @@ A nonzero vector in an admissible rooted tree has root coefficient strictly belo
 - State: `proved`
 - Revision status: `committed`
 - Repository completion: `graph_proved`
-- Formal code: final proof projection
+- Compatibility `formal_code`: final proof projection
 
-## Lean code
+## Statement NL
+
+For a finite graph `G` with the existing decidability instances, an integer weight function `w`, a root `rho`, and an admissibility hypothesis `hAdm : IsAdmissibleRootedTree G w rho`, let `x : V → ℤ` be an integral coordinate vector with `hx : x ≠ 0`.  The exact public theorem `PositiveDefiniteTreeLattice.root_coefficient_lt_norm` asserts the strict integer inequality
+
+`x rho < PositiveDefiniteTreeLattice.treePairing G w x x`.
+
+Equivalently, the integral tree-pairing norm satisfies `0 < PositiveDefiniteTreeLattice.treePairing G w x x - x rho`.  The statement retains the exact root coordinate, integral pairing model, admissibility hypothesis, and nonzero-vector hypothesis from the source.
+
+## Statement Formal
+
+```lean
+-- lean-constellation: managed-imports-begin
+import PositiveDefiniteTreeLattice.Main.RootedEstimates.Prelude
+-- lean-constellation: managed-imports-end
+
+-- lean-constellation: declaration-source-begin
+
+/--
+# lean-constellation target: `root_coefficient_lt_norm`
+
+For a finite graph `G` with the existing decidability instances, an integer weight function `w`, a
+root `rho`, and an admissibility hypothesis `hAdm : IsAdmissibleRootedTree G w rho`, let `x : V → ℤ`
+be an integral coordinate vector with `hx : x ≠ 0`.  The exact public theorem
+`PositiveDefiniteTreeLattice.root_coefficient_lt_norm` asserts the strict integer inequality
+
+`x rho < PositiveDefiniteTreeLattice.treePairing G w x x`.
+
+Equivalently, the integral tree-pairing norm satisfies `0 < PositiveDefiniteTreeLattice.treePairing
+G w x x - x rho`.  The statement retains the exact root coordinate, integral pairing model,
+admissibility hypothesis, and nonzero-vector hypothesis from the source.
+
+## Sources
+
+- Source `solution.tex`, lines 155–159
+
+## Statement dependencies
+
+- `Main.LatticeFoundations::treePairingAnchor` → `PositiveDefiniteTreeLattice.treePairing` from
+  `PositiveDefiniteTreeLattice.Main.LatticeFoundations.Defs.treePairingAnchor`
+- `Main.RootedCapacity::IsAdmissibleRootedTree` → `IsAdmissibleRootedTree` from
+  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.IsAdmissibleRootedTree`
+-/
+theorem PositiveDefiniteTreeLattice.root_coefficient_lt_norm {V : Type*} [Fintype V]
+    [DecidableEq V] (G : SimpleGraph V) [DecidableRel G.Adj] (w : V → ℤ) (rho : V)
+    (hAdm : IsAdmissibleRootedTree G w rho) (x : V → ℤ) (hx : x ≠ 0) :
+    x rho < treePairing G w x x := by
+  sorry
+```
+
+## Proof NL
+
+Write `N := PositiveDefiniteTreeLattice.treePairing G w x x` and `xQ : V → ℚ := fun v => (x v : ℚ)`.  Destructure `hAdm` to obtain `hPos : Matrix.PosDef (rootedGram G w)`.  The coordinatewise cast vector is nonzero: otherwise function extensionality and injectivity of the integer cast would contradict `hx`.  Hence `hPos.dotProduct_mulVec_pos hxQ` gives strict positivity of the rational rootedGram quadratic form.  Rewrite it through the proved `treePairingCastEqRootedGramQuadratic G w x`, and use cast/order normalization to obtain `0 < N` in `ℤ`.
+
+Split on `x rho ≤ 0`, exactly as in the source.  In this case, combine `0 < N` with `x rho ≤ 0` by integer linear arithmetic to conclude `x rho < N`.
+
+In the remaining case obtain `0 < x rho`.  Let `gamma := rootedCapacity G w rho`.  The proved Cauchy bridge `rootCoordinateSqLeCapacityMulTreePairing G w rho hAdm x` gives
+`(x rho : ℚ)^2 ≤ gamma * (N : ℚ)`.
+From `PositiveDefiniteTreeLattice.capacity_pos_lt_one G w rho hAdm`, use `gamma < 1` and the already-established `(N : ℚ) > 0` to get the strict bound
+`(x rho : ℚ)^2 < (N : ℚ)`.
+Since `x rho` is a positive integer, ordered-ring arithmetic gives `x rho ≤ (x rho)^2`; cast this inequality to `ℚ`, compose it with the strict rational bound, and transport the resulting strict inequality back to `ℤ`.  This proves the exact public conclusion `x rho < treePairing G w x x`, with no nonzero condition beyond the original `hx` and no change of graph, root, or pairing model.  It is the source argument in solution.tex lines 155–180.
+
+## Proof Formal
 
 ```lean
 -- lean-constellation: managed-imports-begin

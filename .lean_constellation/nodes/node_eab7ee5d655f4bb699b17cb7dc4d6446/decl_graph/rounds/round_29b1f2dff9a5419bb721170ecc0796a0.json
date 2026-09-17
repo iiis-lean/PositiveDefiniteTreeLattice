@@ -1,18 +1,13 @@
 {
-  "change_summaries": {},
   "committed_at": "2026-07-30T19:45:37Z",
   "created_at": "2026-07-30T19:34:02Z",
-  "discard_reason": null,
   "discarded_at": null,
   "discarded_by": null,
-  "discarded_created_decl_names": [],
-  "discarded_restored_decl_revisions": {},
-  "discarded_revision_refs": [],
   "execution_completed_at": "2026-07-30T19:43:52Z",
   "execution_reason": "Lean exhausts the fixed 200000-heartbeat budget while checking the definitional equality between the exact dependent summand in the theorem statement and rootedChildCapacitySum after its single permitted unfolding. Raising heartbeat limits is forbidden.",
   "execution_result_kind": "blocked",
   "node_path": "Main.RootedCapacity",
-  "objective": "Prove one private instance-stable b_0009 aggregation lemma: exact per-child strict capacity bounds imply rootedChildCapacitySum is strictly less than the root-child cardinality, without unfolding the dependent sum in the size induction.",
+  "objective": "Round 59 concerns an instance-stable private b_0009 aggregation lemma: exact strict bounds for every attached-child rootedChildCapacitySummand imply rootedChildCapacitySum is strictly below the root-child cardinality, without unfolding the dependent sum in the size induction.",
   "plan_closeout_acknowledged_at": "2026-07-30T19:45:37Z",
   "plan_closeout_acknowledged_by": "a_a93b40977f574bad89528358fa89e022",
   "result_kind": "blocked",
@@ -29,5 +24,6 @@
   "started_at": "2026-07-30T19:35:09Z",
   "status": "committed",
   "strategy_id": "strategy_fc60f40a331d4f63bd19e22f0eec7473",
-  "summary": "Round 59 made statement-layer progress only: rootedChildCapacitySum_lt_card_of_forall_lt_one reached proof_planned with a valid exact source-derived statement and accepted proof route, but is not graph_proved. The same fixed-heartbeat dependent-instance normalization that blocked both prior capacity upper-bound induction routes now occurs inside the isolated aggregate helper itself, so the known dependency closure is mathematically complete but compiler-unstable at the rootedChildCapacitySum representation boundary. No missing Mathlib, visible provider, or source fact remains. Retry requires an authorized representation-level repair of the child capacity summand/aggregate interface, not another parent proof attempt or proof-term wrapper; afterward retry this helper, rootedCapacity_lt_one_of_card_le, then capacity_pos_lt_one. The graph now has 37 declarations against the contract's approximate final scale of 29–38, while rooted_integer_estimate and root_coefficient_lt_norm are still absent, so further helper expansion would exceed the planned scope. Next action after closeout should be terminal Content blocked for Coordinator review of the representation/scope boundary."
+  "summary": "Round 59 made statement-layer progress only: rootedChildCapacitySum_lt_card_of_forall_lt_one reached proof_planned with a valid exact source-derived statement and accepted proof route, but is not graph_proved. The same fixed-heartbeat dependent-instance normalization that blocked both prior capacity upper-bound induction routes now occurs inside the isolated aggregate helper, so the known dependency closure is mathematically complete but compiler-unstable at the rootedChildCapacitySum representation boundary. No missing Mathlib, visible provider, or source fact remains. The graph has 37 declarations against the contract's approximate final scale of 29–38; rooted_integer_estimate and root_coefficient_lt_norm are still absent, and this round introduced no further helper expansion.",
+  "execution_constraints": "Obtain an authorized representation-level repair of the child capacity summand/aggregate interface before retrying this helper; do not attempt another parent proof or proof-term wrapper. After repair, retry this helper, rootedCapacity_lt_one_of_card_le, then capacity_pos_lt_one. Keep further helper expansion within the planned scope; after closeout, report terminal Content blocked for Coordinator review of the representation/scope boundary."
 }

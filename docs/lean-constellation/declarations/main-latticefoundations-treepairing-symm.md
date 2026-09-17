@@ -1,4 +1,4 @@
-[← Public API](../PUBLIC_API.md) · [Public boundaries](../PUBLIC_BOUNDARIES.md)
+[← Public API](../PUBLIC_API.md) · [Public boundaries](../PUBLIC_BOUNDARIES.md) · [Complete graph](../DECLARATION_GRAPH.md)
 
 # `treePairing_symm`
 
@@ -10,9 +10,50 @@ The weighted simple-graph pairing is symmetric.
 - State: `proved`
 - Revision status: `committed`
 - Repository completion: `graph_proved`
-- Formal code: final proof projection
+- Compatibility `formal_code`: final proof projection
 
-## Lean code
+## Statement NL
+
+For a finite type `V` with decidable equality, a simple graph `G : SimpleGraph V` with decidable adjacency, an integer-valued weight function `weight : V → ℤ`, and functions `x y : V → ℤ`, the pairing is symmetric:
+
+`treePairing G weight x y = treePairing G weight y x`.
+
+## Statement Formal
+
+```lean
+-- lean-constellation: managed-imports-begin
+import PositiveDefiniteTreeLattice.Main.LatticeFoundations.Prelude
+import PositiveDefiniteTreeLattice.Main.LatticeFoundations.Defs.treePairingAnchor
+-- lean-constellation: managed-imports-end
+
+-- lean-constellation: declaration-source-begin
+
+/--
+# lean-constellation target: `treePairing_symm`
+
+For a finite type `V` with decidable equality, a simple graph `G : SimpleGraph V` with decidable
+adjacency, an integer-valued weight function `weight : V → ℤ`, and functions `x y : V → ℤ`, the
+pairing is symmetric:
+
+`treePairing G weight x y = treePairing G weight y x`.
+
+## Statement dependencies
+
+- `Main.LatticeFoundations::treePairingAnchor` → `PositiveDefiniteTreeLattice.treePairing` from
+  `PositiveDefiniteTreeLattice.Main.LatticeFoundations.Defs.treePairingAnchor`
+-/
+theorem PositiveDefiniteTreeLattice.treePairing_symm {V : Type*} [Fintype V] [DecidableEq V]
+    (G : SimpleGraph V) [DecidableRel G.Adj] (weight : V → ℤ) (x y : V → ℤ) :
+    PositiveDefiniteTreeLattice.treePairing G weight x y =
+      PositiveDefiniteTreeLattice.treePairing G weight y x := by
+  sorry
+```
+
+## Proof NL
+
+Unfold `PositiveDefiniteTreeLattice.treePairing` and separate it into its weighted diagonal contribution and its adjacency contribution.  The diagonal sums agree after commuting integer multiplication.  For the adjacency term, rewrite each `G.neighborFinset u` using `SimpleGraph.neighborFinset_eq_filter`; use `SimpleGraph.adj_comm` to identify the filtered ordered-pair condition with its swapped version, and apply `Finset.sum_comm` to exchange the two finite indices.  The swapped double sum is the adjacency contribution of `treePairing G weight y x`; normalize the signs and products with `ring` to conclude.
+
+## Proof Formal
 
 ```lean
 -- lean-constellation: managed-imports-begin

@@ -1,16 +1,10 @@
 {
   "change": {
-    "anticipated_proof_dep_names": [
-      "rootedChildComponent_isAdmissible_of_unique_underweight",
-      "rootedGram_posDef_of_integer_positive"
-    ],
-    "anticipated_statement_dep_names": [],
     "base_revision": null,
     "kind": "create",
-    "objective": "Formalize solution.tex:204-208 as the exact central Schur-complement inequality: for the same positive-definite finite weighted tree, distinguished vertex, global weight-at-least-two condition, and unique-underweight/ambient degree condition consumed by rootedChildComponent_isAdmissible_of_unique_underweight, conclude `rootedChildCapacitySum G hG w v < (w v : ℚ)` (equivalently `(w v : ℚ) - rootedChildCapacitySum G hG w v > 0`). Preserve the repository's integral weight function and canonical rootedChildCapacitySum representation. Prove the component blocks admissible using rootedChildComponent_isAdmissible_of_unique_underweight, obtain ambient rational Gram PosDef from rootedGram_posDef_of_integer_positive, and implement the source Schur-complement argument at v. This private helper directly supplies the strict capacity gap required by the later rooted integer decomposition estimate and ultimately the protected exists_irreducible_vertex interface.",
+    "objective": "Revision 1 states the solution.tex:204–208 central Schur-complement inequality: under the supplied positive-definite finite weighted tree, distinguished underweighted vertex, global weight-at-least-two condition, and canonical rooted-child capacity representation, `rootedChildCapacitySum G hG w v < (w v : ℚ)`. Its proof role is to use child-component admissibility, ambient rational rootedGram positive definiteness, and the source block decomposition to supply the strict capacity gap for the later rooted integer/decomposition contradiction and protected `exists_irreducible_vertex` interface.",
     "require_target_state_satisfied": true,
-    "reset_to_state": null,
-    "summary": "Created the source-derived central gap lemma and accepted its Statement NL and Statement Formal, so revision 1 reached declared with conclusion `rootedChildCapacitySum G hG w v < (w v : ℚ)` under the positive-definite, weight-at-least-two, and unique-underweight hypotheses serving solution.tex:204-208. Proof NL was blocked by a visible/provider dependency gap. The consumer needs the child-component block-decomposition identity equating the root/nonroot inverse quadratic contribution with the canonical `rootedChildCapacitySum`. `rootedGram_rootedChildComponent` only identifies individual component Gram entries and does not supply this assembled matrix/reindexing equality. `rootedCapacity_recursion` contains the identity internally but requires ambient `IsAdmissibleRootedTree`, which is unavailable and false at the underweighted root; its proof relies on the non-public RootedCapacity helper `rootedNonroot_inverse_quadratic` plus root/nonroot reindexing infrastructure. Inventing that generic matrix decomposition locally would violate the node boundary excluding reimplementation of generic rooted-capacity theorems. Retry only after a public provider theorem exposes the quadratic-form/child-capacity-sum identity under ambient Gram PosDef plus admissible child components, or an equivalent directly applicable positive Schur-complement denominator theorem. The accepted parent statement is not superseded and should remain declared.",
+    "summary": "Created the source-derived central gap lemma and accepted its Statement NL and Statement Formal, so revision 1 reached declared with conclusion `rootedChildCapacitySum G hG w v < (w v : ℚ)` under the positive-definite, weight-at-least-two, and unique-underweight hypotheses serving solution.tex:204–208. Proof NL was blocked by a visible/provider dependency gap. The consumer needs the child-component block-decomposition identity equating the root/nonroot inverse quadratic contribution with the canonical `rootedChildCapacitySum`. `rootedGram_rootedChildComponent` only identifies individual component Gram entries and does not supply this assembled matrix/reindexing equality. `rootedCapacity_recursion` contains the identity internally but requires ambient `IsAdmissibleRootedTree`, which is unavailable and false at the underweighted root; its proof relies on the non-public RootedCapacity helper `rootedNonroot_inverse_quadratic` plus root/nonroot reindexing infrastructure. Inventing that generic matrix decomposition locally would violate the node boundary excluding reimplementation of generic rooted-capacity theorems. Resolution requires a public provider theorem exposing the quadratic-form/child-capacity-sum identity under ambient Gram PosDef plus admissible child components, or an equivalent directly applicable positive Schur-complement denominator theorem. The accepted parent statement remains declared and is not superseded.",
     "target_state": "proved"
   },
   "lean_decl_name": "rootedChildCapacitySum_lt_weight_of_unique_underweight",
@@ -188,6 +182,11 @@
           "schema_version": 2,
           "summary": "Diagnostics returned 1 items"
         },
+        "fingerprint": {
+          "environment_sha256": null,
+          "source_sha256": "feef1e853105fafbb435eb61c1a2b45f566a5b70b82733f68bf0d69823089ef9",
+          "upstream_revision": null
+        },
         "message": "Lean check passed.",
         "policy": "statement_formal",
         "scan": {
@@ -212,7 +211,15 @@
           "summary": "sorry=1, admit=0, axiom=0, opaque=0, unsafe=0",
           "unsafe_count": 0
         },
-        "status": "passed"
+        "schema_version": 1,
+        "status": "passed",
+        "subject": {
+          "declaration_name": null,
+          "module": "PositiveDefiniteTreeLattice.Main.IrreducibleVertex.Lemmas.rootedChildCapacitySum_lt_weight_of_unique_underweight",
+          "repo_file_path": "PositiveDefiniteTreeLattice/Main/IrreducibleVertex/Lemmas/rootedChildCapacitySum_lt_weight_of_unique_underweight.lean",
+          "repo_kind": "native",
+          "stage": "statement"
+        }
       },
       "code": "-- lean-constellation: managed-imports-begin\nimport PositiveDefiniteTreeLattice.Main.IrreducibleVertex.Prelude\nimport Mathlib.Combinatorics.SimpleGraph.Acyclic\nimport Mathlib.Combinatorics.SimpleGraph.Finite\n-- lean-constellation: managed-imports-end\n\n-- lean-constellation: declaration-source-begin\n\n/--\n# lean-constellation target: `rootedChildCapacitySum_lt_weight_of_unique_underweight`\n\nLet `V` be a finite type with decidable equality, let `G : SimpleGraph V` have decidable adjacency,\nlet `weight : V → ℤ`, and let `v : V`. Suppose `h_tree : G.IsTree`, `h_positive : ∀ x : V → ℤ, x ≠ 0\n→ 0 < treePairing G weight x x`, `h_unique_underweight : ∃! u : V, weight u < (G.degree u : ℤ)`, `hv\n: weight v < (G.degree v : ℤ)`, and `h_two : ∀ x : V, 2 ≤ weight x`. Then the canonical sum of the\ncapacities of the rooted child-side components at `v` is strictly below the integral weight at `v`,\nviewed in `ℚ`:\n\n`rootedChildCapacitySum G h_tree weight v < (weight v : ℚ)`.\n\n## Sources\n\n- Source `solution.tex`, lines 204–208\n\n## Statement dependencies\n\n- `SimpleGraph.IsTree` from `Mathlib.Combinatorics.SimpleGraph.Acyclic`\n- `SimpleGraph.degree` from `Mathlib.Combinatorics.SimpleGraph.Finite`\n- `Main.LatticeFoundations::treePairingAnchor` → `PositiveDefiniteTreeLattice.treePairing` from\n  `PositiveDefiniteTreeLattice.Main.LatticeFoundations.Defs.treePairingAnchor`\n- `Main.RootedCapacity::rootedChildCapacitySum` → `rootedChildCapacitySum` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildCapacitySum`\n-/\nlemma rootedChildCapacitySum_lt_weight_of_unique_underweight\n    {V : Type*} [Fintype V] [DecidableEq V] (G : SimpleGraph V) [DecidableRel G.Adj]\n    (hG : G.IsTree) (weight : V → ℤ) (v : V)\n    (h_positive : ∀ x : V → ℤ, x ≠ 0 →\n      0 < PositiveDefiniteTreeLattice.treePairing G weight x x)\n    (h_unique_underweight : ∃! u : V, weight u < (G.degree u : ℤ))\n    (hv : weight v < (G.degree v : ℤ)) (h_two : ∀ x : V, 2 ≤ weight x) :\n    rootedChildCapacitySum G hG weight v < (weight v : ℚ) := by\n  sorry\n"
     },

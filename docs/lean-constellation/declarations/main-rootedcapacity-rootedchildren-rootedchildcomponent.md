@@ -1,4 +1,4 @@
-[← Public API](../PUBLIC_API.md) · [Public boundaries](../PUBLIC_BOUNDARIES.md)
+[← Public API](../PUBLIC_API.md) · [Public boundaries](../PUBLIC_BOUNDARIES.md) · [Complete graph](../DECLARATION_GRAPH.md)
 
 # `rootedChildren_rootedChildComponent`
 
@@ -10,9 +10,91 @@ Local rooted children in a child component map exactly to the ambient rooted chi
 - State: `proved`
 - Revision status: `committed`
 - Repository completion: `graph_proved`
-- Formal code: final proof projection
+- Compatibility `formal_code`: final proof projection
 
-## Lean code
+## Statement NL
+
+For a finite vertex type `V` with decidable equality, a simple graph `G : SimpleGraph V`, a tree proof `hG : G.IsTree`, an ambient root `ρ : V`, vertices `parent c : V`, and a hypothesis `hc : c ∈ rootedChildren G hG ρ parent`, let `C := rootedChildComponent G parent c` and let `e : C ↪ V` be the explicit subtype inclusion `x ↦ (x : V)`.  Then, for every `x : C`, mapping the component rooted-children finset along `e` gives exactly the ambient rooted-children finset: `(rootedChildren C.toSimpleGraph (rootedChildComponent_isTree G parent c hG) (rootedChildRoot G parent c) x).map e = rootedChildren G hG ρ (x : V)`.  No weight or admissibility hypothesis is assumed, and the conclusion is equality of finsets rather than only equality of cardinalities.
+
+## Statement Formal
+
+```lean
+-- lean-constellation: managed-imports-begin
+import PositiveDefiniteTreeLattice.Main.RootedCapacity.Prelude
+import Mathlib.Combinatorics.SimpleGraph.Acyclic
+import Mathlib.Combinatorics.SimpleGraph.Connectivity.Connected
+import Mathlib.Data.Finset.Image
+import PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildComponent
+import PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildRoot
+import PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildren
+import PositiveDefiniteTreeLattice.Main.RootedCapacity.Theorems.rootedChildComponent_isTree
+-- lean-constellation: managed-imports-end
+
+-- lean-constellation: declaration-source-begin
+
+/--
+# lean-constellation target: `rootedChildren_rootedChildComponent`
+
+For a finite vertex type `V` with decidable equality, a simple graph `G : SimpleGraph V`, a tree
+proof `hG : G.IsTree`, an ambient root `ρ : V`, vertices `parent c : V`, and a hypothesis `hc : c ∈
+rootedChildren G hG ρ parent`, let `C := rootedChildComponent G parent c` and let `e : C ↪ V` be the
+explicit subtype inclusion `x ↦ (x : V)`.  Then, for every `x : C`, mapping the component
+rooted-children finset along `e` gives exactly the ambient rooted-children finset: `(rootedChildren
+C.toSimpleGraph (rootedChildComponent_isTree G parent c hG) (rootedChildRoot G parent c) x).map e =
+rootedChildren G hG ρ (x : V)`.  No weight or admissibility hypothesis is assumed, and the
+conclusion is equality of finsets rather than only equality of cardinalities.
+
+## Sources
+
+- Source `solution.tex`, lines 48–61
+
+## Statement dependencies
+
+- `SimpleGraph.IsTree` from `Mathlib.Combinatorics.SimpleGraph.Acyclic`
+- `SimpleGraph.ConnectedComponent.toSimpleGraph` from
+  `Mathlib.Combinatorics.SimpleGraph.Connectivity.Connected`
+- `Finset.map` from `Mathlib.Data.Finset.Image`
+- `Main.RootedCapacity::rootedChildComponent` → `rootedChildComponent` from
+  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildComponent`
+- `Main.RootedCapacity::rootedChildComponent_isTree` → `rootedChildComponent_isTree` from
+  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Theorems.rootedChildComponent_isTree`
+- `Main.RootedCapacity::rootedChildRoot` → `rootedChildRoot` from
+  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildRoot`
+- `Main.RootedCapacity::rootedChildren` → `rootedChildren` from
+  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildren`
+-/
+theorem rootedChildren_rootedChildComponent {V : Type*} [Fintype V] [DecidableEq V]
+    (G : SimpleGraph V) [DecidableRel G.Adj] (hG : G.IsTree) (ρ parent c : V)
+    (hc : c ∈ rootedChildren G hG ρ parent) :
+    let C := rootedChildComponent G parent c
+    letI : Fintype C := Fintype.ofFinite C
+    letI : DecidableRel C.toSimpleGraph.Adj := by
+      intro u v
+      change Decidable ((G.deleteEdges {s(parent, c)}).Adj (u : V) (v : V))
+      infer_instance
+    let e : C ↪ V :=
+      { toFun := fun x => (x : V)
+        inj' := by
+          intro x y hxy
+          exact Subtype.ext hxy }
+    ∀ x : C,
+      (rootedChildren C.toSimpleGraph (rootedChildComponent_isTree G parent c hG)
+          (rootedChildRoot G parent c) x).map e =
+        rootedChildren G hG ρ (x : V) := by
+  sorry
+```
+
+## Proof NL
+
+Introduce the component abbreviation, its instances, and the explicit inclusion embedding `e : C ↪ V`. For each `x : C`, apply `Finset.ext` and unfold `Finset.mem_map` and the definition of `rootedChildren`; membership on the left is an existential local child `z : C` with its coercion equal to the ambient test vertex.
+
+For the forward implication, take a local child `z` of `x`. Its component-path witness from the canonical root `rootedChildRoot G parent c` to `x`, followed by the local edge to `z`, maps through `C.toSimpleGraph_hom` to a walk in the cut graph and hence in `G`. The hypothesis `hc` supplies the ambient rooted orientation of the deleted edge, so concatenate the unique ambient root-to-`c` path with this mapped component path. Use `hG.existsUnique_path` to identify the resulting ambient root-to-`z` path with the chosen one in `rootedChildren`; this gives that `(z : V)` is an ambient child of `(x : V)`.
+
+For the reverse implication, take an ambient child `z` of `(x : V)`. The ambient child path and the cut-component path from `c` to `x` identify, by uniqueness in `hG`, the orientation of the edge `x-z`. In particular `z ≠ parent`: otherwise the ambient root path would return across the parent-child cut after reaching the child-side component, contradicting the simple/unique tree path. Since `x ≠ parent` by `rootedChildComponent_parent_not_mem`, this edge is not the deleted unordered edge. Rewrite with `SimpleGraph.deleteEdges_adj`; the edge therefore belongs to the cut graph. Component closure under cut-graph adjacency puts `z` in `C`, producing the required subtype `zC`.
+
+Finally use the unique component-tree path from `rootedChildRoot` to `zC` and compare its ambient image with the established ambient root path using `hG.existsUnique_path`. This shows `zC` satisfies the local `rootedChildren` predicate at `x`; its image under `e` is `z`. The two membership implications close the Finset extensionality proof exactly.
+
+## Proof Formal
 
 ```lean
 -- lean-constellation: managed-imports-begin

@@ -43,7 +43,7 @@
     "round_eeeed9e1480143cc9e54383e0d1ff8b8",
     "round_f9917d1b97f84f129674eb110ab2ff85"
   ],
-  "schema_version": 1,
+  "schema_version": 2,
   "strategy_ids": [
     "strategy_26de090149ae44d9ac6286dfa80159a0",
     "strategy_2fda3ac1fa8b4fc5bb88fd75f3367b39",
@@ -57,7 +57,5 @@
     "strategy_c7956f63087f4965ac944b87b0e79a25",
     "strategy_c83b9a86debe4941baf6740c54d22396",
     "strategy_c8ba6f0b78e349faafd071c8dae0b3af"
-  ],
-  "summary": "DeclGraph index rebuilt for Main.IrreducibleVertex: 11 decls, 27 rounds, 12 strategies.",
-  "updated_at": "2026-08-07T12:08:06Z"
+  ]
 }

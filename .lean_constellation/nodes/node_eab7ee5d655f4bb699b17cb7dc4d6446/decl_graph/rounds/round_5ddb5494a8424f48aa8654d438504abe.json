@@ -1,18 +1,13 @@
 {
-  "change_summaries": {},
   "committed_at": "2026-07-30T17:46:30Z",
   "created_at": "2026-07-30T17:41:29Z",
-  "discard_reason": null,
   "discarded_at": null,
   "discarded_by": null,
-  "discarded_created_decl_names": [],
-  "discarded_restored_decl_revisions": {},
-  "discarded_revision_refs": [],
   "execution_completed_at": "2026-07-30T17:44:54Z",
   "execution_reason": "After adding the new root/nonroot block provider, the accepted Schur-complement route still lacks a verified interface for transporting hAdm's Matrix.PosDef (and its unit/invertibility consequence) through the Equiv.sumCompl reindex/block equality to the Matrix.fromBlocks term needed by Matrix.invertibleOfFromBlocks₂₂Invertible. The current proof dependencies list PosDef.submatrix/isUnit but no reindex/congruence transport theorem or route for this step.",
   "execution_result_kind": "blocked",
   "node_path": "Main.RootedCapacity",
-  "objective": "Resume only Proof Formal for the accepted public capacity recursion using the now-proved exact root/nonroot Matrix.fromBlocks decomposition.",
+  "objective": "`rootedCapacity_recursion@rev:2` is the accepted public capacity recursion using the exact root/nonroot `Matrix.fromBlocks` decomposition and preserving the rational Schur-complement denominator `w ρ - rootedChildCapacitySum`.",
   "plan_closeout_acknowledged_at": "2026-07-30T17:46:30Z",
   "plan_closeout_acknowledged_by": "a_a93b40977f574bad89528358fa89e022",
   "result_kind": "blocked",
@@ -29,5 +24,6 @@
   "started_at": "2026-07-30T17:43:35Z",
   "status": "committed",
   "strategy_id": "strategy_fc60f40a331d4f63bd19e22f0eec7473",
-  "summary": "Round 50 did not advance rootedCapacity_recursion beyond proof_planned. The graph/block and scalar mathematical prerequisites are proved, but the accepted Schur route now has one precise unverified Mathlib step: transporting positive definiteness/invertibility through the root/nonroot reindex and block equality. Because this task has not run Mathlib preparation and the missing fact may already be generic API, another declaration round is premature. The strategy remains viable. After closeout, the next action is one focused Mathlib recon for `Matrix.PosDef` under `Matrix.reindex`/equivalence or equality congruence and the exact fromBlocks invertibility application; its result will determine whether to add a hint, use an existing theorem directly, or plan a smallest tracked local bridge."
+  "summary": "Round 50 did not advance `rootedCapacity_recursion` beyond `proof_planned`. The graph/block and scalar mathematical prerequisites are proved, but the accepted Schur route has one precise unverified Mathlib step: transporting positive definiteness/invertibility through the root/nonroot reindex and block equality. Because this task had not run Mathlib preparation and the missing fact might already be generic API, another declaration round was premature. The strategy remains viable.",
+  "execution_constraints": "Run focused Mathlib recon for `Matrix.PosDef` under `Matrix.reindex`/equivalence or equality congruence and for the exact `Matrix.fromBlocks` invertibility application. Use the result to choose a hint, direct existing theorem, or smallest tracked local bridge before retrying Proof Formal; preserve the accepted recursion statement and denominator."
 }

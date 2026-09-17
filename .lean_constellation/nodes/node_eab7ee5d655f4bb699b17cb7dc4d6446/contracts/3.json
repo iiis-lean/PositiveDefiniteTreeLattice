@@ -541,7 +541,7 @@
       "reason": "Canonical instance-reducible Fintype.ofFinite used to align the child component’s scoped induction target with rootedChildCapacitySummand."
     }
   ],
-  "objective": "Extend the committed rooted-structure provider with a graph-proved public theorem stating that in a finite tree rooted at ρ, every x ≠ ρ satisfies rootedChildCount G hG ρ x + 1 = G.degree x. Use the existing rootedChildren representation and unique-path APIs, introducing a predecessor/neighborFinset partition helper only if needed. This interface must directly close Main.IrreducibleVertex.rootedChildComponent_childCount_add_one_eq_degree@1 after rootedChildCount_rootedChildComponent rewriting. Preserve all v1/v2 declarations and interfaces unchanged.",
+  "objective": "Contract v3 records the graph-proved public nonroot counting theorem: in a finite tree rooted at ρ, every x ≠ ρ satisfies rootedChildCount G hG ρ x + 1 = G.degree x. The theorem uses the existing rootedChildren representation and unique-path structure, directly closes Main.IrreducibleVertex.rootedChildComponent_childCount_add_one_eq_degree@1 after rootedChildCount_rootedChildComponent rewriting, and leaves all v1/v2 declarations and interfaces unchanged.",
   "owned_refs": [
     {
       "added_by": "coordinator",

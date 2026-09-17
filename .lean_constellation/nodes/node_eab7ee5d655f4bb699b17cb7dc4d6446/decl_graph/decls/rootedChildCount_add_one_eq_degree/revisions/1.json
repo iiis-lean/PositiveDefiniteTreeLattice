@@ -1,20 +1,12 @@
 {
   "change": {
-    "anticipated_proof_dep_names": [
-      "rootedChildCount",
-      "rootedChildren",
-      "rootedNeighborFinset_eq_insert_predecessor"
-    ],
-    "anticipated_statement_dep_names": [
-      "rootedChildCount"
-    ],
     "base_revision": null,
     "kind": "create",
-    "objective": "Create the exact qualified contract-v3 interface PositiveDefiniteTreeLattice.rootedChildCount_add_one_eq_degree, supported by solution.tex 194–204. Its binders and assumptions must be exactly {V} [Fintype V] [DecidableEq V], G : SimpleGraph V, [DecidableRel G.Adj], hG : G.IsTree, root ρ : V, vertex x : V, and hx : x ≠ ρ; conclude rootedChildCount G hG ρ x + 1 = G.degree x. Do not add weights, admissibility, capacity, component indices, or downstream-node hypotheses. Prove it by obtaining p and the exact neighborFinset insertion equality from rootedNeighborFinset_eq_insert_predecessor, taking Finset.card, using p ∉ rootedChildren for card_insert, unfolding rootedChildCount, and the neighborFinset degree/card identity. Place the Lean theorem in namespace PositiveDefiniteTreeLattice so its compiler-confirmed full name exactly matches the qualified interface. This theorem must directly serve downstream component child-count rewriting without representation conversion or stronger hypotheses.",
+    "objective": "Revision 1 establishes the qualified public contract-v3 theorem `PositiveDefiniteTreeLattice.rootedChildCount_add_one_eq_degree` from solution.tex lines 194–204. For exactly the finite decidable tree binders, root `ρ`, nonroot vertex `x`, and `hx : x ≠ ρ`, it asserts `rootedChildCount G hG ρ x + 1 = G.degree x`, with no weights, admissibility, capacity, component indices, or downstream hypotheses. The identity supplies direct child-count rewriting for component consumers without representation conversion or stronger assumptions.",
     "require_target_state_satisfied": true,
-    "reset_to_state": null,
     "summary": "Created and graph-proved the public contract-v3 theorem with compiler-confirmed Lean identity PositiveDefiniteTreeLattice.rootedChildCount_add_one_eq_degree. It retains exactly the finite decidable tree, root, nonroot vertex assumptions and concludes rootedChildCount G hG ρ x + 1 = G.degree x, with no weights, admissibility, capacity, component indices, or downstream dependencies. All four stages passed and the theorem is proof-policy satisfied, using the committed predecessor/neighborFinset partition.",
-    "target_state": "proved"
+    "target_state": "proved",
+    "execution_constraints": "Keep the `PositiveDefiniteTreeLattice` namespace, exact binders, assumptions, and conclusion unchanged. Obtain the predecessor and neighborFinset insertion from `rootedNeighborFinset_eq_insert_predecessor`, take finite-set cardinalities using `Finset.card_insert_of_notMem`, unfold `rootedChildCount`, and finish with `SimpleGraph.card_neighborFinset_eq_degree`. Do not add weights, admissibility, capacity, component indices, or stronger hypotheses."
   },
   "lean_decl_name": "PositiveDefiniteTreeLattice.rootedChildCount_add_one_eq_degree",
   "proof": {
@@ -59,6 +51,11 @@
           "schema_version": 2,
           "summary": "Diagnostics returned 0 items"
         },
+        "fingerprint": {
+          "environment_sha256": null,
+          "source_sha256": "0fb32a2c8c93d433b9f36436f4311e5515fd1612ca20ca6b5488dd800ca1d8b5",
+          "upstream_revision": null
+        },
         "message": "Lean check passed.",
         "policy": "proof_formal",
         "scan": {
@@ -76,7 +73,15 @@
           "summary": "sorry=0, admit=0, axiom=0, opaque=0, unsafe=0",
           "unsafe_count": 0
         },
-        "status": "passed"
+        "schema_version": 1,
+        "status": "passed",
+        "subject": {
+          "declaration_name": null,
+          "module": "PositiveDefiniteTreeLattice.Main.RootedCapacity.Theorems.rootedChildCount_add_one_eq_degree",
+          "repo_file_path": "PositiveDefiniteTreeLattice/Main/RootedCapacity/Theorems/rootedChildCount_add_one_eq_degree.lean",
+          "repo_kind": "native",
+          "stage": "proof"
+        }
       },
       "code": "-- lean-constellation: managed-imports-begin\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Prelude\nimport Mathlib.Combinatorics.SimpleGraph.Acyclic\nimport Mathlib.Combinatorics.SimpleGraph.Finite\nimport Mathlib.Data.Finset.Card\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildCount\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Theorems.rootedNeighborFinset_eq_insert_predecessor\n-- lean-constellation: managed-imports-end\n\n-- lean-constellation: declaration-source-begin\n\n/--\n# lean-constellation target: `rootedChildCount_add_one_eq_degree`\n\nIn the namespace `PositiveDefiniteTreeLattice`, let `V` be a finite type with decidable equality,\nlet `G : SimpleGraph V` have decidable adjacency, let `hG : G.IsTree`, and fix vertices `ρ x : V`\nwith `x ≠ ρ`. Then\n\n`rootedChildCount G hG ρ x + 1 = G.degree x`.\n\nThus every nonroot vertex has ambient degree exactly one greater than its rooted child count.\n\n## Sources\n\n- Source `solution.tex`, lines 194–204\n\n## Statement dependencies\n\n- `SimpleGraph.IsTree` from `Mathlib.Combinatorics.SimpleGraph.Acyclic`\n- `SimpleGraph.degree` from `Mathlib.Combinatorics.SimpleGraph.Finite`\n- `Main.RootedCapacity::rootedChildCount` → `rootedChildCount` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildCount`\n\n## Proof outline\n\nObtain `⟨p, hp_not_child, hneighbors⟩` from the accepted private theorem\n`rootedNeighborFinset_eq_insert_predecessor G hG ρ x hx`.  Here\n\n`hp_not_child : p ∉ rootedChildren G hG ρ x` and\n`hneighbors : G.neighborFinset x = insert p (rootedChildren G hG ρ x)`.\n\nUnfold `rootedChildCount`.  Calculate\n`(rootedChildren G hG ρ x).card + 1` as the cardinality of\n`insert p (rootedChildren G hG ρ x)` using the verified\n`Finset.card_insert_of_notMem hp_not_child`.  Rewrite that finset with\n`hneighbors.symm`, then close with the verified\n`SimpleGraph.card_neighborFinset_eq_degree`.  The resulting equality is\nexactly `rootedChildCount G hG ρ x + 1 = G.degree x`.\n\nAll proof steps preserve the stated generic binders; no weighted, admissibility,\ncapacity, or component-specific fact is introduced.\n\n## Proof sources\n\n- Source `solution.tex`, lines 194–204\n\n## Proof dependencies\n\n- `SimpleGraph.card_neighborFinset_eq_degree` from `Mathlib.Combinatorics.SimpleGraph.Finite`\n- `Finset.card_insert_of_notMem` from `Mathlib.Data.Finset.Card`\n- `Main.RootedCapacity::rootedNeighborFinset_eq_insert_predecessor` →\n  `rootedNeighborFinset_eq_insert_predecessor` from `PositiveDefiniteTreeLattice.Main.RootedCapacity\n  .Theorems.rootedNeighborFinset_eq_insert_predecessor`\n-/\ntheorem PositiveDefiniteTreeLattice.rootedChildCount_add_one_eq_degree {V : Type*} [Fintype V]\n    [DecidableEq V] (G : SimpleGraph V) [DecidableRel G.Adj] (hG : G.IsTree)\n    (ρ x : V) (hx : x ≠ ρ) :\n    rootedChildCount G hG ρ x + 1 = G.degree x := by\n  obtain ⟨p, hp, hneighbors⟩ :=\n    rootedNeighborFinset_eq_insert_predecessor G hG ρ x hx\n  unfold rootedChildCount\n  calc\n    (rootedChildren G hG ρ x).card + 1 = (insert p (rootedChildren G hG ρ x)).card :=\n      (Finset.card_insert_of_notMem hp).symm\n    _ = (G.neighborFinset x).card := by rw [hneighbors]\n    _ = G.degree x := G.card_neighborFinset_eq_degree x\n"
     },
@@ -148,6 +153,11 @@
           "schema_version": 2,
           "summary": "Diagnostics returned 1 items"
         },
+        "fingerprint": {
+          "environment_sha256": null,
+          "source_sha256": "6d60a78c15fc43170300163177ce4971cba2f2af2fc87977fbd303e414b69819",
+          "upstream_revision": null
+        },
         "message": "Lean check passed.",
         "policy": "statement_formal",
         "scan": {
@@ -172,7 +182,15 @@
           "summary": "sorry=1, admit=0, axiom=0, opaque=0, unsafe=0",
           "unsafe_count": 0
         },
-        "status": "passed"
+        "schema_version": 1,
+        "status": "passed",
+        "subject": {
+          "declaration_name": null,
+          "module": "PositiveDefiniteTreeLattice.Main.RootedCapacity.Theorems.rootedChildCount_add_one_eq_degree",
+          "repo_file_path": "PositiveDefiniteTreeLattice/Main/RootedCapacity/Theorems/rootedChildCount_add_one_eq_degree.lean",
+          "repo_kind": "native",
+          "stage": "statement"
+        }
       },
       "code": "-- lean-constellation: managed-imports-begin\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Prelude\nimport Mathlib.Combinatorics.SimpleGraph.Acyclic\nimport Mathlib.Combinatorics.SimpleGraph.Finite\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildCount\n-- lean-constellation: managed-imports-end\n\n-- lean-constellation: declaration-source-begin\n\n/--\n# lean-constellation target: `rootedChildCount_add_one_eq_degree`\n\nIn the namespace `PositiveDefiniteTreeLattice`, let `V` be a finite type with decidable equality,\nlet `G : SimpleGraph V` have decidable adjacency, let `hG : G.IsTree`, and fix vertices `ρ x : V`\nwith `x ≠ ρ`. Then\n\n`rootedChildCount G hG ρ x + 1 = G.degree x`.\n\nThus every nonroot vertex has ambient degree exactly one greater than its rooted child count.\n\n## Sources\n\n- Source `solution.tex`, lines 194–204\n\n## Statement dependencies\n\n- `SimpleGraph.IsTree` from `Mathlib.Combinatorics.SimpleGraph.Acyclic`\n- `SimpleGraph.degree` from `Mathlib.Combinatorics.SimpleGraph.Finite`\n- `Main.RootedCapacity::rootedChildCount` → `rootedChildCount` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildCount`\n-/\ntheorem PositiveDefiniteTreeLattice.rootedChildCount_add_one_eq_degree {V : Type*} [Fintype V]\n    [DecidableEq V] (G : SimpleGraph V) [DecidableRel G.Adj] (hG : G.IsTree)\n    (ρ x : V) (hx : x ≠ ρ) :\n    rootedChildCount G hG ρ x + 1 = G.degree x := by\n  sorry\n"
     },

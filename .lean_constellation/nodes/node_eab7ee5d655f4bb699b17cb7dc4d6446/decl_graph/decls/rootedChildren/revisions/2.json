@@ -1,14 +1,13 @@
 {
   "change": {
-    "anticipated_proof_dep_names": [],
-    "anticipated_statement_dep_names": [],
     "base_revision": 1,
     "kind": "update",
-    "objective": "Retain the accepted b_0008 / solution.tex lines 33–34 Statement NL meaning and complete Statement Formal for the finite child set oriented away from root ρ. Consume SimpleGraph.IsTree.existsUnique_path only; the recon verified this file and RootedCapacity.Prelude compile. This public definition must serve rootedChildCount, rooted components, admissibility, and later capacity/integer-estimate induction.",
+    "objective": "Revision 2 preserves the accepted b_0008 rooted-orientation meaning from SourceIndex b_0008 / solution.tex lines 33–34: rootedChildren G ρ y is the finite set of vertices whose unique root-to-vertex path reaches y immediately before them. The public definition supplies the child set used by rootedChildCount, rooted components, admissibility, and later capacity and integer-estimate induction.",
     "require_target_state_satisfied": true,
-    "reset_to_state": "specified",
+    "start_stage": "statement_formal",
     "summary": "Provider-repair update succeeded. Preserved the accepted b_0008 rooted-orientation meaning, captured and compiler-checked formal definition `rootedChildren`, and advanced rev2 from specified to declared. The public definition reached its target and declared-level proof-policy satisfaction, consuming only the verified finite-tree path API. It is ready to support rootedChildCount, rooted components, admissibility, and later induction statements.",
-    "target_state": "declared"
+    "target_state": "declared",
+    "execution_constraints": "Use only SimpleGraph.IsTree.existsUnique_path to retain the accepted path-based child-set definition and its finite rooted orientation. Keep rootedChildren unchanged as the shared input to rootedChildCount, rooted components, admissibility, and later induction."
   },
   "lean_decl_name": "rootedChildren",
   "proof": null,
@@ -38,6 +37,11 @@
           "schema_version": 2,
           "summary": "Diagnostics returned 0 items"
         },
+        "fingerprint": {
+          "environment_sha256": null,
+          "source_sha256": "2addb3389df2b672e5f10db3e40cca453ae64071b67a1f1d5a69054e2c569bfc",
+          "upstream_revision": null
+        },
         "message": "Lean check passed.",
         "policy": "statement_formal",
         "scan": {
@@ -55,7 +59,15 @@
           "summary": "sorry=0, admit=0, axiom=0, opaque=0, unsafe=0",
           "unsafe_count": 0
         },
-        "status": "passed"
+        "schema_version": 1,
+        "status": "passed",
+        "subject": {
+          "declaration_name": null,
+          "module": "PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildren",
+          "repo_file_path": "PositiveDefiniteTreeLattice/Main/RootedCapacity/Defs/rootedChildren.lean",
+          "repo_kind": "native",
+          "stage": "statement"
+        }
       },
       "code": "-- lean-constellation: managed-imports-begin\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Prelude\nimport Mathlib.Combinatorics.SimpleGraph.Acyclic\n-- lean-constellation: managed-imports-end\n\n-- lean-constellation: declaration-source-begin\n\n/--\n# lean-constellation target: `rootedChildren`\n\nFor a finite simple graph `G` that is a tree, a chosen root `ρ`, and a vertex `y`, define\n`rootedChildren G ρ y` to be the finite set of vertices `z` adjacent to `y` for which the unique\nsimple path in `G` from `ρ` to `z` reaches `y` immediately before `z`.  Thus the edges of `G` are\noriented away from `ρ`, and this set is exactly the children of `y` in that rooted orientation.\n\n## Sources\n\n- Source `solution.tex`, lines 33–34\n\n## Statement dependencies\n\n- `SimpleGraph.IsTree.existsUnique_path` from `Mathlib.Combinatorics.SimpleGraph.Acyclic`\n-/\nnoncomputable def rootedChildren {V : Type*} [Fintype V] [DecidableEq V] (G : SimpleGraph V)\n    [DecidableRel G.Adj] (hG : G.IsTree) (ρ y : V) : Finset V :=\n  by\n    classical\n    exact Finset.univ.filter fun z =>\n      ∃ h : G.Adj y z, ∃ q : G.Walk ρ y, q.IsPath ∧\n        (hG.existsUnique_path ρ z).choose = q.concat h\n"
     },

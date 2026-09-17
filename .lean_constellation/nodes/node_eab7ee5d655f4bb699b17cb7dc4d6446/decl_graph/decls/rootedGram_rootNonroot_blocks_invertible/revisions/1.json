@@ -1,22 +1,12 @@
 {
   "change": {
-    "anticipated_proof_dep_names": [
-      "IsAdmissibleRootedTree",
-      "rootedGram",
-      "rootedGram_reindex_rootNonroot_blocks"
-    ],
-    "anticipated_statement_dep_names": [
-      "IsAdmissibleRootedTree",
-      "rootedGram",
-      "rootedGram_reindex_rootNonroot_blocks"
-    ],
     "base_revision": null,
     "kind": "create",
-    "objective": "SourceIndex b_0009 (solution.tex lines 47–82) implements capacity as the reciprocal root Schur complement. Create one private theorem with the same finite/decidable graph, weight, root, and hAdm : IsAdmissibleRootedTree G w ρ context and the exact P/R/e/A/B/C/D definitions used by rootedGram_reindex_rootNonroot_blocks@1, concluding `Invertible (Matrix.fromBlocks A B C D)` (an equivalent IsUnit result is acceptable only if it installs this instance directly for the consumer). Prove it from hAdm's Matrix.PosDef rootedGram: install the full rootedGram inverse with Matrix.PosDef.isUnit and IsUnit.invertible; transport it through the root/nonroot equivalence using Matrix.reindex_apply and Matrix.submatrixEquivInvertible; then copy the instance across rootedGram_reindex_rootNonroot_blocks with Invertible.copy. Preserve the existing rational rootedGram, canonical Equiv.sumCompl split, and block objects; add no assumptions and do not alter public recursion semantics. This tracked Lean assembly helper feeds rootedCapacity_recursion@3 and avoids another unbounded parent retry.",
+    "objective": "Revision 1 records the private b_0009 root/nonroot block-unit theorem from solution.tex lines 47–82. Under the existing finite/decidable graph, weight, root, and hAdm data and the exact P/R/e/A/B/C/D objects of rootedGram_reindex_rootNonroot_blocks@1, it states IsUnit (Matrix.fromBlocks A B C D), the theorem-shaped form of the full-block invertibility required by the Schur-complement recursion. Positive definiteness of rootedGram transports across the canonical Equiv.sumCompl reindex; the result supplies the local Invertible instance for rootedCapacity_recursion@3 without changing public semantics.",
     "require_target_state_satisfied": true,
-    "reset_to_state": null,
-    "summary": "The private helper reached specified with a compiler-passing propositional statement `IsUnit (Matrix.fromBlocks A B C D)`, but did not reach declared or proved. Blocker classification: statement/interface drift caused by Lean's Prop/data distinction. A theorem cannot conclude `Invertible M` because `Invertible M` is data, and an instance parameterized by ordinary hAdm cannot be synthesized because IsAdmissibleRootedTree is not a class. The checked `IsUnit M` statement is the correct theorem-shaped interface and preserves the exact P/R/e/A/B/C/D objects. Retry condition: revise the planning objective to accept and prove this IsUnit formulation; rootedCapacity_recursion can locally install `Invertible M` using the already-verified `IsUnit.invertible`. No source, provider, Mathlib, hypothesis, or public-semantic change is needed.",
-    "target_state": "proved"
+    "summary": "The private helper reached specified with a compiler-passing propositional statement IsUnit (Matrix.fromBlocks A B C D), but did not reach declared or proved. Blocker classification: statement/interface drift caused by Lean's Prop/data distinction: a theorem cannot conclude data Invertible M, while an ordinary hAdm hypothesis cannot synthesize an hAdm-dependent instance because IsAdmissibleRootedTree is not a class. The checked IsUnit M statement is the correct theorem-shaped interface and preserves the exact P/R/e/A/B/C/D objects. The source, provider, Mathlib, hypotheses, and public semantics remain unchanged.",
+    "target_state": "proved",
+    "execution_constraints": "Recapture the private helper with Statement NL and formal content both using IsUnit (Matrix.fromBlocks A B C D). Preserve the exact P/R/e/A/B/C/D objects and hAdm premise; use Matrix.PosDef.isUnit, Matrix.submatrixEquivInvertible, Matrix.reindex_apply, rootedGram_reindex_rootNonroot_blocks, and equality transport, then let the consumer derive its local Invertible instance via IsUnit.invertible."
   },
   "lean_decl_name": "rootedGram_rootNonroot_blocks_invertible",
   "proof": null,
@@ -89,6 +79,11 @@
           "schema_version": 2,
           "summary": "Diagnostics returned 1 items"
         },
+        "fingerprint": {
+          "environment_sha256": null,
+          "source_sha256": "da962c8a2cac605dc2b71a8e917cbe5d514874387fbcf6c1a2ddddf91e261a50",
+          "upstream_revision": null
+        },
         "message": "Lean check passed.",
         "policy": "statement_formal",
         "scan": {
@@ -113,7 +108,15 @@
           "summary": "sorry=1, admit=0, axiom=0, opaque=0, unsafe=0",
           "unsafe_count": 0
         },
-        "status": "passed"
+        "schema_version": 1,
+        "status": "passed",
+        "subject": {
+          "declaration_name": null,
+          "module": "PositiveDefiniteTreeLattice.Main.RootedCapacity.Theorems.rootedGram_rootNonroot_blocks_invertible",
+          "repo_file_path": "PositiveDefiniteTreeLattice/Main/RootedCapacity/Theorems/rootedGram_rootNonroot_blocks_invertible.lean",
+          "repo_kind": "native",
+          "stage": "statement"
+        }
       },
       "code": "-- lean-constellation: managed-imports-begin\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Prelude\nimport Mathlib.Data.Matrix.Block\nimport Mathlib.LinearAlgebra.Matrix.Defs\nimport Mathlib.Logic.Equiv.Sum\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.IsAdmissibleRootedTree\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedGram\n-- lean-constellation: managed-imports-end\n\n-- lean-constellation: declaration-source-begin\n\n/--\n# lean-constellation target: `rootedGram_rootNonroot_blocks_invertible`\n\nFor every finite decidable vertex type `V`, graph `G` with decidable adjacency, integer weight `w`,\nroot `ρ`, and admissibility witness `hAdm : IsAdmissibleRootedTree G w ρ`, use exactly the\nroot/nonroot data from `rootedGram_reindex_rootNonroot_blocks`:\n`P := {v : V // v = ρ}`, `R := {v : V // v ≠ ρ}`,\n`e := Equiv.sumCompl (fun v : V => v = ρ)`, and the four `rootedGram G w` submatrices `A, B, C, D`\nalong `Subtype.val`, with\n`D = (rootedGram G w).submatrix Subtype.val Subtype.val : Matrix R R ℚ`.\n\nThen the corresponding full root/nonroot block matrix has an inverse:\n`Invertible (Matrix.fromBlocks A B C D)`.\n\nThis is the private assembly interface that transports the positive-definite rational `rootedGram`\nsupplied by `hAdm` to the canonical reindexed block matrix.  It adds no tree, positivity, or\ninvertibility assumptions beyond admissibility and retains the precise block objects used by the\nSchur-complement recursion.\n\n## Sources\n\n- Source `solution.tex`, lines 57–72\n\n## Statement dependencies\n\n- `Matrix.fromBlocks` from `Mathlib.Data.Matrix.Block`\n- `Matrix.submatrix` from `Mathlib.LinearAlgebra.Matrix.Defs`\n- `Equiv.sumCompl` from `Mathlib.Logic.Equiv.Sum`\n- `Main.RootedCapacity::IsAdmissibleRootedTree` → `IsAdmissibleRootedTree` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.IsAdmissibleRootedTree`\n- `Main.RootedCapacity::rootedGram` → `rootedGram` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedGram`\n-/\n\ntheorem rootedGram_rootNonroot_blocks_invertible {V : Type*} [Fintype V] [DecidableEq V]\n    (G : SimpleGraph V) [DecidableRel G.Adj] (w : V → ℤ) (ρ : V)\n    (hAdm : IsAdmissibleRootedTree G w ρ) :\n    IsUnit\n      (Matrix.fromBlocks\n        ((rootedGram G w).submatrix\n          (Subtype.val : {v : V // v = ρ} → V) Subtype.val)\n        ((rootedGram G w).submatrix\n          (Subtype.val : {v : V // v = ρ} → V) Subtype.val)\n        ((rootedGram G w).submatrix Subtype.val\n          (Subtype.val : {v : V // v = ρ} → V))\n        ((rootedGram G w).submatrix Subtype.val Subtype.val) :\n        Matrix ({v : V // v = ρ} ⊕ {v : V // v ≠ ρ})\n          ({v : V // v = ρ} ⊕ {v : V // v ≠ ρ}) ℚ) := by\n  sorry\n"
     },
@@ -131,7 +134,7 @@
           "start_locator": null
         }
       ],
-      "text": "For every finite decidable vertex type `V`, graph `G` with decidable adjacency, integer weight `w`, root `ρ`, and admissibility witness `hAdm : IsAdmissibleRootedTree G w ρ`, use exactly the root/nonroot data from `rootedGram_reindex_rootNonroot_blocks`:\n`P := {v : V // v = ρ}`, `R := {v : V // v ≠ ρ}`,\n`e := Equiv.sumCompl (fun v : V => v = ρ)`, and the four `rootedGram G w` submatrices `A, B, C, D` along `Subtype.val`, with\n`D = (rootedGram G w).submatrix Subtype.val Subtype.val : Matrix R R ℚ`.\n\nThen the corresponding full root/nonroot block matrix has an inverse:\n`Invertible (Matrix.fromBlocks A B C D)`.\n\nThis is the private assembly interface that transports the positive-definite rational `rootedGram` supplied by `hAdm` to the canonical reindexed block matrix.  It adds no tree, positivity, or invertibility assumptions beyond admissibility and retains the precise block objects used by the Schur-complement recursion."
+      "text": "For every finite decidable vertex type V, graph G with decidable adjacency, integer weight w, root ρ, and admissibility witness hAdm : IsAdmissibleRootedTree G w ρ, use exactly the root/nonroot data from rootedGram_reindex_rootNonroot_blocks:\nP := {v : V // v = ρ}, R := {v : V // v ≠ ρ},\ne := Equiv.sumCompl (fun v : V => v = ρ), and the four rootedGram G w submatrices A, B, C, D along Subtype.val, with\nD = (rootedGram G w).submatrix Subtype.val Subtype.val : Matrix R R ℚ.\n\nThen the corresponding full root/nonroot block matrix is a unit:\nIsUnit (Matrix.fromBlocks A B C D).\n\nThis is the private assembly interface that transports the positive-definite rational rootedGram supplied by hAdm to the canonical reindexed block matrix. It adds no tree, positivity, or invertibility assumptions beyond admissibility; a consumer obtains the corresponding local Invertible instance from this IsUnit result."
     }
   },
   "status": "committed",

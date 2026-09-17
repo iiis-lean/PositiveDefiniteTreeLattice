@@ -1,12 +1,11 @@
 {
-  "change_summaries": {},
   "committed_at": "2026-07-29T15:53:16Z",
   "created_at": "2026-07-29T15:42:40Z",
   "execution_completed_at": "2026-07-29T15:52:10Z",
   "execution_reason": null,
   "execution_result_kind": "success",
   "node_path": "Main.LatticeFoundations",
-  "objective": "Create and prove the final public interface irreducible_of_pairing_self_eq_one from the exact integral positive-definiteness hypothesis used by formal_target.lean and the norm-one argument in SourceIndex b_0007, consuming the now-proved self-pairing expansion and existing Irreducible predicate.",
+  "objective": "Round D records the proved public interface theorem `irreducible_of_pairing_self_eq_one`, derived from the exact integral positive-definiteness hypothesis used by formal_target.lean and the norm-one argument in SourceIndex b_0007, and consuming the proved self-pairing expansion and existing `Irreducible` predicate.",
   "plan_closeout_acknowledged_at": "2026-07-29T15:53:16Z",
   "plan_closeout_acknowledged_by": "a_60a257a14c4c469b9e17805606fa5ea4",
   "result_kind": "success",
@@ -23,5 +22,6 @@
   "started_at": "2026-07-29T15:43:35Z",
   "status": "committed",
   "strategy_id": "strategy_a30e26b4dc0b4b3da567957fbd36ca03",
-  "summary": "The strategy achieved its final mathematical objective. irreducible_of_pairing_self_eq_one reached proved and satisfies graph-proved policy with the exact source/contract consumer shape. All four required interfaces now have matching public declarations; the node graph contains ten important declarations within the expected 6–12 scale, with source-faithful definitions, proved algebraic and vertex-vector facts, and no state-only remainder or known blocker. After commit, perform public Statement closure, interface binding, hygiene, and completion checks; if they pass, close the strategy and submit the content node ready."
+  "summary": "The strategy achieved its final mathematical objective. irreducible_of_pairing_self_eq_one reached proved and satisfies graph-proved policy with the exact source/contract consumer shape. All four required interfaces now have matching public declarations; the node graph contains ten important declarations within the expected 6–12 scale, with source-faithful definitions, proved algebraic and vertex-vector facts, and no state-only remainder or known blocker.",
+  "execution_constraints": "Derive the interface theorem from the exact integral positive-definiteness hypothesis used by formal_target.lean and the norm-one argument in SourceIndex b_0007, consuming the proved self-pairing expansion and existing Irreducible predicate. After commit, perform public Statement closure, interface binding, hygiene, and completion checks; if they pass, close the strategy and submit the content node ready."
 }

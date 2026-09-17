@@ -1,14 +1,13 @@
 {
   "change": {
-    "anticipated_proof_dep_names": [],
-    "anticipated_statement_dep_names": [],
     "base_revision": 1,
     "kind": "update",
-    "objective": "Retain the accepted b_0008 / solution.tex lines 39–45 meaning and repair Statement Formal to use the compiler-verified qualified provider declarations PositiveDefiniteTreeLattice.treePairing and PositiveDefiniteTreeLattice.vertexVector, rather than stale unqualified references. Preserve the exact ℤ pairing scalar-extended to a ℚ matrix; this public foundation serves admissibility, rootedCapacity, and the Schur-complement capacity interface.",
+    "objective": "Revision 2 preserves the accepted b_0008 / solution.tex lines 39–45 meaning of rootedGram: the public matrix is the exact rational scalar extension of the integer treePairing in the vertexVector basis, using the compiler-verified qualified providers PositiveDefiniteTreeLattice.treePairing and PositiveDefiniteTreeLattice.vertexVector. It supplies the common Gram foundation for admissibility, rootedCapacity, and the Schur-complement capacity interface.",
     "require_target_state_satisfied": true,
-    "reset_to_state": "specified",
+    "start_stage": "statement_formal",
     "summary": "Provider-repair update succeeded. Preserved the exact treePairing scalar-extension meaning from b_0008, replaced stale unqualified provider references with the repaired qualified API, captured and compiler-checked formal definition `rootedGram`, and advanced rev2 from specified to declared. The public definition reached its target and declared-level proof-policy satisfaction and is ready for rootedCapacity, admissibility, and Schur-complement work.",
-    "target_state": "declared"
+    "target_state": "declared",
+    "execution_constraints": "Keep the qualified provider references and the exact integer-to-rational scalar extension; do not substitute stale unqualified names or alter matrix indices/entries. Preserve rootedGram as the shared public foundation for the listed consumers."
   },
   "lean_decl_name": "rootedGram",
   "proof": null,
@@ -50,6 +49,11 @@
           "schema_version": 2,
           "summary": "Diagnostics returned 0 items"
         },
+        "fingerprint": {
+          "environment_sha256": null,
+          "source_sha256": "0a4795505625f3f040680af514fe429a7d2ae9c1c1d96d3d9e68a4acc257408f",
+          "upstream_revision": null
+        },
         "message": "Lean check passed.",
         "policy": "statement_formal",
         "scan": {
@@ -67,7 +71,15 @@
           "summary": "sorry=0, admit=0, axiom=0, opaque=0, unsafe=0",
           "unsafe_count": 0
         },
-        "status": "passed"
+        "schema_version": 1,
+        "status": "passed",
+        "subject": {
+          "declaration_name": null,
+          "module": "PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedGram",
+          "repo_file_path": "PositiveDefiniteTreeLattice/Main/RootedCapacity/Defs/rootedGram.lean",
+          "repo_kind": "native",
+          "stage": "statement"
+        }
       },
       "code": "-- lean-constellation: managed-imports-begin\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Prelude\n-- lean-constellation: managed-imports-end\n\n-- lean-constellation: declaration-source-begin\n\n/--\n# lean-constellation target: `rootedGram`\n\nFor a finite integer-weighted simple graph `G` with weight function `w`, define `rootedGram G w` as\nthe rational matrix indexed by the vertices of `G` whose `(u, v)` entry is the integer value\n`treePairing G w (vertexVector u) (vertexVector v)` coerced to `ℚ`.  It is therefore the exact\nrational scalar extension of the repository tree pairing in the vertex-vector basis.\n\n## Sources\n\n- Source `solution.tex`, lines 39–45\n\n## Statement dependencies\n\n- `Main.LatticeFoundations::treePairingAnchor` → `PositiveDefiniteTreeLattice.treePairing` from\n  `PositiveDefiniteTreeLattice.Main.LatticeFoundations.Defs.treePairingAnchor`\n- `Main.LatticeFoundations::vertexVectorAnchor` → `PositiveDefiniteTreeLattice.vertexVector` from\n  `PositiveDefiniteTreeLattice.Main.LatticeFoundations.Defs.vertexVectorAnchor`\n-/\ndef rootedGram {V : Type*} [Fintype V] [DecidableEq V] (G : SimpleGraph V)\n    [DecidableRel G.Adj] (w : V → ℤ) : Matrix V V ℚ :=\n  fun u v =>\n    (PositiveDefiniteTreeLattice.treePairing G w\n      (PositiveDefiniteTreeLattice.vertexVector u)\n      (PositiveDefiniteTreeLattice.vertexVector v) : ℚ)\n"
     },

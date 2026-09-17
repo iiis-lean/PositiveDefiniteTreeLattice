@@ -347,7 +347,7 @@
       "reason": null
     }
   ],
-  "objective": "Resume rootedChildCapacitySum_lt_weight_of_unique_underweight@2 from proof_planned without changing its accepted Statement or Proof NL. Replace the incompatible separate reindex/inverse rewrite step with the proved public rootedNonrootGram_reindex_childBlocks_inv_of_child_admissible@1, supplying its pointwise child admissibility from rootedChildComponent_isAdmissible_of_unique_underweight@3. Use the unchanged ambient rootedGram PosDef and rootedGram_root_rootedChildComponent_support route to collapse the Schur quadratic and prove the strict gap. Then complete the downstream source decomposition contradiction and prove/bind the exact protected PositiveDefiniteTreeLattice.exists_irreducible_vertex theorem.",
+  "objective": "Contract v2's mathematical route retains the accepted central-gap Statement and Proof NL, uses `rootedNonrootGram_reindex_childBlocks_inv_of_child_admissible@1` with pointwise child admissibility from `rootedChildComponent_isAdmissible_of_unique_underweight@3`, and combines unchanged ambient rootedGram positive definiteness with `rootedGram_root_rootedChildComponent_support` to establish the strict gap. The route then supports the downstream source decomposition contradiction and the exact protected `PositiveDefiniteTreeLattice.exists_irreducible_vertex` theorem.",
   "owned_refs": [
     {
       "added_by": "coordinator",

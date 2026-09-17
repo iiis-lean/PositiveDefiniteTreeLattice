@@ -1,18 +1,13 @@
 {
-  "change_summaries": {},
   "committed_at": "2026-07-30T12:04:23Z",
   "created_at": "2026-07-30T12:00:16Z",
-  "discard_reason": null,
   "discarded_at": null,
   "discarded_by": null,
-  "discarded_created_decl_names": [],
-  "discarded_restored_decl_revisions": {},
-  "discarded_revision_refs": [],
   "execution_completed_at": "2026-07-30T12:02:37Z",
   "execution_reason": "The exact remaining formal goal is to establish `(Matrix.blockDiagonal' B)⁻¹ = Matrix.blockDiagonal' (fun c => (B c)⁻¹` for the dependent child-component family B, using per-block invertibility. This is the indispensable consumer step before Matrix.inv_reindex can yield either displayed D⁻¹ clause. It is a substantial matrix result with reuse in rootedNonroot_inverse_quadratic and the Schur-complement recursion; it should be tracked privately rather than reconstructed as a major local helper under Proof Formal.",
   "execution_result_kind": "blocked",
   "node_path": "Main.RootedCapacity",
-  "objective": "Advance the preserved inverse-entry transport theorem rootedNonroot_inverse_childBlocks from proof_planned to proved using the now-proved child-component block decomposition. Keep both accepted same-component and cross-component clauses unchanged and remain within the existing 28-declaration graph.",
+  "objective": "Round 38 concerns the preserved inverse-entry transport theorem rootedNonroot_inverse_childBlocks: its accepted same-component and cross-component clauses remain fixed, while the remaining matrix dependency is the inverse of the exact dependent child-block diagonal. This source-visible b_0009 structure is reused by the inverse-entry transport, inverse quadratic, and Schur-complement recursion.",
   "plan_closeout_acknowledged_at": "2026-07-30T12:04:23Z",
   "plan_closeout_acknowledged_by": "a_a93b40977f574bad89528358fa89e022",
   "result_kind": "blocked",
@@ -29,5 +24,6 @@
   "started_at": "2026-07-30T12:01:43Z",
   "status": "committed",
   "strategy_id": "strategy_1fbcdfb31a2e4cada1ff5b7b941de18c",
-  "summary": "Round 38 did not advance rootedNonroot_inverse_childBlocks beyond proof_planned, but it isolated the final substantive matrix prerequisite after the Gram block theorem proved. The missing identity is the inverse of the exact dependent child-block diagonal, and it is reused by the inverse-entry transport, inverse quadratic, and Schur-complement recursion. This is source-visible implementation structure for b_0009 rather than another coercion wrapper. The active strategy remains viable. The next action should create and prove that one private RootedCapacity-specific child-block inverse theorem; after it proves, retry the inverse-entry parent. This will temporarily put the graph one declaration above the contract's approximate 18–28 range, so no additional helper expansion is justified without cleanup or Coordinator scope review."
+  "summary": "Round 38 did not advance rootedNonroot_inverse_childBlocks beyond proof_planned, but it isolated the final substantive matrix prerequisite after the Gram block theorem proved. The missing identity is the inverse of the exact dependent child-block diagonal, reused by the inverse-entry transport, inverse quadratic, and Schur-complement recursion. This is source-visible implementation structure for b_0009 rather than another coercion wrapper, and the active strategy remains viable. Adding the prerequisite would temporarily put the graph one declaration above the contract's approximate 18–28 range, so no additional helper expansion is justified without cleanup or Coordinator scope review.",
+  "execution_constraints": "Create and prove one private RootedCapacity-specific child-block inverse theorem, then retry the inverse-entry parent. Do not add further helpers without cleanup or Coordinator scope review."
 }

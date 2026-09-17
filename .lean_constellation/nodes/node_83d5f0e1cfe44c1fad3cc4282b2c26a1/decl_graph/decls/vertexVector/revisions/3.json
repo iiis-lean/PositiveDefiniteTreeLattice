@@ -1,14 +1,13 @@
 {
   "change": {
-    "anticipated_proof_dep_names": [],
-    "anticipated_statement_dep_names": [],
     "base_revision": 2,
     "kind": "update",
-    "objective": "Recapture the exact accepted coordinate-unit definition from formal_target.lean lines 15–17 as compiler-confirmed PositiveDefiniteTreeLattice.vertexVector. Preserve all binders, equality branches, public visibility, and catalog meaning; remove the incorrect global projection and create no compatibility alias. This namespaced definition is the lower provider for vertex-vector lemmas.",
+    "objective": "Revision 3 records the source-faithful coordinate-unit definition at declared state as compiler-confirmed `PositiveDefiniteTreeLattice.vertexVector`, matching formal_target.lean lines 15–17. It retains all binders, equality branches, public visibility, and catalog meaning, removes the incorrect global projection without a compatibility alias, and supplies the lower provider for vertex-vector lemmas.",
     "require_target_state_satisfied": true,
-    "reset_to_state": "specified",
+    "start_stage": "statement_formal",
     "summary": "Successfully recaptured the unchanged source-faithful coordinate-unit definition at declared state as compiler-confirmed PositiveDefiniteTreeLattice.vertexVector. Statement Formal passed, declared-level graph_proved satisfaction passed, public visibility was preserved, and no proof layer applies. This namespaced provider is now ready for vertexVector_ne_zero and treePairing_vertexVector_self migrations.",
-    "target_state": "declared"
+    "target_state": "declared",
+    "execution_constraints": "Recapture the exact accepted definition from formal_target.lean lines 15–17; preserve all binders, equality branches, public visibility, and catalog meaning, remove the incorrect global projection, and create no compatibility alias."
   },
   "lean_decl_name": "PositiveDefiniteTreeLattice.vertexVector",
   "proof": null,
@@ -29,6 +28,11 @@
           "schema_version": 2,
           "summary": "Diagnostics returned 0 items"
         },
+        "fingerprint": {
+          "environment_sha256": null,
+          "source_sha256": "328dc686ae714080a1223b642156fdcef3dbabe783f76fcaaeb0fa600c570ec3",
+          "upstream_revision": null
+        },
         "message": "Lean check passed.",
         "policy": "statement_formal",
         "scan": {
@@ -46,7 +50,15 @@
           "summary": "sorry=0, admit=0, axiom=0, opaque=0, unsafe=0",
           "unsafe_count": 0
         },
-        "status": "passed"
+        "schema_version": 1,
+        "status": "passed",
+        "subject": {
+          "declaration_name": null,
+          "module": "PositiveDefiniteTreeLattice.Main.LatticeFoundations.Defs.vertexVector",
+          "repo_file_path": "PositiveDefiniteTreeLattice/Main/LatticeFoundations/Defs/vertexVector.lean",
+          "repo_kind": "native",
+          "stage": "statement"
+        }
       },
       "code": "-- lean-constellation: managed-imports-begin\nimport PositiveDefiniteTreeLattice.Main.LatticeFoundations.Prelude\n-- lean-constellation: managed-imports-end\n\n-- lean-constellation: declaration-source-begin\n\n/--\n# lean-constellation target: `vertexVector`\n\nFor a type `V` with decidable equality and a vertex `v : V`, `vertexVector v : V → ℤ` is the\ncoordinate function sending a vertex `u` to `1` when `u = v` and to `0` otherwise.\n\n## Sources\n\n- Source `formal_target.lean`, lines 13–15\n-/\ndef PositiveDefiniteTreeLattice.vertexVector {V : Type*} [DecidableEq V] (v : V) : V → ℤ :=\n  fun u => if u = v then 1 else 0\n"
     },

@@ -1,15 +1,10 @@
 {
   "change": {
-    "anticipated_proof_dep_names": [
-      "rootedChildComponent_isAdmissible_of_unique_underweight",
-      "rootedGram_posDef_of_integer_positive"
-    ],
-    "anticipated_statement_dep_names": [],
     "base_revision": 6,
     "kind": "update",
     "objective": "Preserve revision 6's accepted formal Statement and Proof NL for the exact solution.tex:204–208 strict gap. Run only Proof Formal. At each child `c`, obtain the existing witness from current-node `rootedChildComponent_isAdmissible_of_unique_underweight@3`, then apply the forward `.mp` direction of public `isAdmissibleRootedTree_instance_irrel@1`, allowing the source Fintype/DecidableEq/DecidableRel arguments to infer from that witness and the target arguments to infer from the canonical letI goal of `rootedNonrootGram_reindex_childBlocks_inv_of_child_admissible@1`. The graph, weight `fun x => weight (x : V)`, root `rootedChildRoot G v c.1`, component type, and dependent child index must remain unchanged. Use the transported premise in the inverse-reindex theorem and finish the already-approved scalar support normalization with `rootedChildComponentsEquivNonroot_apply` and `rootedGram_root_rootedChildComponent_support`, while ambient PosDef comes from `rootedGram_posDef_of_integer_positive`. Do not use `.mpr`, create casts or local instance-transport architecture, alter indices/instances/representation, create a contraction declaration or helper chain, assume ambient rooted admissibility, change the frozen Proof NL or Statement, add assumptions, weaken the conclusion, or raise heartbeats. This proved lemma remains the lower Schur-gap input for solution.tex:210–244 and the protected final interface.",
     "require_target_state_satisfied": true,
-    "reset_to_state": "proof_planned",
+    "start_stage": "proof_formal",
     "summary": "Revision 7 was a Proof-Formal-only retry of the frozen revision-6 Statement and Proof NL, targeting proved. It remains proof_planned and made no accepted state progress. The new public `isAdmissibleRootedTree_instance_irrel@1` worked in its verified `.mp` direction: each current-node witness from `rootedChildComponent_isAdmissible_of_unique_underweight@3` was transported into the canonical premise of `rootedNonrootGram_reindex_childBlocks_inv_of_child_admissible@1`, and the proof reached both the strict Schur complement and transported child-block inverse. The remaining consumer-side goal is the final identification of that block-inverse scalar contraction with `rootedChildCapacitySum G hG weight v`. This equality is blocked because the component inverse/capacity terms are still formed under non-definitionally-equal local instances. `isAdmissibleRootedTree_instance_irrel` transports only the admissibility proposition; it does not identify `rootedGram`, its inverse diagonal, `rootedCapacity`, or `rootedChildCapacitySummand` across instance choices. The public `rootedChildComponentsEquivNonroot_apply` and `rootedGram_root_rootedChildComponent_support` fix indices and support sums but likewise do not supply capacity-value transport. The public RootedCapacity list contains no capacity/rootedGram instance-irrelevance theorem or exact theorem identifying the canonical block inverse diagonal with `rootedChildCapacitySummand`. This is a provider canonical-instance/interface gap, not Mathlib semantics, source evidence, admissibility transport, heartbeat, or a bounded local simplification. Retry requires an upstream public capacity-value instance-irrelevance or exact block-diagonal-inverse-to-child-capacity interface at the same component indices; local cast/transport architecture is explicitly forbidden.",
     "target_state": "proved"
   },
@@ -398,6 +393,11 @@
           "schema_version": 2,
           "summary": "Diagnostics returned 1 items"
         },
+        "fingerprint": {
+          "environment_sha256": null,
+          "source_sha256": "feef1e853105fafbb435eb61c1a2b45f566a5b70b82733f68bf0d69823089ef9",
+          "upstream_revision": null
+        },
         "message": "Lean check passed.",
         "policy": "statement_formal",
         "scan": {
@@ -422,7 +422,15 @@
           "summary": "sorry=1, admit=0, axiom=0, opaque=0, unsafe=0",
           "unsafe_count": 0
         },
-        "status": "passed"
+        "schema_version": 1,
+        "status": "passed",
+        "subject": {
+          "declaration_name": null,
+          "module": "PositiveDefiniteTreeLattice.Main.IrreducibleVertex.Lemmas.rootedChildCapacitySum_lt_weight_of_unique_underweight",
+          "repo_file_path": "PositiveDefiniteTreeLattice/Main/IrreducibleVertex/Lemmas/rootedChildCapacitySum_lt_weight_of_unique_underweight.lean",
+          "repo_kind": "native",
+          "stage": "statement"
+        }
       },
       "code": "-- lean-constellation: managed-imports-begin\nimport PositiveDefiniteTreeLattice.Main.IrreducibleVertex.Prelude\nimport Mathlib.Combinatorics.SimpleGraph.Acyclic\nimport Mathlib.Combinatorics.SimpleGraph.Finite\n-- lean-constellation: managed-imports-end\n\n-- lean-constellation: declaration-source-begin\n\n/--\n# lean-constellation target: `rootedChildCapacitySum_lt_weight_of_unique_underweight`\n\nLet `V` be a finite type with decidable equality, let `G : SimpleGraph V` have decidable adjacency,\nlet `weight : V → ℤ`, and let `v : V`. Suppose `h_tree : G.IsTree`, `h_positive : ∀ x : V → ℤ, x ≠ 0\n→ 0 < treePairing G weight x x`, `h_unique_underweight : ∃! u : V, weight u < (G.degree u : ℤ)`, `hv\n: weight v < (G.degree v : ℤ)`, and `h_two : ∀ x : V, 2 ≤ weight x`. Then the canonical sum of the\ncapacities of the rooted child-side components at `v` is strictly below the integral weight at `v`,\nviewed in `ℚ`:\n\n`rootedChildCapacitySum G h_tree weight v < (weight v : ℚ)`.\n\n## Sources\n\n- Source `solution.tex`, lines 204–208\n\n## Statement dependencies\n\n- `SimpleGraph.IsTree` from `Mathlib.Combinatorics.SimpleGraph.Acyclic`\n- `SimpleGraph.degree` from `Mathlib.Combinatorics.SimpleGraph.Finite`\n- `Main.LatticeFoundations::treePairingAnchor` → `PositiveDefiniteTreeLattice.treePairing` from\n  `PositiveDefiniteTreeLattice.Main.LatticeFoundations.Defs.treePairingAnchor`\n- `Main.RootedCapacity::rootedChildCapacitySum` → `rootedChildCapacitySum` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildCapacitySum`\n-/\nlemma rootedChildCapacitySum_lt_weight_of_unique_underweight\n    {V : Type*} [Fintype V] [DecidableEq V] (G : SimpleGraph V) [DecidableRel G.Adj]\n    (hG : G.IsTree) (weight : V → ℤ) (v : V)\n    (h_positive : ∀ x : V → ℤ, x ≠ 0 →\n      0 < PositiveDefiniteTreeLattice.treePairing G weight x x)\n    (h_unique_underweight : ∃! u : V, weight u < (G.degree u : ℤ))\n    (hv : weight v < (G.degree v : ℤ)) (h_two : ∀ x : V, 2 ≤ weight x) :\n    rootedChildCapacitySum G hG weight v < (weight v : ℚ) := by\n  sorry\n"
     },

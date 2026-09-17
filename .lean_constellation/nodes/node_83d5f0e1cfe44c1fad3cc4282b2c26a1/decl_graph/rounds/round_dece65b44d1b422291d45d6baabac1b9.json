@@ -1,18 +1,13 @@
 {
-  "change_summaries": {},
   "committed_at": "2026-07-29T20:21:39Z",
   "created_at": "2026-07-29T20:01:03Z",
-  "discard_reason": null,
   "discarded_at": null,
   "discarded_by": null,
-  "discarded_created_decl_names": [],
-  "discarded_restored_decl_revisions": {},
-  "discarded_revision_refs": [],
   "execution_completed_at": "2026-07-29T20:19:04Z",
   "execution_reason": "Decl-owned Lean file was modified after the latest capture.",
   "execution_result_kind": "failed",
   "node_path": "Main.LatticeFoundations",
-  "objective": "Rewire the direct consumer layer to the committed fresh foundations and establish a fresh Irreducible interface anchor. Move the historical Irreducible record to a nonconflicting internal identity using the historical pairing; create public IrreducibleAnchor with exact PositiveDefiniteTreeLattice.Irreducible semantics over treePairingAnchor; and reprove the existing additivity, symmetry, vertex-vector nonzeroness, and vertex-vector self-pairing declarations with statement/proof dependencies on treePairingAnchor and vertexVectorAnchor. Preserve all accepted statements, proofs, public names, and graph_proved targets, with no aliases.",
+  "objective": "The anchor-repair round establishes a fresh public `IrreducibleAnchor` with exact `PositiveDefiniteTreeLattice.Irreducible` semantics over `treePairingAnchor`, moves the historical Irreducible record to a nonconflicting internal identity, and retains the existing additivity, symmetry, vertex-vector nonzeroness, and vertex-vector self-pairing declarations with fresh `treePairingAnchor`/`vertexVectorAnchor` dependencies, accepted statements, proofs, public names, and graph-proved targets.",
   "plan_closeout_acknowledged_at": "2026-07-29T20:21:39Z",
   "plan_closeout_acknowledged_by": "a_60a257a14c4c469b9e17805606fa5ea4",
   "result_kind": "failed",
@@ -59,5 +54,5 @@
   "started_at": "2026-07-29T20:02:39Z",
   "status": "committed",
   "strategy_id": "strategy_2638883d005249d6a0ca57c50614cfed",
-  "summary": "The anchor-repair strategy made partial semantic progress but the round failed at Proof Formal due solely to declaration-file capture integrity. The historical Irreducible record moved to its internal identity and fresh IrreducibleAnchor reached declared with exact PositiveDefiniteTreeLattice.Irreducible semantics over treePairingAnchor. All five direct theorems successfully recaptured their unchanged statements and proof plans against the fresh treePairingAnchor/vertexVectorAnchor providers, but remain proof_planned because their declaration-owned files changed after latest capture even though formal proof artifacts are present as passed. No source, contract, provider, helper, interface-shape, scope, or graph-hygiene mismatch was found, and dependency closure has no missing records. Before rewiring treePairing_add_self, the three pairing laws must complete fresh Proof Formal; the two vertex facts also need Proof Formal for graph_proved completion. Next run one proof-formal-only recapture round for these five revisions. The historical Irreducible record remains a cleanup target; IrreducibleAnchor needs no retry."
+  "summary": "The anchor-repair strategy made partial semantic progress but the round failed at Proof Formal due solely to declaration-file capture integrity. The historical Irreducible record moved to its internal identity and fresh IrreducibleAnchor reached declared with exact PositiveDefiniteTreeLattice.Irreducible semantics over treePairingAnchor. All five direct theorems successfully recaptured their unchanged statements and proof plans against the fresh treePairingAnchor/vertexVectorAnchor providers, but remain proof_planned because their declaration-owned files changed after latest capture even though formal proof artifacts are present as passed. No source, contract, provider, helper, interface-shape, scope, or graph-hygiene mismatch was found, and dependency closure has no missing records. The direct pairing and vertex-vector theorem layer remains downstream of this capture-integrity failure. The historical Irreducible record remains a cleanup target; IrreducibleAnchor has no recorded blocker."
 }

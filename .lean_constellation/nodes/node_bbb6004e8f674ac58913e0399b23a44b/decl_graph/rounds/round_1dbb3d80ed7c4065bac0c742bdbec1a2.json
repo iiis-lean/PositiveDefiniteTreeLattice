@@ -1,18 +1,13 @@
 {
-  "change_summaries": {},
   "committed_at": "2026-07-31T00:09:56Z",
   "created_at": "2026-07-30T22:57:41Z",
-  "discard_reason": null,
   "discarded_at": null,
   "discarded_by": null,
-  "discarded_created_decl_names": [],
-  "discarded_restored_decl_revisions": {},
-  "discarded_revision_refs": [],
   "execution_completed_at": "2026-07-31T00:08:12Z",
   "execution_reason": "The current proof route requires a nontrivial reusable edge-partition/classification lemma for rooted child components; this is not a lightweight local step and is absent from the visible provider API.",
   "execution_result_kind": "blocked",
   "node_path": "Main.RootedEstimates",
-  "objective": "Prove the structural and distance prerequisites for the b_0010 induction: rearrange the public rooted-capacity recursion, decompose the integral tree pairing over rooted child components, and bound distance from a rational in an open unit interval to an arbitrary integer.",
+  "objective": "Round 1 concerns the b_0010 structural and distance prerequisites: the public rooted-capacity recursion rearrangement, the integral tree-pairing decomposition over rooted child components, and the distance bound from a rational in an open unit interval to an arbitrary integer.",
   "plan_closeout_acknowledged_at": "2026-07-31T00:09:56Z",
   "plan_closeout_acknowledged_by": "a_c126bbd9cf3144258d31b99169f687bb",
   "result_kind": "blocked",
@@ -39,5 +34,6 @@
   "started_at": "2026-07-30T22:58:57Z",
   "status": "committed",
   "strategy_id": "strategy_568b321117904669b4204482b975bf60",
-  "summary": "The strategy made partial statement-layer progress: rootedCapacityInvEqSub, treePairingRootedChildDecomposition, and rationalUnitIntervalIntegerDistance all reached declared with compiler-accepted formal statements; the capacity and distance declarations also have accepted proof plans. None reached proved or graph_proved satisfaction because Proof NL blocked on treePairingRootedChildDecomposition. Its exact consumer identity over rooted child components requires a nontrivial edge-partition/classification theorem absent from the checked public Main.RootedCapacity/Main.LatticeFoundations APIs. This prerequisite is source-visible structural work but lies outside Main.RootedEstimates' boundary (which excludes rooted orientation/decomposition construction), not a lightweight Lean-specific helper. Retry conditions: a visible provider must publish an edge theorem using the same rootedChildren/rootedChildComponent indices; then prove treePairingRootedChildDecomposition, resume the two independent declared lemmas, and only afterward attempt rooted_integer_estimate. The next action after closeout should be a Content blocker requesting Coordinator ownership/API repair, not another parent retry."
+  "summary": "The strategy made partial statement-layer progress: rootedCapacityInvEqSub, treePairingRootedChildDecomposition, and rationalUnitIntervalIntegerDistance all reached declared with compiler-accepted formal statements; the capacity and distance declarations also have accepted proof plans. None reached proved or graph_proved satisfaction because Proof NL blocked on treePairingRootedChildDecomposition. Its exact consumer identity over rooted child components requires a nontrivial edge-partition/classification theorem absent from the checked public Main.RootedCapacity/Main.LatticeFoundations APIs. This prerequisite is source-visible structural work but lies outside Main.RootedEstimates' boundary (which excludes rooted orientation/decomposition construction), not a lightweight Lean-specific helper. The current blocker is therefore a missing visible provider using the same rootedChildren/rootedChildComponent indices; the parent remains blocked pending that API repair.",
+  "execution_constraints": "Request Coordinator ownership/API repair for a visible edge theorem using the same rootedChildren/rootedChildComponent indices; then prove treePairingRootedChildDecomposition, resume the two independent declared lemmas, and attempt rooted_integer_estimate only afterward. Treat this as a Content blocker rather than another parent retry."
 }

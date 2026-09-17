@@ -1,18 +1,13 @@
 {
-  "change_summaries": {},
   "committed_at": "2026-07-30T08:18:14Z",
   "created_at": "2026-07-30T08:09:36Z",
-  "discard_reason": null,
   "discarded_at": null,
   "discarded_by": null,
-  "discarded_created_decl_names": [],
-  "discarded_restored_decl_revisions": {},
-  "discarded_revision_refs": [],
   "execution_completed_at": "2026-07-30T08:16:07Z",
   "execution_reason": null,
   "execution_result_kind": "success",
   "node_path": "Main.RootedCapacity",
-  "objective": "Declare the public b_0009 child-capacity sum that packages the source term ∑ᵢ γ(Cᵢ) over the root's oriented child components. This gives the Schur-complement identity and capacity recursion a single exact dependent-type target.",
+  "objective": "`rootedChildCapacitySum@rev:1` is the public b_0009 child-capacity sum packaging the source term ∑ᵢ γ(Cᵢ) over the root's oriented child components. It gives the Schur-complement identity and capacity recursion a single exact dependent-type target.",
   "plan_closeout_acknowledged_at": "2026-07-30T08:18:14Z",
   "plan_closeout_acknowledged_by": "a_a93b40977f574bad89528358fa89e022",
   "result_kind": "success",
@@ -29,5 +24,6 @@
   "started_at": "2026-07-30T08:11:16Z",
   "status": "committed",
   "strategy_id": "strategy_1fbcdfb31a2e4cada1ff5b7b941de18c",
-  "summary": "Round 20 successfully declared the source-faithful child-capacity sum and advanced the b_0009 matrix route. rootedChildCapacitySum rev1 is public and proof-policy satisfied for a definition. No blocker, state-only theorem, superseded branch, or graph-hygiene issue remains. The strategy remains viable. The next dependency-ordered structural theorem should express that the root-child components uniquely partition the nonroot vertices, supplying the finite grouping needed to prove cross-component block decomposition and the inverse quadratic sum."
+  "summary": "Round 20 successfully declared the source-faithful child-capacity sum and advanced the b_0009 matrix route. `rootedChildCapacitySum` rev1 is public and proof-policy satisfied for a definition. No blocker, state-only theorem, superseded branch, or graph-hygiene issue remains. The strategy remains viable. The root-child components' unique partition of nonroot vertices supplies the finite grouping for cross-component block decomposition and the inverse quadratic sum.",
+  "execution_constraints": "Establish the root-child components' unique partition of nonroot vertices, then use that grouping for cross-component block decomposition and the inverse quadratic sum."
 }

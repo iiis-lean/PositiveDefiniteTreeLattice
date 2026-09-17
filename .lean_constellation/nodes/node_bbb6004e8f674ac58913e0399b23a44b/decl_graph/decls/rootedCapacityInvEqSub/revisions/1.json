@@ -1,14 +1,12 @@
 {
   "change": {
-    "anticipated_proof_dep_names": [],
-    "anticipated_statement_dep_names": [],
     "base_revision": null,
     "kind": "create",
-    "objective": "Derive exactly the identity used in SourceIndex b_0010 / solution.tex lines 122–126: under IsAdmissibleRootedTree, (rootedCapacity G w rho)⁻¹ = (w rho : ℚ) - rootedChildCapacitySum G hG w rho. Consume the public rootedCapacity_recursion and capacity_pos_lt_one from Main.RootedCapacity; do not redefine capacity. This serves the tau = a/gamma algebra in rooted_integer_estimate.",
+    "objective": "Revision 1 records the planned identity from SourceIndex b_0010 / solution.tex lines 122–126: under IsAdmissibleRootedTree, `(rootedCapacity G w rho)⁻¹ = (w rho : ℚ) - rootedChildCapacitySum G hG w rho`. It consumes public `rootedCapacity_recursion` and `capacity_pos_lt_one` from Main.RootedCapacity without redefining capacity, and supplies the `tau = a/gamma` algebra for `rooted_integer_estimate`.",
     "require_target_state_satisfied": true,
-    "reset_to_state": null,
-    "summary": "Created rootedCapacityInvEqSub and accepted its NL and formal statement at declared state; an NL proof plan is present, but Proof Formal did not run because the round stopped on the sibling structural blocker. It is not yet proved or graph_proved-satisfied. Its route remains viable using Main.RootedCapacity.rootedCapacity_recursion plus capacity_pos_lt_one; retry only after the blocked pairing prerequisite is resolved or in a later independent proof round.",
-    "target_state": "proved"
+    "summary": "Created rootedCapacityInvEqSub and accepted its NL and formal statement at declared state; an NL proof plan is present, but Proof Formal did not run because the round stopped on the sibling structural blocker. It is not yet proved or graph_proved-satisfied. Its route remains viable using Main.RootedCapacity.rootedCapacity_recursion plus capacity_pos_lt_one, while the blocked pairing prerequisite remains unresolved.",
+    "target_state": "proved",
+    "execution_constraints": "Use Main.RootedCapacity.rootedCapacity_recursion and capacity_pos_lt_one without redefining capacity; run Proof Formal only after the blocked pairing prerequisite is resolved or in a later independent proof round."
   },
   "lean_decl_name": "rootedCapacityInvEqSub",
   "proof": {
@@ -123,6 +121,11 @@
           "schema_version": 2,
           "summary": "Diagnostics returned 1 items"
         },
+        "fingerprint": {
+          "environment_sha256": null,
+          "source_sha256": "af78eded7f821d89bc730659e0a20079f6e4496df185a2131d6c30279e65c6ed",
+          "upstream_revision": null
+        },
         "message": "Lean check passed.",
         "policy": "statement_formal",
         "scan": {
@@ -147,7 +150,15 @@
           "summary": "sorry=1, admit=0, axiom=0, opaque=0, unsafe=0",
           "unsafe_count": 0
         },
-        "status": "passed"
+        "schema_version": 1,
+        "status": "passed",
+        "subject": {
+          "declaration_name": null,
+          "module": "PositiveDefiniteTreeLattice.Main.RootedEstimates.Theorems.rootedCapacityInvEqSub",
+          "repo_file_path": "PositiveDefiniteTreeLattice/Main/RootedEstimates/Theorems/rootedCapacityInvEqSub.lean",
+          "repo_kind": "native",
+          "stage": "statement"
+        }
       },
       "code": "-- lean-constellation: managed-imports-begin\nimport PositiveDefiniteTreeLattice.Main.RootedEstimates.Prelude\nimport Mathlib.Combinatorics.SimpleGraph.Acyclic\n-- lean-constellation: managed-imports-end\n\n-- lean-constellation: declaration-source-begin\n\n/--\n# lean-constellation target: `rootedCapacityInvEqSub`\n\nLet `V` be a finite vertex type, let `G : SimpleGraph V` have decidable adjacency, let `w : V → ℤ`,\nand let `rho : V`. Assume separately a tree witness `hG : G.IsTree` and an admissibility hypothesis\n`hAdm : IsAdmissibleRootedTree G w rho`. Then\n\n`(rootedCapacity G w rho)⁻¹ = (w rho : ℚ) - rootedChildCapacitySum G hG w rho`.\n\nThus the child-capacity sum is formed using the tree witness `hG`, while admissibility is the\ndistinct hypothesis `hAdm`.\n\n## Sources\n\n- Source `solution.tex`, lines 122–126\n\n## Statement dependencies\n\n- `SimpleGraph.IsTree` from `Mathlib.Combinatorics.SimpleGraph.Acyclic`\n- `Main.RootedCapacity::IsAdmissibleRootedTree` → `IsAdmissibleRootedTree` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.IsAdmissibleRootedTree`\n- `Main.RootedCapacity::rootedCapacity` → `rootedCapacity` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedCapacity`\n- `Main.RootedCapacity::rootedChildCapacitySum` → `rootedChildCapacitySum` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildCapacitySum`\n-/\ntheorem rootedCapacityInvEqSub {V : Type*} [Fintype V] [DecidableEq V]\n    (G : SimpleGraph V) [DecidableRel G.Adj] (hG : G.IsTree) (w : V → ℤ) (rho : V)\n    (hAdm : IsAdmissibleRootedTree G w rho) :\n    (rootedCapacity G w rho)⁻¹ = (w rho : ℚ) - rootedChildCapacitySum G hG w rho := by\n  sorry\n"
     },

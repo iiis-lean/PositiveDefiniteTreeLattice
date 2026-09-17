@@ -1,12 +1,9 @@
 {
   "change": {
-    "anticipated_proof_dep_names": [],
-    "anticipated_statement_dep_names": [],
     "base_revision": null,
     "kind": "create",
     "objective": "Create the sole private finite-sum provider authorized by contract v8 and motivated by the direct-sum identity in solution.tex 57–68. For a finite index type I, finite dependent fibers S : I → Type, a rational matrix family B : ∀ c, Matrix (S c) (S c) ℚ, and coefficients b : (Σ c, S c) → ℚ, state that the ordered Sigma×Sigma quadratic double sum against Matrix.blockDiagonal' B equals ∑ c, ∑ x : S c, ∑ y : S c of the corresponding within-block term b ⟨c,x⟩ * B c x y * b ⟨c,y⟩. Prove by Fintype.sum_sigma on both Sigma binders, Fintype.sum_eq_single on the child label, Matrix.blockDiagonal'_apply', and zeroing unequal fibers, exactly as compiler-verified by Mathlib recon. Keep the helper generic and representation-free: no rooted objects, no consumer-specific R/I/S/e/D/B definitions, no new equivalence or instances, no added assumptions, and no heartbeat change. This private theorem will be the sole finite-sum dependency of public rootedNonroot_quadratic_eq_sum_childQuadratics.",
     "require_target_state_satisfied": true,
-    "reset_to_state": null,
     "summary": "Created and graph-proved private blockDiagonal_quadratic_eq_sum_blocks revision 1. Its accepted generic statement splits the ordered rational quadratic double sum of a dependent Matrix.blockDiagonal' family into the sum of within-fiber quadratic double sums. Statement NL/Formal and Proof NL/Formal all passed; the proof uses the verified Fintype.sum_sigma, Fintype.sum_eq_single, and Matrix.blockDiagonal'_apply' route, adds no rooted representation or assumptions, and is proof-policy satisfied.",
     "target_state": "proved"
   },
@@ -59,6 +56,11 @@
           "schema_version": 2,
           "summary": "Diagnostics returned 0 items"
         },
+        "fingerprint": {
+          "environment_sha256": null,
+          "source_sha256": "e5af2f23ffcdc8d9d96916693770f7b0eb1d56e7124ff8be9a813ee54e6e1cbe",
+          "upstream_revision": null
+        },
         "message": "Lean check passed.",
         "policy": "proof_formal",
         "scan": {
@@ -76,7 +78,15 @@
           "summary": "sorry=0, admit=0, axiom=0, opaque=0, unsafe=0",
           "unsafe_count": 0
         },
-        "status": "passed"
+        "schema_version": 1,
+        "status": "passed",
+        "subject": {
+          "declaration_name": null,
+          "module": "PositiveDefiniteTreeLattice.Main.RootedCapacity.Theorems.blockDiagonal_quadratic_eq_sum_blocks",
+          "repo_file_path": "PositiveDefiniteTreeLattice/Main/RootedCapacity/Theorems/blockDiagonal_quadratic_eq_sum_blocks.lean",
+          "repo_kind": "native",
+          "stage": "proof"
+        }
       },
       "code": "-- lean-constellation: managed-imports-begin\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Prelude\nimport Mathlib.Algebra.BigOperators.Group.Finset.Basic\nimport Mathlib.Data.Fintype.BigOperators\nimport Mathlib.Data.Matrix.Block\n-- lean-constellation: managed-imports-end\n\n-- lean-constellation: declaration-source-begin\n\n/--\n# lean-constellation target: `blockDiagonal_quadratic_eq_sum_blocks`\n\nFor every finite index type `I`, every family `S : I → Type` with finite fibers, every rational\nmatrix family `B : ∀ c, Matrix (S c) (S c) ℚ`, and every coefficient function `b : (Σ c, S c) → ℚ`,\nthe ordered quadratic double sum of `Matrix.blockDiagonal' B` is the sum of the ordered within-fiber\nquadratic double sums:\n\n`∑ u : Σ c, S c, ∑ v : Σ c, S c, b u * Matrix.blockDiagonal' B u v * b v = ∑ c : I, ∑ x : S c, ∑ y :\nS c, b ⟨c, x⟩ * B c x y * b ⟨c, y⟩`.\n\nThe assertion is generic in the finite dependent index family and introduces no rooted-tree data,\nrepresentation equivalences, or additional assumptions.\n\n## Sources\n\n- Source `solution.tex`, lines 57–68\n\n## Statement dependencies\n\n- `Matrix.blockDiagonal'` from `Mathlib.Data.Matrix.Block`\n\n## Proof outline\n\nIntroduce the local classical `DecidableEq I` required by the accepted statement. Expand both finite\nsums over the Sigma type with `Fintype.sum_sigma`, so the left-hand side is indexed by an outer\nsource fiber `c`, an element `x : S c`, a target fiber `d`, and an element `y : S d`.\n\nFor each fixed `c` and `x`, collapse the target-fiber sum with `Fintype.sum_eq_single c`. The\nsurviving `d = c` summand is rewritten using `Matrix.blockDiagonal'_apply'`; after substituting the\nequality proof, its dependent cast reduces and gives exactly `b ⟨c, x⟩ * B c x y * b ⟨c, y⟩`. For\nevery `d ≠ c`, the same entry lemma makes the block-diagonal entry zero, hence the entire\nwithin-fiber sum is zero by simplification. This leaves precisely the stated sum over `c`, `x`, and\n`y`.\n\nThis is a direct finite-sum implementation of the source’s block direct-sum identity, uses no\nrooted-tree objects or auxiliary equivalences, and requires no helper declaration beyond the three\nverified Mathlib facts.\n\n## Proof sources\n\n- Source `solution.tex`, lines 57–68\n\n## Proof dependencies\n\n- `Finset.sum_congr` from `Mathlib.Algebra.BigOperators.Group.Finset.Basic`\n- `Fintype.sum_eq_single` from `Mathlib.Data.Fintype.BigOperators`\n- `Fintype.sum_sigma` from `Mathlib.Data.Fintype.BigOperators`\n- `Matrix.blockDiagonal'_apply'` from `Mathlib.Data.Matrix.Block`\n-/\ntheorem blockDiagonal_quadratic_eq_sum_blocks\n    (I : Type*) [Fintype I]\n    (S : I → Type*) [∀ c, Fintype (S c)]\n    (B : ∀ c, Matrix (S c) (S c) ℚ)\n    (b : (Σ c, S c) → ℚ) :\n    letI : DecidableEq I := Classical.decEq I\n    (∑ u : Σ c, S c, ∑ v : Σ c, S c,\n        b u * Matrix.blockDiagonal' B u v * b v) =\n      ∑ c : I, ∑ x : S c, ∑ y : S c,\n        b ⟨c, x⟩ * B c x y * b ⟨c, y⟩ := by\n  classical\n  simp_rw [Fintype.sum_sigma]\n  simp only [Matrix.blockDiagonal'_apply']\n  apply Finset.sum_congr rfl\n  intro c hc\n  apply Finset.sum_congr rfl\n  intro x hx\n  rw [Fintype.sum_eq_single c]\n  · simp\n  · intro d hdc\n    have hcd : c ≠ d := Ne.symm hdc\n    simp [hcd]\n"
     },
@@ -130,6 +140,11 @@
           "schema_version": 2,
           "summary": "Diagnostics returned 1 items"
         },
+        "fingerprint": {
+          "environment_sha256": null,
+          "source_sha256": "f9c710a866f02cb4eddc3f6e0be6e1a6b6e8ca2338883aa7d9e9de2a68c0859b",
+          "upstream_revision": null
+        },
         "message": "Lean check passed.",
         "policy": "statement_formal",
         "scan": {
@@ -154,7 +169,15 @@
           "summary": "sorry=1, admit=0, axiom=0, opaque=0, unsafe=0",
           "unsafe_count": 0
         },
-        "status": "passed"
+        "schema_version": 1,
+        "status": "passed",
+        "subject": {
+          "declaration_name": null,
+          "module": "PositiveDefiniteTreeLattice.Main.RootedCapacity.Theorems.blockDiagonal_quadratic_eq_sum_blocks",
+          "repo_file_path": "PositiveDefiniteTreeLattice/Main/RootedCapacity/Theorems/blockDiagonal_quadratic_eq_sum_blocks.lean",
+          "repo_kind": "native",
+          "stage": "statement"
+        }
       },
       "code": "-- lean-constellation: managed-imports-begin\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Prelude\nimport Mathlib.Data.Matrix.Block\n-- lean-constellation: managed-imports-end\n\n-- lean-constellation: declaration-source-begin\n\n/--\n# lean-constellation target: `blockDiagonal_quadratic_eq_sum_blocks`\n\nFor every finite index type `I`, every family `S : I → Type` with finite fibers, every rational\nmatrix family `B : ∀ c, Matrix (S c) (S c) ℚ`, and every coefficient function `b : (Σ c, S c) → ℚ`,\nthe ordered quadratic double sum of `Matrix.blockDiagonal' B` is the sum of the ordered within-fiber\nquadratic double sums:\n\n`∑ u : Σ c, S c, ∑ v : Σ c, S c, b u * Matrix.blockDiagonal' B u v * b v = ∑ c : I, ∑ x : S c, ∑ y :\nS c, b ⟨c, x⟩ * B c x y * b ⟨c, y⟩`.\n\nThe assertion is generic in the finite dependent index family and introduces no rooted-tree data,\nrepresentation equivalences, or additional assumptions.\n\n## Sources\n\n- Source `solution.tex`, lines 57–68\n\n## Statement dependencies\n\n- `Matrix.blockDiagonal'` from `Mathlib.Data.Matrix.Block`\n-/\ntheorem blockDiagonal_quadratic_eq_sum_blocks\n    (I : Type*) [Fintype I]\n    (S : I → Type*) [∀ c, Fintype (S c)]\n    (B : ∀ c, Matrix (S c) (S c) ℚ)\n    (b : (Σ c, S c) → ℚ) :\n    letI : DecidableEq I := Classical.decEq I\n    (∑ u : Σ c, S c, ∑ v : Σ c, S c,\n        b u * Matrix.blockDiagonal' B u v * b v) =\n      ∑ c : I, ∑ x : S c, ∑ y : S c,\n        b ⟨c, x⟩ * B c x y * b ⟨c, y⟩ := by\n  sorry\n"
     },

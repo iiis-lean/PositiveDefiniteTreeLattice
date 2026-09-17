@@ -31,9 +31,8 @@
       "size_bytes": 7844
     }
   ],
-  "generated_at": "2026-07-29T14:24:29Z",
   "overview": null,
   "relpath": ".lean_constellation/source",
-  "schema_version": 2,
+  "schema_version": 3,
   "summary": "Scanned 4 source files."
 }

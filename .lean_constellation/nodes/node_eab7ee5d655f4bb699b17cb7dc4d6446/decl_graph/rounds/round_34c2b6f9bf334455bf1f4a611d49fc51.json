@@ -1,18 +1,13 @@
 {
-  "change_summaries": {},
   "committed_at": "2026-08-03T11:23:16Z",
   "created_at": "2026-08-03T11:04:17Z",
-  "discard_reason": null,
   "discarded_at": null,
   "discarded_by": null,
-  "discarded_created_decl_names": [],
-  "discarded_restored_decl_revisions": {},
-  "discarded_revision_refs": [],
   "execution_completed_at": "2026-08-03T11:20:54Z",
   "execution_reason": null,
   "execution_result_kind": "success",
   "node_path": "Main.RootedCapacity",
-  "objective": "Create and graph-prove the canonical nonroot inverse child-block transport under pointwise attached-child admissibility.",
+  "objective": "`rootedNonroot_inverse_childBlocks_of_child_admissible@rev:1` is the canonical nonroot inverse child-block transport under pointwise attached-child admissibility.",
   "plan_closeout_acknowledged_at": "2026-08-03T11:23:16Z",
   "plan_closeout_acknowledged_by": "a_a93b40977f574bad89528358fa89e022",
   "result_kind": "success",
@@ -29,5 +24,6 @@
   "started_at": "2026-08-03T11:05:47Z",
   "status": "committed",
   "strategy_id": "strategy_409097c1a1e547a681e983998de55d40",
-  "summary": "Round 74 completed successfully and made the second planned bottom-up step of the contract-v4 strategy. rootedNonroot_inverse_childBlocks_of_child_admissible reached proved state and satisfies the graph_proved policy. The canonical inverse transport under per-child admissibility is now available; the remaining strategy work is one public theorem exporting the exact nonroot inverse quadratic equality to rootedChildCapacitySum. No preparation, dependency repair, or intermediate closure work is outstanding."
+  "summary": "Round 74 completed successfully and made the second planned bottom-up step of the contract-v4 strategy. `rootedNonroot_inverse_childBlocks_of_child_admissible` reached proved state and satisfies the graph_proved policy. The canonical inverse transport under per-child admissibility is now available; the remaining contract-v4 work is the public theorem exporting the exact nonroot inverse quadratic equality to `rootedChildCapacitySum`. No preparation, dependency repair, or intermediate closure work is outstanding.",
+  "execution_constraints": "Export the exact nonroot inverse quadratic equality to `rootedChildCapacitySum` using the proved canonical transport, without changing the pointwise attached-child admissibility premise or adding preparation/dependency work."
 }

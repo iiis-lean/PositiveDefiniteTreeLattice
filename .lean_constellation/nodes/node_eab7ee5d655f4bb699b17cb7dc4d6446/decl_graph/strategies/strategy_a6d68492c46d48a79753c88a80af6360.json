@@ -6,9 +6,10 @@
     "round_61abc842446845fd89db68003923f343"
   ],
   "node_path": "Main.RootedCapacity",
-  "objective": "Add the single public v5 composition theorem combining the proved nonroot Gram reindex identity with the proved per-child-admissible block-diagonal inverse identity under one syntactically shared R/S/e/D/B convention, then bind it and complete the node.",
-  "rationale": "Solution.tex 57–68 identifies the nonroot Gram block as a direct sum and uses its inverse blockwise. Contract v5 limits the task to one combined inverse-reindex provider and forbids revival of the deleted quadratic chain. Both mathematical providers and Matrix.inv_reindex are already proved/indexed, so use a one-round direct composition with no additional helper unless formal execution exposes the one contract-authorized compatibility need.",
+  "objective": "Strategy a6 records the completed contract-v5 composition: the public shared-family inverse-reindex theorem combines the proved nonroot Gram reindex identity with the proved per-child-admissible block-diagonal inverse under one syntactically shared R/S/e/D/B convention.",
+  "rationale": "Solution.tex 57–68 identifies the nonroot Gram block as a direct sum with blockwise inverse. Contract v5 limits the mathematical package to one combined inverse-reindex provider and excludes the deleted quadratic chain. Both providers and Matrix.inv_reindex are proved and indexed, so the composition uses no compatibility helper.",
   "status": "closed",
   "strategy_id": "strategy_a6d68492c46d48a79753c88a80af6360",
-  "summary": "Completed contract v5 in one round by proving and exposing the shared-family inverse-reindex composition theorem without any compatibility helper."
+  "summary": "Completed contract v5 in one round by proving and exposing the shared-family inverse-reindex composition theorem without any compatibility helper.",
+  "execution_constraints": "Compose the two proved providers in one public theorem using the shared R/S/e/D/B convention; bind the interface and complete the node without reviving the deleted quadratic chain or adding a compatibility helper."
 }

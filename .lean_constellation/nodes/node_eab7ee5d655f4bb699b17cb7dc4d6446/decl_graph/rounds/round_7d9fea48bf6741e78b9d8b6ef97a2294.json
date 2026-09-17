@@ -1,18 +1,13 @@
 {
-  "change_summaries": {},
   "committed_at": "2026-07-30T01:51:02Z",
   "created_at": "2026-07-30T01:32:31Z",
-  "discard_reason": null,
   "discarded_at": null,
   "discarded_by": null,
-  "discarded_created_decl_names": [],
-  "discarded_restored_decl_revisions": {},
-  "discarded_revision_refs": [],
   "execution_completed_at": "2026-07-30T01:46:27Z",
   "execution_reason": null,
   "execution_result_kind": "success",
   "node_path": "Main.RootedCapacity",
-  "objective": "Prove the b_0009 cut-separation fact needed by the component Gram bridge: in a tree, deleting an adjacent parent-child edge separates the parent from the connected component containing the child. This tracked rooted-component lemma will justify that the deleted edge is not internal to the child subtype.",
+  "objective": "`rootedChildComponent_parent_not_mem@rev:1` is the b_0009 cut-separation fact for the component Gram bridge: in a tree, deleting an adjacent parent-child edge separates the parent from the connected component containing the child, so the deleted edge is not internal to the child subtype.",
   "plan_closeout_acknowledged_at": "2026-07-30T01:51:02Z",
   "plan_closeout_acknowledged_by": "a_a93b40977f574bad89528358fa89e022",
   "result_kind": "success",
@@ -29,5 +24,6 @@
   "started_at": "2026-07-30T01:34:41Z",
   "status": "committed",
   "strategy_id": "strategy_b9f2bb44ae0a40ba9081239e5f026481",
-  "summary": "The bottom-up b_0009 strategy progressed: rootedChildComponent_parent_not_mem reached proved state and graph-proved satisfaction. Together with rootedChildComponent_isTree, the structural cut layer is now closed. No blocker, state-only intermediate, superseded declaration, or scope issue remains. The next round can responsibly target the source-visible child rootedGram/principal-submatrix bridge; admissibility inheritance and capacity recursion should still wait for that bridge."
+  "summary": "The bottom-up b_0009 strategy progressed: `rootedChildComponent_parent_not_mem` reached proved state and graph-proved satisfaction. Together with `rootedChildComponent_isTree`, the structural cut layer is now closed. No blocker, state-only intermediate, superseded declaration, or scope issue remains. The source-visible child rootedGram/principal-submatrix bridge remains upstream of admissibility inheritance and capacity recursion.",
+  "execution_constraints": "Target the source-visible child rootedGram/principal-submatrix bridge next; defer admissibility inheritance and capacity recursion until that bridge is available."
 }

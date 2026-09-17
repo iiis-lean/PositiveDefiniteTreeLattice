@@ -1,19 +1,13 @@
 {
   "change": {
-    "anticipated_proof_dep_names": [
-      "IsAdmissibleRootedTree_rootedChildComponent",
-      "rootedChildComponent_parent_not_mem",
-      "rootedChildComponentsEquivNonroot",
-      "rootedNonrootGram_reindex_childBlocks"
-    ],
-    "anticipated_statement_dep_names": [],
     "base_revision": 2,
     "kind": "update",
-    "objective": "Resume only Proof Formal for the accepted private inverse-entry transport theorem from SourceIndex b_0009 / solution.tex lines 57–68. Preserve revision 2's compiler-checked statement, exact R/D/ι objects, total rational inverses, same-component equality, distinct-component zero clause, hypotheses, visibility, and Proof NL semantic plan. Replace the formerly local Gram block-identification work with the proved rootedNonrootGram_reindex_childBlocks theorem using the identical rootedChildComponentsEquivNonroot orientation. Obtain child-block positive definiteness/invertibility from IsAdmissibleRootedTree_rootedChildComponent and the existing Matrix.PosDef APIs; prove or apply the blockwise inverse identity using the already accepted Matrix.blockDiagonal'_mul, nonsingular-inverse, and Matrix.inv_reindex route; then evaluate at the theorem's exact ι indices to discharge both clauses. Do not reconstruct the partition equivalence, alter the statement, introduce a new tracked helper, or expose this theorem publicly. Success must directly unblock rootedNonroot_inverse_quadratic and the Schur-complement capacity recursion. If a remaining formal mismatch exists, return its exact consumer goal and checked API rather than requesting an unbounded helper chain.",
+    "objective": "Revision 3 preserves the private inverse-entry transport contract from SourceIndex b_0009 / solution.tex lines 57–68 with its exact R, D, and ι objects, hypotheses, total rational inverses, within-component equality, cross-component zero, visibility, and conclusion direction. The available rootedNonrootGram_reindex_childBlocks decomposition and the required child-block inverse identity identify the inverse of the reindexed D with the dependent block-diagonal child inverses; Matrix.inv_reindex then yields the displayed clauses at the exact ι indices. The unchanged result is the inverse-transport dependency for rootedNonroot_inverse_quadratic and the Schur-complement recursion.",
     "require_target_state_satisfied": true,
-    "reset_to_state": "proof_planned",
+    "start_stage": "proof_formal",
     "summary": "The Proof-Formal-only retry preserved rootedNonroot_inverse_childBlocks's accepted two-clause statement and Proof NL plan at proof_planned state; no formal proof was accepted. Classified blocker: predictable tracked matrix helper with direct source-stage reuse. The proved rootedNonrootGram_reindex_childBlocks now supplies the exact Gram block decomposition, and the child admissibility/PosDef and Matrix.inv_reindex inputs were checked. The unresolved consumer goal is exactly `(Matrix.blockDiagonal' B)⁻¹ = Matrix.blockDiagonal' (fun c => (B c)⁻¹)` for the theorem's dependent family of rooted child-component Gram blocks B, under the available per-block invertibility. Without this identity, Matrix.inv_reindex cannot yield either the displayed same-component D⁻¹ entry or the cross-component zero entry. Before retrying, add and prove one private RootedCapacity-specific child-block inverse theorem with the identical B family and total rational inverses, using Matrix.blockDiagonal'_mul plus the nonsingular inverse laws and child-block PosDef/isUnit facts. Then resume this parent from proof_planned by combining that theorem with rootedNonrootGram_reindex_childBlocks and Matrix.inv_reindex. The same helper will feed rootedNonroot_inverse_quadratic and the Schur-complement recursion. No statement drift, provider/resource mismatch, or visibility issue was found.",
-    "target_state": "proved"
+    "target_state": "proved",
+    "execution_constraints": "Retain the exact R/D/ι representation, rootedChildComponentsEquivNonroot orientation, child Gram family, local instance convention, total rational inverses, and private visibility. Reuse rootedNonrootGram_reindex_childBlocks and the existing Matrix.blockDiagonal'_mul, nonsingular-inverse, PosDef/isUnit, and Matrix.inv_reindex route; use the tracked child-block inverse identity before evaluating both clauses. Do not reconstruct the partition equivalence, alter the statement or assumptions, create another helper or public interface, or extend the retry beyond the exact consumer goal and checked API."
   },
   "lean_decl_name": "rootedNonroot_inverse_childBlocks",
   "proof": {
@@ -364,6 +358,11 @@
           "schema_version": 2,
           "summary": "Diagnostics returned 1 items"
         },
+        "fingerprint": {
+          "environment_sha256": null,
+          "source_sha256": "0acd6aa93a024ef7029e124751de811b53353c1c77893425f5903e288627434b",
+          "upstream_revision": null
+        },
         "message": "Lean check passed.",
         "policy": "statement_formal",
         "scan": {
@@ -388,7 +387,15 @@
           "summary": "sorry=1, admit=0, axiom=0, opaque=0, unsafe=0",
           "unsafe_count": 0
         },
-        "status": "passed"
+        "schema_version": 1,
+        "status": "passed",
+        "subject": {
+          "declaration_name": null,
+          "module": "PositiveDefiniteTreeLattice.Main.RootedCapacity.Theorems.rootedNonroot_inverse_childBlocks",
+          "repo_file_path": "PositiveDefiniteTreeLattice/Main/RootedCapacity/Theorems/rootedNonroot_inverse_childBlocks.lean",
+          "repo_kind": "native",
+          "stage": "statement"
+        }
       },
       "code": "-- lean-constellation: managed-imports-begin\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Prelude\nimport Mathlib.Combinatorics.SimpleGraph.Acyclic\nimport Mathlib.Combinatorics.SimpleGraph.Connectivity.Connected\nimport Mathlib.Combinatorics.SimpleGraph.DeleteEdges\nimport Mathlib.Data.Finset.Filter\nimport Mathlib.Data.Fintype.Defs\nimport Mathlib.LinearAlgebra.Matrix.Defs\nimport Mathlib.LinearAlgebra.Matrix.NonsingularInverse\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.IsAdmissibleRootedTree\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildComponent\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildren\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedGram\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Theorems.rootedChildComponent_parent_not_mem\n-- lean-constellation: managed-imports-end\n\n-- lean-constellation: declaration-source-begin\n\n/--\n# lean-constellation target: `rootedNonroot_inverse_childBlocks`\n\nLet V be a finite type with decidable equality, let G be a simple graph on V with decidable\nadjacency, let hG : G.IsTree, let w : V → ℤ, let ρ : V, and suppose hAdm : IsAdmissibleRootedTree G\nw ρ. Put\n\nR := {v : V // v ≠ ρ},\nD := (rootedGram G w).submatrix Subtype.val Subtype.val.\n\nFor every c ∈ rootedChildren G hG ρ ρ, write ιc : rootedChildComponent G ρ c → R for the canonical\nembedding x ↦ ⟨(x : V), (x : V) ≠ ρ⟩ supplied by rootedChildComponent_parent_not_mem. Then both\ninverse-entry transports hold:\n\n1. For all x y : rootedChildComponent G ρ c,\n\nD⁻¹ (ιc x) (ιc y)\n= (rootedGram (rootedChildComponent G ρ c).toSimpleGraph\n    (fun z : rootedChildComponent G ρ c => w (z : V)))⁻¹ x y.\n\n2. For distinct c,d ∈ rootedChildren G hG ρ ρ, and all x : rootedChildComponent G ρ c and y :\nrootedChildComponent G ρ d,\n\nD⁻¹ (ιc x) (ιd y) = 0.\n\nAll inverses are the existing total rational matrix inverses; the statement preserves the exact\ndependent deleted-edge component indices.\n\n## Sources\n\n- Source `solution.tex`, lines 57–68\n\n## Statement dependencies\n\n- `SimpleGraph.IsTree` from `Mathlib.Combinatorics.SimpleGraph.Acyclic`\n- `SimpleGraph.ConnectedComponent.toSimpleGraph` from\n  `Mathlib.Combinatorics.SimpleGraph.Connectivity.Connected`\n- `SimpleGraph.deleteEdges` from `Mathlib.Combinatorics.SimpleGraph.DeleteEdges`\n- `Finset.mem_filter` from `Mathlib.Data.Finset.Filter`\n- `Finset.mem_univ` from `Mathlib.Data.Fintype.Defs`\n- `Matrix.submatrix` from `Mathlib.LinearAlgebra.Matrix.Defs`\n- `Matrix.inv` from `Mathlib.LinearAlgebra.Matrix.NonsingularInverse`\n- `Main.RootedCapacity::IsAdmissibleRootedTree` → `IsAdmissibleRootedTree` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.IsAdmissibleRootedTree`\n- `Main.RootedCapacity::rootedChildComponent` → `rootedChildComponent` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildComponent`\n- `Main.RootedCapacity::rootedChildComponent_parent_not_mem` → `rootedChildComponent_parent_not_mem`\n  from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Theorems.rootedChildComponent_parent_not_mem`\n- `Main.RootedCapacity::rootedChildren` → `rootedChildren` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildren`\n- `Main.RootedCapacity::rootedGram` → `rootedGram` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedGram`\n-/\ntheorem rootedNonroot_inverse_childBlocks {V : Type*} [Fintype V] [DecidableEq V]\n    (G : SimpleGraph V) [DecidableRel G.Adj] (hG : G.IsTree) (w : V → ℤ) (ρ : V)\n    (hAdm : IsAdmissibleRootedTree G w ρ) :\n    let R := {v : V // v ≠ ρ}\n    let D : Matrix R R ℚ := (rootedGram G w).submatrix Subtype.val Subtype.val\n    let ι : ∀ c, c ∈ rootedChildren G hG ρ ρ → rootedChildComponent G ρ c → R :=\n      fun c hc x =>\n        ⟨(x : V), rootedChildComponent_parent_not_mem G ρ c hG\n          (by\n            have hc' := hc\n            simp only [rootedChildren, Finset.mem_filter, Finset.mem_univ, true_and] at hc'\n            exact hc'.1) x⟩\n    (∀ c (hc : c ∈ rootedChildren G hG ρ ρ),\n      let C := rootedChildComponent G ρ c\n      letI : Fintype C := Fintype.ofFinite C\n      letI : DecidableRel C.toSimpleGraph.Adj := by\n        intro x y\n        change Decidable ((G.deleteEdges {s(ρ, c)}).Adj (x : V) (y : V))\n        infer_instance\n      ∀ x y : C, D⁻¹ (ι c hc x) (ι c hc y) =\n        (rootedGram C.toSimpleGraph (fun z : C => w (z : V)))⁻¹ x y) ∧\n    ∀ c d (hc : c ∈ rootedChildren G hG ρ ρ) (hd : d ∈ rootedChildren G hG ρ ρ)\n      (hcd : c ≠ d) (x : rootedChildComponent G ρ c) (y : rootedChildComponent G ρ d),\n      D⁻¹ (ι c hc x) (ι d hd y) = 0 := by\n  sorry\n"
     },

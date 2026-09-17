@@ -1,18 +1,13 @@
 {
-  "change_summaries": {},
   "committed_at": "2026-07-30T06:47:51Z",
   "created_at": "2026-07-30T06:30:43Z",
-  "discard_reason": null,
   "discarded_at": null,
   "discarded_by": null,
-  "discarded_created_decl_names": [],
-  "discarded_restored_decl_revisions": {},
-  "discarded_revision_refs": [],
   "execution_completed_at": "2026-07-30T06:46:17Z",
   "execution_reason": null,
   "execution_result_kind": "success",
   "node_path": "Main.RootedCapacity",
-  "objective": "Complete only Proof Formal for rootedChildren_rootedChildComponent, preserving its accepted b_0009 Finset.map statement and Proof NL plan. Use the newly proved Main.TreePathSeparation theorem reachable_childSide_of_uniquePath_concat for the reverse inclusion, together with rootedChildComponent_path_decomposition@2, so the result becomes the graph-proved prerequisite for rootedChildCount_rootedChildComponent.",
+  "objective": "Round 16 records the proved b_0009 Finset.map transport: local rootedChildren in the deleted-edge child component map to ambient rootedChildren using reachable_childSide_of_uniquePath_concat and rootedChildComponent_path_decomposition@2. This transport is the graph-proved prerequisite for rootedChildCount_rootedChildComponent.",
   "plan_closeout_acknowledged_at": "2026-07-30T06:47:51Z",
   "plan_closeout_acknowledged_by": "a_a93b40977f574bad89528358fa89e022",
   "result_kind": "success",
@@ -29,5 +24,6 @@
   "started_at": "2026-07-30T06:32:18Z",
   "status": "committed",
   "strategy_id": "strategy_1fbcdfb31a2e4cada1ff5b7b941de18c",
-  "summary": "Round 16 made the intended bottom-up progress: rootedChildren_rootedChildComponent rev3 reached proved state and graph-proved satisfaction with its accepted statement unchanged. The former provider/API closure blocker is resolved; no state-only intermediate or unresolved dependency remains in this round. Graph hygiene is clean and the open strategy still explains the next work. rootedChildCount_rootedChildComponent rev1 is now dependency-closed for a declared-to-proved retry by unfolding rootedChildCount and taking Finset.card of this transport equality; it should be the next single round before child admissibility or capacity recursion."
+  "summary": "Round 16 made the intended bottom-up progress: rootedChildren_rootedChildComponent rev3 reached proved state and graph-proved satisfaction with its accepted statement unchanged. The former provider/API closure blocker is resolved; no state-only intermediate or unresolved dependency remains in this round. Graph hygiene is clean. rootedChildCount_rootedChildComponent rev1 has the dependency closure needed for a declared-to-proved step by unfolding rootedChildCount and taking Finset.card of this transport equality.",
+  "execution_constraints": "Retry rootedChildCount_rootedChildComponent by unfolding rootedChildCount and taking Finset.card of this transport equality; make it the next single round before child admissibility or capacity recursion."
 }

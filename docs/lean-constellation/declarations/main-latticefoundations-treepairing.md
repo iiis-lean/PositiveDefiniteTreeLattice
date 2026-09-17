@@ -1,4 +1,4 @@
-[← Public API](../PUBLIC_API.md) · [Public boundaries](../PUBLIC_BOUNDARIES.md)
+[← Public API](../PUBLIC_API.md) · [Public boundaries](../PUBLIC_BOUNDARIES.md) · [Complete graph](../DECLARATION_GRAPH.md)
 
 # `treePairing`
 
@@ -10,9 +10,17 @@ Integral bilinear pairing of a finite integer-weighted simple graph.
 - State: `declared`
 - Revision status: `committed`
 - Repository completion: `graph_proved`
-- Formal code: final statement projection
+- Compatibility `formal_code`: final statement projection
 
-## Lean code
+## Statement NL
+
+For a finite type `V` with decidable equality, a simple graph `G : SimpleGraph V` with decidable adjacency, an integer-valued weight function `weight : V → ℤ`, and functions `x y : V → ℤ`, `treePairing G weight x y` is the integer finite sum over all vertices `u : V` of
+
+`x u * (weight u * y u - ∑ v ∈ G.neighborFinset u, y v)`.
+
+Thus the inner sum is taken over the finite neighbors of `u` in `G`.
+
+## Statement Formal
 
 ```lean
 -- lean-constellation: managed-imports-begin
@@ -49,6 +57,14 @@ def PositiveDefiniteTreeLattice.Internal.historicalTreePairing {V : Type*} [Fint
   Finset.univ.sum fun u =>
     x u * (weight u * y u - (G.neighborFinset u).sum fun v => y v)
 ```
+
+## Proof NL
+
+Not recorded.
+
+## Proof Formal
+
+Not recorded.
 
 ## Statement dependencies
 

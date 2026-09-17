@@ -1,18 +1,13 @@
 {
-  "change_summaries": {},
   "committed_at": "2026-07-29T19:16:05Z",
   "created_at": "2026-07-29T19:10:03Z",
-  "discard_reason": null,
   "discarded_at": null,
   "discarded_by": null,
-  "discarded_created_decl_names": [],
-  "discarded_restored_decl_revisions": {},
-  "discarded_revision_refs": [],
   "execution_completed_at": "2026-07-29T19:14:44Z",
   "execution_reason": null,
   "execution_result_kind": "success",
   "node_path": "Main.LatticeFoundations",
-  "objective": "Retry only Proof Formal for the five namespaced direct-consumer theorems after the prior declaration-file capture-integrity failure. Retain their accepted compiler-confirmed statements, proof plans, dependencies, source semantics, and public visibility unchanged; recapture the existing formal proofs against stable declaration-owned files so they become proved under graph_proved before any higher consumer is migrated.",
+  "objective": "Round 1568 records the completed direct-consumer layer: five namespaced theorems have compiler-confirmed statements, proof plans, dependencies, and public visibility, and their proofs satisfy graph_proved after the prior capture-integrity failure.",
   "plan_closeout_acknowledged_at": "2026-07-29T19:16:05Z",
   "plan_closeout_acknowledged_by": "a_60a257a14c4c469b9e17805606fa5ea4",
   "result_kind": "success",
@@ -49,5 +44,5 @@
   "started_at": "2026-07-29T19:11:16Z",
   "status": "committed",
   "strategy_id": "strategy_33c8b4d4859348d8af576dc8155aa14f",
-  "summary": "The namespace-repair strategy recovered fully from the prior runtime integrity failure. All five direct-consumer theorems completed Proof Formal, reached proved, and passed required graph_proved satisfaction with their compiler-confirmed PositiveDefiniteTreeLattice names. Their accepted statements, proof plans, dependencies, proofs, and public visibility were unchanged. No blocker, missing dependency, state-only closure debt, superseded artifact, graph-hygiene issue, or scope expansion remains in this layer. The proved additivity and symmetry dependencies now satisfy every known retry condition for migrating treePairing_add_self; the final norm-one theorem must wait until that parent is namespaced and proved."
+  "summary": "The namespace-repair strategy recovered fully from the prior runtime integrity failure. All five direct-consumer theorems completed Proof Formal, reached proved, and passed required graph_proved satisfaction with their compiler-confirmed PositiveDefiniteTreeLattice names. Their accepted statements, proof plans, dependencies, proofs, and public visibility were unchanged. No blocker, missing dependency, state-only closure debt, superseded artifact, graph-hygiene issue, or scope expansion remains in this layer. The proved additivity and symmetry dependencies satisfy the prerequisites for `treePairing_add_self`; the final norm-one theorem remains downstream of that parent."
 }

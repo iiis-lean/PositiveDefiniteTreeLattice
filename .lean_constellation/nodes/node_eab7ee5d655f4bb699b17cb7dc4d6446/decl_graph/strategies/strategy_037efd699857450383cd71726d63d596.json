@@ -6,9 +6,10 @@
     "round_950d6ceabac94ad7b94ba4db3d228545"
   ],
   "node_path": "Main.RootedCapacity",
-  "objective": "Repair contract v4 by removing the exhausted unreleased high-level child-admissibility quadratic chain, then expose the already-proved block reindex, per-child block inverse, and root-row support primitives with complete public Statement closure while preserving every v1–v3 interface.",
-  "rationale": "The repaired contract explicitly forbids another proof retry and reassigns the source-specific Schur inequality downstream. Solution.tex 57–68 supports the retained lower block decomposition and support APIs. The four failed declarations form exactly their own delete closure, are unreleased, and are not needed by the retained proved API. Under graph_proved completion, perform cleanup first, then curate visibility/interface bindings and run the completion gate.",
+  "objective": "Strategy 037 records the completed contract-v4 route repair: the exhausted unreleased high-level child-admissibility quadratic chain is removed, while the proved block reindex, per-child block inverse, and root-row support primitives are exposed with complete public Statement closure and every v1–v3 interface preserved.",
+  "rationale": "The repaired contract excludes another proof retry for the exhausted quadratic chain and reassigns the source-specific Schur inequality downstream. Solution.tex lines 57–68 support the retained lower block decomposition and support APIs. The four failed declarations form their own delete closure, are unreleased, and are not needed by the retained proved API.",
   "status": "closed",
   "strategy_id": "strategy_037efd699857450383cd71726d63d596",
-  "summary": "Completed the v4 route repair: removed the four exhausted unreleased quadratic-chain declarations, promoted the three proved lower block APIs plus their required statement closure, and bound all repaired contract interfaces."
+  "summary": "Completed the v4 route repair: removed the four exhausted unreleased quadratic-chain declarations, promoted the three proved lower block APIs plus their required statement closure, and bound all repaired contract interfaces.",
+  "execution_constraints": "Perform cleanup before curating visibility and interface bindings, then run the completion gate. Do not retry the exhausted quadratic chain; preserve every v1–v3 interface and the proved lower block APIs."
 }

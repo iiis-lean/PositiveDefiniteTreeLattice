@@ -1,18 +1,13 @@
 {
-  "change_summaries": {},
   "committed_at": "2026-07-30T18:12:10Z",
   "created_at": "2026-07-30T18:01:54Z",
-  "discard_reason": null,
   "discarded_at": null,
   "discarded_by": null,
-  "discarded_created_decl_names": [],
-  "discarded_restored_decl_revisions": {},
-  "discarded_revision_refs": [],
   "execution_completed_at": "2026-07-30T18:10:30Z",
   "execution_reason": "The requested reviewer repair is not expressible by a declaration whose tracked kind is `theorem`: Lean rejects `theorem ... : Invertible M` because `Invertible M` is data, not a proposition. A parameterized `instance ... (hAdm : IsAdmissibleRootedTree G w ρ) : Invertible M` also fails because the ordinary proof `hAdm` cannot be inferred by typeclass synthesis; changing it to an instance binder is invalid because `IsAdmissibleRootedTree` is not a class. The current captured `IsUnit M` theorem is the compiler-valid propositional formulation, but it does not satisfy the reviewer’s required direct interface.",
   "execution_result_kind": "blocked",
   "node_path": "Main.RootedCapacity",
-  "objective": "Create and prove the single private b_0009 root/nonroot block-invertibility assembly theorem required by rootedCapacity_recursion.",
+  "objective": "rootedGram_rootNonroot_blocks_invertible@rev:1 is the private b_0009 root/nonroot block-invertibility helper with compiler-valid IsUnit (Matrix.fromBlocks ...) statement. Its direct Invertible theorem shape is not theorem-shaped, and an hAdm-dependent instance is not synthesizable; IsUnit is convertible to the consumer's local instance via IsUnit.invertible.",
   "plan_closeout_acknowledged_at": "2026-07-30T18:12:10Z",
   "plan_closeout_acknowledged_by": "a_a93b40977f574bad89528358fa89e022",
   "result_kind": "blocked",
@@ -29,5 +24,6 @@
   "started_at": "2026-07-30T18:03:15Z",
   "status": "committed",
   "strategy_id": "strategy_fc60f40a331d4f63bd19e22f0eec7473",
-  "summary": "Round 52 clarified the exact Lean interface but did not satisfy graph_proved: rootedGram_rootNonroot_blocks_invertible is only specified, with a compiler-valid IsUnit Matrix.fromBlocks statement and no proof. The requested direct Invertible theorem is impossible as a theorem-shaped proposition, while an hAdm-dependent instance is not synthesizable. The strategy remains viable because IsUnit is precisely convertible to the consumer's local instance via IsUnit.invertible. Next action is a focused revision of this private helper from Statement NL through proof, explicitly accepting IsUnit; only after it is proved should rootedCapacity_recursion be retried."
+  "summary": "Round 52 clarified the exact Lean interface but did not satisfy graph_proved: rootedGram_rootNonroot_blocks_invertible is only specified, with a compiler-valid IsUnit Matrix.fromBlocks statement and no proof. The requested direct Invertible theorem is impossible as a theorem-shaped proposition, while an hAdm-dependent instance is not synthesizable. The strategy remains viable because IsUnit is precisely convertible to the consumer's local instance via IsUnit.invertible.",
+  "execution_constraints": "Revise this private helper from Statement NL through proof to accept IsUnit, then prove it before retrying rootedCapacity_recursion; preserve the exact Matrix.fromBlocks statement and do not request an impossible direct Invertible theorem or unsynthesizable hAdm-dependent instance."
 }

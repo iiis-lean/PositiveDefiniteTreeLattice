@@ -512,7 +512,7 @@
       "reason": "Canonical instance-reducible Fintype.ofFinite used to align the child component’s scoped induction target with rootedChildCapacitySummand."
     }
   ],
-  "objective": "Extend the committed rooted-structure provider with one graph-proved public root-edge classification theorem in the exact rootedChildren/rootedChildComponent representation. It must let Main.RootedEstimates.treePairingRootedChildDecomposition@1 classify every ambient edge as either incident between rho and a member of rootedChildren G hG rho rho, or internal to one uniquely indexed rootedChildComponent G rho c, with sufficient adjacency/index transport to rewrite the global treePairing edge sum. Preserve all v1 declarations and interfaces unchanged.",
+  "objective": "Contract v2 records a graph-proved public rooted-edge classification capability in the exact rootedChildren/rootedChildComponent representation. For a finite tree rooted at ρ, every ambient edge is classified bidirectionally either as an edge between ρ and a member of rootedChildren G hG ρ ρ, or as an internal edge of one uniquely indexed rootedChildComponent G ρ c, with sufficient endpoint and adjacency transport for the global treePairing edge-sum consumer. All v1 declarations and interfaces remain unchanged.",
   "owned_refs": [
     {
       "added_by": "coordinator",

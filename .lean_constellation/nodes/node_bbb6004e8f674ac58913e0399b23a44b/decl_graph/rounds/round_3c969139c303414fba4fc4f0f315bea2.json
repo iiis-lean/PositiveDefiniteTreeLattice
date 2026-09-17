@@ -1,18 +1,13 @@
 {
-  "change_summaries": {},
   "committed_at": "2026-08-01T13:59:08Z",
   "created_at": "2026-08-01T13:12:34Z",
-  "discard_reason": null,
   "discarded_at": null,
   "discarded_by": null,
-  "discarded_created_decl_names": [],
-  "discarded_restored_decl_revisions": {},
-  "discarded_revision_refs": [],
   "execution_completed_at": "2026-08-01T13:55:11Z",
   "execution_reason": null,
   "execution_result_kind": "success",
   "node_path": "Main.RootedEstimates",
-  "objective": "Prove the single b_0011 scalar-extension bridge identifying the integral treePairing norm with the rational rootedGram quadratic form.",
+  "objective": "Round 17 records the proved b_0011 scalar-extension bridge identifying the integral treePairing norm with the rational rootedGram quadratic form.",
   "plan_closeout_acknowledged_at": "2026-08-01T13:59:08Z",
   "plan_closeout_acknowledged_by": "a_c126bbd9cf3144258d31b99169f687bb",
   "result_kind": "success",
@@ -29,5 +24,6 @@
   "started_at": "2026-08-01T13:14:12Z",
   "status": "committed",
   "strategy_id": "strategy_6bfc666c638344a19f7d1dee5c0a60d4",
-  "summary": "Round 17 completed the first b_0011 implementation bridge. treePairingCastEqRootedGramQuadratic@1 reached proved and is proof-policy satisfied; no blocker or state-only work remains. The current strategy remains viable. The graph now has 14 active declarations, so the next action should be exactly one private source-faithful Cauchy/root-coordinate inequality depending on this bridge; the sixteenth and final planned declaration remains the exact public root_coefficient_lt_norm."
+  "summary": "Round 17 completed the first b_0011 implementation bridge. treePairingCastEqRootedGramQuadratic@1 reached proved and is proof-policy satisfied; no blocker or state-only work remains. The current strategy remains viable. The graph has 14 active declarations, and this bridge is the source-faithful prerequisite for the private Cauchy/root-coordinate inequality and the exact public root_coefficient_lt_norm.",
+  "execution_constraints": "Create exactly one private source-faithful Cauchy/root-coordinate inequality depending on this bridge, then retain the exact public root_coefficient_lt_norm as the sixteenth and final planned declaration."
 }

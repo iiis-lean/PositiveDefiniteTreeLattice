@@ -1,4 +1,4 @@
-[← Public API](../PUBLIC_API.md) · [Public boundaries](../PUBLIC_BOUNDARIES.md)
+[← Public API](../PUBLIC_API.md) · [Public boundaries](../PUBLIC_BOUNDARIES.md) · [Complete graph](../DECLARATION_GRAPH.md)
 
 # `rooted_integer_estimate`
 
@@ -10,9 +10,79 @@ The source quadratic rooted estimate for integer vectors and integer k.
 - State: `proved`
 - Revision status: `committed`
 - Repository completion: `graph_proved`
-- Formal code: final proof projection
+- Compatibility `formal_code`: final proof projection
 
-## Lean code
+## Statement NL
+
+For a finite decidable simple graph `G` on `V`, an integer weight function `w : V → ℤ`, and a root `rho`, assume `hG : IsAdmissibleRootedTree G w rho`.  For every integral coordinate vector `x : V → ℤ` and every integer `k`, the exact public theorem `PositiveDefiniteTreeLattice.rooted_integer_estimate` asserts the rational inequality
+
+`0 ≤ (↑(treePairing G w x x) : ℚ) - (2 * (k : ℚ) + 1) * (x rho : ℚ) + rootedCapacity G w rho * (k : ℚ) * ((k : ℚ) + 1)`.
+
+Thus the integral tree-pairing norm, the exact root coordinate, and the rooted rational capacity occur with the source’s unchanged signs and conclusion direction.  The finite and decidable structure assumed is only that required to form the existing tree-pairing and rooted-capacity APIs.
+
+## Statement Formal
+
+```lean
+-- lean-constellation: managed-imports-begin
+import PositiveDefiniteTreeLattice.Main.RootedEstimates.Prelude
+-- lean-constellation: managed-imports-end
+
+-- lean-constellation: declaration-source-begin
+
+/--
+# lean-constellation target: `rooted_integer_estimate`
+
+For a finite decidable simple graph `G` on `V`, an integer weight function `w : V → ℤ`, and a root
+`rho`, assume `hG : IsAdmissibleRootedTree G w rho`.  For every integral coordinate vector `x : V →
+ℤ` and every integer `k`, the exact public theorem
+`PositiveDefiniteTreeLattice.rooted_integer_estimate` asserts the rational inequality
+
+`0 ≤ (↑(treePairing G w x x) : ℚ) - (2 * (k : ℚ) + 1) * (x rho : ℚ) + rootedCapacity G w rho * (k :
+ℚ) * ((k : ℚ) + 1)`.
+
+Thus the integral tree-pairing norm, the exact root coordinate, and the rooted rational capacity
+occur with the source’s unchanged signs and conclusion direction.  The finite and decidable
+structure assumed is only that required to form the existing tree-pairing and rooted-capacity APIs.
+
+## Sources
+
+- Source `solution.tex`, lines 84–89
+
+## Statement dependencies
+
+- `Main.LatticeFoundations::treePairingAnchor` → `PositiveDefiniteTreeLattice.treePairing` from
+  `PositiveDefiniteTreeLattice.Main.LatticeFoundations.Defs.treePairingAnchor`
+- `Main.RootedCapacity::IsAdmissibleRootedTree` → `IsAdmissibleRootedTree` from
+  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.IsAdmissibleRootedTree`
+- `Main.RootedCapacity::rootedCapacity` → `rootedCapacity` from
+  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedCapacity`
+-/
+theorem PositiveDefiniteTreeLattice.rooted_integer_estimate {V : Type*} [Fintype V]
+    [DecidableEq V]
+    (G : SimpleGraph V) [DecidableRel G.Adj] (w : V → ℤ) (rho : V)
+    (hG : IsAdmissibleRootedTree G w rho) (x : V → ℤ) (k : ℤ) :
+    0 ≤ (↑(treePairing G w x x) : ℚ) - (2 * (k : ℚ) + 1) * (x rho : ℚ) +
+  rootedCapacity G w rho * (k : ℚ) * ((k : ℚ) + 1) := by
+  sorry
+```
+
+## Proof NL
+
+Prove the exact public statement by strong induction on Fintype.card V, with the induction predicate generalized over the finite vertex type, graph, weights, root, admissibility witness, integer coordinate vector, and integer k. Destructure the admissibility witness once to obtain the tree witness hT : G.IsTree; retain the original admissibility proposition for the capacity and child-admissibility APIs.
+
+Base case: hT and the chosen root imply the card is at least one, so the minimal case has card V = 1. The vertex type is then subsingleton, hence rootedChildren is empty. Use treePairingRootedChildDecomposition to reduce treePairing G w x x to w rho * (x rho)^2, and rootedCapacityInvEqSub (with the zero child-capacity sum) to rewrite the capacity relation. The positive capacity from PositiveDefiniteTreeLattice.capacity_pos_lt_one lets ordered-field normalization rewrite the target as a positive rational multiple of the integer product (w rho * x rho - k) * (w rho * x rho - k - 1). Apply consecutiveIntegerProductNonneg and cast/order normalization to conclude.
+
+Induction step: for each c in rootedChildren G hT rho rho, let C be rootedChildComponent G rho c, with its induced graph, restricted weight and restricted coordinate vector, child root, and child capacity gamma_c = rootedChildCapacitySummand G hT w rho ⟨c,hc⟩. IsAdmissibleRootedTree_rootedChildComponent supplies admissibility of C, and rootedChildComponent_card_lt supplies its strict cardinality bound. Invoke the strong induction hypothesis on C twice, first at the integer a := x rho and then at a - 1. After rearranging each conclusion over the rationals, these are exactly the two source bounds for the child self-pairing minus 2*a*s_c, where s_c is x at the child root. Apply twoBoundsGiveAbsLowerBound to obtain the source lower bound -gamma_c*a^2 + |s_c - gamma_c*a|. Sum it over the children with Finset.sum_le_sum.
+
+Use treePairingRootedChildDecomposition and Int.cast_sum to substitute the integral root/child decomposition. Unfold rootedChildCapacitySum and rootedChildCapacitySummand so that the summed child capacities are the same gamma_c just used in the induction. Apply rootedCapacityInvEqSub, and use 0 < gamma < 1 from capacity_pos_lt_one. With tau := (a : Q) / gamma and D := sum_c |s_c - gamma_c*a|, ordered-field/ring normalization gives the source inequality
+E >= gamma * (tau - k) * (tau - k - 1) + D,
+where E is the target left-hand expression.
+
+For the exterior cases, split into tau <= k and k + 1 <= tau. In either case the two factors of the quadratic have the same sign, so their product is nonnegative; gamma is positive and D is a finite sum of nonnegative absolute values. Thus E is nonnegative.
+
+For the interior case k < tau < k + 1, define the integer N := w rho * a - sum_c s_c. The capacity-inverse identity and finite-sum algebra give tau - (N : Q) = sum_c (s_c - gamma_c*a). Finset.abs_sum_le_sum_abs yields |tau - (N : Q)| <= D. Apply rationalUnitIntervalIntegerDistance to get the endpoint minimum below that absolute value, hence below D. Finally unitIntervalCompensationNonneg, using 0 < gamma < 1 and the strict interval hypotheses, proves gamma * (tau-k) * (tau-k-1) + D is nonnegative. Combine with the earlier lower bound for E. This is exactly the b_0010 argument from lines 84–153 and preserves the required casts, root coordinate, and conclusion direction.
+
+## Proof Formal
 
 ```lean
 -- lean-constellation: managed-imports-begin

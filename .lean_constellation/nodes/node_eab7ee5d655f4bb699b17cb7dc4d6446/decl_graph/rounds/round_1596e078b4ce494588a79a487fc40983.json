@@ -1,18 +1,13 @@
 {
-  "change_summaries": {},
   "committed_at": "2026-07-30T02:20:48Z",
   "created_at": "2026-07-30T02:11:01Z",
-  "discard_reason": null,
   "discarded_at": null,
   "discarded_by": null,
-  "discarded_created_decl_names": [],
-  "discarded_restored_decl_revisions": {},
-  "discarded_revision_refs": [],
   "execution_completed_at": "2026-07-30T02:19:18Z",
   "execution_reason": null,
   "execution_result_kind": "success",
   "node_path": "Main.RootedCapacity",
-  "objective": "Declare the canonical root vertex of each b_0009 child-side component: the child endpoint c viewed in rootedChildComponent G parent c. This named subtype element is the common index needed by child rootedChildCount, rootedCapacity, admissibility inheritance, and the capacity recursion sum.",
+  "objective": "Round 10 records the declared canonical root vertex of each b_0009 child-side component: the child endpoint c viewed in rootedChildComponent G parent c. This named subtype element is the common index for child rootedChildCount, rootedCapacity, admissibility inheritance, and the capacity recursion sum.",
   "plan_closeout_acknowledged_at": "2026-07-30T02:20:48Z",
   "plan_closeout_acknowledged_by": "a_a93b40977f574bad89528358fa89e022",
   "result_kind": "success",
@@ -29,5 +24,6 @@
   "started_at": "2026-07-30T02:15:43Z",
   "status": "committed",
   "strategy_id": "strategy_b9f2bb44ae0a40ba9081239e5f026481",
-  "summary": "The bottom-up strategy progressed: rootedChildRoot reached declared state and satisfies graph-proved requirements for a definition. The child subtree now has a stable canonical root index, with no blockers, state-only intermediate, superseded graph branch, or scope issue. The next dependency-ordered round should prove that rooted child counts inside the component agree with ambient rooted child counts; only after that should child admissibility be attempted."
+  "summary": "The bottom-up strategy progressed: rootedChildRoot reached declared state and satisfies graph-proved requirements for a definition. The child subtree now has a stable canonical root index, with no blockers, state-only intermediate, superseded graph branch, or scope issue.",
+  "execution_constraints": "After this declaration, prove that rooted child counts inside the component agree with ambient rooted child counts; attempt child admissibility only after that dependency is closed."
 }

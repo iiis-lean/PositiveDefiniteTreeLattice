@@ -1,14 +1,13 @@
 {
   "change": {
-    "anticipated_proof_dep_names": [],
-    "anticipated_statement_dep_names": [],
     "base_revision": 1,
     "kind": "update",
-    "objective": "Advance the unchanged rev:1 plan through formal capture using exactly formal_target.lean lines 7–11: the finite outer sum over u of x u * (weight u * y u - the neighborFinset sum of y). It consumes validated SimpleGraph.neighborFinset and finite-sum imports and supplies the accepted lower Statement required by Irreducible, pairing algebra, vertex-vector calculations, and the norm-one theorem.",
+    "objective": "Revision 2 records the accepted public `treePairing` definition from formal_target.lean lines 7–11: its finite outer sum over `u` is `x u * (weight u * y u - ∑ v ∈ G.neighborFinset u, y v)`, using validated `SimpleGraph.neighborFinset` and finite-sum support. It supplies the accepted lower Statement for `Irreducible`, pairing algebra, vertex-vector calculations, and the norm-one theorem.",
     "require_target_state_satisfied": true,
-    "reset_to_state": "planned",
-    "summary": "Intended to advance the exact public definition from formal_target.lean lines 7–11. Statement NL and Statement Formal completed; the compiler accepted Lean declaration treePairing in PositiveDefiniteTreeLattice.Main.LatticeFoundations.Defs.treePairing, and the revision reached declared with no statement or dependency-readiness mismatch. Proof stages were skipped because this is a definition. The round nevertheless failed its literal target_state=proved check: non-theorem declarations have no proof layer and remain statically declared, although graph-proved proof-policy satisfaction for a definition reduces to declared-level satisfaction. Consumer-side shape is preserved exactly: finite V, decidable equality and adjacency, integer weight and functions, outer finite sum with neighborFinset subtraction. No helper/provider is missing. Do not retry the Statement merely to seek a nonexistent proof state; after closeout, verify declared satisfaction and use this accepted definition as the lower dependency for Irreducible and pairing lemmas.",
-    "target_state": "proved"
+    "start_stage": "statement_nl",
+    "summary": "The exact public definition from formal_target.lean lines 7–11 was captured. Statement NL and Statement Formal completed; the compiler accepted Lean declaration treePairing in PositiveDefiniteTreeLattice.Main.LatticeFoundations.Defs.treePairing, and the revision reached declared with no statement or dependency-readiness mismatch. Proof stages were skipped because this is a definition. The round nevertheless failed its literal target_state=proved check: non-theorem declarations have no proof layer and remain statically declared, although graph-proved proof-policy satisfaction for a definition reduces to declared-level satisfaction. Consumer-side shape is preserved exactly: finite V, decidable equality and adjacency, integer weight and functions, outer finite sum with neighborFinset subtraction. No helper/provider is missing. The non-theorem definition therefore remains at declared state despite the literal target_state=proved check.",
+    "target_state": "proved",
+    "execution_constraints": "Use the unchanged rev:1 plan and exact formal_target.lean lines 7–11 during formal capture. Do not retry Statement merely to seek a nonexistent proof state; after closeout, verify declared satisfaction and use this accepted definition as the lower dependency for Irreducible and pairing lemmas."
   },
   "lean_decl_name": "treePairing",
   "proof": null,
@@ -46,6 +45,11 @@
           "schema_version": 2,
           "summary": "Command completed successfully"
         },
+        "fingerprint": {
+          "environment_sha256": null,
+          "source_sha256": "0f01811adccb35b53ce01d1a6fadd1f2de063153fb5a1e535b63f9bc9224e642",
+          "upstream_revision": null
+        },
         "message": "Lean check passed.",
         "policy": "statement_formal",
         "scan": {
@@ -63,7 +67,15 @@
           "summary": "sorry=0, admit=0, axiom=0, opaque=0, unsafe=0",
           "unsafe_count": 0
         },
-        "status": "passed"
+        "schema_version": 1,
+        "status": "passed",
+        "subject": {
+          "declaration_name": null,
+          "module": "PositiveDefiniteTreeLattice.Main.LatticeFoundations.Defs.treePairing",
+          "repo_file_path": "PositiveDefiniteTreeLattice/Main/LatticeFoundations/Defs/treePairing.lean",
+          "repo_kind": "native",
+          "stage": "statement"
+        }
       },
       "code": "-- lean-constellation: managed-imports-begin\nimport PositiveDefiniteTreeLattice.Main.LatticeFoundations.Prelude\nimport Mathlib.Algebra.BigOperators.Group.Finset.Defs\nimport Mathlib.Combinatorics.SimpleGraph.Finite\n-- lean-constellation: managed-imports-end\n\n-- lean-constellation: declaration-source-begin\n\n/--\n# lean-constellation target: `treePairing`\n\nFor a finite type `V` with decidable equality, a simple graph `G : SimpleGraph V` with decidable\nadjacency, an integer-valued weight function `weight : V → ℤ`, and functions `x y : V → ℤ`,\n`treePairing G weight x y` is the integer finite sum over all vertices `u : V` of\n\n`x u * (weight u * y u - ∑ v ∈ G.neighborFinset u, y v)`.\n\nThus the inner sum is taken over the finite neighbors of `u` in `G`.\n\n## Sources\n\n- Source `formal_target.lean`, lines 7–11\n\n## Statement dependencies\n\n- `Finset.sum` from `Mathlib.Algebra.BigOperators.Group.Finset.Defs`\n- `SimpleGraph.neighborFinset` from `Mathlib.Combinatorics.SimpleGraph.Finite`\n-/\ndef treePairing {V : Type*} [Fintype V] [DecidableEq V] (G : SimpleGraph V)\n    [DecidableRel G.Adj] (weight x y : V → ℤ) : ℤ :=\n  ∑ u, x u * (weight u * y u - ∑ v ∈ G.neighborFinset u, y v)\n"
     },

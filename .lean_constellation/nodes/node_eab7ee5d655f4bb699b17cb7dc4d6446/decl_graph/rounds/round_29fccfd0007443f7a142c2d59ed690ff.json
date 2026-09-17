@@ -1,18 +1,13 @@
 {
-  "change_summaries": {},
   "committed_at": "2026-08-02T14:34:07Z",
   "created_at": "2026-08-02T14:22:20Z",
-  "discard_reason": null,
   "discarded_at": null,
   "discarded_by": null,
-  "discarded_created_decl_names": [],
-  "discarded_restored_decl_revisions": {},
-  "discarded_revision_refs": [],
   "execution_completed_at": "2026-08-02T14:33:04Z",
   "execution_reason": null,
   "execution_result_kind": "success",
   "node_path": "Main.RootedCapacity",
-  "objective": "Create and graph-prove the exact qualified public contract-v3 theorem rootedChildCount_add_one_eq_degree from the committed predecessor/neighborFinset partition.",
+  "objective": "`rootedChildCount_add_one_eq_degree@rev:1` is the qualified public contract-v3 theorem obtained from the committed predecessor/neighborFinset partition: for every nonroot vertex, the rooted child count plus one equals the ambient graph degree.",
   "plan_closeout_acknowledged_at": "2026-08-02T14:34:07Z",
   "plan_closeout_acknowledged_by": "a_a93b40977f574bad89528358fa89e022",
   "result_kind": "success",
@@ -29,5 +24,6 @@
   "started_at": "2026-08-02T14:23:31Z",
   "status": "committed",
   "strategy_id": "strategy_7cd022e702a846d785b5387334cfe431",
-  "summary": "Round 72 completed the contract-v3 mathematical target. rootedChildCount_add_one_eq_degree@1 is public, proved, graph_proved-satisfied, and qualified exactly as the required interface. Its assumption and conclusion shape matches the downstream consumer requirement without representation conversion or stronger hypotheses. No declaration remains unfinished or intentionally state-only; the strategy should proceed to public-boundary/interface binding, graph hygiene, and completion audit."
+  "summary": "Round 72 completed the contract-v3 mathematical target. `rootedChildCount_add_one_eq_degree@1` is public, proved, graph_proved-satisfied, and qualified exactly as the required interface. Its assumption and conclusion shape matches the downstream consumer requirement without representation conversion or stronger hypotheses. No declaration remains unfinished or intentionally state-only.",
+  "execution_constraints": "Proceed to public-boundary/interface binding, graph-hygiene checks, and completion audit while preserving the exact qualified theorem and its downstream assumptions."
 }

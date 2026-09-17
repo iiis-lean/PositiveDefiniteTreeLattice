@@ -1,4 +1,4 @@
-[← Public API](../PUBLIC_API.md) · [Public boundaries](../PUBLIC_BOUNDARIES.md)
+[← Public API](../PUBLIC_API.md) · [Public boundaries](../PUBLIC_BOUNDARIES.md) · [Complete graph](../DECLARATION_GRAPH.md)
 
 # `rootedGram_bilinear_eq_treePairing_cast`
 
@@ -10,9 +10,72 @@ The rational bilinear coordinate form of rootedGram equals the rational cast of 
 - State: `proved`
 - Revision status: `committed`
 - Repository completion: `graph_proved`
-- Formal code: final proof projection
+- Compatibility `formal_code`: final proof projection
 
-## Lean code
+## Statement NL
+
+For every type `V` with finite and decidable equality instances, every simple graph `G : SimpleGraph V` with decidable adjacency, every integer weight function `w : V → ℤ`, and all integer coefficient functions `x y : V → ℤ`,
+
+```lean
+∑ u, ∑ t, (x u : ℚ) * rootedGram G w u t * (y t : ℚ) =
+  (PositiveDefiniteTreeLattice.treePairing G w x y : ℚ)
+```
+
+The equality preserves the displayed ordered coefficient product and is asserted with no tree, root, admissibility, capacity, or other structural hypotheses.
+
+## Statement Formal
+
+```lean
+-- lean-constellation: managed-imports-begin
+import PositiveDefiniteTreeLattice.Main.RootedCapacity.Prelude
+import PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedGram
+-- lean-constellation: managed-imports-end
+
+-- lean-constellation: declaration-source-begin
+
+/--
+# lean-constellation target: `rootedGram_bilinear_eq_treePairing_cast`
+
+For every type `V` with finite and decidable equality instances, every simple graph `G : SimpleGraph
+V` with decidable adjacency, every integer weight function `w : V → ℤ`, and all integer coefficient
+functions `x y : V → ℤ`,
+
+```lean
+∑ u, ∑ t, (x u : ℚ) * rootedGram G w u t * (y t : ℚ) =
+  (PositiveDefiniteTreeLattice.treePairing G w x y : ℚ)
+```
+
+The equality preserves the displayed ordered coefficient product and is asserted with no tree, root,
+admissibility, capacity, or other structural hypotheses.
+
+## Sources
+
+- Source `solution.tex`, lines 33–45
+- Source `solution.tex`, lines 47–82
+
+## Statement dependencies
+
+- `Main.LatticeFoundations::treePairingAnchor` → `PositiveDefiniteTreeLattice.treePairing` from
+  `PositiveDefiniteTreeLattice.Main.LatticeFoundations.Defs.treePairingAnchor`
+- `Main.RootedCapacity::rootedGram` → `rootedGram` from
+  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedGram`
+-/
+theorem rootedGram_bilinear_eq_treePairing_cast {V : Type*} [Fintype V] [DecidableEq V]
+    (G : SimpleGraph V) [DecidableRel G.Adj] (w : V → ℤ) (x y : V → ℤ) :
+    ∑ u, ∑ t, (x u : ℚ) * rootedGram G w u t * (y t : ℚ) =
+      (PositiveDefiniteTreeLattice.treePairing G w x y : ℚ) := by
+  sorry
+```
+
+## Proof NL
+
+Unfold `rootedGram`, `PositiveDefiniteTreeLattice.treePairing`, and `PositiveDefiniteTreeLattice.vertexVector`. The left side then has the ordered finite double sum of the scalar extension of the pairing of two coordinate delta-vectors, while the right side is the cast of the defining integral finite sum.
+
+First rewrite the cast on the right through its outer finite sum using `Int.cast_sum`; use the simp cast rules, in particular `Int.cast_mul` (and the standard casts for subtraction and zero), to put each summand in `ℚ`. For the coordinate entry at fixed `u, t`, evaluate the finite sum in `treePairing G w (vertexVector u) (vertexVector t)`: the outer delta-vector sum selects `u`, and the neighbor finite sum of the inner delta-vector is the adjacency indicator at `u, t`. This is a direct finite-`Finset` simplification from the definition of `vertexVector`; no graph property is used.
+
+Substitute that evaluated entry into the displayed ordered double sum. Distribute/reassociate the finite sums only with the existing finite-sum algebra, and normalize the rational casts and ring expressions. The resulting summand-by-summand finite sum is exactly the cast-expanded definition of `treePairing G w x y`, with the coefficient order `(x u : ℚ) * rootedGram G w u t * (y t : ℚ)` retained. The implementation should therefore be a direct `simp`/finite-sum normalization proof after these unfolds; if simplification leaves the delta-vector selection explicit, split on the corresponding equality and use the `if` branches before the same normalization. This is a lightweight local computation, not a missing reusable helper.
+
+## Proof Formal
 
 ```lean
 -- lean-constellation: managed-imports-begin

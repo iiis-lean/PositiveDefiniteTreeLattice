@@ -1,18 +1,13 @@
 {
-  "change_summaries": {},
   "committed_at": "2026-07-30T21:27:45Z",
   "created_at": "2026-07-30T21:07:10Z",
-  "discard_reason": null,
   "discarded_at": null,
   "discarded_by": null,
-  "discarded_created_decl_names": [],
-  "discarded_restored_decl_revisions": {},
-  "discarded_revision_refs": [],
   "execution_completed_at": "2026-07-30T21:25:51Z",
   "execution_reason": "The required canonical named-summand induction step cannot be elaborated with the currently visible interfaces without recreating the child component instances or adding an instance-alignment/conversion interface, both explicitly forbidden for this worker.",
   "execution_result_kind": "blocked",
   "node_path": "Main.RootedCapacity",
-  "objective": "Reprove the unchanged Nat-indexed capacity upper bound using attached-child summands, the proved aggregate bound, child-component cardinal decrease and admissibility inheritance, and the refreshed recursion.",
+  "objective": "Round 65 concerns the Nat-indexed capacity upper-bound theorem using attached-child summands, the proved aggregate bound, child-component cardinal decrease and admissibility inheritance, and the refreshed recursion.",
   "plan_closeout_acknowledged_at": "2026-07-30T21:27:45Z",
   "plan_closeout_acknowledged_by": "a_a93b40977f574bad89528358fa89e022",
   "result_kind": "blocked",
@@ -29,5 +24,6 @@
   "started_at": "2026-07-30T21:08:30Z",
   "status": "committed",
   "strategy_id": "strategy_20e3f41e54944d3babe462d36b22b383",
-  "summary": "Round 65 made proof-plan progress only: rootedCapacity_lt_one_of_card_le@2 remains proof_planned and is not graph_proved. The new aggregate theorem is available and the former sum-normalization heartbeat blocker is closed, but the induction step now isolates a narrower child-instance alignment problem between the IH's rootedChildComponent capacity and rootedChildCapacitySummand's encapsulated canonical instances. This is a Lean-specific implementation question, not missing source mathematics or a provider dependency. Before another parent retry, run focused Mathlib/typeclass recon for a compiler-checked specialization route that respects the no-wrapper/no-instance-recreation constraints; if none exists, reassess whether the authorized summand definition itself must be revised. The strategy remains viable and within scope."
+  "summary": "Round 65 made proof-plan progress only: rootedCapacity_lt_one_of_card_le@2 remains proof_planned and is not graph_proved. The new aggregate theorem is available and the former sum-normalization heartbeat blocker is closed, but the induction step isolates a narrower child-instance alignment problem between the induction hypothesis's rootedChildComponent capacity and rootedChildCapacitySummand's encapsulated canonical instances. This is a Lean-specific implementation question, not missing source mathematics or a provider dependency. The strategy remains viable and within scope.",
+  "execution_constraints": "Before another parent retry, run focused Mathlib/typeclass recon for a compiler-checked specialization route that respects the no-wrapper/no-instance-recreation constraints. If no such route exists, reassess whether the authorized summand definition itself must be revised; only then retry the capacity upper-bound theorem."
 }

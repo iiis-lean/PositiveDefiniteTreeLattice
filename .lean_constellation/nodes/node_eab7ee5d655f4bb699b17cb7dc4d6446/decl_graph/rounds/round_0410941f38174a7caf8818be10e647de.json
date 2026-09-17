@@ -1,18 +1,13 @@
 {
-  "change_summaries": {},
   "committed_at": "2026-07-30T09:32:36Z",
   "created_at": "2026-07-30T09:11:22Z",
-  "discard_reason": null,
   "discarded_at": null,
   "discarded_by": null,
-  "discarded_created_decl_names": [],
-  "discarded_restored_decl_revisions": {},
-  "discarded_revision_refs": [],
   "execution_completed_at": "2026-07-30T09:30:10Z",
   "execution_reason": "The accepted route requires a substantial reusable dependent inverse transport before the finite sum can be grouped: it must prove that the total inverse of the nonroot principal Gram block, reindexed along the rooted-child partition, is the block diagonal of child Gram inverses. Without it, neither the required cross-component inverse vanishing nor the same-component inverse-entry identification is available, so Finset.sum_biUnion cannot prove the stated quadratic identity. This is a major mathematically meaningful helper; the proof-formal workflow requires it to be planned/tracked rather than hidden as an untracked local proof. Recommended planning change: add that private RootedCapacity-specific helper immediately before rootedNonroot_inverse_quadratic and revise this proof route to consume it.",
   "execution_result_kind": "blocked",
   "node_path": "Main.RootedCapacity",
-  "objective": "Create and prove the private b_0009 nonroot inverse-quadratic identity: the root-row vector paired through the inverse nonroot principal Gram block equals rootedChildCapacitySum. This is the final node-local input to the public Schur-complement capacity recursion.",
+  "objective": "Round 24 concerns the private b_0009 nonroot inverse-quadratic identity in which the root-row vector paired through the inverse nonroot principal Gram block equals rootedChildCapacitySum; this identity is the final node-local input to the public Schur-complement capacity recursion.",
   "plan_closeout_acknowledged_at": "2026-07-30T09:32:36Z",
   "plan_closeout_acknowledged_by": "a_a93b40977f574bad89528358fa89e022",
   "result_kind": "blocked",
@@ -29,5 +24,6 @@
   "started_at": "2026-07-30T09:13:03Z",
   "status": "committed",
   "strategy_id": "strategy_1fbcdfb31a2e4cada1ff5b7b941de18c",
-  "summary": "Round 24 made statement and proof-plan progress but is closed blocked at Proof Formal: rootedNonroot_inverse_quadratic rev1 is proof_planned, not graph-proved. The preserved parent goal and all entrywise/partition prerequisites are valid. One missing tracked source/Lean bridge remains: dependent inverse transport showing that the inverse nonroot principal Gram block is block diagonal over root-child components, with child inverse blocks. This is within the current node's matrix implementation boundary and expected scale, so the strategy remains viable. The next action should be a dedicated private helper round; only after it proves both inverse-entry clauses should the parent be retried. No superseded declarations or cleanup targets were introduced."
+  "summary": "Round 24 made statement and proof-plan progress but is closed blocked at Proof Formal: rootedNonroot_inverse_quadratic rev1 is proof_planned, not graph-proved. The preserved parent goal and all entrywise/partition prerequisites are valid. One missing tracked source/Lean bridge remains: dependent inverse transport showing that the inverse nonroot principal Gram block is block diagonal over root-child components, with child inverse blocks. This is within the current node's matrix implementation boundary and expected scale, so the strategy remains viable. No superseded declarations or cleanup targets were introduced.",
+  "execution_constraints": "Plan a dedicated private dependent inverse-transport helper; require both inverse-entry clauses before retrying the parent."
 }

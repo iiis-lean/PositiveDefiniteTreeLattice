@@ -1,4 +1,4 @@
-[← Public API](../PUBLIC_API.md) · [Public boundaries](../PUBLIC_BOUNDARIES.md)
+[← Public API](../PUBLIC_API.md) · [Public boundaries](../PUBLIC_BOUNDARIES.md) · [Complete graph](../DECLARATION_GRAPH.md)
 
 # `rootedChildRoot`
 
@@ -10,9 +10,13 @@ The child endpoint as the canonical root vertex of its deleted-edge component.
 - State: `declared`
 - Revision status: `committed`
 - Repository completion: `graph_proved`
-- Formal code: final statement projection
+- Compatibility `formal_code`: final statement projection
 
-## Lean code
+## Statement NL
+
+For any vertex type `V`, simple graph `G : SimpleGraph V`, and vertices `parent c : V`, define `rootedChildRoot G parent c` to be the subtype element of `rootedChildComponent G parent c` whose underlying vertex is `c`.  Its membership proof is `ConnectedComponent.connectedComponentMk_mem`, since `rootedChildComponent G parent c` is the connected component containing `c` after the designated edge deletion.  Thus `(rootedChildRoot G parent c : V) = c`, providing the canonical root argument for constructions on the induced child component.  The definition assumes no tree, adjacency, admissibility, finiteness, decidability, or weight condition.
+
+## Statement Formal
 
 ```lean
 -- lean-constellation: managed-imports-begin
@@ -51,6 +55,14 @@ def rootedChildRoot {V : Type*} (G : SimpleGraph V) (parent c : V) :
     unfold rootedChildComponent
     exact SimpleGraph.ConnectedComponent.connectedComponentMk_mem⟩
 ```
+
+## Proof NL
+
+Not recorded.
+
+## Proof Formal
+
+Not recorded.
 
 ## Statement dependencies
 

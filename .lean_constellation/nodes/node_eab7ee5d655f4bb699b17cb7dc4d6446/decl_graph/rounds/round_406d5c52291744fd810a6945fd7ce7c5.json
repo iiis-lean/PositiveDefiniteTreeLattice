@@ -1,18 +1,13 @@
 {
-  "change_summaries": {},
   "committed_at": "2026-07-30T07:47:40Z",
   "created_at": "2026-07-30T06:57:11Z",
-  "discard_reason": null,
   "discarded_at": null,
   "discarded_by": null,
-  "discarded_created_decl_names": [],
-  "discarded_restored_decl_revisions": {},
-  "discarded_revision_refs": [],
   "execution_completed_at": "2026-07-30T07:13:36Z",
   "execution_reason": null,
   "execution_result_kind": "success",
   "node_path": "Main.RootedCapacity",
-  "objective": "Create and prove the public child-component admissibility inheritance theorem for SourceIndex b_0008–b_0009: an admissible ambient rooted weighted tree restricts to an admissible child-side component rooted at the child endpoint. This completes the subtree hypothesis needed by capacity recursion and later induction.",
+  "objective": "`IsAdmissibleRootedTree_rootedChildComponent@rev:1` is the public child-component admissibility inheritance theorem for SourceIndex b_0008–b_0009: an admissible ambient rooted weighted tree restricts to an admissible child-side component rooted at the child endpoint. It supplies the subtree hypothesis for capacity recursion and later induction.",
   "plan_closeout_acknowledged_at": "2026-07-30T07:47:40Z",
   "plan_closeout_acknowledged_by": "a_a93b40977f574bad89528358fa89e022",
   "result_kind": "success",
@@ -29,5 +24,6 @@
   "started_at": "2026-07-30T06:58:36Z",
   "status": "committed",
   "strategy_id": "strategy_1fbcdfb31a2e4cada1ff5b7b941de18c",
-  "summary": "Round 18 successfully completed the next b_0009 foundation: IsAdmissibleRootedTree_rootedChildComponent rev1 is public, proved, and graph-proved. All rooted-component transport and admissibility prerequisites are now closed, with no blockers, state-only intermediates, superseded branches, or scope issues. The strategy continues into the capacity layer. The next smallest dependency-independent theorem is strict positivity of rootedCapacity from Matrix.PosDef.inv and diag_pos; Schur-complement recursion and the upper bound should follow afterward."
+  "summary": "Round 18 successfully completed the next b_0009 foundation: `IsAdmissibleRootedTree_rootedChildComponent` rev1 is public, proved, and graph-proved. All rooted-component transport and admissibility prerequisites are now closed, with no blockers, state-only intermediates, superseded branches, or scope issues. The strategy continues into the capacity layer, whose downstream results include strict positivity of `rootedCapacity` from `Matrix.PosDef.inv` and `diag_pos`, Schur-complement recursion, and the upper bound.",
+  "execution_constraints": "Proceed into the capacity layer using the proved child-component admissibility inheritance, then address strict positivity, Schur-complement recursion, and the upper bound in dependency order."
 }

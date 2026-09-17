@@ -1,21 +1,12 @@
 {
   "change": {
-    "anticipated_proof_dep_names": [
-      "rootedNonrootGram_reindex_entry_explicit"
-    ],
-    "anticipated_statement_dep_names": [
-      "rootedChildComponent",
-      "rootedChildComponentsEquivNonroot",
-      "rootedChildren",
-      "rootedGram"
-    ],
     "base_revision": null,
     "kind": "create",
-    "objective": "For finite decidable V, decidable tree G with hG, weight w, root ρ, root-child subtype indices c d, and x,y in their deleted-edge child components, state the ambient entry identity in the exact nested-submatrix normal form produced by `dsimp; Matrix.ext` in rootedNonrootGram_reindex_childBlocks: the nonroot principal submatrix of rootedGram G w, further submatrixed along the forward map rootedChildComponentsEquivNonroot G hG ρ from the child-component Sigma type to the nonroot subtype, evaluates at ⟨c,x⟩ and ⟨d,y⟩ to rootedGram G w (x : V) (y : V). Use no Matrix.reindex in the conclusion and no local let bindings. Preserve exactly the indices, hypotheses, and conclusion direction of the existing reindex-entry theorem and solution.tex lines 57–62. Prove by consuming rootedNonrootGram_reindex_entry_explicit together with Matrix.reindex_apply/definitional normalization; do not unfold the noncomputable equivalence, repeat subtype coercion proofs, split on child equality, or introduce blockDiagonal. This is the final permitted rewrite-shape wrapper for the parent block theorem; success must allow direct rewriting of its normalized left entry.",
+    "objective": "Revision 1 records the private normalized nested-submatrix entry identity from solution.tex lines 57–62. For finite decidable V, a decidable tree G with hG, weight w, root ρ, root-child indices c,d, and x,y in their deleted-edge child components, it states that the nonroot principal submatrix of rootedGram G w, further submatrixed along rootedChildComponentsEquivNonroot G hG ρ, evaluates at ⟨c,x⟩ and ⟨d,y⟩ to rootedGram G w (x : V) (y : V).\nThe conclusion contains no Matrix.reindex or local let bindings, retains the exact indices, hypotheses, and direction of the reindex-entry identity, and supplies the final rewrite shape for rootedNonrootGram_reindex_childBlocks. Its proof normalizes rootedNonrootGram_reindex_entry_explicit with Matrix.reindex_apply without reopening the equivalence or introducing child-equality, block-diagonal, or admissibility mathematics.",
     "require_target_state_satisfied": true,
-    "reset_to_state": null,
-    "summary": "Created the private theorem rootedNonrootGram_submatrix_entry and advanced it through Statement NL, Statement Formal, Proof NL, and Proof Formal to proved. The accepted statement uses the exact nested-submatrix normal form produced in rootedNonrootGram_reindex_childBlocks after unfolding its local objects and applying matrix extensionality: the nonroot principal rootedGram block, submatrixed along rootedChildComponentsEquivNonroot, evaluates at child-component Sigma indices to the corresponding ambient rootedGram entry. It contains no Matrix.reindex or local let bindings. The proof consumes the existing explicit reindex bridge and normalization facts; all checks passed and graph_proved satisfaction holds. This fulfills the precise Lean-specific prerequisite recorded in round 35, so the parent block theorem may now be retried unchanged. No public API or source semantics changed.",
-    "target_state": "proved"
+    "summary": "Created the private theorem rootedNonrootGram_submatrix_entry and advanced it through Statement NL, Statement Formal, Proof NL, and Proof Formal to proved. The accepted statement uses the exact nested-submatrix normal form produced in rootedNonrootGram_reindex_childBlocks after unfolding its local objects and applying matrix extensionality: the nonroot principal rootedGram block, submatrixed along rootedChildComponentsEquivNonroot, evaluates at child-component Sigma indices to the corresponding ambient rootedGram entry. It contains no Matrix.reindex or local let bindings. The proof consumes the existing explicit reindex bridge and normalization facts; all checks passed and graph_proved satisfaction holds. This fulfills the precise Lean-specific prerequisite identified by round 35 for the parent block theorem. No public API or source semantics changed.",
+    "target_state": "proved",
+    "execution_constraints": "At Proof Formal, specialize rootedNonrootGram_reindex_entry_explicit G hG w ρ c d x y and use Matrix.reindex_apply with controlled definitional normalization to expose the exact forward-map nested-submatrix target. Preserve the no-let representation, indices, hypotheses, and direction.\nDo not unfold the noncomputable equivalence, repeat subtype coercions, split child labels, introduce blockDiagonal, or add assumptions."
   },
   "lean_decl_name": "rootedNonrootGram_submatrix_entry",
   "proof": {
@@ -52,6 +43,11 @@
           "schema_version": 2,
           "summary": "Diagnostics returned 0 items"
         },
+        "fingerprint": {
+          "environment_sha256": null,
+          "source_sha256": "d5f5963cac0c8c1003568f91f32516091faa9473145eca25d442f50f713345aa",
+          "upstream_revision": null
+        },
         "message": "Lean check passed.",
         "policy": "proof_formal",
         "scan": {
@@ -69,7 +65,15 @@
           "summary": "sorry=0, admit=0, axiom=0, opaque=0, unsafe=0",
           "unsafe_count": 0
         },
-        "status": "passed"
+        "schema_version": 1,
+        "status": "passed",
+        "subject": {
+          "declaration_name": null,
+          "module": "PositiveDefiniteTreeLattice.Main.RootedCapacity.Theorems.rootedNonrootGram_submatrix_entry",
+          "repo_file_path": "PositiveDefiniteTreeLattice/Main/RootedCapacity/Theorems/rootedNonrootGram_submatrix_entry.lean",
+          "repo_kind": "native",
+          "stage": "proof"
+        }
       },
       "code": "-- lean-constellation: managed-imports-begin\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Prelude\nimport Mathlib.Combinatorics.SimpleGraph.Acyclic\nimport Mathlib.LinearAlgebra.Matrix.Defs\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildComponent\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildComponentsEquivNonroot\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildren\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedGram\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Theorems.rootedNonrootGram_reindex_entry_explicit\n-- lean-constellation: managed-imports-end\n\n-- lean-constellation: declaration-source-begin\n\n/--\n# lean-constellation target: `rootedNonrootGram_submatrix_entry`\n\nLet V be a finite type with decidable equality, let G be a simple graph on V with decidable\nadjacency, let hG : G.IsTree, let w : V → ℤ, let ρ : V, let\n\nc, d : {z : V // z ∈ rootedChildren G hG ρ ρ},\nx : rootedChildComponent G ρ c.1,\ny : rootedChildComponent G ρ d.1.\n\nThen the nonroot principal submatrix of rootedGram G w, further submatrixed along the forward map\nrootedChildComponentsEquivNonroot G hG ρ from the child-component sigma type to the nonroot subtype,\nhas the ambient entry\n\n((rootedGram G w).submatrix Subtype.val Subtype.val).submatrix\n  (rootedChildComponentsEquivNonroot G hG ρ)\n  (rootedChildComponentsEquivNonroot G hG ρ)\n  ⟨c, x⟩ ⟨d, y⟩\n= rootedGram G w (x : V) (y : V).\n\nThis is the exact nested-submatrix normal form of the source’s nonroot child-subtree grouping; it\nuses neither Matrix.reindex nor any child-equality, block-diagonal, or admissibility condition.\n\n## Sources\n\n- Source `solution.tex`, lines 57–62\n\n## Statement dependencies\n\n- `SimpleGraph.IsTree` from `Mathlib.Combinatorics.SimpleGraph.Acyclic`\n- `Matrix.submatrix` from `Mathlib.LinearAlgebra.Matrix.Defs`\n- `Main.RootedCapacity::rootedChildComponent` → `rootedChildComponent` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildComponent`\n- `Main.RootedCapacity::rootedChildComponentsEquivNonroot` → `rootedChildComponentsEquivNonroot`\n  from `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildComponentsEquivNonroot`\n- `Main.RootedCapacity::rootedChildren` → `rootedChildren` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildren`\n- `Main.RootedCapacity::rootedGram` → `rootedGram` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedGram`\n\n## Proof outline\n\nSpecialize the proved explicit bridge\n`rootedNonrootGram_reindex_entry_explicit G hG w ρ c d x y`.\nRewrite only its left-hand reindex matrix using `Matrix.reindex_apply`. Since both reindex\nequivalences are\n`(rootedChildComponentsEquivNonroot G hG ρ).symm`,\ntheir inverse maps simplify definitionally to the forward map\n`rootedChildComponentsEquivNonroot G hG ρ`. The rewritten left-hand side is therefore exactly\n`((rootedGram G w).submatrix Subtype.val Subtype.val).submatrix\n  (rootedChildComponentsEquivNonroot G hG ρ)\n  (rootedChildComponentsEquivNonroot G hG ρ) ⟨c,x⟩ ⟨d,y⟩`.\n\nFinish by controlled `simpa only [Matrix.reindex_apply]` from that specialized theorem. This neither\nunfolds the noncomputable equivalence nor repeats any coercion proof; it introduces no child-label\nsplit, block-diagonal reasoning, or additional mathematical fact. The result is precisely the\nnormalized nested-submatrix entry shape required for direct rewriting in\n`rootedNonrootGram_reindex_childBlocks`.\n\n## Proof sources\n\n- Source `solution.tex`, lines 57–62\n\n## Proof dependencies\n\n- `Matrix.reindex_apply` from `Mathlib.LinearAlgebra.Matrix.Defs`\n- `Main.RootedCapacity::rootedNonrootGram_reindex_entry_explicit` →\n  `rootedNonrootGram_reindex_entry_explicit` from `PositiveDefiniteTreeLattice.Main.RootedCapacity.T\n  heorems.rootedNonrootGram_reindex_entry_explicit`\n-/\ntheorem rootedNonrootGram_submatrix_entry {V : Type*} [Fintype V] [DecidableEq V]\n    (G : SimpleGraph V) [DecidableRel G.Adj] (hG : G.IsTree) (w : V → ℤ) (ρ : V)\n    (c d : {z : V // z ∈ rootedChildren G hG ρ ρ})\n    (x : rootedChildComponent G ρ c.1) (y : rootedChildComponent G ρ d.1) :\n    ((rootedGram G w).submatrix Subtype.val Subtype.val).submatrix\n      (rootedChildComponentsEquivNonroot G hG ρ)\n      (rootedChildComponentsEquivNonroot G hG ρ)\n      ⟨c, x⟩ ⟨d, y⟩ = rootedGram G w (x : V) (y : V) := by\n  simpa only [Matrix.reindex_apply, Equiv.symm_symm] using\n    rootedNonrootGram_reindex_entry_explicit G hG w ρ c d x y\n"
     },
@@ -87,7 +91,7 @@
           "start_locator": null
         }
       ],
-      "text": "Specialize the proved explicit bridge\n`rootedNonrootGram_reindex_entry_explicit G hG w ρ c d x y`.\nRewrite only its left-hand reindex matrix using `Matrix.reindex_apply`. Since both reindex equivalences are\n`(rootedChildComponentsEquivNonroot G hG ρ).symm`,\ntheir inverse maps simplify definitionally to the forward map\n`rootedChildComponentsEquivNonroot G hG ρ`. The rewritten left-hand side is therefore exactly\n`((rootedGram G w).submatrix Subtype.val Subtype.val).submatrix\n  (rootedChildComponentsEquivNonroot G hG ρ)\n  (rootedChildComponentsEquivNonroot G hG ρ) ⟨c,x⟩ ⟨d,y⟩`.\n\nFinish by controlled `simpa only [Matrix.reindex_apply]` from that specialized theorem. This neither unfolds the noncomputable equivalence nor repeats any coercion proof; it introduces no child-label split, block-diagonal reasoning, or additional mathematical fact. The result is precisely the normalized nested-submatrix entry shape required for direct rewriting in `rootedNonrootGram_reindex_childBlocks`."
+      "text": "The explicit bridge rootedNonrootGram_reindex_entry_explicit G hG w ρ c d x y gives the reindexed entry. Matrix.reindex_apply identifies its left side with the nested submatrix because the inverse maps of (rootedChildComponentsEquivNonroot G hG ρ).symm are the forward map rootedChildComponentsEquivNonroot G hG ρ. Hence the left side is exactly\n((rootedGram G w).submatrix Subtype.val Subtype.val).submatrix\n  (rootedChildComponentsEquivNonroot G hG ρ)\n  (rootedChildComponentsEquivNonroot G hG ρ) ⟨c,x⟩ ⟨d,y⟩.\n\nThe specialized theorem therefore has precisely the statement's ambient right-hand side rootedGram G w (x : V) (y : V). The argument preserves the exact forward-map indices and no-let representation, introduces no child-label split or block-diagonal fact, and uses no additional admissibility condition; this normalized identity is the rewrite shape required by rootedNonrootGram_reindex_childBlocks."
     }
   },
   "revision": 1,
@@ -171,6 +175,11 @@
           "schema_version": 2,
           "summary": "Diagnostics returned 1 items"
         },
+        "fingerprint": {
+          "environment_sha256": null,
+          "source_sha256": "9ad1c142b90e138d2c5032305321ff75d5b6c023b1e0a501b011f6b4f1add165",
+          "upstream_revision": null
+        },
         "message": "Lean check passed.",
         "policy": "statement_formal",
         "scan": {
@@ -195,7 +204,15 @@
           "summary": "sorry=1, admit=0, axiom=0, opaque=0, unsafe=0",
           "unsafe_count": 0
         },
-        "status": "passed"
+        "schema_version": 1,
+        "status": "passed",
+        "subject": {
+          "declaration_name": null,
+          "module": "PositiveDefiniteTreeLattice.Main.RootedCapacity.Theorems.rootedNonrootGram_submatrix_entry",
+          "repo_file_path": "PositiveDefiniteTreeLattice/Main/RootedCapacity/Theorems/rootedNonrootGram_submatrix_entry.lean",
+          "repo_kind": "native",
+          "stage": "statement"
+        }
       },
       "code": "-- lean-constellation: managed-imports-begin\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Prelude\nimport Mathlib.Combinatorics.SimpleGraph.Acyclic\nimport Mathlib.LinearAlgebra.Matrix.Defs\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildComponent\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildComponentsEquivNonroot\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildren\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedGram\n-- lean-constellation: managed-imports-end\n\n-- lean-constellation: declaration-source-begin\n\n/--\n# lean-constellation target: `rootedNonrootGram_submatrix_entry`\n\nLet V be a finite type with decidable equality, let G be a simple graph on V with decidable\nadjacency, let hG : G.IsTree, let w : V → ℤ, let ρ : V, let\n\nc, d : {z : V // z ∈ rootedChildren G hG ρ ρ},\nx : rootedChildComponent G ρ c.1,\ny : rootedChildComponent G ρ d.1.\n\nThen the nonroot principal submatrix of rootedGram G w, further submatrixed along the forward map\nrootedChildComponentsEquivNonroot G hG ρ from the child-component sigma type to the nonroot subtype,\nhas the ambient entry\n\n((rootedGram G w).submatrix Subtype.val Subtype.val).submatrix\n  (rootedChildComponentsEquivNonroot G hG ρ)\n  (rootedChildComponentsEquivNonroot G hG ρ)\n  ⟨c, x⟩ ⟨d, y⟩\n= rootedGram G w (x : V) (y : V).\n\nThis is the exact nested-submatrix normal form of the source’s nonroot child-subtree grouping; it\nuses neither Matrix.reindex nor any child-equality, block-diagonal, or admissibility condition.\n\n## Sources\n\n- Source `solution.tex`, lines 57–62\n\n## Statement dependencies\n\n- `SimpleGraph.IsTree` from `Mathlib.Combinatorics.SimpleGraph.Acyclic`\n- `Matrix.submatrix` from `Mathlib.LinearAlgebra.Matrix.Defs`\n- `Main.RootedCapacity::rootedChildComponent` → `rootedChildComponent` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildComponent`\n- `Main.RootedCapacity::rootedChildComponentsEquivNonroot` → `rootedChildComponentsEquivNonroot`\n  from `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildComponentsEquivNonroot`\n- `Main.RootedCapacity::rootedChildren` → `rootedChildren` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildren`\n- `Main.RootedCapacity::rootedGram` → `rootedGram` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedGram`\n-/\n\ntheorem rootedNonrootGram_submatrix_entry {V : Type*} [Fintype V] [DecidableEq V]\n    (G : SimpleGraph V) [DecidableRel G.Adj] (hG : G.IsTree) (w : V → ℤ) (ρ : V)\n    (c d : {z : V // z ∈ rootedChildren G hG ρ ρ})\n    (x : rootedChildComponent G ρ c.1) (y : rootedChildComponent G ρ d.1) :\n    ((rootedGram G w).submatrix Subtype.val Subtype.val).submatrix\n      (rootedChildComponentsEquivNonroot G hG ρ)\n      (rootedChildComponentsEquivNonroot G hG ρ)\n      ⟨c, x⟩ ⟨d, y⟩ = rootedGram G w (x : V) (y : V) := by\n  sorry\n"
     },

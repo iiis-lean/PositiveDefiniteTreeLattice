@@ -1,18 +1,13 @@
 {
-  "change_summaries": {},
   "committed_at": "2026-08-03T14:56:38Z",
   "created_at": "2026-08-03T14:53:00Z",
-  "discard_reason": null,
   "discarded_at": null,
   "discarded_by": null,
-  "discarded_created_decl_names": [],
-  "discarded_restored_decl_revisions": {},
-  "discarded_revision_refs": [],
   "execution_completed_at": "2026-08-03T14:55:11Z",
   "execution_reason": null,
   "execution_result_kind": "success",
   "node_path": "Main.RootedCapacity",
-  "objective": "Delete exactly the four unreleased, unsatisfied v4 high-level quadratic-chain declarations identified by the repaired contract and verified delete closure, preserving the proved lower block APIs and all v1–v3 declarations.",
+  "objective": "The verified delete closure contains exactly four unreleased, unsatisfied v4 high-level quadratic-chain declarations; their removal preserves the proved lower block APIs and all v1–v3 declarations.",
   "plan_closeout_acknowledged_at": "2026-08-03T14:56:38Z",
   "plan_closeout_acknowledged_by": "a_a93b40977f574bad89528358fa89e022",
   "result_kind": "success",
@@ -44,5 +39,6 @@
   "started_at": "2026-08-03T14:54:33Z",
   "status": "committed",
   "strategy_id": "strategy_037efd699857450383cd71726d63d596",
-  "summary": "The route-repair cleanup completed successfully. Exactly the four unreleased, unsatisfied v4 quadratic-chain declarations reached obsolete; the delete closure contained no additional declarations. This removes all failed representation branches and reduces the active graph to the repaired contract scale. No proof-policy target needed advancement in this state-only cleanup, and all retained v1–v3 declarations plus the proved block reindex, per-child block inverse, and root-row support providers remain intact. The strategy continues to explain the final non-round work: promote the three proved providers and their formal Statement closure, bind the three new interfaces, audit graph hygiene, and submit completion if the deterministic gate passes."
+  "summary": "The route-repair cleanup completed successfully. Exactly the four unreleased, unsatisfied v4 quadratic-chain declarations reached obsolete; the delete closure contained no additional declarations. This removes all failed representation branches and reduces the active graph to the repaired contract scale. No proof-policy target needed advancement in this state-only cleanup, and all retained v1–v3 declarations plus the proved block reindex, per-child block inverse, and root-row support providers remain intact.",
+  "execution_constraints": "Apply the verified four-declaration cleanup closure, then promote the three proved providers and their formal Statement closure, bind the three interfaces, audit graph hygiene, and submit completion if the deterministic gate passes."
 }

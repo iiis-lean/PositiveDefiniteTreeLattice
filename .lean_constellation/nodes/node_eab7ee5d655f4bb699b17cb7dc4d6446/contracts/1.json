@@ -1,7 +1,7 @@
 {
   "boundary": "Own the RootedCapacity-specific rooted orientation/component transports, admissibility, rational Gram matrices, child-block reindexing and inverse/quadratic transport, Schur-complement recursion, and strict capacity bounds from SourceIndex b_0008–b_0009 / solution.tex lines 33–82. Exclude foundational pairing predicates, generic finite-tree cut/path results owned by Main.TreePathSeparation, the rooted integer estimate and root-coefficient bound owned by Main.RootedEstimates, and final unique-underweighted-vertex assembly. The accepted graph has 37 declarations; authorize about 37–43 important declarations after the instance-stable child-capacity aggregate recapture and strict-bound completion.",
   "committed_at": "2026-07-30T22:13:05Z",
-  "constraints": "Preserve exact finite integer-weighted tree semantics, the accepted rootedGram/component matrices, rational total inverse, restricted weights, and all b_0009 conclusions. This explicitly authorizes current-node recapture of rootedChildCapacitySum through one named instance-stable attached-child summand and compatible revisions of its direct private/public consumers, including rootedCapacity_recursion. Do not retry rootedChildCapacitySum_lt_card_of_forall_lt_one@1 unchanged, add proof-term conversion wrappers, raise heartbeat limits, alter admissibility or capacity semantics, or move the RootedCapacity-specific representation repair to another node.",
+  "constraints": "Exact finite integer-weighted tree semantics, the accepted rootedGram/component matrices, rational total inverse, restricted weights, and all b_0009 conclusions remain fixed. rootedChildCapacitySum uses one named instance-stable attached-child summand with compatible direct private/public consumer semantics, including rootedCapacity_recursion; the RootedCapacity-specific representation repair remains owned by this node.",
   "context_refs": [],
   "contract_kind": "content",
   "created_at": "2026-07-29T14:27:26Z",
@@ -482,7 +482,7 @@
       "reason": "Canonical instance-reducible Fintype.ofFinite used to align the child component’s scoped induction target with rootedChildCapacitySummand."
     }
   ],
-  "objective": "Complete the graph-proved b_0009 capacity package by recapturing rootedChildCapacitySum around one named, instance-stable attached-child capacity summand with the same deleted-edge component, restricted integer weight, child root, and rational capacity semantics. Compatibly revise rootedCapacity_recursion only as needed to consume the recaptured aggregate while preserving its exact public equality. Then prove rootedChildCapacitySum_lt_card_of_forall_lt_one, rootedCapacity_lt_one_of_card_le, and the exact public PositiveDefiniteTreeLattice.capacity_pos_lt_one theorem.",
+  "objective": "The graph-proved b_0009 capacity package uses one named, instance-stable attached-child capacity summand for rootedChildCapacitySum, preserving the same deleted-edge component, restricted integer weight, child root, and rational capacity semantics; rootedCapacity_recursion retains its exact public equality; rootedChildCapacitySum_lt_card_of_forall_lt_one, rootedCapacity_lt_one_of_card_le, and PositiveDefiniteTreeLattice.capacity_pos_lt_one are proved.",
   "owned_refs": [
     {
       "added_by": "coordinator",
@@ -502,5 +502,6 @@
   "success_criteria": "The active aggregate definition uses a compiler-stable named child summand; the proved recursion retains exactly rootedCapacity = 1 / (root weight − sum of child capacities); the strict child-sum and size-indexed upper-bound theorems are proved without raising heartbeat limits; PositiveDefiniteTreeLattice.capacity_pos_lt_one is bound and graph-proved; obsolete aggregate representations are not used by active consumers; all public Statement prerequisites are public and the deterministic completion gate passes.",
   "summary": "Accepted ready contract v1. The b_0008–b_0009 rooted-capacity package is graph-proved: the instance-stable child aggregate and exact Schur recursion are proved, the strict finite-sum and size-indexed upper bounds are closed, and PositiveDefiniteTreeLattice.capacity_pos_lt_one revision 2 is bound with the exact admissible rooted-tree inputs and conclusion 0 < rootedCapacity G w ρ ∧ rootedCapacity G w ρ < 1. Public Statement closure and the deterministic 9-check gate pass; this establishes the provider boundary needed by Main.RootedEstimates.",
   "task_completion_mode": "graph_proved",
-  "version": 1
+  "version": 1,
+  "execution_constraints": "Use the named instance-stable attached-child summand for rootedChildCapacitySum and compatible direct consumers. Do not retry rootedChildCapacitySum_lt_card_of_forall_lt_one@1 unchanged, add proof-term conversion wrappers, raise heartbeat limits, alter admissibility or capacity semantics, or move the RootedCapacity-specific representation repair to another node."
 }

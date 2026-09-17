@@ -63,7 +63,5 @@
       "path": "Main.TreePathSeparation"
     }
   ],
-  "rebuilt_at": "2026-08-07T12:08:06Z",
-  "schema_version": 1,
-  "summary": "Indexed 6 nodes; 6 active paths."
+  "schema_version": 2
 }

@@ -11,6 +11,6 @@
     1,
     2
   ],
-  "summary": "The sum of the capacities of the rooted child-side components at the root.",
+  "summary": "The rooted capacity is the reciprocal of the root weight minus the sum of child-component capacities.",
   "updated_at": "2026-07-30T20:08:48Z"
 }

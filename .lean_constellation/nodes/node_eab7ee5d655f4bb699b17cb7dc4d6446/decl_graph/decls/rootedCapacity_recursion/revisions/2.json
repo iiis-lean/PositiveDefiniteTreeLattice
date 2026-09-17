@@ -1,23 +1,13 @@
 {
   "change": {
-    "anticipated_proof_dep_names": [
-      "rootedGram_reindex_rootNonroot_blocks",
-      "rootedGram_root_nonroot",
-      "rootedNonroot_inverse_quadratic",
-      "treePairing_vertexVector_vertexVector"
-    ],
-    "anticipated_statement_dep_names": [
-      "IsAdmissibleRootedTree",
-      "rootedCapacity",
-      "rootedChildCapacitySum"
-    ],
     "base_revision": 1,
     "kind": "update",
-    "objective": "Resume only Proof Formal for revision 1's accepted public statement and Proof NL plan from SourceIndex b_0009 / solution.tex lines 57–72. Preserve exactly `rootedCapacity G w ρ = 1 / ((w ρ : ℚ) - rootedChildCapacitySum G hG w ρ)`, all existing finite/tree/admissibility hypotheses, rational total inverse, and conclusion orientation. Use proved rootedGram_reindex_rootNonroot_blocks@1 to rewrite the root/nonroot reindexing as the exact Matrix.fromBlocks decomposition with the required D block; obtain D's invertibility from hAdm's Matrix.PosDef via submatrix/isUnit, then apply the accepted Matrix bottom-right Schur-complement inverse route and singleton root-block simplification. Identify the root entry with `(w ρ : ℚ)` and rewrite the nonroot quadratic using rootedNonroot_inverse_quadratic@4. Do not change Proof NL semantics, add assumptions or helpers, alter capacity definitions, use a different inverse, or raise heartbeat limits. Reach proved and graph_proved-satisfied so capacity_pos_lt_one can consume this public theorem.",
+    "objective": "Revision 2 preserves the public b_0009 recursion statement and proof route from SourceIndex b_0009 / solution.tex lines 57–72: rootedCapacity G w ρ = 1 / ((w ρ : ℚ) - rootedChildCapacitySum G hG w ρ) under the existing finite, tree, weight, and admissibility hypotheses. The exact root/nonroot Matrix.fromBlocks decomposition, nonroot invertibility, singleton Schur-complement evaluation, and rootedNonroot_inverse_quadratic identity provide the mathematical derivation, with the unchanged result feeding capacity_pos_lt_one.",
     "require_target_state_satisfied": true,
-    "reset_to_state": "proof_planned",
+    "start_stage": "proof_formal",
     "summary": "The Proof-Formal-only retry remained blocked; revision 2 stays proof_planned with the exact public recursion statement and Proof NL intact. Classification: unresolved Mathlib/API transport route, not source or statement drift and not yet a justified local helper. The new rootedGram_reindex_rootNonroot_blocks@1 supplies the exact Matrix.fromBlocks equality and rootedNonroot_inverse_quadratic@4 supplies the scalar term, but the proof still lacks a compiler-verified way to transport hAdm's `Matrix.PosDef (rootedGram G w)` through the `Equiv.sumCompl` reindex/block equality, or otherwise derive the unit/invertibility fact for the Matrix.fromBlocks term required by Matrix.invertibleOfFromBlocks₂₂Invertible and Matrix.invOf_fromBlocks₂₂_eq. Existing checked APIs include Matrix.PosDef.submatrix/isUnit, but no reindex/congruence interface has been identified. Retry condition: run focused Mathlib recon for PosDef reindex/equivalence/congruence transport and a compiler-checked route to the fromBlocks invertibility; record any needed hint or smallest local bridge before retrying this parent. Do not add an unverified helper or change the theorem.",
-    "target_state": "proved"
+    "target_state": "proved",
+    "execution_constraints": "Keep the statement and Proof NL unchanged. Use rootedGram_reindex_rootNonroot_blocks@1 for the exact block equality; transport hAdm’s Matrix.PosDef through the reindex with Matrix.submatrixEquivInvertible and Invertible.copy, obtain D invertibility from the nonroot submatrix, then apply Matrix.invertibleOfFromBlocks₂₂Invertible, Matrix.invOf_fromBlocks₂₂_eq, Matrix.invOf_eq_nonsing_inv, Matrix.inv_reindex, and singleton simplification before rewriting rootedNonroot_inverse_quadratic@4. Do not add a helper, alter definitions or assumptions, use a different inverse, or raise heartbeat limits."
   },
   "lean_decl_name": "rootedCapacity_recursion",
   "proof": {
@@ -262,6 +252,11 @@
           "schema_version": 2,
           "summary": "Diagnostics returned 1 items"
         },
+        "fingerprint": {
+          "environment_sha256": null,
+          "source_sha256": "0765872de520e225dace3322e7dd1496048c76db108dc60c5732bac48bc00cb6",
+          "upstream_revision": null
+        },
         "message": "Lean check passed.",
         "policy": "statement_formal",
         "scan": {
@@ -286,7 +281,15 @@
           "summary": "sorry=1, admit=0, axiom=0, opaque=0, unsafe=0",
           "unsafe_count": 0
         },
-        "status": "passed"
+        "schema_version": 1,
+        "status": "passed",
+        "subject": {
+          "declaration_name": null,
+          "module": "PositiveDefiniteTreeLattice.Main.RootedCapacity.Theorems.rootedCapacity_recursion",
+          "repo_file_path": "PositiveDefiniteTreeLattice/Main/RootedCapacity/Theorems/rootedCapacity_recursion.lean",
+          "repo_kind": "native",
+          "stage": "statement"
+        }
       },
       "code": "-- lean-constellation: managed-imports-begin\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Prelude\nimport Mathlib.Combinatorics.SimpleGraph.Acyclic\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.IsAdmissibleRootedTree\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedCapacity\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildCapacitySum\n-- lean-constellation: managed-imports-end\n\n-- lean-constellation: declaration-source-begin\n\n/--\n# lean-constellation target: `rootedCapacity_recursion`\n\nFor every finite decidable vertex type `V`, simple graph `G` with decidable adjacency, tree witness\n`hG : G.IsTree`, integer weight `w : V → ℤ`, root `ρ : V`, and admissibility witness `hAdm :\nIsAdmissibleRootedTree G w ρ`, the existing rational rooted capacity satisfies\n```\nrootedCapacity G w ρ =\n  1 / ((w ρ : ℚ) - rootedChildCapacitySum G hG w ρ).\n```\n\nThis is the reciprocal Schur-complement recursion with the original rational total-inverse meaning\nof `rootedCapacity` and the existing raw-root-child sum `rootedChildCapacitySum`.  In particular, it\nintroduces no nonzero-denominator hypothesis: the denominator is supplied by the positive-definite\nrooted Gram situation already contained in `hAdm`.  The equality is oriented from capacity to the\nexact scalar expression needed by the subsequent strict capacity bound.\n\n## Sources\n\n- Source `solution.tex`, lines 57–72\n\n## Statement dependencies\n\n- `SimpleGraph.IsTree` from `Mathlib.Combinatorics.SimpleGraph.Acyclic`\n- `Main.RootedCapacity::IsAdmissibleRootedTree` → `IsAdmissibleRootedTree` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.IsAdmissibleRootedTree`\n- `Main.RootedCapacity::rootedCapacity` → `rootedCapacity` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedCapacity`\n- `Main.RootedCapacity::rootedChildCapacitySum` → `rootedChildCapacitySum` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildCapacitySum`\n-/\n\ntheorem rootedCapacity_recursion {V : Type*} [Fintype V] [DecidableEq V]\n    (G : SimpleGraph V) [DecidableRel G.Adj] (hG : G.IsTree) (w : V → ℤ) (ρ : V)\n    (hAdm : IsAdmissibleRootedTree G w ρ) :\n    rootedCapacity G w ρ = 1 / ((w ρ : ℚ) - rootedChildCapacitySum G hG w ρ) := by\n  sorry\n"
     },

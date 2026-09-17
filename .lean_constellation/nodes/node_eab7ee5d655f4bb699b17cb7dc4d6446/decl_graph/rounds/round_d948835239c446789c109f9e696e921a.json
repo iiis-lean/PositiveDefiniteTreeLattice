@@ -1,18 +1,13 @@
 {
-  "change_summaries": {},
   "committed_at": "2026-07-30T00:58:35Z",
   "created_at": "2026-07-30T00:51:51Z",
-  "discard_reason": null,
   "discarded_at": null,
   "discarded_by": null,
-  "discarded_created_decl_names": [],
-  "discarded_restored_decl_revisions": {},
-  "discarded_revision_refs": [],
   "execution_completed_at": "2026-07-30T00:56:50Z",
   "execution_reason": null,
   "execution_result_kind": "success",
   "node_path": "Main.RootedCapacity",
-  "objective": "Declare the public admissibility predicate from the completed b_0008 foundations: finite rooted-tree structure, positive definiteness of rootedGram, weight at least two at every vertex, and weight at least rootedChildCount plus one. This stable hypothesis will be shared unchanged by capacity_pos_lt_one, rooted_integer_estimate, and root_coefficient_lt_norm.",
+  "objective": "IsAdmissibleRootedTree@rev:1 is the public b_0008 admissibility predicate from solution.tex lines 33–38: finite rooted-tree structure, positive-definite rootedGram, pointwise weight lower bound two, and pointwise rootedChildCount-plus-one lower bound. It is shared unchanged by capacity_pos_lt_one, rooted_integer_estimate, and root_coefficient_lt_norm.",
   "plan_closeout_acknowledged_at": "2026-07-30T00:58:35Z",
   "plan_closeout_acknowledged_by": "a_a93b40977f574bad89528358fa89e022",
   "result_kind": "success",
@@ -29,5 +24,6 @@
   "started_at": "2026-07-30T00:53:02Z",
   "status": "committed",
   "strategy_id": "strategy_b9f2bb44ae0a40ba9081239e5f026481",
-  "summary": "Round 5 successfully completed the public b_0008 admissibility foundation. IsAdmissibleRootedTree rev1 reached declared with a passed formal statement and declared-level proof-policy satisfaction; no work remains in this round. The bottom-up strategy remains valid. Before planning rooted component/subtree declarations and the proved b_0009 Schur-complement recursion, the next action should be focused Mathlib recon for the exact induced-component/submatrix representation and reusable block PosDef lemmas; this preparation kind has not run in the current task. No graph hygiene or scope issue is present."
+  "summary": "Round 5 successfully completed the public b_0008 admissibility foundation. IsAdmissibleRootedTree rev1 reached declared with a passed formal statement and declared-level proof-policy satisfaction; no work remains in this round. The bottom-up strategy remains valid. Focused Mathlib recon for the exact induced-component/submatrix representation and reusable block PosDef lemmas had not run in this task cycle; no graph hygiene or scope issue is present.",
+  "execution_constraints": "Run focused Mathlib recon for the exact induced-component/submatrix representation and reusable block PosDef lemmas before planning rooted component/subtree declarations and the proved b_0009 Schur-complement recursion."
 }

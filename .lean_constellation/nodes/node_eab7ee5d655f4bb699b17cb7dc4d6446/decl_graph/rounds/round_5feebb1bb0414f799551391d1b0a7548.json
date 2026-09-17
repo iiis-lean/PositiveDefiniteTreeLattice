@@ -1,18 +1,13 @@
 {
-  "change_summaries": {},
   "committed_at": "2026-07-30T02:53:42Z",
   "created_at": "2026-07-30T02:37:12Z",
-  "discard_reason": null,
   "discarded_at": null,
   "discarded_by": null,
-  "discarded_created_decl_names": [],
-  "discarded_restored_decl_revisions": {},
-  "discarded_revision_refs": [],
   "execution_completed_at": "2026-07-30T02:51:33Z",
   "execution_reason": "The accepted Finset-equality statement requires a reusable ambient-path decomposition across the deleted parent-child edge that is not provided by the current declaration set or proof route.",
   "execution_result_kind": "blocked",
   "node_path": "Main.RootedCapacity",
-  "objective": "Prove the missing b_0009 rooted-child membership transport exposed by round 11: for each vertex of a child component, mapping its local rootedChildren finset along subtype inclusion yields exactly the ambient rootedChildren finset. This closes both membership directions and is the explicit prerequisite for retrying rootedChildCount_rootedChildComponent.",
+  "objective": "The b_0009 rooted-child membership transport maps the local rootedChildren finset of each child-component vertex along subtype inclusion to exactly the ambient rootedChildren finset. This transport closes both membership directions and is the explicit prerequisite for rootedChildCount_rootedChildComponent.",
   "plan_closeout_acknowledged_at": "2026-07-30T02:53:42Z",
   "plan_closeout_acknowledged_by": "a_a93b40977f574bad89528358fa89e022",
   "result_kind": "blocked",
@@ -29,5 +24,6 @@
   "started_at": "2026-07-30T02:38:46Z",
   "status": "committed",
   "strategy_id": "strategy_b9f2bb44ae0a40ba9081239e5f026481",
-  "summary": "The round advanced rootedChildren_rootedChildComponent through a valid statement and accepted proof plan, but it remains not graph-proved because Proof Formal blocked. The precise missing dependency is a source-visible, reusable ambient unique-path decomposition across the deleted parent-child edge: for x in the child component, the ambient root-to-x path must factor through c and the mapped component path. This is not a provider, resource, runtime, or interface blocker. Retry conditions are complete: prove that tracked path-decomposition theorem on the same root/component indices, then update rootedChildren_rootedChildComponent from proof_planned to proved, and only afterward retry rootedChildCount_rootedChildComponent. The current strategy still explains this bottom-up decomposition, graph hygiene is clean, and one dedicated structural-helper round remains within the node's rooted-component boundary."
+  "summary": "The round advanced rootedChildren_rootedChildComponent through a valid statement and accepted proof plan, but it remains not graph-proved because Proof Formal blocked. The precise missing dependency is a source-visible, reusable ambient unique-path decomposition across the deleted parent-child edge: for x in the child component, the ambient root-to-x path must factor through c and the mapped component path. This is not a provider, resource, runtime, or interface blocker. The current strategy still explains this bottom-up decomposition, graph hygiene is clean, and one dedicated structural-helper round remains within the node's rooted-component boundary.",
+  "execution_constraints": "Prove the tracked path-decomposition theorem on the same root/component indices, then update rootedChildren_rootedChildComponent from proof_planned to proved; only afterward retry rootedChildCount_rootedChildComponent."
 }

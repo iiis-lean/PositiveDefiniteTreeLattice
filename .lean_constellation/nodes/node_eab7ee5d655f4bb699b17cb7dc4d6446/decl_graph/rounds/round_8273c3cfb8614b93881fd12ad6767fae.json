@@ -1,13 +1,8 @@
 {
-  "change_summaries": {},
   "committed_at": "2026-08-06T09:54:56Z",
   "created_at": "2026-08-06T09:42:09Z",
-  "discard_reason": null,
   "discarded_at": null,
   "discarded_by": null,
-  "discarded_created_decl_names": [],
-  "discarded_restored_decl_revisions": {},
-  "discarded_revision_refs": [],
   "execution_completed_at": "2026-08-06T09:53:05Z",
   "execution_reason": "The statement-formal candidate cannot be written because direct filesystem reads/edits of the owned declaration file fail in the workspace sandbox before Lean can run.",
   "execution_result_kind": "blocked",

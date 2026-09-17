@@ -1,14 +1,13 @@
 {
   "change": {
-    "anticipated_proof_dep_names": [],
-    "anticipated_statement_dep_names": [],
     "base_revision": 1,
     "kind": "update",
-    "objective": "Preserve revision 1's accepted generic reindexing statement and Proof NL plan for b_0010 lines 102–110 and rerun only Proof Formal to commit it at proved. This will be a direct proof dependency of treePairingRootedChildDecomposition.",
+    "objective": "Revision 2 records the proved generic root-child sigma reindexing theorem from b_0010 lines 102–110: the non-root ambient finite sum equals the nested sum over `rootedChildren G hG rho rho` and each exact `rootedChildComponent G rho c` subtype. It is a direct proof dependency of `treePairingRootedChildDecomposition`.",
     "require_target_state_satisfied": true,
-    "reset_to_state": "proof_planned",
+    "start_stage": "proof_formal",
     "summary": "Advanced the retained non-root sigma reindexing theorem through Proof Formal without changing its statement or proof plan. Revision 2 passed and reached proved with graph_proved satisfaction; it is ready as a direct dependency of treePairingRootedChildDecomposition.",
-    "target_state": "proved"
+    "target_state": "proved",
+    "execution_constraints": "Preserve revision 1's accepted generic reindexing statement and Proof NL plan for b_0010 lines 102–110, and rerun only Proof Formal to commit it at proved as a direct dependency of treePairingRootedChildDecomposition."
   },
   "lean_decl_name": "sumNonrootEqSumRootedChildComponents",
   "proof": {
@@ -71,6 +70,11 @@
           "schema_version": 2,
           "summary": "Diagnostics returned 0 items"
         },
+        "fingerprint": {
+          "environment_sha256": null,
+          "source_sha256": "ce029963c7be504a81e54009e93dbc2c593d4d145cec4d3bfab7df0e8a47e1e6",
+          "upstream_revision": null
+        },
         "message": "Lean check passed.",
         "policy": "proof_formal",
         "scan": {
@@ -88,7 +92,15 @@
           "summary": "sorry=0, admit=0, axiom=0, opaque=0, unsafe=0",
           "unsafe_count": 0
         },
-        "status": "passed"
+        "schema_version": 1,
+        "status": "passed",
+        "subject": {
+          "declaration_name": null,
+          "module": "PositiveDefiniteTreeLattice.Main.RootedEstimates.Theorems.sumNonrootEqSumRootedChildComponents",
+          "repo_file_path": "PositiveDefiniteTreeLattice/Main/RootedEstimates/Theorems/sumNonrootEqSumRootedChildComponents.lean",
+          "repo_kind": "native",
+          "stage": "proof"
+        }
       },
       "code": "-- lean-constellation: managed-imports-begin\nimport PositiveDefiniteTreeLattice.Main.RootedEstimates.Prelude\nimport Mathlib.Algebra.BigOperators.Group.Finset.Defs\nimport Mathlib.Algebra.BigOperators.Group.Finset.Sigma\n-- lean-constellation: managed-imports-end\n\n-- lean-constellation: declaration-source-begin\n\n/--\n# lean-constellation target: `sumNonrootEqSumRootedChildComponents`\n\nLet `G` be a finite tree with root `rho`, let `A` be a commutative additive target, and let `f : V →\nA` be a function on the ambient vertices.  The finite sum of `f` over all ambient vertices different\nfrom `rho` equals the nested finite sum over the root children and their child-side components:\n\n`∑ v ∈ Finset.univ with v ≠ rho, f v = ∑ c ∈ rootedChildren G hG rho rho, ∑ uC :\nrootedChildComponent G rho c, f (↑uC)`.\n\nThe right-hand side uses exactly the `rootedChildren G hG rho rho` index and the subtype\n`rootedChildComponent G rho c`; each non-root ambient vertex occurs in one and only one inner\ncomponent sum.\n\n## Sources\n\n- Source `solution.tex`, lines 102–110\n\n## Statement dependencies\n\n- `Main.RootedCapacity::rootedChildComponent` → `rootedChildComponent` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildComponent`\n- `Main.RootedCapacity::rootedChildren` → `rootedChildren` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildren`\n\n## Proof outline\n\nWork classically. Let S := Finset.univ.filter (fun v => v ≠ rho) and let T be the finite sigma index\n(rootedChildren G hG rho rho).sigma (fun c => Finset.univ : Finset (rootedChildComponent G rho c)).\nFor every v ∈ S, use rootedChildComponent_partition G hG rho v to choose its unique child c and its\nmembership proof, and map v to the sigma element whose second coordinate is ⟨v, hvC⟩.\n\nApply Finset.sum_bij to this map. It lands in T by the chosen child membership. If two images agree,\nequality of their ambient second coordinates gives equality of the original vertices; the uniqueness\nclause of rootedChildComponent_partition identifies their child indices. Conversely, every sigma\nelement ⟨c,uC⟩ maps back to its ambient coercion. The component-root exclusion from\nrootedChildComponent_parent_not_mem proves this ambient vertex lies in S, while the partition\ntheorem and subtype extensionality prove it maps back to the same sigma element. The summands agree\ndefinitionally as f (uC : V).\n\nFinally use Finset.sum_sigma to rewrite the sum over T as the displayed outer finite sum over\nrootedChildren G hG rho rho and inner Fintype sum over each exact subtype rootedChildComponent G rho\nc. This is the finite implementation of the root/child-subtree decomposition in b_0010 lines\n102–110.\n\n## Proof sources\n\n- Source `solution.tex`, lines 102–110\n\n## Proof dependencies\n\n- `Finset.sum_bij` from `Mathlib.Algebra.BigOperators.Group.Finset.Defs`\n- `Finset.sum_sigma` from `Mathlib.Algebra.BigOperators.Group.Finset.Sigma`\n- `Finset.sum_sigma'` from `Mathlib.Algebra.BigOperators.Group.Finset.Sigma`\n- `Main.RootedCapacity::rootedChildComponent_parent_not_mem` → `rootedChildComponent_parent_not_mem`\n  from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Theorems.rootedChildComponent_parent_not_mem`\n- `Main.RootedCapacity::rootedChildComponent_partition` → `rootedChildComponent_partition` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Theorems.rootedChildComponent_partition`\n-/\ntheorem sumNonrootEqSumRootedChildComponents {V A : Type*} [Fintype V] [DecidableEq V]\n    [AddCommMonoid A] (G : SimpleGraph V) [DecidableRel G.Adj] (hG : G.IsTree) (rho : V)\n    (f : V → A) :\n    ∑ v ∈ Finset.univ.filter (fun v => v ≠ rho), f v =\n      ∑ c ∈ rootedChildren G hG rho rho,\n        let C := rootedChildComponent G rho c\n        letI : Fintype C := Fintype.ofFinite C\n        ∑ uC : C, f (uC : V) := by\n  classical\n  let child : ∀ v : V, v ≠ rho → V := fun v hv =>\n    (rootedChildComponent_partition G hG rho v hv).choose\n  have hchild : ∀ (v : V) (hv : v ≠ rho),\n      child v hv ∈ rootedChildren G hG rho rho ∧\n        v ∈ rootedChildComponent G rho (child v hv) := by\n    intro v hv\n    exact (rootedChildComponent_partition G hG rho v hv).choose_spec.1\n  dsimp\n  rw [Finset.sum_sigma']\n  refine Finset.sum_bij\n    (fun v hv => ⟨child v (Finset.mem_filter.mp hv).2,\n      ⟨v, (hchild v (Finset.mem_filter.mp hv).2).2⟩⟩) ?_ ?_ ?_ ?_\n  · intro v hv\n    show ⟨child v (Finset.mem_filter.mp hv).2,\n      ⟨v, (hchild v (Finset.mem_filter.mp hv).2).2⟩⟩ ∈\n        (rootedChildren G hG rho rho).sigma\n          (fun c => @Finset.univ (rootedChildComponent G rho c) (Fintype.ofFinite _))\n    exact Finset.mem_sigma.mpr ⟨(hchild v (Finset.mem_filter.mp hv).2).1,\n      @Finset.mem_univ _ (Fintype.ofFinite _) _⟩\n  · intro v₁ hv₁ v₂ hv₂ heq\n    exact congrArg (fun z => (z.2 : V)) heq\n  · rintro ⟨c, uC⟩ hmem\n    rcases Finset.mem_sigma.mp hmem with ⟨hc, _⟩\n    have hrc : G.Adj rho c := by\n      rw [rootedChildren] at hc\n      exact (Finset.mem_filter.mp hc).2.1\n    refine ⟨(uC : V), Finset.mem_filter.mpr ⟨Finset.mem_univ _,\n      rootedChildComponent_parent_not_mem G rho c hG hrc uC⟩, ?_⟩\n    have hcc : child (uC : V)\n        (rootedChildComponent_parent_not_mem G rho c hG hrc uC) = c :=\n      (rootedChildComponent_partition G hG rho (uC : V)\n        (rootedChildComponent_parent_not_mem G rho c hG hrc uC)).unique\n        (hchild (uC : V)\n          (rootedChildComponent_parent_not_mem G rho c hG hrc uC))\n        ⟨hc, uC.property⟩\n    apply Sigma.ext hcc\n    apply (Subtype.heq_iff_coe_eq (by\n      intro x\n      change x ∈ rootedChildComponent G rho\n        (child (uC : V)\n          (rootedChildComponent_parent_not_mem G rho c hG hrc uC)) ↔\n        x ∈ rootedChildComponent G rho c\n      rw [hcc])).mpr\n    rfl\n  · intro v hv\n    rfl\n"
     },
@@ -154,6 +166,11 @@
           "schema_version": 2,
           "summary": "Diagnostics returned 1 items"
         },
+        "fingerprint": {
+          "environment_sha256": null,
+          "source_sha256": "ce05c10a824f734a0c3fea85aad12e97ef0fbb8a26ada1fdedca7472d7dc0f74",
+          "upstream_revision": null
+        },
         "message": "Lean check passed.",
         "policy": "statement_formal",
         "scan": {
@@ -178,7 +195,15 @@
           "summary": "sorry=1, admit=0, axiom=0, opaque=0, unsafe=0",
           "unsafe_count": 0
         },
-        "status": "passed"
+        "schema_version": 1,
+        "status": "passed",
+        "subject": {
+          "declaration_name": null,
+          "module": "PositiveDefiniteTreeLattice.Main.RootedEstimates.Theorems.sumNonrootEqSumRootedChildComponents",
+          "repo_file_path": "PositiveDefiniteTreeLattice/Main/RootedEstimates/Theorems/sumNonrootEqSumRootedChildComponents.lean",
+          "repo_kind": "native",
+          "stage": "statement"
+        }
       },
       "code": "-- lean-constellation: managed-imports-begin\nimport PositiveDefiniteTreeLattice.Main.RootedEstimates.Prelude\n-- lean-constellation: managed-imports-end\n\n-- lean-constellation: declaration-source-begin\n\n/--\n# lean-constellation target: `sumNonrootEqSumRootedChildComponents`\n\nLet `G` be a finite tree with root `rho`, let `A` be a commutative additive target, and let `f : V →\nA` be a function on the ambient vertices.  The finite sum of `f` over all ambient vertices different\nfrom `rho` equals the nested finite sum over the root children and their child-side components:\n\n`∑ v ∈ Finset.univ with v ≠ rho, f v = ∑ c ∈ rootedChildren G hG rho rho, ∑ uC :\nrootedChildComponent G rho c, f (↑uC)`.\n\nThe right-hand side uses exactly the `rootedChildren G hG rho rho` index and the subtype\n`rootedChildComponent G rho c`; each non-root ambient vertex occurs in one and only one inner\ncomponent sum.\n\n## Sources\n\n- Source `solution.tex`, lines 102–110\n\n## Statement dependencies\n\n- `Main.RootedCapacity::rootedChildComponent` → `rootedChildComponent` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildComponent`\n- `Main.RootedCapacity::rootedChildren` → `rootedChildren` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildren`\n-/\ntheorem sumNonrootEqSumRootedChildComponents {V A : Type*} [Fintype V] [DecidableEq V]\n    [AddCommMonoid A] (G : SimpleGraph V) [DecidableRel G.Adj] (hG : G.IsTree) (rho : V)\n    (f : V → A) :\n    ∑ v ∈ Finset.univ.filter (fun v => v ≠ rho), f v =\n      ∑ c ∈ rootedChildren G hG rho rho,\n        let C := rootedChildComponent G rho c\n        letI : Fintype C := Fintype.ofFinite C\n        ∑ uC : C, f (uC : V) := by\n  sorry\n"
     },

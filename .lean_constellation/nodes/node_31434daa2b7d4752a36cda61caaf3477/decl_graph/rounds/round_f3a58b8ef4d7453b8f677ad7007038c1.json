@@ -1,13 +1,8 @@
 {
-  "change_summaries": {},
   "committed_at": "2026-07-30T04:32:32Z",
   "created_at": "2026-07-30T04:10:19Z",
-  "discard_reason": null,
   "discarded_at": null,
   "discarded_by": null,
-  "discarded_created_decl_names": [],
-  "discarded_restored_decl_revisions": {},
-  "discarded_revision_refs": [],
   "execution_completed_at": "2026-07-30T04:30:29Z",
   "execution_reason": null,
   "execution_result_kind": "success",
@@ -29,5 +24,5 @@
   "started_at": "2026-07-30T04:11:41Z",
   "status": "committed",
   "strategy_id": "strategy_f896ad8d3d5e41c193ec6ecf41edbffd",
-  "summary": "The strategy completed its first oriented-cut milestone. Public `PositiveDefiniteTreeLattice.uniquePath_support_separated_by_cut` revision 1 reached `proved`, is proof-policy satisfied, and matches the required qualified interface identity. The theorem supplies noncircular exact support separation from generic terminal-edge/deleted-component hypotheses without a RootedCapacity dependency. No state-only work or blocker remains. The second public factorization interface is still missing. The next dependency-visible round should prove that the append of the chosen root-to-c and c-to-x paths is an `IsPath` from this support-separation result; exact equality can then follow in a later round via `eq_uniquePath_of_isPath`."
+  "summary": "The strategy completed its first oriented-cut milestone. Public `PositiveDefiniteTreeLattice.uniquePath_support_separated_by_cut` revision 1 reached `proved`, is proof-policy satisfied, and matches the required qualified interface identity. The theorem supplies noncircular exact support separation from generic terminal-edge/deleted-component hypotheses without a RootedCapacity dependency. No state-only work or blocker remains. The second public factorization interface is still missing."
 }

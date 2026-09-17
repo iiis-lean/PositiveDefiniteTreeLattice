@@ -1,19 +1,12 @@
 {
   "change": {
-    "anticipated_proof_dep_names": [
-      "rootedChildComponent_parent_not_mem"
-    ],
-    "anticipated_statement_dep_names": [
-      "rootedChildComponent",
-      "rootedChildren"
-    ],
     "base_revision": null,
     "kind": "create",
-    "objective": "Create and prove the tightly necessary contract-v2 structural helper. For finite decidable V, G : SimpleGraph V with decidable adjacency, hG : G.IsTree, root ρ, parent and child c, hc : c ∈ rootedChildren G hG ρ parent, x : rootedChildComponent G parent c, z : V, ambient adjacency G.Adj (x : V) z, and z ≠ parent, conclude z ∈ rootedChildComponent G parent c in the existing deleted-edge connected-component representation. Preserve the exact rootedChildren/rootedChildComponent objects and subtype coercions. Derive parent-child adjacency from hc; use rootedChildComponent_parent_not_mem to rule out x = parent, show the ambient edge x-z is not the deleted undirected edge via Sym2 equality analysis and z ≠ parent, apply SimpleGraph.deleteEdges_adj, then close by connected-component adjacency support closure. Introduce no weight, admissibility, capacity, or Main.RootedEstimates dependency. This private graph-proved helper serves the public rootedEdgeClassification proof and is not a replacement for generic TreePathSeparation.",
+    "objective": "Revision 1 records the private RootedCapacity structural helper: under the exact rootedChildren orientation and deleted-edge rootedChildComponent representation, an ambient neighbor z of a component vertex x with z ≠ parent remains in the same child component. Its proof uses the parent-child adjacency from hc, parent exclusion, Sym2 deleted-edge analysis, SimpleGraph.deleteEdges_adj, and connected-component adjacency closure, with no weight, admissibility, capacity, estimate, or generic TreePathSeparation dependency.",
     "require_target_state_satisfied": true,
-    "reset_to_state": null,
     "summary": "Created and proved the private RootedCapacity-specific adjacency-closure theorem. It preserves the exact rootedChildren orientation and deleted-edge rootedChildComponent representation, showing that an ambient neighbor distinct from the parent endpoint stays in the same child component. All four stages passed and graph_proved satisfaction holds. The proof uses rootedChildComponent_parent_not_mem plus deleteEdges adjacency/component closure; no weight, admissibility, capacity, estimate, or new provider dependency was introduced. This completes the sole planned prerequisite for the public v2 edge classification.",
-    "target_state": "proved"
+    "target_state": "proved",
+    "execution_constraints": "Preserve the exact rootedChildren/rootedChildComponent objects and subtype coercions. Derive parent-child adjacency from hc, rule out the deleted edge using rootedChildComponent_parent_not_mem and Sym2 equality analysis, apply SimpleGraph.deleteEdges_adj, and close with connected-component adjacency support; introduce no weight, admissibility, capacity, estimate, or Main.RootedEstimates dependency."
   },
   "lean_decl_name": "rootedChildComponent_adj_mem",
   "proof": {
@@ -82,6 +75,11 @@
           "schema_version": 2,
           "summary": "Diagnostics returned 0 items"
         },
+        "fingerprint": {
+          "environment_sha256": null,
+          "source_sha256": "1e0dcd25b58818288c503fd7ddc88cc4c97e6ff0eea55236229885d2b8daf1c5",
+          "upstream_revision": null
+        },
         "message": "Lean check passed.",
         "policy": "proof_formal",
         "scan": {
@@ -99,7 +97,15 @@
           "summary": "sorry=0, admit=0, axiom=0, opaque=0, unsafe=0",
           "unsafe_count": 0
         },
-        "status": "passed"
+        "schema_version": 1,
+        "status": "passed",
+        "subject": {
+          "declaration_name": null,
+          "module": "PositiveDefiniteTreeLattice.Main.RootedCapacity.Theorems.rootedChildComponent_adj_mem",
+          "repo_file_path": "PositiveDefiniteTreeLattice/Main/RootedCapacity/Theorems/rootedChildComponent_adj_mem.lean",
+          "repo_kind": "native",
+          "stage": "proof"
+        }
       },
       "code": "-- lean-constellation: managed-imports-begin\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Prelude\nimport Mathlib.Combinatorics.SimpleGraph.Connectivity.Connected\nimport Mathlib.Combinatorics.SimpleGraph.DeleteEdges\nimport Mathlib.Data.Finset.Filter\nimport Mathlib.Data.Set.Insert\nimport Mathlib.Data.Sym.Sym2\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildComponent\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildren\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Theorems.rootedChildComponent_parent_not_mem\n-- lean-constellation: managed-imports-end\n\n-- lean-constellation: declaration-source-begin\n\n/--\n# lean-constellation target: `rootedChildComponent_adj_mem`\n\nLet `V` be a finite type, let `G : SimpleGraph V` have decidable adjacency, and let `hG : G.IsTree`.\nFix a root `ρ`, vertices `parent` and `c`, and a membership proof `hc : c ∈ rootedChildren G hG ρ\nparent`. If `x : rootedChildComponent G parent c`, `z : V`, `G.Adj (x : V) z`, and `z ≠ parent`,\nthen `z ∈ rootedChildComponent G parent c`.\n\nThus, in the existing deleted-parent-child-edge connected-component representation, every ambient\nneighbor of a child-component vertex other than the parent endpoint remains in that same child\ncomponent.\n\n## Statement dependencies\n\n- `Main.RootedCapacity::rootedChildComponent` → `rootedChildComponent` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildComponent`\n- `Main.RootedCapacity::rootedChildren` → `rootedChildren` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildren`\n\n## Proof outline\n\nWork classically. First unfold `rootedChildren` in `hc` and use `Finset.mem_filter` to extract the\nparent--child adjacency\n`hpc : G.Adj parent c`; the remaining unique-path witness is irrelevant here.\n\nApply `rootedChildComponent_parent_not_mem G parent c hG hpc x` to obtain\n`hxp : (x : V) ≠ parent`.  To preserve the ambient edge in the deleted graph, prove\n`s((x : V), z) ∉ ({s(parent, c)} : Finset (Sym2 V))`.  If it were the deleted edge, use\n`Sym2.eq_iff`: the orientation `(x : V) = parent, z = c` contradicts `hxp`, while the swapped\norientation\n`(x : V) = c, z = parent` contradicts `hz`.  Hence `SimpleGraph.deleteEdges_adj` turns `hxz` into\n`(G.deleteEdges {s(parent, c)}).Adj (x : V) z`.\n\nFinally, unfold `rootedChildComponent` only to identify `x.property` as membership in\n`(G.deleteEdges {s(parent, c)}).connectedComponentMk c`.  Apply\n`SimpleGraph.ConnectedComponent.mem_supp_of_adj_mem_supp` to that membership and the deleted-graph\nadjacency,\nthen fold the definition back to obtain `z ∈ rootedChildComponent G parent c`.\n\nThis uses no weights, admissibility, capacity facts, or TreePathSeparation results.\n\n## Proof dependencies\n\n- `SimpleGraph.ConnectedComponent.mem_supp_of_adj_mem_supp` from\n  `Mathlib.Combinatorics.SimpleGraph.Connectivity.Connected`\n- `SimpleGraph.deleteEdges_adj` from `Mathlib.Combinatorics.SimpleGraph.DeleteEdges`\n- `Finset.mem_filter` from `Mathlib.Data.Finset.Filter`\n- `Set.mem_singleton_iff` from `Mathlib.Data.Set.Insert`\n- `Sym2.eq_iff` from `Mathlib.Data.Sym.Sym2`\n- `Main.RootedCapacity::rootedChildComponent_parent_not_mem` → `rootedChildComponent_parent_not_mem`\n  from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Theorems.rootedChildComponent_parent_not_mem`\n-/\ntheorem rootedChildComponent_adj_mem {V : Type*} [Fintype V] [DecidableEq V]\n    (G : SimpleGraph V) [DecidableRel G.Adj] (hG : G.IsTree) (ρ parent c : V)\n    (hc : c ∈ rootedChildren G hG ρ parent) (x : rootedChildComponent G parent c) (z : V)\n    (hxz : G.Adj (x : V) z) (hz : z ≠ parent) : z ∈ rootedChildComponent G parent c := by\n  classical\n  rw [rootedChildren] at hc\n  rcases Finset.mem_filter.mp hc with ⟨_, hpc, _⟩\n  have hxp : (x : V) ≠ parent := rootedChildComponent_parent_not_mem G parent c hG hpc x\n  have hnot : s((x : V), z) ∉ ({s(parent, c)} : Set (Sym2 V)) := by\n    simp only [Set.mem_singleton_iff]\n    intro h\n    rcases Sym2.eq_iff.mp h with h | h\n    · exact hxp h.1\n    · exact hz h.2\n  have hxz' : (G.deleteEdges {s(parent, c)}).Adj (x : V) z := by\n    rw [SimpleGraph.deleteEdges_adj]\n    exact ⟨hxz, hnot⟩\n  have hx_mem : (x : V) ∈ (G.deleteEdges {s(parent, c)}).connectedComponentMk c := by\n    simpa only [rootedChildComponent] using x.property\n  have hz_mem : z ∈ (G.deleteEdges {s(parent, c)}).connectedComponentMk c :=\n    SimpleGraph.ConnectedComponent.mem_supp_of_adj_mem_supp _ hx_mem hxz'\n  simpa only [rootedChildComponent] using hz_mem\n"
     },
@@ -153,6 +159,11 @@
           "schema_version": 2,
           "summary": "Diagnostics returned 1 items"
         },
+        "fingerprint": {
+          "environment_sha256": null,
+          "source_sha256": "0d56ed8fee6c9af5e98716c2858515cbadd1608ec0f108f3424433721bb34c76",
+          "upstream_revision": null
+        },
         "message": "Lean check passed.",
         "policy": "statement_formal",
         "scan": {
@@ -177,7 +188,15 @@
           "summary": "sorry=1, admit=0, axiom=0, opaque=0, unsafe=0",
           "unsafe_count": 0
         },
-        "status": "passed"
+        "schema_version": 1,
+        "status": "passed",
+        "subject": {
+          "declaration_name": null,
+          "module": "PositiveDefiniteTreeLattice.Main.RootedCapacity.Theorems.rootedChildComponent_adj_mem",
+          "repo_file_path": "PositiveDefiniteTreeLattice/Main/RootedCapacity/Theorems/rootedChildComponent_adj_mem.lean",
+          "repo_kind": "native",
+          "stage": "statement"
+        }
       },
       "code": "-- lean-constellation: managed-imports-begin\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Prelude\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildComponent\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildren\n-- lean-constellation: managed-imports-end\n\n-- lean-constellation: declaration-source-begin\n\n/--\n# lean-constellation target: `rootedChildComponent_adj_mem`\n\nLet `V` be a finite type, let `G : SimpleGraph V` have decidable adjacency, and let `hG : G.IsTree`.\nFix a root `ρ`, vertices `parent` and `c`, and a membership proof `hc : c ∈ rootedChildren G hG ρ\nparent`. If `x : rootedChildComponent G parent c`, `z : V`, `G.Adj (x : V) z`, and `z ≠ parent`,\nthen `z ∈ rootedChildComponent G parent c`.\n\nThus, in the existing deleted-parent-child-edge connected-component representation, every ambient\nneighbor of a child-component vertex other than the parent endpoint remains in that same child\ncomponent.\n\n## Statement dependencies\n\n- `Main.RootedCapacity::rootedChildComponent` → `rootedChildComponent` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildComponent`\n- `Main.RootedCapacity::rootedChildren` → `rootedChildren` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildren`\n-/\ntheorem rootedChildComponent_adj_mem {V : Type*} [Fintype V] [DecidableEq V]\n    (G : SimpleGraph V) [DecidableRel G.Adj] (hG : G.IsTree) (ρ parent c : V)\n    (hc : c ∈ rootedChildren G hG ρ parent) (x : rootedChildComponent G parent c) (z : V)\n    (hxz : G.Adj (x : V) z) (hz : z ≠ parent) : z ∈ rootedChildComponent G parent c := by\n  sorry\n"
     },

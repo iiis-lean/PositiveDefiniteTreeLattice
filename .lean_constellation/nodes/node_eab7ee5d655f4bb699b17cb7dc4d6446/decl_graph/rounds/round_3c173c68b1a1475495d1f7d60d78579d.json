@@ -1,18 +1,13 @@
 {
-  "change_summaries": {},
   "committed_at": "2026-07-30T06:56:27Z",
   "created_at": "2026-07-30T06:48:13Z",
-  "discard_reason": null,
   "discarded_at": null,
   "discarded_by": null,
-  "discarded_created_decl_names": [],
-  "discarded_restored_decl_revisions": {},
-  "discarded_revision_refs": [],
   "execution_completed_at": "2026-07-30T06:55:06Z",
   "execution_reason": null,
   "execution_result_kind": "success",
   "node_path": "Main.RootedCapacity",
-  "objective": "Advance rootedChildCount_rootedChildComponent from its preserved declared b_0009 statement to proved, using the now-proved rootedChildren_rootedChildComponent Finset equality and cardinality preservation. This completes the rooted-orientation inheritance prerequisite before child admissibility and capacity recursion.",
+  "objective": "`rootedChildCount_rootedChildComponent@rev:2` is the rooted-component transport theorem that uses the `rootedChildren_rootedChildComponent` Finset equality and cardinality preservation to identify child counts. It supplies the rooted-orientation inheritance prerequisite for child admissibility and capacity recursion.",
   "plan_closeout_acknowledged_at": "2026-07-30T06:56:27Z",
   "plan_closeout_acknowledged_by": "a_a93b40977f574bad89528358fa89e022",
   "result_kind": "success",
@@ -29,5 +24,6 @@
   "started_at": "2026-07-30T06:49:45Z",
   "status": "committed",
   "strategy_id": "strategy_1fbcdfb31a2e4cada1ff5b7b941de18c",
-  "summary": "Round 17 completed the preserved rooted-component transport chain: rootedChildCount_rootedChildComponent rev2 reached proved state and passed the round's graph-proved satisfaction checks. The formerly missing orientation helper is now provided by rootedChildren_rootedChildComponent rev3; no blocker, state-only intermediate, superseded branch, or cleanup target remains. The open bottom-up strategy remains viable. The next dependency-ordered work is the child-component admissibility inheritance theorem, using the proved tree, Gram-principal-submatrix, and child-count transport results before capacity recursion."
+  "summary": "Round 17 completed the preserved rooted-component transport chain: `rootedChildCount_rootedChildComponent` rev2 reached proved state and passed the round's graph-proved satisfaction checks. The formerly missing orientation helper is now provided by `rootedChildren_rootedChildComponent` rev3; no blocker, state-only intermediate, superseded branch, or cleanup target remains. The open bottom-up strategy remains viable. The child-component admissibility inheritance theorem is downstream of this closed transport chain.",
+  "execution_constraints": "Use the proved tree, Gram-principal-submatrix, and child-count transport results to establish child-component admissibility inheritance before attempting capacity recursion."
 }

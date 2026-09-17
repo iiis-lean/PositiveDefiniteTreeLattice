@@ -1,18 +1,13 @@
 {
-  "change_summaries": {},
   "committed_at": "2026-07-31T02:04:50Z",
   "created_at": "2026-07-31T00:47:38Z",
-  "discard_reason": null,
   "discarded_at": null,
   "discarded_by": null,
-  "discarded_created_decl_names": [],
-  "discarded_restored_decl_revisions": {},
-  "discarded_revision_refs": [],
   "execution_completed_at": "2026-07-31T01:06:57Z",
   "execution_reason": null,
   "execution_result_kind": "success",
   "node_path": "Main.RootedCapacity",
-  "objective": "Create and graph-prove the exact qualified contract-v2 rootedEdgeClassification interface as a two-way, uniquely indexed partition of ambient tree adjacency into root-child and child-component internal edges.",
+  "objective": "`rootedEdgeClassification@rev:1` is the exact qualified contract-v2 interface giving a two-way, uniquely indexed partition of ambient tree adjacency into root-child edges and child-component internal edges.",
   "plan_closeout_acknowledged_at": "2026-07-31T02:04:50Z",
   "plan_closeout_acknowledged_by": "a_a93b40977f574bad89528358fa89e022",
   "result_kind": "success",
@@ -29,5 +24,6 @@
   "started_at": "2026-07-31T00:48:55Z",
   "status": "committed",
   "strategy_id": "strategy_49bd9c72ea784a2f8830cfa50c01657d",
-  "summary": "The v2 strategy reached its mathematical target: rootedEdgeClassification is public, proved, qualified exactly as required, and proof-policy satisfied. Its iff shape exposes both directions, symmetric root-edge cases, unique component indexing, endpoint coercion witnesses, and component-local adjacency for downstream disjoint edge-sum reindexing. The v1 graph remains unchanged. No unfinished declaration or known blocker remains; next is public-boundary inspection, interface binding, graph hygiene, and the v2 completion gate."
+  "summary": "The v2 strategy reached its mathematical target: `rootedEdgeClassification` is public, proved, qualified exactly as required, and proof-policy satisfied. Its iff shape exposes both directions, symmetric root-edge cases, unique component indexing, endpoint coercion witnesses, and component-local adjacency for downstream disjoint edge-sum reindexing. The v1 graph remains unchanged. No unfinished declaration or known blocker remains.",
+  "execution_constraints": "Inspect the public boundary, bind the exact `rootedEdgeClassification` interface, run graph-hygiene checks, and perform the v2 completion gate without changing the v1 graph or the qualified theorem."
 }

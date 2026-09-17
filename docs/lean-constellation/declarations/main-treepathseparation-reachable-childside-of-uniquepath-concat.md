@@ -1,4 +1,4 @@
-[← Public API](../PUBLIC_API.md) · [Public boundaries](../PUBLIC_BOUNDARIES.md)
+[← Public API](../PUBLIC_API.md) · [Public boundaries](../PUBLIC_BOUNDARIES.md) · [Complete graph](../DECLARATION_GRAPH.md)
 
 # `reachable_childSide_of_uniquePath_concat`
 
@@ -10,9 +10,78 @@ A one-edge canonical root-path extension from the child side remains on that sid
 - State: `proved`
 - Revision status: `committed`
 - Repository completion: `graph_proved`
-- Formal code: final proof projection
+- Compatibility `formal_code`: final proof projection
 
-## Lean code
+## Statement NL
+
+For any `{V : Type*} [Fintype V]`, let `G : SimpleGraph V` and `hG : G.IsTree`, and let `root parent c x z : V`.  Assume `hpc : G.Adj parent c`, `hroot : (G.deleteEdges {s(parent,c)}).Reachable root parent`, and `hx : (G.deleteEdges {s(parent,c)}).Reachable c x`.  If `hxz : G.Adj x z` and the equality/witness is oriented as
+`uniquePath G hG root z =` the walk obtained by concatenating `uniquePath G hG root x` with the single ambient edge-walk from `x` to `z`, then
+`(G.deleteEdges {s(parent,c)}).Reachable c z`.
+
+Here `s(parent,c)` denotes the deleted undirected cut edge.  The extension is in the ambient graph `G`; no hypothesis assumes that the edge `x-z` survives deletion.
+
+## Statement Formal
+
+```lean
+-- lean-constellation: managed-imports-begin
+import PositiveDefiniteTreeLattice.Main.TreePathSeparation.Prelude
+import Mathlib.Combinatorics.SimpleGraph.Connectivity.Connected
+import Mathlib.Combinatorics.SimpleGraph.DeleteEdges
+import Mathlib.Combinatorics.SimpleGraph.Walk.Operations
+import PositiveDefiniteTreeLattice.Main.TreePathSeparation.Defs.uniquePath
+-- lean-constellation: managed-imports-end
+
+-- lean-constellation: declaration-source-begin
+
+/--
+# lean-constellation target: `reachable_childSide_of_uniquePath_concat`
+
+For any `{V : Type*} [Fintype V]`, let `G : SimpleGraph V` and `hG : G.IsTree`, and let `root parent
+c x z : V`.  Assume `hpc : G.Adj parent c`, `hroot : (G.deleteEdges {s(parent,c)}).Reachable root
+parent`, and `hx : (G.deleteEdges {s(parent,c)}).Reachable c x`.  If `hxz : G.Adj x z` and the
+equality/witness is oriented as
+`uniquePath G hG root z =` the walk obtained by concatenating `uniquePath G hG root x` with the
+single ambient edge-walk from `x` to `z`, then
+`(G.deleteEdges {s(parent,c)}).Reachable c z`.
+
+Here `s(parent,c)` denotes the deleted undirected cut edge.  The extension is in the ambient graph
+`G`; no hypothesis assumes that the edge `x-z` survives deletion.
+
+## Sources
+
+- Source `solution.tex`, lines 33–64
+
+## Statement dependencies
+
+- `SimpleGraph.Reachable` from `Mathlib.Combinatorics.SimpleGraph.Connectivity.Connected`
+- `SimpleGraph.deleteEdges` from `Mathlib.Combinatorics.SimpleGraph.DeleteEdges`
+- `SimpleGraph.Walk.concat` from `Mathlib.Combinatorics.SimpleGraph.Walk.Operations`
+- `Main.TreePathSeparation::uniquePath` → `uniquePath` from
+  `PositiveDefiniteTreeLattice.Main.TreePathSeparation.Defs.uniquePath`
+-/
+theorem PositiveDefiniteTreeLattice.reachable_childSide_of_uniquePath_concat
+    {V : Type*} [Fintype V] (G : SimpleGraph V) (hG : G.IsTree)
+    (root parent c x z : V) (hpc : G.Adj parent c)
+    (hroot : (G.deleteEdges {s(parent, c)}).Reachable root parent)
+    (hx : (G.deleteEdges {s(parent, c)}).Reachable c x) (hxz : G.Adj x z)
+    (hconcat : uniquePath G hG root z = (uniquePath G hG root x).concat hxz) :
+    (G.deleteEdges {s(parent, c)}).Reachable c z := by
+  sorry
+```
+
+## Proof NL
+
+Work classically and write `e = s(parent,c)`.
+
+1. Use `uniquePath_isPath G hG root z` and rewrite it by `hconcat`. Thus the ambient walk `(uniquePath G hG root x).concat hxz` is simple. This records that the supplied extension is a genuine canonical-path extension, not merely an arbitrary ambient walk.
+
+2. Prove `s(x,z) ∉ ({e} : Set (Sym2 V))`. First obtain
+`hbridge : ¬ (G.deleteEdges {e}).Reachable parent c`
+from `hG.isAcyclic`, `SimpleGraph.isAcyclic_iff_forall_adj_isBridge`, `hpc`, and the definition of `SimpleGraph.IsBridge`. If the equality of the unordered edges identifies `x = parent, z = c`, then `hx` is exactly deleted-edge reachability from `c` to `parent`, contradicting `hbridge` after reversing its orientation. In the other possible orientation, `x = c, z = parent`, choose a simple deleted-edge walk supplied by `hroot.exists_isPath`. Transfer it to an ambient simple walk and use `eq_uniquePath_of_isPath` to identify it with `uniquePath G hG root parent`. After substituting this identification into `hconcat`, `SimpleGraph.Walk.edges_concat` puts the cut edge `e` in that transferred walk’s edge list (the final edge is `hpc.symm`). But every edge of the original walk lies in the deleted graph, so `SimpleGraph.deleteEdges_adj` / edge-set membership says it avoids `e`, a contradiction. The unordered-edge equality is handled by the two endpoint orientations represented by `Sym2.eq_iff`.
+
+3. Apply `SimpleGraph.deleteEdges_adj` to `hxz` and the nonmembership from step 2, obtaining `(G.deleteEdges {e}).Adj x z`. The one-edge deleted-graph walk gives reachability from `x` to `z`; compose it with `hx` using `SimpleGraph.Reachable.trans`. The result is exactly `(G.deleteEdges {s(parent,c)}).Reachable c z`.
+
+## Proof Formal
 
 ```lean
 -- lean-constellation: managed-imports-begin

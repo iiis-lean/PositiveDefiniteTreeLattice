@@ -1,18 +1,13 @@
 {
-  "change_summaries": {},
   "committed_at": "2026-08-03T14:02:46Z",
   "created_at": "2026-08-03T13:52:22Z",
-  "discard_reason": null,
   "discarded_at": null,
   "discarded_by": null,
-  "discarded_created_decl_names": [],
-  "discarded_restored_decl_revisions": {},
-  "discarded_revision_refs": [],
   "execution_completed_at": "2026-08-03T14:01:15Z",
   "execution_reason": "The new opaque weighted-sum route makes substantive progress under the fixed heartbeat limit. The exact child-admissibility premise transport typechecks via `convert hChild c using 1 <;> apply Subsingleton.elim`. The left and right generic sum laws of rootedGram_root_rootedChildComponent_support@2 collapse both dependent component coordinates while M = Matrix.reindex e.symm e.symm D⁻¹ remains opaque; then the inverse provider is evaluated only at child-root coordinates, and the remaining d-sum is reduced by the block-diagonal equality. The sole remaining goal is the same-child diagonal equality with rootedChildCapacitySummand. `simpa only [rootedChildCapacitySummand, rootedCapacity]` deterministically reaches the 200000-heartbeat limit because the provider-local Fintype/DecidableEq/DecidableRel witnesses have not yet been explicitly transported. Planner action is required: supply the concrete controlled `change` targets and equality-rewrite sequence for these four witnesses, or plan a narrow tracked diagonal-to-summand transport interface. This statement and route forbid guessing/recreating those representations, changing the statement, helpers, or heartbeat policy. The file is restored to its accepted placeholder and no proof was captured.",
   "execution_result_kind": "blocked",
   "node_path": "Main.RootedCapacity",
-  "objective": "Retry the canonical Sigma inverse quadratic using the proved generic weighted-sum support laws to eliminate component coordinates while the dependent inverse expression remains opaque.",
+  "objective": "Round 83 concerns the canonical Sigma inverse quadratic route using the proved generic weighted-sum support laws to eliminate component coordinates while the dependent inverse expression remains opaque; its remaining target is the same-child root diagonal equality with rootedChildCapacitySummand.",
   "plan_closeout_acknowledged_at": "2026-08-03T14:02:46Z",
   "plan_closeout_acknowledged_by": "a_a93b40977f574bad89528358fa89e022",
   "result_kind": "blocked",
@@ -29,5 +24,6 @@
   "started_at": "2026-08-03T13:53:37Z",
   "status": "committed",
   "strategy_id": "strategy_409097c1a1e547a681e983998de55d40",
-  "summary": "Round 83 did not prove its target, but it eliminated all finite-sum and dependent-Sigma blockers. The remaining goal is exactly one same-child root diagonal equality with rootedChildCapacitySummand; its only mismatch is the four local instance witnesses, not the matrix, indices, assumptions, or scalar semantics. The checked route now includes the proved weighted-sum support laws, rootedNonroot_inverse_childBlocks_of_child_admissible, and block-diagonal reduction. Parent retries remain premature. The next bounded action is an in-place strengthening of the existing unreleased rootedNonroot_inverse_childBlocks_of_child_admissible theorem, preserving its same/cross clauses and adding the canonical child-root diagonal equals rootedChildCapacitySummand clause with explicit subsingleton witness transport. This keeps graph size fixed and directly satisfies the last retry condition."
+  "summary": "Round 83 did not prove its target, but it eliminated all finite-sum and dependent-Sigma blockers. The remaining goal is exactly one same-child root diagonal equality with rootedChildCapacitySummand; its only mismatch is the four local instance witnesses, not the matrix, indices, assumptions, or scalar semantics. The checked route includes the proved weighted-sum support laws, rootedNonroot_inverse_childBlocks_of_child_admissible, and block-diagonal reduction. Parent retries remain premature, while the active graph size is fixed.",
+  "execution_constraints": "Strengthen the existing unreleased rootedNonroot_inverse_childBlocks_of_child_admissible theorem in place, preserving its same/cross clauses and adding the canonical child-root diagonal-equals-rootedChildCapacitySummand clause with explicit subsingleton witness transport. Keep graph size fixed and then retry the canonical Sigma inverse quadratic."
 }

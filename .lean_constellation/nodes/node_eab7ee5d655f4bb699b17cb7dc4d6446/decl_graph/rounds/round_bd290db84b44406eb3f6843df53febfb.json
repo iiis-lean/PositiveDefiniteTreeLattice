@@ -1,18 +1,13 @@
 {
-  "change_summaries": {},
   "committed_at": "2026-07-30T11:35:20Z",
   "created_at": "2026-07-30T11:24:45Z",
-  "discard_reason": null,
   "discarded_at": null,
   "discarded_by": null,
-  "discarded_created_decl_names": [],
-  "discarded_restored_decl_revisions": {},
-  "discarded_revision_refs": [],
   "execution_completed_at": "2026-07-30T11:33:41Z",
   "execution_reason": null,
   "execution_result_kind": "success",
   "node_path": "Main.RootedCapacity",
-  "objective": "Introduce the private fully elaborated, no-let reindexed-entry bridge needed for direct rewriting in rootedNonrootGram_reindex_childBlocks. Preserve the existing matrix semantics and prove the wrapper by specializing rootedNonrootGram_reindex_entry, without reopening dependent-equivalence or block-diagonal arguments.",
+  "objective": "The private fully elaborated no-let reindexed-entry bridge provides the direct rewrite form for rootedNonrootGram_reindex_childBlocks by specializing rootedNonrootGram_reindex_entry, while preserving existing matrix semantics and avoiding another dependent-equivalence or block-diagonal argument.",
   "plan_closeout_acknowledged_at": "2026-07-30T11:35:20Z",
   "plan_closeout_acknowledged_by": "a_a93b40977f574bad89528358fa89e022",
   "result_kind": "success",
@@ -29,5 +24,6 @@
   "started_at": "2026-07-30T11:26:05Z",
   "status": "committed",
   "strategy_id": "strategy_1fbcdfb31a2e4cada1ff5b7b941de18c",
-  "summary": "Round 34 made the intended bottom-up progress: rootedNonrootGram_reindex_entry_explicit reached proved and is proof-policy satisfied. It supplies the precise elaborated rewrite form that the prior rootedNonrootGram_reindex_childBlocks Proof Formal attempt could not obtain from the let-bound bridge without dependent-coercion timeouts. No statements were redesigned, no public boundary changed, and no state-only work remains in this round. The active strategy remains viable. The next action is a Proof-Formal-only retry of rootedNonrootGram_reindex_childBlocks with its accepted statement and proof plan unchanged, adding this theorem as the proof dependency; downstream inverse-child-block and inverse-quadratic theorems remain deferred until that parent block identification is proved."
+  "summary": "Round 34 made the intended bottom-up progress: rootedNonrootGram_reindex_entry_explicit reached proved and is proof-policy satisfied. It supplies the precise elaborated rewrite form that the prior rootedNonrootGram_reindex_childBlocks Proof Formal attempt could not obtain from the let-bound bridge without dependent-coercion timeouts. No statements were redesigned, no public boundary changed, and no state-only work remains in this round. The active strategy remains viable; downstream inverse-child-block and inverse-quadratic theorems remain deferred until the parent block identification is proved.",
+  "execution_constraints": "Retry rootedNonrootGram_reindex_childBlocks in Proof Formal only with its accepted statement and proof plan unchanged, adding rootedNonrootGram_reindex_entry_explicit as the proof dependency. Defer downstream inverse-child-block and inverse-quadratic theorems until that parent is proved."
 }

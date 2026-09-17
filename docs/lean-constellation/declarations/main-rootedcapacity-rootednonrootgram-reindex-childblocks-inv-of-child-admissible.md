@@ -1,4 +1,4 @@
-[← Public API](../PUBLIC_API.md) · [Public boundaries](../PUBLIC_BOUNDARIES.md)
+[← Public API](../PUBLIC_API.md) · [Public boundaries](../PUBLIC_BOUNDARIES.md) · [Complete graph](../DECLARATION_GRAPH.md)
 
 # `rootedNonrootGram_reindex_childBlocks_inv_of_child_admissible`
 
@@ -10,9 +10,131 @@ The reindexed inverse nonroot rooted Gram block is the block diagonal of the sam
 - State: `proved`
 - Revision status: `committed`
 - Repository completion: `graph_proved`
-- Formal code: final proof projection
+- Compatibility `formal_code`: final proof projection
 
-## Lean code
+## Statement NL
+
+Let `V` be a finite decidable type, `G` a tree with decidable adjacency, `hG : G.IsTree`, `w : V → ℤ`, and `ρ : V`.
+
+Define `R := {v : V // v ≠ ρ}`, `I := {c : V // c ∈ rootedChildren G hG ρ ρ}`, and `S := Σ c : I, rootedChildComponent G ρ c.1`. Use exactly the canonical equivalence `e : R ≃ S := (rootedChildComponentsEquivNonroot G hG ρ).symm`, and let `D : Matrix R R ℚ := (rootedGram G w).submatrix Subtype.val Subtype.val`.
+
+For each `c : I`, under the established canonical `Fintype`, `DecidableEq`, and `DecidableRel` conventions for `rootedChildComponent G ρ c.1`, define one shared family `B c := rootedGram (rootedChildComponent G ρ c.1).toSimpleGraph (fun x => w (x : V))`.
+
+Assume only that every attached child component is admissible at its child root:
+`∀ c : I, IsAdmissibleRootedTree (rootedChildComponent G ρ c.1).toSimpleGraph (fun x => w (x : V)) (rootedChildRoot G ρ c.1)`.
+Then
+`Matrix.reindex e e D⁻¹ = Matrix.blockDiagonal' (fun c => (B c)⁻¹)`.
+
+No ambient admissibility assumption on `G` is made.
+
+## Statement Formal
+
+```lean
+-- lean-constellation: managed-imports-begin
+import PositiveDefiniteTreeLattice.Main.RootedCapacity.Prelude
+import Mathlib.Combinatorics.SimpleGraph.Acyclic
+import Mathlib.Combinatorics.SimpleGraph.Connectivity.Connected
+import Mathlib.Combinatorics.SimpleGraph.DeleteEdges
+import Mathlib.Data.Fintype.EquivFin
+import Mathlib.Data.Matrix.Block
+import Mathlib.LinearAlgebra.Matrix.Defs
+import Mathlib.LinearAlgebra.Matrix.NonsingularInverse
+import PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.IsAdmissibleRootedTree
+import PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildComponent
+import PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildComponentsEquivNonroot
+import PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildRoot
+import PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildren
+import PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedGram
+-- lean-constellation: managed-imports-end
+
+-- lean-constellation: declaration-source-begin
+
+/--
+# lean-constellation target: `rootedNonrootGram_reindex_childBlocks_inv_of_child_admissible`
+
+Let `V` be a finite decidable type, `G` a tree with decidable adjacency, `hG : G.IsTree`, `w : V →
+ℤ`, and `ρ : V`.
+
+Define `R := {v : V // v ≠ ρ}`, `I := {c : V // c ∈ rootedChildren G hG ρ ρ}`, and `S := Σ c : I,
+rootedChildComponent G ρ c.1`. Use exactly the canonical equivalence `e : R ≃ S :=
+(rootedChildComponentsEquivNonroot G hG ρ).symm`, and let `D : Matrix R R ℚ := (rootedGram G
+w).submatrix Subtype.val Subtype.val`.
+
+For each `c : I`, under the established canonical `Fintype`, `DecidableEq`, and `DecidableRel`
+conventions for `rootedChildComponent G ρ c.1`, define one shared family `B c := rootedGram
+(rootedChildComponent G ρ c.1).toSimpleGraph (fun x => w (x : V))`.
+
+Assume only that every attached child component is admissible at its child root:
+`∀ c : I, IsAdmissibleRootedTree (rootedChildComponent G ρ c.1).toSimpleGraph (fun x => w (x : V))
+(rootedChildRoot G ρ c.1)`.
+Then
+`Matrix.reindex e e D⁻¹ = Matrix.blockDiagonal' (fun c => (B c)⁻¹)`.
+
+No ambient admissibility assumption on `G` is made.
+
+## Sources
+
+- Source `solution.tex`, lines 57–68
+
+## Statement dependencies
+
+- `SimpleGraph.IsTree` from `Mathlib.Combinatorics.SimpleGraph.Acyclic`
+- `SimpleGraph.ConnectedComponent.toSimpleGraph` from
+  `Mathlib.Combinatorics.SimpleGraph.Connectivity.Connected`
+- `SimpleGraph.deleteEdges` from `Mathlib.Combinatorics.SimpleGraph.DeleteEdges`
+- `Fintype.ofFinite` from `Mathlib.Data.Fintype.EquivFin`
+- `Matrix.blockDiagonal'` from `Mathlib.Data.Matrix.Block`
+- `Matrix.reindex` from `Mathlib.LinearAlgebra.Matrix.Defs`
+- `Matrix.submatrix` from `Mathlib.LinearAlgebra.Matrix.Defs`
+- `Matrix.inv` from `Mathlib.LinearAlgebra.Matrix.NonsingularInverse`
+- `Main.RootedCapacity::IsAdmissibleRootedTree` → `IsAdmissibleRootedTree` from
+  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.IsAdmissibleRootedTree`
+- `Main.RootedCapacity::rootedChildComponent` → `rootedChildComponent` from
+  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildComponent`
+- `Main.RootedCapacity::rootedChildComponentsEquivNonroot` → `rootedChildComponentsEquivNonroot`
+  from `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildComponentsEquivNonroot`
+- `Main.RootedCapacity::rootedChildRoot` → `rootedChildRoot` from
+  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildRoot`
+- `Main.RootedCapacity::rootedChildren` → `rootedChildren` from
+  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildren`
+- `Main.RootedCapacity::rootedGram` → `rootedGram` from
+  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedGram`
+-/
+theorem rootedNonrootGram_reindex_childBlocks_inv_of_child_admissible {V : Type*} [Fintype V]
+    [DecidableEq V] (G : SimpleGraph V) [DecidableRel G.Adj] (hG : G.IsTree) (w : V → ℤ)
+    (ρ : V) :
+    let R := {v : V // v ≠ ρ}
+    let I := {c : V // c ∈ rootedChildren G hG ρ ρ}
+    let S := Σ c : I, rootedChildComponent G ρ c.1
+    let e : R ≃ S := (rootedChildComponentsEquivNonroot G hG ρ).symm
+    let D : Matrix R R ℚ := (rootedGram G w).submatrix Subtype.val Subtype.val
+    letI : Fintype I := Fintype.ofFinite I
+    letI : ∀ c : I, Fintype (rootedChildComponent G ρ c.1) :=
+      fun c => Fintype.ofFinite (rootedChildComponent G ρ c.1)
+    letI : ∀ c : I, DecidableEq (rootedChildComponent G ρ c.1) :=
+      fun c => Classical.decEq (rootedChildComponent G ρ c.1)
+    letI : ∀ c : I, DecidableRel (G.deleteEdges {s(ρ, c.1)}).Adj :=
+      fun c => Classical.decRel (G.deleteEdges {s(ρ, c.1)}).Adj
+    letI : ∀ c : I, DecidableRel (rootedChildComponent G ρ c.1).toSimpleGraph.Adj :=
+      fun c => Classical.decRel (rootedChildComponent G ρ c.1).toSimpleGraph.Adj
+    let B : ∀ c : I,
+        Matrix (rootedChildComponent G ρ c.1) (rootedChildComponent G ρ c.1) ℚ := fun c =>
+      rootedGram (rootedChildComponent G ρ c.1).toSimpleGraph (fun x => w (x : V))
+    (∀ c : I, IsAdmissibleRootedTree (rootedChildComponent G ρ c.1).toSimpleGraph
+      (fun x => w (x : V)) (rootedChildRoot G ρ c.1)) →
+      Matrix.reindex e e D⁻¹ = Matrix.blockDiagonal' (fun c => (B c)⁻¹) := by
+  sorry
+```
+
+## Proof NL
+
+Introduce the pointwise child-admissibility hypothesis after unfolding the theorem's local `let` bindings, retaining the exact `R`, `I`, `S`, `e`, `D`, and shared `B` family fixed by the accepted statement.
+
+Use `Matrix.inv_reindex e e D` in the reverse direction to rewrite `Matrix.reindex e e D⁻¹` as `(Matrix.reindex e e D)⁻¹`. Rewrite the matrix inside this inverse using the proved provider `rootedNonrootGram_reindex_childBlocks G hG w ρ`; this yields `(Matrix.blockDiagonal' B)⁻¹` under the same canonical child-component instances.
+
+Apply `rootedChildGram_blockDiagonal_inv_of_child_admissible G hG w ρ hChild`. Its only hypothesis is exactly the current pointwise child-component admissibility assumption and its conclusion is the desired `Matrix.blockDiagonal' (fun c => (B c)⁻¹)`. Finish with `simpa` only to unfold the syntactically shared local family/instances if Lean exposes their reducible lets. No ambient admissibility, capacity, or quadratic identity is used.
+
+## Proof Formal
 
 ```lean
 -- lean-constellation: managed-imports-begin

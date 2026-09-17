@@ -1,21 +1,12 @@
 {
   "change": {
-    "anticipated_proof_dep_names": [
-      "rootedChildComponent_parent_not_mem"
-    ],
-    "anticipated_statement_dep_names": [
-      "rootedChildComponent",
-      "rootedChildComponent_isTree",
-      "rootedChildRoot",
-      "rootedChildren"
-    ],
     "base_revision": null,
     "kind": "create",
-    "objective": "Implement the predictable transport helper required by the blocked proof of rootedChildCount_rootedChildComponent and faithful to SourceIndex b_0009 / solution.tex lines 48–61. For finite decidable V, G, hG : G.IsTree, ambient root ρ, parent c, and hc : c ∈ rootedChildren G hG ρ parent, let C := rootedChildComponent G parent c with its finite/decidable induced graph instances. For every x : C, prove that mapping rootedChildren C.toSimpleGraph (rootedChildComponent_isTree G parent c hG) (rootedChildRoot G parent c) x along the subtype inclusion embedding C ↪ V equals rootedChildren G hG ρ (x : V). Use a compiler-supported explicit subtype embedding for Finset.map. Consume committed rootedChildren, rootedChildComponent, rootedChildRoot, rootedChildComponent_isTree, and rootedChildComponent_parent_not_mem. Prove both inclusions from the rootedChildren path definition, hc's ambient orientation, deleted-edge connectivity, and unique paths in hG; the reverse inclusion must establish that every ambient child of x lies in C. Do not weaken the Finset equality to cardinal equality, add weight/admissibility hypotheses, or alter the root/index objects. This independently reusable public theorem must be usable directly as the missing proof dependency when updating rootedChildCount_rootedChildComponent from declared to proved.",
+    "objective": "Revision 1 states the public child-finset transport theorem from SourceIndex b_0009 / solution.tex lines 48–61: for hc : c ∈ rootedChildren G hG ρ parent and x in rootedChildComponent G parent c, mapping the local rootedChildren finset along the explicit subtype inclusion equals rootedChildren G hG ρ (x : V). It preserves the exact Finset equality, child component/root/index objects, canonical local instances, and absence of weight or admissibility hypotheses, and supplies the transport needed by rootedChildCount_rootedChildComponent.",
     "require_target_state_satisfied": true,
-    "reset_to_state": null,
     "summary": "The public theorem rootedChildren_rootedChildComponent reached proof_planned state: its statement passed and its Proof NL plan was accepted, but Proof Formal blocked. The preserved consumer goal is the exact Finset equality mapping local component rootedChildren along the explicit subtype embedding C ↪ V to rootedChildren G hG ρ (x : V), under hc : c ∈ rootedChildren G hG ρ parent. The accepted plan checked SimpleGraph.IsTree.existsUnique_path, ConnectedComponent.mem_supp_of_adj_mem_supp and toSimpleGraph_hom, deleteEdges_adj, Finset.mem_map, Sym2.mk_eq_mk_iff, plus rootedChildComponent, rootedChildRoot, rootedChildComponent_isTree, rootedChildComponent_parent_not_mem, and rootedChildren. The concrete mismatch is that these APIs do not package the ambient unique-path decomposition: the root-to-x path for x in the child component must be shown to equal the root-to-c path supplied by hc followed by the ambient image of the component path from c to x across the deleted parent-child cut. Without that equality, the formal proof cannot transport the path-based child orientation in either direction. Classify this as a predictable tracked rooted-path helper. Retry only after proving a reusable child-component ambient-path decomposition with the same ρ/parent/c/hc and subtype x objects; then add it as a proof dependency and resume this revision from proof_planned to proved. No statement or interface drift was found.",
-    "target_state": "proved"
+    "target_state": "proved",
+    "execution_constraints": "Retain the exact component C, inclusion embedding e, local instances, and Finset equality. Prove both inclusions by unfolding rootedChildren and Finset.map: use component and ambient unique paths with hc for forward transport, and for reverse transport show each ambient child lies in C via deleteEdges adjacency and component closure before comparing local and ambient paths. Do not weaken equality to cardinality, add hypotheses, or change root/index objects."
   },
   "lean_decl_name": "rootedChildren_rootedChildComponent",
   "proof": {
@@ -226,6 +217,11 @@
           "schema_version": 2,
           "summary": "Diagnostics returned 1 items"
         },
+        "fingerprint": {
+          "environment_sha256": null,
+          "source_sha256": "658c7052452dd76271dcaaa5a8bbc9a64c446b5911cacb55c350d6ba2cf1524d",
+          "upstream_revision": null
+        },
         "message": "Lean check passed.",
         "policy": "statement_formal",
         "scan": {
@@ -250,7 +246,15 @@
           "summary": "sorry=1, admit=0, axiom=0, opaque=0, unsafe=0",
           "unsafe_count": 0
         },
-        "status": "passed"
+        "schema_version": 1,
+        "status": "passed",
+        "subject": {
+          "declaration_name": null,
+          "module": "PositiveDefiniteTreeLattice.Main.RootedCapacity.Theorems.rootedChildren_rootedChildComponent",
+          "repo_file_path": "PositiveDefiniteTreeLattice/Main/RootedCapacity/Theorems/rootedChildren_rootedChildComponent.lean",
+          "repo_kind": "native",
+          "stage": "statement"
+        }
       },
       "code": "-- lean-constellation: managed-imports-begin\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Prelude\nimport Mathlib.Combinatorics.SimpleGraph.Acyclic\nimport Mathlib.Combinatorics.SimpleGraph.Connectivity.Connected\nimport Mathlib.Data.Finset.Image\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildComponent\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildRoot\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildren\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Theorems.rootedChildComponent_isTree\n-- lean-constellation: managed-imports-end\n\n-- lean-constellation: declaration-source-begin\n\n/--\n# lean-constellation target: `rootedChildren_rootedChildComponent`\n\nFor a finite vertex type `V` with decidable equality, a simple graph `G : SimpleGraph V`, a tree\nproof `hG : G.IsTree`, an ambient root `ρ : V`, vertices `parent c : V`, and a hypothesis `hc : c ∈\nrootedChildren G hG ρ parent`, let `C := rootedChildComponent G parent c` and let `e : C ↪ V` be the\nexplicit subtype inclusion `x ↦ (x : V)`.  Then, for every `x : C`, mapping the component\nrooted-children finset along `e` gives exactly the ambient rooted-children finset: `(rootedChildren\nC.toSimpleGraph (rootedChildComponent_isTree G parent c hG) (rootedChildRoot G parent c) x).map e =\nrootedChildren G hG ρ (x : V)`.  No weight or admissibility hypothesis is assumed, and the\nconclusion is equality of finsets rather than only equality of cardinalities.\n\n## Sources\n\n- Source `solution.tex`, lines 48–61\n\n## Statement dependencies\n\n- `SimpleGraph.IsTree` from `Mathlib.Combinatorics.SimpleGraph.Acyclic`\n- `SimpleGraph.ConnectedComponent.toSimpleGraph` from\n  `Mathlib.Combinatorics.SimpleGraph.Connectivity.Connected`\n- `Finset.map` from `Mathlib.Data.Finset.Image`\n- `Main.RootedCapacity::rootedChildComponent` → `rootedChildComponent` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildComponent`\n- `Main.RootedCapacity::rootedChildComponent_isTree` → `rootedChildComponent_isTree` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Theorems.rootedChildComponent_isTree`\n- `Main.RootedCapacity::rootedChildRoot` → `rootedChildRoot` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildRoot`\n- `Main.RootedCapacity::rootedChildren` → `rootedChildren` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildren`\n-/\ntheorem rootedChildren_rootedChildComponent {V : Type*} [Fintype V] [DecidableEq V]\n    (G : SimpleGraph V) [DecidableRel G.Adj] (hG : G.IsTree) (ρ parent c : V)\n    (hc : c ∈ rootedChildren G hG ρ parent) :\n    let C := rootedChildComponent G parent c\n    letI : Fintype C := Fintype.ofFinite C\n    letI : DecidableRel C.toSimpleGraph.Adj := by\n      intro u v\n      change Decidable ((G.deleteEdges {s(parent, c)}).Adj (u : V) (v : V))\n      infer_instance\n    let e : C ↪ V :=\n      { toFun := fun x => (x : V)\n        inj' := by\n          intro x y hxy\n          exact Subtype.ext hxy }\n    ∀ x : C,\n      (rootedChildren C.toSimpleGraph (rootedChildComponent_isTree G parent c hG)\n          (rootedChildRoot G parent c) x).map e =\n        rootedChildren G hG ρ (x : V) := by\n  sorry\n"
     },

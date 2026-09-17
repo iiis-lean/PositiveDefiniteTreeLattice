@@ -1,18 +1,13 @@
 {
-  "change_summaries": {},
   "committed_at": "2026-08-03T13:52:04Z",
   "created_at": "2026-08-03T13:37:16Z",
-  "discard_reason": null,
   "discarded_at": null,
   "discarded_by": null,
-  "discarded_created_decl_names": [],
-  "discarded_restored_decl_revisions": {},
-  "discarded_revision_refs": [],
   "execution_completed_at": "2026-08-03T13:50:40Z",
   "execution_reason": null,
   "execution_result_kind": "success",
   "node_path": "Main.RootedCapacity",
-  "objective": "Strengthen the existing unreleased child-component root support theorem in place with opaque-function weighted-sum collapse laws, preserving its pointwise facts and avoiding any increase in active declaration count.",
+  "objective": "The proved unreleased child-component root support theorem provides its pointwise support facts and opaque-function weighted-sum collapse laws without increasing the active declaration count.",
   "plan_closeout_acknowledged_at": "2026-08-03T13:52:04Z",
   "plan_closeout_acknowledged_by": "a_a93b40977f574bad89528358fa89e022",
   "result_kind": "success",
@@ -29,5 +24,6 @@
   "started_at": "2026-08-03T13:38:41Z",
   "status": "committed",
   "strategy_id": "strategy_409097c1a1e547a681e983998de55d40",
-  "summary": "Round 82 completed successfully. rootedGram_root_rootedChildComponent_support@2 is proved and proof-policy satisfied, now providing both pointwise support and the low-heartbeat opaque-function summation interface required by the canonical Sigma quadratic calculation. The strategy remains viable and the active graph stays at the contract's expected upper scale because this was an in-place private revision. Known closure for rootedNonroot_inverse_sigma_quadratic_collapsed_of_child_admissible is complete: the child inverse-entry provider, canonical reindex API, instance transports, and generic support-collapse laws are all proved. The next action is a focused Proof NL/Proof Formal retry of that theorem; parent quadratic declarations must still wait."
+  "summary": "Round 82 completed successfully. rootedGram_root_rootedChildComponent_support@2 is proved and proof-policy satisfied, providing both pointwise support and the low-heartbeat opaque-function summation interface required by the canonical Sigma quadratic calculation. The strategy remains viable and the active graph stays at the contract's expected upper scale because this was an in-place private revision. Known closure for rootedNonroot_inverse_sigma_quadratic_collapsed_of_child_admissible is complete: the child inverse-entry provider, canonical reindex API, instance transports, and generic support-collapse laws are all proved. Parent quadratic declarations remain deferred.",
+  "execution_constraints": "Retry rootedNonroot_inverse_sigma_quadratic_collapsed_of_child_admissible in Proof NL and Proof Formal using the completed support-collapse interface; keep parent quadratic declarations deferred until this theorem is proved."
 }

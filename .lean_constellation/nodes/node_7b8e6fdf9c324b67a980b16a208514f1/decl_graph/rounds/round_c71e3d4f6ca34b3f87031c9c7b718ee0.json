@@ -1,13 +1,8 @@
 {
-  "change_summaries": {},
   "committed_at": "2026-08-06T15:39:48Z",
   "created_at": "2026-08-06T15:14:50Z",
-  "discard_reason": null,
   "discarded_at": null,
   "discarded_by": null,
-  "discarded_created_decl_names": [],
-  "discarded_restored_decl_revisions": {},
-  "discarded_revision_refs": [],
   "execution_completed_at": "2026-08-06T15:37:41Z",
   "execution_reason": "The required ambient-to-canonical-child-component pairing decomposition is absent from the visible API and is a nontrivial reusable support/classification argument, so this Proof NL declaration cannot responsibly leave it as an unnamed local calculation.",
   "execution_result_kind": "blocked",

@@ -1,14 +1,13 @@
 {
   "change": {
-    "anticipated_proof_dep_names": [],
-    "anticipated_statement_dep_names": [],
     "base_revision": 1,
     "kind": "update",
-    "objective": "Retain the accepted basis-entry meaning implicit in solution.tex lines 57–64 and repair Statement Formal with qualified PositiveDefiniteTreeLattice.treePairing and vertexVector. Then prove the diagonal branch using qualified PositiveDefiniteTreeLattice.treePairing_vertexVector_self and prove the distinct adjacent/nonadjacent branches by explicit evaluation of the finite neighbor sum. No current-node dependency is required; the proved private bridge will support rootedGram compatibility and later component/block decomposition.",
+    "objective": "Revision 2 records the accepted basis-entry theorem from solution.tex lines 57–64 with qualified PositiveDefiniteTreeLattice.treePairing and vertexVector. For a finite integer-weighted simple graph satisfying G.IsTree and vertices u,v, it states that the pairing is w u on the diagonal, −1 for distinct adjacent vertices, and 0 for distinct nonadjacent vertices.\nThe diagonal case is supplied by the qualified self-pairing provider, while the distinct cases are the explicit finite neighbor-sum evaluation. The theorem has no current-node dependency and provides the basis-entry bridge for rootedGram compatibility and later component/block decomposition.",
     "require_target_state_satisfied": true,
-    "reset_to_state": "specified",
+    "start_stage": "statement_formal",
     "summary": "Provider-repair update succeeded. Captured the formal basis-entry theorem `treePairing_vertexVector_vertexVector` with qualified provider references, accepted the proof plan, and compiler-checked the diagonal and explicit finite-neighbor-sum off-diagonal proof. Rev2 advanced from specified to proved and is proved-level proof-policy satisfied. This private bridge is ready for Gram compatibility and component/block decomposition proofs.",
-    "target_state": "proved"
+    "target_state": "proved",
+    "execution_constraints": "For the formal stage, keep the qualified PositiveDefiniteTreeLattice.treePairing and vertexVector interfaces. Discharge the diagonal branch with PositiveDefiniteTreeLattice.treePairing_vertexVector_self and evaluate the adjacent and nonadjacent branches through the finite neighbor sum with Finset.sum_eq_single, Finset.sum_eq_zero, and SimpleGraph.mem_neighborFinset.\nRetain the finite-tree hypothesis and exact pairing/vector conclusion; no current-node dependency is required."
   },
   "lean_decl_name": "treePairing_vertexVector_vertexVector",
   "proof": {
@@ -81,6 +80,11 @@
           "schema_version": 2,
           "summary": "Diagnostics returned 0 items"
         },
+        "fingerprint": {
+          "environment_sha256": null,
+          "source_sha256": "1a45ab111940616c0d5a3fae8051222bc577e0f80fb3dda26961c11d616c82ed",
+          "upstream_revision": null
+        },
         "message": "Lean check passed.",
         "policy": "proof_formal",
         "scan": {
@@ -98,7 +102,15 @@
           "summary": "sorry=0, admit=0, axiom=0, opaque=0, unsafe=0",
           "unsafe_count": 0
         },
-        "status": "passed"
+        "schema_version": 1,
+        "status": "passed",
+        "subject": {
+          "declaration_name": null,
+          "module": "PositiveDefiniteTreeLattice.Main.RootedCapacity.Theorems.treePairing_vertexVector_vertexVector",
+          "repo_file_path": "PositiveDefiniteTreeLattice/Main/RootedCapacity/Theorems/treePairing_vertexVector_vertexVector.lean",
+          "repo_kind": "native",
+          "stage": "proof"
+        }
       },
       "code": "-- lean-constellation: managed-imports-begin\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Prelude\nimport Mathlib.Algebra.BigOperators.Group.Finset.Basic\nimport Mathlib.Combinatorics.SimpleGraph.Acyclic\nimport Mathlib.Combinatorics.SimpleGraph.Finite\n-- lean-constellation: managed-imports-end\n\n-- lean-constellation: declaration-source-begin\n\n/--\n# lean-constellation target: `treePairing_vertexVector_vertexVector`\n\nFor every finite integer-weighted simple graph `G` satisfying the tree hypothesis `G.IsTree`, weight\nfunction `w`, and vertices `u` and `v`, the pairing of the corresponding vertex vectors is\n`treePairing G w (vertexVector u) (vertexVector v) = if u = v then w u else if G.Adj u v then -1\nelse 0`.\nEquivalently, diagonal basis entries are the vertex weights, distinct adjacent basis entries are\n`-1`, and distinct nonadjacent basis entries are `0`.\n\n## Sources\n\n- Source `solution.tex`, lines 57–64\n\n## Statement dependencies\n\n- `SimpleGraph.IsTree` from `Mathlib.Combinatorics.SimpleGraph.Acyclic`\n- `Main.LatticeFoundations::treePairingAnchor` → `PositiveDefiniteTreeLattice.treePairing` from\n  `PositiveDefiniteTreeLattice.Main.LatticeFoundations.Defs.treePairingAnchor`\n- `Main.LatticeFoundations::vertexVectorAnchor` → `PositiveDefiniteTreeLattice.vertexVector` from\n  `PositiveDefiniteTreeLattice.Main.LatticeFoundations.Defs.vertexVectorAnchor`\n\n## Proof outline\n\nCase split on `u = v`.\n\n* In the diagonal case, substitute `v = u`. The goal reduces by simplification to the public\nprovider theorem `PositiveDefiniteTreeLattice.treePairing_vertexVector_self G w u`; the tree\nhypothesis is not needed for this algebraic basis-entry calculation.\n\n* In the distinct case, unfold only `PositiveDefiniteTreeLattice.treePairing` and\n`PositiveDefiniteTreeLattice.vertexVector`. Use `Finset.sum_eq_single u` to evaluate the outer\nfinite sum: all coordinates other than `u` vanish, and the remaining expression is the negative of\nthe neighbor sum of the unit vector at `v`. Split on `G.Adj u v`. If adjacent, rewrite `v ∈\nG.neighborFinset u` with `SimpleGraph.mem_neighborFinset` and use `Finset.sum_eq_single v`; every\nother neighbor coordinate is zero, so the neighbor sum is `1` and the result is `-1`. If\nnonadjacent, `SimpleGraph.mem_neighborFinset` shows that no neighbor can equal `v`; apply\n`Finset.sum_eq_zero` to make the neighbor sum `0`, yielding `0`. In both branches, finish by\nsimplifying the relevant equality/inequality hypotheses.\n\nThis route uses the accepted public definitions `PositiveDefiniteTreeLattice.treePairing` and\n`PositiveDefiniteTreeLattice.vertexVector`, and the accepted diagonal provider\n`PositiveDefiniteTreeLattice.treePairing_vertexVector_self`.\n\n## Proof sources\n\n- Source `formal_target.lean`, lines 7–15\n\n## Proof dependencies\n\n- `Finset.sum_eq_single` from `Mathlib.Algebra.BigOperators.Group.Finset.Basic`\n- `Finset.sum_eq_zero` from `Mathlib.Algebra.BigOperators.Group.Finset.Basic`\n- `SimpleGraph.mem_neighborFinset` from `Mathlib.Combinatorics.SimpleGraph.Finite`\n- `Main.LatticeFoundations::treePairingAnchor` → `PositiveDefiniteTreeLattice.treePairing` from\n  `PositiveDefiniteTreeLattice.Main.LatticeFoundations.Defs.treePairingAnchor`\n- `Main.LatticeFoundations::treePairing_vertexVector_self` →\n  `PositiveDefiniteTreeLattice.treePairing_vertexVector_self` from\n  `PositiveDefiniteTreeLattice.Main.LatticeFoundations.Theorems.treePairing_vertexVector_self`\n- `Main.LatticeFoundations::vertexVectorAnchor` → `PositiveDefiniteTreeLattice.vertexVector` from\n  `PositiveDefiniteTreeLattice.Main.LatticeFoundations.Defs.vertexVectorAnchor`\n-/\ntheorem treePairing_vertexVector_vertexVector {V : Type*} [Fintype V] [DecidableEq V]\n    (G : SimpleGraph V) [DecidableRel G.Adj] (hG : G.IsTree) (w : V → ℤ) (u v : V) :\n    PositiveDefiniteTreeLattice.treePairing G w\n        (PositiveDefiniteTreeLattice.vertexVector u)\n        (PositiveDefiniteTreeLattice.vertexVector v) =\n      if u = v then w u else if G.Adj u v then -1 else 0 := by\n  have _hG : G.IsTree := hG\n  by_cases huv : u = v\n  · subst v\n    simp [PositiveDefiniteTreeLattice.treePairing_vertexVector_self]\n  · simp only [huv, if_false]\n    unfold PositiveDefiniteTreeLattice.treePairing PositiveDefiniteTreeLattice.vertexVector\n    rw [Finset.sum_eq_single u]\n    · simp only [if_pos, one_mul, huv, if_false, mul_zero, zero_sub]\n      by_cases hadj : G.Adj u v\n      · rw [if_pos hadj]\n        have hv_mem : v ∈ G.neighborFinset u := (G.mem_neighborFinset u v).mpr hadj\n        rw [Finset.sum_eq_single v]\n        · simp\n        · intro b _ hbu\n          simp [hbu]\n        · intro hv_not_mem\n          exact (hv_not_mem hv_mem).elim\n      · rw [if_neg hadj]\n        have hsum : (G.neighborFinset u).sum (fun x => if x = v then (1 : ℤ) else 0) = 0 := by\n          apply Finset.sum_eq_zero\n          intro x hx\n          have hxv : x ≠ v := by\n            intro h\n            subst x\n            exact hadj ((G.mem_neighborFinset u v).mp hx)\n          simp [hxv]\n        simp [hsum]\n    · intro b _ hbu\n      simp [hbu]\n    · simp\n"
     },
@@ -172,6 +184,11 @@
           "schema_version": 2,
           "summary": "Diagnostics returned 1 items"
         },
+        "fingerprint": {
+          "environment_sha256": null,
+          "source_sha256": "3f7dc1fa7a113366020109581a894f7c5fca40e761d8471bdb3399d80b70415f",
+          "upstream_revision": null
+        },
         "message": "Lean check passed.",
         "policy": "statement_formal",
         "scan": {
@@ -196,7 +213,15 @@
           "summary": "sorry=1, admit=0, axiom=0, opaque=0, unsafe=0",
           "unsafe_count": 0
         },
-        "status": "passed"
+        "schema_version": 1,
+        "status": "passed",
+        "subject": {
+          "declaration_name": null,
+          "module": "PositiveDefiniteTreeLattice.Main.RootedCapacity.Theorems.treePairing_vertexVector_vertexVector",
+          "repo_file_path": "PositiveDefiniteTreeLattice/Main/RootedCapacity/Theorems/treePairing_vertexVector_vertexVector.lean",
+          "repo_kind": "native",
+          "stage": "statement"
+        }
       },
       "code": "-- lean-constellation: managed-imports-begin\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Prelude\nimport Mathlib.Combinatorics.SimpleGraph.Acyclic\n-- lean-constellation: managed-imports-end\n\n-- lean-constellation: declaration-source-begin\n\n/--\n# lean-constellation target: `treePairing_vertexVector_vertexVector`\n\nFor every finite integer-weighted simple graph `G` satisfying the tree hypothesis `G.IsTree`, weight\nfunction `w`, and vertices `u` and `v`, the pairing of the corresponding vertex vectors is\n`treePairing G w (vertexVector u) (vertexVector v) = if u = v then w u else if G.Adj u v then -1\nelse 0`.\nEquivalently, diagonal basis entries are the vertex weights, distinct adjacent basis entries are\n`-1`, and distinct nonadjacent basis entries are `0`.\n\n## Sources\n\n- Source `solution.tex`, lines 57–64\n\n## Statement dependencies\n\n- `SimpleGraph.IsTree` from `Mathlib.Combinatorics.SimpleGraph.Acyclic`\n- `Main.LatticeFoundations::treePairingAnchor` → `PositiveDefiniteTreeLattice.treePairing` from\n  `PositiveDefiniteTreeLattice.Main.LatticeFoundations.Defs.treePairingAnchor`\n- `Main.LatticeFoundations::vertexVectorAnchor` → `PositiveDefiniteTreeLattice.vertexVector` from\n  `PositiveDefiniteTreeLattice.Main.LatticeFoundations.Defs.vertexVectorAnchor`\n-/\ntheorem treePairing_vertexVector_vertexVector {V : Type*} [Fintype V] [DecidableEq V]\n    (G : SimpleGraph V) [DecidableRel G.Adj] (hG : G.IsTree) (w : V → ℤ) (u v : V) :\n    PositiveDefiniteTreeLattice.treePairing G w\n        (PositiveDefiniteTreeLattice.vertexVector u)\n        (PositiveDefiniteTreeLattice.vertexVector v) =\n      if u = v then w u else if G.Adj u v then -1 else 0 := by\n  sorry\n"
     },

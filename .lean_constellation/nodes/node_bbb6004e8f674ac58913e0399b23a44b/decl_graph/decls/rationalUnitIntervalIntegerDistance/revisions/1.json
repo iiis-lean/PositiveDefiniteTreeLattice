@@ -1,14 +1,12 @@
 {
   "change": {
-    "anticipated_proof_dep_names": [],
-    "anticipated_statement_dep_names": [],
     "base_revision": null,
     "kind": "create",
-    "objective": "Formalize SourceIndex b_0010 / solution.tex lines 129–148: for integers k and N and rational tau with k < tau < k+1, prove min (tau-k) (k+1-tau) ≤ |tau-N|, with integer casts made explicit in the formal statement. This will combine with the triangle inequality and unitIntervalCompensationNonneg in the rooted induction.",
+    "objective": "Revision 1 records the declared rational unit-interval endpoint-distance theorem from SourceIndex b_0010 / solution.tex lines 129–148: for integers `k` and `N` and rational `tau` with `k < tau < k+1`, `min (tau-k) (k+1-tau) ≤ |tau-N|` with explicit integer casts. It supplies the distance component combined with the triangle inequality and unitIntervalCompensationNonneg in the rooted induction.",
     "require_target_state_satisfied": true,
-    "reset_to_state": null,
-    "summary": "Created rationalUnitIntervalIntegerDistance and accepted its NL and formal statement at declared state; an NL proof plan is present, but Proof Formal did not run after the sibling pairing decomposition blocked the round. It is not yet proved or graph_proved-satisfied. Its ordered-rational route remains viable and requires no new provider dependency; it may be resumed independently after closeout.",
-    "target_state": "proved"
+    "summary": "Created rationalUnitIntervalIntegerDistance and accepted its NL and formal statement at declared state; an NL proof plan is present, but Proof Formal did not run after the sibling pairing decomposition blocked the round. It is not yet proved or graph_proved-satisfied. Its ordered-rational route remains viable and requires no new provider dependency.",
+    "target_state": "proved",
+    "execution_constraints": "Resume this declaration independently after closeout and run Proof Formal using the accepted ordered-rational route; no new provider dependency is required."
   },
   "lean_decl_name": "rationalUnitIntervalIntegerDistance",
   "proof": {
@@ -88,6 +86,11 @@
           "schema_version": 2,
           "summary": "Diagnostics returned 1 items"
         },
+        "fingerprint": {
+          "environment_sha256": null,
+          "source_sha256": "d1a0aa5901d38c087810bf4cf7cc53978a97e986e21f9d12b63b9fae217a1efa",
+          "upstream_revision": null
+        },
         "message": "Lean check passed.",
         "policy": "statement_formal",
         "scan": {
@@ -112,7 +115,15 @@
           "summary": "sorry=1, admit=0, axiom=0, opaque=0, unsafe=0",
           "unsafe_count": 0
         },
-        "status": "passed"
+        "schema_version": 1,
+        "status": "passed",
+        "subject": {
+          "declaration_name": null,
+          "module": "PositiveDefiniteTreeLattice.Main.RootedEstimates.Theorems.rationalUnitIntervalIntegerDistance",
+          "repo_file_path": "PositiveDefiniteTreeLattice/Main/RootedEstimates/Theorems/rationalUnitIntervalIntegerDistance.lean",
+          "repo_kind": "native",
+          "stage": "statement"
+        }
       },
       "code": "-- lean-constellation: managed-imports-begin\nimport PositiveDefiniteTreeLattice.Main.RootedEstimates.Prelude\n-- lean-constellation: managed-imports-end\n\n-- lean-constellation: declaration-source-begin\n\n/--\n# lean-constellation target: `rationalUnitIntervalIntegerDistance`\n\nLet `k` and `N` be integers and let `tau` be a rational number. Assume\n\n`(k : ℚ) < tau` and `tau < (k : ℚ) + 1`.\n\nThen the distance from `tau` to the arbitrary integer `N` bounds both endpoint distances below:\n\n`min (tau - (k : ℚ)) ((k : ℚ) + 1 - tau) ≤ |tau - (N : ℚ)|`.\n\n## Sources\n\n- Source `solution.tex`, lines 129–148\n-/\ntheorem rationalUnitIntervalIntegerDistance (k N : ℤ) (tau : ℚ)\n    (hk_lt_tau : (k : ℚ) < tau) (htau_lt_k_one : tau < (k : ℚ) + 1) :\n    min (tau - (k : ℚ)) ((k : ℚ) + 1 - tau) ≤ |tau - (N : ℚ)| := by\n  sorry\n"
     },

@@ -1,4 +1,4 @@
-[← Public API](../PUBLIC_API.md) · [Public boundaries](../PUBLIC_BOUNDARIES.md)
+[← Public API](../PUBLIC_API.md) · [Public boundaries](../PUBLIC_BOUNDARIES.md) · [Complete graph](../DECLARATION_GRAPH.md)
 
 # `treePairing_vertexVector_vertexVector`
 
@@ -10,9 +10,66 @@ The tree pairing of two basis vertex vectors is diagonal weight, minus one on an
 - State: `proved`
 - Revision status: `committed`
 - Repository completion: `graph_proved`
-- Formal code: final proof projection
+- Compatibility `formal_code`: final proof projection
 
-## Lean code
+## Statement NL
+
+For every finite integer-weighted simple graph `G` satisfying the tree hypothesis `G.IsTree`, weight function `w`, and vertices `u` and `v`, the pairing of the corresponding vertex vectors is
+`treePairing G w (vertexVector u) (vertexVector v) = if u = v then w u else if G.Adj u v then -1 else 0`.
+Equivalently, diagonal basis entries are the vertex weights, distinct adjacent basis entries are `-1`, and distinct nonadjacent basis entries are `0`.
+
+## Statement Formal
+
+```lean
+-- lean-constellation: managed-imports-begin
+import PositiveDefiniteTreeLattice.Main.RootedCapacity.Prelude
+import Mathlib.Combinatorics.SimpleGraph.Acyclic
+-- lean-constellation: managed-imports-end
+
+-- lean-constellation: declaration-source-begin
+
+/--
+# lean-constellation target: `treePairing_vertexVector_vertexVector`
+
+For every finite integer-weighted simple graph `G` satisfying the tree hypothesis `G.IsTree`, weight
+function `w`, and vertices `u` and `v`, the pairing of the corresponding vertex vectors is
+`treePairing G w (vertexVector u) (vertexVector v) = if u = v then w u else if G.Adj u v then -1
+else 0`.
+Equivalently, diagonal basis entries are the vertex weights, distinct adjacent basis entries are
+`-1`, and distinct nonadjacent basis entries are `0`.
+
+## Sources
+
+- Source `solution.tex`, lines 57–64
+
+## Statement dependencies
+
+- `SimpleGraph.IsTree` from `Mathlib.Combinatorics.SimpleGraph.Acyclic`
+- `Main.LatticeFoundations::treePairingAnchor` → `PositiveDefiniteTreeLattice.treePairing` from
+  `PositiveDefiniteTreeLattice.Main.LatticeFoundations.Defs.treePairingAnchor`
+- `Main.LatticeFoundations::vertexVectorAnchor` → `PositiveDefiniteTreeLattice.vertexVector` from
+  `PositiveDefiniteTreeLattice.Main.LatticeFoundations.Defs.vertexVectorAnchor`
+-/
+theorem treePairing_vertexVector_vertexVector {V : Type*} [Fintype V] [DecidableEq V]
+    (G : SimpleGraph V) [DecidableRel G.Adj] (hG : G.IsTree) (w : V → ℤ) (u v : V) :
+    PositiveDefiniteTreeLattice.treePairing G w
+        (PositiveDefiniteTreeLattice.vertexVector u)
+        (PositiveDefiniteTreeLattice.vertexVector v) =
+      if u = v then w u else if G.Adj u v then -1 else 0 := by
+  sorry
+```
+
+## Proof NL
+
+Case split on `u = v`.
+
+* In the diagonal case, substitute `v = u`. The goal reduces by simplification to the public provider theorem `PositiveDefiniteTreeLattice.treePairing_vertexVector_self G w u`; the tree hypothesis is not needed for this algebraic basis-entry calculation.
+
+* In the distinct case, unfold only `PositiveDefiniteTreeLattice.treePairing` and `PositiveDefiniteTreeLattice.vertexVector`. Use `Finset.sum_eq_single u` to evaluate the outer finite sum: all coordinates other than `u` vanish, and the remaining expression is the negative of the neighbor sum of the unit vector at `v`. Split on `G.Adj u v`. If adjacent, rewrite `v ∈ G.neighborFinset u` with `SimpleGraph.mem_neighborFinset` and use `Finset.sum_eq_single v`; every other neighbor coordinate is zero, so the neighbor sum is `1` and the result is `-1`. If nonadjacent, `SimpleGraph.mem_neighborFinset` shows that no neighbor can equal `v`; apply `Finset.sum_eq_zero` to make the neighbor sum `0`, yielding `0`. In both branches, finish by simplifying the relevant equality/inequality hypotheses.
+
+This route uses the accepted public definitions `PositiveDefiniteTreeLattice.treePairing` and `PositiveDefiniteTreeLattice.vertexVector`, and the accepted diagonal provider `PositiveDefiniteTreeLattice.treePairing_vertexVector_self`.
+
+## Proof Formal
 
 ```lean
 -- lean-constellation: managed-imports-begin

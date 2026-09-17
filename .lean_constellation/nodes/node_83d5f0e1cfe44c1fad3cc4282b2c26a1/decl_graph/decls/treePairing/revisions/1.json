@@ -1,14 +1,12 @@
 {
   "change": {
-    "anticipated_proof_dep_names": [],
-    "anticipated_statement_dep_names": [],
     "base_revision": null,
     "kind": "create",
-    "objective": "Implement exactly formal_target.lean lines 7–11: for finite V with decidable equality, a SimpleGraph with decidable adjacency, integer weight, and x y : V → ℤ, define the outer vertex sum x u * (weight u * y u - the sum of y over G.neighborFinset u). This public definition consumes the validated Mathlib neighborFinset and finite-sum support and is the lower foundation for Irreducible, all pairing algebra lemmas, vertex-vector computations, and the public norm-one theorem; do not change the integral function model, summation indices, or expression semantics.",
+    "objective": "Revision 1 defines the public `treePairing` exactly as formal_target.lean lines 7–11: for finite `V` with decidable equality, a simple graph `G` with decidable adjacency, integer `weight`, and functions `x y : V → ℤ`, its value is `∑ u, x u * (weight u * y u - ∑ v ∈ G.neighborFinset u, y v)`. It supplies the lower definition for `Irreducible`, pairing algebra, vertex-vector computations, and the public norm-one theorem without changing the integral function model, summation indices, or expression semantics.",
     "require_target_state_satisfied": true,
-    "reset_to_state": null,
     "summary": "Planned exact public treePairing definition from formal_target.lean lines 7–11. No worker stages ran and no artifacts were accepted; the change is being abandoned only because another same-round consumer made the draft invalid.",
-    "target_state": "proved"
+    "target_state": "proved",
+    "execution_constraints": "Use the validated Mathlib neighborFinset and finite-sum support. Preserve formal_target.lean lines 7–11 exactly, including the integral function model, summation indices, and expression semantics; add no alias or extra assumption."
   },
   "lean_decl_name": null,
   "proof": null,

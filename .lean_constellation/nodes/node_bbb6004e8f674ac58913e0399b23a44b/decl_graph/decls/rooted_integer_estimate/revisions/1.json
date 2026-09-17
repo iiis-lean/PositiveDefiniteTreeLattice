@@ -1,21 +1,12 @@
 {
   "change": {
-    "anticipated_proof_dep_names": [
-      "consecutiveIntegerProductNonneg",
-      "rationalUnitIntervalIntegerDistance",
-      "rootedCapacityInvEqSub",
-      "treePairingRootedChildDecomposition",
-      "twoBoundsGiveAbsLowerBound",
-      "unitIntervalCompensationNonneg"
-    ],
-    "anticipated_statement_dep_names": [],
     "base_revision": null,
     "kind": "create",
-    "objective": "Implement SourceIndex b_0010 / solution.tex lines 84–153 as the exact contract interface `PositiveDefiniteTreeLattice.rooted_integer_estimate`; Statement Formal must place the theorem in namespace PositiveDefiniteTreeLattice so its compiler-confirmed full name matches exactly. Preserve an admissible rooted tree G,w,rho, an integral coordinate vector x : V → ℤ, integer k, rational rootedCapacity, exact root coordinate x rho, and the source conclusion direction 0 ≤ ↑(treePairing G w x x) - (2*k+1)*x rho + rootedCapacity G w rho*k*(k+1), with only the finite/decidable hypotheses needed by the existing APIs and appropriate ℤ-to-ℚ casts. Prove by strong induction on Fintype.card V: use IsAdmissibleRootedTree_rootedChildComponent and rootedChildComponent_card_lt for recursive child estimates, treePairingRootedChildDecomposition for lines 102–110, rootedCapacityInvEqSub for line 123, the two child bounds and twoBoundsGiveAbsLowerBound for lines 112–121, rationalUnitIntervalIntegerDistance plus unitIntervalCompensationNonneg for lines 129–152, and consecutiveIntegerProductNonneg for the one-vertex case. This public theorem serves the first required interface and later root_coefficient_lt_norm.",
+    "objective": "Revision 1 records the exact public b_0010 interface target `PositiveDefiniteTreeLattice.rooted_integer_estimate` from SourceIndex b_0010 / solution.tex lines 84–153. It preserves an admissible rooted tree `G,w,rho`, integral `x : V → ℤ`, integer `k`, rational rootedCapacity, exact root coordinate `x rho`, the source conclusion direction `0 ≤ ↑(treePairing G w x x) - (2*k+1)*x rho + rootedCapacity G w rho*k*(k+1)`, the existing finite/decidable hypotheses, and the casts. Its accepted strong-induction route uses the child admissibility/cardinality APIs, treePairingRootedChildDecomposition, rootedCapacityInvEqSub, the two child bounds with twoBoundsGiveAbsLowerBound, rationalUnitIntervalIntegerDistance, unitIntervalCompensationNonneg, and consecutiveIntegerProductNonneg; it supplies the first public interface and later root_coefficient_lt_norm.",
     "require_target_state_satisfied": true,
-    "reset_to_state": null,
-    "summary": "Created the exact qualified public declaration `PositiveDefiniteTreeLattice.rooted_integer_estimate`; Statement NL/Formal passed with the source-faithful consumer goal `0 ≤ (↑(treePairing G w x x) : ℚ) - (2*(k:ℚ)+1)*(x rho:ℚ) + rootedCapacity G w rho*(k:ℚ)*((k:ℚ)+1)`, and Proof NL passed with the b_0010 strong-induction route. Proof Formal is absent, so revision 1 remains proof_planned and is not graph_proved-satisfied. The blocker is a pair of predictable tracked Lean/repository-local bridges, not statement drift or a provider/source gap: (1) a child-component induction bridge that instantiates the generalized estimate at `rootedChildComponent G rho c` with the provider-supplied local Fintype/DecidableEq/DecidableRel instances, restricted weight/vector and `rootedChildRoot`, and rewrites that child rooted capacity to the corresponding `rootedChildCapacitySummand`; (2) a rational aggregation/cast bridge that sums the two child estimates and transports the integral nested `treePairingRootedChildDecomposition` through ℤ-to-ℚ casts so its child pairing, root-boundary, and capacity-sum terms match the public rational goal. Checked ingredients include IsAdmissibleRootedTree_rootedChildComponent, rootedChildComponent_card_lt, rootedChildCapacitySummand/Sum, treePairingRootedChildDecomposition, Int.cast_sum, and the proved arithmetic/distance lemmas; individually they do not expose either composed statement. Retry only after both bridges are tracked and proved. No superseded declaration or cleanup target was introduced.",
-    "target_state": "proved"
+    "summary": "Created the exact qualified public declaration `PositiveDefiniteTreeLattice.rooted_integer_estimate`; Statement NL/Formal passed with the source-faithful consumer goal `0 ≤ (↑(treePairing G w x x) : ℚ) - (2*(k:ℚ)+1)*(x rho:ℚ) + rootedCapacity G w rho*(k:ℚ)*((k:ℚ)+1)`, and Proof NL passed with the b_0010 strong-induction route. Proof Formal is absent, so revision 1 remains proof_planned and is not graph_proved-satisfied. The blocker is a pair of predictable tracked Lean/repository-local bridges, not statement drift or a provider/source gap: (1) a child-component induction bridge that instantiates the generalized estimate at `rootedChildComponent G rho c` with the provider-supplied local Fintype/DecidableEq/DecidableRel instances, restricted weight/vector and `rootedChildRoot`, and rewrites that child rooted capacity to the corresponding `rootedChildCapacitySummand`; (2) a rational aggregation/cast bridge that sums the two child estimates and transports the integral nested `treePairingRootedChildDecomposition` through ℤ-to-ℚ casts so its child pairing, root-boundary, and capacity-sum terms match the public rational goal. Checked ingredients include IsAdmissibleRootedTree_rootedChildComponent, rootedChildComponent_card_lt, rootedChildCapacitySummand/Sum, treePairingRootedChildDecomposition, Int.cast_sum, and the proved arithmetic/distance lemmas; individually they do not expose either composed statement. No superseded declaration or cleanup target was introduced.",
+    "target_state": "proved",
+    "execution_constraints": "Place the theorem in namespace PositiveDefiniteTreeLattice and preserve the exact consumer statement. Track and prove the child-component induction bridge and rational aggregation/cast bridge before retrying Proof Formal; do not add untracked helper mathematics or retry the public parent until both bridges are proved."
   },
   "lean_decl_name": "PositiveDefiniteTreeLattice.rooted_integer_estimate",
   "proof": {
@@ -274,6 +265,11 @@
           "schema_version": 2,
           "summary": "Diagnostics returned 1 items"
         },
+        "fingerprint": {
+          "environment_sha256": null,
+          "source_sha256": "c6ffa047cd5d731abb0482defb615b772e7b3afc7336656f0c641e393c6fe140",
+          "upstream_revision": null
+        },
         "message": "Lean check passed.",
         "policy": "statement_formal",
         "scan": {
@@ -298,7 +294,15 @@
           "summary": "sorry=1, admit=0, axiom=0, opaque=0, unsafe=0",
           "unsafe_count": 0
         },
-        "status": "passed"
+        "schema_version": 1,
+        "status": "passed",
+        "subject": {
+          "declaration_name": null,
+          "module": "PositiveDefiniteTreeLattice.Main.RootedEstimates.Theorems.rooted_integer_estimate",
+          "repo_file_path": "PositiveDefiniteTreeLattice/Main/RootedEstimates/Theorems/rooted_integer_estimate.lean",
+          "repo_kind": "native",
+          "stage": "statement"
+        }
       },
       "code": "-- lean-constellation: managed-imports-begin\nimport PositiveDefiniteTreeLattice.Main.RootedEstimates.Prelude\n-- lean-constellation: managed-imports-end\n\n-- lean-constellation: declaration-source-begin\n\n/--\n# lean-constellation target: `rooted_integer_estimate`\n\nFor a finite decidable simple graph `G` on `V`, an integer weight function `w : V → ℤ`, and a root\n`rho`, assume `hG : IsAdmissibleRootedTree G w rho`.  For every integral coordinate vector `x : V →\nℤ` and every integer `k`, the exact public theorem\n`PositiveDefiniteTreeLattice.rooted_integer_estimate` asserts the rational inequality\n\n`0 ≤ (↑(treePairing G w x x) : ℚ) - (2 * (k : ℚ) + 1) * (x rho : ℚ) + rootedCapacity G w rho * (k :\nℚ) * ((k : ℚ) + 1)`.\n\nThus the integral tree-pairing norm, the exact root coordinate, and the rooted rational capacity\noccur with the source’s unchanged signs and conclusion direction.  The finite and decidable\nstructure assumed is only that required to form the existing tree-pairing and rooted-capacity APIs.\n\n## Sources\n\n- Source `solution.tex`, lines 84–89\n\n## Statement dependencies\n\n- `Main.LatticeFoundations::treePairingAnchor` → `PositiveDefiniteTreeLattice.treePairing` from\n  `PositiveDefiniteTreeLattice.Main.LatticeFoundations.Defs.treePairingAnchor`\n- `Main.RootedCapacity::IsAdmissibleRootedTree` → `IsAdmissibleRootedTree` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.IsAdmissibleRootedTree`\n- `Main.RootedCapacity::rootedCapacity` → `rootedCapacity` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedCapacity`\n-/\ntheorem PositiveDefiniteTreeLattice.rooted_integer_estimate {V : Type*} [Fintype V]\n    [DecidableEq V]\n    (G : SimpleGraph V) [DecidableRel G.Adj] (w : V → ℤ) (rho : V)\n    (hG : IsAdmissibleRootedTree G w rho) (x : V → ℤ) (k : ℤ) :\n    0 ≤ (↑(treePairing G w x x) : ℚ) - (2 * (k : ℚ) + 1) * (x rho : ℚ) +\n  rootedCapacity G w rho * (k : ℚ) * ((k : ℚ) + 1) := by\n  sorry\n"
     },

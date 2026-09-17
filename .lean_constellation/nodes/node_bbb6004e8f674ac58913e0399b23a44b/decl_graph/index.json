@@ -40,11 +40,9 @@
     "round_f86fde874e6c4f179e579442a2d73171",
     "round_fd637a1ddc86492c9629aaebf49f99ff"
   ],
-  "schema_version": 1,
+  "schema_version": 2,
   "strategy_ids": [
     "strategy_568b321117904669b4204482b975bf60",
     "strategy_6bfc666c638344a19f7d1dee5c0a60d4"
-  ],
-  "summary": "DeclGraph index rebuilt for Main.RootedEstimates: 16 decls, 19 rounds, 2 strategies.",
-  "updated_at": "2026-08-07T12:08:06Z"
+  ]
 }

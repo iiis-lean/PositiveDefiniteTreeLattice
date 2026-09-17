@@ -1,18 +1,13 @@
 {
-  "change_summaries": {},
   "committed_at": "2026-07-30T18:01:24Z",
   "created_at": "2026-07-30T17:56:16Z",
-  "discard_reason": null,
   "discarded_at": null,
   "discarded_by": null,
-  "discarded_created_decl_names": [],
-  "discarded_restored_decl_revisions": {},
-  "discarded_revision_refs": [],
   "execution_completed_at": "2026-07-30T17:58:45Z",
   "execution_reason": "The assigned route refers to a compiler-verified generic reconstruction, but no such Lean artifact or source is available in the workspace; the declaration-owned file remains the statement scaffold and a workspace search finds no use of Matrix.submatrixEquivInvertible or Invertible.copy to adapt. Completing the specified Schur-complement proof from only the prose would require designing the unprovided multi-step assembly rather than applying a verified route.",
   "execution_result_kind": "blocked",
   "node_path": "Main.RootedCapacity",
-  "objective": "Resume the public capacity recursion Proof Formal with the compiler-verified direct invertibility transport route from the focused Mathlib recon.",
+  "objective": "Round 51 concerns the public capacity recursion's direct invertibility transport route from focused Mathlib recon; its remaining implementation dependency is a private full root/nonroot Matrix.fromBlocks invertibility assembly.",
   "plan_closeout_acknowledged_at": "2026-07-30T18:01:24Z",
   "plan_closeout_acknowledged_by": "a_a93b40977f574bad89528358fa89e022",
   "result_kind": "blocked",
@@ -29,5 +24,6 @@
   "started_at": "2026-07-30T17:57:36Z",
   "status": "committed",
   "strategy_id": "strategy_fc60f40a331d4f63bd19e22f0eec7473",
-  "summary": "Round 51 made no accepted state advance: rootedCapacity_recursion remains public and proof_planned with its statement and Proof NL intact. The generic Mathlib transport route is compiler-verified, but the parent lacks a reusable Lean artifact for the full root/nonroot Matrix.fromBlocks invertibility assembly. This is a predictable private implementation helper within Main.RootedCapacity, not a source, provider, interface, or scope blocker. The strategy remains viable. Next action is one private proved helper round packaging that exact invertibility result from hAdm and rootedGram_reindex_rootNonroot_blocks; after it closes, retry the recursion parent."
+  "summary": "Round 51 made no accepted state advance: rootedCapacity_recursion remains public and proof_planned with its statement and Proof NL intact. The generic Mathlib transport route is compiler-verified, but the parent lacks a reusable Lean artifact for the full root/nonroot Matrix.fromBlocks invertibility assembly. This is a predictable private implementation helper within Main.RootedCapacity, not a source, provider, interface, or scope blocker. The strategy remains viable.",
+  "execution_constraints": "Create and prove one private helper packaging the exact invertibility result from hAdm and rootedGram_reindex_rootNonroot_blocks; after it closes, retry the recursion parent."
 }

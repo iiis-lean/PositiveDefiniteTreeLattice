@@ -1,21 +1,13 @@
 {
   "change": {
-    "anticipated_proof_dep_names": [
-      "rootedChildGram_blockDiagonal_inv",
-      "rootedNonrootGram_reindex_childBlocks"
-    ],
-    "anticipated_statement_dep_names": [
-      "rootedChildComponent",
-      "rootedChildComponentsEquivNonroot",
-      "rootedGram"
-    ],
     "base_revision": 4,
     "kind": "update",
-    "objective": "Implement the refreshed contract's authorized private representation cleanup for SourceIndex b_0009 / solution.tex lines 57–68. Retain revision 4's hypotheses, rational total inverse, child Gram family, and mathematical conclusions that inverse entries agree with the appropriate child rootedGram inverse on one child component and vanish across distinct child components, but replace every proof-dependent ambient embedding ι c hc x with the canonical index type determined by rootedChildComponentsEquivNonroot (the dependent Sigma of a root child and a vertex of its rootedChildComponent). The formal statement should expose either the full reindexed-inverse equality or same/cross entry clauses directly on those canonical Sigma indices, whichever is compiler-stable and directly consumable by rootedNonroot_inverse_quadratic without converting back through ambient subtype proof terms. Prove it from rootedNonrootGram_reindex_childBlocks@6, rootedChildGram_blockDiagonal_inv@2, and Matrix.inv_reindex, using the existing rootedChildComponentsEquivNonroot orientation. Do not add assumptions, change rootedGram/rootedCapacity semantics, raise heartbeat limits, add another conversion wrapper, or alter any public interface. This theorem must end proved and become the stable proof dependency for revising rootedNonroot_inverse_quadratic next.",
+    "objective": "Revision 5 specifies the canonical dependent-Sigma representation of the private inverse block identity from SourceIndex b_0009 / solution.tex lines 57–68. Let e be the canonical equivalence from the nonroot subtype R to the dependent Sigma of a root child and a vertex of its rootedChildComponent. The reindexed rational total inverse of D equals the dependent block diagonal of the existing child rootedGram inverses; equivalently, the entry is the child inverse when the Sigma child labels agree and is zero when they differ. This representation preserves the exact child Gram matrices, total inverse semantics, hypotheses, conclusion direction, and private role, and is oriented for rootedNonroot_inverse_quadratic.",
     "require_target_state_satisfied": true,
-    "reset_to_state": "specified",
+    "start_stage": "statement_formal",
     "summary": "Revision 5 is blocked at Statement Formal and remains specified only. The retained Statement NL still uses the obsolete proof-dependent ambient embeddings `ιc : rootedChildComponent … → {v : V // v ≠ ρ}`, whereas the current contract and round require canonical rootedChildComponentsEquivNonroot/dependent-Sigma indices. This is statement-stage drift caused by reset_to_state=specified, not a mathematical, source, provider, or Mathlib gap. Proved prerequisites rootedNonrootGram_reindex_childBlocks@6 and rootedChildGram_blockDiagonal_inv@2 remain sufficient. Retry only from reset_to_state=planned, allowing Statement NL to adopt the Sigma-indexed same-component and cross-component inverse claims before Statement Formal; do not retry this retained NL shape or introduce a conversion helper.",
-    "target_state": "proved"
+    "target_state": "proved",
+    "execution_constraints": "Use e := (rootedChildComponentsEquivNonroot G hG ρ).symm with the existing rootedNonrootGram_reindex_childBlocks@6, rootedChildGram_blockDiagonal_inv@2, and Matrix.inv_reindex route. Keep the shared R/S/e/D/B convention, dependent child-component instances, rational total inverse, and private visibility. Do not reintroduce ambient embeddings or proof-term conversion, add assumptions or wrappers, change public semantics, or raise heartbeat limits."
   },
   "lean_decl_name": null,
   "proof": null,
@@ -145,7 +137,7 @@
           "start_locator": null
         }
       ],
-      "text": "Let V be a finite type with decidable equality, let G be a simple graph on V with decidable adjacency, let hG : G.IsTree, let w : V → ℤ, let ρ : V, and suppose hAdm : IsAdmissibleRootedTree G w ρ. Put\n\nR := {v : V // v ≠ ρ},\nD := (rootedGram G w).submatrix Subtype.val Subtype.val.\n\nFor every c ∈ rootedChildren G hG ρ ρ, write ιc : rootedChildComponent G ρ c → R for the canonical embedding x ↦ ⟨(x : V), (x : V) ≠ ρ⟩ supplied by rootedChildComponent_parent_not_mem. Then both inverse-entry transports hold:\n\n1. For all x y : rootedChildComponent G ρ c,\n\nD⁻¹ (ιc x) (ιc y)\n= (rootedGram (rootedChildComponent G ρ c).toSimpleGraph\n    (fun z : rootedChildComponent G ρ c => w (z : V)))⁻¹ x y.\n\n2. For distinct c,d ∈ rootedChildren G hG ρ ρ, and all x : rootedChildComponent G ρ c and y : rootedChildComponent G ρ d,\n\nD⁻¹ (ιc x) (ιd y) = 0.\n\nAll inverses are the existing total rational matrix inverses; the statement preserves the exact dependent deleted-edge component indices."
+      "text": "For every finite decidable vertex type with the existing finite decidable tree structure, integer vertex weights, chosen root ρ, and admissibility hypothesis, let e := rootedChildComponentsEquivNonroot be the canonical equivalence from the dependent Sigma type Σ c : rootedChildren G hG ρ ρ, rootedChildComponent G ρ c to the subtype of nonroot vertices. Then reindexing the rational total inverse of the nonroot principal block of rootedGram along e is equal to the dependent block diagonal matrix whose block at each root child is the rational total inverse of that child component's existing rootedGram.\n\nEquivalently, for Sigma indices ⟨c, x⟩ and ⟨d, y⟩, the reindexed inverse entry is the child rootedGram inverse entry when c = d, and is zero when c ≠ d. Thus the result gives the inverse transport directly in Sigma/equivalence coordinates, with no ambient nonroot-subtype embedding or proof-term argument, and it is oriented for rewriting the nonroot inverse quadratic form into the sum of child capacities."
     }
   },
   "status": "committed",

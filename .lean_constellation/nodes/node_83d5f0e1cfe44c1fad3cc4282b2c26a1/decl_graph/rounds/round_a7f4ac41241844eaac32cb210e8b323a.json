@@ -1,12 +1,11 @@
 {
-  "change_summaries": {},
   "committed_at": "2026-07-29T15:26:30Z",
   "created_at": "2026-07-29T15:21:36Z",
   "execution_completed_at": "2026-07-29T15:25:18Z",
   "execution_reason": null,
   "execution_result_kind": "success",
   "node_path": "Main.LatticeFoundations",
-  "objective": "Repair the capture-integrity runtime failure by advancing the already accepted treePairing_add_left, treePairing_add_right, and treePairing_symm revisions from proof_planned to proved. Retain their compiled statements and proof plans unchanged and rerun only Proof Formal against the current declaration-owned files.",
+  "objective": "The runtime-repair round established proved versions of the public `treePairing_add_left`, `treePairing_add_right`, and `treePairing_symm` lemmas from their accepted statements and proof plans.",
   "plan_closeout_acknowledged_at": "2026-07-29T15:26:30Z",
   "plan_closeout_acknowledged_by": "a_60a257a14c4c469b9e17805606fa5ea4",
   "result_kind": "success",
@@ -33,5 +32,5 @@
   "started_at": "2026-07-29T15:22:37Z",
   "status": "committed",
   "strategy_id": "strategy_a30e26b4dc0b4b3da567957fbd36ca03",
-  "summary": "The proof-only repair completed successfully. All three public pairing algebra lemmas—left additivity, right additivity, and symmetry—advanced from proof_planned to proved and now satisfy graph-proved policy. The earlier capture-integrity runtime failure is closed with no semantic change, missing dependency, helper gap, or state-only remainder. The strategy remains valid; the next useful round should build the tracked self-pairing expansion and vertex-vector facts from these proved foundations before the norm-one parent theorem."
+  "summary": "The proof-only repair completed successfully. All three public pairing algebra lemmas—left additivity, right additivity, and symmetry—advanced from proof_planned to proved and now satisfy graph-proved policy. The earlier capture-integrity runtime failure is closed with no semantic change, missing dependency, helper gap, or state-only remainder. The strategy remains valid; the self-pairing expansion and vertex-vector facts are the downstream mathematical layer preceding the norm-one parent theorem."
 }

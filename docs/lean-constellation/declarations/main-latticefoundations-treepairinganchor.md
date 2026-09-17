@@ -1,4 +1,4 @@
-[← Public API](../PUBLIC_API.md) · [Public boundaries](../PUBLIC_BOUNDARIES.md)
+[← Public API](../PUBLIC_API.md) · [Public boundaries](../PUBLIC_BOUNDARIES.md) · [Complete graph](../DECLARATION_GRAPH.md)
 
 # `treePairingAnchor`
 
@@ -10,9 +10,17 @@ Fresh compatible declaration anchor for the integral finite-graph pairing interf
 - State: `declared`
 - Revision status: `committed`
 - Repository completion: `graph_proved`
-- Formal code: final statement projection
+- Compatibility `formal_code`: final statement projection
 
-## Lean code
+## Statement NL
+
+Define the public interface `PositiveDefiniteTreeLattice.treePairing` as follows. For a type `V` with a finite enumeration and decidable equality, a simple graph `G : SimpleGraph V` with decidable adjacency, and functions `weight x y : V → ℤ`, its value is the integer
+
+`∑ u, x u * (weight u * y u - ∑ v ∈ G.neighborFinset u, y v)`.
+
+Thus the definition uses exactly the finite sum over all vertices and, for each vertex, the finite sum over its graph neighbors; it introduces no further assumptions or aliases.
+
+## Statement Formal
 
 ```lean
 -- lean-constellation: managed-imports-begin
@@ -49,6 +57,14 @@ def PositiveDefiniteTreeLattice.treePairing {V : Type*} [Fintype V] [DecidableEq
   Finset.univ.sum fun u =>
     x u * (weight u * y u - (G.neighborFinset u).sum fun v => y v)
 ```
+
+## Proof NL
+
+Not recorded.
+
+## Proof Formal
+
+Not recorded.
 
 ## Statement dependencies
 

@@ -1,12 +1,10 @@
 {
   "change": {
-    "anticipated_proof_dep_names": [],
-    "anticipated_statement_dep_names": [],
     "base_revision": 3,
     "kind": "update",
-    "objective": "Preserve the exact formal_target.lean lines 13–15 unit coordinate definition, binders, branches, catalog meaning, and declared state, but recapture this historical identity-changed record under the nonconflicting compiler-confirmed Lean name PositiveDefiniteTreeLattice.Internal.historicalVertexVector. It must no longer declare PositiveDefiniteTreeLattice.vertexVector and must create no global or namespaced compatibility alias. The fresh vertexVectorAnchor record in this round will own the required public Lean identity; later rounds will rewire supporting consumers before this historical record is cleaned up.",
+    "objective": "Revision 4 records the identity-changed historical unit-coordinate definition as `PositiveDefiniteTreeLattice.Internal.historicalVertexVector`, preserving formal_target.lean lines 13–15, its binders, branches, catalog meaning, and declared state. The public `PositiveDefiniteTreeLattice.vertexVector` identity is owned by the fresh anchor, with no global or namespaced compatibility alias; this historical record remains a superseded cleanup target while supporting consumers retain its declaration anchor.",
     "require_target_state_satisfied": true,
-    "reset_to_state": "specified",
+    "start_stage": "statement_formal",
     "summary": "Successfully preserved the exact unit coordinate definition while moving the historical identity-changed record to compiler-confirmed PositiveDefiniteTreeLattice.Internal.historicalVertexVector at declared state. No alias or mathematical change was introduced. This record remains temporarily public only because existing supporting declarations still depend on its Decl anchor; it is a superseded cleanup target after those consumers are rewired to vertexVectorAnchor.",
     "target_state": "declared"
   },
@@ -29,6 +27,11 @@
           "schema_version": 2,
           "summary": "Diagnostics returned 0 items"
         },
+        "fingerprint": {
+          "environment_sha256": null,
+          "source_sha256": "8d7c10a244393b9812065a405dec5229854c82db0c7453a4504409f74179d56c",
+          "upstream_revision": null
+        },
         "message": "Lean check passed.",
         "policy": "statement_formal",
         "scan": {
@@ -46,7 +49,15 @@
           "summary": "sorry=0, admit=0, axiom=0, opaque=0, unsafe=0",
           "unsafe_count": 0
         },
-        "status": "passed"
+        "schema_version": 1,
+        "status": "passed",
+        "subject": {
+          "declaration_name": null,
+          "module": "PositiveDefiniteTreeLattice.Main.LatticeFoundations.Defs.vertexVector",
+          "repo_file_path": "PositiveDefiniteTreeLattice/Main/LatticeFoundations/Defs/vertexVector.lean",
+          "repo_kind": "native",
+          "stage": "statement"
+        }
       },
       "code": "-- lean-constellation: managed-imports-begin\nimport PositiveDefiniteTreeLattice.Main.LatticeFoundations.Prelude\n-- lean-constellation: managed-imports-end\n\n-- lean-constellation: declaration-source-begin\n\n/--\n# lean-constellation target: `vertexVector`\n\nFor a type `V` with decidable equality and a vertex `v : V`, `vertexVector v : V → ℤ` is the\ncoordinate function sending a vertex `u` to `1` when `u = v` and to `0` otherwise.\n\n## Sources\n\n- Source `formal_target.lean`, lines 13–15\n-/\ndef PositiveDefiniteTreeLattice.Internal.historicalVertexVector {V : Type*} [DecidableEq V]\n    (v : V) : V → ℤ :=\n  fun u ↦ if u = v then 1 else 0\n"
     },

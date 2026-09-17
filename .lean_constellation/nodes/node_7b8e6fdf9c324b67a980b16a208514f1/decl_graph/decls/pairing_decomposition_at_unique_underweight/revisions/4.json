@@ -1,12 +1,10 @@
 {
   "change": {
-    "anticipated_proof_dep_names": [],
-    "anticipated_statement_dep_names": [],
     "base_revision": 3,
     "kind": "update",
     "objective": "Preserve revision 3's accepted Statement and Proof NL for solution.tex:220–226 and construct the entire Proof Formal self-contained; assume no prior formal proof fragment exists. First rebuild the reviewed coordinate conversion: instantiate Matrix.dotProduct_mulVec and Matrix.mulVec_apply on the ambient nonroot subtype and every canonical rootedChildComponent, expand ordered sums using Finset.mul_sum/Finset.sum_mul, transport ℤ sums to ℚ with Int.cast_sum/Int.cast_add/Int.cast_mul, and unfold the public treePairing and rootedGram definitions or use treePairing_vertexVector_vertexVector so the rational quadratic forms equal the casts of the exact integral pairing terms. Then apply rootedNonroot_quadratic_eq_sum_childQuadratics@1 directly to perform the complete dependent R × R to sigma child-family reindex and diagonal-fiber split. Finally combine the root row/column terms and normalize casts to prove the frozen integral equation (4). Keep exactly the existing R subtype, rootedChildren sigma index, inverse equivalence, child Gram instances, restriction vectors, rootedChildRoot, Statement, Proof NL, and equality orientation. Do not rely on unavailable artifacts, recreate the provider's reindex proof, introduce any helper/wrapper/representation, add assumptions, weaken the result, or raise heartbeats.",
     "require_target_state_satisfied": true,
-    "reset_to_state": "proof_planned",
+    "start_stage": "proof_formal",
     "summary": "Revision 4 preserved the accepted Statement and Proof NL and attempted a complete self-contained Proof Formal. The newly public rootedNonroot_quadratic_eq_sum_childQuadratics directly closes the dependent nonroot/nonroot R × R quadratic split with the required canonical sigma indices and instances. The remaining consumer-side goal is the root/nonroot cross-term expansion needed for equation (4): reindex the ambient nonroot root-row/root-column linear sums through rootedChildComponentsEquivNonroot, then collapse each child fiber to the negative coefficient at rootedChildRoot so the combined coefficient becomes -(2*p+1)*s_c. Existing rootedGram_root_rootedChildComponent_support is component-local; the visible public boundary does not package the ambient nonroot reindex plus child-fiber linear contraction. Reconstructing that dependent reindex locally is the same prohibited sigma/block infrastructure excluded by contract v3. Revision 4 remains proof_planned, useful, and not superseded. Retry requires either a public ready/fresh RootedCapacity root/nonroot linear/quadratic expansion theorem with identical R, sigma index, equivalence orientation, coefficient pullback, child instances, and rootedChildRoot convention, or explicit Coordinator authorization and boundary revision permitting the local infrastructure.",
     "target_state": "proved"
   },
@@ -381,6 +379,11 @@
           "schema_version": 2,
           "summary": "Diagnostics returned 1 items"
         },
+        "fingerprint": {
+          "environment_sha256": null,
+          "source_sha256": "480a470e27a5584b886ea4ef17ab778704b28493fad9f5698f1691fd9229e3a4",
+          "upstream_revision": null
+        },
         "message": "Lean check passed.",
         "policy": "statement_formal",
         "scan": {
@@ -405,7 +408,15 @@
           "summary": "sorry=1, admit=0, axiom=0, opaque=0, unsafe=0",
           "unsafe_count": 0
         },
-        "status": "passed"
+        "schema_version": 1,
+        "status": "passed",
+        "subject": {
+          "declaration_name": null,
+          "module": "PositiveDefiniteTreeLattice.Main.IrreducibleVertex.Lemmas.pairing_decomposition_at_unique_underweight",
+          "repo_file_path": "PositiveDefiniteTreeLattice/Main/IrreducibleVertex/Lemmas/pairing_decomposition_at_unique_underweight.lean",
+          "repo_kind": "native",
+          "stage": "statement"
+        }
       },
       "code": "-- lean-constellation: managed-imports-begin\nimport PositiveDefiniteTreeLattice.Main.IrreducibleVertex.Prelude\nimport Mathlib.Algebra.BigOperators.Group.Finset.Defs\nimport Mathlib.Combinatorics.SimpleGraph.Acyclic\nimport Mathlib.Combinatorics.SimpleGraph.Connectivity.Connected\n-- lean-constellation: managed-imports-end\n\n-- lean-constellation: declaration-source-begin\n\n/--\n# lean-constellation target: `pairing_decomposition_at_unique_underweight`\n\nLet `V` be a finite type with decidable equality, let `G : SimpleGraph V` have decidable adjacency\nand satisfy `h_tree : G.IsTree`, let `weight : V → ℤ`, and let `v : V` and `z : V → ℤ`. Put `p := z\nv`. For each canonical child `c : {c // c ∈ rootedChildren G h_tree v v}`, use the direct\nrestriction `y_c : rootedChildComponent G v c.1 → ℤ` given by `y_c x = z (x : V)`, and put `s_c :=\ny_c (rootedChildRoot G v c.1)`. Then\n\n`treePairing G weight z z + treePairing G weight (vertexVector v) z`\n\nequals\n\n`weight v * p * (p + 1) + ∑ c : {c // c ∈ rootedChildren G h_tree v v}, (treePairing\n(rootedChildComponent G v c.1).toSimpleGraph (fun x => weight (x : V)) y_c y_c - (2 * p + 1) *\ns_c)`.\n\nHere the finite sum is over exactly the provider-owned rooted-child subtype, and the component\npairing and root value use the direct restriction above.\n\n## Sources\n\n- Source `solution.tex`, lines 220–226\n\n## Statement dependencies\n\n- `Finset.sum` from `Mathlib.Algebra.BigOperators.Group.Finset.Defs`\n- `SimpleGraph.IsTree` from `Mathlib.Combinatorics.SimpleGraph.Acyclic`\n- `SimpleGraph.ConnectedComponent.toSimpleGraph` from\n  `Mathlib.Combinatorics.SimpleGraph.Connectivity.Connected`\n- `Main.LatticeFoundations::treePairingAnchor` → `PositiveDefiniteTreeLattice.treePairing` from\n  `PositiveDefiniteTreeLattice.Main.LatticeFoundations.Defs.treePairingAnchor`\n- `Main.LatticeFoundations::vertexVectorAnchor` → `PositiveDefiniteTreeLattice.vertexVector` from\n  `PositiveDefiniteTreeLattice.Main.LatticeFoundations.Defs.vertexVectorAnchor`\n- `Main.RootedCapacity::rootedChildComponent` → `rootedChildComponent` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildComponent`\n- `Main.RootedCapacity::rootedChildRoot` → `rootedChildRoot` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildRoot`\n- `Main.RootedCapacity::rootedChildren` → `rootedChildren` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildren`\n-/\ntheorem PositiveDefiniteTreeLattice.pairing_decomposition_at_unique_underweight\n    {V : Type*} [Fintype V] [DecidableEq V] (G : SimpleGraph V) [DecidableRel G.Adj]\n    (h_tree : G.IsTree) (weight : V → ℤ) (v : V) (z : V → ℤ) :\n    treePairing G weight z z + treePairing G weight (vertexVector v) z =\n      weight v * z v * (z v + 1) +\n        ∑ c : {c // c ∈ rootedChildren G h_tree v v},\n          letI : Fintype (rootedChildComponent G v c.1) := Fintype.ofFinite _\n          letI : DecidableRel (rootedChildComponent G v c.1).toSimpleGraph.Adj := by\n            intro x y\n            change Decidable ((G.deleteEdges {s(v, c.1)}).Adj (x : V) (y : V))\n            infer_instance\n          treePairing (rootedChildComponent G v c.1).toSimpleGraph\n              (fun x => weight (x : V)) (fun x => z (x : V)) (fun x => z (x : V)) -\n            (2 * z v + 1) * z (rootedChildRoot G v c.1) := by\n  sorry\n"
     },

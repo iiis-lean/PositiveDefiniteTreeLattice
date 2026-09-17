@@ -1,18 +1,13 @@
 {
-  "change_summaries": {},
   "committed_at": "2026-07-29T20:00:25Z",
   "created_at": "2026-07-29T19:44:47Z",
-  "discard_reason": null,
   "discarded_at": null,
   "discarded_by": null,
-  "discarded_created_decl_names": [],
-  "discarded_restored_decl_revisions": {},
-  "discarded_revision_refs": [],
   "execution_completed_at": "2026-07-29T19:58:20Z",
   "execution_reason": null,
   "execution_result_kind": "success",
   "node_path": "Main.LatticeFoundations",
-  "objective": "Establish fresh compatible foundation anchors without changing mathematics: recapture the historical treePairing and vertexVector records under distinct PositiveDefiniteTreeLattice.Internal historical names, while creating fresh public declaration records treePairingAnchor and vertexVectorAnchor whose compiler-confirmed Lean names are exactly PositiveDefiniteTreeLattice.treePairing and PositiveDefiniteTreeLattice.vertexVector and whose definitions exactly match formal_target.lean lines 7–15. This frees the required interface identities and supplies committed providers for later consumer rewiring, with no aliases.",
+  "objective": "Round 65 records compatible foundation anchors without changing mathematics: historical `treePairing` and `vertexVector` use distinct `PositiveDefiniteTreeLattice.Internal` names, while fresh public `treePairingAnchor` and `vertexVectorAnchor` own the exact `PositiveDefiniteTreeLattice.treePairing` and `PositiveDefiniteTreeLattice.vertexVector` identities matching formal_target.lean lines 7–15. The records retain their source semantics and have no aliases.",
   "plan_closeout_acknowledged_at": "2026-07-29T20:00:25Z",
   "plan_closeout_acknowledged_by": "a_60a257a14c4c469b9e17805606fa5ea4",
   "result_kind": "success",
@@ -44,5 +39,5 @@
   "started_at": "2026-07-29T19:51:25Z",
   "status": "committed",
   "strategy_id": "strategy_2638883d005249d6a0ca57c50614cfed",
-  "summary": "The fresh-anchor strategy made its required foundational progress. The historical treePairing and vertexVector records now use nonconflicting PositiveDefiniteTreeLattice.Internal names, while fresh public treePairingAnchor and vertexVectorAnchor records own the exact required PositiveDefiniteTreeLattice.treePairing and PositiveDefiniteTreeLattice.vertexVector identities. All four definitions reached declared state and passed graph_proved target satisfaction with source semantics unchanged and no aliases. Eight existing downstream declarations still reference the historical anchors and therefore require staged rewiring; this is intentional dependency-closure work, not a blocker. The next round should create the fresh Irreducible anchor against treePairingAnchor while updating the independent additivity, symmetry, and vertex-vector theorem layer to consume the fresh foundations. The two historical foundation records remain explicit cleanup targets after rewiring."
+  "summary": "The fresh-anchor strategy made its required foundational progress. The historical treePairing and vertexVector records now use nonconflicting PositiveDefiniteTreeLattice.Internal names, while fresh public treePairingAnchor and vertexVectorAnchor records own the exact required PositiveDefiniteTreeLattice.treePairing and PositiveDefiniteTreeLattice.vertexVector identities. All four definitions reached declared state and passed graph_proved target satisfaction with source semantics unchanged and no aliases. Eight existing downstream declarations still reference the historical anchors and therefore require staged rewiring; this is intentional dependency-closure work, not a blocker. The two historical foundation records remain explicit cleanup targets pending completion of consumer rewiring."
 }

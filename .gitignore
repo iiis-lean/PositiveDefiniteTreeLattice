@@ -6,12 +6,9 @@
 /.lake/
 /.agent_runtime/
 /.runtime/
+/.lean_constellation/work/
 /.lean_constellation/snapshots/
-/.lean_constellation/checkpoints/
-/.lean_constellation/locks/
 /.lean_constellation/.locks/
-/.lean_constellation/staging/
-/.lean_constellation/publication/remote_receipts/
 /.env
 /.env.*
 !/.env.example

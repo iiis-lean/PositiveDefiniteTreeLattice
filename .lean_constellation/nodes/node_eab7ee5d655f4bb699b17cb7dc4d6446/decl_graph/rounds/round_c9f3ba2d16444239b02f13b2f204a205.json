@@ -1,18 +1,13 @@
 {
-  "change_summaries": {},
   "committed_at": "2026-07-30T19:32:26Z",
   "created_at": "2026-07-30T19:19:03Z",
-  "discard_reason": null,
   "discarded_at": null,
   "discarded_by": null,
-  "discarded_created_decl_names": [],
-  "discarded_restored_decl_revisions": {},
-  "discarded_revision_refs": [],
   "execution_completed_at": "2026-07-30T19:30:27Z",
   "execution_reason": "The new ordinary-cardinal induction still cannot be formalized within the fixed heartbeat budget at its required dependent child-component specialization and exact rootedChildCapacitySum normalization. The route needs a planned instance-stable induction/sum interface; increasing heartbeats is prohibited.",
   "execution_result_kind": "blocked",
   "node_path": "Main.RootedCapacity",
-  "objective": "Create and prove the private Nat-indexed rooted capacity upper bound that avoids polymorphic strong-induction normalization.",
+  "objective": "Round 58 concerns the private Nat-indexed rooted capacity upper bound that avoids polymorphic strong-induction normalization while retaining the valid mathematical induction route.",
   "plan_closeout_acknowledged_at": "2026-07-30T19:32:26Z",
   "plan_closeout_acknowledged_by": "a_a93b40977f574bad89528358fa89e022",
   "result_kind": "blocked",
@@ -29,5 +24,6 @@
   "started_at": "2026-07-30T19:20:16Z",
   "status": "committed",
   "strategy_id": "strategy_fc60f40a331d4f63bd19e22f0eec7473",
-  "summary": "Round 58 captured the size-indexed upper-bound theorem and Proof NL but did not prove it. The mathematical induction route is still valid; the remaining obstacle is the exact dependent child-capacity sum normalization, now repeated across two proof shapes. The strategy remains viable but should not retry either parent. Next action is one private instance-stable aggregate-sum theorem in the existing rootedChildCapacitySum convention; afterward retry this size-indexed theorem, then the public interface. The graph is at 36 declarations, so later hygiene should remove obsolete private normalization wrappers if the final required interfaces push beyond the contract's approximate scale."
+  "summary": "Round 58 captured the size-indexed upper-bound theorem and Proof NL but did not prove it. The mathematical induction route remains valid; the remaining obstacle is the exact dependent child-capacity sum normalization, repeated across two proof shapes. The strategy remains viable, and the representation issue blocks both parent proofs. The graph is at 36 declarations; obsolete private normalization wrappers are the relevant later hygiene concern if the final required interfaces push beyond the contract's approximate scale.",
+  "execution_constraints": "Create and prove one instance-stable aggregate-sum theorem in the existing rootedChildCapacitySum convention; afterward retry this size-indexed theorem and then the public interface. Do not retry either parent before the aggregate theorem is proved."
 }

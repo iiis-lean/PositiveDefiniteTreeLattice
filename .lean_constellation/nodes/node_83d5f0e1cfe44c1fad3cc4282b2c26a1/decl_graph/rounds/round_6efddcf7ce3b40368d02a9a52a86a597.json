@@ -1,32 +1,13 @@
 {
-  "change_summaries": {},
   "committed_at": null,
   "created_at": "2026-07-29T20:52:06Z",
-  "discard_reason": "The four-record cleanup batch is not admissible: planning deletion revealed current inbound references from Main.RootedCapacity to historical treePairing and vertexVector, including rootedGram, treePairing_vertexVector_vertexVector, and the RootedCapacity contract dependency. Split out only the independently deletable historical Irreducible and norm-one theorem records; preserve the two externally referenced records pending Coordinator/provider migration.",
   "discarded_at": "2026-07-29T20:52:37Z",
   "discarded_by": "a_60a257a14c4c469b9e17805606fa5ea4",
-  "discarded_created_decl_names": [],
-  "discarded_restored_decl_revisions": {
-    "Irreducible": 4,
-    "irreducible_of_pairing_self_eq_one": 3
-  },
-  "discarded_revision_refs": [
-    {
-      "change_id": "irreducible_of_pairing_self_eq_one@rev:4",
-      "decl_name": "irreducible_of_pairing_self_eq_one",
-      "revision": 4
-    },
-    {
-      "change_id": "Irreducible@rev:5",
-      "decl_name": "Irreducible",
-      "revision": 5
-    }
-  ],
   "execution_completed_at": null,
   "execution_reason": null,
   "execution_result_kind": null,
   "node_path": "Main.LatticeFoundations",
-  "objective": "Remove the four superseded historical declaration records after their source-exact capabilities have been recreated by committed fresh anchors and every supporting consumer has been rewired. Delete only treePairing, vertexVector, Irreducible, and irreducible_of_pairing_self_eq_one records whose current Lean identities are internal historical names; preserve formal_target.lean lines 7–22 and solution.tex lines 19–31 through treePairingAnchor, vertexVectorAnchor, IrreducibleAnchor, and irreducibleOfPairingSelfEqOneAnchor. Delete preview confirms the affected closure is exactly these four records, with no live consumer or release-protected declaration.",
+  "objective": "The planned cleanup scope is exactly the four superseded historical declaration records `treePairing`, `vertexVector`, `Irreducible`, and `irreducible_of_pairing_self_eq_one` whose current Lean identities are internal historical names. Their source-exact capabilities remain represented by `treePairingAnchor`, `vertexVectorAnchor`, `IrreducibleAnchor`, and `irreducibleOfPairingSelfEqOneAnchor`, preserving formal_target.lean lines 7–22 and solution.tex lines 19–31; the preview identifies no live consumer or release-protected declaration in this closure.",
   "plan_closeout_acknowledged_at": null,
   "plan_closeout_acknowledged_by": null,
   "result_kind": null,

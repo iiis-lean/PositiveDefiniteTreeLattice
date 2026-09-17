@@ -1,17 +1,13 @@
 {
   "change": {
-    "anticipated_proof_dep_names": [],
-    "anticipated_statement_dep_names": [
-      "rootedChildComponent",
-      "rootedChildren"
-    ],
     "base_revision": 1,
     "kind": "update",
-    "objective": "Preserve the accepted SourceIndex b_0009 / solution.tex lines 48–61 formal statement exactly and replace the previously circular local path argument with the new provider boundary. Use PositiveDefiniteTreeLattice.uniquePath_eq_append_through_cut from Main.TreePathSeparation: extract hpc : G.Adj parent c and the ambient root-to-parent path witness from hc : c ∈ rootedChildren G hG ρ parent; prove that witness is reachable in G.deleteEdges {s(parent,c)} because the simple root-to-parent path cannot traverse its terminal child edge; obtain hx : (G.deleteEdges {s(parent,c)}).Reachable c (x : V) directly from x.property/component membership; apply the provider theorem; unfold PositiveDefiniteTreeLattice.uniquePath so its chosen paths are definitionally the hG.existsUnique_path choices in the retained conclusion. Do not reprove generic support separation, change the statement, add hypotheses, or alter indices/coercions. This proved theorem is the required proof dependency for rootedChildren_rootedChildComponent@1.",
+    "objective": "Revision 2 establishes the accepted public path-decomposition equality from SourceIndex b_0009 / solution.tex lines 48–61 without changing its statement, hypotheses, indices, or coercions. Its proof is the provider-backed factorization `PositiveDefiniteTreeLattice.uniquePath_eq_append_through_cut`, supplied with root-side reachability after deleting the exact parent–child edge and child-side reachability from component membership; unfolding `uniquePath` identifies the provider's canonical paths with the retained `hG.existsUnique_path` choices. The theorem supplies the required dependency for `rootedChildren_rootedChildComponent@1`.",
     "require_target_state_satisfied": true,
-    "reset_to_state": "declared",
+    "start_stage": "proof_nl",
     "summary": "Updated rootedChildComponent_path_decomposition without changing its accepted b_0009 statement and reached proved state. Proof NL and Proof Formal passed using Main.TreePathSeparation's provider-backed cut path factorization after local construction of the deleted-graph reachability hypotheses. The revision is graph-proved and now closes the exact dependency previously blocking rootedChildren_rootedChildComponent; no provider mismatch, statement drift, or superseded graph branch remains.",
-    "target_state": "proved"
+    "target_state": "proved",
+    "execution_constraints": "Keep the accepted statement, indices, and coercions unchanged. Extract `hpc` and the root-to-parent witness from `hc`, establish reachability after deleting `{s(parent,c)}` by showing the witness avoids that edge, derive child-side reachability from `x.property`, apply `uniquePath_eq_append_through_cut`, and unfold `uniquePath` only to identify canonical path choices. Do not reprove generic support separation or add hypotheses."
   },
   "lean_decl_name": "rootedChildComponent_path_decomposition",
   "proof": {
@@ -110,6 +106,11 @@
           "schema_version": 2,
           "summary": "Diagnostics returned 0 items"
         },
+        "fingerprint": {
+          "environment_sha256": null,
+          "source_sha256": "d7da9bae468cb7ff48225dfe5549ff559d54f75d40f07f563df18d82ae404301",
+          "upstream_revision": null
+        },
         "message": "Lean check passed.",
         "policy": "proof_formal",
         "scan": {
@@ -127,7 +128,15 @@
           "summary": "sorry=0, admit=0, axiom=0, opaque=0, unsafe=0",
           "unsafe_count": 0
         },
-        "status": "passed"
+        "schema_version": 1,
+        "status": "passed",
+        "subject": {
+          "declaration_name": null,
+          "module": "PositiveDefiniteTreeLattice.Main.RootedCapacity.Theorems.rootedChildComponent_path_decomposition",
+          "repo_file_path": "PositiveDefiniteTreeLattice/Main/RootedCapacity/Theorems/rootedChildComponent_path_decomposition.lean",
+          "repo_kind": "native",
+          "stage": "proof"
+        }
       },
       "code": "-- lean-constellation: managed-imports-begin\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Prelude\nimport Mathlib.Combinatorics.SimpleGraph.Acyclic\nimport Mathlib.Combinatorics.SimpleGraph.Connectivity.Connected\nimport Mathlib.Combinatorics.SimpleGraph.Walk.Maps\nimport Mathlib.Combinatorics.SimpleGraph.Walk.Operations\nimport Mathlib.Data.List.Nodup\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildComponent\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildren\n-- lean-constellation: managed-imports-end\n\n-- lean-constellation: declaration-source-begin\n\n/--\n# lean-constellation target: `rootedChildComponent_path_decomposition`\n\nFor a finite vertex type `V` with decidable equality, a simple graph `G : SimpleGraph V`, a tree\nproof `hG : G.IsTree`, an ambient root `ρ : V`, vertices `parent c : V`, a hypothesis `hc : c ∈\nrootedChildren G hG ρ parent`, and `x : rootedChildComponent G parent c`, the chosen unique ambient\npath from `ρ` to `(x : V)` factors through `c`.  More precisely, the unique path\n`(hG.existsUnique_path ρ (x : V)).choose` is the concatenation of `(hG.existsUnique_path ρ\nc).choose` with `(hG.existsUnique_path c (x : V)).choose`, with the shared endpoint `c` and\nendpoints `ρ` and `(x : V)` preserved.  This is a path-decomposition equality, not merely a\nreachability or support-membership assertion; it assumes no weight, admissibility, or matrix\ncondition.\n\n## Sources\n\n- Source `solution.tex`, lines 48–61\n\n## Statement dependencies\n\n- `SimpleGraph.IsTree` from `Mathlib.Combinatorics.SimpleGraph.Acyclic`\n- `SimpleGraph.IsTree.existsUnique_path` from `Mathlib.Combinatorics.SimpleGraph.Acyclic`\n- `SimpleGraph.Walk.append` from `Mathlib.Combinatorics.SimpleGraph.Walk.Operations`\n- `Main.RootedCapacity::rootedChildComponent` → `rootedChildComponent` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildComponent`\n- `Main.RootedCapacity::rootedChildren` → `rootedChildren` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildren`\n\n## Proof outline\n\nUnfold `rootedChildren` in `hc`. Its filtered-membership witness supplies an oriented edge `hpc :\nG.Adj parent c`, a walk `q : G.Walk ρ parent`, and the equality identifying the chosen `ρ`–`c` path\nwith `q.concat hpc`.\n\nEstablish `hroot : (G.deleteEdges {s(parent, c)}).Reachable ρ parent` by retaining the\nroot-to-parent walk `q` after the cut. The equality from `hc` makes `q.concat hpc` the chosen simple\ntree path from `ρ` to `c`. Hence its root-to-parent prefix cannot traverse the terminal undirected\nedge `s(parent,c)`: such a traversal would force `c` to occur in the prefix and again as the\nterminal endpoint after concatenation, contradicting simplicity. Transport the resulting\nedge-avoidance of `q` to a walk in `G.deleteEdges {s(parent,c)}`, giving the required reachability.\n\nFor `hx : (G.deleteEdges {s(parent,c)}).Reachable c (x : V)`, unfold `rootedChildComponent`. The\nsubtype/component-membership fact `x.property` says that `x` belongs to the connected component\nrepresented by `connectedComponentMk c`; convert that membership (equivalently, equality of the two\nconnected-component representatives) directly to deleted-graph reachability from `c` to `(x : V)`.\n\nApply `PositiveDefiniteTreeLattice.uniquePath_eq_append_through_cut G hG ρ parent c (x : V) hpc\nhroot hx`. Finally unfold `PositiveDefiniteTreeLattice.uniquePath`; its `Classical.choose` paths are\ndefinitionally the `(hG.existsUnique_path _ _).choose` walks occurring in the accepted statement, so\nthe provider conclusion closes the exact retained equality by `simpa`.\n\n## Proof sources\n\n- Source `solution.tex`, lines 48–61\n\n## Proof dependencies\n\n- `SimpleGraph.ConnectedComponent.connectedComponentMk_mem` from\n  `Mathlib.Combinatorics.SimpleGraph.Connectivity.Connected`\n- `SimpleGraph.ConnectedComponent.reachable_of_mem_supp` from\n  `Mathlib.Combinatorics.SimpleGraph.Connectivity.Connected`\n- `SimpleGraph.Walk.toDeleteEdges` from `Mathlib.Combinatorics.SimpleGraph.Walk.Maps`\n- `SimpleGraph.Walk.edges_concat` from `Mathlib.Combinatorics.SimpleGraph.Walk.Operations`\n- `List.nodup_concat` from `Mathlib.Data.List.Nodup`\n- `Main.RootedCapacity::rootedChildComponent` → `rootedChildComponent` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildComponent`\n- `Main.RootedCapacity::rootedChildren` → `rootedChildren` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildren`\n- `Main.TreePathSeparation::uniquePath` → `uniquePath` from\n  `PositiveDefiniteTreeLattice.Main.TreePathSeparation.Defs.uniquePath`\n- `Main.TreePathSeparation::uniquePath_eq_append_through_cut` →\n  `PositiveDefiniteTreeLattice.uniquePath_eq_append_through_cut` from\n  `PositiveDefiniteTreeLattice.Main.TreePathSeparation.Theorems.uniquePath_eq_append_through_cut`\n-/\ntheorem rootedChildComponent_path_decomposition {V : Type*} [Fintype V] [DecidableEq V]\n    (G : SimpleGraph V) [DecidableRel G.Adj] (hG : G.IsTree) (ρ parent c : V)\n    (hc : c ∈ rootedChildren G hG ρ parent) (x : rootedChildComponent G parent c) :\n    (hG.existsUnique_path ρ (x : V)).choose =\n      (hG.existsUnique_path ρ c).choose.append\n        (hG.existsUnique_path c (x : V)).choose := by\n  classical\n  simp only [rootedChildren, Finset.mem_filter, Finset.mem_univ, true_and] at hc\n  obtain ⟨hpc, q, hq, hqeq⟩ := hc\n  have hpath : (q.concat hpc).IsPath := by\n    rw [← hqeq]\n    exact (hG.existsUnique_path ρ c).choose_spec.1\n  have havoids : ∀ e, e ∈ q.edges → e ∉ ({s(parent, c)} : Set (Sym2 V)) := by\n    intro e he hes\n    rw [Set.mem_singleton_iff] at hes\n    subst e\n    have hnodup : (q.edges.concat s(parent, c)).Nodup := by\n      simpa only [SimpleGraph.Walk.edges_concat] using hpath.edges_nodup\n    exact (List.nodup_concat q.edges s(parent, c)).mp hnodup |>.1 he\n  have hroot : (G.deleteEdges {s(parent, c)}).Reachable ρ parent := by\n    exact ⟨q.toDeleteEdges {s(parent, c)} havoids⟩\n  have hx : (G.deleteEdges {s(parent, c)}).Reachable c (x : V) := by\n    apply SimpleGraph.ConnectedComponent.reachable_of_mem_supp\n    · exact SimpleGraph.ConnectedComponent.connectedComponentMk_mem\n    · change (x : V) ∈ (G.deleteEdges {s(parent, c)}).connectedComponentMk c\n      exact x.property\n  simpa only [uniquePath] using\n    PositiveDefiniteTreeLattice.uniquePath_eq_append_through_cut G hG ρ parent c (x : V)\n      hpc hroot hx\n"
     },
@@ -217,6 +226,11 @@
           "schema_version": 2,
           "summary": "Diagnostics returned 1 items"
         },
+        "fingerprint": {
+          "environment_sha256": null,
+          "source_sha256": "8cc90d6338926cadbbcb05c9fd1634504ec408fd06331e16091b0f4f420f0d86",
+          "upstream_revision": null
+        },
         "message": "Lean check passed.",
         "policy": "statement_formal",
         "scan": {
@@ -241,7 +255,15 @@
           "summary": "sorry=1, admit=0, axiom=0, opaque=0, unsafe=0",
           "unsafe_count": 0
         },
-        "status": "passed"
+        "schema_version": 1,
+        "status": "passed",
+        "subject": {
+          "declaration_name": null,
+          "module": "PositiveDefiniteTreeLattice.Main.RootedCapacity.Theorems.rootedChildComponent_path_decomposition",
+          "repo_file_path": "PositiveDefiniteTreeLattice/Main/RootedCapacity/Theorems/rootedChildComponent_path_decomposition.lean",
+          "repo_kind": "native",
+          "stage": "statement"
+        }
       },
       "code": "-- lean-constellation: managed-imports-begin\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Prelude\nimport Mathlib.Combinatorics.SimpleGraph.Acyclic\nimport Mathlib.Combinatorics.SimpleGraph.Walk.Operations\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildComponent\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildren\n-- lean-constellation: managed-imports-end\n\n-- lean-constellation: declaration-source-begin\n\n/--\n# lean-constellation target: `rootedChildComponent_path_decomposition`\n\nFor a finite vertex type `V` with decidable equality, a simple graph `G : SimpleGraph V`, a tree\nproof `hG : G.IsTree`, an ambient root `ρ : V`, vertices `parent c : V`, a hypothesis `hc : c ∈\nrootedChildren G hG ρ parent`, and `x : rootedChildComponent G parent c`, the chosen unique ambient\npath from `ρ` to `(x : V)` factors through `c`.  More precisely, the unique path\n`(hG.existsUnique_path ρ (x : V)).choose` is the concatenation of `(hG.existsUnique_path ρ\nc).choose` with `(hG.existsUnique_path c (x : V)).choose`, with the shared endpoint `c` and\nendpoints `ρ` and `(x : V)` preserved.  This is a path-decomposition equality, not merely a\nreachability or support-membership assertion; it assumes no weight, admissibility, or matrix\ncondition.\n\n## Sources\n\n- Source `solution.tex`, lines 48–61\n\n## Statement dependencies\n\n- `SimpleGraph.IsTree` from `Mathlib.Combinatorics.SimpleGraph.Acyclic`\n- `SimpleGraph.IsTree.existsUnique_path` from `Mathlib.Combinatorics.SimpleGraph.Acyclic`\n- `SimpleGraph.Walk.append` from `Mathlib.Combinatorics.SimpleGraph.Walk.Operations`\n- `Main.RootedCapacity::rootedChildComponent` → `rootedChildComponent` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildComponent`\n- `Main.RootedCapacity::rootedChildren` → `rootedChildren` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildren`\n-/\ntheorem rootedChildComponent_path_decomposition {V : Type*} [Fintype V] [DecidableEq V]\n    (G : SimpleGraph V) [DecidableRel G.Adj] (hG : G.IsTree) (ρ parent c : V)\n    (hc : c ∈ rootedChildren G hG ρ parent) (x : rootedChildComponent G parent c) :\n    (hG.existsUnique_path ρ (x : V)).choose =\n      (hG.existsUnique_path ρ c).choose.append\n        (hG.existsUnique_path c (x : V)).choose := by\n  sorry\n"
     },

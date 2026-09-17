@@ -1,13 +1,8 @@
 {
-  "change_summaries": {},
   "committed_at": "2026-08-07T06:46:17Z",
   "created_at": "2026-08-07T06:15:22Z",
-  "discard_reason": null,
   "discarded_at": null,
   "discarded_by": null,
-  "discarded_created_decl_names": [],
-  "discarded_restored_decl_revisions": {},
-  "discarded_revision_refs": [],
   "execution_completed_at": "2026-08-07T06:40:29Z",
   "execution_reason": "Step proof_formal_worker_419a5f5804a84c2ebcbc067554c0cdb7 failed before DeclGraph round completion: stream disconnected before completion: error sending request for url (https://chatgpt.com/backend-api/codex/responses)",
   "execution_result_kind": "failed",

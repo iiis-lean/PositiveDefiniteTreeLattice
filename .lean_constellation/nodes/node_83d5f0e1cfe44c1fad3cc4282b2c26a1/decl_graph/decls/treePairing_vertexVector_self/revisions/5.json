@@ -1,20 +1,13 @@
 {
   "change": {
-    "anticipated_proof_dep_names": [
-      "treePairingAnchor",
-      "vertexVectorAnchor"
-    ],
-    "anticipated_statement_dep_names": [
-      "treePairingAnchor",
-      "vertexVectorAnchor"
-    ],
     "base_revision": 4,
     "kind": "update",
-    "objective": "Retain the accepted rewired statement and proof plan for PositiveDefiniteTreeLattice.treePairing_vertexVector_self unchanged and rerun only Proof Formal after the prior runtime capture-integrity failure. The exact vertex-vector self-pairing equation, binders, assumptions, fresh-anchor dependencies treePairingAnchor and vertexVectorAnchor, public visibility, and source semantics remain fixed. Recapture the existing proof against an unchanged declaration-owned file, introduce no helper or alias, and restore proved satisfaction for graph-proved weighted-tree basis API.",
+    "objective": "Revision 5 records the proved public vertex-vector self-pairing theorem `PositiveDefiniteTreeLattice.treePairing_vertexVector_self`: the unit coordinate function's pairing with itself equals its vertex weight, with the exact binders, assumptions, fresh `treePairingAnchor` and `vertexVectorAnchor` dependencies, public visibility, and source semantics. The theorem supplies the weighted-tree basis API.",
     "require_target_state_satisfied": true,
-    "reset_to_state": "proof_planned",
+    "start_stage": "proof_formal",
     "summary": "Successfully reran only Proof Formal for the unchanged rewired vertex-vector self-pairing theorem. PositiveDefiniteTreeLattice.treePairing_vertexVector_self reached proved and graph_proved satisfaction passed against fresh treePairingAnchor and vertexVectorAnchor; the exact equation, proof, and public visibility were preserved. The runtime integrity issue is resolved.",
-    "target_state": "proved"
+    "target_state": "proved",
+    "execution_constraints": "Run only Proof Formal against the unchanged declaration-owned file after the prior capture-integrity failure; preserve the accepted statement and proof plan, recapture against fresh `treePairingAnchor` and `vertexVectorAnchor`, and introduce no helper or alias."
   },
   "lean_decl_name": "PositiveDefiniteTreeLattice.treePairing_vertexVector_self",
   "proof": {
@@ -77,6 +70,11 @@
           "schema_version": 2,
           "summary": "Diagnostics returned 0 items"
         },
+        "fingerprint": {
+          "environment_sha256": null,
+          "source_sha256": "3dda98a25592c801287d021a8deffb3bc6b1b2ec1a604e328b37ce7776ef4673",
+          "upstream_revision": null
+        },
         "message": "Lean check passed.",
         "policy": "proof_formal",
         "scan": {
@@ -94,7 +92,15 @@
           "summary": "sorry=0, admit=0, axiom=0, opaque=0, unsafe=0",
           "unsafe_count": 0
         },
-        "status": "passed"
+        "schema_version": 1,
+        "status": "passed",
+        "subject": {
+          "declaration_name": null,
+          "module": "PositiveDefiniteTreeLattice.Main.LatticeFoundations.Theorems.treePairing_vertexVector_self",
+          "repo_file_path": "PositiveDefiniteTreeLattice/Main/LatticeFoundations/Theorems/treePairing_vertexVector_self.lean",
+          "repo_kind": "native",
+          "stage": "proof"
+        }
       },
       "code": "-- lean-constellation: managed-imports-begin\nimport PositiveDefiniteTreeLattice.Main.LatticeFoundations.Prelude\nimport Mathlib.Algebra.BigOperators.Group.Finset.Basic\nimport Mathlib.Combinatorics.SimpleGraph.Finite\nimport PositiveDefiniteTreeLattice.Main.LatticeFoundations.Defs.treePairingAnchor\nimport PositiveDefiniteTreeLattice.Main.LatticeFoundations.Defs.vertexVectorAnchor\n-- lean-constellation: managed-imports-end\n\n-- lean-constellation: declaration-source-begin\n\n/--\n# lean-constellation target: `treePairing_vertexVector_self`\n\nFor a finite type `V` with decidable equality, a simple graph `G : SimpleGraph V` with decidable\nadjacency, an integer-valued weight function `weight : V → ℤ`, and a vertex `v : V`, the\nself-pairing of the unit coordinate function is its vertex weight:\n\n`treePairing G weight (vertexVector v) (vertexVector v) = weight v`.\n\n## Sources\n\n- Source `formal_target.lean`, lines 7–15\n- Source `problem.tex`, lines 13–23\n\n## Statement dependencies\n\n- `Main.LatticeFoundations::treePairingAnchor` → `PositiveDefiniteTreeLattice.treePairing` from\n  `PositiveDefiniteTreeLattice.Main.LatticeFoundations.Defs.treePairingAnchor`\n- `Main.LatticeFoundations::vertexVectorAnchor` → `PositiveDefiniteTreeLattice.vertexVector` from\n  `PositiveDefiniteTreeLattice.Main.LatticeFoundations.Defs.vertexVectorAnchor`\n\n## Proof outline\n\nUnfold `PositiveDefiniteTreeLattice.treePairing` and `PositiveDefiniteTreeLattice.vertexVector`.\nEvaluate the outer finite sum: every term away from `v` vanishes because the unit coordinate is zero\nthere, while the term at `v` has first factor `1`.  In its neighbor sum, every unit-coordinate value\nis zero: the only possible nonzero index would be `v`, but `SimpleGraph.notMem_neighborFinset_self`\nrules out a loop at `v`.  Simplifying these finite sums and the remaining integer arithmetic leaves\n`weight v`.\n\n## Proof dependencies\n\n- `Finset.sum_eq_single` from `Mathlib.Algebra.BigOperators.Group.Finset.Basic`\n- `Finset.sum_eq_zero` from `Mathlib.Algebra.BigOperators.Group.Finset.Basic`\n- `SimpleGraph.notMem_neighborFinset_self` from `Mathlib.Combinatorics.SimpleGraph.Finite`\n- `Main.LatticeFoundations::treePairingAnchor` → `PositiveDefiniteTreeLattice.treePairing` from\n  `PositiveDefiniteTreeLattice.Main.LatticeFoundations.Defs.treePairingAnchor`\n- `Main.LatticeFoundations::vertexVectorAnchor` → `PositiveDefiniteTreeLattice.vertexVector` from\n  `PositiveDefiniteTreeLattice.Main.LatticeFoundations.Defs.vertexVectorAnchor`\n-/\ntheorem PositiveDefiniteTreeLattice.treePairing_vertexVector_self {V : Type*} [Fintype V]\n    [DecidableEq V] (G : SimpleGraph V) [DecidableRel G.Adj] (weight : V → ℤ) (v : V) :\n    PositiveDefiniteTreeLattice.treePairing G weight (PositiveDefiniteTreeLattice.vertexVector v)\n      (PositiveDefiniteTreeLattice.vertexVector v) = weight v := by\n  unfold PositiveDefiniteTreeLattice.treePairing PositiveDefiniteTreeLattice.vertexVector\n  rw [Finset.sum_eq_single v]\n  · have hnot : v ∉ G.neighborFinset v := G.notMem_neighborFinset_self v\n    have hsum : (∑ w ∈ G.neighborFinset v, if w = v then (1 : ℤ) else 0) = 0 := by\n      apply Finset.sum_eq_zero\n      intro w hw\n      have hwv : w ≠ v := by\n        intro h\n        subst w\n        exact hnot hw\n      simp [hwv]\n    simp [hsum]\n  · intro b _ hb\n    simp [hb]\n  · simp\n"
     },
@@ -148,6 +154,11 @@
           "schema_version": 2,
           "summary": "Diagnostics returned 1 items"
         },
+        "fingerprint": {
+          "environment_sha256": null,
+          "source_sha256": "47792270559348b2e1ac6e3f343a5c34c02e9d6420ad1b904f431febd0b2898b",
+          "upstream_revision": null
+        },
         "message": "Lean check passed.",
         "policy": "statement_formal",
         "scan": {
@@ -172,7 +183,15 @@
           "summary": "sorry=1, admit=0, axiom=0, opaque=0, unsafe=0",
           "unsafe_count": 0
         },
-        "status": "passed"
+        "schema_version": 1,
+        "status": "passed",
+        "subject": {
+          "declaration_name": null,
+          "module": "PositiveDefiniteTreeLattice.Main.LatticeFoundations.Theorems.treePairing_vertexVector_self",
+          "repo_file_path": "PositiveDefiniteTreeLattice/Main/LatticeFoundations/Theorems/treePairing_vertexVector_self.lean",
+          "repo_kind": "native",
+          "stage": "statement"
+        }
       },
       "code": "-- lean-constellation: managed-imports-begin\nimport PositiveDefiniteTreeLattice.Main.LatticeFoundations.Prelude\nimport PositiveDefiniteTreeLattice.Main.LatticeFoundations.Defs.treePairingAnchor\nimport PositiveDefiniteTreeLattice.Main.LatticeFoundations.Defs.vertexVectorAnchor\n-- lean-constellation: managed-imports-end\n\n-- lean-constellation: declaration-source-begin\n\n/--\n# lean-constellation target: `treePairing_vertexVector_self`\n\nFor a finite type `V` with decidable equality, a simple graph `G : SimpleGraph V` with decidable\nadjacency, an integer-valued weight function `weight : V → ℤ`, and a vertex `v : V`, the\nself-pairing of the unit coordinate function is its vertex weight:\n\n`treePairing G weight (vertexVector v) (vertexVector v) = weight v`.\n\n## Sources\n\n- Source `formal_target.lean`, lines 7–15\n- Source `problem.tex`, lines 13–23\n\n## Statement dependencies\n\n- `Main.LatticeFoundations::treePairingAnchor` → `PositiveDefiniteTreeLattice.treePairing` from\n  `PositiveDefiniteTreeLattice.Main.LatticeFoundations.Defs.treePairingAnchor`\n- `Main.LatticeFoundations::vertexVectorAnchor` → `PositiveDefiniteTreeLattice.vertexVector` from\n  `PositiveDefiniteTreeLattice.Main.LatticeFoundations.Defs.vertexVectorAnchor`\n-/\ntheorem PositiveDefiniteTreeLattice.treePairing_vertexVector_self {V : Type*} [Fintype V]\n    [DecidableEq V] (G : SimpleGraph V) [DecidableRel G.Adj] (weight : V → ℤ) (v : V) :\n    PositiveDefiniteTreeLattice.treePairing G weight (PositiveDefiniteTreeLattice.vertexVector v)\n      (PositiveDefiniteTreeLattice.vertexVector v) = weight v := by\n  sorry\n"
     },

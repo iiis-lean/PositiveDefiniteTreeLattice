@@ -1,18 +1,13 @@
 {
-  "change_summaries": {},
   "committed_at": "2026-07-30T20:08:07Z",
   "created_at": "2026-07-30T19:57:06Z",
-  "discard_reason": null,
   "discarded_at": null,
   "discarded_by": null,
-  "discarded_created_decl_names": [],
-  "discarded_restored_decl_revisions": {},
-  "discarded_revision_refs": [],
   "execution_completed_at": "2026-07-30T20:06:24Z",
   "execution_reason": null,
   "execution_result_kind": "success",
   "node_path": "Main.RootedCapacity",
-  "objective": "Declare the contract-authorized named instance-stable capacity summand on the attached root-child subtype, preserving the existing deleted-edge component, restricted weight, child root, and rational capacity.",
+  "objective": "Round 60 records the contract-authorized named instance-stable capacity summand on the attached root-child subtype, with the existing deleted-edge component, restricted weight, child root, and rational capacity preserved.",
   "plan_closeout_acknowledged_at": "2026-07-30T20:08:07Z",
   "plan_closeout_acknowledged_by": "a_a93b40977f574bad89528358fa89e022",
   "result_kind": "success",
@@ -29,5 +24,6 @@
   "started_at": "2026-07-30T19:58:27Z",
   "status": "committed",
   "strategy_id": "strategy_20e3f41e54944d3babe462d36b22b383",
-  "summary": "Round 60 completed its target. rootedChildCapacitySummand is a public declared definition and is proof-policy satisfied under graph_proved, providing the contract-authorized stable attached-child representation without changing mathematics. The strategy made the intended first bottom-up repair step. No blocker or preparation gap remains. Next, revise public rootedChildCapacitySum to sum this named function over the attached child subtype while preserving its rational value and consumer semantics; subsequent rounds will repair direct consumers and prove the strict bounds."
+  "summary": "Round 60 completed its target. rootedChildCapacitySummand is a public declared definition and is proof-policy satisfied under graph_proved, providing the contract-authorized stable attached-child representation without changing mathematics. The strategy made the intended first bottom-up repair step. No blocker or preparation gap remains.",
+  "execution_constraints": "Revise public rootedChildCapacitySum to sum this named function over the attached child subtype while preserving its rational value and consumer semantics; then repair direct consumers and prove the strict bounds."
 }

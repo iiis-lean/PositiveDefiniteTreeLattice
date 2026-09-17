@@ -1,4 +1,4 @@
-[← Public API](../PUBLIC_API.md) · [Public boundaries](../PUBLIC_BOUNDARIES.md)
+[← Public API](../PUBLIC_API.md) · [Public boundaries](../PUBLIC_BOUNDARIES.md) · [Complete graph](../DECLARATION_GRAPH.md)
 
 # `rootedNonrootGram_reindex_childBlocks`
 
@@ -10,9 +10,123 @@ The nonroot Gram block reindexed by root-child components is the dependent block
 - State: `proved`
 - Revision status: `committed`
 - Repository completion: `graph_proved`
-- Formal code: final proof projection
+- Compatibility `formal_code`: final proof projection
 
-## Lean code
+## Statement NL
+
+Let V be a finite type with decidable equality, let G be a simple graph on V with decidable adjacency, let hG : G.IsTree, let w : V → ℤ, and let ρ : V. Put
+
+R := {v : V // v ≠ ρ},
+S := Σ c : {c : V // c ∈ rootedChildren G hG ρ ρ}, rootedChildComponent G ρ c.1,
+e : R ≃ S := (rootedChildComponentsEquivNonroot G hG ρ).symm,
+D : Matrix R R ℚ := (rootedGram G w).submatrix Subtype.val Subtype.val,
+
+and, for c in the root-child subtype, define the dependent child block
+
+B c := rootedGram (rootedChildComponent G ρ c.1).toSimpleGraph
+  (fun x : rootedChildComponent G ρ c.1 => w (x : V)),
+
+using the canonical finite and decidable-adjacency instances of the component. Then reindexing D along e from the nonroot index R to the sigma index S is the dependent block-diagonal matrix determined by B: at sigma indices ⟨c,x⟩ and ⟨d,y⟩ it is B c x y after the canonical dependent transport when c = d, and it is 0 when c ≠ d.
+
+Equivalently, this is the exact identity Q₀ = ⨁ᵢ Q_{Cᵢ}, retaining the same e, D, and B objects and orientation. It includes no admissibility, positivity, invertibility, or inverse conclusion.
+
+## Statement Formal
+
+```lean
+-- lean-constellation: managed-imports-begin
+import PositiveDefiniteTreeLattice.Main.RootedCapacity.Prelude
+import Mathlib.Combinatorics.SimpleGraph.Acyclic
+import Mathlib.Combinatorics.SimpleGraph.Connectivity.Connected
+import Mathlib.Combinatorics.SimpleGraph.DeleteEdges
+import Mathlib.Data.Matrix.Block
+import Mathlib.LinearAlgebra.Matrix.Defs
+import PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildComponent
+import PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildComponentsEquivNonroot
+import PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildren
+import PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedGram
+-- lean-constellation: managed-imports-end
+
+-- lean-constellation: declaration-source-begin
+
+/--
+# lean-constellation target: `rootedNonrootGram_reindex_childBlocks`
+
+Let V be a finite type with decidable equality, let G be a simple graph on V with decidable
+adjacency, let hG : G.IsTree, let w : V → ℤ, and let ρ : V. Put
+
+R := {v : V // v ≠ ρ},
+S := Σ c : {c : V // c ∈ rootedChildren G hG ρ ρ}, rootedChildComponent G ρ c.1,
+e : R ≃ S := (rootedChildComponentsEquivNonroot G hG ρ).symm,
+D : Matrix R R ℚ := (rootedGram G w).submatrix Subtype.val Subtype.val,
+
+and, for c in the root-child subtype, define the dependent child block
+
+B c := rootedGram (rootedChildComponent G ρ c.1).toSimpleGraph
+  (fun x : rootedChildComponent G ρ c.1 => w (x : V)),
+
+using the canonical finite and decidable-adjacency instances of the component. Then reindexing D
+along e from the nonroot index R to the sigma index S is the dependent block-diagonal matrix
+determined by B: at sigma indices ⟨c,x⟩ and ⟨d,y⟩ it is B c x y after the canonical dependent
+transport when c = d, and it is 0 when c ≠ d.
+
+Equivalently, this is the exact identity Q₀ = ⨁ᵢ Q_{Cᵢ}, retaining the same e, D, and B objects and
+orientation. It includes no admissibility, positivity, invertibility, or inverse conclusion.
+
+## Sources
+
+- Source `solution.tex`, lines 57–68
+
+## Statement dependencies
+
+- `SimpleGraph.IsTree` from `Mathlib.Combinatorics.SimpleGraph.Acyclic`
+- `SimpleGraph.ConnectedComponent.toSimpleGraph` from
+  `Mathlib.Combinatorics.SimpleGraph.Connectivity.Connected`
+- `SimpleGraph.deleteEdges` from `Mathlib.Combinatorics.SimpleGraph.DeleteEdges`
+- `Matrix.blockDiagonal'` from `Mathlib.Data.Matrix.Block`
+- `Matrix.reindex` from `Mathlib.LinearAlgebra.Matrix.Defs`
+- `Matrix.submatrix` from `Mathlib.LinearAlgebra.Matrix.Defs`
+- `Main.RootedCapacity::rootedChildComponent` → `rootedChildComponent` from
+  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildComponent`
+- `Main.RootedCapacity::rootedChildComponentsEquivNonroot` → `rootedChildComponentsEquivNonroot`
+  from `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildComponentsEquivNonroot`
+- `Main.RootedCapacity::rootedChildren` → `rootedChildren` from
+  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildren`
+- `Main.RootedCapacity::rootedGram` → `rootedGram` from
+  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedGram`
+-/
+
+theorem rootedNonrootGram_reindex_childBlocks {V : Type*} [Fintype V] [DecidableEq V]
+    (G : SimpleGraph V) [DecidableRel G.Adj] (hG : G.IsTree) (w : V → ℤ) (ρ : V) :
+    let R := {v : V // v ≠ ρ}
+    let S := Σ c : {c : V // c ∈ rootedChildren G hG ρ ρ}, rootedChildComponent G ρ c.1
+    let e : R ≃ S := (rootedChildComponentsEquivNonroot G hG ρ).symm
+    let D : Matrix R R ℚ := (rootedGram G w).submatrix Subtype.val Subtype.val
+    let B : ∀ c : {c : V // c ∈ rootedChildren G hG ρ ρ},
+        Matrix (rootedChildComponent G ρ c.1) (rootedChildComponent G ρ c.1) ℚ := fun c =>
+      let C := rootedChildComponent G ρ c.1
+      letI : Fintype C := Fintype.ofFinite C
+      letI : DecidableRel C.toSimpleGraph.Adj := by
+        intro x y
+        change Decidable ((G.deleteEdges {s(ρ, c.1)}).Adj (x : V) (y : V))
+        infer_instance
+      rootedGram C.toSimpleGraph (fun x : C => w (x : V))
+    Matrix.reindex e e D = Matrix.blockDiagonal' B := by
+  sorry
+```
+
+## Proof NL
+
+The accepted local objects are R,S,e,D,B, with e : R ≃ S := (rootedChildComponentsEquivNonroot G hG ρ).symm and target Matrix.reindex e e D = Matrix.blockDiagonal' B. Matrix extensionality reduces the equality to sigma indices ⟨c,x⟩ and ⟨d,y⟩; Matrix.reindex_apply and Matrix.blockDiagonal'_apply' give the corresponding entries.
+
+The inverse reindex map is definitionally e.symm = rootedChildComponentsEquivNonroot G hG ρ. At the two sigma indices it maps ⟨c,x⟩ and ⟨d,y⟩ to nonroot subtypes whose underlying vertices are (x : V) and (y : V). Therefore the reindexed D entry is rootedGram G w (x : V) (y : V).
+
+For c = d, dependent transport in Matrix.blockDiagonal'_apply' yields B c x y. The membership c.property supplies G.Adj ρ c.1, and rootedGram_rootedChildComponent G w ρ c.1 hG hρc x y identifies this child entry with the ambient rootedGram entry.
+
+For c ≠ d, the block-diagonal entry is zero. rootedGram_cross_rootedChildComponents G hG w ρ c.1 d.1 c.property d.property identifies the corresponding ambient entry with zero, and subtype extensionality gives c.1 ≠ d.1 from hcd.
+
+No admissibility, positive-definiteness, invertibility, or inverse facts are involved; the result is the finite child-component reindexing together with the established equal- and unequal-child Gram-entry transports.
+
+## Proof Formal
 
 ```lean
 -- lean-constellation: managed-imports-begin

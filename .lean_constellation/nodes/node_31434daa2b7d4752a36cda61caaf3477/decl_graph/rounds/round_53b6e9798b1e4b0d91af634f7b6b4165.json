@@ -1,13 +1,8 @@
 {
-  "change_summaries": {},
   "committed_at": "2026-07-30T04:56:30Z",
   "created_at": "2026-07-30T04:46:42Z",
-  "discard_reason": null,
   "discarded_at": null,
   "discarded_by": null,
-  "discarded_created_decl_names": [],
-  "discarded_restored_decl_revisions": {},
-  "discarded_revision_refs": [],
   "execution_completed_at": "2026-07-30T04:55:06Z",
   "execution_reason": null,
   "execution_result_kind": "success",
@@ -29,5 +24,5 @@
   "started_at": "2026-07-30T04:48:08Z",
   "status": "committed",
   "strategy_id": "strategy_f896ad8d3d5e41c193ec6ecf41edbffd",
-  "summary": "The bottom-up strategy reached its mathematical target. Public `PositiveDefiniteTreeLattice.uniquePath_eq_append_through_cut` revision 1 reached `proved`, is proof-policy satisfied, and matches the exact qualified interface identity and chosen-path append equality required by the contract. Both required public theorems now exist and all four theorem-like helpers are proved; the public `uniquePath` definition is declared and proof-policy satisfied. No state-only work, blocker, superseded active declaration, or scope overflow remains. Next action is content closeout: inspect and repair the public Statement closure if needed, bind both interfaces, run the completion gate, close the achieved strategy, and submit ready if all checks pass."
+  "summary": "The bottom-up strategy reached its mathematical target. Public `PositiveDefiniteTreeLattice.uniquePath_eq_append_through_cut` revision 1 reached `proved`, is proof-policy satisfied, and matches the exact qualified interface identity and chosen-path append equality required by the contract. Both required public theorems now exist and all four theorem-like helpers are proved; the public `uniquePath` definition is declared and proof-policy satisfied. No state-only work, blocker, superseded active declaration, or scope overflow remains."
 }

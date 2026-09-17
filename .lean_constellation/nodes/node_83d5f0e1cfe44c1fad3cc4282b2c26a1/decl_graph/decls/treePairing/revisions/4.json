@@ -1,12 +1,10 @@
 {
   "change": {
-    "anticipated_proof_dep_names": [],
-    "anticipated_statement_dep_names": [],
     "base_revision": 3,
     "kind": "update",
-    "objective": "Preserve the exact formal_target.lean lines 7–11 integral finite-sum definition, binders, coefficients, catalog meaning, and declared state, but recapture this historical identity-changed record under the nonconflicting compiler-confirmed Lean name PositiveDefiniteTreeLattice.Internal.historicalTreePairing. It must no longer declare PositiveDefiniteTreeLattice.treePairing and must create no global or namespaced compatibility alias. The fresh treePairingAnchor record in this round will own the required public Lean identity; later rounds will rewire supporting consumers before this historical record is cleaned up.",
+    "objective": "Revision 4 records the identity-changed historical weighted finite-sum definition as `PositiveDefiniteTreeLattice.Internal.historicalTreePairing`, preserving formal_target.lean lines 7–11, its binders, coefficients, catalog meaning, and declared state. The public `PositiveDefiniteTreeLattice.treePairing` identity is owned by the fresh anchor, with no global or namespaced compatibility alias; this historical record remains a superseded cleanup target while supporting consumers retain its declaration anchor.",
     "require_target_state_satisfied": true,
-    "reset_to_state": "specified",
+    "start_stage": "statement_formal",
     "summary": "Successfully preserved the exact weighted finite-sum definition while moving the historical identity-changed record to compiler-confirmed PositiveDefiniteTreeLattice.Internal.historicalTreePairing at declared state. No alias or mathematical change was introduced. This record remains temporarily public only because existing supporting declarations still depend on its Decl anchor; it is a superseded cleanup target after those consumers are rewired to treePairingAnchor.",
     "target_state": "declared"
   },
@@ -46,6 +44,11 @@
           "schema_version": 2,
           "summary": "Diagnostics returned 0 items"
         },
+        "fingerprint": {
+          "environment_sha256": null,
+          "source_sha256": "1bf9ab3c3f740233616c9375d49b3637332603d31cc525a2cde027ed996710c6",
+          "upstream_revision": null
+        },
         "message": "Lean check passed.",
         "policy": "statement_formal",
         "scan": {
@@ -63,7 +66,15 @@
           "summary": "sorry=0, admit=0, axiom=0, opaque=0, unsafe=0",
           "unsafe_count": 0
         },
-        "status": "passed"
+        "schema_version": 1,
+        "status": "passed",
+        "subject": {
+          "declaration_name": null,
+          "module": "PositiveDefiniteTreeLattice.Main.LatticeFoundations.Defs.treePairing",
+          "repo_file_path": "PositiveDefiniteTreeLattice/Main/LatticeFoundations/Defs/treePairing.lean",
+          "repo_kind": "native",
+          "stage": "statement"
+        }
       },
       "code": "-- lean-constellation: managed-imports-begin\nimport PositiveDefiniteTreeLattice.Main.LatticeFoundations.Prelude\nimport Mathlib.Algebra.BigOperators.Group.Finset.Defs\nimport Mathlib.Combinatorics.SimpleGraph.Finite\n-- lean-constellation: managed-imports-end\n\n-- lean-constellation: declaration-source-begin\n\n/--\n# lean-constellation target: `treePairing`\n\nFor a finite type `V` with decidable equality, a simple graph `G : SimpleGraph V` with decidable\nadjacency, an integer-valued weight function `weight : V → ℤ`, and functions `x y : V → ℤ`,\n`treePairing G weight x y` is the integer finite sum over all vertices `u : V` of\n\n`x u * (weight u * y u - ∑ v ∈ G.neighborFinset u, y v)`.\n\nThus the inner sum is taken over the finite neighbors of `u` in `G`.\n\n## Sources\n\n- Source `formal_target.lean`, lines 7–11\n\n## Statement dependencies\n\n- `Finset.sum` from `Mathlib.Algebra.BigOperators.Group.Finset.Defs`\n- `SimpleGraph.neighborFinset` from `Mathlib.Combinatorics.SimpleGraph.Finite`\n-/\ndef PositiveDefiniteTreeLattice.Internal.historicalTreePairing {V : Type*} [Fintype V]\n    [DecidableEq V]\n    (G : SimpleGraph V) [DecidableRel G.Adj] (weight : V → ℤ) (x y : V → ℤ) : ℤ :=\n  Finset.univ.sum fun u =>\n    x u * (weight u * y u - (G.neighborFinset u).sum fun v => y v)\n"
     },

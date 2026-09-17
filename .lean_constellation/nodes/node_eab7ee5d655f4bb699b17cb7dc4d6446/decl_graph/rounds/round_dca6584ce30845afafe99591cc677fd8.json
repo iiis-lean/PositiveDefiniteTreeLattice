@@ -1,18 +1,13 @@
 {
-  "change_summaries": {},
   "committed_at": "2026-07-30T08:02:09Z",
   "created_at": "2026-07-30T07:48:07Z",
-  "discard_reason": null,
   "discarded_at": null,
   "discarded_by": null,
-  "discarded_created_decl_names": [],
-  "discarded_restored_decl_revisions": {},
-  "discarded_revision_refs": [],
   "execution_completed_at": "2026-07-30T07:59:38Z",
   "execution_reason": null,
   "execution_result_kind": "success",
   "node_path": "Main.RootedCapacity",
-  "objective": "Create and prove strict positivity of rootedCapacity for every admissible rooted weighted tree, as the independent positive half of the b_0009 capacity bound before Schur-complement recursion and the upper bound.",
+  "objective": "rootedCapacity_pos@rev:1 is the public strict-positivity theorem: every admissible rooted weighted tree has 0 < rootedCapacity, supplying the positive half of the b_0009 capacity bound before Schur-complement recursion and the upper bound.",
   "plan_closeout_acknowledged_at": "2026-07-30T08:02:09Z",
   "plan_closeout_acknowledged_by": "a_a93b40977f574bad89528358fa89e022",
   "result_kind": "success",
@@ -29,5 +24,6 @@
   "started_at": "2026-07-30T07:50:40Z",
   "status": "committed",
   "strategy_id": "strategy_1fbcdfb31a2e4cada1ff5b7b941de18c",
-  "summary": "Round 19 successfully advanced the capacity layer: rootedCapacity_pos rev1 is public, proved, and graph-proved. No blocker, state-only intermediate, superseded declaration, or graph-hygiene issue remains. The open strategy still explains the route. The next stage is the source's root/rest Schur-complement recursion and decomposition of the nonroot quadratic term into child-component capacities; because this is the first substantial matrix-structural stage and Mathlib preparation has not run in this task cycle, the next action should be focused Mathlib recon before planning tracked block helpers."
+  "summary": "Round 19 successfully advanced the capacity layer: rootedCapacity_pos rev1 is public, proved, and graph-proved. No blocker, state-only intermediate, superseded declaration, or graph-hygiene issue remains. The open strategy still explains the route. Focused Mathlib recon had not run in this task cycle; this round recorded no blocker or graph-hygiene issue.",
+  "execution_constraints": "Run focused Mathlib recon before planning tracked block helpers for the root/rest Schur-complement recursion and child-component capacity decomposition."
 }

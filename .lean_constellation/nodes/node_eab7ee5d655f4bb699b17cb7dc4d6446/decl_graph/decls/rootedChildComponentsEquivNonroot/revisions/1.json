@@ -1,19 +1,12 @@
 {
   "change": {
-    "anticipated_proof_dep_names": [],
-    "anticipated_statement_dep_names": [
-      "rootedChildComponent",
-      "rootedChildComponent_parent_not_mem",
-      "rootedChildComponent_partition",
-      "rootedChildren"
-    ],
     "base_revision": null,
     "kind": "create",
-    "objective": "Implement the RootedCapacity-specific representation implicit in SourceIndex b_0009 / solution.tex lines 57–68, where nonroot vertices are grouped by child subtrees. For finite decidable V, a tree G with hG : G.IsTree, and root ρ, define a noncomputable equivalence from `Σ c : {c : V // c ∈ rootedChildren G hG ρ ρ}, rootedChildComponent G ρ c.1` to `{v : V // v ≠ ρ}`. Its forward map must send `⟨c, x⟩` to the underlying ambient vertex x, with the nonroot proof obtained from rootedChildComponent_parent_not_mem, so it is definitionally the exact dependent inclusion needed by rootedNonroot_inverse_childBlocks. Its inverse must choose the unique root child supplied by rootedChildComponent_partition and package the component membership; prove the Equiv inverse laws by that uniqueness and subtype/dependent extensionality, exposing standard `apply_symm_apply` and `symm_apply_apply` computation usable by Matrix.reindex_apply and Matrix.inv_reindex. This is a private representation helper only: do not alter rootedChildComponent, the partition theorem, or the accepted inverse-entry clauses. It consumes rootedChildren, rootedChildComponent, rootedChildComponent_partition, and rootedChildComponent_parent_not_mem, and directly unblocks rootedNonroot_inverse_childBlocks, which in turn unblocks rootedNonroot_inverse_quadratic and the Schur-complement capacity recursion.",
+    "objective": "Revision 1 defines the RootedCapacity noncomputable equivalence from the dependent sigma of root-child components to the subtype of nonroot vertices, as specified by SourceIndex b_0009 / solution.tex lines 57–68. Its forward map is the dependent inclusion sending `⟨c,x⟩` to the ambient nonroot vertex, with the nonroot proof from `rootedChildComponent_parent_not_mem`; its inverse uses the unique root child and component membership from `rootedChildComponent_partition`. The inverse laws expose the standard `apply_symm_apply` and `symm_apply_apply` computations required for matrix reindexing, while preserving the existing component, partition, and inverse-entry semantics and supplying the representation for `rootedNonroot_inverse_childBlocks`, the inverse quadratic, and the Schur-complement recursion.",
     "require_target_state_satisfied": true,
-    "reset_to_state": null,
     "summary": "Created the private definition rootedChildComponentsEquivNonroot and advanced it through Statement NL and Statement Formal to declared. Its compiler-checked equivalence identifies the dependent sigma of root-child components with the nonroot vertex subtype, using rootedChildComponent_partition for the unique inverse choice and rootedChildComponent_parent_not_mem for the forward inclusion. As a definition, declared state satisfies graph_proved. This supplies the exact representation prerequisite recorded by rootedNonroot_inverse_childBlocks; no blocker, semantic drift, public-boundary change, or cleanup target remains from this round.",
-    "target_state": "declared"
+    "target_state": "declared",
+    "execution_constraints": "Use the existing `rootedChildren`, `rootedChildComponent`, `rootedChildComponent_partition`, and `rootedChildComponent_parent_not_mem` declarations. Retain the exact forward inclusion and dependent target; choose the unique root child for the inverse and establish both Equiv inverse laws by uniqueness and subtype/dependent extensionality. Keep the component and partition definitions and accepted inverse-entry clauses unchanged, and expose `apply_symm_apply`/`symm_apply_apply` for `Matrix.reindex_apply` and `Matrix.inv_reindex`."
   },
   "lean_decl_name": "rootedChildComponentsEquivNonroot",
   "proof": null,
@@ -99,6 +92,11 @@
           "schema_version": 2,
           "summary": "Diagnostics returned 0 items"
         },
+        "fingerprint": {
+          "environment_sha256": null,
+          "source_sha256": "5370610a0a6f3ac7546495d7b1bd029bd6ed05e7577ac58e7cae8d39b4a38c14",
+          "upstream_revision": null
+        },
         "message": "Lean check passed.",
         "policy": "statement_formal",
         "scan": {
@@ -116,7 +114,15 @@
           "summary": "sorry=0, admit=0, axiom=0, opaque=0, unsafe=0",
           "unsafe_count": 0
         },
-        "status": "passed"
+        "schema_version": 1,
+        "status": "passed",
+        "subject": {
+          "declaration_name": null,
+          "module": "PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildComponentsEquivNonroot",
+          "repo_file_path": "PositiveDefiniteTreeLattice/Main/RootedCapacity/Defs/rootedChildComponentsEquivNonroot.lean",
+          "repo_kind": "native",
+          "stage": "statement"
+        }
       },
       "code": "-- lean-constellation: managed-imports-begin\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Prelude\nimport Mathlib.Combinatorics.SimpleGraph.Acyclic\nimport Mathlib.Data.Finset.Filter\nimport Mathlib.Data.Fintype.Defs\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildComponent\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildren\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Theorems.rootedChildComponent_parent_not_mem\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Theorems.rootedChildComponent_partition\n-- lean-constellation: managed-imports-end\n\n-- lean-constellation: declaration-source-begin\n\n/--\n# lean-constellation target: `rootedChildComponentsEquivNonroot`\n\nFor a finite type V with decidable equality, a simple graph G on V with decidable adjacency, a tree\nproof hG : G.IsTree, and a root ρ : V, define the noncomputable equivalence\n\nrootedChildComponentsEquivNonroot G hG ρ :\n  (Σ c : {c : V // c ∈ rootedChildren G hG ρ ρ},\n    rootedChildComponent G ρ c.1)\n  ≃ {v : V // v ≠ ρ}.\n\nIts forward map is the exact dependent inclusion\n\n⟨c, x⟩ ↦ ⟨(x : V), (x : V) ≠ ρ⟩,\n\nwhere the nonroot proof is obtained from rootedChildComponent_parent_not_mem. Its inverse sends a\nnonroot vertex v to the unique c ∈ rootedChildren G hG ρ ρ given by rootedChildComponent_partition,\ntogether with v's corresponding membership in rootedChildComponent G ρ c. The two inverse laws are\nproved by that uniqueness and subtype/dependent extensionality, so the standard apply_symm_apply and\nsymm_apply_apply computations expose these exact maps for reindexing.\n\n## Sources\n\n- Source `solution.tex`, lines 57–68\n\n## Statement dependencies\n\n- `SimpleGraph.IsTree` from `Mathlib.Combinatorics.SimpleGraph.Acyclic`\n- `Finset.mem_filter` from `Mathlib.Data.Finset.Filter`\n- `Finset.mem_univ` from `Mathlib.Data.Fintype.Defs`\n- `Main.RootedCapacity::rootedChildComponent` → `rootedChildComponent` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildComponent`\n- `Main.RootedCapacity::rootedChildComponent_parent_not_mem` → `rootedChildComponent_parent_not_mem`\n  from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Theorems.rootedChildComponent_parent_not_mem`\n- `Main.RootedCapacity::rootedChildComponent_partition` → `rootedChildComponent_partition` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Theorems.rootedChildComponent_partition`\n- `Main.RootedCapacity::rootedChildren` → `rootedChildren` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildren`\n-/\nnoncomputable def rootedChildComponentsEquivNonroot {V : Type*} [Fintype V] [DecidableEq V]\n    (G : SimpleGraph V) [DecidableRel G.Adj] (hG : G.IsTree) (ρ : V) :\n    (Σ c : {c : V // c ∈ rootedChildren G hG ρ ρ}, rootedChildComponent G ρ c.1) ≃\n      {v : V // v ≠ ρ} := by\n  classical\n  let f : (Σ c : {c : V // c ∈ rootedChildren G hG ρ ρ}, rootedChildComponent G ρ c.1) →\n      {v : V // v ≠ ρ} := fun z =>\n    ⟨(z.2 : V), rootedChildComponent_parent_not_mem G ρ z.1.1 hG\n      (by\n        have hc := z.1.2\n        simp only [rootedChildren, Finset.mem_filter, Finset.mem_univ, true_and] at hc\n        exact hc.1) z.2⟩\n  let g : {v : V // v ≠ ρ} →\n      (Σ c : {c : V // c ∈ rootedChildren G hG ρ ρ}, rootedChildComponent G ρ c.1) := fun v =>\n    let h := rootedChildComponent_partition G hG ρ (v : V) v.2\n    ⟨⟨h.choose, h.choose_spec.1.1⟩, ⟨(v : V), h.choose_spec.1.2⟩⟩\n  refine { toFun := f, invFun := g, left_inv := ?_, right_inv := ?_ }\n  · rintro ⟨c, x⟩\n    let h := rootedChildComponent_partition G hG ρ (x : V) (f ⟨c, x⟩).2\n    have hchoose : h.choose = c.1 := (ExistsUnique.choose_eq_iff h).2 ⟨c.2, x.2⟩\n    dsimp [f, g]\n    apply Sigma.ext (Subtype.ext hchoose)\n    apply (Subtype.heq_iff_coe_eq ?_).2\n    · rfl\n    · intro z\n      change z ∈ rootedChildComponent G ρ h.choose ↔ z ∈ rootedChildComponent G ρ c.1\n      rw [hchoose]\n  · intro v\n    apply Subtype.ext\n    rfl\n"
     },

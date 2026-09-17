@@ -1,17 +1,13 @@
 {
   "change": {
-    "anticipated_proof_dep_names": [
-      "rootedChildComponent_isAdmissible_of_unique_underweight",
-      "rootedGram_posDef_of_integer_positive"
-    ],
-    "anticipated_statement_dep_names": [],
     "base_revision": 2,
     "kind": "update",
-    "objective": "Preserve revision 2's compiler-accepted statement and reviewed Proof NL for solution.tex:204-208. Rerun only Proof Formal, replacing the failed separate composition of rootedNonrootGram_reindex_childBlocks and rootedChildGram_blockDiagonal_inv_of_child_admissible with the public proved rootedNonrootGram_reindex_childBlocks_inv_of_child_admissible@1. Supply its pointwise child-admissibility premise from rootedChildComponent_isAdmissible_of_unique_underweight@3, retain ambient PosDef from rootedGram_posDef_of_integer_positive, and use the unchanged rootedGram_root_rootedChildComponent_support collapse and Schur-positivity route to prove `rootedChildCapacitySum G hG w v < (w v : ℚ)`. Do not change Statement or Proof NL semantics, separately compose the incompatible APIs, add consumer transports, assume ambient IsAdmissibleRootedTree, alter capacity representation, add assumptions, weaken the conclusion, revive deleted wrappers, or raise heartbeats. The result is the proved capacity-gap input for the downstream decomposition contradiction and exact protected interface.",
+    "objective": "Revision 3 retains the solution.tex:204–208 central gap and the accepted Statement/Proof NL semantics. Its mathematical route uses the public combined inverse–reindex theorem with pointwise child admissibility, ambient rootedGram PosDef, root-support collapse, and Schur positivity to establish `rootedChildCapacitySum G hG w v < (w v : ℚ)` as the downstream capacity-gap input.",
     "require_target_state_satisfied": true,
-    "reset_to_state": "proof_planned",
-    "summary": "Attempted only Proof Formal while preserving revision 2's accepted Statement and Proof NL. The declaration remained at proof_planned and did not reach proved. This is a predictable current-node proof-plan mismatch, not a provider or source blocker: the frozen Proof NL still carries typed dependencies on the prohibited separate rootedNonrootGram_reindex_childBlocks and rootedChildGram_blockDiagonal_inv_of_child_admissible composition, whose dependent B families do not unify. Although the round objective and contract require rootedNonrootGram_reindex_childBlocks_inv_of_child_admissible, Proof Formal cannot silently substitute a different theorem and dependency shape beneath an accepted Proof NL. The consumer goal remains `rootedChildCapacitySum G hG w v < (w v : ℚ)` with the accepted statement unchanged. The combined provider theorem is public, ready, fresh, and applicable. Retry condition: create a new update from the committed head with reset_to_state=declared, revise Proof NL to name the combined theorem as the sole inverse-reindex step and preserve the ambient PosDef, per-child admissibility, root-support collapse, and Schur-positivity route; then run Proof Formal. No new helper or external action is required.",
-    "target_state": "proved"
+    "start_stage": "proof_formal",
+    "summary": "Attempted only Proof Formal while preserving revision 2's accepted Statement and Proof NL. The declaration remained at proof_planned and did not reach proved. This is a predictable current-node proof-plan mismatch, not a provider or source blocker: the frozen Proof NL still carries typed dependencies on the prohibited separate rootedNonrootGram_reindex_childBlocks and rootedChildGram_blockDiagonal_inv_of_child_admissible composition, whose dependent B families do not unify. Although the round objective and contract name rootedNonrootGram_reindex_childBlocks_inv_of_child_admissible, Proof Formal cannot silently substitute a different theorem and dependency shape beneath an accepted Proof NL. The consumer goal remains `rootedChildCapacitySum G hG w v < (w v : ℚ)` with the accepted statement unchanged. The combined provider theorem is public, ready, fresh, and applicable. The accepted revision remains proof_planned with the statement unchanged.",
+    "target_state": "proved",
+    "execution_constraints": "Run only Proof Formal from the accepted revision-2 Statement and Proof NL using the public combined inverse–reindex theorem; do not separately compose the incompatible APIs, add consumer transports, assume ambient `IsAdmissibleRootedTree`, alter capacity representation, add assumptions, weaken the conclusion, revive deleted wrappers, or raise heartbeat limits."
   },
   "lean_decl_name": "rootedChildCapacitySum_lt_weight_of_unique_underweight",
   "proof": {
@@ -320,6 +316,11 @@
           "schema_version": 2,
           "summary": "Diagnostics returned 1 items"
         },
+        "fingerprint": {
+          "environment_sha256": null,
+          "source_sha256": "feef1e853105fafbb435eb61c1a2b45f566a5b70b82733f68bf0d69823089ef9",
+          "upstream_revision": null
+        },
         "message": "Lean check passed.",
         "policy": "statement_formal",
         "scan": {
@@ -344,7 +345,15 @@
           "summary": "sorry=1, admit=0, axiom=0, opaque=0, unsafe=0",
           "unsafe_count": 0
         },
-        "status": "passed"
+        "schema_version": 1,
+        "status": "passed",
+        "subject": {
+          "declaration_name": null,
+          "module": "PositiveDefiniteTreeLattice.Main.IrreducibleVertex.Lemmas.rootedChildCapacitySum_lt_weight_of_unique_underweight",
+          "repo_file_path": "PositiveDefiniteTreeLattice/Main/IrreducibleVertex/Lemmas/rootedChildCapacitySum_lt_weight_of_unique_underweight.lean",
+          "repo_kind": "native",
+          "stage": "statement"
+        }
       },
       "code": "-- lean-constellation: managed-imports-begin\nimport PositiveDefiniteTreeLattice.Main.IrreducibleVertex.Prelude\nimport Mathlib.Combinatorics.SimpleGraph.Acyclic\nimport Mathlib.Combinatorics.SimpleGraph.Finite\n-- lean-constellation: managed-imports-end\n\n-- lean-constellation: declaration-source-begin\n\n/--\n# lean-constellation target: `rootedChildCapacitySum_lt_weight_of_unique_underweight`\n\nLet `V` be a finite type with decidable equality, let `G : SimpleGraph V` have decidable adjacency,\nlet `weight : V → ℤ`, and let `v : V`. Suppose `h_tree : G.IsTree`, `h_positive : ∀ x : V → ℤ, x ≠ 0\n→ 0 < treePairing G weight x x`, `h_unique_underweight : ∃! u : V, weight u < (G.degree u : ℤ)`, `hv\n: weight v < (G.degree v : ℤ)`, and `h_two : ∀ x : V, 2 ≤ weight x`. Then the canonical sum of the\ncapacities of the rooted child-side components at `v` is strictly below the integral weight at `v`,\nviewed in `ℚ`:\n\n`rootedChildCapacitySum G h_tree weight v < (weight v : ℚ)`.\n\n## Sources\n\n- Source `solution.tex`, lines 204–208\n\n## Statement dependencies\n\n- `SimpleGraph.IsTree` from `Mathlib.Combinatorics.SimpleGraph.Acyclic`\n- `SimpleGraph.degree` from `Mathlib.Combinatorics.SimpleGraph.Finite`\n- `Main.LatticeFoundations::treePairingAnchor` → `PositiveDefiniteTreeLattice.treePairing` from\n  `PositiveDefiniteTreeLattice.Main.LatticeFoundations.Defs.treePairingAnchor`\n- `Main.RootedCapacity::rootedChildCapacitySum` → `rootedChildCapacitySum` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildCapacitySum`\n-/\nlemma rootedChildCapacitySum_lt_weight_of_unique_underweight\n    {V : Type*} [Fintype V] [DecidableEq V] (G : SimpleGraph V) [DecidableRel G.Adj]\n    (hG : G.IsTree) (weight : V → ℤ) (v : V)\n    (h_positive : ∀ x : V → ℤ, x ≠ 0 →\n      0 < PositiveDefiniteTreeLattice.treePairing G weight x x)\n    (h_unique_underweight : ∃! u : V, weight u < (G.degree u : ℤ))\n    (hv : weight v < (G.degree v : ℤ)) (h_two : ∀ x : V, 2 ≤ weight x) :\n    rootedChildCapacitySum G hG weight v < (weight v : ℚ) := by\n  sorry\n"
     },

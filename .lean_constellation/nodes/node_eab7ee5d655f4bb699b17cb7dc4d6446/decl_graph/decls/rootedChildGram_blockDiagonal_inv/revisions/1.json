@@ -1,21 +1,12 @@
 {
   "change": {
-    "anticipated_proof_dep_names": [
-      "IsAdmissibleRootedTree_rootedChildComponent"
-    ],
-    "anticipated_statement_dep_names": [
-      "IsAdmissibleRootedTree",
-      "rootedChildComponent",
-      "rootedChildren",
-      "rootedGram"
-    ],
     "base_revision": null,
     "kind": "create",
-    "objective": "Formalize the dependent block-inverse identity implicit in SourceIndex b_0009 / solution.tex lines 57–68 for this node's exact child Gram family. For finite decidable V, decidable tree G with hG, integer weight w, root ρ, and hAdm : IsAdmissibleRootedTree G w ρ, let the index be `{c : V // c ∈ rootedChildren G hG ρ ρ}` and define B c to be the rational rootedGram of `rootedChildComponent G ρ c.1` with restricted weight, using its canonical finite and decidable-adjacency instances exactly as in rootedNonrootGram_reindex_childBlocks. Prove `(Matrix.blockDiagonal' B)⁻¹ = Matrix.blockDiagonal' (fun c => (B c)⁻¹)` with the existing total matrix inverse and the same dependent Sigma index type. Obtain each block's PosDef/isUnit fact from IsAdmissibleRootedTree_rootedChildComponent. Establish the blockwise inverse using Matrix.blockDiagonal'_mul or entrywise Matrix.mul_apply together with Matrix.mul_nonsing_inv / Matrix.nonsing_inv_mul, and conclude with the existing inverse uniqueness API. Do not generalize this into an unrelated generic theorem, change B's representation, add assumptions, or expose it publicly. It must be directly consumable by rootedNonroot_inverse_childBlocks, rootedNonroot_inverse_quadratic, and the subsequent Schur-complement recursion. This is the sole substantive scale exception beyond the contract's approximate declaration range; further helper creation requires cleanup or scope review.",
+    "objective": "Revision 1 states the private dependent child-Gram inverse identity from SourceIndex b_0009 / solution.tex lines 57–68: under the exact finite decidable tree, weight, root, and admissibility data, the total inverse of the dependent block diagonal of the canonical child Gram family B equals the dependent block diagonal of the total inverses of B’s blocks. It preserves the same child subtype, canonical finite/decidable instances, rational inverse, and dependent Sigma index, and supplies the blockwise inverse used by rootedNonroot_inverse_childBlocks, rootedNonroot_inverse_quadratic, and the Schur-complement recursion without exposing a generic public theorem.",
     "require_target_state_satisfied": true,
-    "reset_to_state": null,
     "summary": "Created rootedChildGram_blockDiagonal_inv and accepted its source-faithful private statement plus Proof NL plan through proof_planned, but Proof Formal did not pass. Classified blocker: statement/representation cleanup within the current node, not a missing mathematical lemma. The accepted conclusion is the desired `(Matrix.blockDiagonal' B)⁻¹ = Matrix.blockDiagonal' (fun c => (B c)⁻¹)` for the exact child Gram family, and the checked inputs include IsAdmissibleRootedTree_rootedChildComponent, per-block PosDef/isUnit, Matrix.blockDiagonal'_mul, and nonsingular-inverse identities. The mismatch is definitional: B captures locally synthesized Fintype and DecidableRel instances inside its definition; after dsimp, Proof Formal cannot reproduce those instance terms definitionally when applying block multiplication, so the displayed B matrices no longer align syntactically. Since this declaration is private and unreleased, retry by revising only its formal representation—either retain the let-bound instances in scope across the whole block multiplication conclusion or expose an explicit named child-Gram family/instance convention in this same declaration—while preserving the identical B matrices, assumptions, total inverse, and conclusion. Reset through Statement Formal and Proof NL before Proof Formal. Do not add another helper. rootedNonroot_inverse_childBlocks, rootedNonroot_inverse_quadratic, and capacity recursion remain waiting.",
-    "target_state": "proved"
+    "target_state": "proved",
+    "execution_constraints": "Retain the exact child subtype, component/root maps, Gram family B, dependent Sigma index, and canonical local instances throughout block multiplication. Derive each block’s positive definiteness and unit from IsAdmissibleRootedTree_rootedChildComponent, use Matrix.blockDiagonal'_mul with Matrix.nonsing_inv_mul and Matrix.mul_nonsing_inv, prove the identity block diagonal entrywise with Matrix.blockDiagonal'_apply', and conclude with inverse uniqueness. Do not generalize the theorem, alter B or its instances, add assumptions, expose it publicly, or add another helper."
   },
   "lean_decl_name": "rootedChildGram_blockDiagonal_inv",
   "proof": {
@@ -258,6 +249,11 @@
           "schema_version": 2,
           "summary": "Diagnostics returned 1 items"
         },
+        "fingerprint": {
+          "environment_sha256": null,
+          "source_sha256": "f66cb297b60794b4c108987bc04609a31d194d8d42d904ff6f9dbf814da6779d",
+          "upstream_revision": null
+        },
         "message": "Lean check passed.",
         "policy": "statement_formal",
         "scan": {
@@ -282,7 +278,15 @@
           "summary": "sorry=1, admit=0, axiom=0, opaque=0, unsafe=0",
           "unsafe_count": 0
         },
-        "status": "passed"
+        "schema_version": 1,
+        "status": "passed",
+        "subject": {
+          "declaration_name": null,
+          "module": "PositiveDefiniteTreeLattice.Main.RootedCapacity.Theorems.rootedChildGram_blockDiagonal_inv",
+          "repo_file_path": "PositiveDefiniteTreeLattice/Main/RootedCapacity/Theorems/rootedChildGram_blockDiagonal_inv.lean",
+          "repo_kind": "native",
+          "stage": "statement"
+        }
       },
       "code": "-- lean-constellation: managed-imports-begin\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Prelude\nimport Mathlib.Combinatorics.SimpleGraph.Acyclic\nimport Mathlib.Combinatorics.SimpleGraph.Connectivity.Connected\nimport Mathlib.Combinatorics.SimpleGraph.DeleteEdges\nimport Mathlib.Data.Matrix.Block\nimport Mathlib.LinearAlgebra.Matrix.NonsingularInverse\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.IsAdmissibleRootedTree\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildComponent\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildren\nimport PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedGram\n-- lean-constellation: managed-imports-end\n\n-- lean-constellation: declaration-source-begin\n\n/--\n# lean-constellation target: `rootedChildGram_blockDiagonal_inv`\n\nLet V be a finite type with decidable equality, let G be a simple graph on V with decidable\nadjacency, let hG : G.IsTree, let w : V → ℤ, let ρ : V, and suppose hAdm : IsAdmissibleRootedTree G\nw ρ. Index root children by\n\nI := {c : V // c ∈ rootedChildren G hG ρ ρ},\n\nand define the dependent rational child-Gram family, with the canonical finite and\ndecidable-adjacency instances for each component, by\n\nB c := rootedGram (rootedChildComponent G ρ c.1).toSimpleGraph\n  (fun x : rootedChildComponent G ρ c.1 => w (x : V)).\n\nThen the total inverse of the dependent block-diagonal child Gram matrix is the dependent block\ndiagonal of the total inverses of its exact child blocks:\n\n(Matrix.blockDiagonal' B)⁻¹ = Matrix.blockDiagonal' (fun c => (B c)⁻¹).\n\nThe statement uses the same dependent Sigma index type and rational matrix inverse as the\nchild-block decomposition, without strengthening the ambient hypotheses or changing the child-Gram\nrepresentation.\n\n## Sources\n\n- Source `solution.tex`, lines 57–68\n\n## Statement dependencies\n\n- `SimpleGraph.IsTree` from `Mathlib.Combinatorics.SimpleGraph.Acyclic`\n- `SimpleGraph.ConnectedComponent.toSimpleGraph` from\n  `Mathlib.Combinatorics.SimpleGraph.Connectivity.Connected`\n- `SimpleGraph.deleteEdges` from `Mathlib.Combinatorics.SimpleGraph.DeleteEdges`\n- `Matrix.blockDiagonal'` from `Mathlib.Data.Matrix.Block`\n- `Matrix.inv` from `Mathlib.LinearAlgebra.Matrix.NonsingularInverse`\n- `Main.RootedCapacity::IsAdmissibleRootedTree` → `IsAdmissibleRootedTree` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.IsAdmissibleRootedTree`\n- `Main.RootedCapacity::rootedChildComponent` → `rootedChildComponent` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildComponent`\n- `Main.RootedCapacity::rootedChildren` → `rootedChildren` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildren`\n- `Main.RootedCapacity::rootedGram` → `rootedGram` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedGram`\n-/\n\ntheorem rootedChildGram_blockDiagonal_inv {V : Type*} [Fintype V] [DecidableEq V]\n    (G : SimpleGraph V) [DecidableRel G.Adj] (hG : G.IsTree) (w : V → ℤ) (ρ : V)\n    (hAdm : IsAdmissibleRootedTree G w ρ) :\n    let I := {c : V // c ∈ rootedChildren G hG ρ ρ}\n    let B : ∀ c : I,\n        Matrix (rootedChildComponent G ρ c.1) (rootedChildComponent G ρ c.1) ℚ := fun c =>\n      let C := rootedChildComponent G ρ c.1\n      letI : Fintype C := Fintype.ofFinite C\n      letI : DecidableRel C.toSimpleGraph.Adj := by\n        intro x y\n        change Decidable ((G.deleteEdges {s(ρ, c.1)}).Adj (x : V) (y : V))\n        infer_instance\n      rootedGram C.toSimpleGraph (fun x : C => w (x : V))\n    letI : Fintype (Σ c : I, rootedChildComponent G ρ c.1) := Fintype.ofFinite _\n    (Matrix.blockDiagonal' B)⁻¹ = Matrix.blockDiagonal' (fun c : I =>\n      letI : Fintype (rootedChildComponent G ρ c.1) := Fintype.ofFinite _\n      (B c)⁻¹) := by\n  sorry\n"
     },

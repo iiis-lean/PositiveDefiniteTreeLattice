@@ -1,4 +1,4 @@
-[← Public API](../PUBLIC_API.md) · [Public boundaries](../PUBLIC_BOUNDARIES.md)
+[← Public API](../PUBLIC_API.md) · [Public boundaries](../PUBLIC_BOUNDARIES.md) · [Complete graph](../DECLARATION_GRAPH.md)
 
 # `exists_irreducible_vertex`
 
@@ -10,9 +10,80 @@ A positive-definite integer-weighted finite tree with a unique underweighted ver
 - State: `proved`
 - Revision status: `committed`
 - Repository completion: `graph_proved`
-- Formal code: final proof projection
+- Compatibility `formal_code`: final proof projection
 
-## Lean code
+## Statement NL
+
+Let `V` be a finite type with decidable equality, let `G : SimpleGraph V` have decidable adjacency, and let `weight : V → ℤ`. Assume that `G` is a tree, that the integral tree pairing is positive definite on every nonzero integer vector—namely, for every `x : V → ℤ` with `x ≠ 0`, `0 < treePairing G weight x x`—and that there exists exactly one vertex `v` with `weight v < (G.degree v : ℤ)`. Then there exists a vertex `v : V` such that the vertex vector `vertexVector v` is irreducible for `G` and `weight`, i.e. `Irreducible G weight (vertexVector v)`.
+
+## Statement Formal
+
+```lean
+-- lean-constellation: managed-imports-begin
+import PositiveDefiniteTreeLattice.Main.IrreducibleVertex.Prelude
+import Mathlib.Combinatorics.SimpleGraph.Acyclic
+import Mathlib.Combinatorics.SimpleGraph.Basic
+import Mathlib.Combinatorics.SimpleGraph.Finite
+-- lean-constellation: managed-imports-end
+
+-- lean-constellation: declaration-source-begin
+
+namespace PositiveDefiniteTreeLattice
+
+/--
+# lean-constellation target: `exists_irreducible_vertex`
+
+Let `V` be a finite type with decidable equality, let `G : SimpleGraph V` have decidable adjacency,
+and let `weight : V → ℤ`. Assume that `G` is a tree, that the integral tree pairing is positive
+definite on every nonzero integer vector—namely, for every `x : V → ℤ` with `x ≠ 0`, `0 <
+treePairing G weight x x`—and that there exists exactly one vertex `v` with `weight v < (G.degree v
+: ℤ)`. Then there exists a vertex `v : V` such that the vertex vector `vertexVector v` is
+irreducible for `G` and `weight`, i.e. `Irreducible G weight (vertexVector v)`.
+
+## Sources
+
+- Source `formal_target.lean`, lines 24–33
+- Source `solution.tex`, lines 182–186
+
+## Statement dependencies
+
+- `SimpleGraph.IsTree` from `Mathlib.Combinatorics.SimpleGraph.Acyclic`
+- `SimpleGraph` from `Mathlib.Combinatorics.SimpleGraph.Basic`
+- `SimpleGraph.degree` from `Mathlib.Combinatorics.SimpleGraph.Finite`
+- `Main.LatticeFoundations::IrreducibleAnchor` → `PositiveDefiniteTreeLattice.Irreducible` from
+  `PositiveDefiniteTreeLattice.Main.LatticeFoundations.Defs.IrreducibleAnchor`
+- `Main.LatticeFoundations::treePairingAnchor` → `PositiveDefiniteTreeLattice.treePairing` from
+  `PositiveDefiniteTreeLattice.Main.LatticeFoundations.Defs.treePairingAnchor`
+- `Main.LatticeFoundations::vertexVectorAnchor` → `PositiveDefiniteTreeLattice.vertexVector` from
+  `PositiveDefiniteTreeLattice.Main.LatticeFoundations.Defs.vertexVectorAnchor`
+-/
+theorem exists_irreducible_vertex
+    {V : Type*} [Fintype V] [DecidableEq V] (G : SimpleGraph V) [DecidableRel G.Adj]
+    (weight : V → ℤ) (h_tree : G.IsTree)
+    (h_positive : ∀ x : V → ℤ, x ≠ 0 → 0 < treePairing G weight x x)
+    (h_unique_underweight : ∃! v : V, weight v < (G.degree v : ℤ)) :
+    ∃ v : V, Irreducible G weight (vertexVector v) := by
+  sorry
+
+end PositiveDefiniteTreeLattice
+```
+
+## Proof NL
+
+Use the source proof on solution.tex:182–244. First split on `∃ u : V, weight u = 1`. In the positive case choose u and return `⟨u, irreducible_vertex_of_weight_eq_one G weight u h_positive hu⟩`. This is the source’s weight-one alternative and needs no relation between u and the unique underweighted vertex. In the negative case obtain the unique underweighted vertex `v` from `h_unique_underweight`, retaining both `hv : weight v < (G.degree v : ℤ)` and uniqueness. The no-weight-one assumption and `weight_ge_two_of_ne_one G weight x h_positive` give `h_two : ∀ x, 2 ≤ weight x`.
+
+It remains to prove `Irreducible G weight (vertexVector v)`. Unfold only the accepted Irreducible interface and suppose a forbidden decomposition `vertexVector v = a + b` with `ha : a ≠ 0`, `hb : b ≠ 0`, and `hab : 0 ≤ treePairing G weight a b`. Put `z := -b`. Coordinatewise algebra from the decomposition gives `a = vertexVector v + z`, while hb proves `z ≠ 0` (and ha also gives `z ≠ - vertexVector v`). Using `treePairing_add_left`, `treePairing_add_right`, `treePairing_add_self`, and `treePairing_symm` in their accepted orientations, expand
+`treePairing G weight z z + treePairing G weight (vertexVector v) z`
+after substituting `z=-b` and `vertexVector v=a+b`. The additive/negation normalization yields exactly `- treePairing G weight a b`, hence the shifted pairing is nonpositive by hab.
+
+Let `q := z v`. If `0 ≤ q`, apply `normalized_pairing_positive_of_unique_underweight G weight v z h_tree h_positive h_unique_underweight hv h_two` with the established nonzeroness and root-coefficient inequality. Its strict positivity contradicts the nonpositive shifted pairing.
+
+Otherwise, `Int.le_sub_one_of_not_le` gives `q ≤ -1`. Define `z' := - vertexVector v - z`, which is coordinatewise `-a` by the decomposition. Thus `z' ≠ 0` follows from ha. Unfolding only the accepted vertexVector definition at v shows `z' v = -1-q ≥ 0`. Apply the same normalized lemma to z'. A second expansion using `treePairing_add_left`, `treePairing_add_right`, `treePairing_add_self`, and `treePairing_symm` shows the exact invariance
+`treePairing G weight z' z' + treePairing G weight (vertexVector v) z' =
+ treePairing G weight z z + treePairing G weight (vertexVector v) z`.
+Therefore z' also gives strict positivity of the already nonpositive shifted pairing, a contradiction. Both coefficient cases rule out the forbidden decomposition, so v is irreducible and provides the required existential witness.
+
+## Proof Formal
 
 ```lean
 -- lean-constellation: managed-imports-begin

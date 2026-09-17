@@ -1,14 +1,13 @@
 {
   "change": {
-    "anticipated_proof_dep_names": [],
-    "anticipated_statement_dep_names": [],
     "base_revision": 2,
     "kind": "update",
-    "objective": "Recapture the exact accepted integral finite-graph pairing definition from formal_target.lean lines 7–13 as compiler-confirmed PositiveDefiniteTreeLattice.treePairing. Preserve all binders, finite sums, coefficients, public visibility, and catalog meaning; remove the incorrect global projection and create no compatibility alias. This namespaced definition is the lower provider for every pairing theorem and for Irreducible.",
+    "objective": "Revision 3 records the source-faithful integral finite-graph pairing definition at declared state as compiler-confirmed `PositiveDefiniteTreeLattice.treePairing`, matching formal_target.lean lines 7–13. It retains all binders, finite sums, coefficients, public visibility, and catalog meaning, removes the incorrect global projection without a compatibility alias, and supplies the lower provider for every pairing theorem and `Irreducible`.",
     "require_target_state_satisfied": true,
-    "reset_to_state": "specified",
+    "start_stage": "statement_formal",
     "summary": "Successfully recaptured the unchanged source-faithful integral finite-graph pairing definition at declared state as compiler-confirmed PositiveDefiniteTreeLattice.treePairing. Statement Formal passed, declared-level graph_proved satisfaction passed, public visibility was preserved, and no proof layer applies. This namespaced provider is now ready for Irreducible and all pairing-algebra consumer migrations.",
-    "target_state": "declared"
+    "target_state": "declared",
+    "execution_constraints": "Recapture the exact accepted definition from formal_target.lean lines 7–13; preserve all binders, finite sums, coefficients, public visibility, and catalog meaning, remove the incorrect global projection, and create no compatibility alias."
   },
   "lean_decl_name": "PositiveDefiniteTreeLattice.treePairing",
   "proof": null,
@@ -46,6 +45,11 @@
           "schema_version": 2,
           "summary": "Diagnostics returned 0 items"
         },
+        "fingerprint": {
+          "environment_sha256": null,
+          "source_sha256": "3058bf178821f241e0e24140145b5b1387ff826b883ee652c8dbde7dbb17088c",
+          "upstream_revision": null
+        },
         "message": "Lean check passed.",
         "policy": "statement_formal",
         "scan": {
@@ -63,7 +67,15 @@
           "summary": "sorry=0, admit=0, axiom=0, opaque=0, unsafe=0",
           "unsafe_count": 0
         },
-        "status": "passed"
+        "schema_version": 1,
+        "status": "passed",
+        "subject": {
+          "declaration_name": null,
+          "module": "PositiveDefiniteTreeLattice.Main.LatticeFoundations.Defs.treePairing",
+          "repo_file_path": "PositiveDefiniteTreeLattice/Main/LatticeFoundations/Defs/treePairing.lean",
+          "repo_kind": "native",
+          "stage": "statement"
+        }
       },
       "code": "-- lean-constellation: managed-imports-begin\nimport PositiveDefiniteTreeLattice.Main.LatticeFoundations.Prelude\nimport Mathlib.Algebra.BigOperators.Group.Finset.Defs\nimport Mathlib.Combinatorics.SimpleGraph.Finite\n-- lean-constellation: managed-imports-end\n\n-- lean-constellation: declaration-source-begin\n\n/--\n# lean-constellation target: `treePairing`\n\nFor a finite type `V` with decidable equality, a simple graph `G : SimpleGraph V` with decidable\nadjacency, an integer-valued weight function `weight : V → ℤ`, and functions `x y : V → ℤ`,\n`treePairing G weight x y` is the integer finite sum over all vertices `u : V` of\n\n`x u * (weight u * y u - ∑ v ∈ G.neighborFinset u, y v)`.\n\nThus the inner sum is taken over the finite neighbors of `u` in `G`.\n\n## Sources\n\n- Source `formal_target.lean`, lines 7–11\n\n## Statement dependencies\n\n- `Finset.sum` from `Mathlib.Algebra.BigOperators.Group.Finset.Defs`\n- `SimpleGraph.neighborFinset` from `Mathlib.Combinatorics.SimpleGraph.Finite`\n-/\ndef PositiveDefiniteTreeLattice.treePairing {V : Type*} [Fintype V]\n    [DecidableEq V] (G : SimpleGraph V)\n    [DecidableRel G.Adj] (weight x y : V → ℤ) : ℤ :=\n  ∑ u, x u * (weight u * y u - ∑ v ∈ G.neighborFinset u, y v)\n"
     },

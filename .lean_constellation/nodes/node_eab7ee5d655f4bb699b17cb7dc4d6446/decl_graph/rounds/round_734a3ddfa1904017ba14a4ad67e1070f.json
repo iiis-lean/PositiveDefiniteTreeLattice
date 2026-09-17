@@ -1,18 +1,13 @@
 {
-  "change_summaries": {},
   "committed_at": "2026-07-30T01:17:09Z",
   "created_at": "2026-07-30T01:07:56Z",
-  "discard_reason": null,
   "discarded_at": null,
   "discarded_by": null,
-  "discarded_created_decl_names": [],
-  "discarded_restored_decl_revisions": {},
-  "discarded_revision_refs": [],
   "execution_completed_at": "2026-07-30T01:14:05Z",
   "execution_reason": null,
   "execution_result_kind": "success",
   "node_path": "Main.RootedCapacity",
-  "objective": "Declare the public b_0009 child-component construction used for each rooted subtree C_i: delete the parent-child edge and take the connected component containing the child. Keep the construction general in parent and child so later theorems can assume child membership separately; subsequent rounds will prove tree/admissibility inheritance and the Gram principal-block bridge.",
+  "objective": "`rootedChildComponent@rev:1` is the public b_0009 child-component construction for a rooted subtree `C_i`: it deletes the parent-child edge and takes the connected component containing the child. The construction is general in parent and child, so later theorems can impose child membership separately; tree/admissibility inheritance and the Gram principal-block bridge are downstream results.",
   "plan_closeout_acknowledged_at": "2026-07-30T01:17:09Z",
   "plan_closeout_acknowledged_by": "a_a93b40977f574bad89528358fa89e022",
   "result_kind": "success",
@@ -29,5 +24,6 @@
   "started_at": "2026-07-30T01:09:46Z",
   "status": "committed",
   "strategy_id": "strategy_b9f2bb44ae0a40ba9081239e5f026481",
-  "summary": "The bottom-up strategy made progress: rootedChildComponent reached declared state and satisfies the graph-proved policy for a definition. This establishes the source-faithful b_0009 child-subtree representation needed by the next dependency layer. No blocker or superseded graph branch was introduced. Remaining work begins with tracked tree/admissibility inheritance and Gram restriction/block lemmas, followed by Schur-complement capacity recursion and strict bounds; the next action is another dependency-ordered declaration round."
+  "summary": "The bottom-up strategy made progress: `rootedChildComponent` reached declared state and satisfies the graph-proved policy for a definition. This establishes the source-faithful b_0009 child-subtree representation needed by the next dependency layer. No blocker or superseded graph branch was introduced. Remaining mathematical work comprises tracked tree/admissibility inheritance and Gram restriction/block lemmas, followed by Schur-complement capacity recursion and strict bounds.",
+  "execution_constraints": "Advance tree/admissibility inheritance and Gram restriction/block lemmas in dependency order, followed by Schur-complement capacity recursion and strict bounds; preserve the general parent/child construction."
 }

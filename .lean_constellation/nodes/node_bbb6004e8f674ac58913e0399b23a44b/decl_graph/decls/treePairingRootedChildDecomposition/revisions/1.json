@@ -1,14 +1,12 @@
 {
   "change": {
-    "anticipated_proof_dep_names": [],
-    "anticipated_statement_dep_names": [],
     "base_revision": null,
     "kind": "create",
-    "objective": "Formalize the source decomposition at SourceIndex b_0010 / solution.tex lines 102–110 for an integer coordinate function x: express treePairing G w x x as the root-weight square term, minus twice the root coefficient times the sum of child-root coefficients, plus the sum of the self-pairings of x restricted to each rootedChildComponent. Consume Main.RootedCapacity's rootedChildren/rootedChildComponent partition API and Main.LatticeFoundations treePairing algebra. Preserve the exact integral model and root coordinate; this is a proof-only structural dependency of rooted_integer_estimate.",
+    "objective": "Revision 1 records the planned source decomposition from SourceIndex b_0010 / solution.tex lines 102–110 for an integer coordinate function `x`: `treePairing G w x x` is the root-weight square term minus twice the root coefficient times the sum of child-root coefficients plus the self-pairings of `x` restricted to each `rootedChildComponent`. It consumes Main.RootedCapacity's rootedChildren/rootedChildComponent partition API and Main.LatticeFoundations treePairing algebra, preserves the exact integral model and root coordinate, and is a proof-only structural dependency of rooted_integer_estimate.",
     "require_target_state_satisfied": true,
-    "reset_to_state": null,
-    "summary": "Created and compiler-accepted the formal statement for treePairingRootedChildDecomposition at declared state, but Proof NL blocked. The consumer goal is the solution.tex 102–110 identity decomposing the global integral treePairing self-pairing into the root-weight square, root-to-child cross term, and the sum of restricted child-component self-pairings. The checked public RootedCapacity API partitions vertices among rootedChildComponent values but supplies no reusable theorem classifying every graph edge as either a root-child edge or an edge internal to one unique rooted child component. Proving that classification is nontrivial structural rooted-orientation work, outside Main.RootedEstimates' boundary. Before retrying this declaration or rooted_integer_estimate, a visible provider must publish the edge-partition/classification lemma with the exact rootedChildren/rootedChildComponent indices used by this statement.",
-    "target_state": "proved"
+    "summary": "Created and compiler-accepted the formal statement for treePairingRootedChildDecomposition at declared state, but Proof NL blocked. The consumer goal is the solution.tex 102–110 identity decomposing the global integral treePairing self-pairing into the root-weight square, root-to-child cross term, and the sum of restricted child-component self-pairings. The checked public RootedCapacity API partitions vertices among rootedChildComponent values but supplies no reusable theorem classifying every graph edge as either a root-child edge or an edge internal to one unique rooted child component. Proving that classification is nontrivial structural rooted-orientation work, outside Main.RootedEstimates' boundary. The current blocker is absence of a visible edge-partition/classification provider with the exact rootedChildren/rootedChildComponent indices used by this statement.",
+    "target_state": "proved",
+    "execution_constraints": "Obtain a visible edge-partition/classification provider with the exact rootedChildren/rootedChildComponent indices, then retry this declaration and rooted_integer_estimate only after the provider/API is available."
   },
   "lean_decl_name": "treePairingRootedChildDecomposition",
   "proof": null,
@@ -93,6 +91,11 @@
           "schema_version": 2,
           "summary": "Diagnostics returned 1 items"
         },
+        "fingerprint": {
+          "environment_sha256": null,
+          "source_sha256": "c669ceff38d70e230bb423cf5c1bbdc778854949deb81a0cd40e5ac8c683b7ba",
+          "upstream_revision": null
+        },
         "message": "Lean check passed.",
         "policy": "statement_formal",
         "scan": {
@@ -117,7 +120,15 @@
           "summary": "sorry=1, admit=0, axiom=0, opaque=0, unsafe=0",
           "unsafe_count": 0
         },
-        "status": "passed"
+        "schema_version": 1,
+        "status": "passed",
+        "subject": {
+          "declaration_name": null,
+          "module": "PositiveDefiniteTreeLattice.Main.RootedEstimates.Theorems.treePairingRootedChildDecomposition",
+          "repo_file_path": "PositiveDefiniteTreeLattice/Main/RootedEstimates/Theorems/treePairingRootedChildDecomposition.lean",
+          "repo_kind": "native",
+          "stage": "statement"
+        }
       },
       "code": "-- lean-constellation: managed-imports-begin\nimport PositiveDefiniteTreeLattice.Main.RootedEstimates.Prelude\nimport Mathlib.Combinatorics.SimpleGraph.Acyclic\nimport Mathlib.Combinatorics.SimpleGraph.Connectivity.Connected\n-- lean-constellation: managed-imports-end\n\n-- lean-constellation: declaration-source-begin\n\n/--\n# lean-constellation target: `treePairingRootedChildDecomposition`\n\nLet `V` be a finite vertex type, let `G : SimpleGraph V` have decidable adjacency and a tree witness\n`hG : G.IsTree`, let `w : V → ℤ`, let `rho : V`, and let `x : V → ℤ`. For each `c ∈ rootedChildren G\nhG rho rho`, define\n\n`C_c := rootedChildComponent G rho c`,\n\nwhich is the connected-component subtype of `G.deleteEdges {s(rho, c)}` containing `c`. Let its\ninduced child graph be\n\n`G_c := C_c.toSimpleGraph`,\n\nand define the restrictions `w_c : C_c → ℤ` and `x_c : C_c → ℤ` by `w_c(u) := w (u : V)` and `x_c(u)\n:= x (u : V)`. Set\n\n`s_c := x_c (rootedChildRoot G rho c)`.\n\nWriting `a := x rho`, the integral pairing satisfies\n\n`treePairing G w x x = w rho * a^2 - 2 * a * ∑ c ∈ rootedChildren G hG rho rho, s_c + ∑ c ∈\nrootedChildren G hG rho rho, treePairing G_c w_c x_c x_c`.\n\nThus every child self-pairing is formed on the induced graph `C_c.toSimpleGraph` with the induced\ninteger weights and the coordinate restriction, while the root coefficient is exactly `x rho`.\n\n## Sources\n\n- Source `solution.tex`, lines 102–110\n\n## Statement dependencies\n\n- `SimpleGraph.IsTree` from `Mathlib.Combinatorics.SimpleGraph.Acyclic`\n- `SimpleGraph.ConnectedComponent.toSimpleGraph` from\n  `Mathlib.Combinatorics.SimpleGraph.Connectivity.Connected`\n- `Main.LatticeFoundations::treePairingAnchor` → `PositiveDefiniteTreeLattice.treePairing` from\n  `PositiveDefiniteTreeLattice.Main.LatticeFoundations.Defs.treePairingAnchor`\n- `Main.RootedCapacity::rootedChildComponent` → `rootedChildComponent` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildComponent`\n- `Main.RootedCapacity::rootedChildRoot` → `rootedChildRoot` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildRoot`\n- `Main.RootedCapacity::rootedChildren` → `rootedChildren` from\n  `PositiveDefiniteTreeLattice.Main.RootedCapacity.Defs.rootedChildren`\n-/\ntheorem treePairingRootedChildDecomposition {V : Type*} [Fintype V] [DecidableEq V]\n    (G : SimpleGraph V) [DecidableRel G.Adj] (hG : G.IsTree) (w x : V → ℤ) (rho : V) :\n    PositiveDefiniteTreeLattice.treePairing G w x x =\n      w rho * (x rho) ^ 2 -\n        2 * x rho * (∑ c ∈ rootedChildren G hG rho rho,\n          x (rootedChildRoot G rho c)) +\n        ∑ c ∈ rootedChildren G hG rho rho,\n          let C := rootedChildComponent G rho c\n          letI : Fintype C := Fintype.ofFinite C\n          letI : DecidableEq C := Classical.decEq C\n          letI : DecidableRel C.toSimpleGraph.Adj := by\n            intro u v\n            change Decidable ((G.deleteEdges {s(rho, c)}).Adj (u : V) (v : V))\n            infer_instance\n          PositiveDefiniteTreeLattice.treePairing C.toSimpleGraph (fun u => w (u : V))\n            (fun u => x (u : V)) (fun u => x (u : V)) := by\n  sorry\n"
     },

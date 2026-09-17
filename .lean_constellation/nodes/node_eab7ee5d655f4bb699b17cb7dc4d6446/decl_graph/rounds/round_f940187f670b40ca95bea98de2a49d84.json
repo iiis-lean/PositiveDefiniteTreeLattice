@@ -1,18 +1,13 @@
 {
-  "change_summaries": {},
   "committed_at": "2026-07-30T17:03:57Z",
   "created_at": "2026-07-30T16:46:56Z",
-  "discard_reason": null,
   "discarded_at": null,
   "discarded_by": null,
-  "discarded_created_decl_names": [],
-  "discarded_restored_decl_revisions": {},
-  "discarded_revision_refs": [],
   "execution_completed_at": "2026-07-30T17:02:21Z",
   "execution_reason": "The frozen Proof NL is inconsistent with the current round objective and captured proof: its final paragraph requires unfolding rootedCapacity/rootedChildCapacitySum, while the round explicitly requires rewriting the exact attached-child scalar sum directly with rootedChildCapacitySum_attach@1. Proof Formal workers are not authorized to mutate Proof NL.",
   "execution_result_kind": "blocked",
   "node_path": "Main.RootedCapacity",
-  "objective": "Resume only Proof Formal for the preserved b_0009 inverse quadratic now that the exact attached-child capacity-sum normalization bridge is proved.",
+  "objective": "Round 46 concerns the preserved b_0009 inverse quadratic after the exact attached-child capacity-sum normalization bridge was proved; its remaining stage-plan issue is the retained Proof NL's obsolete unfolding/Finset.sum_attach paragraph.",
   "plan_closeout_acknowledged_at": "2026-07-30T17:03:57Z",
   "plan_closeout_acknowledged_by": "a_a93b40977f574bad89528358fa89e022",
   "result_kind": "blocked",
@@ -29,5 +24,6 @@
   "started_at": "2026-07-30T16:48:14Z",
   "status": "committed",
   "strategy_id": "strategy_fc60f40a331d4f63bd19e22f0eec7473",
-  "summary": "Round 46 made no accepted state advance because the Proof-Formal-only retry exposed a deterministic stage-plan mismatch. The exact parent statement, canonical Sigma proof reduction, and all dependencies are ready, and the formal proof artifact itself passed compilation; however rootedNonroot_inverse_quadratic@3 remains proof_planned because its retained Proof NL contradicts the direct rootedChildCapacitySum_attach rewrite. No new helper, preparation, or scope expansion is needed. The current strategy remains viable. The sole retry condition is to rerun the same declaration from declared through proved so Proof NL replaces its obsolete unfolding/Finset.sum_attach paragraph with the already captured direct normalization-theorem step, after which Proof Formal can be accepted and graph_proved satisfaction checked."
+  "summary": "Round 46 made no accepted state advance because the Proof-Formal-only retry exposed a deterministic stage-plan mismatch. The exact parent statement, canonical Sigma proof reduction, and all dependencies are ready, and the formal proof artifact itself passed compilation; however rootedNonroot_inverse_quadratic@3 remains proof_planned because its retained Proof NL contradicts the direct rootedChildCapacitySum_attach rewrite. No new helper, preparation, or scope expansion is needed, and the current strategy remains viable.",
+  "execution_constraints": "Rerun the same declaration from declared through proved so Proof NL replaces its obsolete unfolding/Finset.sum_attach paragraph with the captured direct normalization-theorem step; then accept Proof Formal and check graph_proved satisfaction."
 }

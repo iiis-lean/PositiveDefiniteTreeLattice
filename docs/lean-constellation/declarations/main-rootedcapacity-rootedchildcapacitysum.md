@@ -1,8 +1,8 @@
-[← Public API](../PUBLIC_API.md) · [Public boundaries](../PUBLIC_BOUNDARIES.md)
+[← Public API](../PUBLIC_API.md) · [Public boundaries](../PUBLIC_BOUNDARIES.md) · [Complete graph](../DECLARATION_GRAPH.md)
 
 # `rootedChildCapacitySum`
 
-The sum of the capacities of the rooted child-side components at the root.
+The rooted capacity is the reciprocal of the root weight minus the sum of child-component capacities.
 
 - Kind: `definition`
 - Node: `Main.RootedCapacity`
@@ -10,9 +10,17 @@ The sum of the capacities of the rooted child-side components at the root.
 - State: `declared`
 - Revision status: `committed`
 - Repository completion: `graph_proved`
-- Formal code: final statement projection
+- Compatibility `formal_code`: final statement projection
 
-## Lean code
+## Statement NL
+
+Let `V` be a finite decidable type, let `G : SimpleGraph V` have decidable adjacency, let `hG : G.IsTree`, let `w : V → ℤ`, and let `ρ : V`.  Define the rational child-capacity aggregate `rootedChildCapacitySum G hG w ρ : ℚ` by the finite sum over the attached root-child subtype:
+
+`Finset.univ.sum (fun c : {c : V // c ∈ rootedChildren G hG ρ ρ} => rootedChildCapacitySummand G hG w ρ c)`.
+
+Equivalently, this is `∑ c : {c : V // c ∈ rootedChildren G hG ρ ρ}, rootedChildCapacitySummand G hG w ρ c`.  Thus it is exactly the sum of the rational capacities of the deleted-edge child components, with each component's restricted integer weight and child root supplied by the public summand definition.  The aggregate directly invokes that named summand and introduces no component-local instances or unfolding of its body.  It assumes neither admissibility nor positivity.
+
+## Statement Formal
 
 ```lean
 -- lean-constellation: managed-imports-begin
@@ -59,6 +67,14 @@ noncomputable def rootedChildCapacitySum {V : Type*} [Fintype V] [DecidableEq V]
   Finset.univ.sum fun c : {c : V // c ∈ rootedChildren G hG ρ ρ} =>
     rootedChildCapacitySummand G hG w ρ c
 ```
+
+## Proof NL
+
+Not recorded.
+
+## Proof Formal
+
+Not recorded.
 
 ## Statement dependencies
 

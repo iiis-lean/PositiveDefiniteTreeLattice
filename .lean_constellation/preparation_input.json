@@ -9,9 +9,30 @@
       "name": "PositiveDefiniteTreeLattice.exists_irreducible_vertex",
       "note": "The public theorem must preserve the integral function model, exact pairing, uniqueness hypothesis and irreducibility predicate. Benchmark identity is intentionally absent from the Agent-facing corpus.",
       "source_refs": [
-        {"kind": "source", "ref": {"path": "formal_target.lean", "start_line": null, "end_line": null}},
-        {"kind": "source", "ref": {"path": "problem.tex", "start_line": null, "end_line": null}},
-        {"kind": "source", "ref": {"path": "solution.tex", "start_line": null, "end_line": null}}
+        {
+          "kind": "source",
+          "ref": {
+            "end_line": 35,
+            "path": "formal_target.lean",
+            "start_line": 1
+          }
+        },
+        {
+          "kind": "source",
+          "ref": {
+            "end_line": 45,
+            "path": "problem.tex",
+            "start_line": 1
+          }
+        },
+        {
+          "kind": "source",
+          "ref": {
+            "end_line": 246,
+            "path": "solution.tex",
+            "start_line": 1
+          }
+        }
       ],
       "summary": "A positive-definite integer-weighted finite tree with exactly one vertex whose weight is below its degree contains an irreducible vertex vector."
     }

@@ -50,25 +50,25 @@
         {
           "kind": "source",
           "ref": {
-            "end_line": null,
+            "end_line": 35,
             "path": "formal_target.lean",
-            "start_line": null
+            "start_line": 1
           }
         },
         {
           "kind": "source",
           "ref": {
-            "end_line": null,
+            "end_line": 45,
             "path": "problem.tex",
-            "start_line": null
+            "start_line": 1
           }
         },
         {
           "kind": "source",
           "ref": {
-            "end_line": null,
+            "end_line": 246,
             "path": "solution.tex",
-            "start_line": null
+            "start_line": 1
           }
         }
       ],
@@ -77,11 +77,12 @@
   ],
   "mathlib_decls": [],
   "mathlib_modules": [],
-  "objective": "Maintain the root scope for the repository Coordinator: organize child scopes/content nodes, track the public boundary, and eventually expose all required repository interfaces.",
+  "objective": "The Main root scope encompasses the repository's child scopes and content nodes, tracks the public boundary, and exposes all required repository interfaces.",
   "owned_refs": [],
   "status": "committed",
   "success_criteria": "All required repository interfaces are bound and the Main scope can be committed as the repo public boundary.",
   "summary": "Closed Main with all five Content children ready. Bound and exported the exact proved protected theorem PositiveDefiniteTreeLattice.exists_irreducible_vertex@2, and exported only its three current-repository formal Statement prerequisites: PositiveDefiniteTreeLattice.treePairing, PositiveDefiniteTreeLattice.vertexVector, and PositiveDefiniteTreeLattice.Irreducible. Public Statement closure is complete and the scope close gate passes.",
   "task_completion_mode": "graph_proved",
-  "version": 1
+  "version": 1,
+  "execution_constraints": "Organize child scopes and content nodes, track the public boundary, and expose required repository interfaces as they become ready."
 }

@@ -1,16 +1,9 @@
 {
   "change": {
-    "anticipated_proof_dep_names": [
-      "uniquePath_isPath"
-    ],
-    "anticipated_statement_dep_names": [
-      "uniquePath"
-    ],
     "base_revision": null,
     "kind": "create",
     "objective": "For a tree G with hG and any p : G.Walk v w satisfying p.IsPath, prove `p = uniquePath G hG v w` (or the compiler-equivalent reverse equality) by `SimpleGraph.IsTree.existsUnique_path` uniqueness. Preserve the same graph, tree witness, endpoints, and walk; add no cut/component or RootedCapacity assumptions. The statement consumes committed `uniquePath`; the proof consumes proved `uniquePath_isPath`. This theorem will identify the later append `uniquePath G hG root c |>.append (uniquePath G hG c x)` with `uniquePath G hG root x`, serving the exact equality conclusion of `PositiveDefiniteTreeLattice.uniquePath_eq_append_through_cut`. Source anchor: SourceIndex b_0008–b_0009 / solution.tex lines 33–64.",
     "require_target_state_satisfied": true,
-    "reset_to_state": null,
     "summary": "Created the private theorem `eq_uniquePath_of_isPath`, identifying every simple tree walk with fixed endpoints with the committed canonical `uniquePath`. All four stages passed; revision 1 reached `proved` and is proof-policy satisfied. Its statement depends on `uniquePath`, and its accepted proof closure uses proved `uniquePath_isPath` plus Mathlib tree-path uniqueness. It now provides the exact equality mechanism for the eventual append-factorization interface. No blocker or scope drift occurred.",
     "target_state": "proved"
   },
@@ -57,6 +50,11 @@
           "schema_version": 2,
           "summary": "Diagnostics returned 0 items"
         },
+        "fingerprint": {
+          "environment_sha256": null,
+          "source_sha256": "ad8ea1eaf5d5f72415b74cdec516ddd4b760d8710d9392f23103c8d355a44217",
+          "upstream_revision": null
+        },
         "message": "Lean check passed.",
         "policy": "proof_formal",
         "scan": {
@@ -74,7 +72,15 @@
           "summary": "sorry=0, admit=0, axiom=0, opaque=0, unsafe=0",
           "unsafe_count": 0
         },
-        "status": "passed"
+        "schema_version": 1,
+        "status": "passed",
+        "subject": {
+          "declaration_name": null,
+          "module": "PositiveDefiniteTreeLattice.Main.TreePathSeparation.Theorems.eq_uniquePath_of_isPath",
+          "repo_file_path": "PositiveDefiniteTreeLattice/Main/TreePathSeparation/Theorems/eq_uniquePath_of_isPath.lean",
+          "repo_kind": "native",
+          "stage": "proof"
+        }
       },
       "code": "-- lean-constellation: managed-imports-begin\nimport PositiveDefiniteTreeLattice.Main.TreePathSeparation.Prelude\nimport Mathlib.Combinatorics.SimpleGraph.Acyclic\nimport Mathlib.Combinatorics.SimpleGraph.Paths\nimport Mathlib.Logic.ExistsUnique\nimport PositiveDefiniteTreeLattice.Main.TreePathSeparation.Defs.uniquePath\nimport PositiveDefiniteTreeLattice.Main.TreePathSeparation.Theorems.uniquePath_isPath\n-- lean-constellation: managed-imports-end\n\n-- lean-constellation: declaration-source-begin\n\n/--\n# lean-constellation target: `eq_uniquePath_of_isPath`\n\nFor a finite vertex type `V`, a simple graph `G` on `V`, a tree certificate `hG : G.IsTree`,\nvertices `v w : V`, and a walk `p : G.Walk v w`, if `p.IsPath`, then `p = uniquePath G hG v w`. Thus\nevery simple walk with these same endpoints in the tree agrees with the canonical chosen walk, with\nno cut, component, rooted-capacity, weighted, or matrix assumptions.\n\n## Statement dependencies\n\n- `SimpleGraph.Walk.IsPath` from `Mathlib.Combinatorics.SimpleGraph.Paths`\n- `Main.TreePathSeparation::uniquePath` → `uniquePath` from\n  `PositiveDefiniteTreeLattice.Main.TreePathSeparation.Defs.uniquePath`\n\n## Proof outline\n\nApply the uniqueness clause of `hG.existsUnique_path v w` to the two walks with endpoints `v` and\n`w`: the given walk `p`, whose pathhood is `hp`, and the canonical walk `uniquePath G hG v w`, whose\npathhood is supplied by the proved helper `uniquePath_isPath G hG v w`. The resulting equality is\nexactly `p = uniquePath G hG v w`.\n\nConcretely, the Proof Formal worker can use `exact (hG.existsUnique_path v w).unique hp\n(uniquePath_isPath G hG v w)`. This preserves the original graph, tree witness, endpoints, and walk,\nwith no cut, component, rooted-capacity, weighted, or matrix assumptions.\n\n## Proof sources\n\n- Source `solution.tex`, lines 33–64\n\n## Proof dependencies\n\n- `SimpleGraph.IsTree.existsUnique_path` from `Mathlib.Combinatorics.SimpleGraph.Acyclic`\n- `ExistsUnique.unique` from `Mathlib.Logic.ExistsUnique`\n- `Main.TreePathSeparation::uniquePath_isPath` → `uniquePath_isPath` from\n  `PositiveDefiniteTreeLattice.Main.TreePathSeparation.Theorems.uniquePath_isPath`\n-/\ntheorem eq_uniquePath_of_isPath {V : Type*} [Fintype V] (G : SimpleGraph V)\n    (hG : G.IsTree) (v w : V) (p : G.Walk v w) (hp : p.IsPath) :\n    p = uniquePath G hG v w := by\n  exact (hG.existsUnique_path v w).unique hp (uniquePath_isPath G hG v w)\n"
     },
@@ -92,7 +98,7 @@
           "start_locator": null
         }
       ],
-      "text": "Apply the uniqueness clause of `hG.existsUnique_path v w` to the two walks with endpoints `v` and `w`: the given walk `p`, whose pathhood is `hp`, and the canonical walk `uniquePath G hG v w`, whose pathhood is supplied by the proved helper `uniquePath_isPath G hG v w`. The resulting equality is exactly `p = uniquePath G hG v w`.\n\nConcretely, the Proof Formal worker can use `exact (hG.existsUnique_path v w).unique hp (uniquePath_isPath G hG v w)`. This preserves the original graph, tree witness, endpoints, and walk, with no cut, component, rooted-capacity, weighted, or matrix assumptions."
+      "text": "Apply the uniqueness clause of `hG.existsUnique_path v w` to the two walks with endpoints `v` and `w`: the given walk `p`, whose pathhood is `hp`, and the canonical walk `uniquePath G hG v w`, whose pathhood is supplied by the proved helper `uniquePath_isPath G hG v w`. The resulting equality is exactly `p = uniquePath G hG v w`.\n\nThe equality is obtained by `exact (hG.existsUnique_path v w).unique hp (uniquePath_isPath G hG v w)`. This preserves the original graph, tree witness, endpoints, and walk, with no cut, component, rooted-capacity, weighted, or matrix assumptions."
     }
   },
   "revision": 1,
@@ -138,6 +144,11 @@
           "schema_version": 2,
           "summary": "Diagnostics returned 1 items"
         },
+        "fingerprint": {
+          "environment_sha256": null,
+          "source_sha256": "33e1e01860802a1522e234cce2b9225105044da3799536c181147635db59e655",
+          "upstream_revision": null
+        },
         "message": "Lean check passed.",
         "policy": "statement_formal",
         "scan": {
@@ -162,7 +173,15 @@
           "summary": "sorry=1, admit=0, axiom=0, opaque=0, unsafe=0",
           "unsafe_count": 0
         },
-        "status": "passed"
+        "schema_version": 1,
+        "status": "passed",
+        "subject": {
+          "declaration_name": null,
+          "module": "PositiveDefiniteTreeLattice.Main.TreePathSeparation.Theorems.eq_uniquePath_of_isPath",
+          "repo_file_path": "PositiveDefiniteTreeLattice/Main/TreePathSeparation/Theorems/eq_uniquePath_of_isPath.lean",
+          "repo_kind": "native",
+          "stage": "statement"
+        }
       },
       "code": "-- lean-constellation: managed-imports-begin\nimport PositiveDefiniteTreeLattice.Main.TreePathSeparation.Prelude\nimport Mathlib.Combinatorics.SimpleGraph.Paths\nimport PositiveDefiniteTreeLattice.Main.TreePathSeparation.Defs.uniquePath\n-- lean-constellation: managed-imports-end\n\n-- lean-constellation: declaration-source-begin\n\n/--\n# lean-constellation target: `eq_uniquePath_of_isPath`\n\nFor a finite vertex type `V`, a simple graph `G` on `V`, a tree certificate `hG : G.IsTree`,\nvertices `v w : V`, and a walk `p : G.Walk v w`, if `p.IsPath`, then `p = uniquePath G hG v w`. Thus\nevery simple walk with these same endpoints in the tree agrees with the canonical chosen walk, with\nno cut, component, rooted-capacity, weighted, or matrix assumptions.\n\n## Statement dependencies\n\n- `SimpleGraph.Walk.IsPath` from `Mathlib.Combinatorics.SimpleGraph.Paths`\n- `Main.TreePathSeparation::uniquePath` → `uniquePath` from\n  `PositiveDefiniteTreeLattice.Main.TreePathSeparation.Defs.uniquePath`\n-/\ntheorem eq_uniquePath_of_isPath {V : Type*} [Fintype V] (G : SimpleGraph V)\n    (hG : G.IsTree) (v w : V) (p : G.Walk v w) (hp : p.IsPath) :\n    p = uniquePath G hG v w := by\n  sorry\n"
     },

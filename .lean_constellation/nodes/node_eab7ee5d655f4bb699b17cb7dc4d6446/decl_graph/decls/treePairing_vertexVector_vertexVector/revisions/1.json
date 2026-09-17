@@ -1,14 +1,12 @@
 {
   "change": {
-    "anticipated_proof_dep_names": [],
-    "anticipated_statement_dep_names": [],
     "base_revision": null,
     "kind": "create",
-    "objective": "Prove the exact basis-entry formula for Main.LatticeFoundations.treePairing: diagonal entries are the vertex weight, distinct adjacent entries are -1, and nonadjacent entries are 0. This source-specific bridge is implicit in solution.tex lines 57–64 and supports both rootedGram compatibility and later component/block decomposition. Consume only treePairing, vertexVector, treePairing_vertexVector_self, and finite-neighbor sum facts; it has no current-node Statement or proof prerequisite.",
+    "objective": "This declaration provides the source-specific basis-entry formula for Main.LatticeFoundations.treePairing implicit in solution.tex lines 57–64: for a finite tree with integer vertex weights, the pairing of vertexVector u and vertexVector v is w u when u = v, -1 when u and v are adjacent and distinct, and 0 otherwise. The bridge supports rootedGram compatibility and the later root-child component/block decomposition, and has no additional current-node mathematical prerequisite.",
     "require_target_state_satisfied": true,
-    "reset_to_state": null,
     "summary": "Intended private proved basis-entry bridge: diagonal weight, -1 for distinct adjacent vertices, and 0 otherwise, implicit in solution.tex lines 57–64. Statement NL was accepted and the revision reached specified, but Statement Formal was blocked before capture; proof planning/formal proof are absent and target proved was not reached. Blocker classification: visible-provider/interface import conflict. The managed Prelude cannot compile because Main.LatticeFoundations.Defs.Irreducible and Mathlib.Algebra.Group.Irreducible.Defs both install the global name `Irreducible`; no mismatch was found in treePairing, vertexVector, or the intended formula. Retry after the provider/interface compiles with the node's Mathlib imports; no additional current-node helper is a known prerequisite.",
-    "target_state": "proved"
+    "target_state": "proved",
+    "execution_constraints": "Use only treePairing, vertexVector, treePairing_vertexVector_self, and the existing finite-neighbor sum facts when establishing the formula. Keep the result as this source-specific bridge within the existing provider/import interface; do not add current-node prerequisites, alter the tree/weight hypotheses, or change the stated three cases."
   },
   "lean_decl_name": null,
   "proof": null,

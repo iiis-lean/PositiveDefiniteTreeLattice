@@ -1,18 +1,13 @@
 {
-  "change_summaries": {},
   "committed_at": "2026-07-30T11:59:33Z",
   "created_at": "2026-07-30T11:53:24Z",
-  "discard_reason": null,
   "discarded_at": null,
   "discarded_by": null,
-  "discarded_created_decl_names": [],
-  "discarded_restored_decl_revisions": {},
-  "discarded_revision_refs": [],
   "execution_completed_at": "2026-07-30T11:57:57Z",
   "execution_reason": null,
   "execution_result_kind": "success",
   "node_path": "Main.RootedCapacity",
-  "objective": "Retry only Proof Formal for rootedNonrootGram_reindex_childBlocks using the proved exact nested-submatrix entry theorem. Preserve the accepted block-diagonal statement and proof plan from SourceIndex b_0009 / solution.tex lines 57–62; no further helper creation or semantic change is permitted in this round.",
+  "objective": "Round 37 records the proved child-component Gram block decomposition rootedNonrootGram_reindex_childBlocks from SourceIndex b_0009 / solution.tex lines 57–62, with its accepted block-diagonal statement and proof plan preserved.",
   "plan_closeout_acknowledged_at": "2026-07-30T11:59:33Z",
   "plan_closeout_acknowledged_by": "a_a93b40977f574bad89528358fa89e022",
   "result_kind": "success",
@@ -29,5 +24,6 @@
   "started_at": "2026-07-30T11:54:53Z",
   "status": "committed",
   "strategy_id": "strategy_1fbcdfb31a2e4cada1ff5b7b941de18c",
-  "summary": "Round 37 completed the child-component Gram block decomposition: rootedNonrootGram_reindex_childBlocks is now proved and proof-policy satisfied. The strategy made substantive source-level progress and no further representation wrapper is needed. The next dependency-ordered action is a Proof-Formal-only retry of the already proof-planned rootedNonroot_inverse_childBlocks, consuming the proved block identity together with child-block positive definiteness/invertibility, Matrix block-diagonal multiplication, and Matrix.inv_reindex. rootedNonroot_inverse_quadratic remains deferred until that theorem proves. The graph remains at 28 declarations; future progress should advance existing declarations or clean redundant private wrappers rather than add helpers absent a new source-level necessity."
+  "summary": "Round 37 completed the child-component Gram block decomposition: rootedNonrootGram_reindex_childBlocks is now proved and proof-policy satisfied. The strategy made substantive source-level progress and no further representation wrapper is needed. The graph remains at 28 declarations; rootedNonroot_inverse_childBlocks is proof_planned and depends on the proved block identity, while rootedNonroot_inverse_quadratic remains deferred. The existing declaration and cleanup boundary excludes helpers absent a new source-level necessity.",
+  "execution_constraints": "Retry rootedNonroot_inverse_childBlocks in Proof Formal only, consuming the proved block identity together with child-block positive definiteness/invertibility, Matrix block-diagonal multiplication, and Matrix.inv_reindex. Defer rootedNonroot_inverse_quadratic until that theorem proves, and advance existing declarations or cleanup rather than add helpers absent a new source-level necessity."
 }
